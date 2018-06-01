@@ -34,8 +34,31 @@ function updateSettings() {
 
 	chrome.storage.local.get('interval', function(data) {
 		if (data.interval) {
-			document.getElementById('interval').value = data.interval;	
+			$('#interval').val(data.interval);	
 		}
+	});
+
+	$('#headers input[type="checkbox"]').each(function(i, element) {
+		chrome.storage.local.get(element.name, function(data) {
+			$(`input[name="${element.name}"]`).prop('checked', data[element.name]);
+		});
+	});
+
+	$('.opt select').each(function (i, element) {
+		chrome.storage.local.get(element.name, function(data) {
+			var value = data[element.name] ? data[element.name] : 0;
+			$(`select[name="${element.name}"]`).val(value);
+
+			if (element.name == "spoofViaValue" || element.name == "spoofXForValue") {
+				var ipDiv = $(`select[name="${element.name}"]`).siblings(".ipAddr");
+				(value == 1) ? ipDiv.show() : ipDiv.hide();
+
+				var setting = element.name == "spoofViaValue" ? "viaIP" : "xforwardedforIP";
+				chrome.storage.local.get(setting, function(d) {
+					$(`input[name="${setting}"]`).val(d[setting]);
+				});
+			}
+		});
 	});
 }
 
@@ -85,7 +108,7 @@ function getPlatform(v) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    chrome.storage.local.set({ useragents : uas });
+	chrome.runtime.sendMessage({useragents: uas });
 
     $.each(menu, function (index, value) {
     	$(`#menu_${value}`).on('click', function() {
@@ -107,29 +130,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // capture events to update settings
 	$('#interval').on('change', function(e) {
-		chrome.storage.local.set({interval: e.target.value});
-		chrome.runtime.sendMessage({duration: parseInt(e.target.value)}, function(){});
+		chrome.runtime.sendMessage({duration: parseInt(e.target.value)});
     });
 
+	// capture profile update events
 	$('input[type="radio"][name="profile_type"]').on('change', function(e) {
 		$.each($("li"), function(k, v) {
 		  v.className = "";
 		});
 
 		$(`#sub_${getPlatform(e.target.value)}`).addClass("active");
-	    chrome.storage.local.set({ useragent : e.target.value });
+		chrome.runtime.sendMessage({useragent: e.target.value});
 
 	    if (e.target.value.match(/.*?\d/)) {
 	    	ua = uas[getPlatform(e.target.value)].find(u => u.value == e.target.value).ua;
-		    chrome.storage.local.set({ useragentValue : ua });
+    		chrome.runtime.sendMessage({useragentValue: ua});
 	    }
-		chrome.runtime.sendMessage({duration: parseInt($("#interval").val())}, function(){});
+		chrome.runtime.sendMessage({duration: parseInt($("#interval").val())});
 	});
 
 	$('input[name="custom_ua"]').on('keyup', function(e) {
 		if ($('input[type="radio"][name="profile_type"]:checked').val() == "custom") {
-		    chrome.storage.local.set({ useragentValue : e.target.value });
+    		chrome.runtime.sendMessage({useragentValue: e.target.value});
 		}
-		chrome.runtime.sendMessage({duration: parseInt($("#interval").val())}, function(){});
+		chrome.runtime.sendMessage({duration: parseInt($("#interval").val())});
+	});
+
+	// capture headers update events
+	$('#headers input[type="checkbox"]').on('click', function(e) {
+		chrome.runtime.sendMessage({ headers: { field: e.target.name, value: this.checked ? true : false }});
+	});
+
+	$('.opt select').on('change', function(e) {
+		if (e.target.name == "spoofViaValue" || e.target.name == "spoofXForValue") {
+			var element = $(`select[name="${e.target.name}"]`).siblings(".ipAddr");
+
+			if (e.target.value == 1) {
+				element.show()
+			} else {
+				element.find("input").val("");
+				element.hide();
+
+				var input = e.target.name == "spoofXForValue" ? "viaIP" : "xforwardedforIP";
+				chrome.runtime.sendMessage({ headers: { field: input, value: "" }});
+			}
+		}
+
+		chrome.runtime.sendMessage({ headers: { field: e.target.name, value: e.target.value }});
+	});
+
+	$('#headers input').on('keyup', function(e) {
+		// validate ip
+		if (e.target.value.match(/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/)) {
+			chrome.runtime.sendMessage({ headers: { field: e.target.name, value: e.target.value }});
+		    $(this).css("border", "3px solid darkseagreen");
+		} else {
+		    $(this).css("border", "3px solid firebrick");
+		}
 	});
 });

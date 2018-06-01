@@ -27,13 +27,13 @@ input[type="radio"]:checked+label {
   font-weight: bold;
 }
 
+label {
+  font-size: 12px;
+}
+
 ul {
   list-style-type: none;
   padding-left: 0px;
-}
-
-#profile label {
-  font-size: 12px;
 }
 
 #profile table {
@@ -59,6 +59,16 @@ ul {
   cursor: pointer;
 }
 
+.ipAddr {
+  padding: 5px;
+}
+
+.ipAddr input {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 45px;
+}
+
 .item:hover {
   background-color: #7aa329;
 }
@@ -72,7 +82,6 @@ ul {
 .item.active:hover {
   background-color: white;
 }
-
 
 .list_header {
   background-color: #e5e4e4;

@@ -43,16 +43,16 @@
                 <div class="interval">
                     <label>Change periodically: </label>
                     <select id="interval">
-						<option value="0">No</option>
-						<option value="1">Every minute</option>
-						<option value="5">Every 5 minutes</option>
-						<option value="10">Every 10 minutes</option>
-						<option value="20">Every 20 minutes</option>
-						<option value="30">Every 30 minutes</option>
-						<option value="40">Every 40 minutes</option>
-						<option value="50">Every 50 minutes</option>
-						<option value="60">Every hour</option>
-					</select>
+                        <option value="0">No</option>
+                        <option value="1">Every minute</option>
+                        <option value="5">Every 5 minutes</option>
+                        <option value="10">Every 10 minutes</option>
+                        <option value="20">Every 20 minutes</option>
+                        <option value="30">Every 30 minutes</option>
+                        <option value="40">Every 40 minutes</option>
+                        <option value="50">Every 50 minutes</option>
+                        <option value="60">Every hour</option>
+                    </select>
                 </div>
                 <ul class="os_groups">
                     <li id="sub_windows">
@@ -112,10 +112,101 @@
                     </div>
                 </ul>
             </div>
+            <div class="tab" id="headers">
+                <div class="opt">
+                    <input type="checkbox" name="disableAuth">
+                    <label for="disableAuth">Disable Authorization</label>
+                </div>
+                <div class="opt">
+                    <input type="checkbox" name="enableDNT">
+                    <label for="enableDNT">Enable DNT (Do Not Track)</label>
+                </div>
+                <div class="opt">
+                    <input type="checkbox" name="spoofEtag">
+                    <label for="spoofEtag">Spoof If-None-Match (ETags)</label>
+                </div>
+                <div class="opt">
+                    <input type="checkbox" name="spoofVia">
+                    <label for="spoofVia">Spoof Via using a</label>
+                    <select name="spoofViaValue">
+                        <option value="0">random IP</option>
+                        <option value="1">custom IP</option>
+                    </select>
+                    <div class="ipAddr">
+                        <label for="viaIp">IP address:</label>
+                        <input type="text" name="viaIP" size="15" maxlength="15">
+                    </div>
+                </div>
+                <div class="opt">
+                    <input type="checkbox" name="spoofXFor">
+                    <label for="dnt">Spoof X-Forwarded-For using a</label>
+                    <select name="spoofXForValue">
+                        <option value="0">random IP</option>
+                        <option value="1">custom IP</option>
+                    </select>
+                    <div class="ipAddr">
+                        <label for="xforwardedforIP">IP address:</label>
+                        <input type="text" name="xforwardedforIP" size="15" maxlength="15">
+                    </div>
+                </div>
+                <div class="opt">
+                    <input type="checkbox" name="disableRef">
+                    <label for="disableRef">Disable Referer</label>
+                </div>
+                <div class="opt">
+                    <input type="checkbox" name="spoofSourceRef">
+                    <label for="spoofSourceRef">Spoof Source Referer</label>
+                </div>
+                <div class="opt">
+                    <label for="dnt">Referer X Origin Policy :</label>
+                    <br/>
+                    <select name="refererXorigin">
+                        <option value="0">Always send (default)</option>
+                        <option value="1">Match base domain</option>
+                        <option value="2">Match host</option>
+                    </select>
+                </div>
+                <div class="opt">
+                    <label for="dnt">Referer Trimming Policy :</label>
+                    <br/>
+                    <select name="refererTrimming">
+                        <option value="0">Send full URI (default)</option>
+                        <option value="1">Scheme, host, port + path</option>
+                        <option value="2">Scheme, host + port</option>
+                    </select>
+                </div>
+                <br/>
+                <hr><br/>
+                <div class="opt">
+                    <input type="checkbox" name="spoofAcceptEncoding">
+                    <label for="spoofSourceRef">Spoof Accept-Encoding</label>
+                </div>
+                <div class="opt">
+                    <input type="checkbox" name="spoofAcceptLang">
+                    <label for="dnt">Spoof Accept-Language as </label>
+                    <select name="spoofAcceptLangValue">
+                        <option value="da-DK,da;q=0.5">da-DK</option>
+                        <option value="de-DE,de;q=0.5">de-DE</option>
+                        <option value="en-GB,en;q=0.5">en-GB</option>
+                        <option value="en-US,en;q=0.5">en-US</option>
+                        <option value="es-es,es;q=0.5">es-ES</option>
+                        <option value="fr-FR,fr;q=0.5">fr-FR</option>
+                        <option value="it-IT,it;q=0.5">it-IT</option>
+                        <option value="ja-JP,en-US;q=0.5">ja-JP</option>
+                        <option value="ko-KR,ko;q=0.8">ko-KR</option>
+                        <option value="pt-PT,pt;q=0.9">pt-PT</option>
+                        <option value="ru-RU,ru;q=0.5">ru-RU</option>
+                        <option value="sv-SE,en-US;q=0.5">sv-SE</option>
+                        <option value="zh-CN,zh;q=0.5">zh-CN</option>
+                        <option value="zh-TW,zh;q=0.5">zh-TW</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 </body>
 <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript" src="js/data.js"></script>
 <script type="text/javascript" src="js/popup.js"></script>
+
 </html>
