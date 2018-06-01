@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('../fonts/proxima_nova.eot');
+  src: url('../fonts/proxima_nova.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/proxima_nova.woff') format('woff'),
+         url('../fonts/proxima_nova.ttf') format('truetype'),
+         url('../fonts/proxima_nova.svg#proxima_nova_altregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  font-family: "Proxima Nova";
+}
+
+body {
+  background-color: white;
+  width: 300px;
+  height: 400px;
+  max-height: 450px;
+  overflow-x: hidden;
+}
+
+input[type="radio"]:checked+label {
+  color: olivedrab;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+#profile label {
+  font-size: 12px;
+}
+
+#profile table {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.interval {
+  margin-bottom: 10px;
+}
+
+.item {
+  display: inline-block;
+  width: 75px;
+  height: 15px;
+  background-color: olivedrab;
+  padding: 5px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #7aa329;
+}
+
+.item.active {
+  background-color: white;
+  color: olivedrab;
+  font-weight: bold;
+}
+
+.item.active:hover {
+  background-color: white;
+}
+
+
+.list_header {
+  background-color: #e5e4e4;
+  padding: 5px;
+  font-size: 12px;
+  width: 100%;
+}
+
+.os_groups li {
+  background-color: #e5e4e4;
+  padding: 5px;
+  font-size: 12px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+.os_groups li:hover {
+  background-color: #CECDCD;
+}
+
+.os_groups li.active {
+  background-color: olivedrab;
+  color: white;
+}
+
+.tab {
+  padding: 10px;
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+.ualist {
+  display: none;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.ualist.active {
+  display: block;
+}
+
+.useragent {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/fonts.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/popup.css" />
+    <title>Camo</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="headers">
+            <div class="active item" id="menu_profile">Profile
+            </div><div class="item" id="menu_headers">Headers
+            </div><div class="item" id="menu_options">Options
+            </div><div class="item" id="menu_whitelist">Whitelist
+            </div>
+        </div>
+        <div class="tabs">
+            <div class="active tab" id="profile">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="padding-right: 20px;">
+                                <input name="profile_type" type="radio" value="real"><label> Real Profile</label>
+                            </td>
+                            <td>
+                                <input name="profile_type" type="radio" value="randomDesktop"><label> Random Profile (Desktop)</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input name="profile_type" type="radio" value="random"><label> Random</label>
+                            </td>
+                            <td>
+                                <input name="profile_type" type="radio" value="randomMobile"><label> Random Profile (Mobile)</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="interval">
+                    <label>Change periodically: </label>
+                    <select id="interval">
+						<option value="0">No</option>
+						<option value="1">Every minute</option>
+						<option value="5">Every 5 minutes</option>
+						<option value="10">Every 10 minutes</option>
+						<option value="20">Every 20 minutes</option>
+						<option value="30">Every 30 minutes</option>
+						<option value="40">Every 40 minutes</option>
+						<option value="50">Every 50 minutes</option>
+						<option value="60">Every hour</option>
+					</select>
+                </div>
+                <ul class="os_groups">
+                    <li id="sub_windows">
+                        Windows Browsers
+                        <span style="float: right;">+</span>
+                    </li>
+                    <div class="ualist" id="list_windows">
+                        <div class="useragent">
+                            <input name="profile_type" type="radio" value="random_windows"><label> Random Windows Browsers</label>
+                        </div>
+                    </div>
+                    <li id="sub_macOS">
+                        macOS Browsers
+                        <span style="float: right;">+</span>
+                    </li>
+                    <div class="ualist" id="list_macOS">
+                        <div class="useragent">
+                            <input name="profile_type" type="radio" value="random_macOS"><label> Random macOS Browsers</label>
+                        </div>
+                    </div>
+                    <li id="sub_linux">
+                        Linux Browsers
+                        <span style="float: right;">+</span>
+                    </li>
+                    <div class="ualist" id="list_linux">
+                        <div class="useragent">
+                            <input name="profile_type" type="radio" value="random_linux"><label> Random Linux Browsers</label>
+                        </div>
+                    </div>
+                    <li id="sub_iOS">
+                        iOS Browsers
+                        <span style="float: right;">+</span>
+                    </li>
+                    <div class="ualist" id="list_iOS">
+                        <div class="useragent">
+                            <input name="profile_type" type="radio" value="random_iOS"><label> Random iOS Browsers</label>
+                        </div>
+                    </div>
+                    <li id="sub_android">
+                        Android Browsers
+                        <span style="float: right;">+</span>
+                    </li>
+                    <div class="ualist" id="list_android">
+                        <div class="useragent">
+                            <input name="profile_type" type="radio" value="random_android"><label> Random Android Browsers</label>
+                        </div>
+                    </div>
+                    <li id="sub_custom">
+                        Custom User Agent
+                        <span style="float: right;">+</span>
+                    </li>
+                    <div class="ualist" id="list_custom">
+                        <div class="useragent">
+                            <input name="profile_type" type="radio" value="custom"><label> Custom User Agent</label>
+                            <input name="custom_ua" type="text" style="width: 90%;">
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+</html>
