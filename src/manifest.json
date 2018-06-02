@@ -3,8 +3,8 @@
 	"background": {
 	    "scripts": ["js/background.js"]
 	},
-	"name": "Camo",
-	"version": "0.1",
+	"name": "Chameleon",
+	"version": "0.2",
 	"manifest_version": 2,
 	"description": "Spoof your browser profile. Includes a few privacy enhancing options.",
 	"browser_action": {
@@ -13,7 +13,7 @@
 	},
 	"icons": {
 	    "48": "img/icon_48.png",
-	    "96": "img/icon_96.png"
+	    "128": "img/icon_128.png"
 	},
 	"permissions": [
 		"http://*/*",
