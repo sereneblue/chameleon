@@ -1,5 +1,6 @@
 let selected = {
 	header: "profile",
+	option: "",
 	os: ""
 }
 
@@ -60,6 +61,55 @@ function updateSettings() {
 			}
 		});
 	});
+
+	$('#list_scriptInjection input').each(function (i, element) {
+		chrome.storage.local.get(element.name, function(data) {
+			$(`input[name="${element.name}"]`).prop('checked', data[element.name] ? true: false);
+		});
+	});
+
+	var cookieOption = browser.privacy.websites.cookieConfig.get({});
+	cookieOption.then((c) => {
+		$(`select[name="cookieConfig"]`).val(c.value.behavior);
+	});
+
+	var trackingProtection = browser.privacy.websites.trackingProtectionMode.get({});
+	trackingProtection.then((t) => {
+		$(`input[name="enableTrackingProtection"]`).prop('checked', t.value == "always"? true: false);
+	});
+
+	var firstPartyIsolate = browser.privacy.websites.firstPartyIsolate.get({});
+	firstPartyIsolate.then((f) => {
+		$(`input[name="firstPartyIsolate"]`).prop('checked', f.value);
+	});
+
+	var resistFingerprinting = browser.privacy.websites.resistFingerprinting.get({});
+	resistFingerprinting.then((r) => {
+		$(`input[name="resistFingerprinting"]`).prop('checked', r.value);
+	});	
+
+	chrome.storage.local.get("screenSize", function(data) {
+		var value = data.screenSize ? data.screenSize : "default";
+		$(`select[name="screenSize"]`).val(value);
+	});
+}
+
+function changeOptionList(opt) {
+	if (opt != selected.opt) {
+		$(`#list_${selected.opt}`).hide();
+		selected.opt = opt;
+	}
+
+	$(`#list_${opt}`).toggle();
+
+	for (var i in options) {
+		var vis = $(`#list_${options[i]}`).is(':visible');
+		if (!vis) {
+			$(`#sub_${options[i]} span`).text(`+`);
+		} else {
+			$(`#sub_${options[i]} span`).text(`—`);
+		}
+	}
 }
 
 function changeUserAgentList(os) {
@@ -110,6 +160,13 @@ function getPlatform(v) {
 document.addEventListener('DOMContentLoaded', function() {
 	chrome.runtime.sendMessage({useragents: uas });
 
+    // build input list
+    buildInputs();
+
+    // update settings
+    updateSettings();
+
+    // capture events to profile settings
     $.each(menu, function (index, value) {
     	$(`#menu_${value}`).on('click', function() {
 	        changeTab(value);
@@ -122,18 +179,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	    });
     })
 
-    // build input list
-    buildInputs();
-
-    // update settings
-    updateSettings();
-
-    // capture events to update settings
 	$('#interval').on('change', function(e) {
 		chrome.runtime.sendMessage({duration: parseInt(e.target.value)});
     });
 
-	// capture profile update events
 	$('input[type="radio"][name="profile_type"]').on('change', function(e) {
 		$.each($("li"), function(k, v) {
 		  v.className = "";
@@ -161,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		chrome.runtime.sendMessage({ headers: { field: e.target.name, value: this.checked ? true : false }});
 	});
 
-	$('.opt select').on('change', function(e) {
+	$('#headers select').on('change', function(e) {
 		if (e.target.name == "spoofViaValue" || e.target.name == "spoofXForValue") {
 			var element = $(`select[name="${e.target.name}"]`).siblings(".ipAddr");
 
@@ -187,5 +236,20 @@ document.addEventListener('DOMContentLoaded', function() {
 		} else {
 		    $(this).css("border", "3px solid firebrick");
 		}
+	});
+
+	//capture options update events
+	$.each(options, function(index, value) {
+	    $(`#sub_${value}`).on('click', function() {
+	        changeOptionList(value);
+	    });
+	});
+
+	$('#options input[type="checkbox"]').on('click', function(e) {
+		chrome.runtime.sendMessage({ option: { field: e.target.name, value: this.checked ? true : false }});
+	});
+
+	$('#options select').on('change', function(e) {
+		chrome.runtime.sendMessage({ option: { field: e.target.name, value: e.target.value }});
 	});
 });

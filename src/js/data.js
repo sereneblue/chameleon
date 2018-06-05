@@ -193,3 +193,6 @@ platforms.push("custom");
 
 // menu headers
 let menu = ["profile", "headers", "options", "whitelist"];
+
+// options
+let options = ["scriptInjection", "standard", "cookies", "misc", "reporting"];

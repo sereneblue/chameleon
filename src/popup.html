@@ -10,203 +10,364 @@
 </head>
 
 <body>
-    <div id="app">
-        <div class="headers">
-            <div class="active item" id="menu_profile">Profile
-            </div><div class="item" id="menu_headers">Headers
-            </div><div class="item" id="menu_options">Options
-            </div><div class="item" id="menu_whitelist">Whitelist
+    <div class="headers">
+        <div class="active item" id="menu_profile">Profile
+        </div><div class="item" id="menu_headers">Headers
+        </div><div class="item" id="menu_options">Options
+        </div><div class="item" id="menu_whitelist">Whitelist
+        </div>
+    </div>
+    <div class="tabs">
+        <div class="active tab" id="profile">
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="padding-right: 20px;">
+                            <input name="profile_type" type="radio" value="real"><label> Real Profile</label>
+                        </td>
+                        <td>
+                            <input name="profile_type" type="radio" value="randomDesktop"><label> Random Profile (Desktop)</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="profile_type" type="radio" value="random"><label> Random</label>
+                        </td>
+                        <td>
+                            <input name="profile_type" type="radio" value="randomMobile"><label> Random Profile (Mobile)</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="interval">
+                <label>Change periodically: </label>
+                <select id="interval">
+                    <option value="0">No</option>
+                    <option value="1">Every minute</option>
+                    <option value="5">Every 5 minutes</option>
+                    <option value="10">Every 10 minutes</option>
+                    <option value="20">Every 20 minutes</option>
+                    <option value="30">Every 30 minutes</option>
+                    <option value="40">Every 40 minutes</option>
+                    <option value="50">Every 50 minutes</option>
+                    <option value="60">Every hour</option>
+                </select>
+            </div>
+            <ul class="groups">
+                <li id="sub_windows">
+                    Windows Browsers
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_windows">
+                    <div class="opt">
+                        <input name="profile_type" type="radio" value="random_windows"><label> Random Windows Browsers</label>
+                    </div>
+                </div>
+                <li id="sub_macOS">
+                    macOS Browsers
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_macOS">
+                    <div class="opt">
+                        <input name="profile_type" type="radio" value="random_macOS"><label> Random macOS Browsers</label>
+                    </div>
+                </div>
+                <li id="sub_linux">
+                    Linux Browsers
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_linux">
+                    <div class="opt">
+                        <input name="profile_type" type="radio" value="random_linux"><label> Random Linux Browsers</label>
+                    </div>
+                </div>
+                <li id="sub_iOS">
+                    iOS Browsers
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_iOS">
+                    <div class="opt">
+                        <input name="profile_type" type="radio" value="random_iOS"><label> Random iOS Browsers</label>
+                    </div>
+                </div>
+                <li id="sub_android">
+                    Android Browsers
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_android">
+                    <div class="opt">
+                        <input name="profile_type" type="radio" value="random_android"><label> Random Android Browsers</label>
+                    </div>
+                </div>
+                <li id="sub_custom">
+                    Custom User Agent
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_custom">
+                    <div class="opt">
+                        <input name="profile_type" type="radio" value="custom"><label> Custom User Agent</label>
+                        <input name="custom_ua" type="text" style="width: 90%;">
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <div class="tab" id="headers">
+            <div class="opt">
+                <input type="checkbox" name="disableAuth">
+                <label for="disableAuth">Disable Authorization</label>
+            </div>
+            <div class="opt">
+                <input type="checkbox" name="enableDNT">
+                <label for="enableDNT">Enable DNT (Do Not Track)</label>
+            </div>
+            <div class="opt">
+                <input type="checkbox" name="spoofEtag">
+                <label for="spoofEtag">Spoof If-None-Match (ETags)</label>
+            </div>
+            <div class="opt">
+                <input type="checkbox" name="spoofVia">
+                <label for="spoofVia">Spoof Via using a</label>
+                <select name="spoofViaValue">
+                    <option value="0">random IP</option>
+                    <option value="1">custom IP</option>
+                </select>
+                <div class="ipAddr">
+                    <label for="viaIp">IP address:</label>
+                    <input type="text" name="viaIP" size="15" maxlength="15">
+                </div>
+            </div>
+            <div class="opt">
+                <input type="checkbox" name="spoofXFor">
+                <label for="dnt">Spoof X-Forwarded-For using a</label>
+                <select name="spoofXForValue">
+                    <option value="0">random IP</option>
+                    <option value="1">custom IP</option>
+                </select>
+                <div class="ipAddr">
+                    <label for="xforwardedforIP">IP address:</label>
+                    <input type="text" name="xforwardedforIP" size="15" maxlength="15">
+                </div>
+            </div>
+            <div class="opt">
+                <input type="checkbox" name="disableRef">
+                <label for="disableRef">Disable Referer</label>
+            </div>
+            <div class="opt">
+                <input type="checkbox" name="spoofSourceRef">
+                <label for="spoofSourceRef">Spoof Source Referer</label>
+            </div>
+            <div class="opt">
+                <label for="dnt">Referer X Origin Policy :</label>
+                <br/>
+                <select name="refererXorigin">
+                    <option value="0">Always send (default)</option>
+                    <option value="1">Match base domain</option>
+                    <option value="2">Match host</option>
+                </select>
+            </div>
+            <div class="opt">
+                <label for="dnt">Referer Trimming Policy :</label>
+                <br/>
+                <select name="refererTrimming">
+                    <option value="0">Send full URI (default)</option>
+                    <option value="1">Scheme, host, port + path</option>
+                    <option value="2">Scheme, host + port</option>
+                </select>
+            </div>
+            <br/>
+            <hr><br/>
+            <div class="opt">
+                <input type="checkbox" name="spoofAcceptEncoding">
+                <label for="spoofSourceRef">Spoof Accept-Encoding</label>
+            </div>
+            <div class="opt">
+                <input type="checkbox" name="spoofAcceptLang">
+                <label for="dnt">Spoof Accept-Language as </label>
+                <select name="spoofAcceptLangValue">
+                    <option value="da-DK,da;q=0.5">da-DK</option>
+                    <option value="de-DE,de;q=0.5">de-DE</option>
+                    <option value="en-GB,en;q=0.5">en-GB</option>
+                    <option value="en-US,en;q=0.5">en-US</option>
+                    <option value="es-es,es;q=0.5">es-ES</option>
+                    <option value="fr-FR,fr;q=0.5">fr-FR</option>
+                    <option value="it-IT,it;q=0.5">it-IT</option>
+                    <option value="ja-JP,en-US;q=0.5">ja-JP</option>
+                    <option value="ko-KR,ko;q=0.8">ko-KR</option>
+                    <option value="pt-PT,pt;q=0.9">pt-PT</option>
+                    <option value="ru-RU,ru;q=0.5">ru-RU</option>
+                    <option value="sv-SE,en-US;q=0.5">sv-SE</option>
+                    <option value="zh-CN,zh;q=0.5">zh-CN</option>
+                    <option value="zh-TW,zh;q=0.5">zh-TW</option>
+                </select>
             </div>
         </div>
-        <div class="tabs">
-            <div class="active tab" id="profile">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td style="padding-right: 20px;">
-                                <input name="profile_type" type="radio" value="real"><label> Real Profile</label>
-                            </td>
-                            <td>
-                                <input name="profile_type" type="radio" value="randomDesktop"><label> Random Profile (Desktop)</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input name="profile_type" type="radio" value="random"><label> Random</label>
-                            </td>
-                            <td>
-                                <input name="profile_type" type="radio" value="randomMobile"><label> Random Profile (Mobile)</label>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="interval">
-                    <label>Change periodically: </label>
-                    <select id="interval">
-                        <option value="0">No</option>
-                        <option value="1">Every minute</option>
-                        <option value="5">Every 5 minutes</option>
-                        <option value="10">Every 10 minutes</option>
-                        <option value="20">Every 20 minutes</option>
-                        <option value="30">Every 30 minutes</option>
-                        <option value="40">Every 40 minutes</option>
-                        <option value="50">Every 50 minutes</option>
-                        <option value="60">Every hour</option>
-                    </select>
-                </div>
-                <ul class="os_groups">
-                    <li id="sub_windows">
-                        Windows Browsers
-                        <span style="float: right;">+</span>
-                    </li>
-                    <div class="ualist" id="list_windows">
-                        <div class="useragent">
-                            <input name="profile_type" type="radio" value="random_windows"><label> Random Windows Browsers</label>
+        <div class="tab" id="options">
+            <ul class="groups">
+                <li id="sub_scriptInjection">
+                    Script Injection Options
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_scriptInjection">
+                    <div class="opt">
+                        <input name="enableScriptInjection" type="checkbox"><label> Enable script injection</label>
+                    </div>
+                    <div class="opt">
+                        <input name="disableWebSockets" type="checkbox"><label> Disable WebSockets</label>
+                    </div>
+                    <div class="opt">
+                        <input name="protectWinName" type="checkbox"><label> Protect window.name</label>
+                    </div>
+                    <div class="opt">
+                        <div class="opt">
+                            <label>Screen size spoofing: </label>
+                            <select name="screenSize">
+                                <option value="default">Default</option>
+                                <option value="profile">Profile</option>
+                                <option value="1366x768">1366x768</option>
+                                <option value="1440x900">1440x900</option>
+                                <option value="1600x900">1600x900</option>
+                                <option value="1920x1080">1920x1080</option>
+                                <option value="2560x1440">2560x1440</option>
+                                <option value="2560x1600">2560x1600</option>
+                            </select>
                         </div>
                     </div>
-                    <li id="sub_macOS">
-                        macOS Browsers
-                        <span style="float: right;">+</span>
-                    </li>
-                    <div class="ualist" id="list_macOS">
-                        <div class="useragent">
-                            <input name="profile_type" type="radio" value="random_macOS"><label> Random macOS Browsers</label>
+                </div>
+                <li id="sub_standard">
+                    Standard Options
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_standard">
+                    <div class="opt">
+                        <div class="opt">
+                            <input name="enableTrackingProtection" type="checkbox"><label> Enable tracking protection</label>
+                        </div>
+                        <div class="opt">
+                            <input name="firstPartyIsolate" type="checkbox"><label> Enable 1st party isolation</label>
+                        </div>
+                        <div class="opt">
+                            <input name="resistFingerprinting" type="checkbox"><label> Resist fingerprinting</label>
                         </div>
                     </div>
-                    <li id="sub_linux">
-                        Linux Browsers
-                        <span style="float: right;">+</span>
-                    </li>
-                    <div class="ualist" id="list_linux">
-                        <div class="useragent">
-                            <input name="profile_type" type="radio" value="random_linux"><label> Random Linux Browsers</label>
-                        </div>
-                    </div>
-                    <li id="sub_iOS">
-                        iOS Browsers
-                        <span style="float: right;">+</span>
-                    </li>
-                    <div class="ualist" id="list_iOS">
-                        <div class="useragent">
-                            <input name="profile_type" type="radio" value="random_iOS"><label> Random iOS Browsers</label>
-                        </div>
-                    </div>
-                    <li id="sub_android">
-                        Android Browsers
-                        <span style="float: right;">+</span>
-                    </li>
-                    <div class="ualist" id="list_android">
-                        <div class="useragent">
-                            <input name="profile_type" type="radio" value="random_android"><label> Random Android Browsers</label>
-                        </div>
-                    </div>
-                    <li id="sub_custom">
-                        Custom User Agent
-                        <span style="float: right;">+</span>
-                    </li>
-                    <div class="ualist" id="list_custom">
-                        <div class="useragent">
-                            <input name="profile_type" type="radio" value="custom"><label> Custom User Agent</label>
-                            <input name="custom_ua" type="text" style="width: 90%;">
-                        </div>
-                    </div>
-                </ul>
-            </div>
-            <div class="tab" id="headers">
-                <div class="opt">
-                    <input type="checkbox" name="disableAuth">
-                    <label for="disableAuth">Disable Authorization</label>
                 </div>
-                <div class="opt">
-                    <input type="checkbox" name="enableDNT">
-                    <label for="enableDNT">Enable DNT (Do Not Track)</label>
-                </div>
-                <div class="opt">
-                    <input type="checkbox" name="spoofEtag">
-                    <label for="spoofEtag">Spoof If-None-Match (ETags)</label>
-                </div>
-                <div class="opt">
-                    <input type="checkbox" name="spoofVia">
-                    <label for="spoofVia">Spoof Via using a</label>
-                    <select name="spoofViaValue">
-                        <option value="0">random IP</option>
-                        <option value="1">custom IP</option>
-                    </select>
-                    <div class="ipAddr">
-                        <label for="viaIp">IP address:</label>
-                        <input type="text" name="viaIP" size="15" maxlength="15">
+                <li id="sub_cookies">
+                    Cookie Options
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_cookies">
+                    <div class="opt">
+                        <label>Cookie policy: </label>
+                        <select name="cookieConfig">
+                            <option value="allow_all">Allow all</option>
+                            <option value="reject_all">Block all</option>
+                            <option value="reject_third_party">Block 3rd party</option>
+                            <option value="allow_visited">Allow 3rd party from visited</option>
+                        </select>
                     </div>
                 </div>
-                <div class="opt">
-                    <input type="checkbox" name="spoofXFor">
-                    <label for="dnt">Spoof X-Forwarded-For using a</label>
-                    <select name="spoofXForValue">
-                        <option value="0">random IP</option>
-                        <option value="1">custom IP</option>
-                    </select>
-                    <div class="ipAddr">
-                        <label for="xforwardedforIP">IP address:</label>
-                        <input type="text" name="xforwardedforIP" size="15" maxlength="15">
+                <li id="sub_misc">
+                    Misc Options
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_misc">
+                    <p style="text-align: center;">Copy link to about:config entry</p>
+                    <div class="opt">
+                        <a href="about:config?filter=security.mixed_content.block_active_content">→ Block active mixed content</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=security.mixed_content.block_display_content">→ Block display mixed content</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=dom.battery.enabled">→ Disable Battery API</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=browser.send_pings">→ Disable Browser Pings</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=places.history.enabled">→ Disable Browsing and download history</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=layout.css.visited_links_enabled">→ Disable CSS visited links</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=browser.cache.disk.enable">→ Disable Cache (disk)</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=browser.cache.memory.enable">→ Disable Cache (memory)</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=dom.event.clipboardevents.enabled">→ Disable Clipboard Events</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=dom.event.contextmenu.enabled">→ Disable Context Menu Events</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=device.sensors.enabled">→ Disable Device Sensors</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=network.dns.disablePrefetch">→ Disable DNS prefetch</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=dom.storage.enabled">→ Disable DOM storage</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=media.eme.enabled">→ Disable DRM</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=dom.gamepad.enabled">→ Disable Gamepad API</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=geo.enabled">→ Disable Geolocation</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=geo.wifi.uri">→ Disable Geolocation 2 (set to empty string)</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=pdfjs.disabled">→ Disable PDF.js</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=extensions.pocket.enabled">→ Disable Pocket</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=browser.search.suggest.enabled">→ Disable Search Suggestions</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=webgl.disabled">→ Disable WebGL</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=beacon.enabled">→ Disable Web Beacons</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=browser.display.use_document_fonts">→ Limit detectable fonts</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=plugins.click_to_play">→ Use click to play for plugins</a>
                     </div>
                 </div>
-                <div class="opt">
-                    <input type="checkbox" name="disableRef">
-                    <label for="disableRef">Disable Referer</label>
+                <li id="sub_reporting">
+                    Reporting Options
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_reporting">
+                    <p style="text-align: center;">Copy link to about:config entry</p>
+                    <div class="opt">
+                        <a href="about:config?filter=browser.safebrowsing.downloads.enabled">→ Disable safe browsing downloads check</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=browser.safebrowsing.malware.enabled">→ Disable safe browsing malware check</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=datareporting.healthreport.uploadEnabled">→ Disable health report uploads</a>
+                    </div>
+                    <div class="opt">
+                        <a href="about:config?filter=toolkit.telemetry.enabled">→ Disable telemetry report</a>
+                    </div>
                 </div>
-                <div class="opt">
-                    <input type="checkbox" name="spoofSourceRef">
-                    <label for="spoofSourceRef">Spoof Source Referer</label>
-                </div>
-                <div class="opt">
-                    <label for="dnt">Referer X Origin Policy :</label>
-                    <br/>
-                    <select name="refererXorigin">
-                        <option value="0">Always send (default)</option>
-                        <option value="1">Match base domain</option>
-                        <option value="2">Match host</option>
-                    </select>
-                </div>
-                <div class="opt">
-                    <label for="dnt">Referer Trimming Policy :</label>
-                    <br/>
-                    <select name="refererTrimming">
-                        <option value="0">Send full URI (default)</option>
-                        <option value="1">Scheme, host, port + path</option>
-                        <option value="2">Scheme, host + port</option>
-                    </select>
-                </div>
-                <br/>
-                <hr><br/>
-                <div class="opt">
-                    <input type="checkbox" name="spoofAcceptEncoding">
-                    <label for="spoofSourceRef">Spoof Accept-Encoding</label>
-                </div>
-                <div class="opt">
-                    <input type="checkbox" name="spoofAcceptLang">
-                    <label for="dnt">Spoof Accept-Language as </label>
-                    <select name="spoofAcceptLangValue">
-                        <option value="da-DK,da;q=0.5">da-DK</option>
-                        <option value="de-DE,de;q=0.5">de-DE</option>
-                        <option value="en-GB,en;q=0.5">en-GB</option>
-                        <option value="en-US,en;q=0.5">en-US</option>
-                        <option value="es-es,es;q=0.5">es-ES</option>
-                        <option value="fr-FR,fr;q=0.5">fr-FR</option>
-                        <option value="it-IT,it;q=0.5">it-IT</option>
-                        <option value="ja-JP,en-US;q=0.5">ja-JP</option>
-                        <option value="ko-KR,ko;q=0.8">ko-KR</option>
-                        <option value="pt-PT,pt;q=0.9">pt-PT</option>
-                        <option value="ru-RU,ru;q=0.5">ru-RU</option>
-                        <option value="sv-SE,en-US;q=0.5">sv-SE</option>
-                        <option value="zh-CN,zh;q=0.5">zh-CN</option>
-                        <option value="zh-TW,zh;q=0.5">zh-TW</option>
-                    </select>
-                </div>
-            </div>
+            </ul>
         </div>
     </div>
 </body>
 <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript" src="js/data.js"></script>
 <script type="text/javascript" src="js/popup.js"></script>
-
 </html>

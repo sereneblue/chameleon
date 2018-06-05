@@ -20,6 +20,102 @@ let headers = {
     useragent: ""
 }
 
+let spoof = {
+    name: function () {
+        return "Object.defineProperty(window,'name', { get: function() { return ''; }}});\n";
+    },
+    navigator: function (ua) {
+        var platform;
+
+        if (headers.useragent.match(/Win/)) {
+            platform = "Win64";
+        } else if (headers.useragent.match(/Macintosh/)) {
+            platform = "MacIntel";
+        } else if (headers.useragent.match(/X11/)) {
+            platform = "Linux x86_64";
+        } else if (headers.useragent.match(/iPhone/)) {
+            platform = "iOS";
+        } else if (headers.useragent.match(/iPad/)) {
+            platform = "iPad";
+        } else if (headers.useragent.match(/Android/)) {
+            platform = "Linux armv7l";
+        }
+
+        return `Object.defineProperty(navigator, "platform", { get: function () { return "${platform}"; }});
+        \ Object.defineProperty(navigator, "hardwareConcurrency", { get: function () { return 4; }});
+        \ Object.defineProperty(navigator, "oscpu", { get: function () { return ""; }});
+        \ Object.defineProperty(navigator, "vendor", { get: function () { return ""; }});
+        \ Object.defineProperty(navigator, "vendorSub", { get: function () { return ""; }});
+        \ Object.defineProperty(navigator, "appVersion", { get: function () { return this.userAgent.match(/Mozilla\\/(.*)/)[1]; }});
+        \n`;
+    },
+    profileResolution: "",
+    screen: function(screenSize) {
+        var width, height;
+        var depth = 24;
+
+        if (screenSize == "profile") {
+            if (spoof.profileResolution != "") {
+                var s = spoof.profileResolution.split("x");
+                width = parseInt(s[0]);
+                height = parseInt(s[1]);
+            } else {
+                var screenData = getScreenResolution(headers.useragent);
+                width = screenData[0];
+                height = screenData[1];
+                depth = screenData[2];
+            }
+        } else {
+            var s = screenSize.split("x");
+            width = parseInt(s[0]);
+            height = parseInt(s[1]);
+        }
+
+        return `Object.defineProperty(screen,"width", { get: function () { return ${width}; }});
+        \ Object.defineProperty(screen,"height", { get: function () { return ${height}; }});
+        \ Object.defineProperty(window,"outerWidth", { get: function () { return ${width}; }});
+        \ Object.defineProperty(window,"outerHeight", { get: function () { return ${height}; }});
+        \ Object.defineProperty(window,"innerWidth", { get: function () { return ${width}; }});
+        \ Object.defineProperty(window,"innerHeight", { get: function () { return ${height}; }});
+        \ Object.defineProperty(screen,"availWidth", { get: function () { return ${width}; }});
+        \ Object.defineProperty(screen,"availHeight", { get: function () { return ${height}; }});
+        \ Object.defineProperty(screen,"top", { get: function () { return 0; }});
+        \ Object.defineProperty(screen,"left", { get: function () { return 0; }});
+        \ Object.defineProperty(screen,"availTop", { get: function () { return 0; }});
+        \ Object.defineProperty(screen,"availLeft", { get: function () { return 0; }});
+        \ Object.defineProperty(screen,"colorDepth", { get: function () { return ${depth}; }});
+        \ Object.defineProperty(screen,"pixelDepth", { get: function () { return ${depth}; }});
+        \ Object.defineProperty(document.documentElement, "clientWidth", { get: function () { return ${width}; }});
+        \ Object.defineProperty(document.documentElement, "clientHeight", { get: function () { return ${height}; }});
+        \n`;
+    },
+    websocket: function () {
+        return `WebSocket = undefined;\n MozWebSocket = undefined;\n`;
+    }
+};
+
+async function buildInjectScript(url, sendResponse) {
+    let injectEnabled = await get("enableScriptInjection");
+    let ss = await get("screenSize");
+    let useragentType = await get("useragent");
+
+    if (!injectEnabled || whitelisted(url) || (useragentType == "custom" && ss == "profile")) {
+        sendResponse({ script: ""});
+    } else {
+        let scriptText = "";
+
+        if (await get("protectWinName")) scriptText += spoof.name();
+        if (await get("disableWebSockets")) scriptText += spoof.websocket();
+        if (headers.ua != "") scriptText += spoof.navigator();
+
+        if (ss != "default") {
+            scriptText += spoof.screen(ss); 
+        }
+
+        sendResponse({ script: scriptText });
+    }
+}
+
 function changeTimer(duration) {
     chrome.alarms.clear("profile");
     
@@ -35,6 +131,52 @@ function changeTimer(duration) {
 function generateByte() {
     var num = Math.floor(Math.random() * (256));
     return (num === 10 || num === 172 || num === 192) ? generateByte() : num;
+}
+
+function getScreenResolution(ua) {
+    var screens;
+    var depth = 24; // both color depth and pixeldepth
+
+    if (ua.match(/Win/) || ua.match(/X11/)) {
+        screens = [
+            [1366, 768],
+            [1400, 1050],
+            [1440, 900],
+            [1600, 900],
+            [1920, 1080],
+            [1920, 1200],
+            [2560, 1440],
+            [2560, 1600]
+        ];
+    } else if (ua.match(/Mac/)) {
+        screens = [
+            [1920, 1080],
+            [2560, 1440],
+            [2560, 1600]
+        ];
+    } else if (ua.match(/iPhone/)) {
+        screens = [
+            [414, 736],
+            [375, 667]
+        ];
+        depth = 32;
+    } else if (ua.match(/iPad/)) {
+        screens = [
+            [1024, 768]
+        ];
+        depth = 32;
+    } else if (ua.match(/Android/)) {
+        screens = [
+            [360, 740],
+            [411, 731],
+            [480, 853]
+        ];
+        depth = 32;
+    }
+
+    var num = Math.floor(Math.random() * screens.length);
+
+    return [screens[num][0], screens[num][1], depth];
 }
 
 function generateRandomIP() {
@@ -150,7 +292,10 @@ async function start() {
     let useragents = {};
     let useragentType = await get('useragent');
 
-    if (useragentType.match(/.*?\d/) || useragentType == "custom") {
+    if (useragentType == undefined || useragentType == "real"){
+        // real profile
+        headers.useragent = "";
+    } else if (useragentType.match(/.*?\d/) || useragentType == "custom") {
         headers.useragent = await get('useragentValue');
     } else if (useragentType.match(/random_/)) {
         let platform = useragentType.split('_')[1];
@@ -181,15 +326,23 @@ async function start() {
 
         useragents = await get('useragents');
         headers.useragent = useragents[platform][Math.floor(Math.random() * useragents[platform].length)].ua;
-    } else {
-        // real profile
+    }
 
-        headers.useragent = "";
+    if (await get("screenSize") == "profile") {
+        var screenData = getScreenResolution(headers.useragent);
+        spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
     }
 }
 
+function whitelisted(url) {
+    return false;
+}
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.duration >= 0) {
+    if (request.inject) {
+        buildInjectScript(sender.url, sendResponse)
+        return true;
+    } else if (request.duration >= 0) {
         chrome.storage.local.set({interval: request.duration });
         changeTimer(request.duration);
     } else if (request.headers) {
@@ -199,6 +352,28 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         headers[request.headers.field] = request.headers.value;
 
         chrome.storage.local.set(tmp);
+    } else if (request.option) {
+        if (request.option.field == "enableTrackingProtection") {
+            chrome.privacy.websites.trackingProtectionMode.set({
+                "value": request.option.value ? "always" : "never"
+            });
+        } else if (request.option.field == "cookieConfig") {
+            chrome.privacy.websites[request.option.field].set({
+                "value": {
+                    behavior: request.option.value
+                }
+            });
+        } else if (request.option.field == "firstPartyIsolate" || 
+                   request.option.field == "resistFingerprinting") {
+            chrome.privacy.websites[request.option.field].set({
+                "value": request.option.value
+            });
+        } else {
+            var tmp = {};
+
+            tmp[request.option.field] = request.option.value;
+            chrome.storage.local.set(tmp);
+        }
     } else if (request.useragent) {
         chrome.storage.local.set({useragent: request.useragent });
     } else if (request.useragents) {
