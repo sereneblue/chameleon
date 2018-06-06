@@ -20,6 +20,8 @@ let headers = {
     useragent: ""
 }
 
+// spoof contains functions that return js to inject
+// also contains the profileResolution to persist profile resolution
 let spoof = {
     name: function () {
         return "Object.defineProperty(window,'name', { get: function() { return ''; }}});\n";
@@ -94,6 +96,7 @@ let spoof = {
     }
 };
 
+// builds script to inject into pages
 async function buildInjectScript(url, sendResponse) {
     let injectEnabled = await get("enableScriptInjection");
     let ss = await get("screenSize");
@@ -116,6 +119,7 @@ async function buildInjectScript(url, sendResponse) {
     }
 }
 
+// activates timer for new profile page
 function changeTimer(duration) {
     chrome.alarms.clear("profile");
     
@@ -128,14 +132,16 @@ function changeTimer(duration) {
     chrome.alarms.create("profile", task);
 }
 
+// generates an IP address for spoofed headers
 function generateByte() {
     var num = Math.floor(Math.random() * (256));
     return (num === 10 || num === 172 || num === 192) ? generateByte() : num;
 }
 
+// gets screen resolution & depths from user agent
 function getScreenResolution(ua) {
     var screens;
-    var depth = 24; // both color depth and pixeldepth
+    var depth = 24; // both color and pixel depth
 
     if (ua.match(/Win/) || ua.match(/X11/)) {
         screens = [
@@ -179,11 +185,7 @@ function getScreenResolution(ua) {
     return [screens[num][0], screens[num][1], depth];
 }
 
-function generateRandomIP() {
-    let ip = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
-    return ip;
-}
-
+// wrapper for storage API to use with async function
 function get(key) {
     return new Promise((resolve) => {
         chrome.storage.local.get(key, (item) => {
@@ -192,6 +194,7 @@ function get(key) {
     });
 }
 
+// rewrite headers per request 
 function rewriteHeaders(e) {
     for (var header of e.requestHeaders) {
         if (headers.disableAuth) {
@@ -272,7 +275,7 @@ function rewriteHeaders(e) {
         if (headers.spoofViaValue == 1) {
             e.requestHeaders.push({ name: "Via", value: "1.1 " + headers.viaIP });
         } else {
-            e.requestHeaders.push({ name: "Via", value: "1.1 " + generateRandomIP() });
+            e.requestHeaders.push({ name: "Via", value: "1.1 " + `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}` });
         }
     }
 
@@ -280,13 +283,14 @@ function rewriteHeaders(e) {
         if (headers.spoofXForValue == 1) {
             e.requestHeaders.push({ name: "X-Forwarded-For", value: headers.xforwardedforIP })
         } else {
-            e.requestHeaders.push({ name: "X-Forwarded-For", value: generateRandomIP() });
+            e.requestHeaders.push({ name: "X-Forwarded-For", value: `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}` });
         }
     }
 
     return { requestHeaders: e.requestHeaders };
 }
 
+// determines useragent and screen resolution when new task created
 async function start() {
     // pick new useragent
     let useragents = {};
@@ -334,6 +338,7 @@ async function start() {
     }
 }
 
+// check if a url is whitelisted, prevents script injection
 function whitelisted(url) {
     return false;
 }
@@ -404,6 +409,7 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
     start();
 });
 
+// when extension is loaded, load settings and start new task
 (async function init(){
     let data = await get(null);
 

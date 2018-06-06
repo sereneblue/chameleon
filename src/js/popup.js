@@ -4,6 +4,7 @@ let selected = {
 	os: ""
 }
 
+// when popup opened, populate the useragent list from data.js 
 function buildInputs() {
 	$.each(platforms, function(index, platform) {
 	  $.each(uas[platform], function(i, ua) {
@@ -21,7 +22,9 @@ function buildInputs() {
 	});
 }
 
-function updateSettings() {
+// update ui display
+// loop through input/select fields and get stored value
+function updateUI() {
 	chrome.storage.local.get('useragent', function(data) {
 		$('input[name="profile_type"]').val([data.useragent]);
 
@@ -103,6 +106,7 @@ function updateSettings() {
 	});
 }
 
+// change list of displayed options
 function changeOptionList(opt) {
 	if (opt != selected.opt) {
 		$(`#list_${selected.opt}`).hide();
@@ -121,6 +125,7 @@ function changeOptionList(opt) {
 	}
 }
 
+// change list of displayed user agents
 function changeUserAgentList(os) {
 	if (os != selected.os) {
 		$(`#list_${selected.os}`).hide();
@@ -150,6 +155,7 @@ function changeTab(tab) {
 	}
 }
 
+// determine platform from useragent option value
 function getPlatform(v) {
 	if (v.includes("win")) {
 		return "windows";
@@ -175,11 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
-	// build input list
 	buildInputs();
-
-	// update settings
-	updateSettings();
+	updateUI();
 
 	// capture events to profile settings
 	$.each(menu, function (index, value) {
