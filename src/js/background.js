@@ -339,47 +339,58 @@ function whitelisted(url) {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.inject) {
+    if (request.action == "inject") {
         buildInjectScript(sender.url, sendResponse)
         return true;
-    } else if (request.duration >= 0) {
-        chrome.storage.local.set({interval: request.duration });
+    } else if (request.action == "interval") {
+        chrome.storage.local.set({interval: request.data });
         changeTimer(request.duration);
-    } else if (request.headers) {
+    } else if (request.action == "headers") {
         var tmp = {};
 
-        tmp[request.headers.field] = request.headers.value;
-        headers[request.headers.field] = request.headers.value;
+        tmp[request.data.key] = request.data.value;
+        headers[request.data.key] = request.data.value;
 
         chrome.storage.local.set(tmp);
-    } else if (request.option) {
-        if (request.option.field == "enableTrackingProtection") {
+    } else if (request.action == "option") {
+        if (request.data.key == "enableTrackingProtection") {
             chrome.privacy.websites.trackingProtectionMode.set({
-                "value": request.option.value ? "always" : "never"
+                "value": request.data.value ? "always" : "never"
             });
-        } else if (request.option.field == "cookieConfig") {
-            chrome.privacy.websites[request.option.field].set({
+        } else if (request.data.key == "cookieConfig") {
+            chrome.privacy.websites[request.data.key].set({
                 "value": {
-                    behavior: request.option.value
+                    behavior: request.data.value
                 }
             });
-        } else if (request.option.field == "firstPartyIsolate" || 
-                   request.option.field == "resistFingerprinting") {
-            chrome.privacy.websites[request.option.field].set({
-                "value": request.option.value
+        } else if (request.data.key == "firstPartyIsolate" ||
+                   request.data.key == "resistFingerprinting") {
+            chrome.privacy.websites[request.data.key].set({
+                "value": request.data.value
             });
         } else {
             var tmp = {};
 
-            tmp[request.option.field] = request.option.value;
+            tmp[request.data.key] = request.data.value;
             chrome.storage.local.set(tmp);
         }
-    } else if (request.useragent) {
-        chrome.storage.local.set({useragent: request.useragent });
-    } else if (request.useragents) {
-        chrome.storage.local.set({useragents: request.useragents });
-    } else if (request.useragentValue) {
-        chrome.storage.local.set({useragentValue: request.useragentValue });
+    } else if (request.action == "storage") {
+        var tmp = {};
+
+        tmp[request.data.key] = request.data.value;
+        chrome.storage.local.set(tmp);
+
+        if (request.data.key == "useragent") {
+            if (request.data.value == "real") {
+                chrome.browserAction.setIcon({
+                    path: "img/icon_disabled_48.png"
+                });
+            } else {
+                chrome.browserAction.setIcon({
+                    path: "img/icon_48.png"
+                });
+            }
+        }
     }
 });
 
@@ -401,6 +412,12 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
             headers[key] = data[key];
         }
     });
+
+    if (data.useragent == "real") {
+        chrome.browserAction.setIcon({
+            path: "img/icon_disabled_48.png"
+        });
+    }
 
     changeTimer(data.interval);
 })();

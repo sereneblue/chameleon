@@ -1,4 +1,4 @@
-chrome.runtime.sendMessage({inject: true}, function (response) {
+chrome.runtime.sendMessage({action: "inject"}, function (response) {
 	if (response) {
 		var scripts = document.getElementsByTagName('script');
 

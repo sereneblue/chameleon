@@ -27,6 +27,11 @@ input[type="radio"]:checked+label {
   font-weight: bold;
 }
 
+input[type="radio"].disabled:checked+label {
+  color: grey;
+  font-weight: bold;
+}
+
 a, label, p {
   font-size: 12px;
 }
@@ -34,6 +39,10 @@ a, label, p {
 ul {
   list-style-type: none;
   padding-left: 0px;
+}
+
+#interval {
+  margin-bottom: 10px;
 }
 
 #profile table {
@@ -62,8 +71,14 @@ ul {
   color: white;
 }
 
-.interval {
-  margin-bottom: 10px;
+.ipAddr {
+  padding: 5px;
+}
+
+.ipAddr input {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 45px;
 }
 
 .item {
@@ -80,24 +95,26 @@ ul {
   cursor: pointer;
 }
 
-.ipAddr {
-  padding: 5px;
-}
-
-.ipAddr input {
-  font-size: 14px;
-  font-weight: bold;
-  margin-left: 45px;
+.item.disabled {
+  background-color: gray;
 }
 
 .item:hover {
   background-color: #7aa329;
 }
 
+.item.disabled:hover {
+  background-color: darkgray;
+}
+
 .item.active {
   background-color: white;
   color: olivedrab;
   font-weight: bold;
+}
+
+.item.active.disabled {
+  color: grey;
 }
 
 .item.active:hover {
