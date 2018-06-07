@@ -355,6 +355,14 @@ async function start() {
 		var screenData = getScreenResolution(headers.useragent);
 		spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
 	}
+
+	if (headers.useragent) {
+		chrome.notifications.create({
+			"type": "basic",
+			"title": "Chameleon",
+			"message": "Browser Profile Changed\r" + headers.useragent
+		});
+	}
 }
 
 // check if a url is whitelisted, prevents script injection

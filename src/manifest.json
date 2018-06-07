@@ -26,6 +26,7 @@
 	"permissions": [
 		"<all_urls>",
 		"alarms",
+		"notifications",
 		"privacy",
 		"storage",
 		"webRequest",
