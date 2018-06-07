@@ -32,7 +32,7 @@ input[type="radio"].disabled:checked+label {
   font-weight: bold;
 }
 
-a, label, p {
+a, label, p, textarea {
   font-size: 12px;
 }
 
@@ -52,6 +52,19 @@ ul {
 
 #options a {
   text-decoration: none;
+}
+
+#list_whitelistProfile {
+  margin-bottom: 10px;
+}
+
+#list_whitelistProfile input {
+  width: 96%;
+}
+
+#list_whitelistRules {
+  margin-top: 10px;
+  width: 100%;
 }
 
 .groups li {

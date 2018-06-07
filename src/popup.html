@@ -365,6 +365,67 @@
                 </div>
             </ul>
         </div>
+        <div class="tab" id="whitelist">
+            <div style="margin-bottom: 10px;">
+                <input type="checkbox" name="enableWhitelist">
+                <label for="enableWhitelist">Enable whitelist</label>
+            </div>
+            <ul class="groups">
+                <li id="sub_whitelistProfile">
+                    Whitelist Profile
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_whitelistProfile">
+                    <div class="opt">
+                        <label> User agent: </label><br/>
+                        <input name="wl_useragent" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> Accept Encoding: </label><br/>
+                        <input name="wl_acceptEnc" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> Accept Language: </label><br/>
+                        <input name="wl_acceptLang" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> AppCodeName: </label><br/>
+                        <input name="wl_appCodeName" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> AppName: </label><br/>
+                        <input name="wl_appName" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> AppVersion: </label><br/>
+                        <input name="wl_appVersion" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> Platform: </label><br/>
+                        <input name="wl_platform" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> OS CPU: </label><br/>
+                        <input name="wl_osCPU" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> Vendor: </label><br/>
+                        <input name="wl_vendor" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> VendorSub: </label><br/>
+                        <input name="wl_vendorSub" type="text">
+                    </div>
+                </div>
+                <li id="sub_whitelistRules">
+                    Whitelist Rules
+                    <span style="float: right;">+</span>
+                </li>
+                <div class="list" id="list_whitelistRules">
+                    <textarea name="wl_urls" rows="15" cols="33"></textarea>
+                </div>
+            </ul>
+        </div>
     </div>
 </body>
 <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>

@@ -1,7 +1,8 @@
 let selected = {
 	header: "profile",
 	option: "",
-	os: ""
+	platform: "",
+	whitelist: ""
 }
 
 // when popup opened, populate the useragent list from data.js 
@@ -28,20 +29,22 @@ function updateUI() {
 	chrome.storage.local.get('useragent', function(data) {
 		$('input[name="profile_type"]').val([data.useragent]);
 
-		if (data.useragent == "real") {
-			$('#interval').hide();
-			$(".item").addClass('disabled');
-			$('input[type="radio"]:checked').addClass('disabled');
-		} else if (data.useragent.match(/.*?\d/)) {
-			$(`#sub_${getPlatform(data.useragent)}`).addClass("active");
-			$('#interval').hide();
-		} else if (data.useragent == "custom") {
-			chrome.storage.local.get('useragentValue', function(d) {
-				$('input[name="custom_ua"]').val(d.useragentValue);
-			});
-			$('#interval').hide();
-		} else {
-			$('#interval').show();
+		if (data.useragent) {
+			if (data.useragent == "real") {
+				$('#interval').hide();
+				$(".item").addClass('disabled');
+				$('input[type="radio"]:checked').addClass('disabled');
+			} else if (data.useragent.match(/.*?\d/)) {
+				$(`#sub_${getPlatform(data.useragent)}`).addClass("active");
+				$('#interval').hide();
+			} else if (data.useragent == "custom") {
+				chrome.storage.local.get('useragentValue', function(d) {
+					$('input[name="custom_ua"]').val(d.useragentValue);
+				});
+				$('#interval').hide();
+			} else {
+				$('#interval').show();
+			}
 		}
 	});
 
@@ -104,42 +107,48 @@ function updateUI() {
 		var value = data.screenSize ? data.screenSize : "default";
 		$(`select[name="screenSize"]`).val(value);
 	});
+
+	chrome.storage.local.get("enableWhitelist", function(data) {
+		$(`input[name="enableWhitelist"]`).prop('checked', data.enableWhitelist);;
+	});
+
+	$('#list_whitelistProfile input').each(function (i, element) {
+		chrome.storage.local.get(element.name, function(data) {
+			if (data[element.name]) {
+				$(`input[name="${element.name}"]`).val(data[element.name]);
+			}
+		});
+	});
+
+	chrome.storage.local.get("wl_urls", function(data) {
+		$('textarea').val(data.wl_urls);;
+	});
 }
 
-// change list of displayed options
-function changeOptionList(opt) {
-	if (opt != selected.opt) {
-		$(`#list_${selected.opt}`).hide();
-		selected.opt = opt;
+// change view of displayed subitems
+function changeView(val, category) {
+	if (val != selected[category]) {
+		$(`#list_${selected[category]}`).hide();
+		selected[category] =val;
 	}
 
-	$(`#list_${opt}`).toggle();
+	$(`#list_${val}`).toggle();
 
-	for (var i in options) {
-		var vis = $(`#list_${options[i]}`).is(':visible');
+	var menu;
+	if (category == "platform") {
+		menu = platforms;
+	} else if (category == "option") {
+		menu = options;
+	} else if (category == "whitelist") {
+		menu = whitelist;
+	}
+
+	for (var i in menu) {
+		var vis = $(`#list_${menu[i]}`).is(':visible');
 		if (!vis) {
-			$(`#sub_${options[i]} span`).text(`+`);
+			$(`#sub_${menu[i]} span`).text(`+`);
 		} else {
-			$(`#sub_${options[i]} span`).text(`—`);
-		}
-	}
-}
-
-// change list of displayed user agents
-function changeUserAgentList(os) {
-	if (os != selected.os) {
-		$(`#list_${selected.os}`).hide();
-		selected.os = os;
-	}
-
-	$(`#list_${os}`).toggle();
-
-	for (var i in platforms) {
-		var vis = $(`#list_${platforms[i]}`).is(':visible');
-		if (!vis) {
-			$(`#sub_${platforms[i]} span`).text(`+`);
-		} else {
-			$(`#sub_${platforms[i]} span`).text(`—`);
+			$(`#sub_${menu[i]} span`).text(`—`);
 		}
 	}
 }
@@ -172,6 +181,24 @@ function getPlatform(v) {
 	}
 }
 
+// check if whitelist URLs valid input
+function validated(input) {
+	try {
+		let urlList = JSON.parse(input);
+		if (urlList.length > 0) {
+			for (var i of urlList) {
+				if (i.url == "" || i.url == undefined) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false; 
+	} catch(e) {
+		return false;
+	}
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 	chrome.runtime.sendMessage({
 		action: "storage",
@@ -193,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	$.each(platforms, function(index, value) {
 		$(`#sub_${value}`).on('click', function() {
-			changeUserAgentList(value);
+			changeView(value, "platform");
 		});
 	})
 
@@ -329,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//capture options update events
 	$.each(options, function(index, value) {
 		$(`#sub_${value}`).on('click', function() {
-			changeOptionList(value);
+			changeView(value, "option");
 		});
 	});
 
@@ -351,5 +378,44 @@ document.addEventListener('DOMContentLoaded', function() {
 				value: e.target.value
 			}
 		});
+	});
+
+	//capture whitelist update events
+	$.each(whitelist, function(index, value) {
+		$(`#sub_${value}`).on('click', function() {
+			changeView(value, "whitelist");
+		});
+	});
+
+	$('#whitelist input[type="checkbox"]').on('click', function(e) {
+		chrome.runtime.sendMessage({
+			action: "whitelist",
+			data: {
+				key: e.target.name,
+				value: this.checked ? true : false
+			}
+		});
+	});
+
+	$('#whitelist input[type="text"]').on('keyup', function(e) {
+		chrome.runtime.sendMessage({
+			action: "whitelist",
+			data: {
+				key: e.target.name,
+				value: e.target.value
+			}
+		});
+	});
+
+	$('#whitelist textarea').on('keyup', function(e) {
+		if (validated(e.target.value)) {
+			chrome.runtime.sendMessage({
+				action: "whitelist",
+				data: {
+					key: e.target.name,
+					value: e.target.value
+				}
+			});
+		}
 	});
 });
