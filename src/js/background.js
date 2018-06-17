@@ -383,7 +383,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 		return true;
 	} else if (request.action == "interval") {
 		chrome.storage.local.set({interval: request.data });
-		changeTimer(request.duration);
+		changeTimer(request.data);
 	} else if (request.action == "headers") {
 		var tmp = {};
 
