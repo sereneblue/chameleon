@@ -16,7 +16,7 @@
 
 body {
   background-color: white;
-  width: 300px;
+  width: 340px;
   height: 400px;
   max-height: 450px;
   overflow-x: hidden;
@@ -96,7 +96,7 @@ ul {
 
 .item {
   display: inline-block;
-  width: 75px;
+  width: 85px;
   height: 15px;
   background-color: olivedrab;
   padding: 5px;
@@ -157,7 +157,7 @@ ul {
 }
 
 .tab {
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
   display: none;
 }
 
