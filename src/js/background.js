@@ -26,7 +26,7 @@ let headers = {
 // also contains the profileResolution to persist profile resolution
 let spoof = {
 	name: function () {
-		return "Object.defineProperty(window,'name', { get: function() { return ''; }}});\n";
+		return `Object.defineProperty(window, "name", { get: function() { return ""; }});\n`;
 	},
 	navigator: function (url) {
 		if (whitelist.enabled && whitelisted(url)) {
@@ -147,7 +147,7 @@ async function buildInjectScript(url, sendResponse) {
 			scriptText += spoof.screen(ss); 
 		}
 	}
-
+	
 	sendResponse({ script: scriptText });
 }
 
