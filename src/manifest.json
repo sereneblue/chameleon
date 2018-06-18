@@ -1,27 +1,32 @@
 {
 	"author": "sereneblue",
+	"applications": {
+		"gecko": {
+			"id": "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}"
+		}
+	},
 	"name": "Chameleon",
 	"version": "0.5.1",
 	"manifest_version": 2,
 	"description": "Spoof your browser profile. Includes a few privacy enhancing options.",
 	"background": {
-	    "scripts": ["js/background.js"]
+		"scripts": ["js/background.js"]
 	},
 	"content_scripts": [{
 		"matches": [
 			"http://*/*",
 			"https://*/*"
-        ],
+		],
 		"run_at": "document_start",
-	    "js": ["js/inject.js"]
+		"js": ["js/inject.js"]
 	}],
 	"browser_action": {
 		"default_icon": "img/icon_48.png",
 		"default_popup": "popup.html"
 	},
 	"icons": {
-	    "48": "img/icon_48.png",
-	    "128": "img/icon_128.png"
+		"48": "img/icon_48.png",
+		"128": "img/icon_128.png"
 	},
 	"permissions": [
 		"<all_urls>",

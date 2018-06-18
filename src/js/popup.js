@@ -16,7 +16,7 @@ function buildInputs() {
 		input.value = ua.value;
 
 		var label = document.createElement("label");
-		label.innerHTML = ` ${ua.name}`;
+		label.innerText = ` ${ua.name}`;
 
 		$(`#list_${platform}`).append(`<div class="useragent">${input.outerHTML + label.outerHTML}</div>`);
 	  })
