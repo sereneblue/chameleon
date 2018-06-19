@@ -387,7 +387,7 @@ async function start() {
 		chrome.notifications.create({
 			"type": "basic",
 			"title": "Chameleon",
-			"message": "Browser Profile Changed\r" + headers.useragent
+			"message": "Browser Profile Changed\r\n" + headers.useragent
 		});
 	}
 }
