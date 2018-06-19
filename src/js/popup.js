@@ -42,7 +42,9 @@ function updateUI() {
 					$('input[name="custom_ua"]').val(d.useragentValue);
 				});
 				$('#interval').hide();
+				$(`#sub_custom`).addClass("active");
 			} else {
+				$(`#sub_${getPlatform(data.useragent)}`).addClass("active");
 				$('#interval').show();
 			}
 		}
@@ -129,7 +131,7 @@ function updateUI() {
 function changeView(val, category) {
 	if (val != selected[category]) {
 		$(`#list_${selected[category]}`).hide();
-		selected[category] =val;
+		selected[category] = val;
 	}
 
 	$(`#list_${val}`).toggle();
