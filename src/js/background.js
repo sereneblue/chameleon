@@ -363,7 +363,7 @@ async function start() {
 	} else if (useragentType == "randomDesktop") {
 		// random desktop useragent
 
-		let platforms = ["windows", "macOS", "linux"];
+		let platforms = ["windows", "macos", "linux"];
 		let platform = platforms[Math.floor(Math.random() * platforms.length)];
 
 		useragents = await get('useragents');
@@ -371,7 +371,7 @@ async function start() {
 	} else if (useragentType == "randomMobile") {
 		// random mobile useragent
 
-		let platforms = ["iOS", "android"];
+		let platforms = ["ios", "android"];
 		let platform = platforms[Math.floor(Math.random() * platforms.length)];
 
 		useragents = await get('useragents');
@@ -382,7 +382,7 @@ async function start() {
 		var screenData = getScreenResolution(headers.useragent);
 		spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
 	}
-
+	
 	if (headers.useragent && await get('notificationsEnabled')) {
 		chrome.notifications.create({
 			"type": "basic",
