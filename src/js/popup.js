@@ -89,25 +89,47 @@ function updateUI() {
 		});
 	});
 
-	var cookieOption = browser.privacy.websites.cookieConfig.get({});
-	cookieOption.then((c) => {
-		$(`select[name="cookieConfig"]`).val(c.value.behavior);
-	});
+	// check if browser APIs avialable
+	try {
+		var cookieOption = browser.privacy.websites.cookieConfig.get({});
+		cookieOption.then((c) => {
+			$(`select[name="cookieConfig"]`).val(c.value.behavior);
+		});
+	} catch (e) {
+		$(`select[name="cookieConfig"]`).parent().find("label").hide();
+		$(`select[name="cookieConfig"]`).hide();
+	}
 
-	var trackingProtection = browser.privacy.websites.trackingProtectionMode.get({});
-	trackingProtection.then((t) => {
-		$(`input[name="enableTrackingProtection"]`).prop('checked', t.value == "always"? true: false);
-	});
+	try {
+		var trackingProtection = browser.privacy.websites.trackingProtectionMode.get({});
+		trackingProtection.then((t) => {
+			$(`input[name="enableTrackingProtection"]`).prop('checked', t.value == "always"? true: false);
+		});
+	} catch (e) {
+		$(`input[name="enableTrackingProtection"]`).parent().find("label").hide();
+		$(`input[name="enableTrackingProtection"]`).hide();
+	}
 
-	var firstPartyIsolate = browser.privacy.websites.firstPartyIsolate.get({});
-	firstPartyIsolate.then((f) => {
-		$(`input[name="firstPartyIsolate"]`).prop('checked', f.value);
-	});
+	try {
+		var firstPartyIsolate = browser.privacy.websites.firstPartyIsolate.get({});
+		firstPartyIsolate.then((f) => {
+			$(`input[name="firstPartyIsolate"]`).prop('checked', f.value);
+		});
+	} catch (e) {
+		$(`input[name="firstPartyIsolate"]`).parent().find("label").hide();
+		$(`input[name="firstPartyIsolate"]`).hide();
+	}
 
-	var resistFingerprinting = browser.privacy.websites.resistFingerprinting.get({});
-	resistFingerprinting.then((r) => {
-		$(`input[name="resistFingerprinting"]`).prop('checked', r.value);
-	});	
+	try {
+		var resistFingerprinting = browser.privacy.websites.resistFingerprinting.get({});
+		resistFingerprinting.then((r) => {
+			$(`input[name="resistFingerprinting"]`).prop('checked', r.value);
+		});
+	} catch (e) {
+		$(`input[name="resistFingerprinting"]`).parent().find("label").hide();
+		$(`input[name="resistFingerprinting"]`).hide();
+	}
+	
 
 	chrome.storage.local.get("screenSize", function(data) {
 		var value = data.screenSize ? data.screenSize : "default";
