@@ -401,12 +401,16 @@
                         <input name="wl_appVersion" type="text">
                     </div>
                     <div class="opt">
-                        <label> Platform: </label><br/>
-                        <input name="wl_platform" type="text">
+                        <label> Hardware Concurrency: </label><br/>
+                        <input name="wl_hardwareConcurrency" type="number">
                     </div>
                     <div class="opt">
                         <label> OS CPU: </label><br/>
                         <input name="wl_osCPU" type="text">
+                    </div>
+                    <div class="opt">
+                        <label> Platform: </label><br/>
+                        <input name="wl_platform" type="text">
                     </div>
                     <div class="opt">
                         <label> Vendor: </label><br/>
@@ -422,7 +426,7 @@
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_whitelistRules">
-                    <textarea name="wl_urls" rows="15" cols="33"></textarea>
+                    <textarea name="wl_urls" placeholder="[{&quot;url&quot;:&quot;example.com&quot;}]" rows="15" cols="32"></textarea>
                 </div>
             </ul>
         </div>

@@ -36,11 +36,12 @@ let spoof = {
 			return `Object.defineProperty(navigator, "appCodeName", { get: function () { return "${whitelist.profile.appCodeName}"; }});
 			\ Object.defineProperty(navigator, "appName", { get: function () { return "${whitelist.profile.appName}"; }});
 			\ Object.defineProperty(navigator, "appVersion", { get: function () { return "${whitelist.profile.appVersion}"; }});
-			\ Object.defineProperty(navigator, "hardwareConcurrency", { get: function () { return 4; }});
+			\ Object.defineProperty(navigator, "hardwareConcurrency", { get: function () { return ${whitelist.profile.hardwareConcurrency}; }});
 			\ Object.defineProperty(navigator, "oscpu", { get: function () { return "${whitelist.profile.osCPU}"; }});
 			\ Object.defineProperty(navigator, "platform", { get: function () { return "${whitelist.profile.platform}"; }});
 			\ Object.defineProperty(navigator, "vendor", { get: function () { return "${whitelist.profile.vendor}"; }});
 			\ Object.defineProperty(navigator, "vendorSub", { get: function () { return "${whitelist.profile.vendorSub}"; }});
+			\ Object.defineProperty(navigator, "userAgent", { get: function () { return "${whitelist.profile.useragent}"; }});
 			\n`
 		}
 
@@ -140,8 +141,9 @@ let whitelist = {
 		appCodeName: "",
 		appName: "",
 		appVersion: "",
-		platform: "",
+		hardwareConcurrency: 4,
 		osCPU: "",
+		platform: "",
 		useragent: "",
 		vendor: "",
 		vendorSub: "" 

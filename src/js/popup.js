@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	$('#whitelist input[type="text"]').on('keyup', function(e) {
+	$('#list_whitelistProfile input').on('keyup', function(e) {
 		chrome.runtime.sendMessage({
 			action: "whitelist",
 			data: {
@@ -416,6 +416,9 @@ document.addEventListener('DOMContentLoaded', function() {
 					value: e.target.value
 				}
 			});
+			$('#list_whitelistRules textarea').css("border", "3px solid greenyellow");
+		} else {
+			$('#list_whitelistRules textarea').css("border", "3px solid red");
 		}
 	});
 });

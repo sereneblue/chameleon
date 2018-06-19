@@ -32,8 +32,12 @@ input[type="radio"].disabled:checked+label {
   font-weight: bold;
 }
 
-a, label, p, textarea {
+a, label, p {
   font-size: 12px;
+}
+
+textarea {
+  font-size: 14px;
 }
 
 ul {
