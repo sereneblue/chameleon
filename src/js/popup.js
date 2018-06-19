@@ -56,6 +56,10 @@ function updateUI() {
 		}
 	});
 
+	chrome.storage.local.get('notificationsEnabled', function(data) {
+		$(`input[name="notificationsEnabled"]`).prop('checked', data.notificationsEnabled);
+	});
+
 	$('#headers input[type="checkbox"]').each(function(i, element) {
 		chrome.storage.local.get(element.name, function(data) {
 			$(`input[name="${element.name}"]`).prop('checked', data[element.name]);
@@ -230,6 +234,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		chrome.runtime.sendMessage({
 			action: "interval",
 			data: parseInt(e.target.value)
+		});
+	});
+
+	$('input[name="notificationsEnabled"]').on('change', function(e) {
+		chrome.runtime.sendMessage({
+			action: "storage",
+			data: {
+				key: "notificationsEnabled",
+				value: $(this).is(':checked')
+			}
 		});
 	});
 

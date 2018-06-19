@@ -53,7 +53,7 @@ let spoof = {
 			hardwareConcurrency = 4;
 			vendor = "";
 			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (Windows)" : headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else if (headers.useragent.match(/Macintosh/)) {
+		} else if (headers.useragent.match(/OS X 10_/)) {
 			oscpu = headers.useragent.match(/(Intel Mac OS X 10_\d+)/)[0].replace("_",".");
 			platform = "MacIntel";
 			hardwareConcurrency = 4;
@@ -383,7 +383,7 @@ async function start() {
 		spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
 	}
 
-	if (headers.useragent) {
+	if (headers.useragent && await get('notificationsEnabled')) {
 		chrome.notifications.create({
 			"type": "basic",
 			"title": "Chameleon",
