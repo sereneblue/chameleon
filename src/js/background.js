@@ -25,6 +25,9 @@ let headers = {
 // spoof contains functions that return js to inject
 // also contains the profileResolution to persist profile resolution
 let spoof = {
+	dnt: function () {
+		return `Object.defineProperty(navigator, "doNotTrack", { get: function() { return true; }});\n`;
+	},
 	name: function () {
 		return `Object.defineProperty(window, "name", { get: function() { return ""; }});\n`;
 	},
@@ -41,28 +44,46 @@ let spoof = {
 			\n`
 		}
 
-		var platform;
+		var appVersion, hardwareConcurrency, oscpu, platform, vendor;
 
 		if (headers.useragent.match(/Win/)) {
+			oscpu = headers.useragent.match(/(Windows .*?);/)[1];
 			platform = "Win64";
+			hardwareConcurrency = 4;
+			vendor = "";
+			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (Windows)" : headers.useragent.match(/Mozilla\/(.*)/)[1];
 		} else if (headers.useragent.match(/Macintosh/)) {
+			oscpu = headers.useragent.match(/(Intel Mac OS X 10_\d+)/)[0].replace("_",".");
 			platform = "MacIntel";
+			hardwareConcurrency = 4;
+			vendor = "Apple Computer, Inc";
+			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (Macintosh)": headers.useragent.match(/Mozilla\/(.*)/)[1];
 		} else if (headers.useragent.match(/X11/)) {
-			platform = "Linux x86_64";
+			platform = oscpu = "Linux x86_64";
+			hardwareConcurrency = 4;
+			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (X11)": headers.useragent.match(/Mozilla\/(.*)/)[1];
 		} else if (headers.useragent.match(/iPhone/)) {
-			platform = "iOS";
+			platform = "iPhone";
+			vendor = "Apple Computer, Inc";
+			hardwareConcurrency = 2;
 		} else if (headers.useragent.match(/iPad/)) {
 			platform = "iPad";
+			vendor = "Apple Computer, Inc";
+			hardwareConcurrency = 2;
 		} else if (headers.useragent.match(/Android/)) {
 			platform = "Linux armv7l";
+			vendor = "Google Inc";
+			hardwareConcurrency = 1;
+			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (Android)": headers.useragent.match(/Mozilla\/(.*)/)[1];
 		}
 
-		return `Object.defineProperty(navigator, "platform", { get: function () { return "${platform}"; }});
-		\ Object.defineProperty(navigator, "hardwareConcurrency", { get: function () { return 4; }});
-		\ Object.defineProperty(navigator, "oscpu", { get: function () { return ""; }});
-		\ Object.defineProperty(navigator, "vendor", { get: function () { return ""; }});
+		return `Object.defineProperty(navigator, "userAgent", { get: function () { return "${headers.useragent}"; }});
+		\ Object.defineProperty(navigator, "platform", { get: function () { return "${platform}"; }});
+		\ Object.defineProperty(navigator, "hardwareConcurrency", { get: function () { return ${hardwareConcurrency}; }});
+		\ Object.defineProperty(navigator, "oscpu", { get: function () { return "${oscpu}"; }});
+		\ Object.defineProperty(navigator, "vendor", { get: function () { return "${vendor}"; }});
 		\ Object.defineProperty(navigator, "vendorSub", { get: function () { return ""; }});
-		\ Object.defineProperty(navigator, "appVersion", { get: function () { return this.userAgent.match(/Mozilla\\/(.*)/)[1]; }});
+		\ Object.defineProperty(navigator, "appVersion", { get: function () { return "${appVersion}"; }});
 		\n`;
 	},
 	profileResolution: "",
@@ -139,15 +160,19 @@ async function buildInjectScript(url, sendResponse) {
 		if (await get("protectWinName")) scriptText += spoof.name();
 		if (await get("disableWebSockets")) scriptText += spoof.websocket();
 			
-		if (useragentType != "custom" && ss != "profile") {
+		if (useragentType != "custom" ) {
 			scriptText += spoof.navigator(url);
 		}
 
 		if (ss != undefined && ss != "default") {
 			scriptText += spoof.screen(ss); 
 		}
+
+		if (headers.enableDNT) {
+			scriptText += spoof.dnt();
+		}
 	}
-	
+
 	sendResponse({ script: scriptText });
 }
 
@@ -186,7 +211,7 @@ function getScreenResolution(ua) {
 			[2560, 1440],
 			[2560, 1600]
 		];
-	} else if (ua.match(/Mac/)) {
+	} else if (ua.match(/OS X 10/)) {
 		screens = [
 			[1920, 1080],
 			[2560, 1440],
