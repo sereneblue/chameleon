@@ -175,11 +175,11 @@ function getPlatform(v) {
 	if (v.includes("win")) {
 		return "windows";
 	} else if (v.includes("mac")) {
-		return "macOS";
+		return "macos";
 	} else if (v.includes("linux")) {
 		return "linux";
-	} else if (v.includes("iOS")) {
-		return "iOS";
+	} else if (v.includes("ios")) {
+		return "ios";
 	} else if (v.includes("android")) {
 		return "android";
 	} else if (v == "custom") {

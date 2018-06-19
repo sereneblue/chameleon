@@ -49,7 +49,7 @@ let uas = {
 		"name": "Internet Explorer 11 (Win 8.1)",
 		"value": "win11"
 	}],
-	"macOS": [{
+	"macos": [{
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36",
 		"name": "Chrome 66 (macOS 10.12)",
 		"value": "mac1"
@@ -115,7 +115,7 @@ let uas = {
 		"name": "Firefox 59 (Ubuntu 64)",
 		"value": "linux9"
 	}],
-	"iOS": [{
+	"ios": [{
 		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
 		"name": "iOS 9.1 - iPhone - Safari 9",
 		"value": "ios1"

@@ -53,8 +53,8 @@ let spoof = {
 			hardwareConcurrency = 4;
 			vendor = "";
 			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (Windows)" : headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else if (headers.useragent.match(/OS X 10_/)) {
-			oscpu = headers.useragent.match(/(Intel Mac OS X 10_\d+)/)[0].replace("_",".");
+		} else if (headers.useragent.match(/OS X 10(_|\.)/)) {
+			oscpu = headers.useragent.match(/(Intel Mac OS X 10(_|\.)\d+)/)[0].replace("_",".");
 			platform = "MacIntel";
 			hardwareConcurrency = 4;
 			vendor = "Apple Computer, Inc";
