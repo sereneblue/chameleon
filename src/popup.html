@@ -213,17 +213,18 @@
                 </li>
                 <div class="list" id="list_scriptInjection">
                     <div class="opt">
-                        <input name="enableScriptInjection" type="checkbox"><label> Enable script injection</label>
+                        <input name="enableScriptInjection" type="checkbox"><label> Enable script injection
+                        <br/>An option with * requires script injection</label>
                     </div>
                     <div class="opt">
-                        <input name="disableWebSockets" type="checkbox"><label> Disable WebSockets</label>
+                        <input name="disableWebSockets" type="checkbox"><label> Disable WebSockets*</label>
                     </div>
                     <div class="opt">
-                        <input name="protectWinName" type="checkbox"><label> Protect window.name</label>
+                        <input name="protectWinName" type="checkbox"><label> Protect window.name*</label>
                     </div>
                     <div class="opt">
                         <div class="opt">
-                            <label>Screen size spoofing: </label>
+                            <label>Screen size spoofing*: </label>
                             <select name="screenSize">
                                 <option value="default">Default</option>
                                 <option value="profile">Profile</option>
@@ -372,7 +373,7 @@
         <div class="tab" id="whitelist">
             <div style="margin-bottom: 10px;">
                 <input type="checkbox" name="enableWhitelist">
-                <label for="enableWhitelist">Enable whitelist</label>
+                <label for="enableWhitelist">Enable whitelist (requires script injection)</label>
             </div>
             <ul class="groups">
                 <li id="sub_whitelistProfile">
