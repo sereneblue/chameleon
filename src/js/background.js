@@ -25,24 +25,28 @@ let headers = {
 // spoof contains functions that return js to inject
 // also contains the profileResolution to persist profile resolution
 let spoof = {
-	dnt: function () {
-		return `Object.defineProperty(navigator, "doNotTrack", { get: function() { return true; }});\n`;
+	dnt: function (injectionArray) {
+		injectionArray.push({ obj: "window.navigator", prop: "doNotTrack", value: true });
+		return injectionArray;
 	},
-	name: function () {
-		return `Object.defineProperty(window, "name", { get: function() { return ""; }});\n`;
+	name: function (injectionArray) {
+		injectionArray.push({ obj: "window", prop: "name", value: "" });
+		return injectionArray;
 	},
-	navigator: function (url) {
+	navigator: function (url, injectionArray) {
 		if (whitelist.enabled && whitelisted(url)) {
-			return `Object.defineProperty(navigator, "appCodeName", { get: function () { return "${whitelist.profile.appCodeName}"; }});
-			\ Object.defineProperty(navigator, "appName", { get: function () { return "${whitelist.profile.appName}"; }});
-			\ Object.defineProperty(navigator, "appVersion", { get: function () { return "${whitelist.profile.appVersion}"; }});
-			\ Object.defineProperty(navigator, "hardwareConcurrency", { get: function () { return ${whitelist.profile.hardwareConcurrency}; }});
-			\ Object.defineProperty(navigator, "oscpu", { get: function () { return "${whitelist.profile.osCPU}"; }});
-			\ Object.defineProperty(navigator, "platform", { get: function () { return "${whitelist.profile.platform}"; }});
-			\ Object.defineProperty(navigator, "vendor", { get: function () { return "${whitelist.profile.vendor}"; }});
-			\ Object.defineProperty(navigator, "vendorSub", { get: function () { return "${whitelist.profile.vendorSub}"; }});
-			\ Object.defineProperty(navigator, "userAgent", { get: function () { return "${whitelist.profile.useragent}"; }});
-			\n`
+			injectionArray.push(...[
+				{ obj: "window.navigator", prop: "appCodeName", value: whitelist.profile.appCodeName },
+				{ obj: "window.navigator", prop: "appName", value: whitelist.profile.appName },
+				{ obj: "window.navigator", prop: "appVersion", value: whitelist.profile.appVersion },
+				{ obj: "window.navigator", prop: "hardwareConcurrency", value: whitelist.profile.hardwareConcurrency },
+				{ obj: "window.navigator", prop: "oscpu", value: whitelist.profile.osCPU },
+				{ obj: "window.navigator", prop: "platform", value: whitelist.profile.platform },
+				{ obj: "window.navigator", prop: "vendor", value: whitelist.profile.vendor },
+				{ obj: "window.navigator", prop: "vendorSub", value: whitelist.profile.vendorSub },
+				{ obj: "window.navigator", prop: "userAgent", value: whitelist.profile.useragent },
+			]);
+			return injectionArray;
 		}
 
 		var appVersion, hardwareConcurrency, oscpu, platform, vendor;
@@ -78,17 +82,19 @@ let spoof = {
 			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (Android)": headers.useragent.match(/Mozilla\/(.*)/)[1];
 		}
 
-		return `Object.defineProperty(navigator, "userAgent", { get: function () { return "${headers.useragent}"; }});
-		\ Object.defineProperty(navigator, "platform", { get: function () { return "${platform}"; }});
-		\ Object.defineProperty(navigator, "hardwareConcurrency", { get: function () { return ${hardwareConcurrency}; }});
-		\ Object.defineProperty(navigator, "oscpu", { get: function () { return "${oscpu}"; }});
-		\ Object.defineProperty(navigator, "vendor", { get: function () { return "${vendor}"; }});
-		\ Object.defineProperty(navigator, "vendorSub", { get: function () { return ""; }});
-		\ Object.defineProperty(navigator, "appVersion", { get: function () { return "${appVersion}"; }});
-		\n`;
+		injectionArray.push(...[
+				{ obj: "window.navigator", prop: "userAgent", value: headers.useragent },
+				{ obj: "window.navigator", prop: "platform", value: platform },
+				{ obj: "window.navigator", prop: "hardwareConcurrency", value: hardwareConcurrency },
+				{ obj: "window.navigator", prop: "oscpu", value: oscpu },
+				{ obj: "window.navigator", prop: "vendor", value: vendor },
+				{ obj: "window.navigator", prop: "vendorSub", value: "" },
+				{ obj: "window.navigator", prop: "appVersion", value: appVersion }
+			]);
+		return injectionArray;
 	},
 	profileResolution: "",
-	screen: function(screenSize) {
+	screen: function(screenSize, injectionArray) {
 		var width, height;
 		var depth = 24;
 
@@ -109,23 +115,25 @@ let spoof = {
 			height = parseInt(s[1]);
 		}
 
-		return `Object.defineProperty(screen,"width", { get: function () { return ${width}; }});
-		\ Object.defineProperty(screen,"height", { get: function () { return ${height}; }});
-		\ Object.defineProperty(window,"outerWidth", { get: function () { return ${width}; }});
-		\ Object.defineProperty(window,"outerHeight", { get: function () { return ${height}; }});
-		\ Object.defineProperty(window,"innerWidth", { get: function () { return ${width}; }});
-		\ Object.defineProperty(window,"innerHeight", { get: function () { return ${height}; }});
-		\ Object.defineProperty(screen,"availWidth", { get: function () { return ${width}; }});
-		\ Object.defineProperty(screen,"availHeight", { get: function () { return ${height}; }});
-		\ Object.defineProperty(screen,"top", { get: function () { return 0; }});
-		\ Object.defineProperty(screen,"left", { get: function () { return 0; }});
-		\ Object.defineProperty(screen,"availTop", { get: function () { return 0; }});
-		\ Object.defineProperty(screen,"availLeft", { get: function () { return 0; }});
-		\ Object.defineProperty(screen,"colorDepth", { get: function () { return ${depth}; }});
-		\ Object.defineProperty(screen,"pixelDepth", { get: function () { return ${depth}; }});
-		\ Object.defineProperty(document.documentElement, "clientWidth", { get: function () { return ${width}; }});
-		\ Object.defineProperty(document.documentElement, "clientHeight", { get: function () { return ${height}; }});
-		\n`;
+		injectionArray.push(...[
+				{ obj: "window.screen", prop: "width", value: width },
+				{ obj: "window.screen", prop: "height", value: height },
+				{ obj: "window.screen", prop: "outerWidth", value: width },
+				{ obj: "window.screen", prop: "outerHeight", value: height },
+				{ obj: "window.screen", prop: "innerWidth", value: width },
+				{ obj: "window.screen", prop: "innerHeight", value: height },
+				{ obj: "window.screen", prop: "availWidth", value: width },
+				{ obj: "window.screen", prop: "availHeight", value: height },
+				{ obj: "window.screen", prop: "top", value: 0 },
+				{ obj: "window.screen", prop: "left", value: 0 },
+				{ obj: "window.screen", prop: "availTop", value: 0 },
+				{ obj: "window.screen", prop: "availLeft", value: 0 },
+				{ obj: "window.screen", prop: "colorDepth", value: depth },
+				{ obj: "window.screen", prop: "pixelDepth", value: depth },
+				{ obj: "window.document.documentElement", prop: "clientWidth", value: width },
+				{ obj: "window.document.documentElement", prop: "clientHeight", value: height },
+			]);
+		return injectionArray;
 	},
 	websocket: function () {
 		return `WebSocket = undefined;\n MozWebSocket = undefined;\n`;
@@ -156,26 +164,30 @@ async function buildInjectScript(url, sendResponse) {
 	let injectEnabled = await get("enableScriptInjection");
 	let ss = await get("screenSize");
 	let useragentType = await get("useragent");
+	let injectionArray = [];
 	let scriptText = "";
 
 	if (injectEnabled || (whitelist.enabled && whitelisted(url))) {
-		if (await get("protectWinName")) scriptText += spoof.name();
-		if (await get("disableWebSockets")) scriptText += spoof.websocket();
+		if (await get("protectWinName")) injectionArray = spoof.name(injectionArray);
+		if (await get("disableWebSockets")) scriptText += spoof.websocket(scriptText);
 			
 		if (useragentType != "custom" ) {
-			scriptText += spoof.navigator(url);
+			injectionArray = spoof.navigator(url, injectionArray);
 		}
 
 		if (ss != undefined && ss != "default") {
-			scriptText += spoof.screen(ss); 
+			injectionArray = spoof.screen(ss, injectionArray);
 		}
 
 		if (headers.enableDNT) {
-			scriptText += spoof.dnt();
+			injectionArray = spoof.dnt(injectionArray);
 		}
 	}
 
-	sendResponse({ script: scriptText });
+	sendResponse({
+		script: scriptText,
+		injection: JSON.stringify(injectionArray)
+	});
 }
 
 // activates timer for new profile page
