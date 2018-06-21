@@ -140,6 +140,10 @@ function updateUI() {
 		$(`input[name="enableWhitelist"]`).prop('checked', data.enableWhitelist);;
 	});
 
+	chrome.storage.local.get("enableWhitelistRealProfile", function(data) {
+		$(`input[name="enableWhitelistRealProfile"]`).prop('checked', data.enableWhitelistRealProfile);;
+	});
+
 	$('#list_whitelistProfile input').each(function (i, element) {
 		chrome.storage.local.get(element.name, function(data) {
 			if (data[element.name]) {

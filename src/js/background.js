@@ -156,6 +156,7 @@ let whitelist = {
 		vendor: "",
 		vendorSub: "" 
 	},
+	realProfile: false,
 	urlList: []
 };
 
@@ -168,6 +169,7 @@ async function buildInjectScript(url, sendResponse) {
 	let scriptText = "";
 
 	if (injectEnabled || (whitelist.enabled && whitelisted(url))) {
+		if (await get("enableWhitelistRealProfile") && whitelist.enabled && whitelisted(url)) return;
 		if (await get("protectWinName")) injectionArray = spoof.name(injectionArray);
 		if (await get("disableWebSockets")) scriptText += spoof.websocket(scriptText);
 			
@@ -303,19 +305,19 @@ function rewriteHeaders(e) {
 			if (headers.spoofEtag) header.value = (Math.random() * 10).toString(36).substr(2, Math.random() * (10 - 5 + 1) + 5);
 		} else if (header.name.toLowerCase() == "user-agent") {
 			if (whitelist.enabled && whitelisted(e.url)) {
-				header.value = whitelist.profile.useragent;
+				if (!whitelist.realProfile) header.value = whitelist.profile.useragent;
 			} else {
 				if (headers.useragent) header.value = headers.useragent;
 			}
 		} else if (header.name.toLowerCase() == "accept-encoding") {
 			if (whitelist.enabled && whitelisted(e.url)) {
-				header.value = whitelist.profile.acceptEnc;
+				if (!whitelist.realProfile) header.value = whitelist.profile.acceptEnc;
 			} else {
 				if (headers.spoofAcceptEnc) header.value = "gzip, deflate";
 			}
 		} else if (header.name.toLowerCase() === "accept-language") {
 			if (whitelist.enabled && whitelisted(e.url)) {
-				header.value = whitelist.profile.acceptLang;
+				if (!whitelist.realProfile) header.value = whitelist.profile.acceptLang;
 			} else {
 				if (headers.spoofAcceptLang) header.value = headers.spoofAcceptLangValue;
 			}
@@ -477,9 +479,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 		if (request.data.key == "enableWhitelist") {
 			whitelist.enabled = request.data.value;
-		} else if (request.data.key.match(/wl_/)) {
-			whitelist[request.data.key.slice(3)] = request.data.value;
-		} else {
+		} else if (request.data.key == "enableWhitelistRealProfile") {
+			whitelist.realProfile = request.data.value;
+		} else if (request.data.key.indexOf("wl_") > -1) {
+			whitelist.profile[request.data.key.slice(3)] = request.data.value;
+		} else if (request.data.key == "wl_urls"){
 			whitelist.urlList = JSON.parse(request.data.value);
 		}
 	}
@@ -513,6 +517,10 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 
 	if (data.enableWhitelist) {
 		whitelist.enabled = true;
+	}
+
+	if (data.enableWhitelistRealProfile) {
+		whitelist.realProfile = true;
 	}
 
 	Object.keys(whitelist.profile).forEach(key => {
