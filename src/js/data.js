@@ -192,7 +192,7 @@ let platforms = Object.keys(uas);
 platforms.push("custom");
 
 // menu headers
-let menu = ["profile", "headers", "options", "whitelist"];
+let menu = ["profile", "headers", "options", "whitelist", "about"];
 
 // options
 let options = ["scriptInjection", "standard", "cookies", "misc", "reporting"];

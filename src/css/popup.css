@@ -45,6 +45,16 @@ ul {
   padding-left: 0px;
 }
 
+#about img {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#about a, #about p {
+  font-size: 14px;
+}
+
 #interval {
   margin-bottom: 10px;
 }
@@ -69,6 +79,10 @@ ul {
 #list_whitelistRules {
   margin-top: 10px;
   width: 100%;
+}
+
+.centered {
+  text-align: center;
 }
 
 .groups li {
@@ -100,7 +114,21 @@ ul {
 
 .item {
   display: inline-block;
-  width: 85px;
+  width: 80px;
+  height: 15px;
+  background-color: olivedrab;
+  padding: 5px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+  cursor: pointer;
+}
+
+.item.about {
+  display: inline-block;
+  width: 20px;
   height: 15px;
   background-color: olivedrab;
   padding: 5px;
