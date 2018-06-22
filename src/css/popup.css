@@ -59,6 +59,10 @@ ul {
   margin-bottom: 10px;
 }
 
+#interval button {
+  margin-top: 5px;
+}
+
 #profile table {
   width: 100%;
   margin-bottom: 10px;

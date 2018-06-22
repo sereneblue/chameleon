@@ -263,6 +263,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
+	// basically the same thing as above
+	$('button[name="changeNow"]').on('click', function(e) {
+		chrome.runtime.sendMessage({
+			action: "interval",
+			data: parseInt($('select[name="interval"]').val())
+		})
+	})
+
 	$('input[name="notificationsEnabled"]').on('change', function(e) {
 		chrome.runtime.sendMessage({
 			action: "storage",
