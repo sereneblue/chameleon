@@ -89,7 +89,7 @@ let spoof = {
 				{ obj: "window.navigator", prop: "oscpu", value: oscpu },
 				{ obj: "window.navigator", prop: "vendor", value: vendor },
 				{ obj: "window.navigator", prop: "vendorSub", value: "" },
-				{ obj: "window.navigator", prop: "appVersion", value: appVersion }
+				{ obj: "window.navigator", prop: "appVersion", value: appVersion },
 			]);
 		return injectionArray;
 	},
@@ -162,23 +162,21 @@ let whitelist = {
 
 // builds script to inject into pages
 async function buildInjectScript(url, sendResponse) {
-	let injectEnabled = await get("enableScriptInjection");
-	let ss = await get("screenSize");
-	let useragentType = await get("useragent");
+	let data = await get(["disableWebSockets", "enableScriptInjection", "enableWhitelistRealProfile", "protectWinName","screenSize", "useragent"]);
 	let injectionArray = [];
 	let scriptText = "";
 
-	if (injectEnabled || (whitelist.enabled && whitelisted(url))) {
-		if (await get("enableWhitelistRealProfile") && whitelist.enabled && whitelisted(url)) return;
-		if (await get("protectWinName")) injectionArray = spoof.name(injectionArray);
-		if (await get("disableWebSockets")) scriptText += spoof.websocket(scriptText);
+	if (data.enableScriptInjection || (whitelist.enabled && whitelisted(url))) {
+		if (data.enableWhitelistRealProfile && whitelist.enabled && whitelisted(url)) return;
+		if (data.protectWinName) injectionArray = spoof.name(injectionArray);
+		if (data.disableWebSockets) scriptText += spoof.websocket(scriptText);
 			
-		if (useragentType != "custom" ) {
+		if (data.useragent != "custom" ) {
 			injectionArray = spoof.navigator(url, injectionArray);
 		}
 
-		if (ss != undefined && ss != "default") {
-			injectionArray = spoof.screen(ss, injectionArray);
+		if (data.screenSize != undefined && data.screenSize != "default") {
+			injectionArray = spoof.screen(data.screenSize, injectionArray);
 		}
 
 		if (headers.enableDNT) {
@@ -262,7 +260,7 @@ function getScreenResolution(ua) {
 function get(key) {
 	return new Promise((resolve) => {
 		chrome.storage.local.get(key, (item) => {
-			key ? resolve(item[key]) : resolve(item);
+			typeof key == "string" ? resolve(item[key]) : resolve(item);
 		});
 	});
 }
@@ -354,50 +352,43 @@ function rewriteHeaders(e) {
 async function start() {
 	// pick new useragent
 	let useragents = {};
-	let useragentType = await get('useragent');
+	let data = await get(['notificationsEnabled', 'screenSize', 'useragent', 'useragentValue', 'useragents']);
 
-	if (useragentType == undefined || useragentType == "real"){
+	if (data.useragent == undefined || data.useragent == "real"){
 		// real profile
 		headers.useragent = "";
-	} else if (useragentType.match(/.*?\d/) || useragentType == "custom") {
-		headers.useragent = await get('useragentValue');
-	} else if (useragentType.match(/random_/)) {
-		let platform = useragentType.split('_')[1];
+	} else if (data.useragent.match(/.*?\d/) || data.useragent == "custom") {
+		headers.useragent = data.useragentValue;
+	} else if (data.useragent.match(/random_/)) {
+		let platform = data.useragent.split('_')[1];
 
-		useragents = await get('useragents');
-		headers.useragent = useragents[platform][Math.floor(Math.random() * useragents[platform].length)].ua;
-	} else if (useragentType == "random") {
+		headers.useragent = data.useragents[platform][Math.floor(Math.random() * data.useragents[platform].length)].ua;
+	} else if (data.useragent == "random") {
 		// random useragent
-		useragents = await get('useragents');
-
 		let platforms = Object.keys(useragents);
 		let platform = platforms[Math.floor(Math.random() * platforms.length)];
 
-		headers.useragent = useragents[platform][Math.floor(Math.random() * useragents[platform].length)].ua;
-	} else if (useragentType == "randomDesktop") {
+		headers.useragent = data.useragents[platform][Math.floor(Math.random() * data.useragents[platform].length)].ua;
+	} else if (data.useragent == "randomDesktop") {
 		// random desktop useragent
-
 		let platforms = ["windows", "macos", "linux"];
 		let platform = platforms[Math.floor(Math.random() * platforms.length)];
 
-		useragents = await get('useragents');
-		headers.useragent = useragents[platform][Math.floor(Math.random() * useragents[platform].length)].ua;
-	} else if (useragentType == "randomMobile") {
+		headers.useragent = data.useragents[platform][Math.floor(Math.random() *data.useragents[platform].length)].ua;
+	} else if (data.useragent == "randomMobile") {
 		// random mobile useragent
-
 		let platforms = ["ios", "android"];
 		let platform = platforms[Math.floor(Math.random() * platforms.length)];
 
-		useragents = await get('useragents');
-		headers.useragent = useragents[platform][Math.floor(Math.random() * useragents[platform].length)].ua;
+		headers.useragent = data.useragents[platform][Math.floor(Math.random() * data.useragents[platform].length)].ua;
 	}
 
-	if (await get("screenSize") == "profile") {
+	if (data.screenSize == "profile") {
 		var screenData = getScreenResolution(headers.useragent);
 		spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
 	}
 	
-	if (headers.useragent && await get('notificationsEnabled')) {
+	if (headers.useragent && data.notificationsEnabled) {
 		chrome.notifications.create({
 			"type": "basic",
 			"title": "Chameleon",

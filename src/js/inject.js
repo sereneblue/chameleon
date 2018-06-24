@@ -1,4 +1,6 @@
-chrome.runtime.sendMessage({action: "inject"}, function (response) {
+(async function() {
+	let response = await chrome.runtime.sendMessage({action: "inject"});
+
 	if (response) {
 		var scripts = document.getElementsByTagName('script');
 		var script = document.createElement('script');
@@ -9,9 +11,8 @@ chrome.runtime.sendMessage({action: "inject"}, function (response) {
 				let override = ((window, injectArray) => {
 					injectArray.forEach(i => {
 						Object.defineProperty(i.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), i.prop, {
-							get: function () {
-								return i.value;
-							}
+	 						configurable: true,
+	 						value: i.value
 						});
 					});
 				});
@@ -37,9 +38,30 @@ chrome.runtime.sendMessage({action: "inject"}, function (response) {
 				});
 
 				${response.script}
-			})(${response.injection});`));
-
+			})(${response.injection});
+			`));
+		
 		scripts.length ? document.head.insertBefore(script, document.head.firstChild) : (document.head || document.documentElement).appendChild(script);
 		script.remove();
 	}
-});
+})()
+
+// waiting for values to inject takes time
+// some sites may read the values before they are spoofed
+// set default values
+// https://github.com/sereneblue/chameleon/issues/19
+var scripts = document.getElementsByTagName('script');
+var script = document.createElement('script');
+
+script.appendChild(document.createTextNode(`
+	Object.defineProperty(navigator, "userAgent", { configurable: true, value: "" });
+	Object.defineProperty(navigator, "platform", { configurable: true, value: "" });
+	Object.defineProperty(navigator, "hardwareConcurrency", { configurable: true, value: 0 });
+	Object.defineProperty(navigator, "oscpu", { configurable: true, value: "" });
+	Object.defineProperty(navigator, "vendor", { configurable: true, value: "" });
+	Object.defineProperty(navigator, "vendorSub", { configurable: true, value: "" });
+	Object.defineProperty(navigator, "appVersion", {configurable: true, value: "" });
+`));
+
+scripts.length ? document.head.insertBefore(script, document.head.firstChild) : (document.head || document.documentElement).appendChild(script);
+script.remove();
