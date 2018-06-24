@@ -18,7 +18,9 @@ let headers = {
 	spoofXFor: false,
 	spoofXForValue: 0,
 	viaIP: "",
+	viaIP_profile: "",
 	xforwardedforIP: "",
+	xforwardedforIP_profile: "",
 	useragent: ""
 };
 
@@ -346,7 +348,7 @@ function rewriteHeaders(e) {
 		if (headers.spoofViaValue == 1) {
 			e.requestHeaders.push({ name: "Via", value: "1.1 " + headers.viaIP });
 		} else {
-			e.requestHeaders.push({ name: "Via", value: "1.1 " + `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}` });
+			e.requestHeaders.push({ name: "Via", value: "1.1 " + headers.viaIP_profile });
 		}
 	}
 
@@ -354,7 +356,7 @@ function rewriteHeaders(e) {
 		if (headers.spoofXForValue == 1) {
 			e.requestHeaders.push({ name: "X-Forwarded-For", value: headers.xforwardedforIP })
 		} else {
-			e.requestHeaders.push({ name: "X-Forwarded-For", value: `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}` });
+			e.requestHeaders.push({ name: "X-Forwarded-For", value: headers.xforwardedforIP_profile });
 		}
 	}
 
@@ -401,6 +403,8 @@ async function start() {
 		spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
 	}
 	
+	headers.viaIP_profile = headers.xforwardedforIP_profile = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
+
 	if (headers.useragent && data.notificationsEnabled) {
 		chrome.notifications.create({
 			"type": "basic",
