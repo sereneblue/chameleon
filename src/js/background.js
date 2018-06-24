@@ -45,11 +45,12 @@ let spoof = {
 				{ obj: "window.navigator", prop: "vendor", value: whitelist.profile.vendor },
 				{ obj: "window.navigator", prop: "vendorSub", value: whitelist.profile.vendorSub },
 				{ obj: "window.navigator", prop: "userAgent", value: whitelist.profile.useragent },
+				{ obj: "window.navigator", prop: "productSub", value: whitelist.profile.productSub },
 			]);
 			return injectionArray;
 		}
 
-		var appVersion, hardwareConcurrency, oscpu, platform, vendor;
+		var appVersion, hardwareConcurrency, oscpu, platform, productSub, vendor;
 
 		if (headers.useragent.match(/Win/)) {
 			oscpu = headers.useragent.match(/(Windows .*?);/)[1];
@@ -82,9 +83,20 @@ let spoof = {
 			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (Android)": headers.useragent.match(/Mozilla\/(.*)/)[1];
 		}
 
+		if (headers.useragent.match(/Firefox/)) {
+			productSub = "20010725";
+		} else if (headers.useragent.match(/Chrome/) || headers.useragent.match(/Safari/)) {
+			productSub = "20030107";
+		} else if (headers.useragent.match(/IE/)) {
+			productSub = null;
+		} else {
+			productSub = "";
+		}
+
 		injectionArray.push(...[
 				{ obj: "window.navigator", prop: "userAgent", value: headers.useragent },
 				{ obj: "window.navigator", prop: "platform", value: platform },
+				{ obj: "window.navigator", prop: "productSub", value: productSub },
 				{ obj: "window.navigator", prop: "hardwareConcurrency", value: hardwareConcurrency },
 				{ obj: "window.navigator", prop: "oscpu", value: oscpu },
 				{ obj: "window.navigator", prop: "vendor", value: vendor },
@@ -152,6 +164,7 @@ let whitelist = {
 		hardwareConcurrency: 4,
 		osCPU: "",
 		platform: "",
+		productSub: "",
 		useragent: "",
 		vendor: "",
 		vendorSub: "" 
