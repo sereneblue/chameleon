@@ -65,6 +65,10 @@ ul {
 
 #profile table {
   width: 100%;
+  margin-bottom: 5px;
+}
+
+#profile p {
   margin-bottom: 10px;
 }
 
