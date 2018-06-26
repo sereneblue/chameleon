@@ -422,8 +422,9 @@ function whitelisted(url) {
 				return true;
 			}
 		}
-		return false;
 	}
+
+	return false;
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -489,10 +490,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			whitelist.enabled = request.data.value;
 		} else if (request.data.key == "enableWhitelistRealProfile") {
 			whitelist.realProfile = request.data.value;
-		} else if (request.data.key.indexOf("wl_") > -1) {
-			whitelist.profile[request.data.key.slice(3)] = request.data.value;
 		} else if (request.data.key == "wl_urls"){
 			whitelist.urlList = JSON.parse(request.data.value);
+		} else if (request.data.key.indexOf("wl_") > -1) {
+			whitelist.profile[request.data.key.slice(3)] = request.data.value;
 		}
 	}
 });
