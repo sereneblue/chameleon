@@ -21,25 +21,26 @@
     <div class="tabs">
         <div class="active tab" id="profile">
             <div style="padding-bottom: 10px;">
-                <input type="checkbox" name="notificationsEnabled">
-                <label for="notificationsEnabled">Enable notifications</label>
+                <label>
+                    <input type="checkbox" name="notificationsEnabled"> Enable notifications
+                </label>
             </div>
             <table>
                 <tbody>
                     <tr>
                         <td style="padding-right: 20px;">
-                            <input name="profile_type" type="radio" value="real"><label> Real Profile</label>
+                            <label><input name="profile_type" type="radio" value="real"> Real Profile</label>
                         </td>
                         <td>
-                            <input name="profile_type" type="radio" value="randomDesktop"><label> Random Profile (Desktop)</label>
+                            <label><input name="profile_type" type="radio" value="randomDesktop"> Random Profile (Desktop)</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input name="profile_type" type="radio" value="random"><label> Random</label>
+                            <label><input name="profile_type" type="radio" value="random"> Random</label>
                         </td>
                         <td>
-                            <input name="profile_type" type="radio" value="randomMobile"><label> Random Profile (Mobile)</label>
+                            <label><input name="profile_type" type="radio" value="randomMobile"> Random Profile (Mobile)</label>
                         </td>
                     </tr>
                 </tbody>
@@ -69,7 +70,7 @@
                 </li>
                 <div class="list" id="list_windows">
                     <div class="opt">
-                        <input name="profile_type" type="radio" value="random_windows"><label> Random Windows Browsers</label>
+                        <label><input name="profile_type" type="radio" value="random_windows"> Random Windows Browsers</label>
                     </div>
                 </div>
                 <li id="sub_macos">
@@ -78,7 +79,7 @@
                 </li>
                 <div class="list" id="list_macos">
                     <div class="opt">
-                        <input name="profile_type" type="radio" value="random_macos"><label> Random macOS Browsers</label>
+                        <label><input name="profile_type" type="radio" value="random_macos"> Random macOS Browsers</label>
                     </div>
                 </div>
                 <li id="sub_linux">
@@ -87,7 +88,7 @@
                 </li>
                 <div class="list" id="list_linux">
                     <div class="opt">
-                        <input name="profile_type" type="radio" value="random_linux"><label> Random Linux Browsers</label>
+                        <label><input name="profile_type" type="radio" value="random_linux"> Random Linux Browsers</label>
                     </div>
                 </div>
                 <li id="sub_ios">
@@ -96,7 +97,7 @@
                 </li>
                 <div class="list" id="list_ios">
                     <div class="opt">
-                        <input name="profile_type" type="radio" value="random_ios"><label> Random iOS Browsers</label>
+                        <label><input name="profile_type" type="radio" value="random_ios"> Random iOS Browsers</label>
                     </div>
                 </div>
                 <li id="sub_android">
@@ -105,7 +106,7 @@
                 </li>
                 <div class="list" id="list_android">
                     <div class="opt">
-                        <input name="profile_type" type="radio" value="random_android"><label> Random Android Browsers</label>
+                        <label><input name="profile_type" type="radio" value="random_android"> Random Android Browsers</label>
                     </div>
                 </div>
                 <li id="sub_custom">
@@ -114,7 +115,7 @@
                 </li>
                 <div class="list" id="list_custom">
                     <div class="opt">
-                        <input name="profile_type" type="radio" value="custom"><label> Custom User Agent</label>
+                        <label><input name="profile_type" type="radio" value="custom"> Custom User Agent</label>
                         <input name="custom_ua" type="text" style="width: 90%;">
                     </div>
                 </div>
@@ -122,20 +123,16 @@
         </div>
         <div class="tab" id="headers">
             <div class="opt">
-                <input type="checkbox" name="disableAuth">
-                <label for="disableAuth">Disable Authorization</label>
+                <label><input type="checkbox" name="disableAuth"> Disable Authorization</label>
             </div>
             <div class="opt">
-                <input type="checkbox" name="enableDNT">
-                <label for="enableDNT">Enable DNT (Do Not Track)</label>
+                <label><input type="checkbox" name="enableDNT"> Enable DNT (Do Not Track)</label>
             </div>
             <div class="opt">
-                <input type="checkbox" name="spoofEtag">
-                <label for="spoofEtag">Spoof If-None-Match (ETags)</label>
+                <label><input type="checkbox" name="spoofEtag"> Spoof If-None-Match (ETags)</label>
             </div>
             <div class="opt">
-                <input type="checkbox" name="spoofVia">
-                <label for="spoofVia">Spoof Via using a</label>
+                <label><input type="checkbox" name="spoofVia"> Spoof Via using a</label>
                 <select name="spoofViaValue">
                     <option value="0">random IP</option>
                     <option value="1">custom IP</option>
@@ -146,27 +143,23 @@
                 </div>
             </div>
             <div class="opt">
-                <input type="checkbox" name="spoofXFor">
-                <label for="dnt">Spoof X-Forwarded-For using a</label>
+                <label><input type="checkbox" name="spoofXFor"> Spoof X-Forwarded-For using a</label>
                 <select name="spoofXForValue">
                     <option value="0">random IP</option>
                     <option value="1">custom IP</option>
                 </select>
                 <div class="ipAddr">
-                    <label for="xforwardedforIP">IP address:</label>
-                    <input type="text" name="xforwardedforIP" size="15" maxlength="15">
+                    <label><input type="text" name="xforwardedforIP" size="15" maxlength="15"> IP address:</label>
                 </div>
             </div>
             <div class="opt">
-                <input type="checkbox" name="disableRef">
-                <label for="disableRef">Disable Referer</label>
+                <label><input type="checkbox" name="disableRef"> Disable Referer</label>
             </div>
             <div class="opt">
-                <input type="checkbox" name="spoofSourceRef">
-                <label for="spoofSourceRef">Spoof Source Referer</label>
+                <label><input type="checkbox" name="spoofSourceRef"> Spoof Source Referer</label>
             </div>
             <div class="opt">
-                <label for="dnt">Referer X Origin Policy :</label>
+                <label for="refererXorigin">Referer X Origin Policy :</label>
                 <br/>
                 <select name="refererXorigin">
                     <option value="0">Always send (default)</option>
@@ -175,7 +168,7 @@
                 </select>
             </div>
             <div class="opt">
-                <label for="dnt">Referer Trimming Policy :</label>
+                <label for="refererTrimming">Referer Trimming Policy :</label>
                 <br/>
                 <select name="refererTrimming">
                     <option value="0">Send full URI (default)</option>
@@ -186,12 +179,10 @@
             <br/>
             <hr><br/>
             <div class="opt">
-                <input type="checkbox" name="spoofAcceptEncoding">
-                <label for="spoofSourceRef">Spoof Accept-Encoding</label>
+                <label><input type="checkbox" name="spoofAcceptEncoding"> Spoof Accept-Encoding</label>
             </div>
             <div class="opt">
-                <input type="checkbox" name="spoofAcceptLang">
-                <label for="dnt">Spoof Accept-Language as </label>
+                <label><input type="checkbox" name="spoofAcceptLang"> Spoof Accept-Language as </label>
                 <select name="spoofAcceptLangValue">
                     <option value="da-DK,da;q=0.5">da-DK</option>
                     <option value="de-DE,de;q=0.5">de-DE</option>
@@ -218,14 +209,15 @@
                 </li>
                 <div class="list" id="list_scriptInjection">
                     <div class="opt">
-                        <input name="enableScriptInjection" type="checkbox"><label> Enable script injection
-                        <br/>An option with * requires script injection</label>
+                        <label><input name="enableScriptInjection" type="checkbox"> Enable script injection</label>
+                        <br/>
+                        <span style="font-size: 12px;">An option with * requires script injection</span>
                     </div>
                     <div class="opt">
-                        <input name="disableWebSockets" type="checkbox"><label> Disable WebSockets*</label>
+                        <label><input name="disableWebSockets" type="checkbox"> Disable WebSockets*</label>
                     </div>
                     <div class="opt">
-                        <input name="protectWinName" type="checkbox"><label> Protect window.name*</label>
+                        <label><input name="protectWinName" type="checkbox"> Protect window.name*</label>
                     </div>
                     <div class="opt">
                         <div class="opt">
@@ -250,13 +242,13 @@
                 <div class="list" id="list_standard">
                     <div class="opt">
                         <div class="opt">
-                            <input name="enableTrackingProtection" type="checkbox"><label> Enable tracking protection</label>
+                            <label><input name="enableTrackingProtection" type="checkbox"> Enable tracking protection</label>
                         </div>
                         <div class="opt">
-                            <input name="firstPartyIsolate" type="checkbox"><label> Enable 1st party isolation</label>
+                            <label><input name="firstPartyIsolate" type="checkbox"> Enable 1st party isolation</label>
                         </div>
                         <div class="opt">
-                            <input name="resistFingerprinting" type="checkbox"><label> Resist fingerprinting</label>
+                            <label><input name="resistFingerprinting" type="checkbox"> Resist fingerprinting</label>
                         </div>
                     </div>
                 </div>
@@ -377,12 +369,10 @@
         </div>
         <div class="tab" id="whitelist">
             <div>
-                <input type="checkbox" name="enableWhitelist">
-                <label for="enableWhitelist">Enable whitelist (requires script injection)</label>
+                <label><input type="checkbox" name="enableWhitelist"> Enable whitelist (requires script injection)</label>
             </div>
             <div style="margin-bottom: 10px;">
-                <input type="checkbox" name="enableWhitelistRealProfile">
-                <label for="enableWhitelistRealProfile">Use real profile for whitelist</label>
+                <label><input type="checkbox" name="enableWhitelistRealProfile"> Use real profile for whitelist</label>
             </div>
             <ul class="groups">
                 <li id="sub_whitelistProfile">
@@ -451,7 +441,7 @@
         <div class="tab" id="about">
             <img src="img/icon_48.png">
             <h2 class="centered">Chameleon</h2>
-            <h4 class="centered">v0.6.8</h4>
+            <h4 class="centered">v0.6.9</h4>
             <br/>
             <p class="centered">
                 Developed by <a href="https://github.com/sereneblue">sereneblue</a> and <a href="https://github.com/sereneblue/chameleon/graphs/contributors">contributors</a>

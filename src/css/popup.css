@@ -36,6 +36,11 @@ a, label, p {
   font-size: 12px;
 }
 
+label {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
 textarea {
   font-size: 14px;
 }
