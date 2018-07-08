@@ -47,7 +47,7 @@ let uas = {
 	}, {
 		"ua": "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko",
 		"name": "Internet Explorer 11 (Win 8.1)",
-		"value": "win11"
+		"value": "win12"
 	}],
 	"macos": [{
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36",

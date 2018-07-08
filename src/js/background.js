@@ -24,6 +24,15 @@ let headers = {
 	useragent: ""
 };
 
+// excluded user agent, parallels data.js
+let excluded = {
+	win: [false,false,false,false,false,false,false,false,false,false,false,false],
+	mac: [false,false,false,false,false,false,false],
+	linux: [false,false,false,false,false,false,false,false,false],
+	ios: [false,false,false,false,false,false,false,false,false],
+	android: [false,false,false,false,false,false,false,false]
+};
+
 // spoof contains functions that return js to inject
 // also contains the profileResolution to persist profile resolution
 let spoof = {
@@ -280,6 +289,21 @@ function get(key) {
 	});
 }
 
+// fitler excluded profiles
+function filterProfiles(uaList) {
+	let uas = [];
+
+	for (var i in uaList) {
+		let key = uaList[i].value.match(/([a-z]+)(\d+)/);
+		let index = parseInt(key[2]);
+		if (!excluded[key[1]][index - 1]) {
+			uas.push(uaList[i]);
+		}
+	}
+
+	return uas.length ? uas : [""];
+}
+
 // rewrite headers per request 
 function rewriteHeaders(e) {
 	e.requestHeaders.forEach(function(header){
@@ -375,27 +399,32 @@ async function start() {
 	} else if (data.useragent.match(/.*?\d/) || data.useragent == "custom") {
 		headers.useragent = data.useragentValue;
 	} else if (data.useragent.match(/random_/)) {
-		let platform = data.useragent.split('_')[1];
+		let uas = filterProfiles(data.useragents[data.useragent.split('_')[1]]);
 
-		headers.useragent = data.useragents[platform][Math.floor(Math.random() * data.useragents[platform].length)].ua;
+		headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
 	} else if (data.useragent == "random") {
 		// random useragent
-		let platforms = Object.keys(useragents);
-		let platform = platforms[Math.floor(Math.random() * platforms.length)];
+		let uas = filterProfiles(data.useragents.windows.concat(
+				data.useragents.macos,
+				data.useragents.linux,
+				data.useragents.ios,
+				data.useragents.android
+			));
 
-		headers.useragent = data.useragents[platform][Math.floor(Math.random() * data.useragents[platform].length)].ua;
+		headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
 	} else if (data.useragent == "randomDesktop") {
 		// random desktop useragent
-		let platforms = ["windows", "macos", "linux"];
-		let platform = platforms[Math.floor(Math.random() * platforms.length)];
+		let uas = filterProfiles(data.useragents.windows.concat(
+				data.useragents.macos,
+				data.useragents.linux
+			));
 
-		headers.useragent = data.useragents[platform][Math.floor(Math.random() *data.useragents[platform].length)].ua;
+		headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
 	} else if (data.useragent == "randomMobile") {
 		// random mobile useragent
-		let platforms = ["ios", "android"];
-		let platform = platforms[Math.floor(Math.random() * platforms.length)];
+		let uas = filterProfiles(data.useragents.ios.concat(data.useragents.android));
 
-		headers.useragent = data.useragents[platform][Math.floor(Math.random() * data.useragents[platform].length)].ua;
+		headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
 	}
 
 	if (data.screenSize == "profile") {
@@ -431,6 +460,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	if (request.action == "inject") {
 		buildInjectScript(sender.url, sendResponse)
 		return true;
+	} else if (request.action == "exclude") {
+		let key = request.data.key.split('_')[1].match(/([a-z]+)(\d+)/);
+		let index = parseInt(key[2]);
+		excluded[key[1]][index - 1] = request.data.value;
+
+		chrome.storage.local.set({
+			excluded: excluded
+		});
 	} else if (request.action == "interval") {
 		chrome.storage.local.set({interval: request.data });
 		changeTimer(request.data);
@@ -530,6 +567,10 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 
 	if (data.enableWhitelistRealProfile) {
 		whitelist.realProfile = true;
+	}
+
+	if (data.excluded) {
+		excluded = data.excluded;
 	}
 
 	Object.keys(whitelist.profile).forEach(key => {

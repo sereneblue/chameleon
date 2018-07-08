@@ -18,7 +18,7 @@ function buildInputs() {
 		var label = document.createElement("label");
 		label.innerHTML = `${input.outerHTML + " " + ua.name}`;
 
-		$(`#list_${platform}`).append(`<div class="useragent">${label.outerHTML}</div>`);
+		$(`#list_${platform}`).append(`<div class="useragent">${label.outerHTML}<input type="checkbox" name="exc_${ua.value}" style="float: right;"></input></div>`);
 	  })
 	});
 }
@@ -53,6 +53,17 @@ function updateUI() {
 	chrome.storage.local.get('interval', function(data) {
 		if (data.interval) {
 			$('select[name="interval"]').val(data.interval);	
+		}
+	});
+
+	chrome.storage.local.get('excluded', function(data) {
+		if (data.excluded) {
+			for (var os in data.excluded) {
+				for (var i in data.excluded[os]) {
+					var idx = parseInt(i);
+					$(`.groups input[name="exc_${os}${idx+1}"]`).prop('checked', data.excluded[os][idx]);
+				}
+			}
 		}
 	});
 
@@ -344,6 +355,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		chrome.runtime.sendMessage({
 			action: "interval",
 			data: parseInt($('select[name="interval"]').val())
+		});
+	});
+
+	$('.groups input[type="checkbox"]').on('click', function(e) {
+		chrome.runtime.sendMessage({
+			action: "exclude",
+			data: {
+				key: e.target.name,
+				value: this.checked
+			}
 		});
 	});
 

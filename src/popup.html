@@ -11,14 +11,31 @@
 
 <body>
     <div class="headers">
-        <div class="active item" id="menu_profile">Profile
+        <div class="item about" id="menu_about">?
+        </div><div class="active item" id="menu_profile">Profile
         </div><div class="item" id="menu_headers">Headers
         </div><div class="item" id="menu_options">Options
         </div><div class="item" id="menu_whitelist">Whitelist
-        </div><div class="item about" id="menu_about">?
         </div>
     </div>
     <div class="tabs">
+        <div class="tab" id="about">
+            <img src="img/icon_48.png">
+            <h2 class="centered">Chameleon</h2>
+            <h4 class="centered">v0.6.10</h4>
+            <br/>
+            <p class="centered">
+                Developed by <a href="https://github.com/sereneblue">sereneblue</a> and <a href="https://github.com/sereneblue/chameleon/graphs/contributors">contributors</a>
+                <br/>
+                Distributed under the GNU GPL v3 license.
+            </p>
+            <br/>
+            <div class="centered">
+                <a href="https://github.com/sereneblue/chameleon">Source Code</a>&nbsp;
+                <a href="https://github.com/sereneblue/chameleon/issues">Report a bug</a>&nbsp;
+                <a href="https://github.com/sereneblue/chameleon/wiki">Wiki</a>
+            </div>
+        </div>
         <div class="active tab" id="profile">
             <div style="padding-bottom: 10px;">
                 <label>
@@ -69,8 +86,9 @@
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_windows">
-                    <div class="opt">
+                    <div class="useragent">
                         <label><input name="profile_type" type="radio" value="random_windows"> Random Windows Browsers</label>
+                        <span style="font-size: 14px; float: right;">Exclude</span>
                     </div>
                 </div>
                 <li id="sub_macos">
@@ -78,8 +96,9 @@
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_macos">
-                    <div class="opt">
+                    <div class="useragent">
                         <label><input name="profile_type" type="radio" value="random_macos"> Random macOS Browsers</label>
+                        <span style="font-size: 14px; float: right;">Exclude</span>
                     </div>
                 </div>
                 <li id="sub_linux">
@@ -87,8 +106,9 @@
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_linux">
-                    <div class="opt">
+                    <div class="useragent">
                         <label><input name="profile_type" type="radio" value="random_linux"> Random Linux Browsers</label>
+                        <span style="font-size: 14px; float: right;">Exclude</span>
                     </div>
                 </div>
                 <li id="sub_ios">
@@ -96,8 +116,9 @@
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_ios">
-                    <div class="opt">
+                    <div class="useragent">
                         <label><input name="profile_type" type="radio" value="random_ios"> Random iOS Browsers</label>
+                        <span style="font-size: 14px; float: right;">Exclude</span>
                     </div>
                 </div>
                 <li id="sub_android">
@@ -105,8 +126,9 @@
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_android">
-                    <div class="opt">
+                    <div class="useragent">
                         <label><input name="profile_type" type="radio" value="random_android"> Random Android Browsers</label>
+                        <span style="font-size: 14px; float: right;">Exclude</span>
                     </div>
                 </div>
                 <li id="sub_custom">
@@ -114,7 +136,7 @@
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_custom">
-                    <div class="opt">
+                    <div class="useragent">
                         <label><input name="profile_type" type="radio" value="custom"> Custom User Agent</label>
                         <input name="custom_ua" type="text" style="width: 90%;">
                     </div>
@@ -438,23 +460,6 @@
                     <textarea name="wl_urls" placeholder="[{&quot;url&quot;:&quot;example.com&quot;}]" rows="15" cols="32"></textarea>
                 </div>
             </ul>
-        </div>
-        <div class="tab" id="about">
-            <img src="img/icon_48.png">
-            <h2 class="centered">Chameleon</h2>
-            <h4 class="centered">v0.6.9</h4>
-            <br/>
-            <p class="centered">
-                Developed by <a href="https://github.com/sereneblue">sereneblue</a> and <a href="https://github.com/sereneblue/chameleon/graphs/contributors">contributors</a>
-                <br/>
-                Distributed under the GNU GPL v3 license.
-            </p>
-            <br/>
-            <div class="centered">
-                <a href="https://github.com/sereneblue/chameleon">Source Code</a>&nbsp;
-                <a href="https://github.com/sereneblue/chameleon/issues">Report a bug</a>&nbsp;
-                <a href="https://github.com/sereneblue/chameleon/wiki">Wiki</a>
-            </div>
         </div>
     </div>
 </body>
