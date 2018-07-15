@@ -8,7 +8,7 @@ let selected = {
 // when popup opened, populate the useragent list from data.js 
 function buildInputs() {
 	$.each(platforms, function(index, platform) {
-	  $.each(uas[platform], function(i, ua) {
+	  $.each(uaList[platform], function(i, ua) {
 		// create html elements
 		var input = document.createElement("input");
 		input.name = "profile_type";
@@ -23,81 +23,86 @@ function buildInputs() {
 	});
 }
 
+function get(key) {
+	return new Promise((resolve) => {
+		chrome.storage.local.get(key, (item) => {
+			typeof key == "string" ? resolve(item[key]) : resolve(item);
+		});
+	});
+}
+
+// export settings
+async function exportSettings() {
+	let data = await get(null);
+	var settings = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+	var exportElement = document.getElementById('export');
+	exportElement.setAttribute("href", settings );
+	exportElement.setAttribute("download", "chameleon_settings.json");
+	exportElement.click();
+};
+
 // update ui display
 // loop through input/select fields and get stored value
-function updateUI() {
-	chrome.storage.local.get('useragent', function(data) {
-		$('input[name="profile_type"]').val([data.useragent]);
+async function updateUI() {
+	let data = await get(null);
 
-		if (data.useragent) {
-			if (data.useragent == "real") {
-				$('#interval').hide();
-				$(".item").addClass('disabled');
-				$('input[type="radio"]:checked').addClass('disabled');
-			} else if (data.useragent.match(/.*?\d/)) {
-				$(`#sub_${getPlatform(data.useragent)}`).addClass("active");
-				$('#interval').hide();
-			} else if (data.useragent == "custom") {
-				chrome.storage.local.get('useragentValue', function(d) {
-					$('input[name="custom_ua"]').val(d.useragentValue);
-				});
-				$('#interval').hide();
-				$(`#sub_custom`).addClass("active");
-			} else {
-				$(`#sub_${getPlatform(data.useragent)}`).addClass("active");
-				$('#interval').show();
+	if (data.settings.useragent) {
+		if (data.settings.useragent == "real") {
+			$('#interval').hide();
+			$(".item").addClass('disabled');
+			$('input[type="radio"]:checked').addClass('disabled');
+		} else if (data.settings.useragent.match(/.*?\d/)) {
+			$(`#sub_${getPlatform(data.settings.useragent)}`).addClass("active");
+			$('#interval').hide();
+		} else if (data.settings.useragent == "custom") {
+			$('input[name="custom_ua"]').val(data.settings.useragentValue);
+			$('#interval').hide();
+			$(`#sub_custom`).addClass("active");
+		} else {
+			$(`#sub_${getPlatform(data.settings.useragent)}`).addClass("active");
+			$('#interval').show();
+		}
+
+		$('#profile input[name="profile_type"]').val([data.settings.useragent]);
+	}
+	
+	if (data.settings.interval) {
+		$('#profile select[name="interval"]').val(data.settings.interval);
+	}
+
+	if (data.excluded) {
+		for (var os in data.excluded) {
+			for (var i in data.excluded[os]) {
+				var idx = parseInt(i);
+				$(`#profile .groups input[name="exc_${os}${idx+1}"]`).prop('checked', data.excluded[os][idx]);
 			}
 		}
-	});
-
-	chrome.storage.local.get('interval', function(data) {
-		if (data.interval) {
-			$('select[name="interval"]').val(data.interval);	
-		}
-	});
-
-	chrome.storage.local.get('excluded', function(data) {
-		if (data.excluded) {
-			for (var os in data.excluded) {
-				for (var i in data.excluded[os]) {
-					var idx = parseInt(i);
-					$(`.groups input[name="exc_${os}${idx+1}"]`).prop('checked', data.excluded[os][idx]);
-				}
-			}
-		}
-	});
-
-	chrome.storage.local.get('notificationsEnabled', function(data) {
-		$(`input[name="notificationsEnabled"]`).prop('checked', data.notificationsEnabled);
-	});
+	}
+	
+	$(`#profile input[name="notificationsEnabled"]`).prop('checked', data.settings.notificationsEnabled);
 
 	$('#headers input[type="checkbox"]').each(function(i, element) {
 		chrome.storage.local.get(element.name, function(data) {
-			$(`input[name="${element.name}"]`).prop('checked', data[element.name]);
+			$(`#headers input[name="${element.name}"]`).prop('checked', data[element.name]);
 		});
 	});
 
 	$('.opt select').each(function (i, element) {
-		chrome.storage.local.get(element.name, function(data) {
-			var value = data[element.name] ? data[element.name] : 0;
-			$(`select[name="${element.name}"]`).val(value);
+		if (data.headers[element.name] != undefined) {
+			$(`select[name="${element.name}"]`).val(data.headers[element.name]);
 
 			if (element.name == "spoofViaValue" || element.name == "spoofXForValue") {
 				var ipDiv = $(`select[name="${element.name}"]`).siblings(".ipAddr");
-				(value == 1) ? ipDiv.show() : ipDiv.hide();
+				(data.headers[element.name] == 1) ? ipDiv.show() : ipDiv.hide();
 
 				var setting = element.name == "spoofViaValue" ? "viaIP" : "xforwardedforIP";
-				chrome.storage.local.get(setting, function(d) {
-					$(`input[name="${setting}"]`).val(d[setting]);
-				});
+				$(`input[name="${setting}"]`).val(data.headers[setting]);
 			}
-		});
+		}
 	});
 
 	$('#list_scriptInjection input').each(function (i, element) {
-		chrome.storage.local.get(element.name, function(data) {
-			$(`input[name="${element.name}"]`).prop('checked', data[element.name] ? true: false);
-		});
+		$(`input[name="${element.name}"]`).prop('checked', data.settings[element.name] ? true: false);
 	});
 
 	// check if browser APIs avialable
@@ -141,31 +146,15 @@ function updateUI() {
 		$(`input[name="resistFingerprinting"]`).hide();
 	}
 	
-
-	chrome.storage.local.get("screenSize", function(data) {
-		var value = data.screenSize ? data.screenSize : "default";
-		$(`select[name="screenSize"]`).val(value);
-	});
-
-	chrome.storage.local.get("enableWhitelist", function(data) {
-		$(`input[name="enableWhitelist"]`).prop('checked', data.enableWhitelist);;
-	});
-
-	chrome.storage.local.get("enableWhitelistRealProfile", function(data) {
-		$(`input[name="enableWhitelistRealProfile"]`).prop('checked', data.enableWhitelistRealProfile);;
-	});
+	$(`select[name="screenSize"]`).val(data.settings.screenSize);
+	$(`input[name="enableWhitelist"]`).prop('checked', data.whitelist.enabled);;
+	$(`input[name="enableWhitelistRealProfile"]`).prop('checked', data.whitelist.enableRealProfile);;
 
 	$('#list_whitelistProfile input').each(function (i, element) {
-		chrome.storage.local.get(element.name, function(data) {
-			if (data[element.name]) {
-				$(`input[name="${element.name}"]`).val(data[element.name]);
-			}
-		});
+		$(`input[name="${element.name}"]`).val(data.whitelist.profile[element.name.split('_')[1]]);
 	});
 
-	chrome.storage.local.get("wl_urls", function(data) {
-		$('textarea').val(data.wl_urls);;
-	});
+	$('textarea').val(JSON.stringify(data.whitelist.urlList));
 }
 
 // change view of displayed subitems
@@ -243,14 +232,6 @@ function validated(input) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	chrome.runtime.sendMessage({
-		action: "storage",
-		data: {
-			key: "useragents",
-			value: uas
-		}
-	});
-
 	buildInputs();
 	updateUI();
 
@@ -282,6 +263,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		})
 	})
 
+	// export settings button
+	$('button[name="export"]').on('click', function(e) {
+		exportSettings();
+	})
+
+	// notifications
 	$('input[name="notificationsEnabled"]').on('change', function(e) {
 		chrome.runtime.sendMessage({
 			action: "storage",
@@ -319,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				$('#interval').hide();
 				
 				$(`#sub_${getPlatform(e.target.value)}`).addClass("active");
-				ua = uas[getPlatform(e.target.value)].find(u => u.value == e.target.value).ua;
+				ua = uaList[getPlatform(e.target.value)].find(u => u.value == e.target.value).ua;
 				chrome.runtime.sendMessage({
 					action: "storage",
 					data: {
@@ -358,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	$('.groups input[type="checkbox"]').on('click', function(e) {
+	$('#profile .groups input[type="checkbox"]').on('click', function(e) {
 		chrome.runtime.sendMessage({
 			action: "exclude",
 			data: {
@@ -483,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			chrome.runtime.sendMessage({
 				action: "whitelist",
 				data: {
-					key: e.target.name,
+					key: "wl_urls",
 					value: e.target.value
 				}
 			});

@@ -1,5 +1,5 @@
 // useragent list
-let uas = {
+let uaList = {
 	"windows": [{
 		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36",
 		"name": "Chrome 67 (Win 7)",
@@ -188,7 +188,7 @@ let uas = {
 }
 
 // platform list
-let platforms = Object.keys(uas);
+let platforms = Object.keys(uaList);
 platforms.push("custom");
 
 // menu headers

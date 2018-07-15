@@ -45,26 +45,3 @@
 		script.remove();
 	}
 })()
-
-// waiting for values to inject takes time
-// some sites may read the values before they are spoofed
-// set default values to Chrome on Windows 10 (some sites like Discord break)
-// https://github.com/sereneblue/chameleon/issues/19
-var scripts = document.getElementsByTagName('script');
-var script = document.createElement('script');
-
-script.appendChild(document.createTextNode(`
-	Object.defineProperty(navigator, "userAgent", { configurable: true, value: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36" });
-	Object.defineProperty(navigator, "platform", { configurable: true, value: "Win64" });
-	Object.defineProperty(navigator, "hardwareConcurrency", { configurable: true, value: 4 });
-	Object.defineProperty(navigator, "oscpu", { configurable: true, value: "" });
-	Object.defineProperty(navigator, "vendor", { configurable: true, value: "Google Inc." });
-	Object.defineProperty(navigator, "vendorSub", { configurable: true, value: "" });
-	Object.defineProperty(navigator, "appCodeName", {configurable: true, value: "Mozilla" });
-	Object.defineProperty(navigator, "appName", {configurable: true, value: "Netscape" });
-	Object.defineProperty(navigator, "appVersion", {configurable: true, value: "5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36" });
-	Object.defineProperty(navigator, "productSub", {configurable: true, value: "20030107" });
-`));
-
-scripts.length ? document.head.insertBefore(script, document.head.firstChild) : (document.head || document.documentElement).appendChild(script);
-script.remove();
