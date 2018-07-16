@@ -21,20 +21,20 @@ let uaList = {
 		"name": "Edge 17 (Win 10)",
 		"value": "win5"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
-		"name": "Firefox 60 (Win 7)",
+		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0",
+		"name": "Firefox 61 (Win 7)",
 		"value": "win6"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
-		"name": "Firefox 60 (Win 8)",
+		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0",
+		"name": "Firefox 61 (Win 8)",
 		"value": "win7"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
-		"name": "Firefox 60 (Win 8.1)",
+		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0",
+		"name": "Firefox 61 (Win 8.1)",
 		"value": "win8"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
-		"name": "Firefox 60 (Win 10)",
+		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0",
+		"name": "Firefox 61 (Win 10)",
 		"value": "win9"
 	}, {
 		"ua": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)",
@@ -58,12 +58,12 @@ let uaList = {
 		"name": "Chrome 67 (macOS 10.13)",
 		"value": "mac2"
 	}, {
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:60.0) Gecko/20100101 Firefox/60.0",
-		"name": "Firefox 60 (macOS 10.12)",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:61.0) Gecko/20100101 Firefox/61.0",
+		"name": "Firefox 61 (macOS 10.12)",
 		"value": "mac3"
 	}, {
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0) Gecko/20100101 Firefox/60.0",
-		"name": "Firefox 60 (macOS 10.13)",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61.0",
+		"name": "Firefox 61 (macOS 10.13)",
 		"value": "mac4"
 	}, {
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8",
@@ -103,16 +103,16 @@ let uaList = {
 		"name": "Chromium 67 (Ubuntu 64)",
 		"value": "linux6"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv 60.0) Gecko/20100101 Firefox 60.0",
-		"name": "Firefox 60 (Linux 64)",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv 61.0) Gecko/20100101 Firefox 61.0",
+		"name": "Firefox 61 (Linux 64)",
 		"value": "linux7"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv 60.0) Gecko/20100101 Firefox 60.0",
-		"name": "Firefox 60 (Fedora 64)",
+		"ua": "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv 61.0) Gecko/20100101 Firefox 61.0",
+		"name": "Firefox 61 (Fedora 64)",
 		"value": "linux8"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv 60.0) Gecko/20100101 Firefox 60.0",
-		"name": "Firefox 60 (Ubuntu 64)",
+		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv 61.0) Gecko/20100101 Firefox 61.0",
+		"name": "Firefox 61 (Ubuntu 64)",
 		"value": "linux9"
 	}],
 	"ios": [{
@@ -153,8 +153,8 @@ let uaList = {
 		"value": "ios9"
 	}],
 	"android": [{
-		"ua": "Mozilla/5.0 (Android; Mobile; rv:60.0) Gecko/60.0 Firefox/60.0",
-		"name": "Android - Firefox 60",
+		"ua": "Mozilla/5.0 (Android; Mobile; rv:61.0) Gecko/61.0 Firefox/61.0",
+		"name": "Android - Firefox 61",
 		"value": "android1"
 	}, {
 		"ua": "Mozilla/5.0 (Linux; Android 4.4.2; SM-G800Y Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Mobile Safari/537.36",

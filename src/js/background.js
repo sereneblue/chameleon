@@ -487,6 +487,9 @@ function init(data) {
 			if (data[opt][key] != undefined) chameleon[opt][key] = data[opt][key];
 		})
 	});
+
+	// missed this from v0.6.X
+	if (data.useragents) chrome.storage.local.remove("useragents");
 }
 
 // migrate users from prev version
@@ -526,7 +529,7 @@ function migrate(data) {
 	if (data.wl_urls != undefined) chameleon.whitelist.urlList = JSON.parse(data.wl_urls);
 	if (data.excluded != undefined) chameleon.excluded = data.excluded;
 
-	chrome.storage.local.remove(["enableWhitelist", "enableWhitelistRealProfile", "wl_urls", "excluded"]);
+	chrome.storage.local.remove(["enableWhitelist", "enableWhitelistRealProfile", "wl_urls", "excluded", "useragents"]);
 }
 
 /*

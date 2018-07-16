@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.7.0-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.7.1-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 
 Chameleon is a WebExtension port of the popular Firefox addon [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer).
@@ -47,6 +47,10 @@ Chameleon is available on the [Firefox Add-ons website](https://addons.mozilla.o
 
 Feel free to send a pull request or open an issue. Keep in mind that some functionality isn't technically possible.
 
+
+## Wiki
+
+Don't know where to start? Check out the [wiki](https://github.com/sereneblue/chameleon/wiki) (currently incomplete).
 ## Credits
 
 <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

@@ -65,7 +65,7 @@ async function updateUI() {
 
 		$('#profile input[name="profile_type"]').val([data.settings.useragent]);
 	}
-	
+
 	if (data.settings.interval) {
 		$('#profile select[name="interval"]').val(data.settings.interval);
 	}
