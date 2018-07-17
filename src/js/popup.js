@@ -82,9 +82,11 @@ async function updateUI() {
 	$(`#profile input[name="notificationsEnabled"]`).prop('checked', data.settings.notificationsEnabled);
 
 	$('#headers input[type="checkbox"]').each(function(i, element) {
-		chrome.storage.local.get(element.name, function(data) {
-			$(`#headers input[name="${element.name}"]`).prop('checked', data[element.name]);
-		});
+		if (element.name == "spoofAcceptLang" || element.name == "spoofAcceptEnc") {
+			$(`input[name="${element.name}"]`).prop('checked', data.headers[element.name]);
+		} else {
+			$(`#headers input[name="${element.name}"]`).prop('checked', data.headers[element.name]);
+		}
 	});
 
 	$('.opt select').each(function (i, element) {
@@ -147,8 +149,8 @@ async function updateUI() {
 	}
 	
 	$(`select[name="screenSize"]`).val(data.settings.screenSize);
-	$(`input[name="enableWhitelist"]`).prop('checked', data.whitelist.enabled);;
-	$(`input[name="enableWhitelistRealProfile"]`).prop('checked', data.whitelist.enableRealProfile);;
+	$(`input[name="enableWhitelist"]`).prop('checked', data.whitelist.enabled);
+	$(`input[name="enableWhitelistRealProfile"]`).prop('checked', data.whitelist.enableRealProfile);
 
 	$('#list_whitelistProfile input').each(function (i, element) {
 		$(`input[name="${element.name}"]`).val(data.whitelist.profile[element.name.split('_')[1]]);
