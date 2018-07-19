@@ -6,7 +6,7 @@
 		}
 	},
 	"name": "Chameleon",
-	"version": "0.7.2",
+	"version": "0.7.3",
 	"manifest_version": 2,
 	"description": "Spoof your browser profile. Includes a few privacy enhancing options.",
 	"background": {
