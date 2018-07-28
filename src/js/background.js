@@ -30,6 +30,7 @@ let chameleon = {
 		ios: [false,false,false,false,false,false,false,false,false],
 		android: [false,false,false,false,false,false,false,false]
 	},
+	injection: null,
 	settings: {
 		disableWebSockets: false,
 		enableScriptInjection: false,
@@ -40,6 +41,7 @@ let chameleon = {
 		useragent: "real",
 		useragentValue: ""
 	},
+	timeout: null,
 	whitelist: {
 		enabled: false,
 		enableRealProfile: false,
@@ -72,31 +74,17 @@ let spoof = {
 		injectionArray.push({ obj: "window", prop: "name", value: "" });
 		return injectionArray;
 	},
-	navigator: function (url, injectionArray) {
-		if (chameleon.whitelist.enabled && whitelisted(url)) {
-			injectionArray.push(...[
-				{ obj: "window.navigator", prop: "appCodeName", value: chameleon.whitelist.profile.appCodeName },
-				{ obj: "window.navigator", prop: "appName", value: chameleon.whitelist.profile.appName },
-				{ obj: "window.navigator", prop: "appVersion", value: chameleon.whitelist.profile.appVersion },
-				{ obj: "window.navigator", prop: "hardwareConcurrency", value: chameleon.whitelist.profile.hardwareConcurrency },
-				{ obj: "window.navigator", prop: "oscpu", value: chameleon.whitelist.profile.osCPU },
-				{ obj: "window.navigator", prop: "platform", value: chameleon.whitelist.profile.platform },
-				{ obj: "window.navigator", prop: "vendor", value: chameleon.whitelist.profile.vendor },
-				{ obj: "window.navigator", prop: "vendorSub", value: chameleon.whitelist.profile.vendorSub },
-				{ obj: "window.navigator", prop: "userAgent", value: chameleon.whitelist.profile.useragent },
-				{ obj: "window.navigator", prop: "productSub", value: chameleon.whitelist.profile.productSub },
-			]);
-			return injectionArray;
-		}
-
+	navigator: function () {
 		var appVersion, hardwareConcurrency, oscpu, platform, productSub, vendor;
+
+		if (chameleon.headers.useragent == "") return [];
 
 		if (chameleon.headers.useragent.match(/Win/)) {
 			oscpu = chameleon.headers.useragent.match(/(Windows .*?);/)[1];
 			platform = "Win64";
 			hardwareConcurrency = 4;
 			vendor = "";
-			appVersion = headers.useragent.match(/Firefox/) ? "5.0 (Windows)" :chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
+			appVersion = chameleon.headers.useragent.match(/Firefox/) ? "5.0 (Windows)" :chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
 		} else if (chameleon.headers.useragent.match(/OS X 10(_|\.)/)) {
 			oscpu = chameleon.headers.useragent.match(/(Intel Mac OS X 10(_|\.)\d+)/)[0].replace("_",".");
 			platform = "MacIntel";
@@ -132,17 +120,16 @@ let spoof = {
 			productSub = "";
 		}
 
-		injectionArray.push(...[
-				{ obj: "window.navigator", prop: "userAgent", value: chameleon.headers.useragent },
-				{ obj: "window.navigator", prop: "platform", value: platform },
-				{ obj: "window.navigator", prop: "productSub", value: productSub },
-				{ obj: "window.navigator", prop: "hardwareConcurrency", value: hardwareConcurrency },
-				{ obj: "window.navigator", prop: "oscpu", value: oscpu },
-				{ obj: "window.navigator", prop: "vendor", value: vendor },
-				{ obj: "window.navigator", prop: "vendorSub", value: "" },
-				{ obj: "window.navigator", prop: "appVersion", value: appVersion },
-			]);
-		return injectionArray;
+		return [
+			{ obj: "window.navigator", prop: "userAgent", value: chameleon.headers.useragent },
+			{ obj: "window.navigator", prop: "platform", value: platform },
+			{ obj: "window.navigator", prop: "productSub", value: productSub },
+			{ obj: "window.navigator", prop: "hardwareConcurrency", value: hardwareConcurrency },
+			{ obj: "window.navigator", prop: "oscpu", value: oscpu },
+			{ obj: "window.navigator", prop: "vendor", value: vendor },
+			{ obj: "window.navigator", prop: "vendorSub", value: "" },
+			{ obj: "window.navigator", prop: "appVersion", value: appVersion },
+		];
 	},
 	profileResolution: "",
 	screen: function(screenSize, injectionArray) {
@@ -165,6 +152,9 @@ let spoof = {
 			width = parseInt(s[0]);
 			height = parseInt(s[1]);
 		}
+
+		// use real profile screen resolution if couldn't determine from useragent
+		if (width == null) return injectionArray;
 
 		injectionArray.push(...[
 				{ obj: "window.screen", prop: "width", value: width },
@@ -192,17 +182,18 @@ let spoof = {
 };
 
 // builds script to inject into pages
-async function buildInjectScript(url, sendResponse) {
+function buildInjectScript() {
 	let injectionArray = [];
-	let scriptText = "";
+	let injectionText = "";
+	let nav = [];
 
-	if (chameleon.settings.enableScriptInjection || (chameleon.whitelist.enabled && whitelisted(url))) {
-		if (chameleon.settings.enableWhitelistRealProfile && chameleon.whitelist.enabled && whitelisted(url)) return;
+	if (chameleon.settings.enableScriptInjection) {
 		if (chameleon.settings.protectWinName) injectionArray = spoof.name(injectionArray);
-		if (chameleon.settings.disableWebSockets) scriptText += spoof.websocket(scriptText);
-			
+		if (chameleon.settings.disableWebSockets) injectionText = spoof.websocket();
+
 		if (chameleon.settings.useragent != "custom" ) {
-			injectionArray = spoof.navigator(url, injectionArray);
+			// separate some navigator properties because of whitelist
+			nav = spoof.navigator();
 		}
 
 		if (chameleon.settings.screenSize != "default") {
@@ -212,12 +203,15 @@ async function buildInjectScript(url, sendResponse) {
 		if (chameleon.headers.enableDNT) {
 			injectionArray = spoof.dnt(injectionArray);
 		}
+
+		return inject(
+			injectionArray,
+			chameleon.whitelist,
+			nav,
+			injectionText);
 	}
 
-	sendResponse({
-		script: scriptText,
-		injection: JSON.stringify(injectionArray)
-	});
+	return "";
 }
 
 // activates timer for new profile
@@ -353,7 +347,26 @@ async function start() {
 		// real profile
 		chameleon.headers.useragent = "";
 	} else if (chameleon.settings.useragent.match(/.*?\d/) || chameleon.settings.useragent == "custom") {
-		chameleon.headers.useragent = chameleon.settings.useragentValue;
+		// check in case updated user agent
+		if (chameleon.settings.useragent.match(/.*?\d/)) {
+			var regexMatch = chameleon.settings.useragent.match(/(.*?)(\d)/);
+			var plat;
+
+			if (regexMatch[1].includes("win")) {
+				plat = "windows";
+			} else if (regexMatch[1].includes("mac")) {
+				plat = "macos";
+			} else if (regexMatch[1].includes("linux")) {
+				plat = "linux";
+			} else if (regexMatch[1].includes("ios")) {
+				plat = "ios";
+			} else if (regexMatch[1].includes("android")) {
+				plat = "android";
+			}
+			chameleon.headers.useragent = uaList[plat][parseInt(regexMatch[2] - 1)].ua;
+		} else {
+			chameleon.headers.useragent = chameleon.settings.useragentValue;
+		}
 	} else if (chameleon.settings.useragent.match(/random_/)) {
 		let uas = filterProfiles(uaList[chameleon.settings.useragent.split('_')[1]]);
 
@@ -397,6 +410,8 @@ async function start() {
 			"message": "Browser Profile Changed\r\n" + chameleon.headers.useragent
 		});
 	}
+
+	rebuildInjectionScript();
 }
 
 // gets screen resolution & depths from user agent
@@ -439,11 +454,32 @@ function getScreenResolution(ua) {
 			[480, 853]
 		];
 		depth = 32;
+	} else {
+		return [null, null, null];
 	}
 
 	var num = Math.floor(Math.random() * screens.length);
 
 	return [screens[num][0], screens[num][1], depth];
+}
+
+// rebuilds injection script
+// uses a small delay before building in case there are multiple function calls in a short period
+async function rebuildInjectionScript() {
+	clearTimeout(chameleon.timeout);
+
+	chameleon.timeout = setTimeout(async function () {
+		if (chameleon.injection) {
+			chameleon.injection.unregister();
+			chameleon.injection = null;
+		}
+
+		chameleon.injection = await browser.contentScripts.register({
+			matches: ["http://*/*", "https://*/*"],
+			js: [{code: await buildInjectScript() }],
+			runAt: "document_start"
+		});
+	}, 500);
 }
 
 function save(obj) {
@@ -456,15 +492,19 @@ function save(obj) {
 
 async function saveSettings(setting="all") {
 	if (setting == "all") {
-		await save({ headers: chameleon.headers});
-		await save({ whitelist: chameleon.whitelist});
-		await save({ excluded: chameleon.excluded});
-		await save({ settings: chameleon.settings});
-	} else {
-		var tmp = {};
-		tmp[setting] = chameleon[setting];
-		await save(tmp);
+		await save({ headers: chameleon.headers,
+			 whitelist: chameleon.whitelist,
+			 excluded: chameleon.excluded,
+			 settings: chameleon.settings
+		});
+		return;
 	}
+
+	var tmp = {};
+	tmp[setting] = chameleon[setting];
+	await save(tmp);
+
+	rebuildInjectionScript();
 }
 
 // check if a url is whitelisted, prevents script injection
@@ -488,13 +528,14 @@ function init(data) {
 		})
 	});
 
+	chameleon.headers.useragent = "";
+
 	// missed this from v0.6.X
 	if (data.useragents) chrome.storage.local.remove("useragents");
 }
 
 // migrate users from prev version
 function migrate(data) {
-	// migrate settings
 	["disableWebSockets", "enableScriptInjection", "interval", "notificationsEnabled",
 	  "screenSize", "useragent", "useragentValue"].forEach((key) => {
 		if (data[key] != undefined) {
@@ -537,10 +578,7 @@ function migrate(data) {
 */
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	if (request.action == "inject") {
-		buildInjectScript(sender.url, sendResponse)
-		return true;
-	} else if (request.action == "exclude") {
+	if (request.action == "exclude") {
 		let key = request.data.key.split('_')[1].match(/([a-z]+)(\d+)/);
 		let index = parseInt(key[2]);
 		chameleon.excluded[key[1]][index - 1] = request.data.value;
@@ -632,6 +670,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "v0.7.3"});
+	await save({ version: "0.8.0"});
 	changeTimer();
 })();
