@@ -86,6 +86,13 @@ async function updateUI() {
 			$(`input[name="${element.name}"]`).prop('checked', data.headers[element.name]);
 		} else {
 			$(`#headers input[name="${element.name}"]`).prop('checked', data.headers[element.name]);
+			if (element.name == "disableRef") {
+				if (data.headers[element.name]) {
+					$('input[name="spoofSourceRef"]').prop('disabled', true);
+					$('select[name="refererXorigin"]').prop('disabled', true);
+					$('select[name="refererTrimming"]').prop('disabled', true);
+				}
+			}
 		}
 	});
 
@@ -363,9 +370,15 @@ document.addEventListener('DOMContentLoaded', function() {
 			action: "headers",
 			data: {
 				key: e.target.name,
-				value: this.checked ? true : false 
+				value: this.checked
 			}
 		});
+
+		if (e.target.name == "disableRef") {
+			$('input[name="spoofSourceRef"]').prop('disabled', this.checked);
+			$('select[name="refererXorigin"]').prop('disabled', this.checked);
+			$('select[name="refererTrimming"]').prop('disabled', this.checked);
+		}
 	});
 
 	$('#headers select').on('change', function(e) {
