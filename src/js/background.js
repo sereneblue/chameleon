@@ -79,42 +79,42 @@ let spoof = {
 
 		if (chameleon.headers.useragent == "") return [];
 
-		if (chameleon.headers.useragent.match(/Win/)) {
+		if (/Win/.test(chameleon.headers.useragent)) {
 			oscpu = chameleon.headers.useragent.match(/(Windows .*?);/)[1];
 			platform = "Win64";
 			hardwareConcurrency = 4;
 			vendor = "";
-			appVersion = chameleon.headers.useragent.match(/Firefox/) ? "5.0 (Windows)" :chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else if (chameleon.headers.useragent.match(/OS X 10(_|\.)/)) {
+			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (Windows)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
+		} else if (/OS X 10(_|\.)/.test(chameleon.headers.useragent)) {
 			oscpu = chameleon.headers.useragent.match(/(Intel Mac OS X 10(_|\.)\d+)/)[0].replace("_",".");
 			platform = "MacIntel";
 			hardwareConcurrency = 4;
 			vendor = "Apple Computer, Inc";
-			appVersion = chameleon.headers.useragent.match(/Firefox/) ? "5.0 (Macintosh)": chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else if (chameleon.headers.useragent.match(/X11/)) {
+			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (Macintosh)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
+		} else if (/X11/.test(chameleon.headers.useragent)) {
 			platform = oscpu = "Linux x86_64";
 			hardwareConcurrency = 4;
-			appVersion = chameleon.headers.useragent.match(/Firefox/) ? "5.0 (X11)": chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else if (chameleon.headers.useragent.match(/iPhone/)) {
+			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (X11)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
+		} else if (/iPhone/.test(chameleon.headers.useragent)) {
 			platform = "iPhone";
 			vendor = "Apple Computer, Inc";
 			hardwareConcurrency = 2;
-		} else if (chameleon.headers.useragent.match(/iPad/)) {
+		} else if (/iPad/.test(chameleon.headers.useragent)) {
 			platform = "iPad";
 			vendor = "Apple Computer, Inc";
 			hardwareConcurrency = 2;
-		} else if (chameleon.headers.useragent.match(/Android/)) {
+		} else if (/Android/.test(chameleon.headers.useragent)) {
 			platform = "Linux armv7l";
 			vendor = "Google Inc";
 			hardwareConcurrency = 1;
-			appVersion = chameleon.headers.useragent.match(/Firefox/) ? "5.0 (Android)": chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
+			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (Android)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
 		}
 
-		if (chameleon.headers.useragent.match(/Firefox/)) {
+		if (/Firefox/.test(chameleon.headers.useragent)) {
 			productSub = "20010725";
-		} else if (chameleon.headers.useragent.match(/Chrome/) || chameleon.headers.useragent.match(/Safari/)) {
+		} else if (/Chrome|Safari/.test(chameleon.headers.useragent)) {
 			productSub = "20030107";
-		} else if (chameleon.headers.useragent.match(/IE/)) {
+		} else if (/IE/.test(chameleon.headers.useragent)) {
 			productSub = null;
 		} else {
 			productSub = "";
@@ -346,31 +346,26 @@ async function start() {
 	if (chameleon.settings.useragent == "" || chameleon.settings.useragent == "real"){
 		// real profile
 		chameleon.headers.useragent = "";
-	} else if (chameleon.settings.useragent.match(/.*?\d/) || chameleon.settings.useragent == "custom") {
+	} else if (/.*?\d/.test(chameleon.settings.useragent)) {
 		// check in case updated user agent
-		if (chameleon.settings.useragent.match(/.*?\d/)) {
-			var regexMatch = chameleon.settings.useragent.match(/(.*?)(\d)/);
-			var plat;
+		var regexMatch = chameleon.settings.useragent.match(/(.*?)(\d)/);
+		var plat;
 
-			if (regexMatch[1].includes("win")) {
-				plat = "windows";
-			} else if (regexMatch[1].includes("mac")) {
-				plat = "macos";
-			} else if (regexMatch[1].includes("linux")) {
-				plat = "linux";
-			} else if (regexMatch[1].includes("ios")) {
-				plat = "ios";
-			} else if (regexMatch[1].includes("android")) {
-				plat = "android";
-			}
-			chameleon.headers.useragent = uaList[plat][parseInt(regexMatch[2] - 1)].ua;
+		if (regexMatch[1].includes("win")) {
+			plat = "windows";
+		} else if (regexMatch[1].includes("mac")) {
+			plat = "macos";
 		} else {
-			chameleon.headers.useragent = chameleon.settings.useragentValue;
+			plat = regexMatch[1];
 		}
-	} else if (chameleon.settings.useragent.match(/random_/)) {
+
+		chameleon.headers.useragent = uaList[plat][parseInt(regexMatch[2] - 1)].ua;
+	} else if (/random_/.test(chameleon.settings.useragent)) {
 		let uas = filterProfiles(uaList[chameleon.settings.useragent.split('_')[1]]);
 
 		chameleon.headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
+	} else if (chameleon.settings.useragent == "custom") {
+		chameleon.headers.useragent = chameleon.settings.useragentValue;
 	} else if (chameleon.settings.useragent == "random") {
 		// random useragent
 		let uas = filterProfiles(uaList.windows.concat(
@@ -419,7 +414,7 @@ function getScreenResolution(ua) {
 	var screens;
 	var depth = 24; // both color and pixel depth
 
-	if (ua.match(/Win/) || ua.match(/X11/)) {
+	if (/Win|X11/.test(ua)) {
 		screens = [
 			[1366, 768],
 			[1400, 1050],
@@ -430,24 +425,24 @@ function getScreenResolution(ua) {
 			[2560, 1440],
 			[2560, 1600]
 		];
-	} else if (ua.match(/OS X 10/)) {
+	} else if (/OS X 10/.test(ua)) {
 		screens = [
 			[1920, 1080],
 			[2560, 1440],
 			[2560, 1600]
 		];
-	} else if (ua.match(/iPhone/)) {
+	} else if (/iPhone/.test(ua)) {
 		screens = [
 			[414, 736],
 			[375, 667]
 		];
 		depth = 32;
-	} else if (ua.match(/iPad/)) {
+	} else if (/iPad/.test(ua)) {
 		screens = [
 			[1024, 768]
 		];
 		depth = 32;
-	} else if (ua.match(/Android/)) {
+	} else if (/Android/.test(ua)) {
 		screens = [
 			[360, 740],
 			[411, 731],
