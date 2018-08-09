@@ -259,54 +259,66 @@ function filterProfiles(uaList) {
 
 // rewrite headers per request 
 function rewriteHeaders(e) {
+	var wl = whitelisted(e.url);
+
 	e.requestHeaders.forEach(function(header){
 		if (header.name.toLowerCase() == "authorization") {
-			if (chameleon.headers.disableAuth) header.value = "";
-		} else if (header.name.toLowerCase() == "referer") {
-			if (chameleon.headers.disableRef) {
+			if (!wl.on) {
+				if (chameleon.headers.disableAuth) header.value = "";
+			} else if (wl.opt.auth) {
 				header.value = "";
-			} else if (chameleon.headers.spoofSourceRef) {
-				header.value = e.url;
-			} else {
-				// check referer policies
-				if (chameleon.headers.refererXorigin >= 1) {
-					var url = new URL(e.url);
-					var ref = new URL(header.value);
+			}
+		} else if (header.name.toLowerCase() == "referer") {
+			if (!wl.on) {
+				if (chameleon.headers.disableRef) {
+					header.value = "";
+				} else if (chameleon.headers.spoofSourceRef) {
+					header.value = e.url;
+				} else {
+					// check referer policies
+					if (chameleon.headers.refererXorigin >= 1) {
+						var url = new URL(e.url);
+						var ref = new URL(header.value);
 
-					if (chameleon.headers.refererXorigin == 1) {
-						if (url.hostname.split('.').splice(-2).join(".") != ref.hostname.split('.').splice(-2).join(".")) {
-							header.value = "";
+						if (chameleon.headers.refererXorigin == 1) {
+							if (url.hostname.split('.').splice(-2).join(".") != ref.hostname.split('.').splice(-2).join(".")) {
+								header.value = "";
+							}
+						} else {
+							if (url.origin != ref.origin) {
+								header.value = "";
+							}
 						}
-					} else {
-						if (url.origin != ref.origin) {
-							header.value = "";
+					}
+
+					if (chameleon.headers.refererTrimming >= 1) {
+						if (header.value != "") {
+							var url = new URL(header.value);
+							header.value = (chameleon.headers.refererTrimming == 1) ? (url.origin + url.pathname) : url.origin;
 						}
 					}
 				}
-
-				if (chameleon.headers.refererTrimming >= 1) {
-					if (header.value != "") {
-						var url = new URL(header.value);
-						header.value = (chameleon.headers.refererTrimming == 1) ? (url.origin + url.pathname) : url.origin;
-					}
-				}
+			} else if (wl.opt.ref) {
+				header.value = "";
 			}
 		} else if (header.name.toLowerCase() == "if-none-match") {
 			if (chameleon.headers.spoofEtag) header.value = (Math.random() * 10).toString(36).substr(2, Math.random() * (10 - 5 + 1) + 5);
 		} else if (header.name.toLowerCase() == "user-agent") {
-			if (chameleon.whitelist.enabled && whitelisted(e.url)) {
-				if (!chameleon.whitelist.enableRealProfile) header.value = chameleon.whitelist.profile.useragent;
+			if (wl.on) {
+				if (!chameleon.whitelist.enableRealProfile) {
+					header.value = chameleon.whitelist.profile.useragent;
+				}
 			} else {
 				if (chameleon.headers.useragent) header.value = chameleon.headers.useragent;
 			}
 		} else if (header.name.toLowerCase() == "accept-encoding") {
-			if (chameleon.whitelist.enabled && whitelisted(e.url)) {
+			if (wl.on) {
 				if (!chameleon.whitelist.enableRealProfile) header.value = chameleon.whitelist.profile.acceptEnc;
 			} else {
 				if (chameleon.headers.spoofAcceptEnc) header.value = "gzip, deflate";
 			}
 		} else if (header.name.toLowerCase() === "accept-language") {
-			if (chameleon.whitelist.enabled && whitelisted(e.url)) {
+			if (wl.on) {
 				if (!chameleon.whitelist.enableRealProfile) header.value = chameleon.whitelist.profile.acceptLang;
 			} else {
 				if (chameleon.headers.spoofAcceptLang) header.value = chameleon.headers.spoofAcceptLangValue;
@@ -321,19 +333,21 @@ function rewriteHeaders(e) {
 		e.requestHeaders.splice(dntIndex, 1);
 	}
 
-	if (chameleon.headers.spoofVia) {
-		if (chameleon.headers.spoofViaValue == 1) {
-			e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP });
-		} else {
-			e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP_profile });
+	if (!wl.on || wl.opt.ip) {
+		if (chameleon.headers.spoofVia) {
+			if (chameleon.headers.spoofViaValue == 1) {
+				e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP });
+			} else {
+				e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP_profile });
+			}
 		}
-	}
 
-	if (chameleon.headers.spoofXFor) {
-		if (chameleon.headers.spoofXForValue == 1) {
-			e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP })
-		} else {
-			e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP_profile });
+		if (chameleon.headers.spoofXFor) {
+			if (chameleon.headers.spoofXForValue == 1) {
+				e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP })
+			} else {
+				e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP_profile });
+			}
 		}
 	}
 
@@ -479,9 +493,9 @@ async function rebuildInjectionScript() {
 
 function save(obj) {
 	return new Promise((resolve) => {
-	    chrome.storage.local.set(obj, () => {
-	        resolve();
-	    });
+		chrome.storage.local.set(obj, () => {
+			resolve();
+		});
 	});
 }
 
@@ -504,15 +518,20 @@ async function saveSettings(setting="all") {
 
 // check if a url is whitelisted, prevents script injection
 function whitelisted(url) {
-	if (url) {
-		for (var u of chameleon.whitelist.urlList) {
-			if (url.indexOf(u.url) > -1) {
-				return true;
+	if (chameleon.whitelist.enabled) {
+		var idx = chameleon.whitelist.urlList.findIndex(u => url.indexOf(u.url) > -1);
+		if (idx > -1) {
+			if (chameleon.whitelist.urlList[idx].re) {
+				if (!new RegExp(chameleon.whitelist.urlList[idx].pattern, "i").test(url)) {
+					return {on: false};
+				};
 			}
+
+			return {on: true, opt: chameleon.whitelist.urlList[idx].options};
 		}
 	}
 
-	return false;
+	return {on: false};
 }
 
 // initialize settings
@@ -527,6 +546,7 @@ function init(data) {
 
 	// missed this from v0.6.X
 	if (data.useragents) chrome.storage.local.remove("useragents");
+	saveSettings();
 }
 
 // migrate users from prev version
@@ -656,6 +676,26 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		migrate(data);
 		saveSettings();
 	} else {
+		if (data.version != "0.8.5") {
+			var tmpArr = [];
+			for (var i = 0; i < data.whitelist.urlList.length; i++){
+				tmpArr.push({
+					url: data.whitelist.urlList[i].url,
+					re: false,
+					pattern: "",
+					options: {
+						auth: false,
+						ip: false,
+						ref: false,
+						screen: false,
+						websocket: false,
+						winName: false
+					}
+				});
+			}
+			data.whitelist.urlList = tmpArr;
+		}
+
 		init(data);
 	}
 
@@ -665,6 +705,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.1"});
+	await save({ version: "0.8.5"});
 	changeTimer();
 })();

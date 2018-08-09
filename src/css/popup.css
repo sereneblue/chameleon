@@ -22,6 +22,11 @@ body {
   overflow-x: hidden;
 }
 
+input[name="domain"]:disabled {
+  background-color: white;
+  color: black;
+}
+
 input[type="radio"]:checked+label {
   color: olivedrab;
   font-weight: bold;
@@ -68,19 +73,6 @@ ul {
   margin-top: 5px;
 }
 
-#profile table {
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-#profile p {
-  margin-bottom: 10px;
-}
-
-#options a {
-  text-decoration: none;
-}
-
 #list_whitelistProfile {
   margin-bottom: 10px;
 }
@@ -92,6 +84,24 @@ ul {
 #list_whitelistRules {
   margin-top: 10px;
   width: 100%;
+}
+
+#options a {
+  text-decoration: none;
+}
+
+#profile table {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+#profile p {
+  margin-bottom: 10px;
+}
+
+#ruleEdit {
+  border: 2px solid black;
+  padding: 3px;
 }
 
 .centered {
@@ -113,6 +123,10 @@ ul {
 .groups li.active {
   background-color: olivedrab;
   color: white;
+}
+
+.invalid {
+  border: 2px solid red;
 }
 
 .ipAddr {
@@ -201,6 +215,39 @@ ul {
   padding-bottom: 2px;
 }
 
+.rule {
+  margin-bottom: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 12px;
+}
+
+.rule:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.ruleButton {
+  float: right;
+  padding: 1px;
+  width: 15px !important;
+  text-align: center;
+}
+
+.ruleButton:hover {
+  background-color: rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.rulePattern {
+  display: block;
+  width: 225px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .tab {
   padding: 10px 20px 10px 20px;
   display: none;
@@ -208,4 +255,41 @@ ul {
 
 .tab.active {
   display: block;
+}
+
+/*
+  Icons
+*/
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?u16zn9');
+  src:  url('../fonts/icomoon.eot?u16zn9#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?u16zn9') format('truetype'),
+    url('../fonts/icomoon.woff?u16zn9') format('woff'),
+    url('../fonts/icomoon.svg?u16zn9#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pencil:before {
+  content: "\e905";
+}
+.icon-bin:before {
+  content: "\e9ac";
 }

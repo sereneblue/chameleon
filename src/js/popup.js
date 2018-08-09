@@ -5,6 +5,8 @@ let selected = {
 	whitelist: ""
 }
 
+let whitelistRules = [];
+
 // when popup opened, populate the useragent list from data.js 
 function buildInputs() {
 	$.each(platforms, function(index, platform) {
@@ -111,7 +113,7 @@ async function updateUI() {
 	});
 
 	$('#list_scriptInjection input').each(function (i, element) {
-		$(`input[name="${element.name}"]`).prop('checked', data.settings[element.name] ? true: false);
+		$(`input[name="${element.name}"]`).prop('checked', data.settings[element.name]);
 	});
 
 	// check if browser APIs avialable
@@ -163,7 +165,17 @@ async function updateUI() {
 		$(`input[name="${element.name}"]`).val(data.whitelist.profile[element.name.split('_')[1]]);
 	});
 
-	$('textarea').val(JSON.stringify(data.whitelist.urlList));
+	whitelistRules = data.whitelist.urlList;
+	whitelistRules.forEach(function (i) {
+		var element = `
+		<div class="rule">
+            <span style="width: 10%;" class="icon-bin ruleButton"></span>
+            <span style="width: 5px; float: right;">&nbsp;</span>
+            <span style="width: 10%;" class="icon-pencil ruleButton"></span>
+            <div class="rulePattern">${i.url}</div>
+        </div>`
+        $('#rules').append(element);
+	});
 }
 
 // change view of displayed subitems
@@ -188,6 +200,7 @@ function changeView(val, category) {
 		var vis = $(`#list_${menu[i]}`).is(':visible');
 		if (!vis) {
 			$(`#sub_${menu[i]} span`).text(`+`);
+			if (category == "whitelist") $('#ruleEdit').hide();
 		} else {
 			$(`#sub_${menu[i]} span`).text(`—`);
 		}
@@ -222,22 +235,86 @@ function getPlatform(v) {
 	}
 }
 
-// check if whitelist URLs valid input
-function validated(input) {
-	try {
-		let urlList = JSON.parse(input);
-		if (urlList.length > 0) {
-			for (var i of urlList) {
-				if (i.url == "" || i.url == undefined) {
-					return false;
-				}
-			}
-			return true;
-		}
-		return false; 
-	} catch(e) {
-		return false;
+// save profile
+function saveProfile() {
+	var url = $('input[name="url"]')
+	var urlValue = url.val().trim();
+	var re = false;
+	var pattern = "";
+
+	if (urlValue == "") {
+		url.addClass('invalid');
+		return;
+	} else {
+		url.removeClass('invalid');
 	}
+
+	if ($('input[name="re"]').is(':checked')) {
+		var patternElement = $('input[name="pattern"]');
+		pattern = patternElement.val().trim();
+
+		if (pattern == "") {
+			patternElement.addClass('invalid');
+			return;
+		} else {
+			patternElement.removeClass('invalid');
+		}
+
+		re = true;
+	}
+
+	var rule = {
+		url: urlValue,
+		re: re,
+		pattern: pattern,
+		options: {
+			auth: $('input[name="authorization"]').is(':checked'),
+			ip: $('input[name="ip"]').is(":checked"),
+			ref: $('input[name="referer"]').is(":checked"),
+			screen: $('input[name="screen"]').is(":checked"),
+			websocket: $('input[name="websocket"]').is(":checked"),
+			winName: $('input[name="winName"]').is(":checked")
+		}
+	};
+
+	var idx = whitelistRules.findIndex(r => r.url == urlValue);
+	if (idx > -1) {
+		whitelistRules[idx] = rule;
+	} else {
+		whitelistRules.push(rule);
+		var element = `
+		<div class="rule">
+	        <span class="icon-bin ruleButton" style="width: 10%;"></span>
+	        <span style="width: 5px; float: right;">&nbsp;</span>
+	        <span class="icon-pencil ruleButton" style="width: 10%;"></span>
+	        <span>${urlValue}</span>
+	    </div>`
+	    $('#rules').append(element);
+	}
+
+	chrome.runtime.sendMessage({
+		action: "whitelist",
+		data: {
+			key: "wl_urls",
+			value: JSON.stringify(whitelistRules)
+		}
+	});
+
+	$('#ruleEdit').hide();
+}
+
+// display whitelist rule editor
+function showEditor(e) {
+	$('input[name="pattern"]').val("");
+	$('input[name="authorization"]').prop('checked', false);
+	$('input[name="ip"]').prop('checked', false);
+	$('input[name="referer"]').prop('checked', false);
+	$('input[name="screen"]').prop('checked', false);
+	$('input[name="websocket"]').prop('checked', false);
+	$('input[name="winName"]').prop('checked', false);
+
+	$("#ruleEdit").insertAfter($("#addRuleButton"));
+	$('#ruleEdit').show();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -438,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			action: "option",
 			data: {
 				key: e.target.name,
-				value: this.checked ? true : false
+				value: this.checked
 			}
 		});
 	});
@@ -460,12 +537,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	$('#whitelist input[type="checkbox"]').on('click', function(e) {
+	$('#wlEnable input[type="checkbox"]').on('click', function(e) {
 		chrome.runtime.sendMessage({
 			action: "whitelist",
 			data: {
 				key: e.target.name,
-				value: this.checked ? true : false
+				value: this.checked
 			}
 		});
 	});
@@ -480,18 +557,64 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	$('#whitelist textarea').on('keyup', function(e) {
-		if (validated(e.target.value)) {
-			chrome.runtime.sendMessage({
-				action: "whitelist",
-				data: {
-					key: "wl_urls",
-					value: e.target.value
+	$(document).on('click', function(e) {
+		if (e.target.id == 'addRuleButton'){
+			$('input[name="url"]').val("");
+			$('input[name="url"]').prop('disabled', false);
+			$('input[name="pattern"').prop('disabled', true);
+			showEditor();
+		} else if (e.target.id == 'saveProfile') {
+			saveProfile();
+		} else if (e.target.className.indexOf('ruleButton') > -1) {
+			var pattern = $(e.target).parent().find('div').text();
+			if (e.target.className.indexOf('pencil') > -1) {
+				// set values for editor
+				var txt = $(e.target).parent().find('div')[0].innerText;
+				var idx = whitelistRules.findIndex(r => r.url == txt);
+
+				var el = $('input[name="url"]');
+				var el2 = $("#ruleEdit");
+
+				el.val(whitelistRules[idx].url);
+				el.prop('disabled', true);
+
+				$('input[name="authorization"]').prop('checked', whitelistRules[idx].options.auth);
+				$('input[name="ip"]').prop('checked', whitelistRules[idx].options.ip);
+				$('input[name="referer"]').prop('checked', whitelistRules[idx].options.ref);
+				$('input[name="screen"]').prop('checked', whitelistRules[idx].options.screen);
+				$('input[name="websocket"]').prop('checked', whitelistRules[idx].options.websocket);
+				$('input[name="winName"]').prop('checked', whitelistRules[idx].options.winName);
+
+				$('input[name="pattern"]').val(whitelistRules[idx].pattern || "");
+				$('input[name="re"]').prop('checked', whitelistRules[idx].re);
+				$('input[name="pattern"').prop('disabled', !whitelistRules[idx].re);
+
+				el2.insertAfter($(e.target).parent());
+				el2.show();
+			} else {
+				var element = $(e.target).parent();
+				var el = $('#ruleEdit');
+
+				if (el.is(":visible")) {
+					if (element.find('div')[0].innerText == $('input[name="url"]').val()) {
+						el.hide();
+					}
 				}
-			});
-			$('#list_whitelistRules textarea').css("border", "3px solid greenyellow");
-		} else {
-			$('#list_whitelistRules textarea').css("border", "3px solid red");
+
+				// remove from whitelist
+				whitelistRules.splice($('#rules .rule').index(element), 1);
+				element.remove();
+
+				chrome.runtime.sendMessage({
+					action: "whitelist",
+					data: {
+						key: "wl_urls",
+						value: JSON.stringify(whitelistRules)
+					}
+				});
+			}
+		} else if (e.target.name == 're') {
+			$('input[name="pattern"]').prop('disabled', !e.target.checked);
 		}
 	});
 });

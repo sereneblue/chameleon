@@ -4,22 +4,28 @@ let inject = (props, whitelist, nav, injectionText) => {
 		var script = document.createElement('script');
 
 		script.appendChild(document.createTextNode(\`
-
 		var properties = ${JSON.stringify(props)};
 		var whitelist = ${JSON.stringify(whitelist)};
+		var urlOK = false;
+		var wlOptions = {
+			websocket: false,
+			screen: false,
+			name: false
+		};
 
-		function whitelisted() {
-			var url = window.location.href;
-			for (var u of whitelist.urlList) {
-				if (url.indexOf(u.url) > -1) {
-					return true;
+		if (whitelist.enabled) {
+			var idx = whitelist.urlList.findIndex(u => window.location.href.indexOf(u.url) > -1);
+			if (idx > -1) {
+				urlOK = true;
+				wlOptions = whitelist.urlList[idx].options;
+
+				if (whitelist.urlList[idx].re) {
+					urlOK = new RegExp(whitelist.urlList[idx].pattern, "i").test(window.location.href) ? true : false;
 				}
 			}
-
-			return false;
 		}
 
-		if (whitelist.enabled && whitelisted()) {
+		if (urlOK) {
 			if (!whitelist.enableRealProfile) {
 				properties.push(...[
 					{ obj: "window.navigator", prop: "appCodeName", value: whitelist.profile.appCodeName },
@@ -48,6 +54,23 @@ let inject = (props, whitelist, nav, injectionText) => {
 				});
 			});
 
+			// remove screen stuff if whitelisted
+			if (urlOK) {
+				for (var i = props.length - 1; i >= 0; i--) {
+					if (!wlOptions.screen) {
+						if ( (props[i].obj.indexOf("screen") > -1) 			||
+							 (props[i].obj.indexOf("documentElement") > -1)
+							) {
+							props.splice(i, 1);
+						}
+					} else if (!wlOptions.winName) {
+						if (props[i].prop == "name") {
+							props.splice(i, 1);
+						}
+					}
+				}
+			}
+
 			// Override window properties
 			override(window, props);
 
@@ -68,7 +91,9 @@ let inject = (props, whitelist, nav, injectionText) => {
 				subtree: true
 			});
 
-			${injectionText}
+			if (!whitelist.enabled || wlOptions.websocket) {
+				${injectionText}
+			}
 		})(properties);\`));
 
 		scripts.length ? document.head.insertBefore(script, document.head.firstChild) : (document.head || document.documentElement).appendChild(script);

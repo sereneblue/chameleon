@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.8.1-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.8.5-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 
 Chameleon is a WebExtension port of the popular Firefox addon [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer).
@@ -37,7 +37,10 @@ WebExtensions are unable to modify about:config entries. A workaround for this i
 
 ### Whitelist
 
-- Whitelist a profile for certain sites.
+- Create a whitelsit profile
+- Use your real profile as the whitelist profile.
+- Manage a list of whitelist rules.
+- Supports regular expressions
 
 ## Installation
 
@@ -45,8 +48,7 @@ Chameleon is available on the [Firefox Add-ons website](https://addons.mozilla.o
 
 ## Contribute
 
-Feel free to send a pull request or open an issue. Keep in mind that some functionality isn't technically possible.
-
+Want to help improve Chameleon? Send a pull request or open an issue. Keep in mind that some functionality isn't technically possible.
 
 ## Wiki
 
@@ -54,6 +56,8 @@ Don't know where to start? Check out the [wiki](https://github.com/sereneblue/ch
 
 ## Credits
 
-<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+<div>Chameleon icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
 dillbyrne for creating [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer)
+
+Pencil and trashbin icon made by Keyamoon from [IcoMoon](https://icomoon.io/#preview-free).
