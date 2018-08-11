@@ -52,7 +52,7 @@ Want to help improve Chameleon? Send a pull request or open an issue. Keep in mi
 
 ## Wiki
 
-Don't know where to start? Check out the [wiki](https://github.com/sereneblue/chameleon/wiki).
+Don't know where to start? Check out the [wiki](https://github.com/sereneblue/chameleon/wiki). If you're having issues with a website, please read the whitelist [guide](https://github.com/sereneblue/chameleon/wiki/Whitelist/_edit#recommended-sites-to-add-to-the-whitelist).
 
 ## Credits
 
