@@ -520,6 +520,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
+	$('#list_standard button').on('click', function(e) {
+		if (e.target.name == "resetTracking") {
+			$('input[name="enableTrackingProtection"]').prop('checked', false);
+		} if (e.target.name == "resetFirstParty") {
+			$('input[name="firstPartyIsolate"]').prop('checked', false);
+		} if (e.target.name == "resetFingerprinting") {
+			$('input[name="resistFingerprinting"]').prop('checked', false);
+		}
+
+		chrome.runtime.sendMessage({
+			action: "clear",
+			data: e.target.name
+		});
+	})
+
 	$('#options select').on('change', function(e) {
 		chrome.runtime.sendMessage({
 			action: "option",

@@ -593,7 +593,15 @@ function migrate(data) {
 */
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	if (request.action == "exclude") {
+	if (request.action == "clear") {
+		if (request.data == "resetTracking") {
+			chrome.privacy.websites.trackingProtectionMode.clear({});
+		} else if (request.data == "resetFirstParty") {
+			chrome.privacy.websites.firstPartyIsolate.clear({});
+		} else if (request.data == "resetFingerprinting") {
+			chrome.privacy.websites.resistFingerprinting.clear({});
+		}
+	} if (request.action == "exclude") {
 		let key = request.data.key.split('_')[1].match(/([a-z]+)(\d+)/);
 		let index = parseInt(key[2]);
 		chameleon.excluded[key[1]][index - 1] = request.data.value;
@@ -705,6 +713,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.5"});
+	await save({ version: "0.8.6"});
 	changeTimer();
 })();
