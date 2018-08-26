@@ -16,8 +16,8 @@
 
 body {
   background-color: white;
-  width: 340px;
-  height: 400px;
+  min-width: 340px;
+  min-height: 400px;
   max-height: 450px;
   overflow-x: hidden;
 }
@@ -141,7 +141,7 @@ ul {
 
 .item {
   display: inline-block;
-  width: 80px;
+  width: 22.5%;
   height: 15px;
   background-color: olivedrab;
   padding: 5px;
@@ -155,7 +155,7 @@ ul {
 
 .item.about {
   display: inline-block;
-  width: 20px;
+  width: 10%;
   height: 15px;
   background-color: olivedrab;
   padding: 5px;
@@ -292,4 +292,11 @@ ul {
 }
 .icon-bin:before {
   content: "\e9ac";
+}
+
+@media (max-width: 340px) {
+  body {
+    max-width: 340px;
+    max-height: 450px;
+  }
 }
