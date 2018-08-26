@@ -635,15 +635,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			saveSettings("settings");
 		}
 	} else if (request.action == "storage") {
-		if (request.data.key == "useragent") {
-			if (request.data.value == "real") {
-				chrome.browserAction.setIcon({
-					path: "img/icon_disabled_48.png"
-				});
-			} else {
-				chrome.browserAction.setIcon({
-					path: "img/icon_48.png"
-				});
+		let platformInfo = browser.runtime.getPlatformInfo();
+
+		// Firefox for Android doesn't support the browserAction API
+		if (platformInfo.os != "android") {
+			if (request.data.key == "useragent") {
+				if (request.data.value == "real") {
+					chrome.browserAction.setIcon({
+						path: "img/icon_disabled_48.png"
+					});
+				} else {
+					chrome.browserAction.setIcon({
+						path: "img/icon_48.png"
+					});
+				}
 			}
 		}
 		chameleon.settings[request.data.key] = request.data.value;
@@ -713,6 +718,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.6"});
+	await save({ version: "0.8.7"});
 	changeTimer();
 })();
