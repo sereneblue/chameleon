@@ -158,6 +158,7 @@ async function updateUI() {
 	}
 	
 	$(`select[name="screenSize"]`).val(data.settings.screenSize);
+	$(`select[name="timeZone"]`).val(data.settings.timeZone);
 	$(`input[name="enableWhitelist"]`).prop('checked', data.whitelist.enabled);
 	$(`input[name="enableWhitelistRealProfile"]`).prop('checked', data.whitelist.enableRealProfile);
 

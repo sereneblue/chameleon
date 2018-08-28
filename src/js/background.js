@@ -38,6 +38,7 @@ let chameleon = {
 		notificationsEnabled: false,
 		protectWinName: false,
 		screenSize: "default",
+		timeZone: "default",
 		useragent: "real",
 		useragentValue: ""
 	},
@@ -204,11 +205,22 @@ function buildInjectScript() {
 			injectionArray = spoof.dnt(injectionArray);
 		}
 
+		if (chameleon.settings.timeZone != "default") {
+			var t = moment.tz(Date.now(), chameleon.settings.timeZone);
+
+			injectionText += spoofTime(
+				t.utcOffset(),
+				t.format("z"),
+				chameleon.settings.timeZone
+			);
+		}
+
 		return inject(
 			injectionArray,
 			chameleon.whitelist,
 			nav,
-			injectionText);
+			injectionText
+		);
 	}
 
 	return "";
@@ -718,6 +730,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.7"});
+	await save({ version: "0.8.8"});
 	changeTimer();
 })();

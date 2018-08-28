@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.8.7-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.8.8-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 
 Chameleon is a WebExtension port of the popular Firefox addon [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer).
@@ -30,6 +30,7 @@ The UI is near identical and contains most of the features found in the original
 - Enable tracking protection/etc.
 - Disable WebSockets.
 - Spoof screen size.
+- Spoof timezone.
 - Modify cookie options.
 - about:config checklist to enhance your privacy.
 
@@ -59,5 +60,7 @@ Don't know where to start? Check out the [wiki](https://github.com/sereneblue/ch
 <div>Chameleon icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
 dillbyrne for creating [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer)
+
+Joue Quroi for the timezone spoofing code [Spoof Timezone](https://github.com/joue-quroi/spoof-timezone)
 
 Pencil and trashbin icon made by Keyamoon from [IcoMoon](https://icomoon.io/#preview-free).
