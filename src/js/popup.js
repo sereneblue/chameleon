@@ -36,6 +36,7 @@ function get(key) {
 // export settings
 async function exportSettings() {
 	let data = await get(null);
+	data.timestamp = new Date().toLocaleString();
 	var settings = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
 	var exportElement = document.getElementById('export');
 	exportElement.setAttribute("href", settings );
