@@ -38,6 +38,7 @@ let chameleon = {
 		notificationsEnabled: false,
 		protectWinName: false,
 		screenSize: "default",
+		spoofClientRects: false,
 		timeZone: "default",
 		useragent: "real",
 		useragentValue: ""
@@ -177,8 +178,11 @@ let spoof = {
 			]);
 		return injectionArray;
 	},
-	websocket: function () {
-		return `WebSocket = undefined;\n MozWebSocket = undefined;\n`;
+	websocket: function (injectionArray) {
+		injectionArray.push({obj: "window", prop: "WebSocket", value: null});
+		injectionArray.push({obj: "window", prop: "MozWebSocket", value: null});
+
+		return injectionArray;
 	}
 };
 
@@ -190,7 +194,8 @@ function buildInjectScript() {
 
 	if (chameleon.settings.enableScriptInjection) {
 		if (chameleon.settings.protectWinName) injectionArray = spoof.name(injectionArray);
-		if (chameleon.settings.disableWebSockets) injectionText = spoof.websocket();
+		if (chameleon.settings.disableWebSockets) injectionArray = spoof.websocket(injectionArray);
+		if (chameleon.settings.spoofClientRects) injectionText += spoofRects();
 
 		if (chameleon.settings.useragent != "custom" ) {
 			// separate some navigator properties because of whitelist
@@ -730,6 +735,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.8"});
+	await save({ version: "0.8.9"});
 	changeTimer();
 })();

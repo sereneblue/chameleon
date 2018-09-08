@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.8.8-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.8.9-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 
 Chameleon is a WebExtension port of the popular Firefox addon [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer).
@@ -29,6 +29,7 @@ The UI is near identical and contains most of the features found in the original
 - Enable script injection.
 - Enable tracking protection/etc.
 - Disable WebSockets.
+- Spoof client rects.
 - Spoof screen size.
 - Spoof timezone.
 - Modify cookie options.

@@ -24,10 +24,10 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 		var spoofedTimezone = 0 - ${offset};
 		var tzAbbr = "${tzAbbr}";
 		var tzName = "${tzName}";
-		var timezoneOffset = new Date().getTimezoneOffset();
+		var timezoneOffset = new window.Date().getTimezoneOffset();
 
-		const intl = Intl.DateTimeFormat.prototype.resolvedOptions;
-		Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
+		const intl = window.Intl.DateTimeFormat.prototype.resolvedOptions;
+		window.Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
 			return Object.assign(intl.apply(this, args), {
 				timeZone: tzName
 			});
@@ -48,7 +48,7 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 			return str;
 		}
 
-		var ODate = Date;
+		var ODate = window.Date;
 		const {
 			getTime, getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getYear,
 			toDateString, toLocaleString, toString, toTimeString, toLocaleTimeString, toLocaleDateString,
@@ -210,5 +210,5 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 			}
 		  }
 
-		Date = ShiftedDate;`;
+		window.Date = ShiftedDate;`;
 }

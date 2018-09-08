@@ -7,11 +7,11 @@
 		}
 	},
 	"name": "Chameleon",
-	"version": "0.8.8",
+	"version": "0.8.9",
 	"manifest_version": 2,
 	"description": "Spoof your browser profile. Includes a few privacy enhancing options.",
 	"background": {
-		"scripts": ["js/data.js", "js/inject.js", "js/moment.min.js", "js/moment-timezone-with-data.min.js", "js/spooftime.js", "js/background.js"]
+		"scripts": ["js/data.js", "js/inject.js", "js/moment.min.js", "js/moment-timezone-with-data.min.js", "js/spoofrects.js", "js/spooftime.js", "js/background.js"]
 	},
 	"browser_action": {
 		"default_icon": "img/icon_48.png",

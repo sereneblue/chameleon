@@ -46,10 +46,14 @@ let inject = (props, whitelist, nav, injectionText) => {
 
 		(function(props){
 			let override = ((window, injectArray) => {
+				if (!whitelist.enabled || wlOptions.websocket) {
+					${injectionText}
+				}
+
 				injectArray.forEach(i => {
 					Object.defineProperty(i.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), i.prop, {
-							configurable: true,
-							value: i.value
+						configurable: true,
+						value: i.value
 					});
 				});
 			});
@@ -90,10 +94,6 @@ let inject = (props, whitelist, nav, injectionText) => {
 				childList: true,
 				subtree: true
 			});
-
-			if (!whitelist.enabled || wlOptions.websocket) {
-				${injectionText}
-			}
 		})(properties);\`));
 
 		scripts.length ? document.head.insertBefore(script, document.head.firstChild) : (document.head || document.documentElement).appendChild(script);
