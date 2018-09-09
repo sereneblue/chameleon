@@ -189,6 +189,7 @@ let spoof = {
 };
 
 let customIntervalTimer = null;
+let tooltipData = {};
 
 // builds script to inject into pages
 function buildInjectScript() {
@@ -272,6 +273,30 @@ function get(key) {
 			typeof key == "string" ? resolve(item[key]) : resolve(item);
 		});
 	});
+}
+
+// extract data from useragent data for tooltip
+function getTooltipInfo(u) {
+	var os, browser, tmp;
+
+	if (u.name.includes('(')) {
+		tmp = u.name.match(/^(.*?)\s\((.*?)\)/);
+		os = tmp[2];
+		browser = tmp[1];
+	} else if (u.name.includes('iOS')) {
+		tmp = u.name.match(/(iOS.*?\s-\s\w+)\s-\s(.*?)$/);
+		os = tmp[1];
+		browser = tmp[2];
+	} else {
+		tmp = u.name.match(/(Android(\s.+)?)\s-\s(.*?)$/);
+		os = tmp[1];
+		browser = tmp[3];
+	}
+
+	return {
+		os,
+		browser
+	}
 }
 
 // fitler excluded profiles
@@ -388,9 +413,12 @@ function rewriteHeaders(e) {
 
 // determines useragent and screen resolution when new task created
 async function start() {
+	var title, uas;
+
 	// pick new useragent
 	if (chameleon.settings.useragent == "" || chameleon.settings.useragent == "real"){
 		// real profile
+		title = "Profile Spoofing Disabled";
 		chameleon.headers.useragent = "";
 	} else if (/.*?\d+/.test(chameleon.settings.useragent)) {
 		// check in case updated user agent
@@ -405,43 +433,58 @@ async function start() {
 			plat = regexMatch[1];
 		}
 
-		chameleon.headers.useragent = uaList[plat].find(u => u.value == chameleon.settings.useragent).ua;
-	} else if (/random_/.test(chameleon.settings.useragent)) {
-		let uas = filterProfiles(uaList[chameleon.settings.useragent.split('_')[1]]);
+		let u = uaList[plat].find(u => u.value == chameleon.settings.useragent);
+		tooltipData = getTooltipInfo(u);
 
-		chameleon.headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
+		chameleon.headers.useragent = u.ua;
 	} else if (chameleon.settings.useragent == "custom") {
+		tooltipData.os = "Custom";
+		tooltipData.browser = "Custom";
+
 		chameleon.headers.useragent = chameleon.settings.useragentValue;
-	} else if (chameleon.settings.useragent == "random") {
-		// random useragent
-		let uas = filterProfiles(uaList.windows.concat(
-			uaList.macos,
-			uaList.linux,
-			uaList.ios,
-			uaList.android
-		));
+	} else {
+		if (/random_/.test(chameleon.settings.useragent)) {
+			uas = filterProfiles(uaList[chameleon.settings.useragent.split('_')[1]]);
+		} else if (chameleon.settings.useragent == "random") {
+			// random useragent
+			uas = filterProfiles(uaList.windows.concat(
+				uaList.macos,
+				uaList.linux,
+				uaList.ios,
+				uaList.android
+			));
+		} else if (chameleon.settings.useragent == "randomDesktop") {
+			// random desktop useragent
+			uas = filterProfiles(uaList.windows.concat(
+				uaList.macos,
+				uaList.linux
+			));
+		} else if (chameleon.settings.useragent == "randomMobile") {
+			// random mobile useragent
+			uas = filterProfiles(uaList.ios.concat(uaList.android));
+		}
 
-		chameleon.headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
-	} else if (chameleon.settings.useragent == "randomDesktop") {
-		// random desktop useragent
-		let uas = filterProfiles(uaList.windows.concat(
-			uaList.macos,
-			uaList.linux
-		));
-
-		chameleon.headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
-	} else if (chameleon.settings.useragent == "randomMobile") {
-		// random mobile useragent
-		let uas = filterProfiles(uaList.ios.concat(uaList.android));
-
-		chameleon.headers.useragent = uas[Math.floor(Math.random() * uas.length)].ua;
+		let u = uas[Math.floor(Math.random() * uas.length)];
+		tooltipData = getTooltipInfo(u);
+		chameleon.headers.useragent = u.ua;
 	}
 
 	if (chameleon.settings.screenSize == "profile") {
 		var screenData = getScreenResolution(chameleon.headers.useragent);
 		spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
+		tooltipData.screen = spoof.profileResolution;
+	} else if (chameleon.settings.screenSize != "default") {
+		tooltipData.screen = chameleon.settings.screenSize
+	} else {
+		tooltipData.screen = "Host";
 	}
 	
+	if (!chameleon.settings.enableScriptInjection) {
+		tooltipData.extra = "\r\n[Needs script injection!]";
+	} else {
+		tooltipData.extra = "";
+	}
+
 	chameleon.headers.viaIP_profile = chameleon.headers.xforwardedforIP_profile = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
 
 	if (chameleon.headers.useragent && chameleon.settings.notificationsEnabled) {
@@ -452,6 +495,9 @@ async function start() {
 		});
 	}
 
+	if (tooltipData.os) title = `Current Profile:\r\nOS: ${tooltipData.os}\r\nBrowser: ${tooltipData.browser}\r\nScreen: ${tooltipData.screen}${tooltipData.extra}`;
+	let platformInfo = browser.runtime.getPlatformInfo();
+	if (platformInfo.os != "android") chrome.browserAction.setTitle({ title });
 	rebuildInjectionScript();
 }
 
@@ -673,26 +719,56 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 				"value": request.data.value
 			});
 		} else {
+			let tooltip = (plat) => {
+				if (plat.os != "android") {
+					tooltipData.extra = "";
+
+					if (request.data.key == "screenSize") {
+						if (request.data.value != "default") {
+							tooltipData.screen = request.data.value
+						} else if (request.data.value == "default") {
+							tooltipData.screen = "Host";
+						}
+					} else if (request.data.key == "enableScriptInjection" && !request.data.value) {
+						tooltipData.extra = "\r\n[Needs script injection!]";
+					}
+
+					let title = "Chameleon";
+					if (tooltipData.os) title = `Current Profile:\r\nOS: ${tooltipData.os}\r\nBrowser: ${tooltipData.browser}\r\nScreen: ${tooltipData.screen}${tooltipData.extra}`;
+
+					chrome.browserAction.setTitle({ title });
+				}
+			}
+
+			if (request.data.key == "screenSize" || request.data.key == "enableScriptInjection") {
+				var platformInfo = browser.runtime.getPlatformInfo();
+				platformInfo.then(tooltip);
+			}
+
 			chameleon.settings[request.data.key] = request.data.value;
 			saveSettings("settings");
 		}
 	} else if (request.action == "storage") {
-		let platformInfo = browser.runtime.getPlatformInfo();
-
-		// Firefox for Android doesn't support the browserAction API
-		if (platformInfo.os != "android") {
-			if (request.data.key == "useragent") {
-				if (request.data.value == "real") {
-					chrome.browserAction.setIcon({
-						path: "img/icon_disabled_48.png"
-					});
-				} else {
-					chrome.browserAction.setIcon({
-						path: "img/icon_48.png"
-					});
+		let setIcon = (plat) => {
+			// Firefox for Android doesn't support the browserAction API for icons
+			if (plat.os != "android") {
+				if (request.data.key == "useragent") {
+					if (request.data.value == "real") {
+						chrome.browserAction.setIcon({
+							path: "img/icon_disabled_48.png"
+						});
+					} else {
+						chrome.browserAction.setIcon({
+							path: "img/icon_48.png"
+						});
+					}
 				}
 			}
 		}
+
+		let platformInfo = browser.runtime.getPlatformInfo();
+		platformInfo.then(setIcon);
+
 		chameleon.settings[request.data.key] = request.data.value;
 		saveSettings("settings");
 	} else if (request.action == "whitelist") {
@@ -760,6 +836,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.13"});
+	await save({ version: "0.8.14"});
 	changeTimer();
 })();
