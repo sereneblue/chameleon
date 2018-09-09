@@ -377,9 +377,9 @@ async function start() {
 	if (chameleon.settings.useragent == "" || chameleon.settings.useragent == "real"){
 		// real profile
 		chameleon.headers.useragent = "";
-	} else if (/.*?\d/.test(chameleon.settings.useragent)) {
+	} else if (/.*?\d+/.test(chameleon.settings.useragent)) {
 		// check in case updated user agent
-		var regexMatch = chameleon.settings.useragent.match(/(.*?)(\d)/);
+		var regexMatch = chameleon.settings.useragent.match(/(.*?)(\d+)/);
 		var plat;
 
 		if (regexMatch[1].includes("win")) {
@@ -390,7 +390,7 @@ async function start() {
 			plat = regexMatch[1];
 		}
 
-		chameleon.headers.useragent = uaList[plat][parseInt(regexMatch[2] - 1)].ua;
+		chameleon.headers.useragent = uaList[plat].find(u => u.value == chameleon.settings.useragent).ua;
 	} else if (/random_/.test(chameleon.settings.useragent)) {
 		let uas = filterProfiles(uaList[chameleon.settings.useragent.split('_')[1]]);
 
@@ -735,6 +735,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.11"});
+	await save({ version: "0.8.12"});
 	changeTimer();
 })();
