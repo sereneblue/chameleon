@@ -71,6 +71,12 @@ async function updateUI() {
 
 	if (data.settings.interval) {
 		$('#profile select[name="interval"]').val(data.settings.interval);
+
+		if (data.settings.interval == "-1") {
+			$('#range').show();
+			$('#range input[name="minInterval').val(data.settings.minInterval);
+			$('#range input[name="maxInterval').val(data.settings.maxInterval);
+		}
 	}
 
 	if (data.excluded) {
@@ -337,11 +343,34 @@ document.addEventListener('DOMContentLoaded', function() {
 	})
 
 	$('select[name="interval"]').on('change', function(e) {
+		if (e.target.value == "-1") {
+			$('#range').show();
+
+			$('#range input[name="minInterval"]').val("");
+			$('#range input[name="maxInterval"]').val("");
+		} else {
+			$('#range').hide();
+		}
+
 		chrome.runtime.sendMessage({
 			action: "interval",
 			data: parseInt(e.target.value)
 		});
 	});
+
+	$('#range input').on('change', function(e) {
+		if (e.target.value) {
+			var min = parseInt($('#range input[name="minInterval"]').val());
+			var max = parseInt($('#range input[name="maxInterval"]').val());
+
+			if ((min && max) && (min > 0) && (min < max)) {
+				chrome.runtime.sendMessage({
+					action: "intervals",
+					data: [min, max]
+				});
+			}
+		}
+	})
 
 	// basically the same thing as above
 	$('button[name="changeNow"]').on('click', function(e) {

@@ -35,6 +35,8 @@ let chameleon = {
 		disableWebSockets: false,
 		enableScriptInjection: false,
 		interval: 0,
+		minInterval: null,
+		maxInterval: null,
 		notificationsEnabled: false,
 		protectWinName: false,
 		screenSize: "default",
@@ -186,6 +188,8 @@ let spoof = {
 	}
 };
 
+let customIntervalTimer = null;
+
 // builds script to inject into pages
 function buildInjectScript() {
 	let injectionArray = [];
@@ -238,7 +242,18 @@ function changeTimer() {
 	let task = {when: Date.now() + 250};
 
 	if (chameleon.settings.interval) {
-		task["periodInMinutes"] = chameleon.settings.interval;
+		if (chameleon.settings.interval == "-1") {
+			if (!chameleon.settings.minInterval || !chameleon.settings.maxInterval) return;
+
+			var interval = ((Math.random() *
+							(chameleon.settings.maxInterval * 60 * 1000 - chameleon.settings.minInterval  * 60 * 1000)) +
+							chameleon.settings.minInterval  * 60 * 1000);
+
+			if (customIntervalTimer) clearTimeout(customIntervalTimer);
+			customIntervalTimer = setTimeout(changeTimer, interval);
+		} else {
+			task["periodInMinutes"] = chameleon.settings.interval;
+		}
 	}
 	
 	chrome.alarms.create("profile", task);
@@ -626,6 +641,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	} else if (request.action == "interval") {
 		chameleon.settings.interval = request.data;
 
+		if (request.data != "-1") {
+			chameleon.settings.minInterval = chameleon.settings.maxInterval = null;
+		}
+
+		changeTimer();
+		saveSettings("settings");
+	} else if (request.action == "intervals") {
+		chameleon.settings.minInterval = request.data[0];
+		chameleon.settings.maxInterval = request.data[1];
+
 		changeTimer();
 		saveSettings("settings");
 	} else if (request.action == "headers") {
@@ -735,6 +760,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.12"});
+	await save({ version: "0.8.13"});
 	changeTimer();
 })();
