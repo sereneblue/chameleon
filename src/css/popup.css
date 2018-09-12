@@ -108,6 +108,11 @@ ul {
   text-align: center;
 }
 
+.excludeall {
+  font-size: 14px;
+  float: right;
+}
+
 .groups li {
   background-color: #e5e4e4;
   padding: 5px;

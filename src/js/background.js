@@ -28,7 +28,8 @@ let chameleon = {
 		mac: [false,false,false,false,false,false,false],
 		linux: [false,false,false,false,false,false,false,false,false],
 		ios: [false,false,false,false,false,false,false,false,false],
-		android: [false,false,false,false,false,false,false,false]
+		android: [false,false,false,false,false,false,false,false],
+		all: [false, false, false, false, false]
 	},
 	injection: null,
 	settings: {
@@ -836,6 +837,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.14"});
+	await save({ version: "0.8.15"});
 	changeTimer();
 })();

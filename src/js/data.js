@@ -37,11 +37,11 @@ let uaList = {
 		"name": "Firefox 62 (Win 10)",
 		"value": "win9"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.2.0) Gecko/20100101 Firefox/60.2.0 ESR",
+		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
 		"name": "Firefox 60 ESR (Win 7)",
 		"value": "win13"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:60.2.0) Gecko/20100101 Firefox/60.2.0 ESR",
+		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
 		"name": "Firefox 60 ESR (Win 8)",
 		"value": "win14"
 	}, {
@@ -73,6 +73,10 @@ let uaList = {
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:62.0) Gecko/20100101 Firefox/62.0",
 		"name": "Firefox 62 (macOS 10.13)",
 		"value": "mac4"
+	}, {
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:60.0) Gecko/20100101 Firefox/60.0",
+		"name": "Firefox 60 ESR (macOS 10.12)",
+		"value": "mac8"
 	}, {
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8",
 		"name": "Safari 10.1.2 (macOS 10.12)",
@@ -122,6 +126,14 @@ let uaList = {
 		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv 62.0) Gecko/20100101 Firefox 62.0",
 		"name": "Firefox 62 (Ubuntu 64)",
 		"value": "linux9"
+	}, {
+		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv 60.0) Gecko/20100101 Firefox 60.0",
+		"name": "Firefox 60 ESR (Linux 64)",
+		"value": "linux10"
+	}, {
+		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv 60.0) Gecko/20100101 Firefox 60.0",
+		"name": "Firefox 60 ESR (Ubuntu 64)",
+		"value": "linux11"
 	}],
 	"ios": [{
 		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",

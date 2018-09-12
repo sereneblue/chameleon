@@ -462,7 +462,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	$('#profile .groups input[type="checkbox"]').on('click', function(e) {
+	$('#profile div.useragent > input[type="checkbox"]').on('change', function(e) {
+		var el = $($(this).closest('.useragent').siblings().toArray()[0]);
+		if (el.find('input[type="checkbox"]')[0].checked) this.checked = true;
+
+		chrome.runtime.sendMessage({
+			action: "exclude",
+			data: {
+				key: e.target.name,
+				value: this.checked
+			}
+		});
+	});
+
+	$(`#profile .excludeall input[type="checkbox"]`).on('click', function(e) {
+		$(this).closest('.useragent').siblings().toArray().forEach(el => {
+			$(el).find('input[type="checkbox"]').prop('checked', e.target.checked).trigger('change');
+		});
+
 		chrome.runtime.sendMessage({
 			action: "exclude",
 			data: {
