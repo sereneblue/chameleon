@@ -37,11 +37,11 @@ let uaList = {
 		"name": "Firefox 62 (Win 10)",
 		"value": "win9"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
+		"ua": "Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101 Firefox/60.0",
 		"name": "Firefox 60 ESR (Win 7)",
 		"value": "win13"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
+		"ua": "Mozilla/5.0 (Windows NT 6.2; rv:60.0) Gecko/20100101 Firefox/60.0",
 		"name": "Firefox 60 ESR (Win 8)",
 		"value": "win14"
 	}, {
