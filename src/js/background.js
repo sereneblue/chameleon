@@ -113,6 +113,10 @@ let spoof = {
 			vendor = "Google Inc";
 			hardwareConcurrency = 1;
 			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (Android)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
+		} else {
+			return [
+				{ obj: "window.navigator", prop: "userAgent", value: chameleon.headers.useragent }
+			];
 		}
 
 		if (/Firefox/.test(chameleon.headers.useragent)) {
@@ -203,10 +207,7 @@ function buildInjectScript() {
 		if (chameleon.settings.disableWebSockets) injectionArray = spoof.websocket(injectionArray);
 		if (chameleon.settings.spoofClientRects) injectionText += spoofRects();
 
-		if (chameleon.settings.useragent != "custom" ) {
-			// separate some navigator properties because of whitelist
-			nav = spoof.navigator();
-		}
+		nav = spoof.navigator();
 
 		if (chameleon.settings.screenSize != "default") {
 			injectionArray = spoof.screen(chameleon.settings.screenSize, injectionArray);
@@ -837,6 +838,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.15"});
+	await save({ version: "0.8.16"});
 	changeTimer();
 })();
