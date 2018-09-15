@@ -138,6 +138,7 @@ let spoof = {
 			{ obj: "window.navigator", prop: "vendor", value: vendor },
 			{ obj: "window.navigator", prop: "vendorSub", value: "" },
 			{ obj: "window.navigator", prop: "appVersion", value: appVersion },
+			{ obj: "window.navigator", prop: "buildID", value: "" }
 		];
 	},
 	profileResolution: "",
