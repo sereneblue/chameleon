@@ -5,7 +5,6 @@ let spoofRects = (randString) => {
 
 		if (!window.parent["${randString}"]) {
 			window["${randString}"] = Math.random() * 0.000000001000000;
-			console.log(window["${randString}"]);
 		}
 
 		let _fuzzer = (val) => {
@@ -48,7 +47,7 @@ let spoofRects = (randString) => {
 
 		window.Element.prototype.getClientRects.toString =
 		window.Element.prototype.getClientRects.toSource =
-		window.Element.prototype.getClientRects.toLocaleString = 
+		window.Element.prototype.getClientRects.toLocaleString =
 		window.Range.prototype.getClientRects.toString =
 		window.Range.prototype.getClientRects.toSource =
 		window.Range.prototype.getClientRects.toLocaleString = function () {
@@ -59,7 +58,7 @@ let spoofRects = (randString) => {
 
 		window.Element.prototype.getBoundingClientRect.toString =
 		window.Element.prototype.getBoundingClientRect.toSource =
-		window.Element.prototype.getBoundingClientRect.toLocaleString = 
+		window.Element.prototype.getBoundingClientRect.toLocaleString =
 		window.Range.prototype.getBoundingClientRect.toString =
 		window.Range.prototype.getBoundingClientRect.toSource =
 		window.Range.prototype.getBoundingClientRect.toLocaleString = function () {

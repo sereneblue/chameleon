@@ -839,6 +839,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 		});
 	}
 
-	await save({ version: "0.8.16"});
+	await save({ version: "0.8.17"});
 	changeTimer();
 })();
