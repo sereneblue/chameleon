@@ -206,7 +206,7 @@ function buildInjectScript() {
 	if (chameleon.settings.enableScriptInjection) {
 		if (chameleon.settings.protectWinName) injectionArray = spoof.name(injectionArray);
 		if (chameleon.settings.disableWebSockets) injectionArray = spoof.websocket(injectionArray);
-		if (chameleon.settings.spoofClientRects) injectionText += spoofRects();
+		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(Math.random().toString(36));
 
 		nav = spoof.navigator();
 
