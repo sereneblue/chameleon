@@ -76,8 +76,9 @@ let spoof = {
 		return injectionArray;
 	},
 	name: function (injectionArray) {
-		injectionArray.push({ obj: "window", prop: "name", value: "" });
-		return injectionArray;
+		return `
+			window.name = "";
+		`;
 	},
 	navigator: function () {
 		var appVersion, hardwareConcurrency, oscpu, platform, productSub, vendor;
@@ -204,7 +205,7 @@ function buildInjectScript() {
 	let nav = [];
 
 	if (chameleon.settings.enableScriptInjection) {
-		if (chameleon.settings.protectWinName) injectionArray = spoof.name(injectionArray);
+		if (chameleon.settings.protectWinName) injectionText += spoof.name();
 		if (chameleon.settings.disableWebSockets) injectionArray = spoof.websocket(injectionArray);
 		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(Math.random().toString(36));
 
