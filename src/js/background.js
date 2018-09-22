@@ -36,6 +36,7 @@ let chameleon = {
 		disableWebSockets: false,
 		enableScriptInjection: false,
 		interval: 0,
+		limitHistory: false,
 		minInterval: null,
 		maxInterval: null,
 		notificationsEnabled: false,
@@ -73,6 +74,10 @@ let chameleon = {
 let spoof = {
 	dnt: function (injectionArray) {
 		injectionArray.push({ obj: "window.navigator", prop: "doNotTrack", value: true });
+		return injectionArray;
+	},
+	history: function (injectionArray) {
+		injectionArray.push({ obj: "window.history", prop: "length", value: 2 });
 		return injectionArray;
 	},
 	name: function (injectionArray) {
@@ -205,8 +210,9 @@ function buildInjectScript() {
 	let nav = [];
 
 	if (chameleon.settings.enableScriptInjection) {
-		if (chameleon.settings.protectWinName) injectionText += spoof.name();
 		if (chameleon.settings.disableWebSockets) injectionArray = spoof.websocket(injectionArray);
+		if (chameleon.settings.limitHistory) injectionArray = spoof.history(injectionArray);
+		if (chameleon.settings.protectWinName) injectionText += spoof.name();
 		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(Math.random().toString(36));
 
 		nav = spoof.navigator();
