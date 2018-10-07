@@ -624,7 +624,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (e.target.id == 'addRuleButton'){
 			$('input[name="url"]').val("");
 			$('input[name="url"]').prop('disabled', false);
-			$('input[name="pattern"').prop('disabled', true);
+			$('input[name="pattern"]').prop('disabled', true);
 			showEditor();
 		} else if (e.target.id == 'saveProfile') {
 			saveProfile();
