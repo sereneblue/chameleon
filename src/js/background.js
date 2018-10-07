@@ -17,6 +17,7 @@ let chameleon = {
 		spoofViaValue: 0,
 		spoofXFor: false,
 		spoofXForValue: 0,
+		upgradeInsecureRequests: false,
 		viaIP: "",
 		viaIP_profile: "",
 		xforwardedforIP: "",
@@ -398,6 +399,10 @@ function rewriteHeaders(e) {
 		if (dntIndex == -1) e.requestHeaders.push({ name: "DNT", value: "1"});
 	} else {
 		e.requestHeaders.splice(dntIndex, 1);
+	}
+
+	if (chameleon.headers.upgradeInsecureRequests) {
+		e.requestHeaders.push({ name: "Upgrade-Insecure-Requests", value: "1"});
 	}
 
 	if (!wl.on || wl.opt.ip) {
