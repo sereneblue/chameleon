@@ -80,7 +80,7 @@ let spoof = {
 		injectionArray.push({ obj: "window.history", prop: "length", value: 2 });
 		return injectionArray;
 	},
-	name: function (injectionArray) {
+	name: function () {
 		return `
 			window.name = "";
 		`;
@@ -680,7 +680,7 @@ function migrate(data) {
 	Event Listeners
 */
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(request) {
 	if (request.action == "clear") {
 		if (request.data == "resetTracking") {
 			chrome.privacy.websites.trackingProtectionMode.clear({});
@@ -801,7 +801,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 	}, ["blocking", "requestHeaders"]
 );
 
-chrome.alarms.onAlarm.addListener(function(alarm) {
+chrome.alarms.onAlarm.addListener(function() {
 	start();
 });
 
