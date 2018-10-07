@@ -169,8 +169,8 @@
                     <option value="1">custom IP</option>
                 </select>
                 <div class="ipAddr">
-                    <label for="viaIp">IP address:</label>
-                    <input type="text" name="viaIP" size="15" maxlength="15">
+                    <label for="viaIP">IP address:</label>
+                    <input type="text" name="viaIP" id="viaIP" size="15" maxlength="15">
                 </div>
             </div>
             <div class="opt">
@@ -193,7 +193,7 @@
             <div class="opt">
                 <label for="refererXorigin">Referer X Origin Policy :</label>
                 <br/>
-                <select name="refererXorigin">
+                <select name="refererXorigin" id="refererXorigin">
                     <option value="0">Always send (default)</option>
                     <option value="1">Match base domain</option>
                     <option value="2">Match host</option>
@@ -202,7 +202,7 @@
             <div class="opt">
                 <label for="refererTrimming">Referer Trimming Policy :</label>
                 <br/>
-                <select name="refererTrimming">
+                <select name="refererTrimming" id="refererTrimming">
                     <option value="0">Send full URI (default)</option>
                     <option value="1">Scheme, host, port + path</option>
                     <option value="2">Scheme, host + port</option>
@@ -511,7 +511,7 @@
                     </div>
                     <div id="ruleEdit" style="display: none; margin-bottom: 10px;">
                         <label for="url">Domain:</label>
-                        <input name="url" style="width: 60%" type="text">
+                        <input name="url" id="url" style="width: 60%" type="text">
                         <div>
                             <label><input name="authorization" type="checkbox">&nbsp;Disable authorization</label>
                         </div>
