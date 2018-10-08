@@ -165,6 +165,17 @@ async function updateUI() {
 	}
 	
 	$(`select[name="screenSize"]`).val(data.settings.screenSize);
+
+	if (data.settings.screenSize == "custom") {
+		$('#customScreen').show();
+		if (data.settings.customScreen) {
+			let res = data.settings.customScreen.split('x');
+			let width = res[0], height = res[1];
+			$('#customWidth').val(width);
+			$('#customHeight').val(height);
+		}
+	}
+
 	$(`select[name="timeZone"]`).val(data.settings.timeZone);
 	$(`input[name="enableWhitelist"]`).prop('checked', data.whitelist.enabled);
 	$(`input[name="enableWhitelistRealProfile"]`).prop('checked', data.whitelist.enableRealProfile);
@@ -372,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	})
 
-	// basically the same thing as above
+	// change current profile
 	$('button[name="changeNow"]').on('click', function(e) {
 		chrome.runtime.sendMessage({
 			action: "interval",
@@ -584,6 +595,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	})
 
 	$('#options select').on('change', function(e) {
+		if (e.target.name == "screenSize") {
+			if (e.target.value == "custom") {
+				$('#customWidth').val('');
+				$('#customHeight').val('');
+				$('#customScreen').show();
+			} else {
+				$('#customScreen').hide();
+			}
+		}
+
 		chrome.runtime.sendMessage({
 			action: "option",
 			data: {
@@ -592,6 +613,24 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	});
+
+	// get custom screen info
+	$('#customScreen input').on('change', function(e) {
+		if (e.target.value) {
+			var width = parseInt($('#customWidth').val());
+			var height = parseInt($('#customHeight').val());
+
+			if (width && height) {
+				chrome.runtime.sendMessage({
+					action: "storage",
+					data: {
+						key: "customScreen",
+						value: `${width}x${height}`
+					}
+				});
+			}
+		}
+	})
 
 	//capture whitelist update events
 	$.each(whitelist, function(index, value) {

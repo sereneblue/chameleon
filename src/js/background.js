@@ -34,6 +34,7 @@ let chameleon = {
 	},
 	injection: null,
 	settings: {
+		customScreen: "",
 		disableWebSockets: false,
 		enableScriptInjection: false,
 		interval: 0,
@@ -150,25 +151,24 @@ let spoof = {
 	},
 	profileResolution: "",
 	screen: function(screenSize, injectionArray) {
-		var width, height;
+		var s;
 		var depth = 24;
 
 		if (screenSize == "profile") {
 			if (spoof.profileResolution != "") {
-				var s = spoof.profileResolution.split("x");
-				width = parseInt(s[0]);
-				height = parseInt(s[1]);
+				s = spoof.profileResolution.split("x");
 			} else {
-				var screenData = getScreenResolution(chameleon.headers.useragent);
-				width = screenData[0];
-				height = screenData[1];
-				depth = screenData[2];
+				s = getScreenResolution(chameleon.headers.useragent);
+				depth = s[2];
 			}
+		} else if (screenSize == "custom") {
+			s = chameleon.settings.customScreen.split("x");
 		} else {
-			var s = screenSize.split("x");
-			width = parseInt(s[0]);
-			height = parseInt(s[1]);
+			s = screenSize.split("x");
 		}
+
+		let width = parseInt(s[0]);
+		let height = parseInt(s[1]);
 
 		// use real profile screen resolution if couldn't determine from useragent
 		if (width == null) return injectionArray;
@@ -488,10 +488,12 @@ async function start() {
 		var screenData = getScreenResolution(chameleon.headers.useragent);
 		spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
 		tooltipData.screen = spoof.profileResolution;
-	} else if (chameleon.settings.screenSize != "default") {
-		tooltipData.screen = chameleon.settings.screenSize
-	} else {
+	} else if (chameleon.settings.screenSize == "custom") {
+		tooltipData.screen = "Custom"
+	} else if (chameleon.settings.screenSize == "default") {
 		tooltipData.screen = "Host";
+	} else {
+		tooltipData.screen = chameleon.settings.screenSize;
 	}
 	
 	if (!chameleon.settings.enableScriptInjection) {
@@ -739,10 +741,12 @@ chrome.runtime.onMessage.addListener(function(request) {
 					tooltipData.extra = "";
 
 					if (request.data.key == "screenSize") {
-						if (request.data.value != "default") {
-							tooltipData.screen = request.data.value
-						} else if (request.data.value == "default") {
+						if (request.data.value == "default") {
 							tooltipData.screen = "Host";
+						} else if (request.data.value == "custom") {
+							tooltipData.screen = "Custom";
+						} else {
+							tooltipData.screen = request.data.value;
 						}
 					} else if (request.data.key == "enableScriptInjection" && !request.data.value) {
 						tooltipData.extra = "\r\n[Needs script injection!]";

@@ -271,6 +271,7 @@
                         <label>Screen size spoofing*: </label>
                         <select name="screenSize">
                             <option value="default">Default</option>
+                            <option value="custom">Custom</option>
                             <option value="profile">Profile</option>
                             <option value="1366x768">1366x768</option>
                             <option value="1440x900">1440x900</option>
@@ -279,6 +280,16 @@
                             <option value="2560x1440">2560x1440</option>
                             <option value="2560x1600">2560x1600</option>
                         </select>
+                        <table id="customScreen" style="width: unset; margin-left: auto; display: none">
+                            <tr>
+                                <td><label for="customWidth">Screen Width (px): </label></td>
+                                <td><input type="number" name="customWidth" id="customWidth" style="width: 50px" min="0"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="customHeight">Screen Height (px): </label></td>
+                                <td><input type="number" name="customHeight" id="customHeight" style="width: 50px"></td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="opt">
                         <label>Timezone*: </label>
