@@ -81,12 +81,16 @@
                 </select>
                 <button name="changeNow">refresh</button>
                 <div id="range" style="display: none; margin-top: .5em;">
-                    <label style="visibility: hidden;">Change periodically: </label>
-                    <label>Min (minutes): </label>
-                    <input type="number" name="minInterval" style="width: 20%" min="0">
-                    <label style="visibility: hidden;">Change periodically: </label>
-                    <label>Max (minutes): </label>
-                    <input type="number" name="maxInterval" style="width: 20%">
+                    <table style="width: unset; margin-left: auto;">
+                        <tr>
+                            <td><label for="minInterval">Min (minutes): </label></td>
+                            <td><input type="number" name="minInterval" id="minInterval" style="width: 50px" min="0"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="maxInterval">Max (minutes): </label></td>
+                            <td><input type="number" name="maxInterval" id="maxInterval" style="width: 50px"></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <ul class="groups">
@@ -168,9 +172,8 @@
                     <option value="0">random IP</option>
                     <option value="1">custom IP</option>
                 </select>
-                <div class="ipAddr">
-                    <label for="viaIP">IP address:</label>
-                    <input type="text" name="viaIP" id="viaIP" size="15" maxlength="15">
+                <div class="ipAddr" style="display: none">
+                    <label>IP address: <input type="text" name="viaIP" id="viaIP" size="15" maxlength="15"></label>
                 </div>
             </div>
             <div class="opt">
@@ -179,8 +182,8 @@
                     <option value="0">random IP</option>
                     <option value="1">custom IP</option>
                 </select>
-                <div class="ipAddr">
-                    <label><input type="text" name="xforwardedforIP" size="15" maxlength="15"> IP address:</label>
+                <div class="ipAddr" style="display: none">
+                    <label>IP address: <input type="text" name="xforwardedforIP" size="15" maxlength="15"></label>
                 </div>
             </div>
             <div class="opt">
@@ -189,7 +192,7 @@
             <div class="opt">
                 <label><input type="checkbox" name="spoofSourceRef"> Spoof Source Referer</label>
             </div>
-            <p style="margin-top: 10px; color: maroon;">Don't modify about:config settings for the options below. More info in wiki.</p>
+            <p style="margin-top: 10px; color: maroon;">Don't modify about:config settings for the options below. <a href="https://github.com/sereneblue/chameleon/wiki/Headers">More info in wiki.</a></p>
             <div class="opt">
                 <label for="refererXorigin">Referer X Origin Policy :</label>
                 <br/>
@@ -315,13 +318,16 @@
                 <div class="list" id="list_standard">
                     <div class="opt">
                         <div class="opt">
-                            <label><input name="enableTrackingProtection" type="checkbox"> Enable tracking protection</label><button style="margin-left: 1em" name="resetTracking">reset</button>
+                            <label><input name="enableTrackingProtection" type="checkbox"> Enable tracking protection</label>
+                            <button style="float: right" name="resetTracking">reset</button>
                         </div>
                         <div class="opt">
-                            <label><input name="firstPartyIsolate" type="checkbox"> Enable 1st party isolation</label><button style="margin-left: 1em" name="resetFirstParty">reset</button>
+                            <label><input name="firstPartyIsolate" type="checkbox"> Enable 1st party isolation</label>
+                            <button style="float: right" name="resetFirstParty">reset</button>
                         </div>
                         <div class="opt">
-                            <label><input name="resistFingerprinting" type="checkbox"> Resist fingerprinting</label><button style="margin-left: 1em" name="resetFingerprinting">reset</button>
+                            <label><input name="resistFingerprinting" type="checkbox"> Resist fingerprinting</label>
+                            <button style="float: right" name="resetFingerprinting">reset</button>
                         </div>
                     </div>
                 </div>
@@ -332,7 +338,7 @@
                 <div class="list" id="list_cookies">
                     <div class="opt">
                         <label>Cookie policy: </label>
-                        <select name="cookieConfig">
+                        <select name="cookieConfig" style="float: right">
                             <option value="allow_all">Allow all</option>
                             <option value="reject_all">Block all</option>
                             <option value="reject_third_party">Block 3rd party</option>
