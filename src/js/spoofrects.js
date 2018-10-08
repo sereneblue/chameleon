@@ -45,6 +45,10 @@ let spoofRects = (randString) => {
 			return [this.getBoundingClientRect()];
 		}
 
+
+		Object.defineProperty(window.Element.prototype.getClientRects, "name", { value: "getClientRects" });
+		Object.defineProperty(window.Element.prototype.getBoundingClientRect, "name", { value: "getBoundingClientRect" });
+
 		window.Element.prototype.getClientRects.toString =
 		window.Element.prototype.getClientRects.toSource =
 		window.Element.prototype.getClientRects.toLocaleString =
