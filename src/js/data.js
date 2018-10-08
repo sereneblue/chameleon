@@ -41,9 +41,13 @@ let uaList = {
 		"name": "Firefox 60 ESR (Win 7)",
 		"value": "win13"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.2; rv:60.0) Gecko/20100101 Firefox/60.0",
-		"name": "Firefox 60 ESR (Win 8)",
+		"ua": "Mozilla/5.0 (Windows NT 6.3; rv:60.0) Gecko/20100101 Firefox/60.0",
+		"name": "Firefox 60 ESR (Win 8.1)",
 		"value": "win14"
+	}, {
+		"ua": "Mozilla/5.0 (Windows NT 10.0; rv:60.0) Gecko/20100101 Firefox/60.0",
+		"name": "Firefox 60 ESR (Win 10)",
+		"value": "win15"
 	}, {
 		"ua": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)",
 		"name": "Internet Explorer 10 (Win 8)",
