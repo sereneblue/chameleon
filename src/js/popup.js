@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				$('input[name="pattern"]').val(whitelistRules[idx].pattern || "");
 				$('input[name="re"]').prop('checked', whitelistRules[idx].re);
-				$('input[name="pattern"').prop('disabled', !whitelistRules[idx].re);
+				$('input[name="pattern"]').prop('disabled', !whitelistRules[idx].re);
 
 				el2.insertAfter($(e.target).parent());
 				el2.show();
