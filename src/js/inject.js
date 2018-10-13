@@ -46,7 +46,7 @@ let inject = (props, whitelist, nav, injectionText) => {
 
 		(function(props){
 			let override = ((window, injectArray) => {
-				if (!whitelist.enabled || wlOptions.websocket) {
+				if (!urlOK) {
 					${injectionText}
 				}
 
@@ -58,7 +58,7 @@ let inject = (props, whitelist, nav, injectionText) => {
 				});
 			});
 
-			// remove screen stuff if whitelisted
+			// remove options if whitelisted
 			if (urlOK) {
 				for (var i = props.length - 1; i >= 0; i--) {
 					if (!wlOptions.screen) {
@@ -69,6 +69,10 @@ let inject = (props, whitelist, nav, injectionText) => {
 						}
 					} else if (!wlOptions.winName) {
 						if (props[i].prop == "name") {
+							props.splice(i, 1);
+						}
+					} else if (!wlOptions.websocket) {
+						if (props[i].prop.indexOf("Socket") > -1) {
 							props.splice(i, 1);
 						}
 					}
