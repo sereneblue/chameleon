@@ -155,7 +155,9 @@ let spoof = {
 		var depth = 24;
 
 		if (screenSize == "profile") {
-			if (spoof.profileResolution != "") {
+			if (chameleon.settings.useragent == "" || chameleon.settings.useragent == "real") {
+				return injectionArray;
+			} else if (spoof.profileResolution != "") {
 				s = spoof.profileResolution.split("x");
 			} else {
 				s = getScreenResolution(chameleon.headers.useragent);
@@ -855,6 +857,6 @@ chrome.alarms.onAlarm.addListener(function() {
 		});
 	}
 
-	await save({ version: "0.9.2"});
+	await save({ version: "0.9.3"});
 	changeTimer();
 })();
