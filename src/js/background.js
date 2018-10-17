@@ -737,6 +737,10 @@ chrome.runtime.onMessage.addListener(function(request) {
 			chrome.privacy.websites[request.data.key].set({
 				"value": request.data.value
 			});
+		} else if (request.data.key == "webRTCIPHandlingPolicy") {
+			chrome.privacy.network[request.data.key].set({
+				"value": request.data.value
+			});
 		} else {
 			let tooltip = (plat) => {
 				if (plat.os != "android") {
@@ -857,6 +861,6 @@ chrome.alarms.onAlarm.addListener(function() {
 		});
 	}
 
-	await save({ version: "0.9.3"});
+	await save({ version: "0.9.4"});
 	changeTimer();
 })();

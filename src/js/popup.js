@@ -123,46 +123,30 @@ async function updateUI() {
 		$(`input[name="${element.name}"]`).prop('checked', data.settings[element.name]);
 	});
 
-	// check if browser APIs avialable
-	try {
-		var cookieOption = browser.privacy.websites.cookieConfig.get({});
-		cookieOption.then((c) => {
-			$(`select[name="cookieConfig"]`).val(c.value.behavior);
-		});
-	} catch (e) {
-		$(`select[name="cookieConfig"]`).parent().find("label").hide();
-		$(`select[name="cookieConfig"]`).hide();
-	}
+	var cookieOption = browser.privacy.websites.cookieConfig.get({});
+	cookieOption.then((c) => {
+		$(`select[name="cookieConfig"]`).val(c.value.behavior);
+	});
 
-	try {
-		var trackingProtection = browser.privacy.websites.trackingProtectionMode.get({});
-		trackingProtection.then((t) => {
-			$(`input[name="enableTrackingProtection"]`).prop('checked', t.value == "always"? true: false);
-		});
-	} catch (e) {
-		$(`input[name="enableTrackingProtection"]`).parent().find("label").hide();
-		$(`input[name="enableTrackingProtection"]`).hide();
-	}
+	var trackingProtection = browser.privacy.websites.trackingProtectionMode.get({});
+	trackingProtection.then((t) => {
+		$(`input[name="enableTrackingProtection"]`).prop('checked', t.value == "always"? true: false);
+	});
 
-	try {
-		var firstPartyIsolate = browser.privacy.websites.firstPartyIsolate.get({});
-		firstPartyIsolate.then((f) => {
-			$(`input[name="firstPartyIsolate"]`).prop('checked', f.value);
-		});
-	} catch (e) {
-		$(`input[name="firstPartyIsolate"]`).parent().find("label").hide();
-		$(`input[name="firstPartyIsolate"]`).hide();
-	}
+	var firstPartyIsolate = browser.privacy.websites.firstPartyIsolate.get({});
+	firstPartyIsolate.then((f) => {
+		$(`input[name="firstPartyIsolate"]`).prop('checked', f.value);
+	});
 
-	try {
-		var resistFingerprinting = browser.privacy.websites.resistFingerprinting.get({});
-		resistFingerprinting.then((r) => {
-			$(`input[name="resistFingerprinting"]`).prop('checked', r.value);
-		});
-	} catch (e) {
-		$(`input[name="resistFingerprinting"]`).parent().find("label").hide();
-		$(`input[name="resistFingerprinting"]`).hide();
-	}
+	var resistFingerprinting = browser.privacy.websites.resistFingerprinting.get({});
+	resistFingerprinting.then((r) => {
+		$(`input[name="resistFingerprinting"]`).prop('checked', r.value);
+	});
+
+	var webRTCIPHandlingPolicy = browser.privacy.network.webRTCIPHandlingPolicy.get({});
+	webRTCIPHandlingPolicy.then((w) => {
+		$(`select[name="webRTCIPHandlingPolicy"]`).val(w.value);
+	});
 	
 	$(`select[name="screenSize"]`).val(data.settings.screenSize);
 

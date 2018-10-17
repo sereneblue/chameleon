@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.9.3-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.9.4-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 
 Chameleon is a WebExtension port of the popular Firefox addon [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer).
@@ -33,6 +33,7 @@ The UI is near identical and contains most of the features found in the original
 - Spoof screen size.
 - Spoof timezone.
 - Modify cookie options.
+- Prevent WebRTC leak
 - about:config checklist to enhance your privacy.
 
 WebExtensions are unable to modify about:config entries. A workaround for this is to use the checklists that can be found under certain menu options. Right click the option and select "Copy Link Location". Paste this link into your address bar and you'll be presented with the option in about:config.
