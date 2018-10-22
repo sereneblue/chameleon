@@ -486,24 +486,6 @@ async function start() {
 		chameleon.headers.useragent = u.ua;
 	}
 
-	if (chameleon.settings.screenSize == "profile") {
-		var screenData = getScreenResolution(chameleon.headers.useragent);
-		spoof.profileResolution = `${screenData[0]}x${screenData[1]}`;
-		tooltipData.screen = spoof.profileResolution;
-	} else if (chameleon.settings.screenSize == "custom") {
-		tooltipData.screen = "Custom"
-	} else if (chameleon.settings.screenSize == "default") {
-		tooltipData.screen = "Host";
-	} else {
-		tooltipData.screen = chameleon.settings.screenSize;
-	}
-	
-	if (!chameleon.settings.enableScriptInjection) {
-		tooltipData.extra = "\r\n[Needs script injection!]";
-	} else {
-		tooltipData.extra = "";
-	}
-
 	chameleon.headers.viaIP_profile = chameleon.headers.xforwardedforIP_profile = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
 
 	if (chameleon.headers.useragent && chameleon.settings.notificationsEnabled) {
@@ -514,7 +496,7 @@ async function start() {
 		});
 	}
 
-	if (tooltipData.os) title = `Current Profile:\r\nOS: ${tooltipData.os}\r\nBrowser: ${tooltipData.browser}\r\nScreen: ${tooltipData.screen}${tooltipData.extra}`;
+	if (tooltipData.os) title = `Chameleon | ${tooltipData.os} - ${tooltipData.browser}`;
 	let platformInfo = browser.runtime.getPlatformInfo();
 	if (platformInfo.os != "android") chrome.browserAction.setTitle({ title });
 	rebuildInjectionScript();
@@ -744,22 +726,8 @@ chrome.runtime.onMessage.addListener(function(request) {
 		} else {
 			let tooltip = (plat) => {
 				if (plat.os != "android") {
-					tooltipData.extra = "";
-
-					if (request.data.key == "screenSize") {
-						if (request.data.value == "default") {
-							tooltipData.screen = "Host";
-						} else if (request.data.value == "custom") {
-							tooltipData.screen = "Custom";
-						} else {
-							tooltipData.screen = request.data.value;
-						}
-					} else if (request.data.key == "enableScriptInjection" && !request.data.value) {
-						tooltipData.extra = "\r\n[Needs script injection!]";
-					}
-
 					let title = "Chameleon";
-					if (tooltipData.os) title = `Current Profile:\r\nOS: ${tooltipData.os}\r\nBrowser: ${tooltipData.browser}\r\nScreen: ${tooltipData.screen}${tooltipData.extra}`;
+					if (tooltipData.os) title = `Chameleon | ${tooltipData.os} - ${tooltipData.browser}`;
 
 					chrome.browserAction.setTitle({ title });
 				}
@@ -861,6 +829,6 @@ chrome.alarms.onAlarm.addListener(function() {
 		});
 	}
 
-	await save({ version: "0.9.4"});
+	await save({ version: "0.9.5"});
 	changeTimer();
 })();

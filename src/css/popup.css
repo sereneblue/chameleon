@@ -299,9 +299,10 @@ ul {
   content: "\e9ac";
 }
 
-@media (max-width: 340px) {
+@media only screen and (max-width: 339px) {
   body {
-    max-width: 340px;
+    min-width: 329px;
+    max-width: 328px;
     max-height: 450px;
   }
 }
