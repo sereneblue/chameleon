@@ -784,8 +784,14 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 	}, ["blocking", "requestHeaders"]
 );
 
-chrome.alarms.onAlarm.addListener(function() {
-	start();
+chrome.alarms.onAlarm.addListener(() => { start(); });
+
+browser.runtime.onInstalled.addListener((details) => {
+	if (!details.temporary) {
+		browser.tabs.create({
+			url: "https://github.com/sereneblue/chameleon/wiki"
+		});
+	}
 });
 
 /*
@@ -829,6 +835,6 @@ chrome.alarms.onAlarm.addListener(function() {
 		});
 	}
 
-	await save({ version: "0.9.5"});
+	await save({ version: "0.9.6"});
 	changeTimer();
 })();

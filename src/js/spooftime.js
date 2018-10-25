@@ -210,5 +210,24 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 			}
 		  }
 
-		window.Date = ShiftedDate;`;
+		window.Date = ShiftedDate;
+
+		document.addEventListener('DOMContentLoaded', function () {
+		    document.body.appendChild = function(oAppend) {
+		    	return function() {
+		    		oAppend.apply(this, arguments);
+		    		if (arguments[0].nodeName == "IFRAME") {
+						const intlIframe = arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions;
+						arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
+							return Object.assign(intlIframe.apply(this, args), {
+								timeZone: tzName
+							});
+						};
+
+		    			arguments[0].contentWindow.Date = ShiftedDate;
+		    		}
+		    	}
+		    }(document.body.appendChild);
+		});
+	`;
 }
