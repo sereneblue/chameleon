@@ -400,7 +400,7 @@ function rewriteHeaders(e) {
 	if (chameleon.headers.enableDNT) {
 		if (dntIndex == -1) e.requestHeaders.push({ name: "DNT", value: "1"});
 	} else {
-		e.requestHeaders.splice(dntIndex, 1);
+		if (dntIndex >= 0) e.requestHeaders.splice(dntIndex, 1);
 	}
 
 	if (chameleon.headers.upgradeInsecureRequests) {
@@ -835,6 +835,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		});
 	}
 
-	await save({ version: "0.9.6"});
+	await save({ version: "0.9.7"});
 	changeTimer();
 })();
