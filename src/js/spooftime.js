@@ -213,9 +213,9 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 		window.Date = ShiftedDate;
 
 		document.addEventListener('DOMContentLoaded', function () {
-		    document.body.appendChild = function(oAppend) {
+		    Element.prototype.appendChild = function(oAppend) {
 		    	return function() {
-		    		oAppend.apply(this, arguments);
+		    		var tmp = oAppend.apply(this, arguments);
 		    		if (arguments[0].nodeName == "IFRAME") {
 						const intlIframe = arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions;
 						arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
@@ -226,8 +226,10 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 
 		    			arguments[0].contentWindow.Date = ShiftedDate;
 		    		}
+
+		    		return tmp;
 		    	}
-		    }(document.body.appendChild);
+		    }(Element.prototype.appendChild);
 		});
 	`;
 }

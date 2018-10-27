@@ -835,6 +835,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		});
 	}
 
-	await save({ version: "0.9.7"});
+	await save({ version: "0.9.8"});
 	changeTimer();
 })();
