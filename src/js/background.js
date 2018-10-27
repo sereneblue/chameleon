@@ -759,8 +759,7 @@ chrome.runtime.onMessage.addListener(function(request) {
 			}
 		}
 
-		let platformInfo = browser.runtime.getPlatformInfo();
-		platformInfo.then(setIcon);
+		browser.runtime.getPlatformInfo().then(setIcon);
 
 		chameleon.settings[request.data.key] = request.data.value;
 		saveSettings("settings");
@@ -829,12 +828,16 @@ browser.runtime.onInstalled.addListener((details) => {
 		init(data);
 	}
 
+	let plat = await browser.runtime.getPlatformInfo();
+
 	if (chameleon.settings.useragent == "real") {
-		chrome.browserAction.setIcon({
-			path: "img/icon_disabled_48.png"
-		});
+		if (plat.os != "android") {
+			chrome.browserAction.setIcon({
+				path: "img/icon_disabled_48.png"
+			});
+		}
 	}
 
-	await save({ version: "0.9.8"});
+	await save({ version: "0.9.9"});
 	changeTimer();
 })();
