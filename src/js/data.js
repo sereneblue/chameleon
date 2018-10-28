@@ -223,3 +223,8 @@ let options = ["scriptInjection", "standard", "cookies", "misc", "reporting"];
 
 // whitelist
 let whitelist = ["whitelistProfile", "whitelistRules"];
+
+// Export ua list for testing
+if ( typeof module !== 'undefined' && module.hasOwnProperty('exports') ) {
+    module.exports = uaList;
+}

@@ -1,0 +1,16 @@
+{
+  "name": "chameleon",
+  "description": "Spoof your browser profile. Includes a few privacy enhancing options.",
+  "scripts": {
+  	"test": "node test/zipExtension.js && mocha --timeout 0 test/**/*.js"
+  },
+  "devDependencies": {
+    "archiver": "^3.0.0",
+    "chai": "^4.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "geckodriver": "^1.12.2",
+    "mocha": "^5.2.0",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  }
+}
