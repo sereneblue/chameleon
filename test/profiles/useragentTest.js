@@ -1,4 +1,4 @@
-const { Builder, By, Key, promise, until } = require('selenium-webdriver');
+const { Builder } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 
 const expect = require('chai').expect
@@ -117,7 +117,6 @@ describe('Profiles', () => {
 
 		let firstUA = await driver.executeScript('return window.navigator.userAgent;');
 
-		// use a for loop to get around timeout issue
 		await wait(61000);
 		await driver.get(LOCALSERVER);
 	
@@ -167,7 +166,7 @@ describe('Profiles', () => {
 
 	loopProfiles(uaList.linux, "Linux");
 
-	it('should use a iOS profile', async () => {
+	it('should use an iOS profile', async () => {
 		let uas = uaList.ios.map(u => u.ua);
 
 		await selectProfile('input[value="random_ios"]');
