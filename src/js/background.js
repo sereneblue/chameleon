@@ -324,7 +324,7 @@ function filterProfiles(uaList) {
 		}
 	}
 
-	return uas.length ? uas : [""];
+	return uas.length ? uas : [];
 }
 
 // rewrite headers per request 
@@ -481,9 +481,13 @@ async function start() {
 			uas = filterProfiles(uaList.ios.concat(uaList.android));
 		}
 
-		let u = uas[Math.floor(Math.random() * uas.length)];
-		tooltipData = getTooltipInfo(u);
-		chameleon.headers.useragent = u.ua;
+		if (uas.length > 0) {
+			let u = uas[Math.floor(Math.random() * uas.length)];
+			tooltipData = getTooltipInfo(u);
+			chameleon.headers.useragent = u.ua;
+		} else {
+			chameleon.headers.useragent = "";
+		}
 	}
 
 	chameleon.headers.viaIP_profile = chameleon.headers.xforwardedforIP_profile = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
@@ -496,7 +500,7 @@ async function start() {
 		});
 	}
 
-	if (tooltipData.os) title = `Chameleon | ${tooltipData.os} - ${tooltipData.browser}`;
+	title = tooltipData.os ? `Chameleon | ${tooltipData.os} - ${tooltipData.browser}` : "Chameleon";
 	let platformInfo = browser.runtime.getPlatformInfo();
 	if (platformInfo.os != "android") chrome.browserAction.setTitle({ title });
 	rebuildInjectionScript();
@@ -684,6 +688,8 @@ chrome.runtime.onMessage.addListener(function(request) {
 		let key = request.data.key.split('_')[1].match(/([a-z]+)(\d+)/);
 		let index = parseInt(key[2]);
 		chameleon.excluded[key[1]][index - 1] = request.data.value;
+
+		changeTimer();
 		saveSettings("excluded");
 	} else if (request.action == "interval") {
 		chameleon.settings.interval = request.data;
@@ -838,6 +844,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		}
 	}
 
-	await save({ version: "0.9.9"});
+	await save({ version: "0.9.10"});
 	changeTimer();
 })();

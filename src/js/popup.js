@@ -458,9 +458,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	$('#profile div.useragent > input[type="checkbox"]').on('change', function(e) {
-		var el = $($(this).closest('.useragent').siblings().toArray()[0]);
-		if (el.find('input[type="checkbox"]')[0].checked) this.checked = true;
-
 		chrome.runtime.sendMessage({
 			action: "exclude",
 			data: {
