@@ -91,7 +91,7 @@ describe('Profiles', () => {
 
 		expect(navUA).to.equal(reqUA);
 	});
-  
+
 	it('should use a random profile', async () => {
 		let uas = uaList.windows.concat(uaList.macos, uaList.linux, uaList.ios, uaList.android).map(u => u.ua);
 
@@ -107,9 +107,7 @@ describe('Profiles', () => {
 		await driver.executeScript(`
 			el = document.querySelector('#interval > select:nth-child(2)');
 			el.value = 1;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 		`);
 
 		await wait(SLEEP_TIME);
@@ -146,6 +144,23 @@ describe('Profiles', () => {
 		await checkUA(uas);
 	});
 
+	it('should exclude all but 1 Windows profile', async () => {
+		let u = uaList.windows[Math.floor(Math.random() * uaList.windows.length)];
+
+		await driver.executeScript(`
+			el = document.querySelector('#list_windows .excludeall input');
+			el.checked = true;
+			el.dispatchEvent(new Event('click'));
+
+			el = document.querySelector('input[name="exc_${u.value}"]');
+			el.checked = false;
+			el.dispatchEvent(new Event('change'));
+		`);
+
+		await selectProfile('input[value="random_windows"]');
+		await checkUA([u.ua]);
+	});
+
 	loopProfiles(uaList.windows, "Windows");
 
 	it('should use a macOS profile', async () => {
@@ -153,6 +168,23 @@ describe('Profiles', () => {
 
 		await selectProfile('input[value="random_macos"]');
 		await checkUA(uas);
+	});
+
+	it('should exclude all but 1 macOS profile', async () => {
+		let u = uaList.macos[Math.floor(Math.random() * uaList.macos.length)];
+
+		await driver.executeScript(`			
+			el = document.querySelector('#list_macos .excludeall input');
+			el.checked = true;
+			el.dispatchEvent(new Event('click'));
+
+			el = document.querySelector('input[name="exc_${u.value}"]');
+			el.checked = false;
+			el.dispatchEvent(new Event('change'));
+		`);
+
+		await selectProfile('input[value="random_macos"]');
+		await checkUA([u.ua]);
 	});
 
 	loopProfiles(uaList.macos, "macOS");
@@ -164,6 +196,23 @@ describe('Profiles', () => {
 		await checkUA(uas);
 	});
 
+	it('should exclude all but 1 Linux profile', async () => {
+		let u = uaList.linux[Math.floor(Math.random() * uaList.linux.length)];
+
+		await driver.executeScript(`			
+			el = document.querySelector('#list_linux .excludeall input');
+			el.checked = true;
+			el.dispatchEvent(new Event('click'));
+
+			el = document.querySelector('input[name="exc_${u.value}"]');
+			el.checked = false;
+			el.dispatchEvent(new Event('change'));
+		`);
+
+		await selectProfile('input[value="random_linux"]');
+		await checkUA([u.ua]);
+	});
+
 	loopProfiles(uaList.linux, "Linux");
 
 	it('should use an iOS profile', async () => {
@@ -173,6 +222,23 @@ describe('Profiles', () => {
 		await checkUA(uas);
 	});
 
+	it('should exclude all but 1 iOS profile', async () => {
+		let u = uaList.ios[Math.floor(Math.random() * uaList.ios.length)];
+
+		await driver.executeScript(`			
+			el = document.querySelector('#list_ios .excludeall input');
+			el.checked = true;
+			el.dispatchEvent(new Event('click'));
+
+			el = document.querySelector('input[name="exc_${u.value}"]');
+			el.checked = false;
+			el.dispatchEvent(new Event('change'));
+		`);
+
+		await selectProfile('input[value="random_ios"]');
+		await checkUA([u.ua]);
+	});
+
 	loopProfiles(uaList.ios, "iOS");
 
 	it('should use an Android profile', async () => {
@@ -180,6 +246,23 @@ describe('Profiles', () => {
 
 		await selectProfile('input[value="random_android"]');
 		await checkUA(uas);
+	});
+
+	it('should exclude all but 1 Android profile', async () => {
+		let u = uaList.android[Math.floor(Math.random() * uaList.android.length)];
+
+		await driver.executeScript(`			
+			el = document.querySelector('#list_android .excludeall input');
+			el.checked = true;
+			el.dispatchEvent(new Event('click'));
+
+			el = document.querySelector('input[name="exc_${u.value}"]');
+			el.checked = false;
+			el.dispatchEvent(new Event('change'));
+		`);
+
+		await selectProfile('input[value="random_android"]');
+		await checkUA([u.ua]);
 	});
 
 	loopProfiles(uaList.android, "Android");
@@ -192,9 +275,7 @@ describe('Profiles', () => {
 		await driver.executeScript(`
 			el = document.querySelector('#list_custom > div > input:nth-child(2)');
 			el.value = "${ua}";
-
-			var ev = new Event('keyup');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('keyup'));
 		`);
 
 		await wait(SLEEP_TIME);
