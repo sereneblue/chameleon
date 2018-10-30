@@ -147,15 +147,11 @@ describe('Headers', () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="spoofViaValue"]');
 			el.value = 1;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 
 			el = document.querySelector('input[name="viaIP"]');
 			el.value = "1.1.1.1";
-
-			ev = new Event('keyup');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('keyup'));
 		`);
 
 		await driver.get(LOCALSERVER);
@@ -177,15 +173,11 @@ describe('Headers', () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="spoofXForValue"]');
 			el.value = 1;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 
 			el = document.querySelector('input[name="xforwardedforIP"]');
 			el.value = "1.1.1.1";
-
-			ev = new Event('keyup');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('keyup'));
 		`);
 
 		await driver.get(LOCALSERVER);
@@ -227,9 +219,7 @@ describe('Headers', () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="refererXorigin"]');
 			el.value = 0;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 		`);
 
 		await wait(SLEEP_TIME);
@@ -254,9 +244,7 @@ describe('Headers', () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="refererXorigin"]');
 			el.value = 1;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 		`);
 
 		await wait(SLEEP_TIME);
@@ -281,9 +269,7 @@ describe('Headers', () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="refererXorigin"]');
 			el.value = 2;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 		`);
 
 		await wait(SLEEP_TIME);
@@ -308,9 +294,7 @@ describe('Headers', () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="refererTrimming"]');
 			el.value = 0;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 		`);
 		await driver.get(LOCALSERVER + "/ref_test?funding=secured");
 		await driver.findElement(By.id('link')).click();
@@ -323,9 +307,7 @@ describe('Headers', () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="refererTrimming"]');
 			el.value = 1;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 		`);
 		await driver.get(LOCALSERVER + "/ref_test");
 		await driver.findElement(By.id('link')).click();
@@ -338,9 +320,7 @@ describe('Headers', () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="refererTrimming"]');
 			el.value = 2;
-
-			var ev = new Event('change');
-			el.dispatchEvent(ev);
+			el.dispatchEvent(new Event('change'));
 		`);
 		await driver.get(LOCALSERVER + "/ref_test");
 		await driver.findElement(By.id('link')).click();
@@ -364,15 +344,11 @@ describe('Headers', () => {
 			await driver.executeScript(`
 				var el = document.querySelector('input[name="spoofAcceptLang"]')
 				el.checked = true;
-
-				ev = new Event('click');
-				el.dispatchEvent(ev);
+				el.dispatchEvent(new Event('click'));
 
 				el = document.querySelector('select[name="spoofAcceptLangValue"]');
 				el.value = "${l.value}";
-
-				ev = new Event('change');
-				el.dispatchEvent(ev);
+				el.dispatchEvent(new Event('change'));
 			`);
 
 			await wait(SLEEP_TIME);
