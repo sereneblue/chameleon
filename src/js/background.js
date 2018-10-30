@@ -11,7 +11,6 @@ let chameleon = {
 		spoofAcceptEnc: false,
 		spoofAcceptLang: false,
 		spoofAcceptLangValue: "",
-		spoofEtag: false,
 		spoofSourceRef: false,
 		spoofVia: false,
 		spoofViaValue: 0,
@@ -371,8 +370,6 @@ function rewriteHeaders(e) {
 			} else if (wl.opt.ref) {
 				header.value = "";
 			}
-		} else if (header.name.toLowerCase() == "if-none-match") {
-			if (chameleon.headers.spoofEtag) header.value = (Math.random() * 10).toString(36).substr(2, Math.random() * (10 - 5 + 1) + 5);
 		} else if (header.name.toLowerCase() == "user-agent") {
 			if (wl.on) {
 				if (!chameleon.whitelist.enableRealProfile) {
@@ -644,7 +641,7 @@ function migrate(data) {
 
 	// migrate header settings
 	["disableAuth", "disableRef", "enableDNT", "refererXorigin", "refererTrimming",
-	 "spoofAcceptEnc", "spoofAcceptLang", "spoofAcceptLangValue", "spoofEtag",
+	 "spoofAcceptEnc", "spoofAcceptLang", "spoofAcceptLangValue",
 	 "spoofSourceRef", "spoofVia", "spoofViaValue", "spoofXFor", "spoofXForValue",
 	 "viaIP", "viaIP_profile", "xforwardedforIP", "xforwardedforIP_profile"].forEach((key) => {
 		if (data[key] != undefined) {
@@ -844,6 +841,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		}
 	}
 
-	await save({ version: "0.9.10"});
+	await save({ version: "0.9.11"});
 	changeTimer();
 })();
