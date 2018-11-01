@@ -49,6 +49,10 @@ let chameleon = {
 		useragentValue: ""
 	},
 	timeout: null,
+	timezone: {
+		update: 0,
+		value: ""
+	},
 	whitelist: {
 		enabled: false,
 		enableRealProfile: false,
@@ -206,7 +210,7 @@ let customIntervalTimer = null;
 let tooltipData = {};
 
 // builds script to inject into pages
-function buildInjectScript() {
+async function buildInjectScript() {
 	let injectionArray = [];
 	let injectionText = "";
 	let nav = [];
@@ -228,7 +232,7 @@ function buildInjectScript() {
 		}
 
 		if (chameleon.settings.timeZone != "default") {
-			var t = moment.tz(Date.now(), chameleon.settings.timeZone);
+			var t = moment.tz(Date.now(), chameleon.settings.timeZone == "ip" ? chameleon.timezone.value : chameleon.settings.timeZone);
 
 			injectionText += spoofTime(
 				t.utcOffset(),
@@ -246,6 +250,31 @@ function buildInjectScript() {
 	}
 
 	return "";
+}
+
+// get timezone from ipapi
+async function getTimezone() {
+	try {
+		let res = await fetch("https://ipapi.co/json");
+		let data = await res.json();
+
+		if (data.timezone) {
+			chrome.notifications.create({
+				"type": "basic",
+				"title": "Chameleon",
+				"message": `Using ${data.timezone} as timezone.`
+			});
+			chameleon.timezone.value = data.timezone;
+			return;
+		}
+	} catch (e) {
+		chrome.notifications.create({
+			"type": "basic",
+			"title": "Chameleon",
+			"message": "Unable to get timezone data. Using UTC."
+		});
+		chameleon.timezone.value = "Etc/UTC";
+	}
 }
 
 // activates timer for new profile
@@ -557,6 +586,11 @@ function getScreenResolution(ua) {
 async function rebuildInjectionScript() {
 	clearTimeout(chameleon.timeout);
 
+	if (chameleon.timezone.update) {
+		chameleon.timezone.update = 0;
+		await getTimezone();
+	}
+
 	chameleon.timeout = setTimeout(async function () {
 		if (chameleon.injection) {
 			chameleon.injection.unregister();
@@ -741,6 +775,10 @@ chrome.runtime.onMessage.addListener(function(request) {
 				platformInfo.then(tooltip);
 			}
 
+			if (request.data.key == "timeZone" && request.data.value == "ip") {
+				chameleon.timezone.update = 1;
+			}
+
 			chameleon.settings[request.data.key] = request.data.value;
 			saveSettings("settings");
 		}
@@ -841,6 +879,10 @@ browser.runtime.onInstalled.addListener((details) => {
 		}
 	}
 
-	await save({ version: "0.9.11"});
+	if (chameleon.settings.timeZone == "ip") {
+		chameleon.timezone.update = 1;
+	}
+
+	await save({ version: "0.9.12"});
 	changeTimer();
 })();
