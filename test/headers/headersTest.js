@@ -94,7 +94,10 @@ describe('Headers', () => {
 		app.get('/', (req, res) => res.send(req.headers) );
 		app.get('/ref_test', (req, res) => res.render('index'));
 		app.get('/basic_auth', authMiddleware, (req, res) => res.send('Permission granted'));
-		app.get('/etags', (req, res) => res.send('test'));
+		app.get('/etags', (req, res) => {
+			res.setHeader("Etag", Math.random().toString(36));
+			res.send('test');
+		});
 		server = app.listen(3000);
 		cors_server = app.listen(3001);
 	});
@@ -132,6 +135,24 @@ describe('Headers', () => {
 	it('should enable do not track', async () => {
 		await selectHeaderOption('input[name="enableDNT"]');
 		await checkHeaders('dnt', '1');
+	});
+
+	it('should prevent etag tracking', async () => {
+		await selectHeaderOption('input[name="spoofEtag"]');
+
+		let etag = await driver.executeAsyncScript(function() {
+			var callback = arguments[arguments.length - 1];
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "http://localhost:3001/", true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4) {
+					callback(xhr.getResponseHeader("Etag"));
+				}
+			};
+			xhr.send('');
+		});
+
+		expect(etag).to.equal(null);
 	});
 
 	it('should have via ip (random)', async () => {

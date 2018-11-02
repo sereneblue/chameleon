@@ -11,6 +11,7 @@ let chameleon = {
 		spoofAcceptEnc: false,
 		spoofAcceptLang: false,
 		spoofAcceptLangValue: "",
+		spoofEtag: false,
 		spoofSourceRef: false,
 		spoofVia: false,
 		spoofViaValue: 0,
@@ -454,6 +455,21 @@ function rewriteHeaders(e) {
 	return { requestHeaders: e.requestHeaders };
 }
 
+function rewriteResponseHeaders(e) {
+	var wl = whitelisted(e.url);
+
+	e.responseHeaders.forEach(function(header){
+		if (header.name.toLowerCase() == "etag") {
+			if (!wl.on) {
+				if (chameleon.headers.spoofEtag) header.value = "";
+			}
+		}
+	});
+
+	return { responseHeaders: e.responseHeaders };
+}
+
+
 // determines useragent and screen resolution when new task created
 async function start() {
 	var title, uas;
@@ -675,7 +691,7 @@ function migrate(data) {
 
 	// migrate header settings
 	["disableAuth", "disableRef", "enableDNT", "refererXorigin", "refererTrimming",
-	 "spoofAcceptEnc", "spoofAcceptLang", "spoofAcceptLangValue",
+	 "spoofAcceptEnc", "spoofAcceptLang", "spoofAcceptLangValue", "spoofEtag",
 	 "spoofSourceRef", "spoofVia", "spoofViaValue", "spoofXFor", "spoofXForValue",
 	 "viaIP", "viaIP_profile", "xforwardedforIP", "xforwardedforIP_profile"].forEach((key) => {
 		if (data[key] != undefined) {
@@ -818,10 +834,16 @@ chrome.runtime.onMessage.addListener(function(request) {
 	}
 });
 
-chrome.webRequest.onBeforeSendHeaders.addListener(
+browser.webRequest.onBeforeSendHeaders.addListener(
 	rewriteHeaders, {
 		urls: ["<all_urls>"]
 	}, ["blocking", "requestHeaders"]
+);
+
+browser.webRequest.onHeadersReceived.addListener(
+	rewriteResponseHeaders,{
+		urls: ["<all_urls>"]
+	}, ["blocking", "responseHeaders"]
 );
 
 chrome.alarms.onAlarm.addListener(() => { start(); });
@@ -883,6 +905,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.timezone.update = 1;
 	}
 
-	await save({ version: "0.9.12"});
+	await save({ version: "0.9.13"});
 	changeTimer();
 })();
