@@ -238,7 +238,7 @@ async function buildInjectScript() {
 			injectionText += spoofTime(
 				t.utcOffset(),
 				t.format("z"),
-				chameleon.settings.timeZone
+				chameleon.settings.timeZone == "ip" ? chameleon.timezone.value : chameleon.settings.timeZone
 			);
 		}
 
@@ -263,7 +263,7 @@ async function getTimezone() {
 			chrome.notifications.create({
 				"type": "basic",
 				"title": "Chameleon",
-				"message": `Using ${data.timezone} as timezone.`
+				"message": `Using UTC${moment().tz(data.timezone).format('Z')} as timezone.`
 			});
 			chameleon.timezone.value = data.timezone;
 			return;
@@ -905,6 +905,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.timezone.update = 1;
 	}
 
-	await save({ version: "0.9.13"});
+	await save({ version: "0.9.14"});
 	changeTimer();
 })();
