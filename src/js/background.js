@@ -181,6 +181,8 @@ let spoof = {
 		injectionArray.push(...[
 				{ obj: "window.screen", prop: "width", value: width },
 				{ obj: "window.screen", prop: "height", value: height },
+				{ obj: "window", prop: "innerWidth", value: width },
+				{ obj: "window", prop: "innerHeight", value: height },
 				{ obj: "window.screen", prop: "outerWidth", value: width },
 				{ obj: "window.screen", prop: "outerHeight", value: height },
 				{ obj: "window.screen", prop: "innerWidth", value: width },
@@ -909,6 +911,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.timezone.update = 1;
 	}
 
-	await save({ version: "0.9.15"});
+	await save({ version: "0.9.16"});
 	changeTimer();
 })();
