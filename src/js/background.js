@@ -86,10 +86,9 @@ let spoof = {
 		injectionArray.push({ obj: "window.history", prop: "length", value: 2 });
 		return injectionArray;
 	},
-	name: function () {
-		return `
-			window.name = "";
-		`;
+	name: function (injectionArray) {
+		injectionArray.push({ obj: "window", prop: "name", value: "" });
+		return injectionArray;
 	},
 	navigator: function () {
 		var appVersion, hardwareConcurrency, oscpu, platform, productSub, vendor;
@@ -217,9 +216,9 @@ async function buildInjectScript() {
 	let nav = [];
 
 	if (chameleon.settings.enableScriptInjection) {
-		if (chameleon.settings.disableWebSockets) injectionArray = spoof.websocket(injectionArray);
+		injectionArray = spoof.websocket(injectionArray);
+		injectionArray = spoof.name(injectionArray);
 		if (chameleon.settings.limitHistory) injectionArray = spoof.history(injectionArray);
-		if (chameleon.settings.protectWinName) injectionText += spoof.name();
 		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(Math.random().toString(36));
 
 		nav = spoof.navigator();
@@ -246,7 +245,12 @@ async function buildInjectScript() {
 			injectionArray,
 			chameleon.whitelist,
 			nav,
-			injectionText
+			injectionText,
+			{
+				websocket : chameleon.settings.disableWebSockets,
+				screen : chameleon.settings.screenSize != "default",
+				name : chameleon.settings.protectWinName
+			}
 		);
 	}
 
@@ -905,6 +909,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.timezone.update = 1;
 	}
 
-	await save({ version: "0.9.14"});
+	await save({ version: "0.9.15"});
 	changeTimer();
 })();

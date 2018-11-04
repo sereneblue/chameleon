@@ -1,4 +1,4 @@
-let inject = (props, whitelist, nav, injectionText) => {
+let inject = (props, whitelist, nav, injectionText, settings) => {
 	return `
 		var scripts = document.getElementsByTagName('script');
 		var script = document.createElement('script');
@@ -7,6 +7,7 @@ let inject = (props, whitelist, nav, injectionText) => {
 		var properties = ${JSON.stringify(props)};
 		var whitelist = ${JSON.stringify(whitelist)};
 		var urlOK = false;
+		var settings = ${JSON.stringify(settings)};
 		var wlOptions = {
 			websocket: false,
 			screen: false,
@@ -51,30 +52,41 @@ let inject = (props, whitelist, nav, injectionText) => {
 				}
 
 				injectArray.forEach(i => {
-					Object.defineProperty(i.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), i.prop, {
-						configurable: true,
-						value: i.value
-					});
+					if (i.obj == "window") {
+						window[i.prop] = i.value;
+					} else {
+						Object.defineProperty(i.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), i.prop, {
+							configurable: true,
+							value: i.value
+						});
+					}
 				});
 			});
 
 			// remove options if whitelisted
 			if (urlOK) {
 				for (var i = props.length - 1; i >= 0; i--) {
-					if (!wlOptions.screen) {
-						if ( (props[i].obj.indexOf("screen") > -1) 			||
-							 (props[i].obj.indexOf("documentElement") > -1)
-							) {
-							props.splice(i, 1);
-						}
-					} else if (!wlOptions.winName) {
-						if (props[i].prop == "name") {
-							props.splice(i, 1);
-						}
-					} else if (!wlOptions.websocket) {
-						if (props[i].prop.indexOf("Socket") > -1) {
-							props.splice(i, 1);
-						}
+					if ( (props[i].obj.indexOf("screen") > -1) 			||
+						 (props[i].obj.indexOf("documentElement") > -1)
+						) {
+						if (!wlOptions.screen) props.splice(i, 1);
+					} else if (props[i].prop.indexOf("Socket") > -1) {
+						if (!wlOptions.websocket) props.splice(i, 1);
+					} else if (props[i].prop == "name") {
+						if (!wlOptions.winName) props.splice(i, 1);
+					}
+				}
+			} else {
+				for (var i = props.length - 1; i >= 0; i--) {
+					// remove options if not enabled
+					if ( (props[i].obj.indexOf("screen") > -1) 			||
+						 (props[i].obj.indexOf("documentElement") > -1)
+						) {
+						if (!settings.screen) props.splice(i, 1);
+					} else if (props[i].prop.indexOf("Socket") > -1) {
+						if (!settings.websocket) props.splice(i, 1);
+					} else if (props[i].prop == "name") {
+						if (!settings.name) props.splice(i, 1);
 					}
 				}
 			}

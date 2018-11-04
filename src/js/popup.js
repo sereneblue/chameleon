@@ -290,7 +290,7 @@ function saveProfile() {
 	        <span class="icon-bin ruleButton" style="width: 10%;"></span>
 	        <span style="width: 5px; float: right;">&nbsp;</span>
 	        <span class="icon-pencil ruleButton" style="width: 10%;"></span>
-	        <span>${urlValue}</span>
+	        <div class="rulePattern">${urlValue}</div>
 	    </div>`
 	    $('#rules').append(element);
 	}
