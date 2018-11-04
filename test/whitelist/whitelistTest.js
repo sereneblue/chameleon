@@ -75,8 +75,8 @@ describe('Whitelist', () => {
 	});
 
 	it('should enable whitelist', async () => {
-		selectOption('input[name="enableWhitelist"]');
-		selectOption('input[name="enableScriptInjection"]');
+		await selectOption('input[name="enableWhitelist"]');
+		await selectOption('input[name="enableScriptInjection"]');
 	});
 
 	it('should add site to whitelist', async () => {
