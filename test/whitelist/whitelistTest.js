@@ -355,7 +355,7 @@ describe('Whitelist', () => {
 
 			document.querySelector('#saveProfile').click();
 		`);
-		await wait(SLEEP_TIME * 20);
+		await wait(SLEEP_TIME);
 
 		await driver.get(LOCALSERVER + "/whitelist_test");
 		await driver.executeScript(`
