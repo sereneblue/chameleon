@@ -1,0 +1,16 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Chameleon Whitelist Test</title>
+	</head>
+	<body>
+		<a id="link" href="/">Referer test - Click me!</a>
+		<a id="link2" onclick="windowTest();">Window Name Test</a>
+	</body>
+	<script>
+		function windowTest() {
+			window.open('/whitelist_test', 'unique_name');
+		}
+	</script>
+</html>
