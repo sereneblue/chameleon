@@ -91,7 +91,6 @@ describe('Headers', () => {
 		app.set('views', __dirname);
 		app.use(allowCrossDomain);
 		app.get('/', (req, res) => res.send(req.headers) );
-		app.get('/', (req, res) => res.send(req.headers) );
 		app.get('/ref_test', (req, res) => res.render('index'));
 		app.get('/basic_auth', authMiddleware, (req, res) => res.send('Permission granted'));
 		app.get('/etags', (req, res) => {
