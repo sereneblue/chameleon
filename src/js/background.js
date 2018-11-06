@@ -855,7 +855,7 @@ browser.webRequest.onHeadersReceived.addListener(
 chrome.alarms.onAlarm.addListener(() => { start(); });
 
 browser.runtime.onInstalled.addListener((details) => {
-	if (!details.temporary) {
+	if (!details.temporary && details.reason == "install") {
 		browser.tabs.create({
 			url: "https://github.com/sereneblue/chameleon/wiki"
 		});
@@ -911,6 +911,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.timezone.update = 1;
 	}
 
-	await save({ version: "0.9.16"});
+	await save({ version: "0.9.17"});
 	changeTimer();
 })();
