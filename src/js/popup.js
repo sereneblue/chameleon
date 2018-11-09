@@ -90,6 +90,15 @@ async function updateUI() {
 	
 	$(`#profile input[name="notificationsEnabled"]`).prop('checked', data.settings.notificationsEnabled);
 
+
+	acceptLangSelect = $('select[name="spoofAcceptLangValue"]')
+	languages.forEach(function (l) {
+		acceptLangSelect.append($('<option>', {
+		    value: l.value,
+		    text: l.display
+		}));
+	});
+	
 	$('#headers input[type="checkbox"]').each(function(i, element) {
 		if (element.name == "spoofAcceptLang" || element.name == "spoofAcceptEnc") {
 			$(`input[name="${element.name}"]`).prop('checked', data.headers[element.name]);

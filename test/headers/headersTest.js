@@ -1,12 +1,12 @@
 const { Builder, By } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 
+const browserData = require('../../src/js/data.js')
 const expect = require('chai').expect
 const express = require('express')
 const path = require('path')
-const uaList = require('../../src/js/data.js')
 const app = express()
-const auth = require('http-auth');
+const auth = require('http-auth')
 
 var authMiddleware = auth.connect(auth.basic({ realm: 'SECRET LAIR'}, (username, password, callback) => {
 	callback(username == 'username' && password == 'password');
@@ -38,27 +38,6 @@ const checkHeaders = async (field, expected) => {
 
 	expect(response[field]).to.equal(expected);
 }
-
-const languages = [
-	{ display: 'ar', value: 'ar'},
-	{ display: 'da-DK', value: 'da-DK,da;q=0.5'},
-	{ display: 'de-DE', value: 'de-DE,de;q=0.5'},
-	{ display: 'en-GB', value: 'en-GB,en;q=0.5'},
-	{ display: 'en-US', value: 'en-US,en;q=0.5'},
-	{ display: 'es-ES', value: 'es-ES,es;q=0.5'},
-	{ display: 'fr-FR', value: 'fr-FR,fr;q=0.5'},
-	{ display: 'hi-IN', value: 'hi-IN,hi;q=0.5'},
-	{ display: 'id-ID', value: 'id-ID,id;q=0.5'},
-	{ display: 'it-IT', value: 'it-IT,it;q=0.5'},
-	{ display: 'ja-JP', value: 'ja-JP,en-US;q=0.5'},
-	{ display: 'ko-KR', value: 'ko-KR,ko;q=0.8'},
-	{ display: 'pt-BR', value: 'pt-BR,pt;q=0.9'},
-	{ display: 'pt-PT', value: 'pt-PT,pt;q=0.9'},
-	{ display: 'ru-RU', value: 'ru-RU,ru;q=0.5'},
-	{ display: 'sv-SE', value: 'sv-SE,en-US;q=0.5'},
-	{ display: 'zh-CN', value: 'zh-CN,zh;q=0.5'},
-	{ display: 'zh-TW', value: 'zh-TW,zh;q=0.5'}
-];
 
 describe('Headers', () => {
 	before(async () => {
@@ -359,7 +338,7 @@ describe('Headers', () => {
 		await checkHeaders('accept-encoding', 'gzip, deflate');
 	});
 
-	languages.forEach(function(l, i) {
+	browserData.languages.forEach(function(l, i) {
 		it(`should spoof language: ${l.display}`, async () => {
 			await driver.executeScript(`
 				var el = document.querySelector('input[name="spoofAcceptLang"]')

@@ -33,6 +33,11 @@ let chameleon = {
 		all: [false, false, false, false, false]
 	},
 	injection: null,
+	ipInfo: {
+		update: 0,
+		language: "",
+		timezone: ""
+	},
 	settings: {
 		customScreen: "",
 		disableWebSockets: false,
@@ -50,10 +55,6 @@ let chameleon = {
 		useragentValue: ""
 	},
 	timeout: null,
-	timezone: {
-		update: 0,
-		value: ""
-	},
 	whitelist: {
 		enabled: false,
 		enableRealProfile: false,
@@ -234,12 +235,12 @@ async function buildInjectScript() {
 		}
 
 		if (chameleon.settings.timeZone != "default") {
-			var t = moment.tz(Date.now(), chameleon.settings.timeZone == "ip" ? chameleon.timezone.value : chameleon.settings.timeZone);
+			var t = moment.tz(Date.now(), chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone);
 
 			injectionText += spoofTime(
 				t.utcOffset(),
 				t.format("z"),
-				chameleon.settings.timeZone == "ip" ? chameleon.timezone.value : chameleon.settings.timeZone
+				chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone
 			);
 		}
 
@@ -259,28 +260,50 @@ async function buildInjectScript() {
 	return "";
 }
 
-// get timezone from ipapi
-async function getTimezone() {
+// get ip info from ipapi.co
+async function getIPInfo() {
 	try {
 		let res = await fetch("https://ipapi.co/json");
 		let data = await res.json();
+		let tzSpoof = "";
+		let langSpoof = "";
 
-		if (data.timezone) {
+		if (data.timezone && data.languages) {
+			if (chameleon.settings.timeZone == "ip") {
+				tzSpoof = ` timezone: UTC${moment().tz(data.timezone).format('Z')}`;
+				chameleon.ipInfo.timezone = data.timezone;
+			}
+
+			if (chameleon.headers.spoofAcceptLangValue == "ip" && chameleon.headers.spoofAcceptLang) {
+				let lang = data.languages.split(',')[0];
+
+				if (lang != "en" || lang != "en-US") {
+					let lng = languages.find(l => l.value.includes(lang));
+					
+					if (lng) {
+						langSpoof = ` lang: ${lng.display}`;
+						chameleon.ipInfo.language = lng.value;
+					}
+				}
+			}
+
 			chrome.notifications.create({
 				"type": "basic",
 				"title": "Chameleon",
-				"message": `Using UTC${moment().tz(data.timezone).format('Z')} as timezone.`
+				"message": `Using${tzSpoof}${langSpoof}`
 			});
-			chameleon.timezone.value = data.timezone;
 			return;
 		}
+
+
+		throw "Couldn't find info";
 	} catch (e) {
 		chrome.notifications.create({
 			"type": "basic",
 			"title": "Chameleon",
 			"message": "Unable to get timezone data. Using UTC."
 		});
-		chameleon.timezone.value = "Etc/UTC";
+		chameleon.ipInfo.timezone = "Etc/UTC";
 	}
 }
 
@@ -424,7 +447,13 @@ function rewriteHeaders(e) {
 			if (wl.on) {
 				if (!chameleon.whitelist.enableRealProfile) header.value = chameleon.whitelist.profile.acceptLang;
 			} else {
-				if (chameleon.headers.spoofAcceptLang) header.value = chameleon.headers.spoofAcceptLangValue;
+				if (chameleon.headers.spoofAcceptLang) {
+					if (chameleon.headers.spoofAcceptLangValue == "ip") {
+						header.value = chameleon.ipInfo.language; 
+					} else {
+						header.value = chameleon.headers.spoofAcceptLangValue;
+					}
+				}
 			}
 		}
 	});
@@ -608,9 +637,9 @@ function getScreenResolution(ua) {
 async function rebuildInjectionScript() {
 	clearTimeout(chameleon.timeout);
 
-	if (chameleon.timezone.update) {
-		chameleon.timezone.update = 0;
-		await getTimezone();
+	if (chameleon.ipInfo.update) {
+		chameleon.ipInfo.update = 0;
+		await getIPInfo();
 	}
 
 	chameleon.timeout = setTimeout(async function () {
@@ -761,6 +790,12 @@ chrome.runtime.onMessage.addListener(function(request) {
 		saveSettings("settings");
 	} else if (request.action == "headers") {
 		chameleon.headers[request.data.key] = request.data.value;
+
+		if ((request.data.key == "spoofAcceptLangValue" && request.data.value == "ip" && chameleon.headers.spoofAcceptLang) ||
+			(request.data.key == "spoofAcceptLang" && request.data.value && chameleon.headers.spoofAcceptLangValue == "ip")) {
+			chameleon.ipInfo.update = 1;
+		}
+
 		saveSettings("headers");
 	} else if (request.action == "option") {
 		if (request.data.key == "enableTrackingProtection") {
@@ -798,7 +833,7 @@ chrome.runtime.onMessage.addListener(function(request) {
 			}
 
 			if (request.data.key == "timeZone" && request.data.value == "ip") {
-				chameleon.timezone.update = 1;
+				chameleon.ipInfo.update = 1;
 			}
 
 			chameleon.settings[request.data.key] = request.data.value;
@@ -907,10 +942,10 @@ browser.runtime.onInstalled.addListener((details) => {
 		}
 	}
 
-	if (chameleon.settings.timeZone == "ip") {
-		chameleon.timezone.update = 1;
+	if (chameleon.settings.timeZone == "ip" || (chameleon.headers.spoofAcceptLangValue == "ip" && chameleon.headers.spoofAcceptLang)) {
+		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.9.17"});
+	await save({ version: "0.9.18"});
 	changeTimer();
 })();

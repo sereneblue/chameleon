@@ -4,9 +4,8 @@ const firefox = require('selenium-webdriver/firefox');
 const expect = require('chai').expect
 const express = require('express')
 const path = require('path')
-const uaList = require('../../src/js/data.js')
 const app = express()
-const auth = require('http-auth');
+const auth = require('http-auth')
 
 var authMiddleware = auth.connect(auth.basic({ realm: 'SECRET LAIR'}, (username, password, callback) => {
 	callback(username == 'username' && password == 'password');
