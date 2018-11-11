@@ -87,6 +87,17 @@ let spoof = {
 		injectionArray.push({ obj: "window.history", prop: "length", value: 2 });
 		return injectionArray;
 	},
+	language: function (injectionArray) {
+		let l;
+
+		l = chameleon.headers.spoofAcceptLangValue == "ip" ?
+				languages.find(l => l.value == chameleon.ipInfo.language) :
+				languages.find(l => l.value == chameleon.headers.spoofAcceptLangValue);
+
+		injectionArray.push({ obj: "window.navigator", prop: "language", value: l.lang });
+		injectionArray.push({ obj: "window.navigator", prop: "languages", value: l.langs });
+		return injectionArray;
+	},
 	name: function (injectionArray) {
 		injectionArray.push({ obj: "window", prop: "name", value: "" });
 		return injectionArray;
@@ -234,6 +245,10 @@ async function buildInjectScript() {
 			injectionArray = spoof.dnt(injectionArray);
 		}
 
+		if (chameleon.headers.spoofAcceptLang) {
+			injectionArray = spoof.language(injectionArray);
+		}
+
 		if (chameleon.settings.timeZone != "default") {
 			var t = moment.tz(Date.now(), chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone);
 
@@ -274,17 +289,19 @@ async function getIPInfo() {
 				chameleon.ipInfo.timezone = data.timezone;
 			}
 
-			if (chameleon.headers.spoofAcceptLangValue == "ip" && chameleon.headers.spoofAcceptLang) {
+			if (chameleon.headers.spoofAcceptLangValue == "ip") {
 				let lang = data.languages.split(',')[0];
+				let lng = languages.find(l => l.display == "English (US)"); // default value
 
-				if (lang != "en" || lang != "en-US") {
-					let lng = languages.find(l => l.value.includes(lang));
-					
-					if (lng) {
-						langSpoof = ` lang: ${lng.display}`;
-						chameleon.ipInfo.language = lng.value;
+				if (lang != "en" && lang != "en-US") {
+					let tmp = languages.find(l => l.value.match(/^.*?;/)[0].includes(lang));
+					if (tmp) {
+						lng = tmp;
 					}
 				}
+
+				langSpoof = ` lang: ${lng.display}`;
+				chameleon.ipInfo.language = lng.value;
 			}
 
 			chrome.notifications.create({
@@ -946,6 +963,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.9.18"});
+	await save({ version: "0.9.19"});
 	changeTimer();
 })();
