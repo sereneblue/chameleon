@@ -294,9 +294,15 @@ async function getIPInfo() {
 				let lng = languages.find(l => l.display == "English (US)"); // default value
 
 				if (lang != "en" && lang != "en-US") {
-					let tmp = languages.find(l => l.value.match(/^.*?;/)[0].includes(lang));
-					if (tmp) {
-						lng = tmp;
+					let index = languages.map(l => l.value.split(',')[0]).findIndex(l => l.includes(lang));
+					if (index > -1) {
+						lng = languages[index];
+					} else {
+						// check the list again, not restricted to primary language
+						index = languages.find(l => l.value.match(/^.*?;/)[0].includes(lang));
+						if (index > -1) {
+							lng = languages[index];
+						}
 					}
 				}
 
