@@ -134,6 +134,7 @@ describe('Script Injection', () => {
 
 		app.set('view engine', 'ejs')
 		app.set('views', __dirname);
+		app.use(express.static(__dirname));
 		app.get('/', (req, res) => res.render('index'));
 
 		server = app.listen(3000);
@@ -244,6 +245,39 @@ describe('Script Injection', () => {
 		expect(protectedWinName).to.not.equal(winName);
 	});
 
+	it('should spoof audio context', async () => {
+		await driver.get(LOCALSERVER);
+		await wait(3000);
+
+		let audioFP = await driver.executeScript(`
+			return [
+				document.querySelector('#pxi_result').innerHTML,
+				document.querySelector('#pxi_full_buffer_result').innerHTML,
+				document.querySelector('#cc_result').innerHTML,
+				document.querySelector('#hybrid_result').innerHTML
+			];
+		`);
+
+		await driver.get(EXTENSION_URI);
+		await selectOption('input[name="spoofAudioContext"]');
+
+		await driver.get(LOCALSERVER);
+		await wait(3000);
+
+		let spoofedAudioFP = await driver.executeScript(`
+			return [
+				document.querySelector('#pxi_result').innerHTML,
+				document.querySelector('#pxi_full_buffer_result').innerHTML,
+				document.querySelector('#cc_result').innerHTML,
+				document.querySelector('#hybrid_result').innerHTML
+			];
+		`);
+
+		for (var i = 0; i < 4; i++) {
+			expect(audioFP[i]).to.not.eql(spoofedAudioFP[i]);
+		}
+	})
+
 	it('should spoof client rects', async () => {
 		await driver.get(LOCALSERVER);
 		let boundingClientRect = await driver.executeScript(`
@@ -254,7 +288,7 @@ describe('Script Injection', () => {
 		await selectOption('input[name="spoofClientRects"]');
 
 		await driver.get(LOCALSERVER);
-		spoofedBoundingClientRect = await driver.executeScript(`
+		let spoofedBoundingClientRect = await driver.executeScript(`
 			return document.querySelector('#client_rect').getBoundingClientRect();
 		`);
 

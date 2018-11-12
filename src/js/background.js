@@ -49,6 +49,7 @@ let chameleon = {
 		notificationsEnabled: false,
 		protectWinName: false,
 		screenSize: "default",
+		spoofAudioContext: false,
 		spoofClientRects: false,
 		timeZone: "default",
 		useragent: "real",
@@ -230,10 +231,13 @@ async function buildInjectScript() {
 	let nav = [];
 
 	if (chameleon.settings.enableScriptInjection) {
+		let randString = Math.random().toString(36);
+	
 		injectionArray = spoof.websocket(injectionArray);
 		injectionArray = spoof.name(injectionArray);
 		if (chameleon.settings.limitHistory) injectionArray = spoof.history(injectionArray);
-		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(Math.random().toString(36));
+		if (chameleon.settings.spoofAudioContext) injectionText += spoofAudioContext(randString);
+		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(randString);
 
 		nav = spoof.navigator();
 
@@ -973,6 +977,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.9.19"});
+	await save({ version: "0.9.20"});
 	changeTimer();
 })();
