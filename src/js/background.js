@@ -290,24 +290,28 @@ async function getIPInfo() {
 			}
 
 			if (chameleon.headers.spoofAcceptLangValue == "ip") {
-				let lang = data.languages.split(',')[0];
-				let lng = languages.find(l => l.display == "English (US)"); // default value
+				let responseLanguage = data.languages.split(',')[0];
+				let lang = languages.find(l => l.display == "English (US)"); // default value
 
-				if (lang != "en" && lang != "en-US") {
-					let index = languages.map(l => l.value.split(',')[0]).findIndex(l => l.includes(lang));
+				if (responseLanguage != "en" && responseLanguage != "en-US") {
+					let index = langList.map(l => l[0]).findIndex(l => l.includes(responseLanguage));
 					if (index > -1) {
-						lng = languages[index];
+						lang = languages[index];
 					} else {
 						// check the list again, not restricted to primary language
-						index = languages.find(l => l.value.match(/^.*?;/)[0].includes(lang));
-						if (index > -1) {
-							lng = languages[index];
+						for (var i = 0; i < langList.length; i++) {
+							index = langList[i].findIndex(l => l.includes(responseLanguage));
+
+							if (index > -1) {
+								lang = languages[index];
+								break;
+							}
 						}
 					}
 				}
 
-				langSpoof = ` lang: ${lng.display}`;
-				chameleon.ipInfo.language = lng.value;
+				langSpoof = ` lang: ${lang.display}`;
+				chameleon.ipInfo.language = lang.value;
 			}
 
 			chrome.notifications.create({

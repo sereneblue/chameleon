@@ -313,6 +313,8 @@ let languages = [
 	{ display: "Xhosa", value: "xh-ZA,xh;q=0.8,en-US;q=0.5,en;q=0.3", lang: "xh-ZA", langs: ["xh-ZA", "xh", "en-US", "en"] }
 ];
 
+let langList = languages.map(l => l.value.match(/([a-z]{2,3})(-[A-Z]{2})?/g))
+
 // platform list
 let platforms = Object.keys(uaList);
 platforms.push("custom");
@@ -328,8 +330,9 @@ let whitelist = ["whitelistProfile", "whitelistRules"];
 
 // Export ua list for testing
 if ( typeof module !== 'undefined' && module.hasOwnProperty('exports') ) {
-    module.exports = {
-    	uaList,
-    	languages
-    };
+	module.exports = {
+		uaList,
+		languages,
+		langList
+	};
 }
