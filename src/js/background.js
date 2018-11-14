@@ -299,17 +299,25 @@ async function getIPInfo() {
 
 				if (responseLanguage != "en" && responseLanguage != "en-US") {
 					let index = langList.map(l => l[0]).findIndex(l => l.includes(responseLanguage));
+
 					if (index > -1) {
 						lang = languages[index];
 					} else {
 						// check the list again, not restricted to primary language
+						let idxs = [];
 						for (var i = 0; i < langList.length; i++) {
-							index = langList[i].findIndex(l => l.includes(responseLanguage));
-
-							if (index > -1) {
-								lang = languages[index];
-								break;
+							let idx = langList[i].findIndex(l => l.includes(responseLanguage) || (l.includes(responseLanguage.split('-')[0]) && responseLanguage.split('-')[0] != "en"));
+							if (idx > -1) {
+								idxs.push([
+									idx > -1,
+									i,
+									idx
+								])
 							}
+						}
+						if (idxs.length) {
+							idxs.sort((a,b) => a[2] > b[2]);
+							lang = languages[idxs[0][1]];
 						}
 					}
 				}
@@ -977,6 +985,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.9.20"});
+	await save({ version: "0.9.21"});
 	changeTimer();
 })();
