@@ -23,37 +23,73 @@ let spoofAudioContext = (randString) => {
 	return `
 		var _getChannelData = window.AudioBuffer.prototype.getChannelData;
 		var _getFloatFrequencyData = window.AnalyserNode.prototype.getFloatFrequencyData;
+		var _copyFromChannel = window.AudioBuffer.prototype.copyFromChannel;
+		var _startRendering = window.OfflineAudioContext.prototype.startRendering;
 
 		if (!window.parent["${randString}"]) {
-			window["${randString}"] = Math.random() * 0.1;
+			window["${randString}"] = {
+				fuzz: Math.random() * 0.1,
+				ran: false
+			};
 		}
 
 		window.AudioBuffer.prototype.getChannelData = function (...args) {
-			let c = _getChannelData.apply(this, args);;
+			let c = _getChannelData.apply(this, args);
 
-	        for (var i = 0; i < c.length; i += 100) {
-              let index = Math.floor(Math.random() * i);
-              c[index] = c[index] + window["${randString}"];
-            }
+			if (!window["${randString}"].ran) {
+				for (var i = 0; i < c.length; i += 100) {
+					c[i] = c[i] + window["${randString}"].fuzz;
+	            }
+	            window["${randString}"].ran = true;
+			}
 			return c;
 		}
 
+		window.AudioBuffer.prototype.copyFromChannel = function (...args) {
+			let c = this.getChannelData.apply(this, [args[1]]);
+			this.copyToChannel(c, args[1]);
+
+			return _copyFromChannel.apply(this, args);
+		}
+
 		window.AnalyserNode.prototype.getFloatFrequencyData = function (...args) {
-			const result = _getFloatFrequencyData.apply(this, arguments);
-			for (var i = 0; i < arguments[0].length; i += 50) {
-				let index = Math.floor(Math.random() * i);
-				arguments[0][index] = arguments[0][index] + window["${randString}"];
+			const result = _getFloatFrequencyData.apply(this, args);
+			for (var i = 0; i < args[0].length; i += 50) {
+				args[0][i] = args[0][i] + window["${randString}"];
 			}
 			return result;
 		}
 
+		window.OfflineAudioContext.prototype.startRendering = function (...args) {
+            window["${randString}"].ran = false;
+			return _startRendering.apply(this, args);
+		}
+
 		Object.defineProperty(window.AudioBuffer.prototype.getChannelData, "name", { value: "getChannelData" });
+		Object.defineProperty(window.AudioBuffer.prototype.copyFromChannel, "name", { value: "copyFromChannel" });
+		Object.defineProperty(window.OfflineAudioContext.prototype.startRendering, "name", { value: "startRendering" });
 		Object.defineProperty(window.AnalyserNode.prototype.getFloatFrequencyData, "name", { value: "getFloatFrequencyData" });
 
 		window.AudioBuffer.prototype.getChannelData.toString =
 		window.AudioBuffer.prototype.getChannelData.toSource =
 		window.AudioBuffer.prototype.getChannelData.toLocaleString = function () {
 			return \\\`function getChannelData() {
+    [native code]
+}\\\`;
+			};
+
+		window.AudioBuffer.prototype.copyFromChannel.toString =
+		window.AudioBuffer.prototype.copyFromChannel.toSource =
+		window.AudioBuffer.prototype.copyFromChannel.toLocaleString = function () {
+			return \\\`function copyFromChannel() {
+    [native code]
+}\\\`;
+			};
+
+		window.OfflineAudioContext.prototype.startRendering.toString =
+		window.OfflineAudioContext.prototype.startRendering.toSource =
+		window.OfflineAudioContext.prototype.startRendering.toLocaleString = function () {
+			return \\\`function startRendering() {
     [native code]
 }\\\`;
 			};
