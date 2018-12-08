@@ -99,6 +99,7 @@ let inject = (props, whitelist, nav, injectionText, settings) => {
 				for(let mutation of mutations) {
 					for(let node of mutation.addedNodes) {
 						if(typeof(node.contentWindow)           !== "undefined"
+						&& node.contentWindow 					!== null
 						&& typeof(node.contentWindow.navigator) !== "undefined") {
 							override(node.contentWindow, props);
 						}
