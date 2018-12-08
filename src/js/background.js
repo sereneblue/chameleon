@@ -326,22 +326,28 @@ async function getIPInfo() {
 				chameleon.ipInfo.language = lang.value;
 			}
 
-			chrome.notifications.create({
-				"type": "basic",
-				"title": "Chameleon",
-				"message": `Using${tzSpoof}${langSpoof}`
-			});
+			if (chameleon.settings.notificationsEnabled) {
+				chrome.notifications.create({
+					"type": "basic",
+					"title": "Chameleon",
+					"message": `Using${tzSpoof}${langSpoof}`
+				});
+			}
+			
 			return;
 		}
 
 
 		throw "Couldn't find info";
 	} catch (e) {
-		chrome.notifications.create({
-			"type": "basic",
-			"title": "Chameleon",
-			"message": "Unable to get timezone data. Using UTC."
-		});
+		if (chameleon.settings.notificationsEnabled) {
+			chrome.notifications.create({
+				"type": "basic",
+				"title": "Chameleon",
+				"message": "Unable to get timezone data. Using UTC."
+			});
+		}
+
 		chameleon.ipInfo.timezone = "Etc/UTC";
 	}
 }
