@@ -833,6 +833,32 @@ chrome.runtime.onMessage.addListener(function(request) {
 
 		changeTimer();
 		saveSettings("excluded");
+	} else if (request.action == "import") {
+		chameleon.headers = request.data.headers;
+		chameleon.settings = request.data.settings;
+		chameleon.excluded = request.data.excluded;
+		chameleon.whitelist = request.data.whitelist;
+
+		browser.runtime.getPlatformInfo().then((plat) => {
+			if (chameleon.settings.useragent == "real") {
+				if (plat.os != "android") {
+					chrome.browserAction.setIcon({
+						path: "img/icon_disabled_48.png"
+					});
+				}
+			} else {
+				chrome.browserAction.setIcon({
+					path: "img/icon_48.png"
+				});
+			}
+		});
+
+		if (chameleon.settings.timeZone == "ip" || (chameleon.headers.spoofAcceptLangValue == "ip" && chameleon.headers.spoofAcceptLang)) {
+			chameleon.ipInfo.update = 1;
+		}
+
+		changeTimer();
+		saveSettings();
 	} else if (request.action == "interval") {
 		chameleon.settings.interval = request.data;
 
