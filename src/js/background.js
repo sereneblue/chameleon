@@ -282,8 +282,8 @@ async function buildInjectScript() {
 // get ip info from ipapi.co
 async function getIPInfo() {
 	try {
-		let res = await fetch("https://ipapi.co/json");
-		let data = await res.json();
+		let res = await request("https://ipapi.co/json");
+		let data = await JSON.parse(res);
 		let tzSpoof = "";
 		let langSpoof = "";
 
@@ -422,6 +422,27 @@ function filterProfiles(uaList) {
 	}
 
 	return uas.length ? uas : [];
+}
+
+// make XMLHttpRequest
+function request(url) {
+  return new Promise(function(resolve, reject) {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          resolve(xhr.response)
+        } else {
+          reject(xhr.status)
+        }
+      }
+    }
+    xhr.ontimeout = function () {
+      reject('timeout')
+    }
+    xhr.open('get', url, true)
+    xhr.send()
+  })
 }
 
 // rewrite headers per request 
