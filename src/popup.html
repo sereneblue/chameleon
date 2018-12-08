@@ -578,47 +578,12 @@
                         <input name="wl_vendorSub" type="text">
                     </div>
                 </div>
-                <li id="sub_whitelistRules">
-                    Whitelist Rules
-                    <span style="float: right;">+</span>
-                </li>
-                <div style="display: none; margin-top: 0px;" id="list_whitelistRules">
-                    <button id="addRuleButton" style="width: 100%; margin-bottom: 10px;">Add new rule</button>
-                    <div id="rules">
-                    </div>
-                    <div id="ruleEdit" style="display: none; margin-bottom: 10px;">
-                        <label for="url">Domain:</label>
-                        <input name="url" id="url" style="width: 60%" type="text">
-                        <div>
-                            <label><input name="authorization" type="checkbox">&nbsp;Disable authorization</label>
-                        </div>
-                        <div>
-                            <label><input name="referer" type="checkbox">&nbsp;Disable referer</label>
-                        </div>
-                        <div>
-                            <label><input name="websocket" type="checkbox">&nbsp;Disable websocket</label>
-                        </div>
-                        <div>
-                            <label><input name="winName" type="checkbox">&nbsp;Protect window.name</label>
-                        </div>
-                        <div>
-                            <label><input name="screen" type="checkbox">&nbsp;Enable spoof screen size</label>
-                        </div>
-                        <div>
-                            <label><input name="ip" type="checkbox">&nbsp;Enable X-Forwarded-For/Via</label>
-                        </div>
-                        <div>
-                            <label><input name="re" type="checkbox">&nbsp;Use Regex</label>
-                            <input name="pattern" type="text" placeholder="Enter regex pattern">
-                        </div>
-                        <button id="saveProfile" style="width: 100%;">Save rule</button>
-                    </div>
-                </div>
+                <button id="viewRules" style="width: 100%; margin: 10px 0px;">View whitelist</button>
             </ul>
         </div>
     </div>
 </body>
-<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="js/dep/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript" src="js/data.js"></script>
 <script type="text/javascript" src="js/popup.js"></script>
 </html>

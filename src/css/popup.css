@@ -144,7 +144,11 @@ ul {
   color: white;
   padding: 20px;
   text-align: center;
-} 
+}
+
+.header-container h1, h4 {
+  margin: 0 !important;
+}
 
 .invalid {
   border: 2px solid red;

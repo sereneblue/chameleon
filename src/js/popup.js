@@ -5,76 +5,6 @@ let selected = {
 	whitelist: ""
 }
 
-let intervals = [0, -1, 1, 5, 10, 20, 30, 40, 50, 60];
-
-let screenSizes = [
-	'default', 'custom', 'profile', 
-	'1366x768', '14404x900', '1600x900', 
-	'1920x1080', '2560x1440', '2560x1600'
-];
-
-let timeZoneValues = [
-	"default",
-	"ip",
-	"Pacific/Kwajalein",
-	"Pacific/Midway",
-	"Pacific/Honolulu",
-	"Pacific/Marquesas",
-	"America/Anchorage",
-	"America/Los_Angeles",
-	"America/Phoenix",
-	"America/Chicago",
-	"America/New_York",
-	"America/Puerto_Rico",
-	"America/St_Johns",
-	"America/Sao_Paulo",
-	"Atlantic/South_Georgia",
-	"Atlantic/Azores",
-	"Europe/London",
-	"Europe/Berlin",
-	"Europe/Kaliningrad",
-	"Asia/Baghdad",
-	"Asia/Tehran",
-	"Europe/Moscow",
-	"Asia/Kabul",
-	"Asia/Karachi",
-	"Asia/Kolkata",
-	"Asia/Kathmandu",
-	"Asia/Almaty",
-	"Asia/Yangon",
-	"Asia/Bangkok",
-	"Asia/Hong_Kong",
-	"Asia/Tokyo",
-	"Australia/Darwin",
-	"Australia/Sydney",
-	"Australia/Lord_Howe",
-	"Asia/Magadan",
-	"Pacific/Auckland",
-	"Pacific/Chatham",
-	"Pacific/Tongatapu",
-	"Pacific/Kiritimati"
-];
-
-let profileValues = [
-	"real",
-	"random",
-	"randomDesktop",
-	"randomMobile",
-	"random_windows",
-	"random_macos",
-	"random_linux",
-	"random_ios",
-	"random_android",
-	"custom"
-].concat(
-	Object
-	.entries(uaList)
-	.reduce((flat, next) => flat.concat(next[1].value), [])
-);
-
-let whitelistOptions = ["auth", "ip", "ref", "screen", "websocket", "winName"];
-
-let whitelistRules = [];
 let data = null;
 
 // when popup opened, populate the useragent list from data.js 
@@ -105,7 +35,7 @@ function get(key) {
 
 // export settings
 async function exportSettings() {
-	let data = await get(null);
+	data = await get(null);
 	data.timestamp = new Date().toLocaleString();
 	var settings = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
 	var exportElement = document.getElementById('export');
@@ -246,18 +176,6 @@ async function updateUI() {
 	$('#list_whitelistProfile input').each(function (i, element) {
 		$(`input[name="${element.name}"]`).val(data.whitelist.profile[element.name.split('_')[1]]);
 	});
-
-	whitelistRules = data.whitelist.urlList;
-	whitelistRules.forEach(function (i) {
-		var element = `
-		<div class="rule">
-            <span style="width: 10%;" class="icon-bin ruleButton"></span>
-            <span style="width: 5px; float: right;">&nbsp;</span>
-            <span style="width: 10%;" class="icon-pencil ruleButton"></span>
-            <div class="rulePattern">${i.url}</div>
-        </div>`
-        $('#rules').append(element);
-	});
 }
 
 // change view of displayed subitems
@@ -282,7 +200,6 @@ function changeView(val, category) {
 		var vis = $(`#list_${menu[i]}`).is(':visible');
 		if (!vis) {
 			$(`#sub_${menu[i]} span`).text(`+`);
-			if (category == "whitelist") $('#ruleEdit').hide();
 		} else {
 			$(`#sub_${menu[i]} span`).text(`—`);
 		}
@@ -315,181 +232,6 @@ function getPlatform(v) {
 	} else if (v == "custom") {
 		return "custom";	
 	}
-}
-
-// save profile
-function saveProfile() {
-	var url = $('input[name="url"]')
-	var urlValue = url.val().trim();
-	var re = false;
-	var pattern = "";
-
-	if (urlValue == "") {
-		url.addClass('invalid');
-		return;
-	} else {
-		url.removeClass('invalid');
-	}
-
-	if ($('input[name="re"]').is(':checked')) {
-		var patternElement = $('input[name="pattern"]');
-		pattern = patternElement.val().trim();
-
-		if (pattern == "") {
-			patternElement.addClass('invalid');
-			return;
-		} else {
-			patternElement.removeClass('invalid');
-		}
-
-		re = true;
-	}
-
-	var rule = {
-		url: urlValue,
-		re: re,
-		pattern: pattern,
-		options: {
-			auth: $('input[name="authorization"]').is(':checked'),
-			ip: $('input[name="ip"]').is(":checked"),
-			ref: $('input[name="referer"]').is(":checked"),
-			screen: $('input[name="screen"]').is(":checked"),
-			websocket: $('input[name="websocket"]').is(":checked"),
-			winName: $('input[name="winName"]').is(":checked")
-		}
-	};
-
-	var idx = whitelistRules.findIndex(r => r.url == urlValue);
-	if (idx > -1) {
-		whitelistRules[idx] = rule;
-	} else {
-		whitelistRules.push(rule);
-		var element = `
-		<div class="rule">
-	        <span class="icon-bin ruleButton" style="width: 10%;"></span>
-	        <span style="width: 5px; float: right;">&nbsp;</span>
-	        <span class="icon-pencil ruleButton" style="width: 10%;"></span>
-	        <div class="rulePattern">${urlValue}</div>
-	    </div>`
-	    $('#rules').append(element);
-	}
-
-	chrome.runtime.sendMessage({
-		action: "whitelist",
-		data: {
-			key: "wl_urls",
-			value: JSON.stringify(whitelistRules)
-		}
-	});
-
-	$('#ruleEdit').hide();
-}
-
-// display whitelist rule editor
-function showEditor(e) {
-	$('input[name="pattern"]').val("");
-	$('input[name="authorization"]').prop('checked', false);
-	$('input[name="ip"]').prop('checked', false);
-	$('input[name="referer"]').prop('checked', false);
-	$('input[name="screen"]').prop('checked', false);
-	$('input[name="websocket"]').prop('checked', false);
-	$('input[name="winName"]').prop('checked', false);
-
-	$("#ruleEdit").insertAfter($("#addRuleButton"));
-	$('#ruleEdit').show();
-}
-
-// validate settings
-function validate(cfg) {
-	if (!(
-		cfg.headers &&
-		cfg.excluded && 
-		cfg.settings && 
-		cfg.whitelist)) throw Error;
-
-	for (h in cfg.headers) {
-		if (['disableAuth', 'disableRef', 'enableDNT', 'spoofAcceptEnc', 
-				  'spoofAcceptLang', 'spoofEtag', 'spoofSourceRef', 'spoofVia',
-				  'spoofXFor', 'upgradeInsecureRequests'].includes(h)) {
-			if (typeof(cfg.headers[h]) != "boolean") throw Error;
-		}
-
-		if (['refererXorigin', 'refererTrimming'].includes(h) && 
-		    ( 0 > cfg.headers[h] || cfg.headers[h] > 2)) {
-			throw Error;
-		}
-
-		if (['spoofViaValue', 'spoofXForValue'].includes(h) && 
-		    ( 0 > cfg.headers[h] || cfg.headers[h] > 1)) {
-			throw Error;
-		}
-
-		if (h == 'spoofAcceptLangValue') {
-			var found = languages.findIndex(l => l.value == cfg.headers[h]);
-
-			if ((found == -1 && cfg.headers[h] != "ip") && cfg.headers[h] != "") throw Error;
-		}
-
-		if (['viaIP', 'viaIP_profile', 'xforwardedforIP', 'xforwardedforIP_profile'].includes(h) && 
-			!/^((?:[0-9]{1,3}\.){3}[0-9]{1,3})?$/.test(cfg.headers[h])) {
-			throw Error;
-		}
-	}
-
-	for (e in cfg.excluded) {
-		if (cfg.excluded[e].length != data.excluded[e].length) throw Error;
-
-		for (i in cfg.excluded[e]) {
-			if (typeof(cfg.excluded[e][i]) != "boolean") throw Error;
-		}
-	}
-
-    for (s in cfg.settings) {
-		if (['disableWebSockets', 'enableScriptInjection', 'limitHistory', 'notificationsEnabled', 
-				  'protectWinName', 'spoofAudioContext', 'spoofClientRects'].includes(s)) {
-			if (typeof(cfg.settings[s]) != "boolean") throw Error;
-		}
-
-		if (s == "customScreen" && !/^([0-9]{3,4}x[0-9]{3,4})?$/.test(cfg.settings[s])) throw Error;
-
-		if (s == "screenSize" && !screenSizes.includes(cfg.settings[s])) throw Error;
-		
-		if (s == "timeZone" && !timeZoneValues.includes(cfg.settings[s])) throw Error;
-
-		if (s == "interval") {
-			if (!(cfg.settings[s] in intervals)) throw Error;
-
-			if (cfg.settings[s] == "-1" && (cfg.minInterval > cfg.maxInterval)) throw Error;
-		}
-
-		if (s == "useragent" && !profileValues.includes(cfg.settings[s])) throw Error;
-	}
-
-	for (w in cfg.whitelist) {
-		if (w == "urlList") {
-			for (index in cfg.whitelist[w]) {
-				if (!cfg.whitelist[w][index].url || 
-					(cfg.whitelist[w][index].re == true && !cfg.whitelist[w][index].pattern)) throw Error;
-				
-				for (opt in cfg.whitelist[w][index].options) {
-					if (!whitelistOptions.includes(opt)) throw Error;
-					if (typeof(cfg.whitelist[w][index].options[opt]) != "boolean") throw Error;
-				}
-			}
-			continue;
-		} else if (w == "profile") {
-			continue;
-		}
-
-		if (!['enabled', 'enableRealProfile'].includes(w)) throw Error;
-		if (typeof(cfg.whitelist[w]) != "boolean") throw Error;
-	}
-
-	$("#import-msg").text("Successfully imported settings").css('color', 'olivedrab');
-	chrome.runtime.sendMessage({
-		action: "import",
-		data: cfg
-	});
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -820,83 +562,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-	$("#import").change(async function() {
-		var reader = new FileReader();
-
-		// inject an image with the src url
-		reader.onload = function(event) {
-			fetch(event.target.result)
-			.then(res => res.json())
-			.then(settings => {
-				validate(settings);
-			})
-			.catch(err => {
-				$("#import-msg").text("Could not import settings").css('color', 'red');
-			});
-		}
-
-		// when the file is read it triggers the onload event above.
-		reader.readAsDataURL(this.files[0]);
-	});
-
-	$(document).on('click', function(e) {
-		if (e.target.id == 'addRuleButton'){
-			$('input[name="url"]').val("");
-			$('input[name="url"]').prop('disabled', false);
-			$('input[name="pattern"]').prop('disabled', true);
-			showEditor();
-		} else if (e.target.id == 'saveProfile') {
-			saveProfile();
-		} else if (e.target.className.indexOf('ruleButton') > -1) {
-			var pattern = $(e.target).parent().find('div').text();
-			if (e.target.className.indexOf('pencil') > -1) {
-				// set values for editor
-				var txt = $(e.target).parent().find('div')[0].innerText;
-				var idx = whitelistRules.findIndex(r => r.url == txt);
-
-				var el = $('input[name="url"]');
-				var el2 = $("#ruleEdit");
-
-				el.val(whitelistRules[idx].url);
-				el.prop('disabled', true);
-
-				$('input[name="authorization"]').prop('checked', whitelistRules[idx].options.auth);
-				$('input[name="ip"]').prop('checked', whitelistRules[idx].options.ip);
-				$('input[name="referer"]').prop('checked', whitelistRules[idx].options.ref);
-				$('input[name="screen"]').prop('checked', whitelistRules[idx].options.screen);
-				$('input[name="websocket"]').prop('checked', whitelistRules[idx].options.websocket);
-				$('input[name="winName"]').prop('checked', whitelistRules[idx].options.winName);
-
-				$('input[name="pattern"]').val(whitelistRules[idx].pattern || "");
-				$('input[name="re"]').prop('checked', whitelistRules[idx].re);
-				$('input[name="pattern"]').prop('disabled', !whitelistRules[idx].re);
-
-				el2.insertAfter($(e.target).parent());
-				el2.show();
-			} else {
-				var element = $(e.target).parent();
-				var el = $('#ruleEdit');
-
-				if (el.is(":visible")) {
-					if (element.find('div')[0].innerText == $('input[name="url"]').val()) {
-						el.hide();
-					}
-				}
-
-				// remove from whitelist
-				whitelistRules.splice($('#rules .rule').index(element), 1);
-				element.remove();
-
-				chrome.runtime.sendMessage({
-					action: "whitelist",
-					data: {
-						key: "wl_urls",
-						value: JSON.stringify(whitelistRules)
-					}
-				});
-			}
-		} else if (e.target.name == 're') {
-			$('input[name="pattern"]').prop('disabled', !e.target.checked);
-		}
+	$("#viewRules").on('click', function(e) {
+		chrome.tabs.create({
+		    url:  chrome.runtime.getURL('/whitelist.html')
+		});
+		window.close();
 	});
 });

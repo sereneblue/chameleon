@@ -48,24 +48,35 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 			return str;
 		}
 
-		var ODate = window.Date;
-		const {
-			getTime, getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getYear,
-			toDateString, toLocaleString, toString, toTimeString, toLocaleTimeString, toLocaleDateString,
-			setYear, setHours, setTime, setFullYear, setMilliseconds, setMinutes, setMonth, setSeconds, setDate,
-			setUTCDate, setUTCFullYear, setUTCHours, setUTCMilliseconds, setUTCMinutes, setUTCMonth, setUTCSeconds
-		} = ODate.prototype;
+		var _Date = window.Date;
+		// const {
+		// 	getTime, getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getYear,
+		// 	toDateString, toLocaleString, toString, toTimeString, toLocaleTimeString, toLocaleDateString,
+		// 	setYear, setHours, setTime, setFullYear, setMilliseconds, setMinutes, setMonth, setSeconds, setDate,
+		// 	setUTCDate, setUTCFullYear, setUTCHours, setUTCMilliseconds, setUTCMinutes, setUTCMonth, setUTCSeconds
+		// } = _Date.prototype;
 
+		// function ShiftedDate() {
+		//     if (!(this instanceof ShiftedDate)) return new ShiftedDate();
+
+		// 	var nd = new _Date(
+		// 		 
+		// 	);
+
+		// 	nd.__proto__ = ShiftedDate.prototype;
+		// 	return nd;
+		// }
+
+		// ShiftedDate.prototype.__proto__ = _Date.prototype;
 		class ShiftedDate extends ODate {
 			constructor(...args) {
 			  super(...args);
-			  this.nd = new ODate(
-				getTime.apply(this) + (timezoneOffset - spoofedTimezone) * 60 * 1000
-			  );
 			}
+
 			toLocaleString(...args) {
-			  return toLocaleString.apply(this.nd, args);
+				return toLocaleString.apply(this.nd, args);
 			}
+
 			toLocaleTimeString(...args) {
 			  return toLocaleTimeString.apply(this.nd, args);
 			}
@@ -210,14 +221,15 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 			}
 		  }
 
-		window.Date = ShiftedDate;
+		// window.Date = XDate;
 
 		document.addEventListener('DOMContentLoaded', function () {
 		    Element.prototype.appendChild = function(oAppend) {
 		    	return function() {
 		    		var tmp = oAppend.apply(this, arguments);
-		    		if (arguments[0].nodeName == "IFRAME") {
+		    		if (arguments[0].nodeName == "IFRAME" && arguments[0].contentWindow != null) {
 						const intlIframe = arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions;
+
 						arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
 							return Object.assign(intlIframe.apply(this, args), {
 								timeZone: tzName
