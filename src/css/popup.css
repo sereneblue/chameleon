@@ -1,17 +1,11 @@
 @font-face {
-  font-family: 'Proxima Nova';
-  src: url('../fonts/proxima_nova.eot');
-  src: url('../fonts/proxima_nova.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proxima_nova.woff') format('woff'),
-         url('../fonts/proxima_nova.ttf') format('truetype'),
-         url('../fonts/proxima_nova.svg#proxima_nova_altregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Noto Sans';
+  src: url('fonts/notosans.ttf')  format('truetype');
 }
 
 * {
   margin: 0;
-  font-family: "Proxima Nova";
+  font-family: 'Noto Sans', sans-serif;
 }
 
 body {
@@ -222,6 +216,7 @@ ul {
   display: none;
   padding-left: 5px;
   padding-right: 5px;
+  padding-bottom: 10px;
 }
 
 .list.active {
@@ -236,8 +231,8 @@ ul {
 }
 
 .opt {
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .rule {
