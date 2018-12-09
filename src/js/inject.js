@@ -63,6 +63,13 @@ let inject = (props, whitelist, nav, injectionText, settings) => {
 				});
 			});
 
+			// fix recaptcha window.name spoofing;
+			let recaptchaProperties = props.slice();
+			var windowNameIndex = props.findIndex(p => p.prop == "name");
+			if (windowNameIndex > -1) {
+				recaptchaProperties.splice(windowNameIndex, 1);
+			}
+
 			// remove options if whitelisted
 			if (urlOK) {
 				for (var i = props.length - 1; i >= 0; i--) {
@@ -101,6 +108,11 @@ let inject = (props, whitelist, nav, injectionText, settings) => {
 						if(typeof(node.contentWindow)           !== "undefined"
 						&& node.contentWindow 					!== null
 						&& typeof(node.contentWindow.navigator) !== "undefined") {
+							if (node.src.includes("https://www.google.com/recaptcha/api2")) {
+								override(node.contentWindow, recaptchaProperties);
+								continue;
+							}
+
 							override(node.contentWindow, props);
 						}
 					}
