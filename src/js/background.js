@@ -3,6 +3,7 @@
 // store chameleon settings
 let chameleon = {
 	headers: {
+		blockEtag: false,
 		disableAuth: false,
 		disableRef: false,
 		enableDNT: false,
@@ -11,7 +12,6 @@ let chameleon = {
 		spoofAcceptEnc: false,
 		spoofAcceptLang: false,
 		spoofAcceptLangValue: "",
-		spoofEtag: false,
 		spoofSourceRef: false,
 		spoofVia: false,
 		spoofViaValue: 0,
@@ -562,7 +562,7 @@ function rewriteResponseHeaders(e) {
 	e.responseHeaders.forEach(function(header){
 		if (header.name.toLowerCase() == "etag") {
 			if (!wl.on) {
-				if (chameleon.headers.spoofEtag) header.value = "";
+				if (chameleon.headers.blockEtag) header.value = "";
 			}
 		}
 	});
@@ -780,45 +780,6 @@ function init(data) {
 	saveSettings();
 }
 
-// migrate users from prev version
-function migrate(data) {
-	["disableWebSockets", "enableScriptInjection", "interval", "notificationsEnabled",
-	  "screenSize", "useragent", "useragentValue"].forEach((key) => {
-		if (data[key] != undefined) {
-			chameleon.settings[key] = data[key];
-			chrome.storage.local.remove(key);
-		}
-	});
-
-	// migrate header settings
-	["disableAuth", "disableRef", "enableDNT", "refererXorigin", "refererTrimming",
-	 "spoofAcceptEnc", "spoofAcceptLang", "spoofAcceptLangValue", "spoofEtag",
-	 "spoofSourceRef", "spoofVia", "spoofViaValue", "spoofXFor", "spoofXForValue",
-	 "viaIP", "viaIP_profile", "xforwardedforIP", "xforwardedforIP_profile"].forEach((key) => {
-		if (data[key] != undefined) {
-			chameleon.headers[key] = data[key];
-			chrome.storage.local.remove(key);
-		}
-	});
-
-	// migrate whitelist settings
-	["wl_useragent", "wl_acceptEnc", "wl_acceptLang", "wl_appCodeName", "wl_appName",
-	 "wl_appVersion", "wl_hardwareConcurrency", "wl_osCPU", "wl_platform",
-	 "wl_productSub", "wl_vendor", "wl_vendorSub"].forEach((key) => {
-		if (data[key] != undefined) {
-			chameleon.whitelist.profile[key.split('_')[1]] = data[key];
-			chrome.storage.local.remove(key);
-		}
-	});
-
-	if (data.enableWhitelist != undefined) chameleon.whitelist.enabled = data.enableWhitelist;
-	if (data.enableWhitelistRealProfile != undefined) chameleon.whitelist.enableRealProfile = data.enableWhitelistRealProfile;
-	if (data.wl_urls != undefined) chameleon.whitelist.urlList = JSON.parse(data.wl_urls);
-	if (data.excluded != undefined) chameleon.excluded = data.excluded;
-
-	chrome.storage.local.remove(["enableWhitelist", "enableWhitelistRealProfile", "wl_urls", "excluded", "useragents"]);
-}
-
 /*
 	Event Listeners
 */
@@ -996,31 +957,10 @@ browser.runtime.onInstalled.addListener((details) => {
 (async function run(){
 	let data = await get(null);
 
-	// migrate users from v0.6.X to v0.7.0
-	if (data.version == undefined) {
-		migrate(data);
-		saveSettings();
-	} else {
-		if (data.version != "0.8.5") {
-			var tmpArr = [];
-			for (var i = 0; i < data.whitelist.urlList.length; i++){
-				tmpArr.push({
-					url: data.whitelist.urlList[i].url,
-					re: false,
-					pattern: "",
-					options: {
-						auth: false,
-						ip: false,
-						ref: false,
-						screen: false,
-						websocket: false,
-						winName: false
-					}
-				});
-			}
-			data.whitelist.urlList = tmpArr;
-		}
-
+	if (data.version != "0.10.0") {
+		var blockEtag = data.headers.spoofEtag;
+		delete data.headers.spoofEtag;
+		data.headers.blockEtag = blockEtag;
 		init(data);
 	}
 

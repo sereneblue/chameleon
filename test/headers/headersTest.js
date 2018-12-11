@@ -116,7 +116,7 @@ describe('Headers', () => {
 	});
 
 	it('should prevent etag tracking', async () => {
-		await selectHeaderOption('input[name="spoofEtag"]');
+		await selectHeaderOption('input[name="blockEtag"]');
 
 		let etag = await driver.executeAsyncScript(function() {
 			var callback = arguments[arguments.length - 1];

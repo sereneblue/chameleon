@@ -86,9 +86,9 @@ function validate(cfg) {
 		cfg.whitelist)) throw Error;
 
 	for (h in cfg.headers) {
-		if (['disableAuth', 'disableRef', 'enableDNT', 'spoofAcceptEnc', 
-				  'spoofAcceptLang', 'spoofEtag', 'spoofSourceRef', 'spoofVia',
-				  'spoofXFor', 'upgradeInsecureRequests'].includes(h)) {
+		if (['blockEtag', 'disableAuth', 'disableRef', 'enableDNT', 
+			 'spoofAcceptEnc', 'spoofAcceptLang',  'spoofSourceRef', 'spoofVia',
+			 'spoofXFor', 'upgradeInsecureRequests'].includes(h)) {
 			if (typeof(cfg.headers[h]) != "boolean") throw Error;
 		}
 
