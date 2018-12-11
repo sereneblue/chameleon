@@ -62,6 +62,7 @@ function get(key) {
 
 function buildWhitelist(rules) {
 	let ruleElement = document.getElementById('rules');
+	ruleElement.innerHTML = "";
 
 	for (var rule of rules) {
 		ruleElement.insertAdjacentHTML('beforeend', `
@@ -299,5 +300,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 				$(e.target).parent().parent().find('input[type="text"]').remove();
 			}
 		}
+	});
+
+	$('.search-input').on('keyup', function(e) {
+		let matches = data.whitelist.urlList.filter(r => r.url.includes(e.target.value));
+		buildWhitelist(matches);
 	});
 });

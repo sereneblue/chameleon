@@ -274,6 +274,17 @@ ul {
   text-overflow: ellipsis;
 }
 
+.search-input {
+  background-color: rgba(0,0,0,0.1);
+  color: white;
+  border-color: transparent;
+}
+
+.search-input:focus {
+  border-color: transparent;
+  border-bottom: 2px solid white;
+}
+
 .tab {
   padding: .4em .8em .4em .8em;
   display: none;
