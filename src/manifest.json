@@ -27,6 +27,7 @@
 		"notifications",
 		"privacy",
 		"storage",
+		"tabs",
 		"webRequest",
 		"webRequestBlocking"
 	]

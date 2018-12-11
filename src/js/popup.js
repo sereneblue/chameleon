@@ -176,6 +176,25 @@ async function updateUI() {
 	$('#list_whitelistProfile input').each(function (i, element) {
 		$(`input[name="${element.name}"]`).val(data.whitelist.profile[element.name.split('_')[1]]);
 	});
+
+	let currentTab = await browser.tabs.query({ active: true, currentWindow: true});
+	var l = document.createElement("a");
+    l.href = currentTab[0].url;
+
+    if (l.protocol != "about:" && 
+    	l.protocol != "moz-extension:") {
+		$('.whitelist h5').text(l.hostname);
+
+		if (data.whitelist.urlList.findIndex(r => r.url == l.hostname) > -1) {
+			$('.whitelist p').text("Status: Whitelisted");
+		} else {
+			$('.whitelist p').text("Status: Not whitelisted");
+		}
+
+		return;
+    }
+
+    $('.whitelist').hide();
 }
 
 // change view of displayed subitems
@@ -568,4 +587,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 		window.close();
 	});
+
+	$('#openEditor').on('click', function(e) {
+		var domain = $('.whitelist h5').text();
+
+		chrome.tabs.create({
+		    url:  chrome.runtime.getURL(`/whitelist.html?url=${domain}&mode=${$('.whitelist p').text() == "Status: Whitelisted" ? "edit" : "create"}`)
+		});
+
+		window.close();
+	})
 });

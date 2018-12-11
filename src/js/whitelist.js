@@ -119,6 +119,13 @@ function buildWhitelist(rules) {
 
 document.addEventListener('DOMContentLoaded', async function() {
 	data = await get(null);
+	let searchInput = $('#searchInput');
+	searchInput.on('keyup', function(e) {
+		let matches = data.whitelist.urlList.filter(r => r.url.includes(e.target.value));
+		buildWhitelist(matches);
+	});
+
+	searchInput.val("");
 
 	buildWhitelist(data.whitelist.urlList);
 
@@ -302,8 +309,16 @@ document.addEventListener('DOMContentLoaded', async function() {
 		}
 	});
 
-	$('.search-input').on('keyup', function(e) {
-		let matches = data.whitelist.urlList.filter(r => r.url.includes(e.target.value));
-		buildWhitelist(matches);
-	});
+	var u = new URL(window.location);
+	var domain = u.searchParams.get("url");
+	var mode = u.searchParams.get("mode");
+	
+	if (mode == "edit") {
+		searchInput.val(domain);
+		$('#search-input').trigger('keyup');
+		$('.card :button')[0].click();	
+	} else {
+		$('.header-container button')[0].click();
+		$('.card .form-input').val(domain);
+	}
 });

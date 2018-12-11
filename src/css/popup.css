@@ -294,6 +294,18 @@ ul {
   display: block;
 }
 
+.whitelist {
+  margin-top: 10px;
+}
+
+.whitelist h5 {
+  word-wrap: break-word;
+}
+
+.whitelist p {
+  margin-top: 10px;
+}
+
 /*
   Icons
 */
