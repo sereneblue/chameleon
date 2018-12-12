@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 	data = await get(null);
 	let searchInput = $('#searchInput');
 	searchInput.on('keyup', function(e) {
-		let matches = data.whitelist.urlList.filter(r => r.url.includes(e.target.value));
+		let matches = data.whitelist.urlList.filter(r => r.url.includes(e.target.value.trim()));
 		buildWhitelist(matches);
 	});
 
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 				$(inputs[0]).removeClass('is-error');
 
 				if (inputs[9].checked && inputs[10].value == "") {
-					$(inputs[10]).toggleClass('is-error');
+					$(inputs[10]).addClass('is-error');
 					return;
 				}
 
@@ -315,9 +315,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 	
 	if (mode == "edit") {
 		searchInput.val(domain);
-		$('#search-input').trigger('keyup');
+		$('#searchInput').trigger('keyup');
 		$('.card :button')[0].click();	
-	} else {
+	} else if (mode == "create") {
 		$('.header-container button')[0].click();
 		$('.card .form-input').val(domain);
 	}
