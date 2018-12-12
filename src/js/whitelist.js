@@ -1,55 +1,17 @@
 let data = null;
-let template = `
-	<div class="card text-left mt-2">
-	  <div class="card-header">
-		<div class="card-title h5 d-inline"><strong></strong></div>
-		<button class="btn btn-error btn-sm d-block mt-2">Delete</button>
-	  </div>
-	  <div class="divider"></div>
-	  <div class="card-body">
-	    <div class="container ">
-	      <div class="columns">
-	        <div class="column col-xs-6">
-				<label class="form-switch">
-					<input type="checkbox">
-					<i class="form-icon"></i> Disable auth header
-				</label>
-				<label class="form-switch">
-					<input type="checkbox">
-					<i class="form-icon"></i> Disable Referer
-				</label>
-				<label class="form-switch">
-					<input type="checkbox">
-					<i class="form-icon"></i> Disable WebSocket
-				</label>
-	        </div>
-	        <div class="column col-xs-6">
-	            <label class="form-switch">
-	                <input type="checkbox">
-	                <i class="form-icon"></i> Enable Accept-Language
-	            </label>
-	            <label class="form-switch">
-	                <input type="checkbox">
-	                <i class="form-icon"></i> Enable IP headers
-	            </label>
-	            <label class="form-switch">
-	                <input type="checkbox">
-	                <i class="form-icon"></i> Enable Screen Spoofing
-	            </label>
-	        </div>
-	      </div>
-	    </div>		  
-	    <label class="form-checkbox">
-	        <input type="checkbox">
-	        <i class="form-icon"></i> Regex enabled
-	    </label>
-	    <input class="form-input" type="text" placeholder="Name">
-	  </div>
-	</div>
-`;
 
 let patternTemplate = (pattern, regexEnabled, disabled) => {
 	return regexEnabled ? `<input class="form-input" type="text" value="${pattern}" ${disabled ? "disabled" : ""}>` : "";
+};
+
+let languageTemplate = (lang) => {
+	let template = `<div class="form-group"><label>Spoof Accept-Language</label><select class="form-select">${lang == "" || lang == undefined ? '<option label=" ">Default</option>' : ""}`;
+
+	for (var l of languages) {
+		template += `<option value="${l.value}" ${l.value == lang ? "selected" : ""}>${l.display}</option>`
+	}
+	
+	return template + `</select></div>`;
 };
 
 function get(key) {
@@ -112,6 +74,7 @@ function buildWhitelist(rules) {
 		        <i class="form-icon"></i> Regex enabled
 		    </label>
 		   ${patternTemplate(rule.pattern, rule.re, true)}
+		   ${languageTemplate(rule.lang)}
 		  </div>
 		</div>`)
 	}
@@ -151,6 +114,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 				var parent = $(e.target).parent().parent();
 				var buttons = parent.find(':button');
 				var inputs = parent.find(':input');
+				var lang = parent.find('select')[0].value
 
 				if (inputs[9].checked && inputs[10].value == "") {
 					$(inputs[10]).toggleClass('is-error');
@@ -164,6 +128,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					"url": parent[0].id,
 					"re": inputs[9].checked,
 					"pattern": inputs[9].checked ? inputs[10].value : "",
+					"lang": lang != "Default" ? lang : "",
 					"options": {
 						"auth": inputs[3].checked,
 						"ip": inputs[6].checked,
@@ -206,6 +171,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 				var parent = $(e.target).parent().parent();
 				var inputs = parent.find(':input');
 				var index = data.whitelist.urlList.findIndex(rule => rule.url == inputs[0].value);
+				var lang = parent.find('select')[0].value;
 
 				if (inputs[0].value == "" || index > -1 || !/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test(inputs[0].value)) {
 					$(inputs[0]).addClass('is-error');
@@ -225,6 +191,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					"url": inputs[0].value,
 					"re": inputs[9].checked,
 					"pattern": inputs[9].checked ? inputs[10].value : "",
+					"lang": lang ? lang : "",
 					"options": {
 						"auth": inputs[3].checked,
 						"ip": inputs[6].checked,
@@ -296,13 +263,14 @@ document.addEventListener('DOMContentLoaded', async function() {
 					        <input type="checkbox">
 					        <i class="form-icon"></i> Regex enabled
 					    </label>
+		    		    ${languageTemplate('')}
 					  </div>
 					</div>
 					`);	
 			}
 		} else if (e.target.parentNode.innerText == "Regex enabled") {
 			if (e.target.checked) {
-				$(e.target).parent().parent()[0].insertAdjacentHTML('beforeend', patternTemplate("",1, false));
+				$(e.target).parent()[0].insertAdjacentHTML('afterend', patternTemplate("",1, false));
 			} else {
 				$(e.target).parent().parent().find('input[type="text"]').remove();
 			}

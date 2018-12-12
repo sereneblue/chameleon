@@ -272,7 +272,8 @@ async function buildInjectScript() {
 				websocket : chameleon.settings.disableWebSockets,
 				screen : chameleon.settings.screenSize != "default",
 				name : chameleon.settings.protectWinName
-			}
+			},
+			languages
 		);
 	}
 
@@ -511,7 +512,11 @@ function rewriteHeaders(e) {
 			}
 		} else if (header.name.toLowerCase() === "accept-language") {
 			if (wl.on) {
-				if (!chameleon.whitelist.enableRealProfile) header.value = chameleon.whitelist.profile.acceptLang;
+				if (wl.lang) {
+					header.value = wl.lang;
+				} else if (!chameleon.whitelist.enableRealProfile) {
+					header.value = chameleon.whitelist.profile.acceptLang;
+				}
 			} else {
 				if (chameleon.headers.spoofAcceptLang) {
 					if (chameleon.headers.spoofAcceptLangValue == "ip") {
@@ -758,7 +763,7 @@ function whitelisted(url) {
 				};
 			}
 
-			return {on: true, opt: chameleon.whitelist.urlList[idx].options};
+			return {on: true, opt: chameleon.whitelist.urlList[idx].options, lang: chameleon.whitelist.urlList[idx].lang};
 		}
 	}
 
@@ -978,6 +983,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.9.23"});
+	await save({ version: "0.10.0"});
 	changeTimer();
 })();

@@ -1,4 +1,4 @@
-let inject = (props, whitelist, nav, injectionText, settings) => {
+let inject = (props, whitelist, nav, injectionText, settings, languages) => {
 	return `
 		var scripts = document.getElementsByTagName('script');
 		var script = document.createElement('script');
@@ -8,10 +8,11 @@ let inject = (props, whitelist, nav, injectionText, settings) => {
 		var whitelist = ${JSON.stringify(whitelist)};
 		var urlOK = false;
 		var settings = ${JSON.stringify(settings)};
+		var languages = ${JSON.stringify(languages)};
 		var wlOptions = {
 			websocket: false,
 			screen: false,
-			name: false
+			name: false,
 		};
 
 		if (whitelist.enabled) {
@@ -20,6 +21,7 @@ let inject = (props, whitelist, nav, injectionText, settings) => {
 				urlOK = true;
 				wlOptions = whitelist.urlList[idx].options;
 
+				wlOptions.lang = whitelist.urlList[idx].lang;
 				if (whitelist.urlList[idx].re) {
 					urlOK = new RegExp(whitelist.urlList[idx].pattern, "i").test(window.location.href) ? true : false;
 				}
@@ -27,7 +29,22 @@ let inject = (props, whitelist, nav, injectionText, settings) => {
 		}
 
 		if (urlOK) {
-			if (!whitelist.enableRealProfile) {
+			if (wlOptions.lang) {
+				let langIndex = properties.findIndex(p => p.prop == "language");
+				let langsIndex = properties.findIndex(p => p.prop == "languages");
+				let langData = languages.find(l => l.value == wlOptions.lang);
+
+				if (langIndex > -1) {
+					properties[langIndex].value = wlOptions.lang;
+				} else {
+					properties.push({ obj: "window.navigator", prop: "language", value: langData.lang });
+				}
+				if (langsIndex > -1) {
+					properties[langsIndex].value = langData.langs;
+				} else {
+					properties.push({ obj: "window.navigator", prop: "languages", value: langData.langs });
+				}
+			} else if (!whitelist.enableRealProfile) {
 				properties.push(...[
 					{ obj: "window.navigator", prop: "appCodeName", value: whitelist.profile.appCodeName },
 					{ obj: "window.navigator", prop: "appName", value: whitelist.profile.appName },
