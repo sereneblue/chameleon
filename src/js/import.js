@@ -68,7 +68,6 @@ let profileValues = [
 
 let whitelistOptions = ["auth", "ip", "ref", "screen", "websocket", "winName"];
 
-
 function get(key) {
 	return new Promise((resolve) => {
 		chrome.storage.local.get(key, (item) => {
@@ -159,11 +158,13 @@ function validate(cfg) {
 			continue;
 		}
 
-		if (!['enabled', 'enableRealProfile'].includes(w)) throw Error;
+		if (!['enabled', 'enableRealProfile', 'lang'].includes(w)) throw Error;
+		if (w == "lang" && !languages.map(l => l.value).includes(cfg.whitelist[w]) && cfg.whitelist[w] != "") throw Error;
+
 		if (typeof(cfg.whitelist[w]) != "boolean") throw Error;
 	}
 
-	$("#import-msg").text("Successfully imported settings").css('color', 'olivedrab');
+	$("#import-msg").text("Successfully imported settings. Reloading extension...").css('color', 'olivedrab');
 	chrome.runtime.sendMessage({
 		action: "import",
 		data: cfg

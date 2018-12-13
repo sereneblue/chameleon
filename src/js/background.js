@@ -512,7 +512,7 @@ function rewriteHeaders(e) {
 			}
 		} else if (header.name.toLowerCase() === "accept-language") {
 			if (wl.on) {
-				if (wl.lang) {
+				if (wl.lang != "") {
 					header.value = wl.lang;
 				} else if (!chameleon.whitelist.enableRealProfile) {
 					header.value = chameleon.whitelist.profile.acceptLang;
@@ -779,9 +779,6 @@ function init(data) {
 	});
 
 	chameleon.headers.useragent = "";
-
-	// missed this from v0.6.X
-	if (data.useragents) chrome.storage.local.remove("useragents");
 	saveSettings();
 }
 
@@ -829,8 +826,10 @@ chrome.runtime.onMessage.addListener(function(request) {
 			chameleon.ipInfo.update = 1;
 		}
 
-		changeTimer();
 		saveSettings();
+		setTimeout(function () {
+			browser.runtime.reload();
+		}, 2000);
 	} else if (request.action == "interval") {
 		chameleon.settings.interval = request.data;
 
@@ -962,13 +961,19 @@ browser.runtime.onInstalled.addListener((details) => {
 (async function run(){
 	let data = await get(null);
 
-	if (data.version != "0.10.0") {
+	if (data.version == undefined) {
+		saveSettings();
+	} else if (data.headers.hasOwnProperty('spoofEtag')) {
 		var blockEtag = data.headers.spoofEtag;
 		delete data.headers.spoofEtag;
 		data.headers.blockEtag = blockEtag;
-		init(data);
+
+		for (var i in data.whitelist.urlList) {
+			data.whitelist.urlList[i].lang = "";
+		}
 	}
 
+	init(data);
 	let plat = await browser.runtime.getPlatformInfo();
 
 	if (chameleon.settings.useragent == "real") {
