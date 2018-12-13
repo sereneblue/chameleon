@@ -5,7 +5,7 @@ let patternTemplate = (pattern, regexEnabled, disabled) => {
 };
 
 let languageTemplate = (lang) => {
-	let template = `<div class="form-group"><label>Spoof Accept-Language</label><select class="form-select">${lang == "" || lang == undefined ? '<option label=" ">Default</option>' : ""}`;
+	let template = `<div class="form-group"><label>Spoof Accept-Language</label><select class="form-select"><option value="" ${lang == "" || lang == undefined ? 'selected' : ""}>Default</option>`;
 
 	for (var l of languages) {
 		template += `<option value="${l.value}" ${l.value == lang ? "selected" : ""}>${l.display}</option>`
@@ -95,14 +95,20 @@ document.addEventListener('DOMContentLoaded', async function() {
 	$(document).click(function(e) {
 		if (e.target.nodeName == "BUTTON") {
 			if (e.target.innerText == "Delete") {
-				$(e.target).parent()[0].insertAdjacentHTML('beforeend', `
-				<div class="confirmation">
-					<h5>Are you sure you want to delete this rule?</h5>
-					<button class="btn btn-success btn-sm d-inline-block mt-2">Yes</button>
-					<button class="btn btn-error btn-sm d-inline-block mt-2">No</button>
-				</div>
-				`);
+				if (!document.querySelector('.confirmation')) {
+					$(e.target).parent()[0].insertAdjacentHTML('beforeend', `
+						<div class="confirmation">
+							<h5>Are you sure you want to delete this rule?</h5>
+							<button class="btn btn-success btn-sm d-inline-block mt-2">Yes</button>
+							<button class="btn btn-error btn-sm d-inline-block mt-2">No</button>
+						</div>
+					`);
+				}
 			} else if (e.target.innerText == "Edit") {
+				if (document.querySelector('.confirmation')) {
+					document.querySelector('.confirmation').remove();
+				}
+
 				var parent = $(e.target).parent().parent();
 				var buttons = parent.find(':button');
 
@@ -173,7 +179,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 				var index = data.whitelist.urlList.findIndex(rule => rule.url == inputs[0].value);
 				var lang = parent.find('select')[0].value;
 
-				if (inputs[0].value == "" || index > -1 || !/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test(inputs[0].value)) {
+				if (inputs[0].value == "" || index > -1 || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(inputs[0].value)) {
 					$(inputs[0]).addClass('is-error');
 					return;
 				}
@@ -286,7 +292,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 		$('#searchInput').trigger('keyup');
 		$('.card :button')[0].click();	
 	} else if (mode == "create") {
-		$('.header-container button')[0].click();
-		$('.card .form-input').val(domain);
+		if (data.whitelist.urlList.filter(r => r.url.includes(domain)) == -1) {
+			$('.header-container button')[0].click();
+			$('.card .form-input').val(domain);
+		}
 	}
 });
