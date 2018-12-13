@@ -439,4 +439,20 @@ describe('Script Injection', () => {
 		`);
 		expect(matchOption).to.be.true;
 	})
+
+	it('should toggle cookie option - reject trackers', async () => {
+		await driver.executeScript(`
+			var el = document.querySelector('select[name="cookieConfig"]');
+			el.value = "reject_trackers";
+			el.dispatchEvent(new Event('change'));
+		`);
+		await wait(SLEEP_TIME);
+		await driver.get(EXTENSION_URI);
+
+		await wait(SLEEP_TIME);
+		let matchOption = await driver.executeScript(`
+			return document.querySelector('select[name="cookieConfig"]').value == "reject_trackers" ? true : false;
+		`);
+		expect(matchOption).to.be.true;
+	})
 });
