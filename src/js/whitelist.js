@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		$('#searchInput').trigger('keyup');
 		$('.card :button')[0].click();	
 	} else if (mode == "create") {
-		if (data.whitelist.urlList.filter(r => r.url.includes(domain)) == -1) {
+		if (data.whitelist.urlList.findIndex(r => r.url.includes(domain)) == -1) {
 			$('.header-container button')[0].click();
 			$('.card .form-input').val(domain);
 		}

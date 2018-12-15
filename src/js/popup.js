@@ -36,11 +36,10 @@ function get(key) {
 // export settings
 async function exportSettings() {
 	data = await get(null);
-	data.timestamp = new Date().toLocaleString();
 	var settings = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
 	var exportElement = document.getElementById('export');
 	exportElement.setAttribute("href", settings );
-	exportElement.setAttribute("download", "chameleon_settings.json");
+	exportElement.setAttribute("download", `chameleon_settings_${new Date().getTime()}.json`);
 	exportElement.click();
 };
 
@@ -182,10 +181,12 @@ async function updateUI() {
     l.href = currentTab[0].url;
 
     if (l.protocol != "about:" && 
-    	l.protocol != "moz-extension:") {
-		$('.whitelist h5').text(l.hostname);
+    	l.protocol != "moz-extension:" &&
+    	l.protocol != "ftp:" && 
+    	l.protocol != "file:") {
+		$('.whitelist h5').text(l.host);
 
-		if (data.whitelist.urlList.findIndex(r => r.url == l.hostname) > -1) {
+		if (data.whitelist.urlList.findIndex(r => r.url == l.host) > -1) {
 			$('.whitelist p').text("Status: Whitelisted");
 		} else {
 			$('.whitelist p').text("Status: Not whitelisted");
