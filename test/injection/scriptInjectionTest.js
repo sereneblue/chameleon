@@ -188,6 +188,8 @@ describe('Script Injection', () => {
 
 	it('should limit tab history', async () => {
 		await driver.get(LOCALSERVER);
+		
+		await wait(SLEEP_TIME);
 		for (var i = 0; i < 5; i++) {
 			await driver.executeScript(`
 				document.querySelector('#link').click()
