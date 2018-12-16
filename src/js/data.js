@@ -119,23 +119,23 @@ let uaList = {
 		"name": "Chromium 71 (Ubuntu 64)",
 		"value": "linux6"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv 64.0) Gecko/20100101 Firefox/64.0",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0",
 		"name": "Firefox 64 (Linux 64)",
 		"value": "linux7"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv 64.0) Gecko/20100101 Firefox/64.0",
+		"ua": "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0",
 		"name": "Firefox 64 (Fedora 64)",
 		"value": "linux8"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv 64.0) Gecko/20100101 Firefox/64.0",
+		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0",
 		"name": "Firefox 64 (Ubuntu 64)",
 		"value": "linux9"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv 60.0) Gecko/20100101 Firefox/60.0",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0",
 		"name": "Firefox 60 ESR (Linux 64)",
 		"value": "linux10"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv 60.0) Gecko/20100101 Firefox/60.0",
+		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0",
 		"name": "Firefox 60 ESR (Ubuntu 64)",
 		"value": "linux11"
 	}],
