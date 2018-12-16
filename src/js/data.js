@@ -1,6 +1,6 @@
 // useragent list
 let uaList = {
-	"windows": [{
+	"win": [{
 		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36",
 		"name": "Chrome 71 (Win 7)",
 		"value": "win1"
@@ -61,7 +61,7 @@ let uaList = {
 		"name": "Internet Explorer 11 (Win 8.1)",
 		"value": "win12"
 	}],
-	"macos": [{
+	"mac": [{
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36",
 		"name": "Chrome 71 (macOS 10.12)",
 		"value": "mac1"

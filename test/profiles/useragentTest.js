@@ -93,14 +93,14 @@ describe('Profiles', () => {
 	});
 
 	it('should use a random profile', async () => {
-		let uas = browserData.uaList.windows.concat(browserData.uaList.macos, browserData.uaList.linux, browserData.uaList.ios, browserData.uaList.android).map(u => u.ua);
+		let uas = browserData.uaList.win.concat(browserData.uaList.mac, browserData.uaList.linux, browserData.uaList.ios, browserData.uaList.android).map(u => u.ua);
 
 		await selectProfile('input[value="random"]');
 		await checkUA(uas);
 	});
 
 	it('should change user agent after 1 minute', async () => {
-		let uas = browserData.uaList.windows.concat(browserData.uaList.macos, browserData.uaList.linux, browserData.uaList.ios, browserData.uaList.android).map(u => u.ua);
+		let uas = browserData.uaList.win.concat(browserData.uaList.mac, browserData.uaList.linux, browserData.uaList.ios, browserData.uaList.android).map(u => u.ua);
 
 		await selectProfile('input[value="random"]');
 
@@ -124,7 +124,7 @@ describe('Profiles', () => {
 	});
 
 	it('should use a random desktop profile', async () => {
-		let uas = browserData.uaList.windows.concat(browserData.uaList.macos, browserData.uaList.linux).map(u => u.ua);
+		let uas = browserData.uaList.win.concat(browserData.uaList.mac, browserData.uaList.linux).map(u => u.ua);
 
 		await selectProfile('input[value="randomDesktop"]');
 		await checkUA(uas);
@@ -138,17 +138,17 @@ describe('Profiles', () => {
 	});
 
 	it('should use a Windows profile', async () => {
-		let uas = browserData.uaList.windows.map(u => u.ua);
+		let uas = browserData.uaList.win.map(u => u.ua);
 
-		await selectProfile('input[value="random_windows"]');
+		await selectProfile('input[value="random_win"]');
 		await checkUA(uas);
 	});
 
 	it('should exclude all but 1 Windows profile', async () => {
-		let u = browserData.uaList.windows[Math.floor(Math.random() * browserData.uaList.windows.length)];
+		let u = browserData.uaList.win[Math.floor(Math.random() * browserData.uaList.win.length)];
 
 		await driver.executeScript(`
-			el = document.querySelector('#list_windows .excludeall input');
+			el = document.querySelector('#list_win .excludeall input');
 			el.checked = true;
 			el.dispatchEvent(new Event('click'));
 
@@ -157,24 +157,24 @@ describe('Profiles', () => {
 			el.dispatchEvent(new Event('change'));
 		`);
 
-		await selectProfile('input[value="random_windows"]');
+		await selectProfile('input[value="random_win"]');
 		await checkUA([u.ua]);
 	});
 
-	loopProfiles(browserData.uaList.windows, "Windows");
+	loopProfiles(browserData.uaList.win, "Windows");
 
 	it('should use a macOS profile', async () => {
-		let uas = browserData.uaList.macos.map(u => u.ua);
+		let uas = browserData.uaList.mac.map(u => u.ua);
 
-		await selectProfile('input[value="random_macos"]');
+		await selectProfile('input[value="random_mac"]');
 		await checkUA(uas);
 	});
 
 	it('should exclude all but 1 macOS profile', async () => {
-		let u = browserData.uaList.macos[Math.floor(Math.random() * browserData.uaList.macos.length)];
+		let u = browserData.uaList.mac[Math.floor(Math.random() * browserData.uaList.mac.length)];
 
 		await driver.executeScript(`			
-			el = document.querySelector('#list_macos .excludeall input');
+			el = document.querySelector('#list_mac .excludeall input');
 			el.checked = true;
 			el.dispatchEvent(new Event('click'));
 
@@ -183,11 +183,11 @@ describe('Profiles', () => {
 			el.dispatchEvent(new Event('change'));
 		`);
 
-		await selectProfile('input[value="random_macos"]');
+		await selectProfile('input[value="random_mac"]');
 		await checkUA([u.ua]);
 	});
 
-	loopProfiles(browserData.uaList.macos, "macOS");
+	loopProfiles(browserData.uaList.mac, "macOS");
 
 	it('should use a Linux profile', async () => {
 		let uas = browserData.uaList.linux.map(u => u.ua);

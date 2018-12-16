@@ -240,9 +240,9 @@ function changeTab(tab) {
 // determine platform from useragent option value
 function getPlatform(v) {
 	if (v.includes("win")) {
-		return "windows";
+		return "win";
 	} else if (v.includes("mac")) {
-		return "macos";
+		return "mac";
 	} else if (v.includes("linux")) {
 		return "linux";
 	} else if (v.includes("ios")) {

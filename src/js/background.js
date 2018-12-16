@@ -25,9 +25,9 @@ let chameleon = {
 		useragent: ""
 	},
 	excluded: {
-		win: [false,false,false,false,false,false,false,false,false,false,false,false],
-		mac: [false,false,false,false,false,false,false],
-		linux: [false,false,false,false,false,false,false,false,false],
+		win: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+		mac: [false,false,false,false,false,false,false,false],
+		linux: [false,false,false,false,false,false,false,false,false,false,false],
 		ios: [false,false,false,false,false,false,false,false,false],
 		android: [false,false,false,false,false,false,false,false],
 		all: [false, false, false, false, false]
@@ -591,9 +591,9 @@ async function start() {
 		var plat;
 
 		if (regexMatch[1].includes("win")) {
-			plat = "windows";
+			plat = "win";
 		} else if (regexMatch[1].includes("mac")) {
-			plat = "macos";
+			plat = "mac";
 		} else {
 			plat = regexMatch[1];
 		}
@@ -612,16 +612,16 @@ async function start() {
 			uas = filterProfiles(uaList[chameleon.settings.useragent.split('_')[1]]);
 		} else if (chameleon.settings.useragent == "random") {
 			// random useragent
-			uas = filterProfiles(uaList.windows.concat(
-				uaList.macos,
+			uas = filterProfiles(uaList.win.concat(
+				uaList.mac,
 				uaList.linux,
 				uaList.ios,
 				uaList.android
 			));
 		} else if (chameleon.settings.useragent == "randomDesktop") {
 			// random desktop useragent
-			uas = filterProfiles(uaList.windows.concat(
-				uaList.macos,
+			uas = filterProfiles(uaList.win.concat(
+				uaList.mac,
 				uaList.linux
 			));
 		} else if (chameleon.settings.useragent == "randomMobile") {
@@ -963,13 +963,25 @@ browser.runtime.onInstalled.addListener((details) => {
 
 	if (data.version == undefined) {
 		saveSettings();
-	} else if (data.headers.hasOwnProperty('spoofEtag')) {
+	}
+
+	if (data.headers.hasOwnProperty('spoofEtag')) {
 		var blockEtag = data.headers.spoofEtag;
 		delete data.headers.spoofEtag;
 		data.headers.blockEtag = blockEtag;
 
 		for (var i in data.whitelist.urlList) {
 			data.whitelist.urlList[i].lang = "";
+		}
+	}
+
+	// check for exclusion settings
+	if (data.excluded.win.length != uaList.win.length) {
+		for (var os of ["win", "mac", "linux", "ios", "android"]) {
+			var diff = chameleon.excluded[os].length - data.excluded[os].length;
+			for (var i = 0; i < diff; i++) {
+				data.excluded[os].push(false);
+			}
 		}
 	}
 

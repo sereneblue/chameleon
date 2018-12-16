@@ -54,8 +54,8 @@ let profileValues = [
 	"random",
 	"randomDesktop",
 	"randomMobile",
-	"random_windows",
-	"random_macos",
+	"random_win",
+	"random_mac",
 	"random_linux",
 	"random_ios",
 	"random_android",
@@ -63,7 +63,7 @@ let profileValues = [
 ].concat(
 	Object
 	.entries(uaList)
-	.reduce((flat, next) => flat.concat(next[1].value), [])
+	.reduce((flat, next) => flat.concat(next[1].map(n => n.value)), [])
 );
 
 let whitelistOptions = ["auth", "ip", "ref", "screen", "websocket", "winName"];
@@ -114,7 +114,11 @@ function validate(cfg) {
 	}
 
 	for (e in cfg.excluded) {
-		if (cfg.excluded[e].length != data.excluded[e].length) throw Error;
+		if (e == "all") {
+			if (cfg.excluded[e].length != Object.entries(uaList).length) throw Error;
+		} else {
+			if (cfg.excluded[e].length != uaList[e].length) throw Error;
+		}
 
 		for (i in cfg.excluded[e]) {
 			if (typeof(cfg.excluded[e][i]) != "boolean") throw Error;
