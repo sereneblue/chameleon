@@ -231,13 +231,11 @@ async function buildInjectScript() {
 	let nav = [];
 
 	if (chameleon.settings.enableScriptInjection) {
-		let randString = Math.random().toString(36);
-	
 		injectionArray = spoof.websocket(injectionArray);
 		injectionArray = spoof.name(injectionArray);
 		if (chameleon.settings.limitHistory) injectionArray = spoof.history(injectionArray);
-		if (chameleon.settings.spoofAudioContext) injectionText += spoofAudioContext(randString);
-		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(randString);
+		if (chameleon.settings.spoofAudioContext) injectionText += spoofAudioContext(Math.random().toString(36));
+		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(Math.random().toString(36));
 
 		nav = spoof.navigator();
 
@@ -1000,6 +998,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.10.1"});
+	await save({ version: "0.10.2"});
 	changeTimer();
 })();

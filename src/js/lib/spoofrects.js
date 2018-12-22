@@ -4,7 +4,7 @@ let spoofRects = (randString) => {
 		var _rgetBoundingClientRect = window.Range.prototype.getBoundingClientRect;
 
 		if (!window.parent["${randString}"]) {
-			window["${randString}"] = Math.random() * 0.000000001000000;
+			window["${randString}"] = Math.random() * 0.00000001;
 		}
 
 		let _fuzzer = (val) => {
