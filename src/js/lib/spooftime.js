@@ -216,7 +216,7 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 		    Element.prototype.appendChild = function(oAppend) {
 		    	return function() {
 		    		var tmp = oAppend.apply(this, arguments);
-		    		if (arguments[0].nodeName == "IFRAME") {
+		    		if (arguments[0].nodeName == "IFRAME" && arguments[0].contentWindow != null) {
 						const intlIframe = arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions;
 						arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
 							return Object.assign(intlIframe.apply(this, args), {
