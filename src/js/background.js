@@ -234,8 +234,8 @@ async function buildInjectScript() {
 		injectionArray = spoof.websocket(injectionArray);
 		injectionArray = spoof.name(injectionArray);
 		if (chameleon.settings.limitHistory) injectionArray = spoof.history(injectionArray);
-		if (chameleon.settings.spoofAudioContext) injectionText += spoofAudioContext(Math.random().toString(36));
-		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(Math.random().toString(36));
+		if (chameleon.settings.spoofAudioContext) injectionText += spoofAudioContext(`_${Math.random().toString(36)}`);
+		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(`_${Math.random().toString(36)}`);
 
 		nav = spoof.navigator();
 
@@ -257,7 +257,8 @@ async function buildInjectScript() {
 			injectionText += spoofTime(
 				t.utcOffset(),
 				t.format("z"),
-				chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone
+				chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone,
+				`_${Math.random().toString(36)}`
 			);
 		}
 
@@ -998,6 +999,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.10.2"});
+	await save({ version: "0.10.3"});
 	changeTimer();
 })();

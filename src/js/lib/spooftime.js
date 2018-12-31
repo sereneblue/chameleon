@@ -19,13 +19,13 @@
 	Public License for more details.
 */
 
-let spoofTime = (offset, tzAbbr, tzName) => {
+let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 	return `
 		var spoofedTimezone = 0 - ${offset};
 		var tzAbbr = "${tzAbbr}";
 		var tzName = "${tzName}";
-		var timezoneOffset = new window.Date().getTimezoneOffset();
 
+		const timezoneOffset = new window.Date().getTimezoneOffset();
 		const intl = window.Intl.DateTimeFormat.prototype.resolvedOptions;
 		window.Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
 			return Object.assign(intl.apply(this, args), {
@@ -38,9 +38,9 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 				const z = n => (n < 10 ? '0' : '') + n;
 				const sign = offset <= 0 ? '+' : '-';
 				offset = Math.abs(offset);
-				return sign + z(offset / 60 | 0) + z(offset % 60);
+				return "GMT" + sign + z(offset / 60 | 0) + z(offset % 60);
 			};
-			str = str.replace(/(T[\\\\+|\\\\-]?\\\\d+)/g, toGMT(spoofedTimezone));
+			str = str.replace(/(GMT[\\\\+|\\\\-]?\\\\d+)/g, toGMT(spoofedTimezone));
 
 			if (str.indexOf(' (') !== -1) {
 				str = str.split(' (')[0] + ' (' + tzAbbr + ')';
@@ -48,172 +48,99 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 			return str;
 		}
 
-		var ODate = window.Date;
+		let _d = window.Date;
 		const {
-			getTime, getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getYear,
-			toDateString, toLocaleString, toString, toTimeString, toLocaleTimeString, toLocaleDateString,
-			setYear, setHours, setTime, setFullYear, setMilliseconds, setMinutes, setMonth, setSeconds, setDate,
-			setUTCDate, setUTCFullYear, setUTCHours, setUTCMilliseconds, setUTCMinutes, setUTCMonth, setUTCSeconds
-		} = ODate.prototype;
+			getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getYear,
+			toLocaleString, toLocaleDateString, toLocaleTimeString, toDateString, toTimeString
+		} = _d.prototype;
+		Date = function(...args) {
+			let originalDate = new _d(...args);
 
-		class ShiftedDate extends ODate {
-			constructor(...args) {
-			  super(...args);
-			  this.nd = new ODate(
-				getTime.apply(this) + (timezoneOffset - spoofedTimezone) * 60 * 1000
-			  );
-			}
-			toLocaleString(...args) {
-			  return toLocaleString.apply(this.nd, args);
-			}
-			toLocaleTimeString(...args) {
-			  return toLocaleTimeString.apply(this.nd, args);
-			}
-			toLocaleDateString(...args) {
-			  return toLocaleDateString.apply(this.nd, args);
-			}
-			toDateString(...args) {
-			  return toDateString.apply(this.nd, args);
-			}
-			getDate(...args) {
-			  return getDate.apply(this.nd, args);
-			}
-			getDay(...args) {
-			  return getDay.apply(this.nd, args);
-			}
-			getFullYear(...args) {
-			  return getFullYear.apply(this.nd, args);
-			}
-			getHours(...args) {
-			  return getHours.apply(this.nd, args);
-			}
-			getMilliseconds(...args) {
-			  return getMilliseconds.apply(this.nd, args);
-			}
-			getMinutes(...args) {
-			  return getMinutes.apply(this.nd, args);
-			}
-			getMonth(...args) {
-			  return getMonth.apply(this.nd, args);
-			}
-			getSeconds(...args) {
-			  return getSeconds.apply(this.nd, args);
-			}
-			getYear(...args) {
-			  return getYear.apply(this.nd, args);
-			}
-			// set
-			setHours(...args) {
-			  const a = getTime.call(this.nd);
-			  const b = setHours.apply(this.nd, args);
-			  setTime.call(this, getTime.call(this) + b - a);
-			  return b;
-			}
-			setFullYear(...args) {
-			  const a = getTime.call(this.nd);
-			  const b = setFullYear.apply(this.nd, args);
-			  setTime.call(this, getTime.call(this) + b - a);
-			  return b;
-			}
-			setMilliseconds(...args) {
-			  const a = getTime.call(this.nd);
-			  const b = setMilliseconds.apply(this.nd, args);
-			  setTime.call(this, getTime.call(this) + b - a);
-			  return b;
-			}
-			setMinutes(...args) {
-			  const a = getTime.call(this.nd);
-			  const b = setMinutes.apply(this.nd, args);
-			  setTime.call(this, getTime.call(this) + b - a);
-			  return b;
-			}
-			setMonth(...args) {
-			  const a = getTime.call(this.nd);
-			  const b = setMonth.apply(this.nd, args);
-			  setTime.call(this, getTime.call(this) + b - a);
-			  return b;
-			}
-			setSeconds(...args) {
-			  const a = getTime.call(this.nd);
-			  const b = setSeconds.apply(this.nd, args);
-			  setTime.call(this, getTime.call(this) + b - a);
-			  return b;
-			}
-			setDate(...args) {
-			  const a = getTime.call(this.nd);
-			  const b = setDate.apply(this.nd, args);
-			  setTime.call(this, getTime.call(this) + b - a);
-			  return b;
-			}
-			setYear(...args) {
-			  const a = getTime.call(this.nd);
-			  const b = setYear.apply(this.nd, args);
-			  setTime.call(this, getTime.call(this) + b - a);
-			  return b;
-			}
-			setTime(...args) {
-			  const a = getTime.call(this);
-			  const b = setTime.apply(this, args);
-			  setTime.call(this.nd, getTime.call(this.nd) + b - a);
-			  return b;
-			}
-			setUTCDate(...args) {
-			  const a = getTime.call(this);
-			  const b = setUTCDate.apply(this, args);
-			  setTime.call(this.nd, getTime.call(this.nd) + b - a);
-			  return b;
-			}
-			setUTCFullYear(...args) {
-			  const a = getTime.call(this);
-			  const b = setUTCFullYear.apply(this, args);
-			  setTime.call(this.nd, getTime.call(this.nd) + b - a);
-			  return b;
-			}
-			setUTCHours(...args) {
-			  const a = getTime.call(this);
-			  const b = setUTCHours.apply(this, args);
-			  setTime.call(this.nd, getTime.call(this.nd) + b - a);
-			  return b;
-			}
-			setUTCMilliseconds(...args) {
-			  const a = getTime.call(this);
-			  const b = setUTCMilliseconds.apply(this, args);
-			  setTime.call(this.nd, getTime.call(this.nd) + b - a);
-			  return b;
-			}
-			setUTCMinutes(...args) {
-			  const a = getTime.call(this);
-			  const b = setUTCMinutes.apply(this, args);
-			  setTime.call(this.nd, getTime.call(this.nd) + b - a);
-			  return b;
-			}
-			setUTCMonth(...args) {
-			  const a = getTime.call(this);
-			  const b = setUTCMonth.apply(this, args);
-			  setTime.call(this.nd, getTime.call(this.nd) + b - a);
-			  return b;
-			}
-			setUTCSeconds(...args) {
-			  const a = getTime.call(this);
-			  const b = setUTCSeconds.apply(this, args);
-			  setTime.call(this.nd, getTime.call(this.nd) + b - a);
-			  return b;
-			}
-			toString(...args) {
-			  return clean(toString.apply(this.nd, args));
-			}
-			toTimeString(...args) {
-			  return clean(toTimeString.apply(this.nd, args));
-			}
-			getTimezoneOffset() {
-			  return spoofedTimezone;
-			}
-		  }
+			if (args.length == 0) {
+				originalDate["${randomStr}"] = (timezoneOffset - spoofedTimezone) * 60000;		
+				if (this instanceof Date) return originalDate;
 
-		window.Date = ShiftedDate;
+				return originalDate.toString();
+			}
+
+			originalDate["${randomStr}"] = 0;
+			
+			if (this instanceof Date) return originalDate;
+			
+			return originalDate.toString();
+		};
+		Date.prototype = _d.prototype;
+		Date.UTC = _d.UTC;
+		Date.now = _d.now;
+		Date.parse = _d.parse;
+		Date.prototype.getDate = function(){
+			if (!this["${randomStr}"]) return getDate.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getDate.apply(tmp);
+		}
+		Date.prototype.getDay = function(){
+			if (!this["${randomStr}"]) return getDay.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getDay.apply(tmp);
+		}
+		Date.prototype.getFullYear = function(){
+			if (!this["${randomStr}"]) return getFullYear.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getFullYear.apply(tmp);
+		}
+		Date.prototype.getHours = function(){
+			if (!this["${randomStr}"]) return getHours.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getHours.apply(tmp);
+		}
+		Date.prototype.getMilliseconds = function(){
+			if (!this["${randomStr}"]) return getMilliseconds.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getMilliseconds.apply(tmp);
+		}
+		Date.prototype.getMinutes = function(){
+			if (!this["${randomStr}"]) return getMinutes.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getMinutes.apply(tmp);
+		}
+		Date.prototype.getMonth = function(){
+			if (!this["${randomStr}"]) return getMonth.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getMonth.apply(tmp);
+		}
+		Date.prototype.getSeconds = function(){
+			if (!this["${randomStr}"]) return getSeconds.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getSeconds.apply(tmp);
+		}
+		Date.prototype.getYear = function(){
+			if (!this["${randomStr}"]) return getYear.apply(this);
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return getYear.apply(tmp);
+		}
+		Date.prototype.toString = function(){
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return clean(toDateString.apply(tmp) + " " + toTimeString.apply(tmp));
+		}
+		Date.prototype.toLocaleString = function(){
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return toLocaleString.apply(tmp);
+		}
+		Date.prototype.toLocaleDateString = function(){
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return toLocaleDateString.apply(tmp);
+		}
+		Date.prototype.toLocaleTimeString = function(){
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return toLocaleTimeString.apply(tmp);
+		}
+		Date.prototype.getTimezoneOffset = function(){
+			if (!this["${randomStr}"]) return timezoneOffset;
+			return spoofedTimezone;
+		}
 
 		document.addEventListener('DOMContentLoaded', function () {
-		    Element.prototype.appendChild = function(oAppend) {
+		    Element.prototype.appendChild = function(oAppend, topDate) {
 		    	return function() {
 		    		var tmp = oAppend.apply(this, arguments);
 		    		if (arguments[0].nodeName == "IFRAME" && arguments[0].contentWindow != null) {
@@ -224,12 +151,12 @@ let spoofTime = (offset, tzAbbr, tzName) => {
 							});
 						};
 
-		    			arguments[0].contentWindow.Date = ShiftedDate;
+						arguments[0].contentWindow.Date = topDate;
 		    		}
 
 		    		return tmp;
 		    	}
-		    }(Element.prototype.appendChild);
+		    }(Element.prototype.appendChild, Date);
 		});
 	`;
 }
