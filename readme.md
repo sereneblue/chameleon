@@ -69,5 +69,3 @@ Joue Quroi for the timezone spoofing code [Spoof Timezone](https://github.com/jo
 ilGur for the audio context spoofing code [AudioContext Defender](https://mybrowseraddon.com/audiocontext-defender.html)
 
 Princeton Web Transparency & Accountability Project for the audio context fingerprinting code [AudioContext Fingerprint](https://audiofingerprint.openwpm.com/)
-
-Pencil and trashbin icon made by Keyamoon from [IcoMoon](https://icomoon.io/#preview-free).
