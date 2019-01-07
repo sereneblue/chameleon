@@ -89,9 +89,7 @@ let spoof = {
 		return injectionArray;
 	},
 	language: function (injectionArray) {
-		let l;
-
-		l = chameleon.headers.spoofAcceptLangValue == "ip" ?
+		let l = chameleon.headers.spoofAcceptLangValue == "ip" ?
 				languages.find(l => l.value == chameleon.ipInfo.language) :
 				languages.find(l => l.value == chameleon.headers.spoofAcceptLangValue);
 
@@ -104,13 +102,19 @@ let spoof = {
 		return injectionArray;
 	},
 	navigator: function () {
-		var appVersion, hardwareConcurrency, oscpu, platform, productSub, vendor;
+		var appVersion, buildID, hardwareConcurrency, oscpu, platform, productSub, vendor;
 
 		if (chameleon.headers.useragent == "") return [];
 
 		if (/Win/.test(chameleon.headers.useragent)) {
 			oscpu = chameleon.headers.useragent.match(/(Windows .*?);/)[1];
-			platform = "Win64";
+
+			if (!chameleon.headers.useragent.match(/Firefox/)) {
+				platform = "Win32";
+			} else {
+				platform = parseInt(chameleon.headers.useragent.match(/Firefox\/(\d+).\d/)[1]) <= 63 ? "Win64" : "Win32";
+			}
+
 			hardwareConcurrency = 4;
 			vendor = "";
 			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (Windows)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
@@ -145,12 +149,17 @@ let spoof = {
 
 		if (/Firefox/.test(chameleon.headers.useragent)) {
 			productSub = "20010725";
-		} else if (/Chrome|Safari/.test(chameleon.headers.useragent)) {
-			productSub = "20030107";
-		} else if (/IE/.test(chameleon.headers.useragent)) {
-			productSub = null;
+			buildID = parseInt(chameleon.headers.useragent.match(/Firefox\/(\d+).\d/)[1]) >= 64 ? "20181001000000" : "20100101";
 		} else {
-			productSub = "";
+			oscpu = "undef";
+			buildID = "undef";
+			if (/Chrome|Safari/.test(chameleon.headers.useragent)) {
+				productSub = "20030107";
+			} else if (/IE/.test(chameleon.headers.useragent)) {
+				productSub = null;
+			} else {
+				productSub = "";
+			}
 		}
 
 		return [
@@ -162,7 +171,7 @@ let spoof = {
 			{ obj: "window.navigator", prop: "vendor", value: vendor },
 			{ obj: "window.navigator", prop: "vendorSub", value: "" },
 			{ obj: "window.navigator", prop: "appVersion", value: appVersion },
-			{ obj: "window.navigator", prop: "buildID", value: "" }
+			{ obj: "window.navigator", prop: "buildID", value: buildID }
 		];
 	},
 	profileResolution: "",

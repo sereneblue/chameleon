@@ -72,6 +72,10 @@ let inject = (props, whitelist, nav, injectionText, settings, languages) => {
 					if (i.obj == "window") {
 						window[i.prop] = i.value;
 					} else {
+						if (i.value == "undef") {
+							i.value = undefined;
+						}
+
 						Object.defineProperty(i.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), i.prop, {
 							configurable: true,
 							value: i.value
