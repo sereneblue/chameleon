@@ -1008,6 +1008,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.10.3"});
+	await save({ version: "0.10.4"});
 	changeTimer();
 })();
