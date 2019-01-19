@@ -236,15 +236,19 @@ let tooltipData = {};
 // builds script to inject into pages
 async function buildInjectScript() {
 	let injectionArray = [];
-	let injectionText = "";
+	let injectionText = {
+		audioContext: "",
+		clientRects: "",
+		timeSpoof: ""
+	};
 	let nav = [];
 
 	if (chameleon.settings.enableScriptInjection) {
 		injectionArray = spoof.websocket(injectionArray);
 		injectionArray = spoof.name(injectionArray);
 		if (chameleon.settings.limitHistory) injectionArray = spoof.history(injectionArray);
-		if (chameleon.settings.spoofAudioContext) injectionText += spoofAudioContext(`_${Math.random().toString(36)}`);
-		if (chameleon.settings.spoofClientRects) injectionText += spoofRects(`_${Math.random().toString(36)}`);
+		if (chameleon.settings.spoofAudioContext) injectionText.audioContext = spoofAudioContext(`_${Math.random().toString(36)}`);
+		if (chameleon.settings.spoofClientRects) injectionText.clientRects = spoofRects(`_${Math.random().toString(36)}`);
 
 		nav = spoof.navigator();
 
@@ -263,7 +267,7 @@ async function buildInjectScript() {
 		if (chameleon.settings.timeZone != "default") {
 			var t = moment.tz(Date.now(), chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone);
 
-			injectionText += spoofTime(
+			injectionText.timeSpoof = spoofTime(
 				t.utcOffset(),
 				t.format("z"),
 				chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone,

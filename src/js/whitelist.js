@@ -66,6 +66,10 @@ function buildWhitelist(rules) {
 		                <input type="checkbox" ${rule.options.screen ? "checked" : ""} disabled>
 		                <i class="form-icon"></i> Enable Screen Spoofing
 		            </label>
+		            <label class="form-switch">
+		                <input type="checkbox" ${rule.options.timezone ? "checked" : ""} disabled>
+		                <i class="form-icon"></i> Enable Timezone Spoofing
+		            </label>
 		        </div>
 		      </div>
 		    </div>  
@@ -122,24 +126,25 @@ document.addEventListener('DOMContentLoaded', async function() {
 				var inputs = parent.find(':input');
 				var lang = parent.find('select')[0].value
 
-				if (inputs[9].checked && inputs[10].value == "") {
-					$(inputs[10]).toggleClass('is-error');
+				if (inputs[10].checked && inputs[11].value == "") {
+					$(inputs[11]).toggleClass('is-error');
 					return;
 				}
 
-				$(inputs[10]).removeClass('is-error');
+				$(inputs[11]).removeClass('is-error');
 
 				let index = data.whitelist.urlList.findIndex(rule => rule.url == parent[0].id);
 				data.whitelist.urlList[index] = {
 					"url": parent[0].id,
-					"re": inputs[9].checked,
-					"pattern": inputs[9].checked ? inputs[10].value : "",
+					"re": inputs[10].checked,
+					"pattern": inputs[10].checked ? inputs[11].value : "",
 					"lang": lang != "Default" ? lang : "",
 					"options": {
 						"auth": inputs[3].checked,
 						"ip": inputs[6].checked,
 						"ref": inputs[4].checked,
 						"screen": inputs[8].checked,
+						"timezone": inputs[9].checked,
 						"websocket": inputs[5].checked,
 						"winName": inputs[7].checked
 					}
@@ -186,23 +191,24 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 				$(inputs[0]).removeClass('is-error');
 
-				if (inputs[9].checked && inputs[10].value == "") {
-					$(inputs[10]).addClass('is-error');
+				if (inputs[10].checked && inputs[11].value == "") {
+					$(inputs[11]).addClass('is-error');
 					return;
 				}
 
-				$(inputs[10]).removeClass('is-error');
+				$(inputs[11]).removeClass('is-error');
 
 				data.whitelist.urlList.push({
 					"url": inputs[0].value,
-					"re": inputs[9].checked,
-					"pattern": inputs[9].checked ? inputs[10].value : "",
+					"re": inputs[10].checked,
+					"pattern": inputs[10].checked ? inputs[11].value : "",
 					"lang": lang ? lang : "",
 					"options": {
 						"auth": inputs[3].checked,
 						"ip": inputs[6].checked,
 						"ref": inputs[4].checked,
 						"screen": inputs[8].checked,
+						"timezone": inputs[9].checked,
 						"websocket": inputs[5].checked,
 						"winName": inputs[7].checked
 					}
@@ -261,6 +267,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 					            <label class="form-switch">
 					                <input type="checkbox">
 					                <i class="form-icon"></i> Enable Screen Spoofing
+					            </label>
+					            <label class="form-switch">
+					                <input type="checkbox">
+					                <i class="form-icon"></i> Enable Timezone Spoofing
 					            </label>
 					        </div>
 					      </div>

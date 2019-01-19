@@ -13,6 +13,7 @@ let inject = (props, whitelist, nav, injectionText, settings, languages) => {
 			websocket: false,
 			screen: false,
 			name: false,
+			timezone: false
 		};
 
 		if (whitelist.enabled) {
@@ -65,7 +66,13 @@ let inject = (props, whitelist, nav, injectionText, settings, languages) => {
 		(function(props){
 			let override = ((window, injectArray) => {
 				if (!urlOK) {
-					${injectionText}
+					${injectionText.audioContext}
+					${injectionText.clientRects}
+					${injectionText.timeSpoof}
+				} else {
+					if (wlOptions.timezone) {
+						${injectionText.timeSpoof}
+					}
 				}
 
 				injectArray.forEach(i => {
