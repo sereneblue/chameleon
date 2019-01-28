@@ -555,29 +555,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	})
 
-	//capture whitelist update events
-	$.each(whitelist, function(index, value) {
-		$(`#sub_${value}`).on('click', function() {
-			changeView(value, "whitelist");
-		});
-	});
-
 	$('#wlEnable input[type="checkbox"]').on('click', function(e) {
 		chrome.runtime.sendMessage({
 			action: "whitelist",
 			data: {
 				key: e.target.name,
 				value: this.checked
-			}
-		});
-	});
-
-	$('#list_whitelistProfile input').on('keyup', function(e) {
-		chrome.runtime.sendMessage({
-			action: "whitelist",
-			data: {
-				key: e.target.name,
-				value: e.target.value
 			}
 		});
 	});

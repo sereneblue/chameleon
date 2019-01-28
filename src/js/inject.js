@@ -45,19 +45,6 @@ let inject = (props, whitelist, nav, injectionText, settings, languages) => {
 				} else {
 					properties.push({ obj: "window.navigator", prop: "languages", value: langData.langs });
 				}
-			} else if (!whitelist.enableRealProfile) {
-				properties.push(...[
-					{ obj: "window.navigator", prop: "appCodeName", value: whitelist.profile.appCodeName },
-					{ obj: "window.navigator", prop: "appName", value: whitelist.profile.appName },
-					{ obj: "window.navigator", prop: "appVersion", value: whitelist.profile.appVersion },
-					{ obj: "window.navigator", prop: "hardwareConcurrency", value: whitelist.profile.hardwareConcurrency },
-					{ obj: "window.navigator", prop: "oscpu", value: whitelist.profile.osCPU },
-					{ obj: "window.navigator", prop: "platform", value: whitelist.profile.platform },
-					{ obj: "window.navigator", prop: "vendor", value: whitelist.profile.vendor },
-					{ obj: "window.navigator", prop: "vendorSub", value: whitelist.profile.vendorSub },
-					{ obj: "window.navigator", prop: "userAgent", value: whitelist.profile.useragent },
-					{ obj: "window.navigator", prop: "productSub", value: whitelist.profile.productSub },
-				]);
 			}
 		} else {
 			properties.push(...${JSON.stringify(nav)});

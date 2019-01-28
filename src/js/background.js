@@ -59,20 +59,6 @@ let chameleon = {
 	whitelist: {
 		enabled: false,
 		enableRealProfile: false,
-		profile: {
-			acceptEnc: "",
-			acceptLang: "",
-			appCodeName: "",
-			appName: "",
-			appVersion: "",
-			hardwareConcurrency: 4,
-			osCPU: "",
-			platform: "",
-			productSub: "",
-			useragent: "",
-			vendor: "",
-			vendorSub: ""
-		},
 		urlList: []
 	}
 }
@@ -508,25 +494,16 @@ function rewriteHeaders(e) {
 			}
 		} else if (header.name.toLowerCase() == "user-agent") {
 			if (wl.on) {
-				if (!chameleon.whitelist.enableRealProfile) {
-					header.value = chameleon.whitelist.profile.useragent;
-				}
 			} else {
 				if (chameleon.headers.useragent) header.value = chameleon.headers.useragent;
 			}
 		} else if (header.name.toLowerCase() == "accept-encoding") {
 			if (wl.on) {
-				if (!chameleon.whitelist.enableRealProfile) header.value = chameleon.whitelist.profile.acceptEnc;
 			} else {
 				if (chameleon.headers.spoofAcceptEnc) header.value = "gzip, deflate";
 			}
 		} else if (header.name.toLowerCase() === "accept-language") {
 			if (wl.on) {
-				if (wl.lang != "") {
-					header.value = wl.lang;
-				} else if (!chameleon.whitelist.enableRealProfile) {
-					header.value = chameleon.whitelist.profile.acceptLang;
-				}
 			} else {
 				if (chameleon.headers.spoofAcceptLang) {
 					if (chameleon.headers.spoofAcceptLangValue == "ip") {
@@ -935,9 +912,8 @@ chrome.runtime.onMessage.addListener(function(request) {
 			chameleon.whitelist.enableRealProfile = request.data.value;
 		} else if (request.data.key == "wl_urls"){
 			chameleon.whitelist.urlList = JSON.parse(request.data.value);
-		} else if (request.data.key.indexOf("wl_") > -1) {
-			chameleon.whitelist.profile[request.data.key.slice(3)] = request.data.value;
 		}
+
 		saveSettings("whitelist");
 	}
 });
