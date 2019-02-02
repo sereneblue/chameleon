@@ -74,7 +74,6 @@ describe('Profiles', () => {
 
 	beforeEach(async () => { 
 		await driver.get(EXTENSION_URI);
-		await driver.executeScript(`document.querySelector('input[value="real"]').click()`);
 		await wait(SLEEP_TIME);
 	});
 
@@ -103,21 +102,19 @@ describe('Profiles', () => {
 		let uas = browserData.uaList.win.concat(browserData.uaList.mac, browserData.uaList.linux, browserData.uaList.ios, browserData.uaList.android).map(u => u.ua);
 
 		await selectProfile('input[value="random"]');
-
 		await driver.executeScript(`
 			el = document.querySelector('#interval > select:nth-child(2)');
 			el.value = 1;
 			el.dispatchEvent(new Event('change'));
 		`);
-
 		await wait(SLEEP_TIME);
-		await driver.get(LOCALSERVER);
 
+		await driver.get(LOCALSERVER);
 		let firstUA = await driver.executeScript('return window.navigator.userAgent;');
-
+		
 		await wait(61000);
+
 		await driver.get(LOCALSERVER);
-	
 		let secondUA = await driver.executeScript('return window.navigator.userAgent;');
 
 		expect(firstUA).to.not.equal(secondUA);
