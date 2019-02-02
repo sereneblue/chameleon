@@ -81,6 +81,10 @@ let spoof = {
 			buildID = "undef";
 			if (/Chrome|Safari/.test(ua)) {
 				productSub = "20030107";
+
+				if (/Chrome/.test(ua)) {
+					vendor = "Google Inc.";
+				}
 			} else if (/IE/.test(ua)) {
 				productSub = null;
 			} else {
