@@ -93,19 +93,18 @@ describe('Headers', () => {
 	});
 
 	it('should disable authorization header', async () => {
-		await selectHeaderOption('input[name="disableAuth"]');
-
 		await driver.get("http://username:password@localhost:3000/basic_auth");
 		let source = await driver.getPageSource();
 		expect(source.includes("granted")).to.be.true;
 
-		await driver.get(LOCALSERVER + "/basic_auth");
-		try {
-			let modal = await driver.switchTo().activeElement();
-			await modal.dismiss();
-		} catch (e) {
+		await driver.get(EXTENSION_URI);
+		await driver.findElement(By.id('menu_headers')).click()
+		await wait(SLEEP_TIME);
+		await selectHeaderOption('input[name="disableAuth"]');
 
-		}
+		await driver.get("http://username:password@localhost:3000/basic_auth");
+		await driver.switchTo().alert().then((alert) => alert.dismiss());
+		await wait(SLEEP_TIME);
 		source = await driver.getPageSource();
 		expect(source.includes("Unauthorized")).to.be.true;
 	});
