@@ -58,194 +58,52 @@ let chameleon = {
 	timeout: null,
 	whitelist: {
 		enabled: false,
-		enableRealProfile: false,
+		defaultProfile: "none",
 		urlList: []
 	}
 }
-
-// spoof contains functions that return js to inject
-// also contains the profileResolution to persist profile resolution
-let spoof = {
-	dnt: function (injectionArray) {
-		injectionArray.push({ obj: "window.navigator", prop: "doNotTrack", value: true });
-		return injectionArray;
-	},
-	history: function (injectionArray) {
-		injectionArray.push({ obj: "window.history", prop: "length", value: 2 });
-		return injectionArray;
-	},
-	language: function (injectionArray) {
-		let l = chameleon.headers.spoofAcceptLangValue == "ip" ?
-				languages.find(l => l.value == chameleon.ipInfo.language) :
-				languages.find(l => l.value == chameleon.headers.spoofAcceptLangValue);
-
-		injectionArray.push({ obj: "window.navigator", prop: "language", value: l.lang });
-		injectionArray.push({ obj: "window.navigator", prop: "languages", value: l.langs });
-		return injectionArray;
-	},
-	name: function (injectionArray) {
-		injectionArray.push({ obj: "window", prop: "name", value: "" });
-		return injectionArray;
-	},
-	navigator: function () {
-		var appVersion, buildID, hardwareConcurrency, oscpu, platform, productSub, vendor;
-
-		if (chameleon.headers.useragent == "") return [];
-
-		if (/Win/.test(chameleon.headers.useragent)) {
-			oscpu = chameleon.headers.useragent.match(/(Windows .*?);/)[1];
-
-			if (!chameleon.headers.useragent.match(/Firefox/)) {
-				platform = "Win32";
-			} else {
-				platform = parseInt(chameleon.headers.useragent.match(/Firefox\/(\d+).\d/)[1]) <= 63 ? "Win64" : "Win32";
-			}
-
-			hardwareConcurrency = 4;
-			vendor = "";
-			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (Windows)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else if (/OS X 10(_|\.)/.test(chameleon.headers.useragent)) {
-			oscpu = chameleon.headers.useragent.match(/(Intel Mac OS X 10(_|\.)\d+)/)[0].replace("_",".");
-			platform = "MacIntel";
-			hardwareConcurrency = 4;
-			vendor = "Apple Computer, Inc";
-			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (Macintosh)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else if (/X11/.test(chameleon.headers.useragent)) {
-			platform = oscpu = "Linux x86_64";
-			hardwareConcurrency = 4;
-			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (X11)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else if (/iPhone/.test(chameleon.headers.useragent)) {
-			platform = "iPhone";
-			vendor = "Apple Computer, Inc";
-			hardwareConcurrency = 2;
-		} else if (/iPad/.test(chameleon.headers.useragent)) {
-			platform = "iPad";
-			vendor = "Apple Computer, Inc";
-			hardwareConcurrency = 2;
-		} else if (/Android/.test(chameleon.headers.useragent)) {
-			platform = "Linux armv7l";
-			vendor = "Google Inc";
-			hardwareConcurrency = 1;
-			appVersion = /Firefox/.test(chameleon.headers.useragent) ? "5.0 (Android)" : chameleon.headers.useragent.match(/Mozilla\/(.*)/)[1];
-		} else {
-			return [
-				{ obj: "window.navigator", prop: "userAgent", value: chameleon.headers.useragent }
-			];
-		}
-
-		if (/Firefox/.test(chameleon.headers.useragent)) {
-			productSub = "20010725";
-			buildID = parseInt(chameleon.headers.useragent.match(/Firefox\/(\d+).\d/)[1]) >= 64 ? "20181001000000" : "20100101";
-		} else {
-			oscpu = "undef";
-			buildID = "undef";
-			if (/Chrome|Safari/.test(chameleon.headers.useragent)) {
-				productSub = "20030107";
-			} else if (/IE/.test(chameleon.headers.useragent)) {
-				productSub = null;
-			} else {
-				productSub = "";
-			}
-		}
-
-		return [
-			{ obj: "window.navigator", prop: "userAgent", value: chameleon.headers.useragent },
-			{ obj: "window.navigator", prop: "platform", value: platform },
-			{ obj: "window.navigator", prop: "productSub", value: productSub },
-			{ obj: "window.navigator", prop: "hardwareConcurrency", value: hardwareConcurrency },
-			{ obj: "window.navigator", prop: "oscpu", value: oscpu },
-			{ obj: "window.navigator", prop: "vendor", value: vendor },
-			{ obj: "window.navigator", prop: "vendorSub", value: "" },
-			{ obj: "window.navigator", prop: "appVersion", value: appVersion },
-			{ obj: "window.navigator", prop: "buildID", value: buildID }
-		];
-	},
-	profileResolution: "",
-	screen: function(screenSize, injectionArray) {
-		var s;
-		var depth = 24;
-
-		if (screenSize == "profile") {
-			if (chameleon.settings.useragent == "" || chameleon.settings.useragent == "real") {
-				return injectionArray;
-			} else if (spoof.profileResolution != "") {
-				s = spoof.profileResolution.split("x");
-			} else {
-				s = getScreenResolution(chameleon.headers.useragent);
-				depth = s[2];
-			}
-		} else if (screenSize == "custom") {
-			s = chameleon.settings.customScreen.split("x");
-		} else {
-			s = screenSize.split("x");
-		}
-
-		let width = parseInt(s[0]);
-		let height = parseInt(s[1]);
-
-		// use real profile screen resolution if couldn't determine from useragent
-		if (width == null) return injectionArray;
-
-		injectionArray.push(...[
-				{ obj: "window", prop: "innerWidth", value: width },
-				{ obj: "window", prop: "innerHeight", value: height },
-				{ obj: "window", prop: "outerWidth", value: width },
-				{ obj: "window", prop: "outerHeight", value: height },
-				{ obj: "window.screen", prop: "availWidth", value: width },
-				{ obj: "window.screen", prop: "availHeight", value: height },
-				{ obj: "window.screen", prop: "top", value: 0 },
-				{ obj: "window.screen", prop: "left", value: 0 },
-				{ obj: "window.screen", prop: "availTop", value: 0 },
-				{ obj: "window.screen", prop: "availLeft", value: 0 },
-				{ obj: "window.screen", prop: "width", value: width },
-				{ obj: "window.screen", prop: "height", value: height },
-				{ obj: "window.screen", prop: "colorDepth", value: depth },
-				{ obj: "window.screen", prop: "pixelDepth", value: depth },
-				{ obj: "window.document.documentElement", prop: "clientWidth", value: width },
-				{ obj: "window.document.documentElement", prop: "clientHeight", value: height },
-			]);
-		return injectionArray;
-	},
-	websocket: function (injectionArray) {
-		injectionArray.push({obj: "window", prop: "WebSocket", value: null});
-		injectionArray.push({obj: "window", prop: "MozWebSocket", value: null});
-
-		return injectionArray;
-	}
-};
 
 let customIntervalTimer = null;
 let tooltipData = {};
 
 // builds script to inject into pages
 async function buildInjectScript() {
-	let injectionArray = [];
+	let injection = {};
 	let injectionText = {
 		audioContext: "",
 		clientRects: "",
 		timeSpoof: ""
 	};
-	let nav = [];
+	let nav = [];	
 
 	if (chameleon.settings.enableScriptInjection) {
-		injectionArray = spoof.websocket(injectionArray);
-		injectionArray = spoof.name(injectionArray);
-		if (chameleon.settings.limitHistory) injectionArray = spoof.history(injectionArray);
+		injection = spoof.websocket(injection);
+		injection = spoof.name(injection);
+		injection = spoof.navigator(chameleon.headers.useragent, injection);
+
+		if (chameleon.settings.limitHistory) injection = spoof.history(injection);
 		if (chameleon.settings.spoofAudioContext) injectionText.audioContext = spoofAudioContext(`_${Math.random().toString(36)}`);
 		if (chameleon.settings.spoofClientRects) injectionText.clientRects = spoofRects(`_${Math.random().toString(36)}`);
 
-		nav = spoof.navigator();
-
 		if (chameleon.settings.screenSize != "default") {
-			injectionArray = spoof.screen(chameleon.settings.screenSize, injectionArray);
+			injection = spoof.screen(
+				chameleon.settings.screenSize,
+				chameleon.headers.useragent,
+				chameleon.settings.useragent,
+				chameleon.settings.customScreen,
+				injection
+			);
 		}
 
 		if (chameleon.headers.enableDNT) {
-			injectionArray = spoof.dnt(injectionArray);
+			injection = spoof.dnt(injection);
 		}
 
 		if (chameleon.headers.spoofAcceptLang) {
-			injectionArray = spoof.language(injectionArray);
+			injection = spoof.language(
+				chameleon.headers.spoofAcceptLangValue,
+				chameleon.ipInfo.language, 
+				injection);
 		}
 
 		if (chameleon.settings.timeZone != "default") {
@@ -259,16 +117,66 @@ async function buildInjectScript() {
 			);
 		}
 
+		// load whitelist profiles
+		let wl = JSON.parse(JSON.stringify(chameleon.whitelist));
+		wl.injectProfile = {
+			screen: [],
+			nav: []
+		}
+
+		if (wl.defaultProfile != "none") {
+			let spoofProfile = profiles.find(p => p.value == wl.defaultProfile);
+
+			// whitelist screen
+			wl.injectProfile = spoof.screen(
+				"profile",
+				spoofProfile.ua, 
+				wl.defaultProfile,
+				"",
+				wl.injectProfile
+			);
+
+			// whitelist navigator
+			wl.injectProfile = spoof.navigator(
+				spoofProfile.ua, 
+				wl.injectProfile
+			);
+		}
+
+		// load profile for each whitelisted option
+		for (var i = 0; i < wl.urlList.length; i++) {
+			wl.urlList[i].injectProfile = {};
+
+			if (wl.urlList[i].profile && wl.urlList[i].profile != "default") {
+				let spoofProfile = profiles.find(p => p.value == wl.urlList[i].profile);
+
+				// whitelist screen
+				wl.urlList[i].injectProfile = spoof.screen(
+					"profile",
+					spoofProfile.ua, 
+					wl.urlList[i].profile,
+					"",
+					wl.urlList[i].injectProfile
+				);
+
+				// whitelist navigator
+				wl.urlList[i].injectProfile = spoof.navigator(
+					spoofProfile.ua, 
+					wl.urlList[i].injectProfile
+				);
+			}
+		}
+
 		return inject(
-			injectionArray,
-			chameleon.whitelist,
-			nav,
+			injection,
+			wl,
 			injectionText,
 			{
 				websocket : chameleon.settings.disableWebSockets,
 				screen : chameleon.settings.screenSize != "default",
 				name : chameleon.settings.protectWinName
 			},
+			uaList,
 			languages
 		);
 	}
@@ -450,7 +358,7 @@ function request(url) {
 
 // rewrite headers per request 
 function rewriteHeaders(e) {
-	var wl = whitelisted(e.url);
+	var wl = whitelisted(e);
 
 	e.requestHeaders.forEach(function(header){
 		if (header.name.toLowerCase() == "authorization") {
@@ -494,16 +402,21 @@ function rewriteHeaders(e) {
 			}
 		} else if (header.name.toLowerCase() == "user-agent") {
 			if (wl.on) {
+				if (wl.profile == "default") {
+					if (chameleon.whitelist.defaultProfile != "none") {
+						header.value = profiles.find(p => p.value == chameleon.whitelist.defaultProfile).ua;
+					}
+				} else {
+					header.value = profiles.find(p => p.value == wl.profile).ua;
+				}
 			} else {
 				if (chameleon.headers.useragent) header.value = chameleon.headers.useragent;
 			}
-		} else if (header.name.toLowerCase() == "accept-encoding") {
-			if (wl.on) {
-			} else {
-				if (chameleon.headers.spoofAcceptEnc) header.value = "gzip, deflate";
-			}
+		} else if (header.name.toLowerCase() == "accept-encoding") {	
+			if (chameleon.headers.spoofAcceptEnc) header.value = "gzip, deflate";
 		} else if (header.name.toLowerCase() === "accept-language") {
-			if (wl.on) {
+			if (wl.on && wl.lang != "") {
+				header.value = wl.lang;
 			} else {
 				if (chameleon.headers.spoofAcceptLang) {
 					if (chameleon.headers.spoofAcceptLangValue == "ip") {
@@ -549,7 +462,7 @@ function rewriteHeaders(e) {
 }
 
 function rewriteResponseHeaders(e) {
-	var wl = whitelisted(e.url);
+	var wl = whitelisted(e);
 
 	e.responseHeaders.forEach(function(header){
 		if (header.name.toLowerCase() == "etag") {
@@ -641,55 +554,6 @@ async function start() {
 	rebuildInjectionScript();
 }
 
-// gets screen resolution & depths from user agent
-function getScreenResolution(ua) {
-	var screens;
-	var depth = 24; // both color and pixel depth
-
-	if (/Win|X11/.test(ua)) {
-		screens = [
-			[1366, 768],
-			[1400, 1050],
-			[1440, 900],
-			[1600, 900],
-			[1920, 1080],
-			[1920, 1200],
-			[2560, 1440],
-			[2560, 1600]
-		];
-	} else if (/OS X 10/.test(ua)) {
-		screens = [
-			[1920, 1080],
-			[2560, 1440],
-			[2560, 1600]
-		];
-	} else if (/iPhone/.test(ua)) {
-		screens = [
-			[414, 736],
-			[375, 667]
-		];
-		depth = 32;
-	} else if (/iPad/.test(ua)) {
-		screens = [
-			[1024, 768]
-		];
-		depth = 32;
-	} else if (/Android/.test(ua)) {
-		screens = [
-			[360, 740],
-			[411, 731],
-			[480, 853]
-		];
-		depth = 32;
-	} else {
-		return [null, null, null];
-	}
-
-	var num = Math.floor(Math.random() * screens.length);
-
-	return [screens[num][0], screens[num][1], depth];
-}
-
 // rebuilds injection script
 // uses a small delay before building in case there are multiple function calls in a short period
 async function rebuildInjectionScript() {
@@ -740,8 +604,23 @@ async function saveSettings(setting="all") {
 }
 
 // check if a url is whitelisted, prevents script injection
-function whitelisted(url) {
+function whitelisted(req) {
 	if (chameleon.whitelist.enabled) {
+		let url = "";
+
+		if (req.type == "main_frame") {
+			url = req.url;
+		} else if (req.frameId == 0) {
+			url = req.documentUrl;
+		} else {
+			let index = req.frameAncestors.findIndex(f => f.frameId == 0);
+			if (index > -1) {
+				url = req.frameAncestors[index].url;
+			} else {
+				return {on: false};
+			}
+		}
+
 		var idx = chameleon.whitelist.urlList.findIndex(u => url.indexOf(u.url) > -1);
 		if (idx > -1) {
 			if (chameleon.whitelist.urlList[idx].re) {
@@ -750,7 +629,12 @@ function whitelisted(url) {
 				};
 			}
 
-			return {on: true, opt: chameleon.whitelist.urlList[idx].options, lang: chameleon.whitelist.urlList[idx].lang};
+			return {
+				on: true,
+				opt: chameleon.whitelist.urlList[idx].options,
+				lang: chameleon.whitelist.urlList[idx].lang,
+				profile: chameleon.whitelist.urlList[idx].profile
+			};
 		}
 	}
 
@@ -908,8 +792,8 @@ chrome.runtime.onMessage.addListener(function(request) {
 	} else if (request.action == "whitelist") {
 		if (request.data.key == "enableWhitelist") {
 			chameleon.whitelist.enabled = request.data.value;
-		} else if (request.data.key == "enableWhitelistRealProfile") {
-			chameleon.whitelist.enableRealProfile = request.data.value;
+		} else if (request.data.key == "defaultProfile"){
+			chameleon.whitelist.defaultProfile = request.data.value;
 		} else if (request.data.key == "wl_urls"){
 			chameleon.whitelist.urlList = JSON.parse(request.data.value);
 		}

@@ -335,11 +335,15 @@ let options = ["scriptInjection", "standard", "cookies", "misc", "reporting"];
 // whitelist
 let whitelist = ["whitelistProfile", "whitelistRules"];
 
+// profiles
+let profiles = Object.keys(uaList).map(os => uaList[os]).flat().sort((a, b) => a.name > b.name);
+
 // Export ua list for testing
 if ( typeof module !== 'undefined' && module.hasOwnProperty('exports') ) {
 	module.exports = {
 		uaList,
 		languages,
-		langList
+		langList,
+		profiles,
 	};
 }

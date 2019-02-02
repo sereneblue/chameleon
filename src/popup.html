@@ -519,8 +519,11 @@
                 <div>
                     <label><input type="checkbox" name="enableWhitelist"> Enable whitelist (requires script injection)</label>
                 </div>
-                <div style="margin-bottom: 10px;">
-                    <label><input type="checkbox" name="enableWhitelistRealProfile"> Use real profile for whitelist</label>
+                <div style="margin-bottom: 10px 0px;">
+                    <label>Default Whitelist Profile:</label>
+                    <select name="defaultProfile">
+                        <option value="none">Real Profile</option>
+                    </select>
                 </div>
             </div>
             <button id="viewRules" style="width: 100%; margin: 10px 0px;">View whitelist</button>

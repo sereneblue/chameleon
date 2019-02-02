@@ -170,11 +170,20 @@ async function updateUI() {
 
 	$(`select[name="timeZone"]`).val(data.settings.timeZone);
 	$(`input[name="enableWhitelist"]`).prop('checked', data.whitelist.enabled);
-	$(`input[name="enableWhitelistRealProfile"]`).prop('checked', data.whitelist.enableRealProfile);
 
-	$('#list_whitelistProfile input').each(function (i, element) {
-		$(`input[name="${element.name}"]`).val(data.whitelist.profile[element.name.split('_')[1]]);
+	// add list of profiles to default whitelist profile dropdown
+
+	wlSelect = $('#whitelist select');
+	profiles = Object.keys(uaList).map(os => uaList[os]).flat().sort((a, b) => a.name > b.name);
+
+	$.each(profiles, (i) => {
+		wlSelect.append($('<option>', {
+		    value: profiles[i].value,
+		    text: profiles[i].name
+		}));
 	});
+
+	$('#whitelist select').val(data.whitelist.defaultProfile);
 
 	let currentTab = await browser.tabs.query({ active: true, currentWindow: true});
 	var l = document.createElement("a");
@@ -561,6 +570,16 @@ document.addEventListener('DOMContentLoaded', function() {
 			data: {
 				key: e.target.name,
 				value: this.checked
+			}
+		});
+	});
+
+	$('#whitelist select').on('change', function(e) {
+		chrome.runtime.sendMessage({
+			action: "whitelist",
+			data: {
+				key: e.target.name,
+				value: e.target.value
 			}
 		});
 	});

@@ -14,6 +14,17 @@ let languageTemplate = (lang) => {
 	return template + `</select></div>`;
 };
 
+let whitelistTemplate = (profile) => {
+	let template = `<div class="form-group"><label>Spoof Profile</label><select class="form-select"><option value="" ${profile == "" || profile == undefined ? 'selected' : ""}>Default Whitelist Profile</option>`;
+
+	for (var p of profiles) {
+		template += `<option value="${p.value}" ${p.value == profile ? "selected" : ""}>${p.name}</option>`
+	}
+	
+	return template + `</select></div>`;
+};
+
+
 function get(key) {
 	return new Promise((resolve) => {
 		chrome.storage.local.get(key, (item) => {
@@ -79,6 +90,7 @@ function buildWhitelist(rules) {
 		    </label>
 		   ${patternTemplate(rule.pattern, rule.re, true)}
 		   ${languageTemplate(rule.lang)}
+		   ${whitelistTemplate(rule.profile)}
 		  </div>
 		</div>`)
 	}
@@ -125,6 +137,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 				var buttons = parent.find(':button');
 				var inputs = parent.find(':input');
 				var lang = parent.find('select')[0].value
+				var profile = parent.find('select')[1].value;
 
 				if (inputs[10].checked && inputs[11].value == "") {
 					$(inputs[11]).toggleClass('is-error');
@@ -139,6 +152,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					"re": inputs[10].checked,
 					"pattern": inputs[10].checked ? inputs[11].value : "",
 					"lang": lang != "Default" ? lang : "",
+					"profile": profile ? profile : "default",
 					"options": {
 						"auth": inputs[3].checked,
 						"ip": inputs[6].checked,
@@ -183,6 +197,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 				var inputs = parent.find(':input');
 				var index = data.whitelist.urlList.findIndex(rule => rule.url == inputs[0].value);
 				var lang = parent.find('select')[0].value;
+				var profile = parent.find('select')[1].value;
 
 				if (inputs[0].value == "" || index > -1 || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(inputs[0].value)) {
 					$(inputs[0]).addClass('is-error');
@@ -203,6 +218,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					"re": inputs[10].checked,
 					"pattern": inputs[10].checked ? inputs[11].value : "",
 					"lang": lang ? lang : "",
+					"profile": profile ? profile : "default",
 					"options": {
 						"auth": inputs[3].checked,
 						"ip": inputs[6].checked,
@@ -280,6 +296,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					        <i class="form-icon"></i> Regex enabled
 					    </label>
 		    		    ${languageTemplate('')}
+		    		    ${whitelistTemplate('')}
 					  </div>
 					</div>
 					`);	

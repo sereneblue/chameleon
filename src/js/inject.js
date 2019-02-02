@@ -1,19 +1,24 @@
-let inject = (props, whitelist, nav, injectionText, settings, languages) => {
+let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 	return `
 		var scripts = document.getElementsByTagName('script');
 		var script = document.createElement('script');
 
 		script.appendChild(document.createTextNode(\`
+
+		var urlOK = false;
 		var properties = ${JSON.stringify(props)};
 		var whitelist = ${JSON.stringify(whitelist)};
-		var urlOK = false;
 		var settings = ${JSON.stringify(settings)};
 		var languages = ${JSON.stringify(languages)};
+		var uaList = ${JSON.stringify(uaList)};
 		var wlOptions = {
 			websocket: false,
 			screen: false,
 			name: false,
-			timezone: false
+			timezone: false,
+		};
+		var wlProfile = {
+			"profile" : "default"
 		};
 
 		if (whitelist.enabled) {
@@ -21,8 +26,12 @@ let inject = (props, whitelist, nav, injectionText, settings, languages) => {
 			if (idx > -1) {
 				urlOK = true;
 				wlOptions = whitelist.urlList[idx].options;
-
 				wlOptions.lang = whitelist.urlList[idx].lang;
+
+				wlProfile.profile = whitelist.urlList[idx].profile; 
+				wlProfile.screen = whitelist.urlList[idx].injectProfile.screen;
+				wlProfile.nav = whitelist.urlList[idx].injectProfile.nav;
+
 				if (whitelist.urlList[idx].re) {
 					urlOK = new RegExp(whitelist.urlList[idx].pattern, "i").test(window.location.href) ? true : false;
 				}
@@ -31,27 +40,27 @@ let inject = (props, whitelist, nav, injectionText, settings, languages) => {
 
 		if (urlOK) {
 			if (wlOptions.lang) {
-				let langIndex = properties.findIndex(p => p.prop == "language");
-				let langsIndex = properties.findIndex(p => p.prop == "languages");
 				let langData = languages.find(l => l.value == wlOptions.lang);
 
-				if (langIndex > -1) {
-					properties[langIndex].value = wlOptions.lang;
-				} else {
-					properties.push({ obj: "window.navigator", prop: "language", value: langData.lang });
-				}
-				if (langsIndex > -1) {
-					properties[langsIndex].value = langData.langs;
-				} else {
-					properties.push({ obj: "window.navigator", prop: "languages", value: langData.langs });
-				}
+				properties.lang = [
+					{ obj: "window.navigator", prop: "language", value: langData.lang },
+					{ obj: "window.navigator", prop: "languages", value: langData.langs }
+				];
 			}
-		} else {
-			properties.push(...${JSON.stringify(nav)});
-		};
+		
+			if (wlProfile.profile != "default") {
+				// use rule profile
+				properties.screen = wlProfile.screen;
+				properties.nav = wlProfile.nav;
+			} else {
+				// use whitelist profile
+				properties.screen = whitelist.injectProfile.screen;
+				properties.nav = whitelist.injectProfile.nav;
+			}
+		}
 
 		(function(props){
-			let override = ((window, injectArray) => {
+			let override = ((window, injection) => {
 				if (!urlOK) {
 					${injectionText.audioContext}
 					${injectionText.clientRects}
@@ -62,55 +71,37 @@ let inject = (props, whitelist, nav, injectionText, settings, languages) => {
 					}
 				}
 
-				injectArray.forEach(i => {
-					if (i.obj == "window") {
-						window[i.prop] = i.value;
-					} else {
-						if (i.value == "undef") {
-							i.value = undefined;
-						}
+				for (var k in injection) {
+					injection[k].forEach(i => {
+						if (i.obj == "window") {
+							window[i.prop] = i.value;
+						} else {
+							if (i.value == "undef") {
+								i.value = undefined;
+							}
 
-						Object.defineProperty(i.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), i.prop, {
-							configurable: true,
-							value: i.value
-						});
-					}
-				});
+							Object.defineProperty(i.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), i.prop, {
+								configurable: true,
+								value: i.value
+							});
+						}
+					});
+				}
 			});
 
 			// fix recaptcha window.name spoofing;
-			let recaptchaProperties = props.slice();
-			var windowNameIndex = props.findIndex(p => p.prop == "name");
-			if (windowNameIndex > -1) {
-				recaptchaProperties.splice(windowNameIndex, 1);
-			}
+			let {name, ...recaptchaProperties} = props;
 
-			// remove options if whitelisted
+			// remove options
 			if (urlOK) {
-				for (var i = props.length - 1; i >= 0; i--) {
-					if ( (props[i].obj.indexOf("screen") > -1) 			||
-						 (props[i].obj.indexOf("documentElement") > -1)
-						) {
-						if (!wlOptions.screen) props.splice(i, 1);
-					} else if (props[i].prop.indexOf("Socket") > -1) {
-						if (!wlOptions.websocket) props.splice(i, 1);
-					} else if (props[i].prop == "name") {
-						if (!wlOptions.winName) props.splice(i, 1);
-					}
-				}
+				// remove options if whitelisted
+				if (!wlOptions.screen) props.screen  = [];
+				if (!wlOptions.websocket) props.websocket = [];
+				if (!wlOptions.winName) props.name = [];
 			} else {
-				for (var i = props.length - 1; i >= 0; i--) {
-					// remove options if not enabled
-					if ( (props[i].obj.indexOf("screen") > -1) 			||
-						 (props[i].obj.indexOf("documentElement") > -1)
-						) {
-						if (!settings.screen) props.splice(i, 1);
-					} else if (props[i].prop.indexOf("Socket") > -1) {
-						if (!settings.websocket) props.splice(i, 1);
-					} else if (props[i].prop == "name") {
-						if (!settings.name) props.splice(i, 1);
-					}
-				}
+				if (!settings.screen) props.screen = [];
+				if (!settings.websocket) props.websocket = [];
+				if (!settings.name) props.name = [];
 			}
 
 			// Override window properties

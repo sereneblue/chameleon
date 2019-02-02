@@ -11,7 +11,18 @@
 	"manifest_version": 2,
 	"description": "Spoof your browser profile. Includes a few privacy enhancing options.",
 	"background": {
-		"scripts": ["js/data.js", "js/inject.js", "js/dep/moment.min.js", "js/dep/moment-timezone-with-data.min.js", "js/lib/spoofAudioContext.js", "js/lib/spoofrects.js", "js/lib/spooftime.js", "js/background.js"]
+		"scripts": [
+			"js/dep/jquery-3.3.1.slim.min.js",
+			"js/dep/moment.min.js",
+			"js/dep/moment-timezone-with-data.min.js", 
+			"js/lib/spoof.js",
+			"js/lib/spoofAudioContext.js",
+			"js/lib/spoofrects.js",
+			"js/lib/spooftime.js",
+			"js/data.js", 
+			"js/inject.js",
+			"js/background.js"
+		]
 	},
 	"browser_action": {
 		"default_icon": "img/icon_48.png",
