@@ -192,27 +192,6 @@ describe('Headers', () => {
 		expect(response.referer).to.equal(LOCALSERVER + "/ref_test");
 	});
 
-	it('should disable referer', async () => {
-		await selectHeaderOption('input[name="disableRef"]');
-		await checkHeaders('referer', undefined);
-
-		await driver.get(EXTENSION_URI);
-		await driver.executeScript(`document.querySelector('input[name="disableRef"]').click()`);
-	});
-
-	it('should spoof source referer', async () => {
-		await selectHeaderOption('input[name="spoofSourceRef"]');
-
-		await driver.get(LOCALSERVER + "/ref_test");
-		await driver.findElement(By.id('link')).click();
-
-		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
-
-		await driver.get(EXTENSION_URI);
-		await driver.executeScript(`document.querySelector('input[name="spoofSourceRef"]').click()`);
-		expect(response.referer).to.equal(LOCALSERVER + "/");
-	});
-
 	it('should send full referer (xorigin referer)', async () => {
 		await driver.executeScript(`
 			el = document.querySelector('select[name="refererXorigin"]');
@@ -325,6 +304,27 @@ describe('Headers', () => {
 
 		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
 		expect(response.referer).to.equal(LOCALSERVER);
+	});
+
+	it('should spoof source referer', async () => {
+		await selectHeaderOption('input[name="spoofSourceRef"]');
+
+		await driver.get(LOCALSERVER + "/ref_test");
+		await driver.findElement(By.id('link')).click();
+
+		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
+
+		await driver.get(EXTENSION_URI);
+		await driver.executeScript(`document.querySelector('input[name="spoofSourceRef"]').click()`);
+		expect(response.referer).to.equal(LOCALSERVER + "/");
+	});
+
+	it('should disable referer', async () => {
+		await selectHeaderOption('input[name="disableRef"]');
+		await checkHeaders('referer', undefined);
+
+		await driver.get(EXTENSION_URI);
+		await driver.executeScript(`document.querySelector('input[name="disableRef"]').click()`);
 	});
 
 	it('should upgrade insecure requests', async () => {
