@@ -28,7 +28,7 @@ let spoof = {
 	navigator: function (ua, injection) {
 		var appVersion, buildID, hardwareConcurrency, oscpu, platform, productSub, vendor;
 
-		if (ua == "") return [];
+		if (ua == "") return injection;
 
 		if (/Win/.test(ua)) {
 			oscpu = ua.match(/(Windows .*?);/)[1];

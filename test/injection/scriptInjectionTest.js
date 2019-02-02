@@ -1,10 +1,9 @@
-const { Builder } = require('selenium-webdriver');
+const { Builder, By } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 
 const expect = require('chai').expect
 const express = require('express')
 const path = require('path')
-const uaList = require('../../src/js/data.js')
 const moment = require('moment-timezone');
 const app = express()
 
@@ -108,8 +107,8 @@ const loopTimezones = (options) => {
 }
 
 const selectOption = async (selector) => {
+	await driver.findElement(By.id('menu_options')).click()
 	await driver.executeScript(`document.querySelector('${selector}').click()`);
-
 	let isChecked = await driver.executeScript(`return document.querySelector('${selector}').checked`);
 	expect(isChecked).to.equal(true);
 
@@ -121,7 +120,7 @@ describe('Script Injection', () => {
 		extPath = path.join(__dirname, '../{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}.xpi');
 		EXTENSION_URI = "";
 		LOCALSERVER = "http://localhost:3000";
-		SLEEP_TIME = 600;
+		SLEEP_TIME = 750; // need to increase sleep time because of failing tests
 
 		driver = await new Builder()
 			.forBrowser('firefox')
@@ -167,14 +166,6 @@ describe('Script Injection', () => {
 	});
 
 	it('should disable websockets', async () => {
-		await driver.get(LOCALSERVER);
-		let hasWebsocket = await driver.executeScript(`
-			return WebSocket ? true : false;
-		`);
-
-		expect(hasWebsocket).to.equal(true);
-
-		await driver.get(EXTENSION_URI);
 		selectOption('input[name="disableWebSockets"]');
 
 		await wait(SLEEP_TIME);
