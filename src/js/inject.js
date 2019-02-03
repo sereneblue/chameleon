@@ -13,7 +13,6 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 		var uaList = ${JSON.stringify(uaList)};
 		var wlOptions = {
 			websocket: false,
-			screen: false,
 			name: false,
 			timezone: false,
 		};
@@ -47,7 +46,7 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 					{ obj: "window.navigator", prop: "languages", value: langData.langs }
 				];
 			}
-		
+
 			if (wlProfile.profile != "default") {
 				// use rule profile
 				properties.screen = wlProfile.screen;
@@ -91,15 +90,12 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 
 			// fix recaptcha window.name spoofing;
 			let {name, ...recaptchaProperties} = props;
-
+			
 			// remove options
 			if (urlOK) {
-				// remove options if whitelisted
-				if (!wlOptions.screen) props.screen  = [];
-				if (!wlOptions.websocket) props.websocket = [];
+				if (wlOptions.websocket) props.websocket = [];
 				if (!wlOptions.winName) props.name = [];
 			} else {
-				if (!settings.screen) props.screen = [];
 				if (!settings.websocket) props.websocket = [];
 				if (!settings.name) props.name = [];
 			}

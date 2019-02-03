@@ -173,7 +173,6 @@ async function buildInjectScript() {
 			injectionText,
 			{
 				websocket : chameleon.settings.disableWebSockets,
-				screen : chameleon.settings.screenSize != "default",
 				name : chameleon.settings.protectWinName
 			},
 			uaList,

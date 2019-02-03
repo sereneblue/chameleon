@@ -6,6 +6,7 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const auth = require('http-auth')
+const browserData = require('../../src/js/data.js')
 
 var authMiddleware = auth.connect(auth.basic({ realm: 'SECRET LAIR'}, (username, password, callback) => {
 	callback(username == 'username' && password == 'password');
@@ -13,6 +14,31 @@ var authMiddleware = auth.connect(auth.basic({ realm: 'SECRET LAIR'}, (username,
 
 const wait = async (sec) => {
 	return new Promise(resolve => setTimeout(resolve, sec));
+}
+
+const checkUA = async (uas) => {
+	await driver.get(LOCALSERVER);
+
+	let navUA = await driver.executeScript('return window.navigator.userAgent;');
+	expect(uas.includes(navUA)).to.be.true;
+	
+	let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText)');
+	expect(navUA).to.equal(response["user-agent"]);
+}
+
+const loopProfiles = (profiles) => {
+	profiles.forEach(function(u, i) {
+		it(`should use ${u.name} as whitelist profile [${i + 1}/${profiles.length}]`, async () => {
+			await driver.executeScript(`
+				el = document.querySelector('select[name="defaultProfile"]');
+				el.value = "${u.value}";
+				el.dispatchEvent(new Event('change'));
+			`);
+
+			await wait(SLEEP_TIME);
+			await checkUA([u.ua]);
+		});
+	});
 }
 
 const selectOption = async (selector) => {
@@ -106,103 +132,6 @@ describe('Whitelist', () => {
 		expect(domain).to.equal(LOCALSERVER)
 	});
 
-	it('should use whitelisted profile', async () => {
-		let navProperties = {
-			appCodeName: "Mozilla",
-			appName: "Netscape",
-			appVersion: "5.0 (Windows)",
-			hardwareConcurrency: "4",
-			oscpu: "Windows NT 10.0",
-			platform: "Win64",
-			productSub: "20010725",
-			userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0",
-			vendor: "",
-			vendorSub: ""
-		}
-
-		let acceptEnc = "gzip, deflate, br";
-		let acceptLang = "en-us,en;q=0.5";
-
-		await driver.executeScript(`
-			var ev = new Event('keyup');
-
-			var el = document.querySelector('input[name="wl_useragent"]');
-			el.value = "${navProperties.userAgent}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_acceptEnc"]');
-			el.value = "${acceptEnc}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_acceptLang"]');
-			el.value = "${acceptLang}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_appCodeName"]');
-			el.value = "${navProperties.appCodeName}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_appName"]');
-			el.value = "${navProperties.appName}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_appVersion"]');
-			el.value = "${navProperties.appVersion}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_hardwareConcurrency"]');
-			el.value = "${navProperties.hardwareConcurrency}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_osCPU"]');
-			el.value = "${navProperties.oscpu}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_platform"]');
-			el.value = "${navProperties.platform}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_productSub"]');
-			el.value = "${navProperties.productSub}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_vendor"]');
-			el.value = "${navProperties.vendor}";
-			el.dispatchEvent(ev);
-
-			el = document.querySelector('input[name="wl_vendorSub"]');
-			el.value = "${navProperties.vendorSub}";
-			el.dispatchEvent(ev);
-		`);
-
-		await wait(SLEEP_TIME);
-		await driver.get(LOCALSERVER);
-
-		let nav = await driver.executeScript(`
-			return {
-				appCodeName: window.navigator.appCodeName,
-				appName: window.navigator.appName,
-				appVersion: window.navigator.appVersion,
-				hardwareConcurrency: window.navigator.hardwareConcurrency,
-				oscpu: window.navigator.oscpu,
-				platform: window.navigator.platform,
-				productSub: window.navigator.productSub,
-				userAgent: window.navigator.userAgent,
-				vendor: window.navigator.vendor,
-				vendorSub: window.navigator.vendorSub
-			};
-		`);
-
-		Object.keys(navProperties).forEach((k) => {
-			expect(navProperties[k]).to.equal(nav[k]);
-		})
-
-		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
-
-		expect(response["accept-language"]).to.equal(acceptLang);
-		expect(response["accept-encoding"]).to.equal(acceptEnc);
-	});
-
 	it('should delete whitelist rule', async () => {
 		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
 
@@ -231,7 +160,11 @@ describe('Whitelist', () => {
 		expect(navUA).to.not.equal(navUA_spoofed);
 		
 		await driver.get(EXTENSION_URI);
-		await selectOption('input[name="enableWhitelistRealProfile"]');
+		await driver.executeScript(`
+			el = document.querySelector('select[name="defaultProfile"]');
+			el.value = "none";
+			el.dispatchEvent(new Event('change'));
+		`);
 
 		await driver.executeScript(`
 			document.querySelector('#viewRules').click();
@@ -327,14 +260,6 @@ describe('Whitelist', () => {
 	});
 
 	it('should test whitelist option - disable websocket', async () => {
-		// check websocket
-		await driver.get(LOCALSERVER);
-		let hasWebsocket = await driver.executeScript(`
-			return WebSocket ? true : false;
-		`);
-
-		expect(hasWebsocket).to.equal(true);
-
 		// disable websocket in whitelist
 		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
 
