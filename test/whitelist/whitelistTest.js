@@ -152,7 +152,8 @@ describe('Whitelist', () => {
 		let navUA = await driver.executeScript('return window.navigator.userAgent;');
 
 		await driver.get(EXTENSION_URI);
-		await selectOption('input[value="random"]');
+		await driver.executeScript(`document.querySelector('input[value="random"]').click()`);
+		await wait(SLEEP_TIME);
 
 		await driver.get(LOCALSERVER);
 		let navUA_spoofed = await driver.executeScript('return window.navigator.userAgent;');
@@ -196,12 +197,11 @@ describe('Whitelist', () => {
 		expect(navUA).to.equal(navUA_whitelist);
 	});
 
-	it('should test whitelist option - disable authorization', async () => {
-		await driver.get("http://username:password@localhost:3000/basic_auth");
-		let source = await driver.getPageSource();
-		expect(source.includes("granted")).to.be.true;
+	loopProfiles(browserData.profiles);
 
+	it('should test whitelist option - disable authorization', async () => {
 		// check the page again
+		await driver.get("http://username:password@localhost:3000/basic_auth");
 		await driver.get(LOCALSERVER + "/basic_auth");
 		source = await driver.getPageSource();
 		expect(source.includes("granted")).to.be.true;
@@ -218,11 +218,9 @@ describe('Whitelist', () => {
 
 		await wait(SLEEP_TIME);
 		await driver.get(LOCALSERVER + "/basic_auth");
-		try {
-			let modal = await driver.switchTo().activeElement();
-			await modal.dismiss();
-		} catch (e) {}
+		await driver.switchTo().alert().then((alert) => alert.dismiss());
 
+		await wait(SLEEP_TIME);
 		// for some odd reason using page source causes a crash here
 		source = await driver.executeScript(`
 			return document.documentElement.innerHTML;
@@ -274,7 +272,7 @@ describe('Whitelist', () => {
 		`);
 
 		await wait(SLEEP_TIME);
-		await driver.get(LOCALSERVER);
+		await driver.get(LOCALSERVER + "/whitelist_test");
 		hasWebsocket = await driver.executeScript(`
 			return WebSocket ? true : false;
 		`);
@@ -329,43 +327,7 @@ describe('Whitelist', () => {
 
 		expect(protectedWinName).to.not.equal(winName);
 	});
-
-	it('should test whitelist option - spoof screen', async () => {
-		await driver.executeScript(`
-			var el = document.querySelector('select[name="screenSize"]');
-			el.value = "2560x1600";
-			el.dispatchEvent(new Event('change'));
-		`);
-
-		// original screen resolution
-		await wait(SLEEP_TIME);
-		await driver.get(LOCALSERVER);
-		let screenSize = await driver.executeScript(`
-			return {width: window.screen.width, height: window.screen.height}; 
-		`);
-
-		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
-
-		await wait(SLEEP_TIME);
-		let tabs = await driver.getAllWindowHandles();
-		await driver.switchTo().window(tabs[tabs.length - 1]);
-
-		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
-			document.querySelectorAll('.card-body input')[5].click();
-			document.querySelectorAll('.card-header button')[1].click();
-		`);
-
-		await wait(SLEEP_TIME);
-		await driver.get(LOCALSERVER);
-		let spoofedScreenSize = await driver.executeScript(`
-			return {width: window.screen.width, height: window.screen.height}; 
-		`);
-
-		expect(screenSize.width).to.not.equal(spoofedScreenSize.width);
-		expect(screenSize.height).to.not.equal(spoofedScreenSize.height);
-	});
-
+	
 	it('should test whitelist option - spoof ip headers', async () => {
 		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
 
@@ -393,12 +355,12 @@ describe('Whitelist', () => {
 			document.querySelector('select[name="spoofAcceptLangValue"]').value = "${spoofedLang}";
 		`);
 
-		await wait(SLEEP_TIME);
 		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
+		await wait(SLEEP_TIME);
 
 		await driver.executeScript(`
 			document.querySelector('.card-header button').click();
-			document.querySelector('.card-body select').value = "${spoofedLang}";
+			document.querySelectorAll('.card-body select')[0].value = "${spoofedLang}";
 			document.querySelectorAll('.card-header button')[1].click();
 		`);
 
@@ -408,5 +370,55 @@ describe('Whitelist', () => {
 		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
 
 		expect(response["accept-language"]).to.equal(spoofedLang.toLowerCase());
+	});
+
+	it('should test whitelist option - timezone', async () => {
+		let offset = new Date().getTimezoneOffset();
+
+		await driver.executeScript(`
+			var el = document.querySelector('select[name="timeZone"]');
+			el.value = "Pacific/Kwajalein";
+			el.dispatchEvent(new Event('change'));
+		`);
+
+		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
+		await wait(SLEEP_TIME);
+
+		await driver.executeScript(`
+			document.querySelector('.card-header button').click();
+			document.querySelectorAll('.card-body input')[5].click();
+			document.querySelectorAll('.card-header button')[1].click();
+		`);
+
+		await wait(SLEEP_TIME);
+
+		await driver.get(LOCALSERVER + "/whitelist_test");
+		let spoofedOffset = await driver.executeScript(`
+			return document.querySelector('#offset').innerText;
+		`);
+
+		expect(spoofedOffset).to.not.equal(offset);
+	});
+
+	it('should test whitelist option - profile', async () => {
+		await driver.get(LOCALSERVER);
+		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText)');
+
+		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
+
+		await wait(SLEEP_TIME);
+
+		await driver.executeScript(`
+			document.querySelector('.card-header button').click();
+			document.querySelectorAll('.card-body select')[1].value = "win11";
+			document.querySelectorAll('.card-header button')[1].click();
+		`);
+
+		await wait(SLEEP_TIME);
+
+		await driver.get(LOCALSERVER);
+		let spoofed = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText)');
+
+		expect(response["user-agent"]).to.not.equal(spoofed["user-agent"]);
 	});
 });

@@ -93,7 +93,7 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 			
 			// remove options
 			if (urlOK) {
-				if (wlOptions.websocket) props.websocket = [];
+				if (!wlOptions.websocket) props.websocket = [];
 				if (!wlOptions.winName) props.name = [];
 			} else {
 				if (!settings.websocket) props.websocket = [];
