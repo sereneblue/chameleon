@@ -122,17 +122,25 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
 			return clean(toDateString.apply(tmp) + " " + toTimeString.apply(tmp));
 		}
-		Date.prototype.toLocaleString = function(){
+		Date.prototype.toLocaleString = function(...args){
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return toLocaleString.apply(tmp);
+			return toLocaleString.apply(tmp, args);
 		}
-		Date.prototype.toLocaleDateString = function(){
+		Date.prototype.toLocaleDateString = function(...args){
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return toLocaleDateString.apply(tmp);
+			return toLocaleDateString.apply(tmp, args);
 		}
-		Date.prototype.toLocaleTimeString = function(){
+		Date.prototype.toLocaleTimeString = function(...args){
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return toLocaleTimeString.apply(tmp);
+			return toLocaleTimeString.apply(tmp, args);
+		}
+		Date.prototype.toTimeString = function(){
+			var tmp = new _d(this.getTime() + this["${randomStr}"]);
+			return clean(toTimeString.apply(tmp));
+		}
+		Date.prototype.getTimezoneOffset = function(){
+			if (!this["${randomStr}"]) return timezoneOffset;
+			return spoofedTimezone;
 		}
 		Date.prototype.getTimezoneOffset = function(){
 			if (!this["${randomStr}"]) return timezoneOffset;
