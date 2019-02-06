@@ -302,16 +302,51 @@ describe('Script Injection', () => {
 
 	loopTimezones(timeZones);
 
-	it('should enable tracking protection', async () => {
-		await selectOption('input[name="enableTrackingProtection"]')
-	})
-
 	it('should enable first party isolation', async () => {
 		await selectOption('input[name="firstPartyIsolate"]')
 	})
 
 	it('should enable resist fingerprinting', async () => {
 		await selectOption('input[name="resistFingerprinting"]')
+	})
+
+	it('should toggle tracking protection mode - private browsing', async () => {
+		let matchOption = await driver.executeScript(`
+			return document.querySelector('select[name="trackingProtectionMode"]').value == "private_browsing" ? true : false;
+		`);
+		expect(matchOption).to.be.true;
+	})
+
+	it('should toggle tracking protection mode - on', async () => {
+		await driver.executeScript(`
+			var el = document.querySelector('select[name="trackingProtectionMode"]');
+			el.value = "always";
+			el.dispatchEvent(new Event('change'));
+		`);
+		await wait(SLEEP_TIME);
+		await driver.get(EXTENSION_URI);
+
+		await wait(SLEEP_TIME);
+		let matchOption = await driver.executeScript(`
+			return document.querySelector('select[name="trackingProtectionMode"]').value == "always" ? true : false;
+		`);
+		expect(matchOption).to.be.true;
+	})
+
+	it('should toggle tracking protection mode - off', async () => {
+		await driver.executeScript(`
+			var el = document.querySelector('select[name="trackingProtectionMode"]');
+			el.value = "never";
+			el.dispatchEvent(new Event('change'));
+		`);
+		await wait(SLEEP_TIME);
+		await driver.get(EXTENSION_URI);
+
+		await wait(SLEEP_TIME);
+		let matchOption = await driver.executeScript(`
+			return document.querySelector('select[name="trackingProtectionMode"]').value == "never" ? true : false;
+		`);
+		expect(matchOption).to.be.true;
 	})
 
 	it('should toggle webrtc option - default', async () => {

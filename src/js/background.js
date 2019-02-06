@@ -725,15 +725,15 @@ chrome.runtime.onMessage.addListener(function(request) {
 
 		saveSettings("headers");
 	} else if (request.action == "option") {
-		if (request.data.key == "enableTrackingProtection") {
-			chrome.privacy.websites.trackingProtectionMode.set({
-				"value": request.data.value ? "always" : "never"
-			});
-		} else if (request.data.key == "cookieConfig") {
+		if (request.data.key == "cookieConfig") {
 			chrome.privacy.websites[request.data.key].set({
 				"value": {
 					behavior: request.data.value
 				}
+			});
+		} else if (request.data.key == "trackingProtectionMode") {
+			chrome.privacy.websites[request.data.key].set({
+				"value": request.data.value
 			});
 		} else if (request.data.key == "firstPartyIsolate" ||
 				   request.data.key == "resistFingerprinting") {

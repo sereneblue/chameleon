@@ -331,16 +331,20 @@
                 <div class="list" id="list_standard">
                     <div class="opt">
                         <div class="opt">
-                            <label><input name="enableTrackingProtection" type="checkbox"> Enable tracking protection</label>
-                            <button style="float: right" name="resetTracking">reset</button>
-                        </div>
-                        <div class="opt">
                             <label><input name="firstPartyIsolate" type="checkbox"> Enable 1st party isolation</label>
                             <button style="float: right" name="resetFirstParty">reset</button>
                         </div>
                         <div class="opt">
                             <label><input name="resistFingerprinting" type="checkbox"> Resist fingerprinting</label>
                             <button style="float: right" name="resetFingerprinting">reset</button>
+                        </div>
+                        <div class="opt">
+                            <label for="trackingProtectionMode">Tracking protection mode: </label>
+                            <select name="trackingProtectionMode">
+                                <option value="always">On</option>
+                                <option value="never">Off</option>
+                                <option value="private_browsing" selected="selected">Enabled in private browsing</option>
+                            </select>
                         </div>
                         <div class="opt">
                             <label for="webRTCIPHandlingPolicy">WebRTC Policy: </label>

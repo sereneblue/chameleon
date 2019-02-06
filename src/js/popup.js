@@ -131,28 +131,23 @@ async function updateUI() {
 		$(`input[name="${element.name}"]`).prop('checked', data.settings[element.name]);
 	});
 
-	var cookieOption = browser.privacy.websites.cookieConfig.get({});
-	cookieOption.then((c) => {
+	browser.privacy.websites.cookieConfig.get({}).then((c) => {
 		$(`select[name="cookieConfig"]`).val(c.value.behavior);
 	});
 
-	var trackingProtection = browser.privacy.websites.trackingProtectionMode.get({});
-	trackingProtection.then((t) => {
-		$(`input[name="enableTrackingProtection"]`).prop('checked', t.value == "always"? true: false);
+	browser.privacy.websites.trackingProtectionMode.get({}).then((t) => {
+		$(`select[name="trackingProtectionMode"]`).val(t.value);
 	});
 
-	var firstPartyIsolate = browser.privacy.websites.firstPartyIsolate.get({});
-	firstPartyIsolate.then((f) => {
+	browser.privacy.websites.firstPartyIsolate.get({}).then((f) => {
 		$(`input[name="firstPartyIsolate"]`).prop('checked', f.value);
 	});
 
-	var resistFingerprinting = browser.privacy.websites.resistFingerprinting.get({});
-	resistFingerprinting.then((r) => {
+	browser.privacy.websites.resistFingerprinting.get({}).then((r) => {
 		$(`input[name="resistFingerprinting"]`).prop('checked', r.value);
 	});
 
-	var webRTCIPHandlingPolicy = browser.privacy.network.webRTCIPHandlingPolicy.get({});
-	webRTCIPHandlingPolicy.then((w) => {
+	browser.privacy.network.webRTCIPHandlingPolicy.get({}).then((w) => {
 		$(`select[name="webRTCIPHandlingPolicy"]`).val(w.value);
 	});
 	
