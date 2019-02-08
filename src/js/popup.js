@@ -190,12 +190,27 @@ async function updateUI() {
     	l.protocol != "file:") {
 		$('.whitelist h5').text(l.host);
 
-		if (data.whitelist.urlList.findIndex(r => r.url == l.host) > -1) {
-			$('.whitelist p').text("Status: Whitelisted");
-		} else {
-			$('.whitelist p').text("Status: Not whitelisted");
+		let idx = data.whitelist.urlList.findIndex(r => currentTab[0].url.indexOf(r.url));
+
+		if (idx > -1) {
+			let profile = profiles.find(p => p.value == data.whitelist.urlList[idx].profile);
+			profile = profile ? profile.name : "Default Whitelist Profile";
+
+			$('.whitelist p').html(`
+				<div>
+					<strong>Status:</strong><br/>
+					Whitelisted<br/>
+				</div>
+				<div>
+					<strong>Profile:</strong><br/>
+					${profile}
+				</div>
+				${data.whitelist.urlList[idx].re ? 
+				"<div><strong>Pattern:</strong></br>" + data.whitelist.urlList[idx].pattern + "</div>" : "" }`);
+			return;
 		}
 
+		$('.whitelist p').text(`Status: Not whitelisted`);
 		return;
     }
 
