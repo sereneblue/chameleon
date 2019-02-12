@@ -5,7 +5,7 @@
 
 * {
   margin: 0;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Noto Sans', sans-serif !important;
 }
 
 body {
@@ -303,7 +303,12 @@ ul {
 }
 
 .whitelist p {
+  font-size: 15px;
   margin-top: 10px;
+}
+
+.whitelist div {
+  margin-bottom: 5px;
 }
 
 /*
