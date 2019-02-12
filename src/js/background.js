@@ -652,6 +652,20 @@ function init(data) {
 	saveSettings();
 }
 
+// migrate from < 0.11.0
+function migrate(data) {
+	delete data.whitelist.enableRealProfile;
+	delete data.whitelist.profile;
+
+	data.whitelist.defaultProfile = "none";
+	for (var i = 0; i < data.whitelist.urlList.length; i++) {
+		delete data.whitelist.urlList[i].options.screen;
+		data.whitelist.urlList[i].profile = "default";
+	}
+
+	return data;
+}
+
 /*
 	Event Listeners
 */
@@ -854,6 +868,10 @@ browser.runtime.onInstalled.addListener((details) => {
 		}
 	}
 
+	if (data.version && data.version < "0.11.0") {
+		data = migrate(data);
+	}
+	
 	init(data);
 	let plat = await browser.runtime.getPlatformInfo();
 
@@ -869,6 +887,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.10.4"});
+	await save({ version: "0.11.0"});
 	changeTimer();
 })();
