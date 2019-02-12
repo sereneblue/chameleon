@@ -23,28 +23,34 @@ The UI is near identical and contains most of the features found in the original
 - Spoof some header values.
 - Modify referer options.
 - Enable Do Not Track.
+- Prevent Etag tracking.
+- Modify referer (use source url or disable).
 
 ### Options
 
 - Enable script injection.
-- Enable tracking protection/etc.
 - Disable WebSockets.
+- Limit tab history.
+- Protect window.name.
 - Spoof audio context
 - Spoof client rects.
 - Spoof screen size.
 - Spoof timezone.
-- Modify cookie options.
 - Prevent WebRTC leak.
+- Enable tracking protection.
+- Enable resist fingerprinting.
+- Enable first party isolation.
+- Modify cookie options.
 - about:config checklist to enhance your privacy.
 
 WebExtensions are unable to modify about:config entries. A workaround for this is to use the checklists that can be found under certain menu options. Right click the option and select "Copy Link Location". Paste this link into your address bar and you'll be presented with the option in about:config.
 
 ### Whitelist
 
-- Create a whitelist profile
-- Use your real profile as the whitelist profile.
+- Use your real or spoofed profile for whitelisted sites.
 - Manage a list of whitelist rules.
 - Supports regular expressions
+- Option to use a spoofed profile per whitelist rule.
 
 ## Installation
 
