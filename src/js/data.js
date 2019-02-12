@@ -335,6 +335,24 @@ let options = ["scriptInjection", "standard", "cookies", "misc", "reporting"];
 // whitelist
 let whitelist = ["whitelistProfile", "whitelistRules"];
 
+// flat polyfill for Firefox < 62
+function flatten (arg) {
+  return arg.reduce(function (accumulator, currentValue) {
+    return accumulator.concat(
+      Array.isArray(currentValue) ? flatten(currentValue) : currentValue
+    )
+  }, [])
+}
+
+if (!Array.prototype.hasOwnProperty('flat')) {
+  /* eslint-disable no-extend-native */
+  Object.defineProperty(Array.prototype, 'flat', {
+    value: function () {
+      return flatten(this)
+    }
+  })
+}
+
 // profiles
 let profiles = Object.keys(uaList).map(os => uaList[os]).flat().sort((a, b) => a.name > b.name);
 

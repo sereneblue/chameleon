@@ -190,7 +190,7 @@ async function updateUI() {
     	l.protocol != "file:") {
 		$('.whitelist h5').text(l.host);
 
-		let idx = data.whitelist.urlList.findIndex(r => currentTab[0].url.indexOf(r.url));
+		let idx = data.whitelist.urlList.findIndex(r => currentTab[0].url.indexOf(r.url) > -1);
 
 		if (idx > -1) {
 			let profile = profiles.find(p => p.value == data.whitelist.urlList[idx].profile);
