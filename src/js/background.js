@@ -9,7 +9,7 @@ let chameleon = {
 		enableDNT: false,
 		refererXorigin: 0,
 		refererTrimming: 0,
-		spoofAcceptEnc: false,
+		spoofAccept: false,
 		spoofAcceptLang: false,
 		spoofAcceptLangValue: "",
 		spoofSourceRef: false,
@@ -357,7 +357,32 @@ function request(url) {
 
 // rewrite headers per request 
 function rewriteHeaders(e) {
-	var wl = whitelisted(e);
+	let wl = whitelisted(e);
+	let accept = null;
+	let https = e.url.match(/^https:\/\//);
+
+	if (wl.on) {
+		if (wl.profile == "default") {
+			if (chameleon.whitelist.defaultProfile != "none") {
+				accept = spoof.accept(
+					profiles.find(p => p.value == chameleon.whitelist.defaultProfile).ua,
+					https
+				)
+			}
+		} else {
+			accept = spoof.accept(
+				profiles.find(p => p.value == wl.profile).ua,
+				https
+			)
+		}
+	} else {
+		if (chameleon.headers.useragent) {
+			accept = spoof.accept(
+				chameleon.headers.useragent,
+				https
+			)
+		}
+	}
 
 	e.requestHeaders.forEach(function(header){
 		if (header.name.toLowerCase() == "authorization") {
@@ -411,8 +436,18 @@ function rewriteHeaders(e) {
 			} else {
 				if (chameleon.headers.useragent) header.value = chameleon.headers.useragent;
 			}
+		} else if (header.name.toLowerCase() == "accept") {	
+			if (chameleon.headers.spoofAccept) {
+				if (accept) {
+					header.value = accept[0];
+				}
+			}
 		} else if (header.name.toLowerCase() == "accept-encoding") {	
-			if (chameleon.headers.spoofAcceptEnc) header.value = "gzip, deflate";
+			if (chameleon.headers.spoofAccept) {
+				if (accept) {
+					header.value = accept[1];
+				}
+			}
 		} else if (header.name.toLowerCase() === "accept-language") {
 			if (wl.on && wl.lang != "") {
 				header.value = wl.lang;
@@ -871,6 +906,11 @@ browser.runtime.onInstalled.addListener((details) => {
 	if (data.version && data.version < "0.11.0") {
 		data = migrate(data);
 	}
+
+	if (data.version && data.version < "0.11.2") {
+		data.headers.spoofAccept = data.headers.spoofAcceptEnc;
+		delete data.headers.spoofAcceptEnc;
+	}
 	
 	init(data);
 	let plat = await browser.runtime.getPlatformInfo();
@@ -887,6 +927,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.11.1"});
+	await save({ version: "0.11.2"});
 	changeTimer();
 })();

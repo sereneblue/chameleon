@@ -1,6 +1,38 @@
 // spoof contains functions that return js to inject
 // also contains the profileResolution to persist profile resolution
 let spoof = {
+	accept: function(ua, https) {
+		if (ua.match(/Firefox/) || ua.match(/Edge/)) {
+			if (ua.match(/60.0/)) {
+				return [
+					"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+					https ? "gzip, deflate, br" : "gzip, deflate"
+				];
+			}
+
+			return [
+				"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+				https ? "gzip, deflate, br" : "gzip, deflate"
+			];
+		} else if (ua.match(/Chrome/)) {
+			return [
+				"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+				https ? "gzip, deflate, br" : "gzip, deflate"
+			]
+		} else if (ua.match(/Trident/)) {
+			return [
+				"text/html, application/xhtml+xml, image/jxr, */*",
+				"gzip, deflate"
+			];
+		} else if (ua.match(/Safari/)) {
+			return [
+				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+				https ? "br, gzip, deflate" : "gzip, deflate"
+			]
+		}
+
+		return null;
+	},
 	dnt: function (injection) {
 		injection.dnt = [{ obj: "window.navigator", prop: "doNotTrack", value: true }];
 		return injection;

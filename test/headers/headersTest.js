@@ -332,8 +332,8 @@ describe('Headers', () => {
 		await checkHeaders('upgrade-insecure-requests', '1');
 	});
 
-	it('spoof spoof accept encoding', async () => {
-		await selectHeaderOption('input[name="spoofAcceptEnc"]');
+	it('spoof accept header', async () => {
+		await selectHeaderOption('input[name="spoofAccept"]');
 		await checkHeaders('accept-encoding', 'gzip, deflate');
 	});
 
