@@ -2,8 +2,8 @@
 // also contains the profileResolution to persist profile resolution
 let spoof = {
 	accept: function(ua, https) {
-		if (ua.match(/Firefox/) || ua.match(/Edge/)) {
-			if (ua.match(/60.0/)) {
+		if (/Firefox/.test(ua) || /Edge/.test(ua)) {
+			if (/60\.0/.test(ua)) {
 				return [
 					"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 					https ? "gzip, deflate, br" : "gzip, deflate"
@@ -14,17 +14,17 @@ let spoof = {
 				"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 				https ? "gzip, deflate, br" : "gzip, deflate"
 			];
-		} else if (ua.match(/Chrome/)) {
+		} else if (/Chrome/.test(ua)) {
 			return [
 				"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
 				https ? "gzip, deflate, br" : "gzip, deflate"
 			]
-		} else if (ua.match(/Trident/)) {
+		} else if (/Trident/.test(ua)) {
 			return [
 				"text/html, application/xhtml+xml, image/jxr, */*",
 				"gzip, deflate"
 			];
-		} else if (ua.match(/Safari/)) {
+		} else if (/Safari/.test(ua)) {
 			return [
 				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 				https ? "br, gzip, deflate" : "gzip, deflate"
