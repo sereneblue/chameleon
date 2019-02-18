@@ -44,7 +44,7 @@ describe('Profiles', () => {
 		extPath = path.join(__dirname, '../{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}.xpi');
 		EXTENSION_URI = "";
 		LOCALSERVER = "http://localhost:3000";
-		SLEEP_TIME = 600;
+		SLEEP_TIME = 300;
 
 		driver = await new Builder()
 			.forBrowser('firefox')
