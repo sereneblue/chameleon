@@ -31,7 +31,7 @@ const timeZones = [
 	"America/Sao_Paulo",
 	"Atlantic/South_Georgia",
 	"Atlantic/Azores",
-	"Europe/London",
+	"UTC",
 	"Europe/Berlin",
 	"Europe/Kaliningrad",
 	"Asia/Baghdad",

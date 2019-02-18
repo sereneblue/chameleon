@@ -24,15 +24,15 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 		var spoofedTimezone = 0 - ${offset};
 		var tzAbbr = "${tzAbbr}";
 		var tzName = "${tzName}";
+		var _originalTZ = new Intl.DateTimeFormat('en-US', {
+			timeZoneName: 'long'
+		}).format(new Date()).split(', ')[1];
+
+		var tz = new Intl.DateTimeFormat('en', {
+			timeZone: tzName, timeZoneName: _oldFF ? 'short' : 'long'
+		}).format(new Date()).split(', ')[1];
 
 		const timezoneOffset = new window.Date().getTimezoneOffset();
-		const intl = window.Intl.DateTimeFormat.prototype.resolvedOptions;
-		window.Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
-			return Object.assign(intl.apply(this, args), {
-				timeZone: tzName
-			});
-		};
-
 		const clean = str => {
 			const toGMT = offset => {
 				const z = n => (n < 10 ? '0' : '') + n;
@@ -41,14 +41,11 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 				return "GMT" + sign + z(offset / 60 | 0) + z(offset % 60);
 			};
 			str = str.replace(/(GMT[\\\\+|\\\\-]?\\\\d+)/g, toGMT(spoofedTimezone));
-
-			if (str.indexOf(' (') !== -1) {
-				str = str.split(' (')[0] + ' (' + tzAbbr + ')';
-			}
-			return str;
+			return str.replace(_originalTZ, tz);
 		}
 
 		let _d = window.Date;
+		
 		const {
 			getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getYear,
 			toLocaleString, toLocaleDateString, toLocaleTimeString, toDateString, toTimeString
@@ -124,15 +121,15 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 		}
 		Date.prototype.toLocaleString = function(...args){
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return toLocaleString.apply(tmp, args);
+			return clean(toLocaleString.apply(tmp, args));
 		}
 		Date.prototype.toLocaleDateString = function(...args){
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return toLocaleDateString.apply(tmp, args);
+			return clean(toLocaleDateString.apply(tmp, args));
 		}
 		Date.prototype.toLocaleTimeString = function(...args){
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return toLocaleTimeString.apply(tmp, args);
+			return clean(toLocaleTimeString.apply(tmp, args));
 		}
 		Date.prototype.toTimeString = function(){
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);

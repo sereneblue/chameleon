@@ -58,6 +58,17 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 			}
 		}
 
+		// check if older firefox for time spoof
+		var _oldFF = false;
+		if (properties.nav) {
+			var navUA =  properties.nav.find(p => p.prop == "userAgent");
+			if (navUA) {
+				_oldFF = /60\.0/.test(navUA.value);
+			}
+		} else {
+			_oldFF = /60\.0/.test(navigator.userAgent);
+		}
+
 		(function(props){
 			let override = ((window, injection) => {
 				if (!urlOK) {
