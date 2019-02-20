@@ -396,7 +396,10 @@ function rewriteHeaders(e) {
 				if (chameleon.headers.disableRef) {
 					header.value = "";
 				} else if (chameleon.headers.spoofSourceRef) {
-					header.value = e.url;
+					// don't spoof referer for cloudflare pages
+					if (!/chk_jschl/.test(e.url)) {
+						header.value = e.url;
+					}
 				} else {
 					// check referer policies
 					if (chameleon.headers.refererXorigin >= 1) {
