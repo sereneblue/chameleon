@@ -99,8 +99,8 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 				}
 			});
 
-			// fix recaptcha window.name spoofing;
-			let {name, ...recaptchaProperties} = props;
+			// fix window.name issues
+			let {name, ...bypassProps} = props;
 			
 			// remove options
 			if (urlOK) {
@@ -121,8 +121,9 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 						if(typeof(node.contentWindow)           !== "undefined"
 						&& node.contentWindow 					!== null
 						&& typeof(node.contentWindow.navigator) !== "undefined") {
-							if (node.src.includes("https://www.google.com/recaptcha/api2")) {
-								override(node.contentWindow, recaptchaProperties);
+							if (node.src.includes("https://www.google.com/recaptcha/api2") || 
+								node.src.includes("https://disqus.com/embed/comments/")) {
+								override(node.contentWindow, bypassProps);
 								continue;
 							}
 
