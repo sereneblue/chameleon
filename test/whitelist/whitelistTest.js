@@ -85,7 +85,16 @@ describe('Whitelist', () => {
 		app.get('/', (req, res) => res.send(req.headers) );
 		app.get('/whitelist_test', (req, res) => res.render('index'));
 		app.get('/basic_auth', authMiddleware, (req, res) => res.send('Permission granted'));
-
+		app.get('/auth_test', (req, res) => {
+			res.send(`
+				<html>
+					<body>
+						<img src="/basic_auth">
+					</body>
+				</html>
+			`);
+		});
+		
 		server = app.listen(3000);
 	});
 
@@ -200,12 +209,6 @@ describe('Whitelist', () => {
 	loopProfiles(browserData.profiles);
 
 	it('should test whitelist option - disable authorization', async () => {
-		// check the page again
-		await driver.get("http://username:password@localhost:3000/basic_auth");
-		await driver.get(LOCALSERVER + "/basic_auth");
-		source = await driver.getPageSource();
-		expect(source.includes("granted")).to.be.true;
-
 		// disable auth in whitelist
 		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
 
@@ -217,16 +220,24 @@ describe('Whitelist', () => {
 		`);
 
 		await wait(SLEEP_TIME);
-		await driver.get(LOCALSERVER + "/basic_auth");
-		await driver.switchTo().alert().then((alert) => alert.dismiss());
 
-		await wait(SLEEP_TIME);
-		// for some odd reason using page source causes a crash here
-		source = await driver.executeScript(`
-			return document.documentElement.innerHTML;
-		`);
+		// check for auth header
+		await driver.get("http://username:password@localhost:3000/basic_auth");
+		let source = await driver.getPageSource();
+		expect(source.includes("granted")).to.be.true;
 
-		expect(source.includes("Unauthorized")).to.be.true;
+		// check for alert prompt
+		await driver.get("http://localhost:3000/auth_test");
+
+		let alertPresent = false;
+		try {
+			await driver.switchTo().alert().then((alert) => alert.dismiss());
+			alertPresent = true;
+		} catch (e) {
+			// alert not present
+		}
+
+		expect(alertPresent).to.be.false;
 	});
 
 	it('should test whitelist option - disable referer', async () => {

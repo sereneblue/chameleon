@@ -355,7 +355,7 @@ function request(url) {
   })
 }
 
-// rewrite headers per request 
+// rewrite request headers 
 function rewriteHeaders(e) {
 	let wl = whitelisted(e);
 	let accept = null;
@@ -385,13 +385,7 @@ function rewriteHeaders(e) {
 	}
 
 	e.requestHeaders.forEach(function(header){
-		if (header.name.toLowerCase() == "authorization") {
-			if (!wl.on) {
-				if (chameleon.headers.disableAuth) header.value = "";
-			} else if (wl.opt.auth) {
-				header.value = "";
-			}
-		} else if (header.name.toLowerCase() == "referer") {
+		if (header.name.toLowerCase() == "referer") {
 			if (!wl.on) {
 				if (chameleon.headers.disableRef) {
 					header.value = "";
@@ -498,6 +492,7 @@ function rewriteHeaders(e) {
 	return { requestHeaders: e.requestHeaders };
 }
 
+// rewrite response headers
 function rewriteResponseHeaders(e) {
 	var wl = whitelisted(e);
 
@@ -512,6 +507,18 @@ function rewriteResponseHeaders(e) {
 	return { responseHeaders: e.responseHeaders };
 }
 
+// block malicious auth
+function blockAuth(details) {
+	let wl = whitelisted(details);
+
+	if (details.isProxy == false) {
+		if (details.type == "image" || details.type == "media") {
+			if ((!wl.on && chameleon.headers.disableAuth) || wl.opt.auth ) {
+				return { cancel: true };
+			}
+		}
+	}
+}
 
 // determines useragent and screen resolution when new task created
 async function start() {
@@ -860,9 +867,15 @@ browser.webRequest.onBeforeSendHeaders.addListener(
 );
 
 browser.webRequest.onHeadersReceived.addListener(
-	rewriteResponseHeaders,{
+	rewriteResponseHeaders, {
 		urls: ["<all_urls>"]
 	}, ["blocking", "responseHeaders"]
+);
+
+browser.webRequest.onAuthRequired.addListener(
+	blockAuth, {
+		urls: ["<all_urls>"]
+	}, ["blocking"]
 );
 
 chrome.alarms.onAlarm.addListener(() => { start(); });

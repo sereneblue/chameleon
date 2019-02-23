@@ -72,6 +72,15 @@ describe('Headers', () => {
 		app.get('/', (req, res) => res.send(req.headers) );
 		app.get('/ref_test', (req, res) => res.render('index'));
 		app.get('/basic_auth', authMiddleware, (req, res) => res.send('Permission granted'));
+		app.get('/auth_test', (req, res) => {
+			res.send(`
+				<html>
+					<body>
+						<img src="/basic_auth">
+					</body>
+				</html>
+			`);
+		});
 		app.get('/etags', (req, res) => {
 			res.setHeader("Etag", Math.random().toString(36));
 			res.send('test');
@@ -93,20 +102,26 @@ describe('Headers', () => {
 	});
 
 	it('should disable authorization header', async () => {
-		await driver.get("http://username:password@localhost:3000/basic_auth");
-		let source = await driver.getPageSource();
-		expect(source.includes("granted")).to.be.true;
-
 		await driver.get(EXTENSION_URI);
 		await driver.findElement(By.id('menu_headers')).click()
 		await wait(SLEEP_TIME);
 		await selectHeaderOption('input[name="disableAuth"]');
 
 		await driver.get("http://username:password@localhost:3000/basic_auth");
-		await driver.switchTo().alert().then((alert) => alert.dismiss());
-		await wait(SLEEP_TIME);
-		source = await driver.getPageSource();
-		expect(source.includes("Unauthorized")).to.be.true;
+		let source = await driver.getPageSource();
+		expect(source.includes("granted")).to.be.true;
+
+		await driver.get("http://localhost:3000/auth_test");
+		
+		let alertPresent = false;
+		try {
+			await driver.switchTo().alert().then((alert) => alert.dismiss());
+			alertPresent = true;
+		} catch (e) {
+			// alert not present
+		}
+
+		expect(alertPresent).to.be.false;
 	});
 
 	it('should enable do not track', async () => {
