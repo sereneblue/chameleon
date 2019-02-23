@@ -75,6 +75,14 @@ async function buildInjectScript() {
 		timeSpoof: ""
 	};
 	let nav = [];	
+	let profile = null;
+
+	if (chameleon.settings.useragent != "custom") {
+		let foundProfile = profiles.find(p => p.ua == chameleon.headers.useragent);
+		profile = foundProfile ? foundProfile.name : "";
+	} else {
+		profile = "Custom Profile";
+	}
 
 	if (chameleon.settings.enableScriptInjection) {
 		injection = spoof.websocket(injection);
@@ -167,6 +175,16 @@ async function buildInjectScript() {
 			}
 		}
 
+		if (profile && chameleon.settings.notificationsEnabled) {
+			let screenRes = injection.screen ? ` / Screen:  ${injection.screen[0].value}x${injection.screen[1].value}` : "";
+
+			chrome.notifications.create({
+				"type": "basic",
+				"title": "Chameleon",
+				"message": `Browser Profile Changed\r\n${profile}${screenRes}`
+			});
+		}
+
 		return inject(
 			injection,
 			wl,
@@ -178,6 +196,14 @@ async function buildInjectScript() {
 			uaList,
 			languages
 		);
+	}
+
+	if (profile && chameleon.settings.notificationsEnabled) {
+		chrome.notifications.create({
+			"type": "basic",
+			"title": "Chameleon",
+			"message": `Browser Profile Changed\r\n${profile}`
+		});
 	}
 
 	return "";
@@ -583,14 +609,6 @@ async function start() {
 	}
 
 	chameleon.headers.viaIP_profile = chameleon.headers.xforwardedforIP_profile = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
-
-	if (chameleon.headers.useragent && chameleon.settings.notificationsEnabled) {
-		chrome.notifications.create({
-			"type": "basic",
-			"title": "Chameleon",
-			"message": "Browser Profile Changed\r\n" + chameleon.headers.useragent
-		});
-	}
 
 	title = tooltipData.os ? `Chameleon | ${tooltipData.os} - ${tooltipData.browser}` : "Chameleon";
 	let platformInfo = browser.runtime.getPlatformInfo();
