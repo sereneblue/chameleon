@@ -66,7 +66,7 @@ let profileValues = [
 	.reduce((flat, next) => flat.concat(next[1].map(n => n.value)), [])
 );
 
-let whitelistOptions = ["auth", "ip", "ref", "screen", "websocket", "winName"];
+let whitelistOptions = ["auth", "ip", "ref", "timezone", "websocket", "winName"];
 
 function get(key) {
 	return new Promise((resolve) => {
@@ -86,7 +86,7 @@ function validate(cfg) {
 
 	for (h in cfg.headers) {
 		if (['blockEtag', 'disableAuth', 'disableRef', 'enableDNT', 
-			 'spoofAcceptEnc', 'spoofAcceptLang',  'spoofSourceRef', 'spoofVia',
+			 'spoofAccept', 'spoofAcceptLang',  'spoofSourceRef', 'spoofVia',
 			 'spoofXFor', 'upgradeInsecureRequests'].includes(h)) {
 			if (typeof(cfg.headers[h]) != "boolean") throw Error;
 		}
@@ -138,7 +138,7 @@ function validate(cfg) {
 		if (s == "timeZone" && !timeZoneValues.includes(cfg.settings[s])) throw Error;
 
 		if (s == "interval") {
-			if (!(cfg.settings[s] in intervals)) throw Error;
+			if (!intervals.includes(cfg.settings[s])) throw Error;
 
 			if (cfg.settings[s] == "-1" && (cfg.minInterval > cfg.maxInterval)) throw Error;
 		}
@@ -156,16 +156,22 @@ function validate(cfg) {
 					if (!whitelistOptions.includes(opt)) throw Error;
 					if (typeof(cfg.whitelist[w][index].options[opt]) != "boolean") throw Error;
 				}
+
+				if (!languages.map(l => l.value).includes(cfg.whitelist[w][index].lang) && cfg.whitelist[w][index].lang != "") throw Error;
+
+				if (cfg.whitelist[w][index].profile != "default" && profiles.findIndex(p => p.value == cfg.whitelist[w][index].profile) == -1) throw Error;
 			}
-			continue;
-		} else if (w == "profile") {
 			continue;
 		}
 
-		if (!['enabled', 'enableRealProfile', 'lang'].includes(w)) throw Error;
-		if (w == "lang" && !languages.map(l => l.value).includes(cfg.whitelist[w]) && cfg.whitelist[w] != "") throw Error;
+		if (w == "defaultProfile") {
+			if (cfg.whitelist.defaultProfile != "none" && profiles.findIndex(cfg.whitelist.defaultProfile) == -1) {
+				throw Error;
+			}
+			continue;
+		}
 
-		if (typeof(cfg.whitelist[w]) != "boolean") throw Error;
+		if (w != "enabled") throw Error;
 	}
 
 	$("#import-msg").text("Successfully imported settings. Reloading extension...").css('color', 'olivedrab');

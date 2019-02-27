@@ -29,7 +29,7 @@ let chameleon = {
 		mac: [false,false,false,false,false,false,false,false],
 		linux: [false,false,false,false,false,false,false,false,false,false,false],
 		ios: [false,false,false,false,false,false,false,false,false],
-		android: [false,false,false,false,false,false,false,false],
+		android: [false,false,false,false,false,false,false,false,false],
 		all: [false, false, false, false, false]
 	},
 	injection: null,
@@ -946,6 +946,10 @@ browser.runtime.onInstalled.addListener((details) => {
 		delete data.headers.spoofAcceptEnc;
 	}
 	
+	if (data.excluded.android.length == 8) {
+		data.excluded.android.push(false);
+	}
+
 	init(data);
 	let plat = await browser.runtime.getPlatformInfo();
 
