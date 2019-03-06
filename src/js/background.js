@@ -546,6 +546,24 @@ function blockAuth(details) {
 	}
 }
 
+// fix youtube issue
+// only check if script injection enabled and whitelist doesn't contain youtube
+function fixYoutube(request) {
+	if (chameleon.settings.enableScriptInjection && chameleon.whitelist.urlList.findIndex(r => r.url.includes("youtube.com")) == -1) {
+		if (!request.url.includes("disable_polymer")) {
+			let link = new URL(request.url);
+			let params = new URLSearchParams(link.search);
+			params.set('disable_polymer', 'true');
+
+			link.search = params.toString();
+
+			return {
+				redirectUrl: link.toString()
+			};
+		}
+	}
+}
+
 // determines useragent and screen resolution when new task created
 async function start() {
 	var title, uas;
@@ -890,6 +908,13 @@ browser.webRequest.onHeadersReceived.addListener(
 	}, ["blocking", "responseHeaders"]
 );
 
+browser.webRequest.onBeforeRequest.addListener(
+	fixYoutube, {
+		urls: ["https://www.youtube.com/*"],
+		types: ["main_frame"]
+	}, ["blocking"]
+);
+
 browser.webRequest.onAuthRequired.addListener(
 	blockAuth, {
 		urls: ["<all_urls>"]
@@ -965,6 +990,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.11.4"});
+	await save({ version: "0.11.5"});
 	changeTimer();
 })();
