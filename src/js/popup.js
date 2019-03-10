@@ -61,11 +61,9 @@ async function updateUI() {
 			$('#interval').hide();
 			$(`#sub_custom`).addClass("active");
 		} else {
-			$(`#sub_${getPlatform(data.settings.useragent)}`).addClass("active");
+			$('#profile input[name="profile_type"]').val([data.settings.useragent]);
 			$('#interval').show();
 		}
-
-		$('#profile input[name="profile_type"]').val([data.settings.useragent]);
 	}
 
 	if (data.settings.interval) {
