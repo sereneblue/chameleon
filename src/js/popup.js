@@ -55,6 +55,7 @@ async function updateUI() {
 			$('input[type="radio"]:checked').addClass('disabled');
 		} else if (data.settings.useragent.match(/.*?\d/)) {
 			$(`#sub_${getPlatform(data.settings.useragent)}`).addClass("active");
+			$('#profile input[name="profile_type"]').val([data.settings.useragent]);
 			$('#interval').hide();
 		} else if (data.settings.useragent == "custom") {
 			$('input[name="custom_ua"]').val(data.settings.useragentValue);
