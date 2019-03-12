@@ -155,7 +155,7 @@ async function buildInjectScript() {
 		for (var i = 0; i < wl.urlList.length; i++) {
 			wl.urlList[i].injectProfile = {};
 
-			if (wl.urlList[i].profile && wl.urlList[i].profile != "default") {
+			if (wl.urlList[i].profile && !["default", "real"].includes(wl.urlList[i].profile)) {
 				let spoofProfile = profiles.find(p => p.value == wl.urlList[i].profile);
 
 				// whitelist screen
@@ -396,10 +396,12 @@ function rewriteHeaders(e) {
 				)
 			}
 		} else {
-			accept = spoof.accept(
-				profiles.find(p => p.value == wl.profile).ua,
-				https
-			)
+			if (wl.profile != "real") {
+				accept = spoof.accept(
+					profiles.find(p => p.value == wl.profile).ua,
+					https
+				);
+			}
 		}
 	} else {
 		if (chameleon.headers.useragent) {

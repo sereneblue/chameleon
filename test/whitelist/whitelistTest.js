@@ -432,4 +432,44 @@ describe('Whitelist', () => {
 
 		expect(response["user-agent"]).to.not.equal(spoofed["user-agent"]);
 	});
+
+	it(`should test whitelist profile - real`, async () => {
+		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
+		await wait(SLEEP_TIME);
+
+		await driver.executeScript(`
+			document.querySelector('.card-header button').click();
+			document.querySelectorAll('.card-body select')[1].value = "default";
+			document.querySelectorAll('.card-header button')[1].click();
+		`);
+		await wait(SLEEP_TIME);
+
+		await driver.get(EXTENSION_URI);
+
+		await wait(SLEEP_TIME);
+
+		await driver.executeScript(`
+			el = document.querySelector('select[name="defaultProfile"]');
+			el.value = "android1";
+			el.dispatchEvent(new Event('change'));
+		`);
+
+		await wait(SLEEP_TIME);
+		await driver.get(LOCALSERVER);
+		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText)');
+		
+		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
+		await driver.executeScript(`
+			document.querySelector('.card-header button').click();
+			document.querySelectorAll('.card-body select')[1].value = "real";
+			document.querySelectorAll('.card-header button')[1].click();
+		`);
+
+		await wait(SLEEP_TIME);
+
+		await driver.get(LOCALSERVER);
+		let real = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText)');
+
+		expect(real["user-agent"]).to.not.equal(response["user-agent"]);
+	});
 });

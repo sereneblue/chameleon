@@ -159,7 +159,7 @@ function validate(cfg) {
 
 				if (!languages.map(l => l.value).includes(cfg.whitelist[w][index].lang) && cfg.whitelist[w][index].lang != "") throw Error;
 
-				if (cfg.whitelist[w][index].profile != "default" && profiles.findIndex(p => p.value == cfg.whitelist[w][index].profile) == -1) throw Error;
+				if (!["default", "real"].includes(cfg.whitelist[w][index].profile) && profiles.findIndex(p => p.value == cfg.whitelist[w][index].profile) == -1) throw Error;
 			}
 			continue;
 		}

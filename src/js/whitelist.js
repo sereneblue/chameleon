@@ -17,8 +17,10 @@ let languageTemplate = (lang) => {
 let whitelistTemplate = (profile) => {
 	let template = `<div class="form-group"><label>Spoof Profile</label><select class="form-select"><option value="" ${profile == "" || profile == undefined ? 'selected' : ""}>Default Whitelist Profile</option>`;
 
+	template += `<option value="real" ${profile == "real" ? 'selected' : ""}>Real Profile</option>`;
+
 	for (var p of profiles) {
-		template += `<option value="${p.value}" ${p.value == profile ? "selected" : ""}>${p.name}</option>`
+		template += `<option value="${p.value}" ${p.value == profile ? "selected" : ""}>${p.name}</option>`;
 	}
 	
 	return template + `</select></div>`;
