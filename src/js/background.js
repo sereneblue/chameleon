@@ -628,12 +628,16 @@ async function start() {
 		}
 	}
 
-	chameleon.headers.viaIP_profile = chameleon.headers.xforwardedforIP_profile = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
+	let tmpIP = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
 
+	chameleon.headers.viaIP_profile = (chameleon.headers.spoofVia && chameleon.headers.spoofViaValue == 0) ? tmpIP : "";
+	chameleon.headers.xforwardedforIP_profile = (chameleon.headers.spoofXFor && chameleon.headers.spoofXForValue == 0) ? tmpIP : "";
+	
 	title = tooltipData.os ? `Chameleon | ${tooltipData.os} - ${tooltipData.browser}` : "Chameleon";
 	let platformInfo = browser.runtime.getPlatformInfo();
 	if (platformInfo.os != "android") chrome.browserAction.setTitle({ title });
-	rebuildInjectionScript();
+
+	saveSettings();
 }
 
 // rebuilds injection script
