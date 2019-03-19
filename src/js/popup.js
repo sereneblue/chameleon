@@ -50,6 +50,7 @@ async function updateUI() {
 
 	if (data.settings.useragent) {
 		if (data.settings.useragent == "real") {
+			$('input[name="profile_type"]').val(["real"]);
 			$('#interval').hide();
 			$(".item").addClass('disabled');
 			$('input[type="radio"]:checked').addClass('disabled');
