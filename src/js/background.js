@@ -948,7 +948,7 @@ browser.runtime.onInstalled.addListener((details) => {
 		saveSettings();
 	}
 
-	if (data.headers.hasOwnProperty('spoofEtag')) {
+	if (data.headers && data.headers.hasOwnProperty('spoofEtag')) {
 		var blockEtag = data.headers.spoofEtag;
 		delete data.headers.spoofEtag;
 		data.headers.blockEtag = blockEtag;
