@@ -702,25 +702,25 @@ function whitelisted(req) {
 			let index = req.frameAncestors.findIndex(f => f.frameId == 0);
 			if (index > -1) {
 				url = req.frameAncestors[index].url;
-			} else {
-				return {on: false};
 			}
 		}
 
-		var idx = chameleon.whitelist.urlList.findIndex(u => url.indexOf(u.url) > -1);
-		if (idx > -1) {
-			if (chameleon.whitelist.urlList[idx].re) {
-				if (!new RegExp(chameleon.whitelist.urlList[idx].pattern, "i").test(url)) {
-					return {on: false};
+		if (url) {
+			var idx = chameleon.whitelist.urlList.findIndex(u => url.indexOf(u.url) > -1);
+			if (idx > -1) {
+				if (chameleon.whitelist.urlList[idx].re) {
+					if (!new RegExp(chameleon.whitelist.urlList[idx].pattern, "i").test(url)) {
+						return {on: false};
+					};
+				}
+
+				return {
+					on: true,
+					opt: chameleon.whitelist.urlList[idx].options,
+					lang: chameleon.whitelist.urlList[idx].lang,
+					profile: chameleon.whitelist.urlList[idx].profile
 				};
 			}
-
-			return {
-				on: true,
-				opt: chameleon.whitelist.urlList[idx].options,
-				lang: chameleon.whitelist.urlList[idx].lang,
-				profile: chameleon.whitelist.urlList[idx].profile
-			};
 		}
 	}
 
