@@ -638,6 +638,7 @@ async function start() {
 	if (platformInfo.os != "android") chrome.browserAction.setTitle({ title });
 
 	saveSettings();
+	rebuildInjectionScript();
 }
 
 // rebuilds injection script
@@ -996,6 +997,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.11.8"});
+	await save({ version: "0.11.9"});
 	changeTimer();
 })();
