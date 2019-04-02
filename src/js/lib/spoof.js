@@ -184,14 +184,6 @@ let spoof = {
 		];
 
 		return injection;
-	},
-	websocket: function (injection) {
-		injection.websocket = [
-			{obj: "window", prop: "WebSocket", value: null},
-			{obj: "window", prop: "MozWebSocket", value: null}
-		]
-
-		return injection;
 	}
 };
 

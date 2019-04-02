@@ -40,7 +40,6 @@ let chameleon = {
 	},
 	settings: {
 		customScreen: "",
-		disableWebSockets: false,
 		enableScriptInjection: false,
 		interval: 0,
 		limitHistory: false,
@@ -53,7 +52,8 @@ let chameleon = {
 		spoofClientRects: false,
 		timeZone: "default",
 		useragent: "real",
-		useragentValue: ""
+		useragentValue: "",
+		webSockets: "block_3rd_party"
 	},
 	timeout: null,
 	whitelist: {
@@ -85,7 +85,6 @@ async function buildInjectScript() {
 	}
 
 	if (chameleon.settings.enableScriptInjection) {
-		injection = spoof.websocket(injection);
 		injection = spoof.name(injection);
 		injection = spoof.navigator(chameleon.headers.useragent, injection);
 
@@ -190,7 +189,6 @@ async function buildInjectScript() {
 			wl,
 			injectionText,
 			{
-				websocket : chameleon.settings.disableWebSockets,
 				name : chameleon.settings.protectWinName
 			},
 			uaList,
@@ -542,6 +540,28 @@ function blockAuth(details) {
 	if (details.isProxy == false) {
 		if (details.type == "image" || details.type == "media") {
 			if ((!wl.on && chameleon.headers.disableAuth) || wl.opt.auth ) {
+				return { cancel: true };
+			}
+		}
+	}
+}
+
+// block websocket
+function blockWebsocket(details) {
+	let wl = whitelisted(details);
+	if (wl.on){
+		return { cancel: wl.opt.websocket }
+	}
+
+	if (chameleon.settings.webSockets == "block_all") {
+		return { cancel: true };
+	} else if (chameleon.settings.webSockets == "block_3rd_party") {
+		let frameUrl = details.documentUrl || details.originUrl;
+		let frame = psl.parse(new URL(frameUrl).hostname);
+		let ws = psl.parse(new URL(details.url).hostname);
+
+		if (!frame.error && !ws.error) {
+			if (frame.domain != ws.domain) {
 				return { cancel: true };
 			}
 		}
@@ -922,6 +942,13 @@ browser.webRequest.onBeforeRequest.addListener(
 	}, ["blocking"]
 );
 
+browser.webRequest.onBeforeRequest.addListener(
+	blockWebsocket, {
+		urls: ["<all_urls>"],
+		types: ["websocket"]
+	}, ["blocking"]
+);
+
 browser.webRequest.onAuthRequired.addListener(
 	blockAuth, {
 		urls: ["<all_urls>"]
@@ -976,6 +1003,11 @@ browser.runtime.onInstalled.addListener((details) => {
 	if (data.version && data.version < "0.11.2") {
 		data.headers.spoofAccept = data.headers.spoofAcceptEnc;
 		delete data.headers.spoofAcceptEnc;
+	}
+
+	if (data.version && data.version < "0.11.10") {
+		data.settings.webSockets = data.settings.disableWebSockets ? "block_3rd_party": "allow_all";
+		delete data.settings.disableWebSockets;
 	}
 	
 	if (data.excluded.android.length == 8) {

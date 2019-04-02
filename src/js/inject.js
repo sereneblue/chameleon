@@ -14,7 +14,6 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 			var languages = ${JSON.stringify(languages)};
 			var uaList = ${JSON.stringify(uaList)};
 			var wlOptions = {
-				websocket: false,
 				name: false,
 				timezone: false,
 			};
@@ -106,10 +105,8 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 				
 				// remove options
 				if (urlOK) {
-					if (!wlOptions.websocket) props.websocket = [];
 					if (!wlOptions.winName) props.name = [];
 				} else {
-					if (!settings.websocket) props.websocket = [];
 					if (!settings.name) props.name = [];
 				}
 

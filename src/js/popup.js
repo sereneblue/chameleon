@@ -152,6 +152,7 @@ async function updateUI() {
 	});
 	
 	$(`select[name="screenSize"]`).val(data.settings.screenSize);
+	$(`select[name="webSockets"]`).val(data.settings.webSockets);
 
 	if (data.settings.screenSize == "custom") {
 		$('#customScreen').show();

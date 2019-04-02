@@ -241,7 +241,12 @@
                         <span style="font-size: 12px;">An option with * requires script injection</span>
                     </div>
                     <div class="opt">
-                        <label><input name="disableWebSockets" type="checkbox"> Disable WebSockets*</label>
+                        <label>Websockets:</label>
+                        <select name="webSockets">
+                            <option value="allow_all">Allow all</option>
+                            <option value="block_3rd_party">Block 3rd Party</option>
+                            <option value="block_all">Block All</option>
+                        </select>
                     </div>
                     <div class="opt">
                         <label><input name="limitHistory" type="checkbox"> Limit tab history*</label>
