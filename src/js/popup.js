@@ -342,6 +342,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		exportSettings();
 	})
 
+	// reset extension settings
+	$('button[name="reset"]').on('click', function(e) {
+		chrome.runtime.sendMessage({
+			action: "reset"
+		});
+	})
+
 	// notifications
 	$('input[name="notificationsEnabled"]').on('change', function(e) {
 		chrome.runtime.sendMessage({

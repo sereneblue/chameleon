@@ -63,6 +63,7 @@ let chameleon = {
 	}
 }
 
+let defaultSettings = JSON.parse(JSON.stringify(chameleon));
 let customIntervalTimer = null;
 let tooltipData = {};
 
@@ -701,6 +702,14 @@ async function saveSettings(setting="all") {
 			 settings: chameleon.settings
 		});
 		return;
+	} else if (setting == "default") {
+		await save({ headers: defaultSettings.headers,
+			 whitelist: defaultSettings.whitelist,
+			 excluded: defaultSettings.excluded,
+			 settings: defaultSettings.settings
+		});
+		browser.runtime.reload();
+		return;
 	}
 
 	var tmp = {};
@@ -888,6 +897,8 @@ chrome.runtime.onMessage.addListener(function(request) {
 			chameleon.settings[request.data.key] = request.data.value;
 			saveSettings("settings");
 		}
+	} else if (request.action == "reset") {
+		saveSettings("default");
 	} else if (request.action == "storage") {
 		let setIcon = (plat) => {
 			// Firefox for Android doesn't support the browserAction API for icons
@@ -968,7 +979,6 @@ browser.runtime.onInstalled.addListener((details) => {
 /*
 	Chameleon Entry Point
 */
-
 (async function run(){
 	let data = await get(null);
 
@@ -987,7 +997,7 @@ browser.runtime.onInstalled.addListener((details) => {
 	}
 
 	// check for exclusion settings
-	if (data.excluded.win.length != uaList.win.length) {
+	if (data.excluded && (data.excluded.win.length != uaList.win.length)) {
 		for (var os of ["win", "mac", "linux", "ios", "android"]) {
 			var diff = chameleon.excluded[os].length - data.excluded[os].length;
 			for (var i = 0; i < diff; i++) {
@@ -1010,10 +1020,10 @@ browser.runtime.onInstalled.addListener((details) => {
 		delete data.settings.disableWebSockets;
 	}
 	
-	if (data.excluded.android.length == 8) {
+	if (data.excluded && (data.excluded.android.length == 8)) {
 		data.excluded.android.push(false);
 	}
-
+	
 	init(data);
 	let plat = await browser.runtime.getPlatformInfo();
 
