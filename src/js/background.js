@@ -53,7 +53,7 @@ let chameleon = {
 		timeZone: "default",
 		useragent: "real",
 		useragentValue: "",
-		webSockets: "block_3rd_party"
+		webSockets: "allow_all"
 	},
 	timeout: null,
 	whitelist: {
