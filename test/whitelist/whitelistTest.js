@@ -2,11 +2,13 @@ const { Builder, By } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 
 const expect = require('chai').expect
-const express = require('express')
-const path = require('path')
-const app = express()
-const auth = require('http-auth')
-const browserData = require('../../src/js/data.js')
+const express = require('express');
+const path = require('path');
+const app = express();
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 3002 });
+const auth = require('http-auth');
+const browserData = require('../../src/js/data.js');
 
 var authMiddleware = auth.connect(auth.basic({ realm: 'SECRET LAIR'}, (username, password, callback) => {
 	callback(username == 'username' && password == 'password');
@@ -106,6 +108,7 @@ describe('Whitelist', () => {
 	after(async () => {
 	    await driver.quit();
 		server.close();
+		wss.close();
 	});
 
 	it('should enable whitelist', async () => {
@@ -282,13 +285,13 @@ describe('Whitelist', () => {
 			document.querySelectorAll('.card-header button')[1].click();
 		`);
 
-		await wait(SLEEP_TIME);
 		await driver.get(LOCALSERVER + "/whitelist_test");
-		hasWebsocket = await driver.executeScript(`
-			return WebSocket ? true : false;
+		await wait(SLEEP_TIME);
+		socketStatus = await driver.executeScript(`
+			return document.querySelector('#websocket').innerHTML;
 		`);
 
-		expect(hasWebsocket).to.equal(false);
+		expect(socketStatus).to.equal("");
 	});
 
 	it('should test whitelist option - protect window name', async () => {

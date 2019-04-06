@@ -8,6 +8,7 @@
 	<body>
 		<a id="link" href="/">Click me!</a>
 		<a id="link2" href="#" onclick="windowTest();">Window Name Test</a>
+		<p id="websocket"></p>
 		<p id="offset"><script>document.write(new Date().getTimezoneOffset());</script></p>
 		<h1 id="client_rect">Lorem ipsum.</h1>
 		<h3>Fingerprint using DynamicsCompressor (sum of buffer values):</h3>
@@ -148,5 +149,15 @@
 			run_cc_fp();
 			run_hybrid_fp();
 		}
+
+		function wss() {
+			const socket = new WebSocket('ws://localhost:3002');
+			// Connection opened
+			socket.addEventListener('open', function (event) {
+				document.querySelector('#websocket').innerHTML = "OPEN";
+			});
+		}
+
+		wss();
 	</script>
 </html>

@@ -14,5 +14,8 @@
     "mocha": "^5.2.0",
     "moment-timezone": "^0.5.23",
     "selenium-webdriver": "^4.0.0-alpha.1"
+  },
+  "dependencies": {
+    "ws": "^6.2.1"
   }
 }

@@ -8,10 +8,21 @@
 		<a id="link" href="/">Referer test - Click me!</a>
 		<a id="link2" onclick="windowTest();">Window Name Test</a>
 		<p id="offset"><script>document.write(new Date().getTimezoneOffset());</script></p>
+		<p id="websocket"></p>
 	</body>
 	<script>
 		function windowTest() {
 			window.open('/whitelist_test', 'unique_name');
 		}
+
+		function wss() {
+			const socket = new WebSocket('ws://localhost:3002');
+			// Connection opened
+			socket.addEventListener('open', function (event) {
+				document.querySelector('#websocket').innerHTML = "OPEN";
+			});
+		}
+
+		wss();
 	</script>
 </html>

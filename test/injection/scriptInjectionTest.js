@@ -2,10 +2,13 @@ const { Builder, By } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 
 const expect = require('chai').expect
-const express = require('express')
-const path = require('path')
+const express = require('express');
+const path = require('path');
 const moment = require('moment-timezone');
-const app = express()
+const app = express();
+const WebSocket = require('ws');
+
+const wss = new WebSocket.Server({ port: 3002 });
 
 const screenResolutions = [
     "1366x768",
@@ -159,22 +162,42 @@ describe('Script Injection', () => {
 	    await driver.quit();
 		server.close();
 		cors_server.close();
+		wss.close();
 	});
 
 	it('should enable script injection', async () => {
 		await selectOption('input[name="enableScriptInjection"]');
 	});
 
-	it('should disable websockets', async () => {
-		selectOption('input[name="disableWebSockets"]');
-
+	it('should disable websockets - block all', async () => {
+		await driver.executeScript(`
+			var el = document.querySelector('select[name="webSockets"]');
+			el.value = "allow_all";
+			el.dispatchEvent(new Event('change'));
+		`);
 		await wait(SLEEP_TIME);
+		
 		await driver.get(LOCALSERVER);
-		hasWebsocket = await driver.executeScript(`
-			return WebSocket ? true : false;
+		await wait(SLEEP_TIME * 2);
+		let socketStatus = await driver.executeScript(`
+			return document.querySelector('#websocket').innerHTML;
 		`);
 
-		expect(hasWebsocket).to.equal(false);
+		expect(socketStatus).to.equal("OPEN");
+
+		await driver.get(EXTENSION_URI);
+		await driver.executeScript(`
+			var el = document.querySelector('select[name="webSockets"]');
+			el.value = "block_all";
+			el.dispatchEvent(new Event('change'));
+		`);
+		await driver.get(LOCALSERVER);
+		await wait(SLEEP_TIME * 2);
+		socketStatus = await driver.executeScript(`
+			return document.querySelector('#websocket').innerHTML;
+		`);
+
+		expect(socketStatus).to.equal("");
 	});
 
 	it('should limit tab history', async () => {
