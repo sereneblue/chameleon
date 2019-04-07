@@ -2,6 +2,8 @@ let spoofRects = (randString) => {
 	return `
 		var _getBoundingClientRect = window.Element.prototype.getBoundingClientRect;
 		var _rgetBoundingClientRect = window.Range.prototype.getBoundingClientRect;
+		var _getClientRects = window.Element.prototype.getClientRects;
+		var _rgetClientRects = window.Range.prototype.getClientRects;
 
 		if (!window.parent["${randString}"]) {
 			window["${randString}"] = Math.random() * 0.00000001;
@@ -25,7 +27,14 @@ let spoofRects = (randString) => {
 		}
 
 		window.Element.prototype.getClientRects = function () {
-			return [this.getBoundingClientRect()];
+			let a = _getClientRects.bind(this)();
+			let b = this.getBoundingClientRect();
+			
+			for (var p in a[0]) {
+		        a[0][p] = b[p];
+			}
+
+			return a;
 		}
 
 		window.Range.prototype.getBoundingClientRect = function (...args) {
@@ -42,9 +51,15 @@ let spoofRects = (randString) => {
 		}
 
 		window.Range.prototype.getClientRects = function () {
-			return [this.getBoundingClientRect()];
-		}
+			let a = _rgetClientRects.bind(this)();
+			let b = this.getBoundingClientRect();
+			
+			for (var p in a[0]) {
+		        a[0][p] = b[p];
+			}
 
+			return a;
+		}
 
 		Object.defineProperty(window.Element.prototype.getClientRects, "name", { value: "getClientRects" });
 		Object.defineProperty(window.Element.prototype.getBoundingClientRect, "name", { value: "getBoundingClientRect" });
