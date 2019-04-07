@@ -6,9 +6,11 @@ const express = require('express');
 const path = require('path');
 const moment = require('moment-timezone');
 const app = express();
+const http = require('http');
 const WebSocket = require('ws');
 
-const wss = new WebSocket.Server({ port: 3002 });
+const wsServer = http.createServer();
+const wss = new WebSocket.Server({ server: wsServer });
 
 const screenResolutions = [
     "1366x768",
@@ -151,6 +153,7 @@ describe('Script Injection', () => {
 
 		server = app.listen(3000);
 		cors_server = app.listen(3001);
+		wsServer.listen(3002);
 	});
 
 	beforeEach(async () => {
@@ -162,7 +165,7 @@ describe('Script Injection', () => {
 	    await driver.quit();
 		server.close();
 		cors_server.close();
-		wss.close();
+		wsServer.close(() => wss.close());
 	});
 
 	it('should enable script injection', async () => {

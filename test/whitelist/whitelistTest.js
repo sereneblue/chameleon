@@ -5,8 +5,12 @@ const expect = require('chai').expect
 const express = require('express');
 const path = require('path');
 const app = express();
+const http = require('http');
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 3002 });
+
+const wsServer = http.createServer();
+const wss = new WebSocket.Server({ server: wsServer });
+
 const auth = require('http-auth');
 const browserData = require('../../src/js/data.js');
 
@@ -98,6 +102,7 @@ describe('Whitelist', () => {
 		});
 		
 		server = app.listen(3000);
+		wsServer.listen(3001);
 	});
 
 	beforeEach(async () => { 
@@ -108,7 +113,7 @@ describe('Whitelist', () => {
 	after(async () => {
 	    await driver.quit();
 		server.close();
-		wss.close();
+		wsServer.close(() => wss.close());
 	});
 
 	it('should enable whitelist', async () => {
