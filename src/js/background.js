@@ -1010,12 +1010,12 @@ browser.runtime.onInstalled.addListener((details) => {
 		data = migrate(data);
 	}
 
-	if (data.version && data.version < "0.11.2") {
+	if (data.headers && data.headers.spoofAcceptEnc) {
 		data.headers.spoofAccept = data.headers.spoofAcceptEnc;
 		delete data.headers.spoofAcceptEnc;
 	}
 
-	if (data.version && data.version < "0.11.10") {
+	if (data.settings && data.settings.disableWebSockets) {
 		data.settings.webSockets = data.settings.disableWebSockets ? "block_3rd_party": "allow_all";
 		delete data.settings.disableWebSockets;
 	}
@@ -1039,6 +1039,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.11.9"});
+	await save({ version: "0.11.10"});
 	changeTimer();
 })();
