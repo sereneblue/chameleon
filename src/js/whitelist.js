@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 	} else if (mode == "create") {
 		if (data.whitelist.urlList.findIndex(r => r.url.includes(domain)) == -1) {
 			$('.header-container button')[0].click();
-			$('.card .form-input').val(domain);
+			$('.card .form-input.domain').val(domain);
 		}
 	}
 });
