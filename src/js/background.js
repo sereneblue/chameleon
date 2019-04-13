@@ -460,15 +460,15 @@ function rewriteHeaders(e) {
 			} else {
 				if (chameleon.headers.useragent) header.value = chameleon.headers.useragent;
 			}
-		} else if (header.name.toLowerCase() == "accept") {	
+		} else if (header.name.toLowerCase() == "accept") {
 			if (chameleon.headers.spoofAccept) {
-				if (accept) {
+				if (accept && ["main_frame", "sub_frame"].includes(e.type)) {
 					header.value = accept[0];
 				}
 			}
 		} else if (header.name.toLowerCase() == "accept-encoding") {	
 			if (chameleon.headers.spoofAccept) {
-				if (accept) {
+				if (accept && ["main_frame", "sub_frame"].includes(e.type)) {
 					header.value = accept[1];
 				}
 			}
