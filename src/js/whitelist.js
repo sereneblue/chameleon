@@ -1,7 +1,7 @@
 let data = null;
 
 let patternTemplate = (pattern, regexEnabled, disabled) => {
-	return regexEnabled ? `<input class="form-input" type="text" value="${pattern}" ${disabled ? "disabled" : ""}>` : "";
+	return regexEnabled ? `<input class="form-input pattern" type="text" value="${pattern}" ${disabled ? "disabled" : ""}>` : "";
 };
 
 let languageTemplate = (lang) => {
@@ -54,39 +54,43 @@ function buildWhitelist(rules) {
 		      <div class="columns">
 		        <div class="column col-xs-6">
 					<label class="form-switch">
-						<input type="checkbox" ${rule.options.auth ? "checked" : ""} disabled>
+						<input class="auth" type="checkbox" ${rule.options.auth ? "checked" : ""} disabled>
 						<i class="form-icon"></i> Disable auth header
 					</label>
 					<label class="form-switch">
-						<input type="checkbox" ${rule.options.ref ? "checked" : ""} disabled>
+						<input class="ref" type="checkbox" ${rule.options.ref ? "checked" : ""} disabled>
 						<i class="form-icon"></i> Disable Referer
 					</label>
 					<label class="form-switch">
-						<input type="checkbox" ${rule.options.websocket ? "checked" : ""} disabled>
+						<input class="ws" type="checkbox" ${rule.options.websocket ? "checked" : ""} disabled>
 						<i class="form-icon"></i> Disable WebSocket
 					</label>
 		        </div>
 		        <div class="column col-xs-6">
 		            <label class="form-switch">
-		                <input type="checkbox" ${rule.options.ip ? "checked" : ""} disabled>
+		                <input class="ip" type="checkbox" ${rule.options.ip ? "checked" : ""} disabled>
 		                <i class="form-icon"></i> Enable IP headers
 		            </label>
 		            <label class="form-switch">
-		                <input type="checkbox" ${rule.options.winName ? "checked" : ""} disabled>
+		                <input class="name" type="checkbox" ${rule.options.winName ? "checked" : ""} disabled>
 		                <i class="form-icon"></i> Enable Protect window name
 		            </label>
 		            <label class="form-switch">
-		                <input type="checkbox" ${rule.options.timezone ? "checked" : ""} disabled>
+		                <input class="tz" type="checkbox" ${rule.options.timezone ? "checked" : ""} disabled>
 		                <i class="form-icon"></i> Enable Timezone Spoofing
 		            </label>
 		        </div>
 		      </div>
 		    </div>  
 		    <label class="form-checkbox">
-		        <input type="checkbox" ${rule.re ? "checked" : ""} disabled>
+		        <input class="re" type="checkbox" ${rule.re ? "checked" : ""} disabled>
 		        <i class="form-icon"></i> Regex enabled
 		    </label>
 		   ${patternTemplate(rule.pattern, rule.re, true)}
+		    <label class="form-label">
+		        <i class="form-icon"></i> Header IP (Via & X-Forwarded For) 
+		        <input class="form-input spoof" type="text" value="${rule.spoofIP ? rule.spoofIP : ''}">
+		    </label>
 		   ${languageTemplate(rule.lang)}
 		   ${whitelistTemplate(rule.profile)}
 		  </div>
@@ -133,31 +137,53 @@ document.addEventListener('DOMContentLoaded', async function() {
 			} else if (e.target.innerText == "Save") {
 				var parent = $(e.target).parent().parent();
 				var buttons = parent.find(':button');
-				var inputs = parent.find(':input');
 				var lang = parent.find('select')[0].value
 				var profile = parent.find('select')[1].value;
 
-				if (inputs[9].checked && inputs[10].value == "") {
-					$(inputs[10]).toggleClass('is-error');
+				// inputs
+				let in_re = parent.find('.re')[0];
+				let in_pattern = parent.find('.pattern')[0];
+				let in_spoof = parent.find('.spoof')[0];
+				let in_auth = parent.find('.auth')[0];
+				let in_ip = parent.find('.ip')[0];
+				let in_ref = parent.find('.ref')[0];
+				let in_name = parent.find('.name')[0];
+				let in_ws = parent.find('.ws')[0];
+				let in_tz = parent.find('.tz')[0];
+
+				if (in_re.checked && in_pattern.value == "") {
+					in_pattern.classList.add('is-error');
 					return;
 				}
 
-				$(inputs[10]).removeClass('is-error');
+				if (in_pattern) {
+					in_pattern.classList.remove('is-error');
+				}
+
+				if (in_spoof.value) {
+					if (!/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(in_spoof.value)) {
+						in_spoof.classList.add('is-error');
+						return;
+					}
+				}
+
+				in_spoof.classList.remove('is-error');
 
 				let index = data.whitelist.urlList.findIndex(rule => rule.url == parent[0].id);
 				data.whitelist.urlList[index] = {
 					"url": parent[0].id,
-					"re": inputs[9].checked,
-					"pattern": inputs[9].checked ? inputs[10].value : "",
+					"re": in_re.checked,
+					"pattern": in_pattern ? in_pattern.value : "",
 					"lang": lang != "Default" ? lang : "",
 					"profile": profile ? profile : "default",
+					"spoofIP": in_spoof.value,
 					"options": {
-						"auth": inputs[3].checked,
-						"ip": inputs[6].checked,
-						"ref": inputs[4].checked,
-						"timezone": inputs[8].checked,
-						"websocket": inputs[5].checked,
-						"winName": inputs[7].checked
+						"auth": in_auth.checked,
+						"ip": in_ip.checked,
+						"ref": in_ref.checked,
+						"timezone": in_tz.checked,
+						"websocket": in_ws.checked,
+						"winName": in_name.checked
 					}
 				};
 
@@ -171,8 +197,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 				parent.find(":input[type='checkbox'], input[type='text']").prop("disabled", true);
 				parent.find('.card-body').toggleClass('d-hide');
-				$(buttons[0]).toggleClass('d-hide');
-				$(buttons[1]).toggleClass('d-hide');
+				buttons[0].classList.toggle('d-hide');
+				buttons[1].classList.toggle('d-hide');
 			} else if (e.target.innerText == "Yes") {
 				var parent = $(e.target).parent().parent().parent()[0];
 				let index = data.whitelist.urlList.findIndex(rule => rule.url == parent.id);
@@ -196,33 +222,57 @@ document.addEventListener('DOMContentLoaded', async function() {
 				var lang = parent.find('select')[0].value;
 				var profile = parent.find('select')[1].value;
 
-				if (inputs[0].value == "" || index > -1 || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(inputs[0].value)) {
-					$(inputs[0]).addClass('is-error');
+				// inputs
+				let in_domain = parent.find('.domain')[0];
+				let in_re = parent.find('.re')[0];
+				let in_pattern = parent.find('.pattern')[0];
+				let in_spoof = parent.find('.spoof')[0];
+				let in_auth = parent.find('.auth')[0];
+				let in_ip = parent.find('.ip')[0];
+				let in_ref = parent.find('.ref')[0];
+				let in_name = parent.find('.name')[0];
+				let in_ws = parent.find('.ws')[0];
+				let in_tz = parent.find('.tz')[0];
+
+				if (in_domain.value == "" || index > -1 || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(in_domain.value)) {
+					in_domain.classList.add('is-error');
 					return;
 				}
 
-				$(inputs[0]).removeClass('is-error');
+				in_domain.classList.remove('is-error');
 
-				if (inputs[9].checked && inputs[10].value == "") {
-					$(inputs[10]).addClass('is-error');
+				if (in_re.checked && in_pattern.value == "") {
+					in_pattern.classList.add('is-error');
 					return;
 				}
 
-				$(inputs[10]).removeClass('is-error');
+				if (in_pattern) {
+					in_pattern.classList.remove('is-error');
+				}
+
+				if (in_spoof.value != "") {
+					if (!/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(in_spoof.value)) {
+						in_spoof.classList.add('is-error');
+						return;
+					}
+				}
+
+				in_spoof.classList.remove('is-error');
 
 				data.whitelist.urlList.push({
-					"url": inputs[0].value,
-					"re": inputs[9].checked,
-					"pattern": inputs[9].checked ? inputs[10].value : "",
+					"url": in_domain.value,
+					"re": in_re.checked,
+					"pattern": in_pattern ? in_pattern.value : "",
 					"lang": lang ? lang : "",
 					"profile": profile ? profile : "default",
+					"spoofIP": in_spoof.value,
 					"options": {
-						"auth": inputs[3].checked,
-						"ip": inputs[6].checked,
-						"ref": inputs[4].checked,
-						"timezone": inputs[8].checked,
-						"websocket": inputs[5].checked,
-						"winName": inputs[7].checked
+						"auth": in_auth.checked,
+						"ip": in_ip.checked,
+						"ref": in_ref.checked,
+						"timezone": in_tz.checked,
+						"websocket": in_ws.checked,
+						"winName": in_name.checked
 					}
 				});
 
@@ -245,7 +295,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 				$('.content')[0].insertAdjacentHTML('afterbegin', `
 					<div class="card text-left mt-2" style="background-color: #f7f8f9;" id="create">
 					  <div class="card-header">
-						<input class="form-input" type="text" placeholder="Enter domain">
+						<input class="form-input domain" type="text" placeholder="Enter domain">
 						<button class="btn btn-success btn-sm d-inline-block mt-2">Create</button>
 						<button class="btn btn-error btn-sm d-inline-block mt-2">Close</button>
 					  </div>
@@ -255,37 +305,41 @@ document.addEventListener('DOMContentLoaded', async function() {
 					      <div class="columns">
 					        <div class="column col-xs-6">
 								<label class="form-switch">
-									<input type="checkbox">
+									<input class="auth" type="checkbox">
 									<i class="form-icon"></i> Disable auth header
 								</label>
 								<label class="form-switch">
-									<input type="checkbox">
+									<input class="ref" type="checkbox">
 									<i class="form-icon"></i> Disable Referer
 								</label>
 								<label class="form-switch">
-									<input type="checkbox">
+									<input class="ws" type="checkbox">
 									<i class="form-icon"></i> Disable WebSocket
 								</label>
 					        </div>
 					        <div class="column col-xs-6">
 					            <label class="form-switch">
-					                <input type="checkbox">
+					                <input class="ip" type="checkbox">
 					                <i class="form-icon"></i> Enable IP headers
 					            </label>
 					            <label class="form-switch">
-					                <input type="checkbox">
+					                <input class="name" type="checkbox">
 					                <i class="form-icon"></i> Enable Protect window name
 					            </label>
 					            <label class="form-switch">
-					                <input type="checkbox">
+					                <input class="tz" type="checkbox">
 					                <i class="form-icon"></i> Enable Timezone Spoofing
 					            </label>
 					        </div>
 					      </div>
 					    </div>  
 					    <label class="form-checkbox">
-					        <input type="checkbox">
+					        <input class="re" type="checkbox">
 					        <i class="form-icon"></i> Regex enabled
+					    </label>
+					    <label class="form-label">
+					        <i class="form-icon"></i> Header IP (Via & X-Forwarded For) 
+					        <input class="form-input spoof" type="text">
 					    </label>
 		    		    ${languageTemplate('')}
 		    		    ${whitelistTemplate('')}
@@ -297,7 +351,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 			if (e.target.checked) {
 				$(e.target).parent()[0].insertAdjacentHTML('afterend', patternTemplate("",1, false));
 			} else {
-				$(e.target).parent().parent().find('input[type="text"]').remove();
+				$(e.target).parent().parent().find('.pattern').remove();
 			}
 		}
 	});

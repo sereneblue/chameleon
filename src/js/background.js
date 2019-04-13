@@ -498,21 +498,32 @@ function rewriteHeaders(e) {
 		e.requestHeaders.push({ name: "Upgrade-Insecure-Requests", value: "1"});
 	}
 
-	if (!wl.on || wl.opt.ip) {
-		if (chameleon.headers.spoofVia) {
-			if (chameleon.headers.spoofViaValue == 1) {
-				e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP });
-			} else {
-				e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP_profile });
+	if (wl.on) {
+		if (wl.opt.ip) {
+			if (wl.spoofIP) {
+				e.requestHeaders.push({ name: "Via", value: "1.1 " + wl.spoofIP });
+				e.requestHeaders.push({ name: "X-Forwarded-For", value: wl.spoofIP });
+								
+				return { requestHeaders: e.requestHeaders };
 			}
+		} else {
+			return { requestHeaders: e.requestHeaders };
 		}
+	}
 
-		if (chameleon.headers.spoofXFor) {
-			if (chameleon.headers.spoofXForValue == 1) {
-				e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP })
-			} else {
-				e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP_profile });
-			}
+	if (chameleon.headers.spoofVia) {
+		if (chameleon.headers.spoofViaValue == 1) {
+			e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP });
+		} else {
+			e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP_profile });
+		}
+	}
+
+	if (chameleon.headers.spoofXFor) {
+		if (chameleon.headers.spoofXForValue == 1) {
+			e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP })
+		} else {
+			e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP_profile });
 		}
 	}
 
@@ -748,7 +759,8 @@ function whitelisted(req) {
 					on: true,
 					opt: chameleon.whitelist.urlList[idx].options,
 					lang: chameleon.whitelist.urlList[idx].lang,
-					profile: chameleon.whitelist.urlList[idx].profile
+					profile: chameleon.whitelist.urlList[idx].profile,
+					spoofIP: chameleon.whitelist.urlList[idx].spoofIP
 				};
 			}
 		}
