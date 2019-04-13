@@ -132,7 +132,7 @@ describe('Whitelist', () => {
 
 		await driver.executeScript(`
 			document.querySelector('.header-container button').click();
-			document.querySelector('.card-header input').value = "${LOCALSERVER}";
+			document.querySelector('.card-header input.domain').value = "${LOCALSERVER}";
 			document.querySelector('.card-header button').click();
 		`);
 
@@ -194,7 +194,7 @@ describe('Whitelist', () => {
 
 		await driver.executeScript(`
 			document.querySelector('.header-container button').click();
-			document.querySelector('.card-header input').value = "${LOCALSERVER}";
+			document.querySelector('.card-header input.domain').value = "${LOCALSERVER}";
 			document.querySelector('.card-header button').click();
 		`);
 
@@ -223,7 +223,7 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME);
 		await driver.executeScript(`
 			document.querySelector('.card-header button').click();
-			document.querySelectorAll('.card-body input')[0].click();
+			document.querySelector('.card-body input.auth').click();
 			document.querySelectorAll('.card-header button')[1].click();
 		`);
 
@@ -263,7 +263,7 @@ describe('Whitelist', () => {
 
 		await driver.executeScript(`
 			document.querySelector('.card-header button').click();
-			document.querySelectorAll('.card-body input')[1].click();
+			document.querySelector('.card-body input.ref').click();
 			document.querySelectorAll('.card-header button')[1].click();
 		`);
 
@@ -286,7 +286,7 @@ describe('Whitelist', () => {
 
 		await driver.executeScript(`
 			document.querySelector('.card-header button').click();
-			document.querySelectorAll('.card-body input')[2].click();
+			document.querySelector('.card-body input.ws').click();
 			document.querySelectorAll('.card-header button')[1].click();
 		`);
 
@@ -322,7 +322,7 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME );
 		await driver.executeScript(`
 			document.querySelector('.card-header button').click();
-			document.querySelectorAll('.card-body input')[4].click();
+			document.querySelector('.card-body input.name').click();
 			document.querySelectorAll('.card-header button')[1].click();
 		`);
 
@@ -353,7 +353,7 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME);
 		await driver.executeScript(`
 			document.querySelector('.card-header button').click();
-			document.querySelectorAll('.card-body input')[3].click();
+			document.querySelector('.card-body input.ip').click();
 			document.querySelectorAll('.card-header button')[1].click();
 		`);
 
@@ -364,6 +364,25 @@ describe('Whitelist', () => {
 
 		expect(response.via).to.not.equal("");
 		expect(response["x-forwarded-for"]).to.not.equal("");
+	});
+
+	it('should test whitelist option - spoof ip headers (specific ip)', async () => {
+		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
+
+		await wait(SLEEP_TIME);
+		await driver.executeScript(`
+			document.querySelector('.card-header button').click();
+			document.querySelector('.card-body input.spoof').value = "8.8.8.8";
+			document.querySelectorAll('.card-header button')[1].click();
+		`);
+
+		await wait(SLEEP_TIME);
+
+		await driver.get(LOCALSERVER);
+		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
+
+		expect(response.via).to.equal("1.1 8.8.8.8");
+		expect(response["x-forwarded-for"]).to.equal("8.8.8.8");
 	});
 
 	it('should test whitelist option - spoof accept language', async () => {
@@ -405,7 +424,7 @@ describe('Whitelist', () => {
 
 		await driver.executeScript(`
 			document.querySelector('.card-header button').click();
-			document.querySelectorAll('.card-body input')[5].click();
+			document.querySelector('.card-body input.tz').click();
 			document.querySelectorAll('.card-header button')[1].click();
 		`);
 
@@ -467,6 +486,8 @@ describe('Whitelist', () => {
 		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText)');
 		
 		await driver.get(EXTENSION_URI.replace('popup.html', 'whitelist.html'));
+		await wait(SLEEP_TIME);
+
 		await driver.executeScript(`
 			document.querySelector('.card-header button').click();
 			document.querySelectorAll('.card-body select')[1].value = "real";
