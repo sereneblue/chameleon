@@ -45,6 +45,7 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 		}
 
 		let _d = window.Date;
+		let _d2 = Intl.DateTimeFormat;
 		
 		const {
 			getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getYear,
@@ -142,6 +143,30 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 		Date.prototype.getTimezoneOffset = function(){
 			if (!this["${randomStr}"]) return timezoneOffset;
 			return spoofedTimezone;
+		}
+		
+		window.Intl.DateTimeFormat = function(...args) {
+			let locale = navigator.language || "en";
+
+			if (args.length == 2) {
+				if (!args[1].timeZone) {
+					args[1].timeZone = tzName;
+				}
+				if (!args[1].locale) {
+					args[1].locale = locale;
+				}
+			} else if (args.length == 1) {
+				args.push({
+					timeZone: tzName
+				});
+			} else {
+				args = [
+					locale,
+					{ timeZone: tzName }
+				];
+			}
+
+			return _d2.apply(null, args);
 		}
 
 		document.addEventListener('DOMContentLoaded', function () {
