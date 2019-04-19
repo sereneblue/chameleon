@@ -140,10 +140,6 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 			if (!this["${randomStr}"]) return timezoneOffset;
 			return spoofedTimezone;
 		}
-		Date.prototype.getTimezoneOffset = function(){
-			if (!this["${randomStr}"]) return timezoneOffset;
-			return spoofedTimezone;
-		}
 		
 		window.Intl.DateTimeFormat = function(...args) {
 			let locale = navigator.language || "en";
