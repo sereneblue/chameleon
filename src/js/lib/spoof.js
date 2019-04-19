@@ -10,8 +10,11 @@ let spoof = {
 				];
 			}
 
+			// FF65 used "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+			// Was changed back to above in FF66
+
 			return [
-				"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 				https ? "gzip, deflate, br" : "gzip, deflate"
 			];
 		} else if (/Chrome/.test(ua)) {
