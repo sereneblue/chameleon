@@ -24,11 +24,13 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 		var spoofedTimezone = 0 - ${offset};
 		var tzAbbr = "${tzAbbr}";
 		var tzName = "${tzName}";
-		var _originalTZ = new Intl.DateTimeFormat('en-US', {
+		var _tz = {};
+
+		_tz.orig = new Intl.DateTimeFormat('en-US', {
 			timeZoneName: 'long'
 		}).format(new Date()).split(', ')[1];
-
-		var tz = new Intl.DateTimeFormat('en', {
+		
+		_tz.spoof = new Intl.DateTimeFormat('en', {
 			timeZone: tzName, timeZoneName: _oldFF ? 'short' : 'long'
 		}).format(new Date()).split(', ')[1];
 
@@ -41,7 +43,7 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 				return "GMT" + sign + z(offset / 60 | 0) + z(offset % 60);
 			};
 			str = str.replace(/(GMT[\\\\+|\\\\-]?\\\\d+)/g, toGMT(spoofedTimezone));
-			return str.replace(_originalTZ, tz);
+			return str.replace(_tz.orig, _tz.spoof);
 		}
 
 		let _d = window.Date;
@@ -49,7 +51,7 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 		
 		const {
 			getDate, getDay, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds, getYear,
-			toLocaleString, toLocaleDateString, toLocaleTimeString, toDateString, toTimeString
+			toLocaleString, toLocaleDateString, toLocaleTimeString, toDateString, toString, toTimeString
 		} = _d.prototype;
 		Date = function(...args) {
 			let originalDate = new _d(...args);
@@ -117,22 +119,32 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 			return getYear.apply(tmp);
 		}
 		Date.prototype.toString = function(){
+			if (!this["${randomStr}"]) return toString.apply(this);
+
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
 			return clean(toDateString.apply(tmp) + " " + toTimeString.apply(tmp));
 		}
 		Date.prototype.toLocaleString = function(...args){
+			if (!this["${randomStr}"]) return toLocaleString.apply(this);
+
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
 			return clean(toLocaleString.apply(tmp, args));
 		}
 		Date.prototype.toLocaleDateString = function(...args){
+			if (!this["${randomStr}"]) return toLocaleDateString.apply(this);
+
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
 			return clean(toLocaleDateString.apply(tmp, args));
 		}
 		Date.prototype.toLocaleTimeString = function(...args){
+			if (!this["${randomStr}"]) return toLocaleTimeString.apply(this);
+
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
 			return clean(toLocaleTimeString.apply(tmp, args));
 		}
 		Date.prototype.toTimeString = function(){
+			if (!this["${randomStr}"]) return toTimeString.apply(this);
+
 			var tmp = new _d(this.getTime() + this["${randomStr}"]);
 			return clean(toTimeString.apply(tmp));
 		}
@@ -165,24 +177,17 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 			return _d2.apply(null, args);
 		}
 
-		document.addEventListener('DOMContentLoaded', function () {
-		    Element.prototype.appendChild = function(oAppend, topDate) {
-		    	return function() {
-		    		var tmp = oAppend.apply(this, arguments);
-		    		if (arguments[0].nodeName == "IFRAME" && arguments[0].contentWindow != null) {
-						const intlIframe = arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions;
-						arguments[0].contentWindow.Intl.DateTimeFormat.prototype.resolvedOptions = function(...args) {
-							return Object.assign(intlIframe.apply(this, args), {
-								timeZone: tzName
-							});
-						};
+	    Element.prototype.appendChild = function(oAppend, topDate, topIntl) {
+	    	return function() {
+	    		var tmp = oAppend.apply(this, arguments);
 
-						arguments[0].contentWindow.Date = topDate;
-		    		}
+	    		if (tmp.nodeName == "IFRAME" && tmp.contentWindow != null) {
+					tmp.contentWindow.Date = topDate;
+					tmp.contentWindow.Intl.DateTimeFormat = topIntl;
+	    		}
 
-		    		return tmp;
-		    	}
-		    }(Element.prototype.appendChild, Date);
-		});
+	    		return tmp;
+	    	}
+	    }(Element.prototype.appendChild, Date, Intl.DateTimeFormat);
 	`;
 }
