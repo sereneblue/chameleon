@@ -20,7 +20,7 @@ function buildInputs() {
 		var label = document.createElement("label");
 		label.innerHTML = `${input.outerHTML + " " + ua.name}`;
 
-		$(`#list_${platform}`).append(`<div class="useragent">${label.outerHTML}<input type="checkbox" name="exc_${ua.value}" style="float: right;"></input></div>`);
+		$(`#list_${platform}`).append(`<div class="useragent ${i % 2 ? '' : 'alt' }">${label.outerHTML}<input type="checkbox" name="exc_${ua.value}" style="float: right;"></input></div>`);
 	  })
 	});
 }

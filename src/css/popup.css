@@ -118,7 +118,7 @@ ul {
 }
 
 .excludeall {
-  font-size: 14px;
+  font-size: 12px;
   float: right;
 }
 
@@ -292,6 +292,23 @@ ul {
 
 .tab.active {
   display: block;
+}
+
+.useragent {
+  padding: 2px 0px;
+}
+
+.useragent.alt {
+  background-color: rgba(107, 142, 35, .10);
+}
+
+.useragent:hover:not(:last-child), .useragent.alt:hover {
+  background-color: rgba(87, 85, 217, .25);
+}
+
+.useragent input[type="checkbox"] {
+  margin-top: 3px;
+  margin-right: 3px;
 }
 
 .whitelist {
