@@ -1035,7 +1035,11 @@ browser.runtime.onInstalled.addListener((details) => {
 	if (data.excluded && (data.excluded.android.length == 8)) {
 		data.excluded.android.push(false);
 	}
-	
+
+	if (data.settings.timeZone == "America/Puerto_Rico") {
+		data.settings.timeZone = "America/Santiago";
+	}
+
 	init(data);
 	let plat = await browser.runtime.getPlatformInfo();
 

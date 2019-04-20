@@ -31,7 +31,7 @@ const timeZones = [
 	"America/Phoenix",
 	"America/Chicago",
 	"America/New_York",
-	"America/Puerto_Rico",
+	"America/Santiago",
 	"America/St_Johns",
 	"America/Sao_Paulo",
 	"Atlantic/South_Georgia",
