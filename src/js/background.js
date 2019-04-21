@@ -24,6 +24,7 @@ let chameleon = {
 		xforwardedforIP_profile: "",
 		useragent: ""
 	},
+	ipRules: [],
 	excluded: {
 		win: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
 		mac: [false,false,false,false,false,false,false,false],
@@ -778,6 +779,10 @@ function init(data) {
 	});
 
 	chameleon.headers.useragent = "";
+
+	if (data.ipRules) {
+		chameleon.ipRules = data.ipRules;
+	}
 	saveSettings();
 }
 
@@ -858,6 +863,10 @@ chrome.runtime.onMessage.addListener(function(request) {
 
 		changeTimer();
 		saveSettings("settings");
+	} else if (request.action == "ipRules") {
+		chameleon.ipRules = request.data;
+
+		saveSettings("ipRules");
 	} else if (request.action == "headers") {
 		chameleon.headers[request.data.key] = request.data.value;
 

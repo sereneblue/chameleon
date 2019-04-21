@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/spectre.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/popup.css" />
+	<title>Chameleon</title>
+</head>
+<body>
+	<div class="header-container">
+		<h1>Chameleon</h1>
+		<h4>IP rules</h4>
+		<button id="create" class="btn btn-primary btn-sm mt-2">Create new rule</button>
+	</div>
+	<div class="content" id="rules">
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th>IP Range</th>
+		      <th>Language</th>
+		      <th>Timezone</th>
+  		      <th>Actions</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  </tbody>
+		</table>
+	</div>
+</body>
+<script type="text/javascript" src="js/dep/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="js/dep/ipaddr.min.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/ip.js"></script>
+</html>
