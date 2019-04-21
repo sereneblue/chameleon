@@ -45,6 +45,9 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 			str = str.replace(/(GMT[\\\\+|\\\\-]?\\\\d+)/g, toGMT(spoofedTimezone));
 			return str.replace(_tz.orig, _tz.spoof);
 		}
+		const getThis = t => {
+			return t["${randomStr}"] ? t["${randomStr}"] : t;
+		}
 
 		let _d = window.Date;
 		let _d2 = Intl.DateTimeFormat;
@@ -57,13 +60,12 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 			let originalDate = new _d(...args);
 
 			if (args.length == 0) {
-				originalDate["${randomStr}"] = (timezoneOffset - spoofedTimezone) * 60000;		
+				originalDate["${randomStr}"] = new _d(originalDate.getTime() + (timezoneOffset - spoofedTimezone) * 60000);
+
 				if (this instanceof Date) return originalDate;
 
 				return originalDate.toString();
 			}
-
-			originalDate["${randomStr}"] = 0;
 			
 			if (this instanceof Date) return originalDate;
 			
@@ -74,83 +76,49 @@ let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
 		Date.now = _d.now;
 		Date.parse = _d.parse;
 		Date.prototype.getDate = function(){
-			if (!this["${randomStr}"]) return getDate.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getDate.apply(tmp);
+			return getDate.apply(getThis(this));
 		}
 		Date.prototype.getDay = function(){
-			if (!this["${randomStr}"]) return getDay.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getDay.apply(tmp);
+			return getDay.apply(getThis(this));
 		}
 		Date.prototype.getFullYear = function(){
-			if (!this["${randomStr}"]) return getFullYear.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getFullYear.apply(tmp);
+			return getFullYear.apply(getThis(this));
 		}
 		Date.prototype.getHours = function(){
-			if (!this["${randomStr}"]) return getHours.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getHours.apply(tmp);
+			return getHours.apply(getThis(this));
 		}
 		Date.prototype.getMilliseconds = function(){
-			if (!this["${randomStr}"]) return getMilliseconds.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getMilliseconds.apply(tmp);
+			return getMilliseconds.apply(getThis(this));
 		}
 		Date.prototype.getMinutes = function(){
-			if (!this["${randomStr}"]) return getMinutes.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getMinutes.apply(tmp);
+			return getMinutes.apply(getThis(this));
 		}
 		Date.prototype.getMonth = function(){
-			if (!this["${randomStr}"]) return getMonth.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getMonth.apply(tmp);
+			return getMonth.apply(getThis(this));
 		}
 		Date.prototype.getSeconds = function(){
-			if (!this["${randomStr}"]) return getSeconds.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getSeconds.apply(tmp);
+			return getSeconds.apply(getThis(this));
 		}
 		Date.prototype.getYear = function(){
-			if (!this["${randomStr}"]) return getYear.apply(this);
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return getYear.apply(tmp);
+			return getYear.apply(getThis(this));
 		}
 		Date.prototype.toString = function(){
-			if (!this["${randomStr}"]) return toString.apply(this);
-
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return clean(toDateString.apply(tmp) + " " + toTimeString.apply(tmp));
+			return clean(toDateString.apply(getThis(this)) + " " + toTimeString.apply(getThis(this)));
 		}
 		Date.prototype.toLocaleString = function(...args){
-			if (!this["${randomStr}"]) return toLocaleString.apply(this);
-
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return clean(toLocaleString.apply(tmp, args));
+			return clean(toLocaleString.apply(getThis(this)));
 		}
 		Date.prototype.toLocaleDateString = function(...args){
-			if (!this["${randomStr}"]) return toLocaleDateString.apply(this);
-
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return clean(toLocaleDateString.apply(tmp, args));
+			return clean(toLocaleDateString.apply(getThis(this), args));
 		}
 		Date.prototype.toLocaleTimeString = function(...args){
-			if (!this["${randomStr}"]) return toLocaleTimeString.apply(this);
-
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return clean(toLocaleTimeString.apply(tmp, args));
+			return clean(toLocaleTimeString.apply(getThis(this), args));
 		}
 		Date.prototype.toTimeString = function(){
-			if (!this["${randomStr}"]) return toTimeString.apply(this);
-
-			var tmp = new _d(this.getTime() + this["${randomStr}"]);
-			return clean(toTimeString.apply(tmp));
+			return clean(toTimeString.apply(getThis(this)));
 		}
 		Date.prototype.getTimezoneOffset = function(){
-			if (!this["${randomStr}"]) return timezoneOffset;
-			return spoofedTimezone;
+			return this["${randomStr}"] ? spoofedTimezone : timezoneOffset;
 		}
 		
 		window.Intl.DateTimeFormat = function(...args) {
