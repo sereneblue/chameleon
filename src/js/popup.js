@@ -23,6 +23,11 @@ function buildInputs() {
 		$(`#list_${platform}`).append(`<div class="useragent ${i % 2 ? '' : 'alt' }">${label.outerHTML}<input type="checkbox" name="exc_${ua.value}" style="float: right;"></input></div>`);
 	  })
 	});
+
+	let select = $('select[name="timeZone"]');
+	$.each(timezones, function(index, tz) {
+		select.append($('<option>', {value: tz.zone, text: `(GMT${tz.offset}) ${tz.zone}`}));
+	});
 }
 
 function get(key) {
