@@ -415,7 +415,7 @@ describe('Whitelist', () => {
 
 		await driver.executeScript(`
 			var el = document.querySelector('select[name="timeZone"]');
-			el.value = "Pacific/Kwajalein";
+			el.value = "Pacific/Midway";
 			el.dispatchEvent(new Event('change'));
 		`);
 

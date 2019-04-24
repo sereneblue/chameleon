@@ -1,7 +1,8 @@
 const { Builder, By } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 
-const expect = require('chai').expect
+const browserData = require('../../src/js/data.js');
+const expect = require('chai').expect;
 const express = require('express');
 const path = require('path');
 const moment = require('moment-timezone');
@@ -19,46 +20,6 @@ const screenResolutions = [
     "1920x1080",
     "2560x1440",
     "2560x1600"
-];
-
-const timeZones = [
-	"Pacific/Kwajalein",
-	"Pacific/Midway",
-	"Pacific/Honolulu",
-	"Pacific/Marquesas",
-	"America/Anchorage",
-	"America/Los_Angeles",
-	"America/Phoenix",
-	"America/Chicago",
-	"America/New_York",
-	"America/Santiago",
-	"America/St_Johns",
-	"America/Sao_Paulo",
-	"Atlantic/South_Georgia",
-	"Atlantic/Azores",
-	"UTC",
-	"Europe/Berlin",
-	"Europe/Kaliningrad",
-	"Asia/Baghdad",
-	"Asia/Tehran",
-	"Europe/Moscow",
-	"Asia/Kabul",
-	"Asia/Karachi",
-	"Asia/Kolkata",
-	"Asia/Kathmandu",
-	"Asia/Almaty",
-	"Asia/Yangon",
-	"Asia/Bangkok",
-	"Asia/Hong_Kong",
-	"Asia/Tokyo",
-	"Australia/Darwin",
-	"Australia/Sydney",
-	"Australia/Lord_Howe",
-	"Asia/Magadan",
-	"Pacific/Auckland",
-	"Pacific/Chatham",
-	"Pacific/Tongatapu",
-	"Pacific/Kiritimati"
 ];
 
 const wait = async (sec) => {
@@ -87,13 +48,13 @@ const loopScreenResolutions = (options) => {
 
 const loopTimezones = (options) => {
 	let curTime = new Date();
-	options.forEach(function(zone) {
+	options.forEach(function(tz) {
 		let offset = curTime.getTimezoneOffset(); 
-		if (offset != moment.tz.zone(zone).utcOffset(curTime.getTime())) {
-			it(`should use timezone: ${zone}`, async () => {
+		if (offset != moment.tz.zone(tz.zone).utcOffset(curTime.getTime())) {
+			it(`should use timezone: ${tz.zone}`, async () => {
 				await driver.executeScript(`
 					var el = document.querySelector('select[name="timeZone"]');
-					el.value = "${zone}";
+					el.value = "${tz.zone}";
 					el.dispatchEvent(new Event('change'));
 				`);
 
@@ -326,7 +287,7 @@ describe('Script Injection', () => {
 
 	loopScreenResolutions(screenResolutions);
 
-	loopTimezones(timeZones);
+	loopTimezones(browserData.timezones);
 
 	it('should enable first party isolation', async () => {
 		await selectOption('input[name="firstPartyIsolate"]')
