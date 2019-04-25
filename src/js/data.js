@@ -335,7 +335,7 @@ let options = ["scriptInjection", "standard", "cookies", "misc", "reporting"];
 // whitelist
 let whitelist = ["whitelistProfile", "whitelistRules"];
 
-const timezones = [
+let chameleonTimezones = [
   { "zone": "Etc/GMT+12", "offset": "-12:00" },
   { "zone": "Etc/GMT+11", "offset": "-11:00" },
   { "zone": "Pacific/Midway", "offset": "-11:00" },
@@ -959,6 +959,6 @@ if ( typeof module !== 'undefined' && module.hasOwnProperty('exports') ) {
 		languages,
 		langList,
 		profiles,
-		timezones
+		chameleonTimezones
 	};
 }

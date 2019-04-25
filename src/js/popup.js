@@ -25,8 +25,8 @@ function buildInputs() {
 	});
 
 	let select = $('select[name="timeZone"]');
-	$.each(timezones, function(index, tz) {
-		select.append($('<option>', {value: tz.zone, text: `(GMT${tz.offset}) ${tz.zone}`}));
+	$.each(chameleonTimezones, function(index, tz) {
+		select.append($('<option>', {value: tz.zone, text: `(${tz.offset ? tz.offset : "GMT"}) ${tz.zone}`}));
 	});
 }
 

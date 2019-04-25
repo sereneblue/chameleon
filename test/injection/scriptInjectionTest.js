@@ -287,7 +287,7 @@ describe('Script Injection', () => {
 
 	loopScreenResolutions(screenResolutions);
 
-	loopTimezones(browserData.timezones);
+	loopTimezones(browserData.chameleonTimezones);
 
 	it('should enable first party isolation', async () => {
 		await selectOption('input[name="firstPartyIsolate"]')
