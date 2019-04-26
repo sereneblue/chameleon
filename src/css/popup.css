@@ -294,6 +294,10 @@ ul {
   display: block;
 }
 
+select[name="timeZone"] {
+  font-size: 12px;
+}
+
 .useragent {
   padding: 2px 0px;
 }
