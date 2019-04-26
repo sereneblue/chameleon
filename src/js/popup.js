@@ -607,6 +607,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
+	$("#viewIPRules").on('click', function(e) {
+		chrome.tabs.create({
+		    url:  chrome.runtime.getURL('/ip.html')
+		});
+		window.close();
+	})
+
 	$("#viewRules").on('click', function(e) {
 		chrome.tabs.create({
 		    url:  chrome.runtime.getURL('/whitelist.html')

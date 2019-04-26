@@ -128,6 +128,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 		}
 	});
 
+	$('#reload').click(function (e) {
+		chrome.runtime.sendMessage({
+			action: "reloadIP"
+		});
+	});
+
 	$(document).on('click', '#close', function (e) {
 		$('.create')[0].remove();
 	});

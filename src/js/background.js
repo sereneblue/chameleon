@@ -918,6 +918,9 @@ chrome.runtime.onMessage.addListener(function(request) {
 			chameleon.settings[request.data.key] = request.data.value;
 			saveSettings("settings");
 		}
+	} else if (request.action == "reloadIP") {
+		getIPInfo();
+		rebuildInjectionScript();
 	} else if (request.action == "reset") {
 		saveSettings("default");
 	} else if (request.action == "storage") {
