@@ -218,45 +218,74 @@ async function getIPInfo() {
 		let langSpoof = "";
 
 		if (data.timezone && data.languages) {
-			if (chameleon.settings.timeZone == "ip") {
-				tzSpoof = ` timezone: UTC${moment().tz(data.timezone).format('Z')}`;
-				chameleon.ipInfo.timezone = data.timezone;
-			}
+			// check if in ip rules
+			let inIPRules = -1;
 
-			if (chameleon.headers.spoofAcceptLangValue == "ip") {
-				let responseLanguage = data.languages.split(',')[0];
-				let lang = languages.find(l => l.display == "English (US)"); // default value
+			for (var i = 0; i < chameleon.ipRules.length; i++) {
+				try {
+					var addr = ipaddr.process(data.ip);
+					addr.match(ipaddr.parseCIDR(chameleon.ipRules[i].ip));
 
-				if (responseLanguage != "en" && responseLanguage != "en-US") {
-					let index = langList.map(l => l[0]).findIndex(l => l.includes(responseLanguage));
-
-					if (index > -1) {
-						lang = languages[index];
-					} else {
-						// check the list again, not restricted to primary language
-						let idxs = [];
-						for (var i = 0; i < langList.length; i++) {
-							let idx = langList[i].findIndex(l => l.includes(responseLanguage) || (l.includes(responseLanguage.split('-')[0]) && responseLanguage.split('-')[0] != "en"));
-							if (idx > -1) {
-								idxs.push([
-									idx > -1,
-									i,
-									idx
-								])
-							}
-						}
-						if (idxs.length) {
-							idxs.sort((a,b) => a[2] > b[2]);
-							lang = languages[idxs[0][1]];
-						}
+					inIPRules = i;
+					break;
+				} catch (e) {
+					// match ip
+					if (chameleon.ipRules[i].ip == data.ip) {
+						inIPRules = i;
+						break;
 					}
 				}
-
-				langSpoof = ` lang: ${lang.display}`;
-				chameleon.ipInfo.language = lang.value;
 			}
 
-			if (chameleon.settings.notificationsEnabled) {
+			if (inIPRules > -1) {
+				let lang = languages.find(l => l.display == chameleon.ipRules[i].lang);
+
+				tzSpoof = ` timezone: UTC${moment().tz(chameleon.ipRules[i].tz).format('Z')}`;
+				langSpoof = ` lang: ${lang.display}`;
+
+				chameleon.ipInfo.timezone = chameleon.ipRules[i].tz;
+				chameleon.ipInfo.language = lang.value;;
+			} else {
+				if (chameleon.settings.timeZone == "ip") {
+					tzSpoof = ` timezone: UTC${moment().tz(data.timezone).format('Z')}`;
+					chameleon.ipInfo.timezone = data.timezone;
+				}
+
+				if (chameleon.headers.spoofAcceptLangValue == "ip") {
+					let responseLanguage = data.languages.split(',')[0];
+					let lang = languages.find(l => l.display == "English (US)"); // default value
+
+					if (responseLanguage != "en" && responseLanguage != "en-US") {
+						let index = langList.map(l => l[0]).findIndex(l => l.includes(responseLanguage));
+
+						if (index > -1) {
+							lang = languages[index];
+						} else {
+							// check the list again, not restricted to primary language
+							let idxs = [];
+							for (var i = 0; i < langList.length; i++) {
+								let idx = langList[i].findIndex(l => l.includes(responseLanguage) || (l.includes(responseLanguage.split('-')[0]) && responseLanguage.split('-')[0] != "en"));
+								if (idx > -1) {
+									idxs.push([
+										idx > -1,
+										i,
+										idx
+									])
+								}
+							}
+							if (idxs.length) {
+								idxs.sort((a,b) => a[2] > b[2]);
+								lang = languages[idxs[0][1]];
+							}
+						}
+					}
+
+					langSpoof = ` lang: ${lang.display}`;
+					chameleon.ipInfo.language = lang.value;
+				}
+			}
+
+			if (chameleon.settings.notificationsEnabled && tzSpoof) {
 				chrome.notifications.create({
 					"type": "basic",
 					"title": "Chameleon",
@@ -708,17 +737,21 @@ function save(obj) {
 
 async function saveSettings(setting="all") {
 	if (setting == "all") {
-		await save({ headers: chameleon.headers,
-			 whitelist: chameleon.whitelist,
-			 excluded: chameleon.excluded,
-			 settings: chameleon.settings
+		await save({
+			excluded: chameleon.excluded,
+			headers: chameleon.headers,
+			ipRules: chameleon.ipRules,
+			settings: chameleon.settings,
+			whitelist: chameleon.whitelist
 		});
 		return;
 	} else if (setting == "default") {
-		await save({ headers: defaultSettings.headers,
-			 whitelist: defaultSettings.whitelist,
-			 excluded: defaultSettings.excluded,
-			 settings: defaultSettings.settings
+		await save({
+			excluded: defaultSettings.excluded,
+			headers: defaultSettings.headers,
+			ipRules: defaultSettings.ipRules,
+			settings: defaultSettings.settings,
+			whitelist: defaultSettings.whitelist
 		});
 		browser.runtime.reload();
 		return;
