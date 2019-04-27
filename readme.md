@@ -7,7 +7,8 @@ Chameleon is a WebExtension port of the popular Firefox addon [Random Agent Spoo
 
 The UI is near identical and contains most of the features found in the original extension.
 
-![chameleon screenshot](https://raw.githubusercontent.com/sereneblue/chameleon/master/screenshot.png)
+![chameleon screenshot](https://user-images.githubusercontent.com/14242625/56843333-85907080-6832-11e9-941d-d7b2db6d9982.png)
+
 
 ## Features
 
