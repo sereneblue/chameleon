@@ -1,45 +1,5 @@
 let data = null;
 
-const timeZones = [
-	"Pacific/Kwajalein",
-	"Pacific/Midway",
-	"Pacific/Honolulu",
-	"Pacific/Marquesas",
-	"America/Anchorage",
-	"America/Los_Angeles",
-	"America/Phoenix",
-	"America/Chicago",
-	"America/New_York",
-	"America/Santiago",
-	"America/St_Johns",
-	"America/Sao_Paulo",
-	"Atlantic/South_Georgia",
-	"Atlantic/Azores",
-	"UTC",
-	"Europe/Berlin",
-	"Europe/Kaliningrad",
-	"Asia/Baghdad",
-	"Asia/Tehran",
-	"Europe/Moscow",
-	"Asia/Kabul",
-	"Asia/Karachi",
-	"Asia/Kolkata",
-	"Asia/Kathmandu",
-	"Asia/Almaty",
-	"Asia/Yangon",
-	"Asia/Bangkok",
-	"Asia/Hong_Kong",
-	"Asia/Tokyo",
-	"Australia/Darwin",
-	"Australia/Sydney",
-	"Australia/Lord_Howe",
-	"Asia/Magadan",
-	"Pacific/Auckland",
-	"Pacific/Chatham",
-	"Pacific/Tongatapu",
-	"Pacific/Kiritimati"
-];
-
 function get(key) {
 	return new Promise((resolve) => {
 		chrome.storage.local.get(key, (item) => {
@@ -61,10 +21,10 @@ function languageTemplate(lang, visible=false) {
 function timezoneTemplate(tz, visible=false) {
 	let template = `<select class="form-select ${visible ? "" : "d-hide"}">`;
 
-	for (var t of timeZones) {
-		template += `<option value="${t}" ${t == tz ? "selected" : ""}>${t}</option>`
+	for (var t of chameleonTimezones) {
+		template += `<option value="${t.zone}" ${t.zone == tz ? "selected" : ""}>${t.zone}</option>`
 	}
-	
+
 	return template + `</select>`;
 };
 
