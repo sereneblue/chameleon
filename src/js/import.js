@@ -127,7 +127,7 @@ function validate(cfg) {
 
     for (s in cfg.settings) {
 		if (['disableWebSockets', 'enableScriptInjection', 'limitHistory', 'notificationsEnabled', 
-				  'protectWinName', 'spoofAudioContext', 'spoofClientRects'].includes(s)) {
+				  'protectKeyboardFingerprint', 'protectWinName', 'spoofAudioContext', 'spoofClientRects'].includes(s)) {
 			if (typeof(cfg.settings[s]) != "boolean") throw Error;
 		}
 

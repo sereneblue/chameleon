@@ -21,6 +21,7 @@
 			"js/lib/spoofAudioContext.js",
 			"js/lib/spoofrects.js",
 			"js/lib/spooftime.js",
+			"js/lib/protectKB.js",
 			"js/data.js", 
 			"js/inject.js",
 			"js/background.js"

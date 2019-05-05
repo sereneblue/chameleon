@@ -47,6 +47,7 @@ let chameleon = {
 		minInterval: null,
 		maxInterval: null,
 		notificationsEnabled: false,
+		protectKeyboardFingerprint: false,
 		protectWinName: false,
 		screenSize: "default",
 		spoofAudioContext: false,
@@ -91,6 +92,7 @@ async function buildInjectScript() {
 		injection = spoof.navigator(chameleon.headers.useragent, injection);
 
 		if (chameleon.settings.limitHistory) injection = spoof.history(injection);
+		if (chameleon.settings.protectKeyboardFingerprint) injectionText.kbFingerprint = protectKB();
 		if (chameleon.settings.spoofAudioContext) injectionText.audioContext = spoofAudioContext(`_${Math.random().toString(36)}`);
 		if (chameleon.settings.spoofClientRects) injectionText.clientRects = spoofRects(`_${Math.random().toString(36)}`);
 
@@ -225,7 +227,7 @@ async function getIPInfo() {
 					break;
 				}
 			}
-			
+
 			if (inIPRules > -1) {
 				let lang = languages.find(l => l.display == chameleon.ipRules[i].lang);
 

@@ -94,6 +94,7 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages, zone
 						if (!urlOK) {
 							${injectionText.audioContext}
 							${injectionText.clientRects}
+							${injectionText.kbFingerprint}
 
 							if (!inFrame) {
 								let offset = tz.offset;
