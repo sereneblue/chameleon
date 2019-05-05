@@ -7,7 +7,7 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages, zone
 
 		let tz = {};
 		let timezone = '${zoneName}';
-		if (timezone) {
+		if (timezone != "default") {
 			let d = new Date();
 			let zone = moment.tz(d, timezone);
 
