@@ -19,11 +19,9 @@
 	Public License for more details.
 */
 
-let spoofTime = (offset, tzAbbr, tzName, randomStr) => {
+let spoofTime = (randomStr) => {
 	return `
-		var spoofedTimezone = 0 - ${offset};
-		var tzAbbr = "${tzAbbr}";
-		var tzName = "${tzName}";
+		var spoofedTimezone = 0 - offset;
 		var _tz = {};
 
 		_tz.orig = new Intl.DateTimeFormat('en-US', {

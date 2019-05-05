@@ -116,12 +116,7 @@ async function buildInjectScript() {
 		}
 
 		if (chameleon.settings.timeZone != "default") {
-			var t = moment.tz(Date.now(), chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone);
-
 			injectionText.timeSpoof = spoofTime(
-				t.utcOffset(),
-				t.format("z"),
-				chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone,
 				`_${Math.random().toString(36)}`
 			);
 		}
@@ -194,7 +189,8 @@ async function buildInjectScript() {
 				name : chameleon.settings.protectWinName
 			},
 			uaList,
-			languages
+			languages,
+			chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone
 		);
 	}
 
@@ -721,7 +717,11 @@ async function rebuildInjectionScript() {
 
 		chameleon.injection = await browser.contentScripts.register({
 			matches: ["http://*/*", "https://*/*"],
-			js: [{code: await buildInjectScript() }],
+			js: [
+				{file: "js/dep/moment.min.js"},
+				{file: "js/dep/moment-timezone-with-data.min.js"},
+				{code: await buildInjectScript() }
+			],
 			runAt: "document_start"
 		});
 	}, 500);

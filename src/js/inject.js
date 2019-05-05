@@ -1,12 +1,25 @@
-let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
+let inject = (props, whitelist, injectionText, settings, uaList, languages, zoneName) => {
 	let randValue = Math.random().toString(36);
 
 	return `
 		// https://github.com/violentmonkey/violentmonkey/pull/246
 		// Fix CSP issue
 
+		let tz = {};
+		let timezone = '${zoneName}';
+		if (timezone) {
+			let d = new Date();
+			let zone = moment.tz(d, timezone);
+
+			tz.offset = zone.utcOffset();
+			tz.abbr = zone.format("z");
+			tz.name = timezone;
+		}
+
 		let code = \`
 			(function(){
+				let tz = \$\{JSON.stringify(tz)\};
+
 				if (window["${randValue}"]) {
 					return;
 				} else {
@@ -76,17 +89,23 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 					_oldFF = /60\.0/.test(navigator.userAgent);
 				}
 
-				(function(props){
-					let override = ((window, injection, inFrame) => {
+				(function(props, tz){
+					let override = ((window, injection, inFrame, tz) => {
 						if (!urlOK) {
 							${injectionText.audioContext}
 							${injectionText.clientRects}
 
 							if (!inFrame) {
+								let offset = tz.offset;
+								let tzAbbr = tz.abbr;
+								let tzName = tz.name;
 								${injectionText.timeSpoof}
 							}
 						} else {
 							if (wlOptions.timezone && !inFrame) {
+								let offset = tz.offset;
+								let tzAbbr = tz.abbr;
+								let tzName = tz.name;
 								${injectionText.timeSpoof}
 							}
 						}
@@ -120,7 +139,7 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 					}
 
 					// Override window properties
-					override(window, props, false);
+					override(window, props, false, tz);
 
 					// Prevent leakage through properties of trusted iframes
 					let observer = new MutationObserver((mutations) => {
@@ -145,7 +164,7 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages) => {
 						childList: true,
 						subtree: true
 					});
-				})(properties);
+				})(properties, tz);
 			})();\`;
 
 		// inject directly into the page
