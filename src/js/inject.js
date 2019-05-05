@@ -151,11 +151,11 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages, zone
 								&& typeof(node.contentWindow.navigator) !== "undefined") {
 									if (node.src.includes("https://www.google.com/recaptcha/api2") || 
 										node.src.includes("https://disqus.com/embed/comments/")) {
-										override(node.contentWindow, bypassProps, true);
+										override(node.contentWindow, bypassProps, true, tz);
 										continue;
 									}
 
-									override(node.contentWindow, props, true);
+									override(node.contentWindow, props, true, tz);
 								}
 							}
 						}
