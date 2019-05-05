@@ -75,6 +75,7 @@ async function buildInjectScript() {
 	let injectionText = {
 		audioContext: "",
 		clientRects: "",
+		kbFingerprint: "",
 		timeSpoof: ""
 	};
 	let nav = [];	
