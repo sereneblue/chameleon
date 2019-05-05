@@ -8,6 +8,18 @@ function get(key) {
 	});
 }
 
+function getIPRange(ip) {
+	let cidr = new IPCIDR(ip);
+
+	if (cidr.isValid()) {
+		let range = cidr.toRange();
+
+		return range[0] == range[1] ? "" : `{ ${range[0]} - ${range[1]} }`;
+	}
+
+	return "";
+}
+
 function languageTemplate(lang, visible=false) {
 	let template = `<select class="form-select ${visible ? "" : "d-hide"}">`;
 
@@ -37,8 +49,9 @@ function buildTable(rules) {
 			<tr>
 		      <td>
 				<div class="form-group">
-			      	<span class="display">${rule.ip}</span>
+			      	<span class="display text-bold">${rule.ip}</span>
 					<input class="form-input d-hide" type="text" value="${rule.ip}">
+					<span class="range" style="color: rgba(0,0,0,0.5);">${getIPRange(rule.ip)}</span>
 				</div>
 	      	  </td>
 		      <td>
@@ -70,8 +83,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 				<div class="card text-left mt-2 create" style="background-color: #f7f8f9;">
 				  <div class="card-header">
 				  	<div class="form-group">
-					  	<label>IP or range</label>
-						<input class="form-input ip" type="text" placeholder="Enter IP range">
+					  	<label>IP or CIDR</label>
+						<input class="form-input ip" type="text" placeholder="Enter IP or CIDR">
 					</div>
 					<button id="saveRule" class="btn btn-success btn-sm d-inline-block mt-2">Create</button>
 					<button id="close" class="btn btn-error btn-sm d-inline-block mt-2">Close</button>
@@ -100,16 +113,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 	$(document).on('click', '#saveRule', function (e) {
 		let ip = $('.create .ip')[0].value;
+		let cidr = new IPCIDR(ip);
 
-		try {
-			ip = ipaddr.parse(ip).toString();
-		} catch (e) {
-			try {
-				ipaddr.parseCIDR(ip);
-			} catch (e) {
-				$('.create .card-header .form-group').addClass('has-error');
-				return;				
-			}
+		if (!cidr.isValid()) {
+			$('.create .card-header .form-group').addClass('has-error');
+			return;
 		}
 
 		$('.create .card-header .form-group').removeClass('has-error');
@@ -149,8 +157,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 			<tr>
 		      <td>
 			  	<div class="form-group">
-			      	<span class="display">${ip}</span>
+			      	<span class="display text-bold">${ip}</span>
 					<input class="form-input d-hide" type="text" value="${ip}">
+					<span class="range" style="color: rgba(0,0,0,0.5);">${getIPRange(ip)}</span>
 				</div>
 	      	  </td>
 		      <td>
@@ -181,6 +190,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		parent.find('.d-hide').removeClass('d-hide');
 		parent.find('.edit-btn').addClass('d-hide');
 		parent.find('.display').addClass('d-hide');
+		parent.find('.range').addClass('d-hide');
 	})
 
 	$(document).on('click', '.del-btn', function (e) {
@@ -212,15 +222,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 		let ip = parent.find('input')[0].value;
 
-		try {
-			ip = ipaddr.parse(ip).toString();
-		} catch (e) {
-			try {
-				ipaddr.parseCIDR(ip);
-			} catch (e) {
-				$('.create .card-header .form-group').addClass('has-error');
-				return;				
-			}
+		let cidr = new IPCIDR(ip);
+k		
+		if (!cidr.isValid()) {
+			$('.create .card-header .form-group').addClass('has-error');
+			return;
 		}
 
 		parent.find('.form-group').removeClass('has-error');
@@ -261,6 +267,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 			parent.find('.display')[0].innerText = ip;
 			parent.find('.display')[1].innerText = lang;
 			parent.find('.display')[2].innerText = tz;
+			parent.find('.range')[0].innerText = getIPRange(ip);
 
 			chrome.runtime.sendMessage({
 				action: "ipRules",
@@ -269,6 +276,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		}
 
 		parent.find('.d-hide').removeClass('d-hide');
+		parent.find('.range').removeClass('d-hide');
 		parent.find('.save-btn').addClass('d-hide');
 		parent.find('input').addClass('d-hide');
 		parent.find('select').addClass('d-hide');
