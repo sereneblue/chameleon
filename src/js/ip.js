@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		let ip = parent.find('input')[0].value;
 
 		let cidr = new IPCIDR(ip);
-k		
+				
 		if (!cidr.isValid()) {
 			$('.create .card-header .form-group').addClass('has-error');
 			return;

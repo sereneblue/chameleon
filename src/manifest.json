@@ -13,7 +13,7 @@
 	"background": {
 		"scripts": [
 			"js/dep/jquery-3.3.1.slim.min.js",
-			"js/dep/ipaddr.min.js",
+			"js/dep/ip-cidr.min.js",
 			"js/dep/moment.min.js",
 			"js/dep/moment-timezone-with-data.min.js",
 			"js/dep/psl.min.js", 

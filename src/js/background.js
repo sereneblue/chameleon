@@ -218,21 +218,14 @@ async function getIPInfo() {
 			let inIPRules = -1;
 
 			for (var i = 0; i < chameleon.ipRules.length; i++) {
-				try {
-					var addr = ipaddr.process(data.ip);
-					addr.match(ipaddr.parseCIDR(chameleon.ipRules[i].ip));
+				let cidr = new IPCIDR(chameleon.ipRules[i].ip);
 
+				if (cidr.contains(data.ip)) {
 					inIPRules = i;
 					break;
-				} catch (e) {
-					// match ip
-					if (chameleon.ipRules[i].ip == data.ip) {
-						inIPRules = i;
-						break;
-					}
 				}
 			}
-
+			
 			if (inIPRules > -1) {
 				let lang = languages.find(l => l.display == chameleon.ipRules[i].lang);
 
