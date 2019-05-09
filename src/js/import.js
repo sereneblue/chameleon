@@ -9,45 +9,10 @@ let screenSizes = [
 
 let timeZoneValues = [
 	"default",
-	"ip",
-	"Pacific/Kwajalein",
-	"Pacific/Midway",
-	"Pacific/Honolulu",
-	"Pacific/Marquesas",
-	"America/Anchorage",
-	"America/Los_Angeles",
-	"America/Phoenix",
-	"America/Chicago",
-	"America/New_York",
-	"America/Puerto_Rico",
-	"America/St_Johns",
-	"America/Sao_Paulo",
-	"Atlantic/South_Georgia",
-	"Atlantic/Azores",
-	"Europe/London",
-	"Europe/Berlin",
-	"Europe/Kaliningrad",
-	"Asia/Baghdad",
-	"Asia/Tehran",
-	"Europe/Moscow",
-	"Asia/Kabul",
-	"Asia/Karachi",
-	"Asia/Kolkata",
-	"Asia/Kathmandu",
-	"Asia/Almaty",
-	"Asia/Yangon",
-	"Asia/Bangkok",
-	"Asia/Hong_Kong",
-	"Asia/Tokyo",
-	"Australia/Darwin",
-	"Australia/Sydney",
-	"Australia/Lord_Howe",
-	"Asia/Magadan",
-	"Pacific/Auckland",
-	"Pacific/Chatham",
-	"Pacific/Tongatapu",
-	"Pacific/Kiritimati"
+	"ip"
 ];
+
+timeZoneValues = timeZoneValues.concat(chameleonTimezones.map(tz => tz.zone));
 
 let profileValues = [
 	"real",
@@ -123,6 +88,14 @@ function validate(cfg) {
 		for (i in cfg.excluded[e]) {
 			if (typeof(cfg.excluded[e][i]) != "boolean") throw Error;
 		}
+	}
+
+	for (r in cfg.ipRules) {
+		let cidr = new IPCIDR(cfg.ipRules[r].ip);
+		if (!cidr.isValid()) throw Error;
+
+		if (languages.findIndex(l => l.display == cfg.ipRules[r].lang) == -1) throw Error;
+		if (chameleonTimezones.findIndex(t => t.zone == cfg.ipRules[r].tz) == -1) throw Error;
 	}
 
     for (s in cfg.settings) {

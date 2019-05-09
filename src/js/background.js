@@ -851,6 +851,7 @@ chrome.runtime.onMessage.addListener(function(request) {
 		saveSettings("excluded");
 	} else if (request.action == "import") {
 		chameleon.headers = request.data.headers;
+		chameleon.ipRules = request.data.ipRules;
 		chameleon.settings = request.data.settings;
 		chameleon.excluded = request.data.excluded;
 		chameleon.whitelist = request.data.whitelist;
@@ -1096,6 +1097,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.12.0"});
+	await save({ version: "0.12.1"});
 	changeTimer();
 })();
