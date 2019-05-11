@@ -21,11 +21,11 @@ The UI is near identical and contains most of the features found in the original
 
 ### Headers
 
-- Spoof some header values.
+- Prevent malicious authorization.
 - Modify referer options.
 - Enable Do Not Track.
 - Prevent Etag tracking.
-- Modify referer (use source url or disable).
+- Spoof accept headers. 
 
 ### Options
 
@@ -33,14 +33,16 @@ The UI is near identical and contains most of the features found in the original
 - Disable WebSockets.
 - Limit tab history.
 - Protect window.name.
+- Protect keyboard fingerprint.
 - Spoof audio context
 - Spoof client rects.
 - Spoof screen size.
 - Spoof timezone.
-- Prevent WebRTC leak.
-- Enable tracking protection.
-- Enable resist fingerprinting.
+- Set timezone to IP location.
 - Enable first party isolation.
+- Enable resist fingerprinting.
+- Enable tracking protection.
+- Prevent WebRTC leak.
 - Modify cookie options.
 - about:config checklist to enhance your privacy.
 
@@ -51,7 +53,7 @@ WebExtensions are unable to modify about:config entries. A workaround for this i
 - Use your real or spoofed profile for whitelisted sites.
 - Manage a list of whitelist rules.
 - Supports regular expressions
-- Option to use a spoofed profile per whitelist rule.
+- Use a custom profile per whitelist rule.
 
 ## Installation
 
