@@ -132,8 +132,8 @@ describe('Whitelist', () => {
 
 		await driver.executeScript(`
 			document.querySelector('.header-container button').click();
-			document.querySelector('.card-header input.domain').value = "${LOCALSERVER}";
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .col-4 .domain').value = "${LOCALSERVER}";
+			document.querySelector('.card-header .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -154,7 +154,7 @@ describe('Whitelist', () => {
 
 		await wait(SLEEP_TIME)
 		await driver.executeScript(`
-			document.querySelector('.card .btn-error').click();
+			document.querySelector('.card .edit-buttons .btn-error').click();
 			document.querySelector('.confirmation .btn-success').click();
 		`);
 
@@ -194,8 +194,8 @@ describe('Whitelist', () => {
 
 		await driver.executeScript(`
 			document.querySelector('.header-container button').click();
-			document.querySelector('.card-header input.domain').value = "${LOCALSERVER}";
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .col-4 .domain').value = "${LOCALSERVER}";
+			document.querySelector('.card-header .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -222,9 +222,9 @@ describe('Whitelist', () => {
 
 		await wait(SLEEP_TIME);
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelector('.card-body input.auth').click();
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -262,9 +262,9 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME);
 
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelector('.card-body input.ref').click();
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -285,9 +285,9 @@ describe('Whitelist', () => {
 		await driver.switchTo().window(tabs[tabs.length - 1]);
 
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelector('.card-body input.ws').click();
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await driver.get(LOCALSERVER + "/whitelist_test");
@@ -321,9 +321,9 @@ describe('Whitelist', () => {
 
 		await wait(SLEEP_TIME );
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelector('.card-body input.name').click();
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -352,9 +352,9 @@ describe('Whitelist', () => {
 
 		await wait(SLEEP_TIME);
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelector('.card-body input.ip').click();
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -371,9 +371,9 @@ describe('Whitelist', () => {
 
 		await wait(SLEEP_TIME);
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelector('.card-body input.spoof').value = "8.8.8.8";
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -397,9 +397,9 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME);
 
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelectorAll('.card-body select')[0].value = "${spoofedLang}";
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -423,9 +423,9 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME);
 
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelector('.card-body input.tz').click();
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -447,9 +447,9 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME);
 
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelectorAll('.card-body select')[1].value = "win11";
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
@@ -465,9 +465,9 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME);
 
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelectorAll('.card-body select')[1].value = "default";
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 		await wait(SLEEP_TIME);
 
@@ -489,9 +489,9 @@ describe('Whitelist', () => {
 		await wait(SLEEP_TIME);
 
 		await driver.executeScript(`
-			document.querySelector('.card-header button').click();
+			document.querySelector('.card-header .edit-buttons button').click();
 			document.querySelectorAll('.card-body select')[1].value = "real";
-			document.querySelectorAll('.card-header button')[1].click();
+			document.querySelector('.card-header .edit-buttons .btn-success').click();
 		`);
 
 		await wait(SLEEP_TIME);
