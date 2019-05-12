@@ -223,8 +223,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 				let found = false;
 
 				let otherRules = data.whitelist.urlList
-								.filter(r => r.id != parent.id)
-								.map(rule => rules.domains);
+								.filter(r => r.id != parent[0].id)
+								.map(rule => rule.domains)
+								.flat()
+								.map(d => d.domain);
 
 				for (site of parent.find('.domains .container')) {
 					in_domain = $(site).find('.domain')[0];
