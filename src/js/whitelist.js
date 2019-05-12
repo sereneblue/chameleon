@@ -4,6 +4,57 @@ let patternTemplate = (pattern, regexEnabled, disabled) => {
 	return regexEnabled ? `<input class="form-input pattern" type="text" value="${pattern}" ${disabled ? "disabled" : ""}>` : "";
 };
 
+let siteTemplate = (domains) => {
+	if (domains) {
+		let template = "";
+
+		for (var i = 0; i < domains.length; i++) {
+			template += `
+			<div class="container my-2">
+				<div class="columns">
+					<div class="column col-4">
+						<input class="form-input domain" type="text" placeholder="Enter domain" value="${domains[i].domain}">
+					</div>
+					<div class="column col-2">
+						<label class="form-checkbox">
+							<input class="re" type="checkbox" ${domains[i].re ? 'checked' : '' }>
+							<i class="form-icon"></i> Regex enabled
+						</label>
+					</div>
+					<div class="column col-5">
+						<input class="form-input pattern ${domains[i].re ? '' : 'd-hide'}" type="text" placeholder="Enter pattern" value="${domains[i].pattern}">
+					</div>
+					<div class="column col-1">
+						<button class="btn del-domain btn-error btn-sm d-inline-block mt-2">Delete</button>
+					</div>
+				</div>
+			</div>`
+		}
+		return template;
+	}
+	return `
+		<div class="container my-2">
+			<div class="columns">
+				<div class="column col-4">
+					<input class="form-input domain" type="text" placeholder="Enter domain">
+				</div>
+				<div class="column col-2">
+					<label class="form-checkbox">
+						<input class="re" type="checkbox">
+						<i class="form-icon"></i> Regex enabled
+					</label>
+				</div>
+				<div class="column col-5">
+					<input class="form-input pattern d-hide" type="text" placeholder="Enter pattern">
+				</div>
+				<div class="column col-1">
+					<button class="btn del-domain btn-error btn-sm d-inline-block mt-2">Delete</button>
+				</div>
+			</div>
+		</div>
+	`;
+}
+
 let languageTemplate = (lang) => {
 	let template = `<div class="form-group"><label>Spoof Accept-Language</label><select class="form-select"><option value="" ${lang == "" || lang == undefined ? 'selected' : ""}>Default</option>`;
 
@@ -26,7 +77,6 @@ let whitelistTemplate = (profile) => {
 	return template + `</select></div>`;
 };
 
-
 function get(key) {
 	return new Promise((resolve) => {
 		chrome.storage.local.get(key, (item) => {
@@ -35,24 +85,40 @@ function get(key) {
 	});
 }
 
+function getDomainsDisplay(domains) {
+	if (domains.length == 1) {
+		return domains[0].domain;
+	} else if (domains.length == 2) {
+		return `${domains[0].domain}, ${domains[1].domain}`;
+	} else {
+		return `${domains[0].domain} + ${domains.length - 1} domains`;
+	}
+}
+
 function buildWhitelist(rules) {
 	let ruleElement = document.getElementById('rules');
 	ruleElement.innerHTML = "";
 
 	for (var rule of rules) {
 		ruleElement.insertAdjacentHTML('beforeend', `
-		<div class="card text-left mt-2" id="${rule.url}">
+		<div class="card text-left mt-2" id="${rule.id}">
 		  <div class="card-header">
-			<div class="card-title h5 d-block"><strong>${rule.url}</strong></div>
-			<button class="btn btn-primary btn-sm d-inline-block mt-2">Edit</button>
-			<button class="btn btn-success btn-sm d-inline-block d-hide mt-2">Save</button>
-			<button class="btn btn-error btn-sm d-inline-block mt-2">Delete</button>
+			<div class="card-title h5 d-block"><strong>${getDomainsDisplay(rule.domains)}</strong></div>
+			<div class="domains d-hide">
+				${siteTemplate(rule.domains)}
+			</div>
+			<div class="edit-buttons">
+				<button class="btn btn-primary btn-sm d-inline-block mt-2">Edit</button>
+				<button class="btn btn-success btn-sm d-inline-block d-hide mt-2">Save</button>
+				<button class="btn btn-primary btn-sm d-inline-block d-hide mt-2">Add domain</button>
+				<button class="btn btn-error btn-sm d-inline-block mt-2">Delete</button>
+			</div>
 		  </div>
-  		  <div class="divider"></div>
+		  <div class="divider"></div>
 		  <div class="card-body d-hide">
-		    <div class="container ">
-		      <div class="columns">
-		        <div class="column col-xs-6">
+			<div class="container ">
+			  <div class="columns">
+				<div class="column col-xs-6">
 					<label class="form-switch">
 						<input class="auth" type="checkbox" ${rule.options.auth ? "checked" : ""} disabled>
 						<i class="form-icon"></i> Disable auth header
@@ -65,32 +131,28 @@ function buildWhitelist(rules) {
 						<input class="ws" type="checkbox" ${rule.options.websocket ? "checked" : ""} disabled>
 						<i class="form-icon"></i> Disable WebSocket
 					</label>
-		        </div>
-		        <div class="column col-xs-6">
-		            <label class="form-switch">
-		                <input class="ip" type="checkbox" ${rule.options.ip ? "checked" : ""} disabled>
-		                <i class="form-icon"></i> Enable IP headers
-		            </label>
-		            <label class="form-switch">
-		                <input class="name" type="checkbox" ${rule.options.winName ? "checked" : ""} disabled>
-		                <i class="form-icon"></i> Enable Protect window name
-		            </label>
-		            <label class="form-switch">
-		                <input class="tz" type="checkbox" ${rule.options.timezone ? "checked" : ""} disabled>
-		                <i class="form-icon"></i> Enable Timezone Spoofing
-		            </label>
-		        </div>
-		      </div>
-		    </div>  
-		    <label class="form-checkbox">
-		        <input class="re" type="checkbox" ${rule.re ? "checked" : ""} disabled>
-		        <i class="form-icon"></i> Regex enabled
-		    </label>
+				</div>
+				<div class="column col-xs-6">
+					<label class="form-switch">
+						<input class="ip" type="checkbox" ${rule.options.ip ? "checked" : ""} disabled>
+						<i class="form-icon"></i> Enable IP headers
+					</label>
+					<label class="form-switch">
+						<input class="name" type="checkbox" ${rule.options.winName ? "checked" : ""} disabled>
+						<i class="form-icon"></i> Enable Protect window name
+					</label>
+					<label class="form-switch">
+						<input class="tz" type="checkbox" ${rule.options.timezone ? "checked" : ""} disabled>
+						<i class="form-icon"></i> Enable Timezone Spoofing
+					</label>
+				</div>
+			  </div>
+			</div>  
 		   ${patternTemplate(rule.pattern, rule.re, true)}
-		    <label class="form-label">
-		        <i class="form-icon"></i> Header IP (Via & X-Forwarded For) 
-		        <input class="form-input spoof" type="text" value="${rule.spoofIP ? rule.spoofIP : ''}">
-		    </label>
+			<label class="form-label">
+				<i class="form-icon"></i> Header IP (Via & X-Forwarded For) 
+				<input class="form-input spoof" type="text" value="${rule.spoofIP ? rule.spoofIP : ''}">
+			</label>
 		   ${languageTemplate(rule.lang)}
 		   ${whitelistTemplate(rule.profile)}
 		  </div>
@@ -102,7 +164,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 	data = await get(null);
 	let searchInput = $('#searchInput');
 	searchInput.on('keyup', function(e) {
-		let matches = data.whitelist.urlList.filter(r => r.url.includes(e.target.value.trim()));
+		let query = e.target.value.trim().toLowerCase();
+		let matches = data.whitelist.urlList
+					.filter(r => r.domains
+							 .map(d => d.domain)
+							 .findIndex(d => d.includes(query)) > -1);
 		buildWhitelist(matches);
 	});
 
@@ -112,8 +178,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 	$(document).click(function(e) {
 		if (e.target.nodeName == "BUTTON") {
-			if (e.target.innerText == "Delete") {
-				if (!document.querySelector('.confirmation')) {
+			if (e.target.innerText == "Add domain") {
+				$(e.target).parents('.card').find('.domains')[0].insertAdjacentHTML('beforeend', siteTemplate());
+			} else if (e.target.innerText == "Delete") {
+				if (e.target.classList.contains("del-domain")) {
+					$(e.target).parents('.container').remove();
+				} else if (!document.querySelector('.confirmation')) {
 					$(e.target).parent()[0].insertAdjacentHTML('beforeend', `
 						<div class="confirmation">
 							<h5>Are you sure you want to delete this rule?</h5>
@@ -127,22 +197,67 @@ document.addEventListener('DOMContentLoaded', async function() {
 					document.querySelector('.confirmation').remove();
 				}
 
-				var parent = $(e.target).parent().parent();
-				var buttons = parent.find(':button');
+				var parent = $(e.target).parents('.card');
+				var buttons = parent.find('.edit-buttons button');
 
 				parent.find(":input").prop("disabled", false);
-				parent.find('.card-body').toggleClass('d-hide');
-				$(buttons[0]).toggleClass('d-hide');
-				$(buttons[1]).toggleClass('d-hide');
+				parent.find('.card-title').addClass('d-hide');
+				parent.find('.card-body').removeClass('d-hide');
+				parent.find('.domains').removeClass('d-hide');
+
+				$(buttons[0]).addClass('d-hide');
+				$(buttons[1]).removeClass('d-hide');
+				$(buttons[2]).removeClass('d-hide');
 			} else if (e.target.innerText == "Save") {
-				var parent = $(e.target).parent().parent();
-				var buttons = parent.find(':button');
+				var parent = $(e.target).parents('.card');
+				var buttons = parent.find('.edit-buttons button');
 				var lang = parent.find('select')[0].value
 				var profile = parent.find('select')[1].value;
 
 				// inputs
-				let in_re = parent.find('.re')[0];
-				let in_pattern = parent.find('.pattern')[0];
+				let domains = [];
+				let in_domain;
+				let d;
+				let in_re;
+				let in_pattern;
+				let found = false;
+
+				let otherRules = data.whitelist.urlList
+								.filter(r => r.id != parent.id)
+								.map(rule => rules.domains);
+
+				for (site of parent.find('.domains .container')) {
+					in_domain = $(site).find('.domain')[0];
+					d = in_domain.value.toLowerCase();
+					in_re = $(site).find('.re')[0];
+					in_pattern = $(site).find('.pattern')[0];
+
+					if (d == "" || otherRules.includes(d) || domains.includes(d) || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(d)) {
+						in_domain.classList.add('is-error');
+						return;
+					}
+
+					in_domain.classList.remove('is-error');
+
+					if (in_re.checked && in_pattern.value == "") {
+						in_pattern.classList.add('is-error');
+						return;
+					}
+
+					in_pattern.classList.remove('is-error');
+
+					domains.push({
+						"domain": d,
+						"re": in_re.checked,
+						"pattern": in_pattern.value
+					});
+				}
+
+				if (!domains.length) {
+					return;
+				}
+
+				// inputs
 				let in_spoof = parent.find('.spoof')[0];
 				let in_auth = parent.find('.auth')[0];
 				let in_ip = parent.find('.ip')[0];
@@ -150,15 +265,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 				let in_name = parent.find('.name')[0];
 				let in_ws = parent.find('.ws')[0];
 				let in_tz = parent.find('.tz')[0];
-
-				if (in_re.checked && in_pattern.value == "") {
-					in_pattern.classList.add('is-error');
-					return;
-				}
-
-				if (in_pattern) {
-					in_pattern.classList.remove('is-error');
-				}
 
 				if (in_spoof.value) {
 					if (!/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(in_spoof.value)) {
@@ -169,11 +275,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 				in_spoof.classList.remove('is-error');
 
-				let index = data.whitelist.urlList.findIndex(rule => rule.url == parent[0].id);
+				let index = data.whitelist.urlList.findIndex(rule => rule.id == parent[0].id);
 				data.whitelist.urlList[index] = {
-					"url": parent[0].id,
-					"re": in_re.checked,
-					"pattern": in_pattern ? in_pattern.value : "",
+					"id": parent[0].id,
+					"domains": domains,
 					"lang": lang != "Default" ? lang : "",
 					"profile": profile ? profile : "default",
 					"spoofIP": in_spoof.value,
@@ -195,13 +300,17 @@ document.addEventListener('DOMContentLoaded', async function() {
 					}
 				});
 
-				parent.find(":input[type='checkbox'], input[type='text']").prop("disabled", true);
-				parent.find('.card-body').toggleClass('d-hide');
-				buttons[0].classList.toggle('d-hide');
-				buttons[1].classList.toggle('d-hide');
+				parent.find('.domains').addClass('d-hide');
+				parent.find('.card-body').addClass('d-hide');
+
+				parent.find('.card-title strong').text(getDomainsDisplay(domains));
+				parent.find('.card-title').removeClass('d-hide');
+				$(buttons[0]).removeClass('d-hide');
+				$(buttons[1]).addClass('d-hide');
+				$(buttons[2]).addClass('d-hide');
 			} else if (e.target.innerText == "Yes") {
-				var parent = $(e.target).parent().parent().parent()[0];
-				let index = data.whitelist.urlList.findIndex(rule => rule.url == parent.id);
+				var parent = $(e.target).parents('.card')[0];
+				let index = data.whitelist.urlList.findIndex(rule => rule.id == parent.id);
 				data.whitelist.urlList.splice(index, 1);
 
 				chrome.runtime.sendMessage({
@@ -216,16 +325,55 @@ document.addEventListener('DOMContentLoaded', async function() {
 			} else if (e.target.innerText == "No") {
 				$(e.target).parent()[0].remove();
 			} else if (e.target.innerText == "Create") {
-				var parent = $(e.target).parent().parent();
+				var parent = $(e.target).parents('.card');
 				var inputs = parent.find(':input');
-				var index = data.whitelist.urlList.findIndex(rule => rule.url == inputs[0].value);
 				var lang = parent.find('select')[0].value;
 				var profile = parent.find('select')[1].value;
 
 				// inputs
-				let in_domain = parent.find('.domain')[0];
-				let in_re = parent.find('.re')[0];
-				let in_pattern = parent.find('.pattern')[0];
+				let domains = [];
+				let in_domain;
+				let d;
+				let in_re;
+				let in_pattern;
+				let found = false;
+
+				for (site of parent.find('.domains .container')) {
+					in_domain = $(site).find('.domain')[0];
+					d = in_domain.value.trim().toLowerCase();
+					in_re = $(site).find('.re')[0];
+					in_pattern = $(site).find('.pattern')[0];
+
+					found = data.whitelist.urlList
+							.filter(r => r.domains
+										.map(d => d.domain)
+										.findIndex(s => s.includes(d)) > -1);
+
+					if (d == "" || found.length || domains.includes(d) || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(d)) {
+						in_domain.classList.add('is-error');
+						return;
+					}
+
+					in_domain.classList.remove('is-error');
+
+					if (in_re.checked && in_pattern.value == "") {
+						in_pattern.classList.add('is-error');
+						return;
+					}
+
+					in_pattern.classList.remove('is-error');
+
+					domains.push({
+						"domain": d,
+						"re": in_re.checked,
+						"pattern": in_pattern.value
+					});
+				}
+
+				if (!domains.length) {
+					return;
+				}
+
 				let in_spoof = parent.find('.spoof')[0];
 				let in_auth = parent.find('.auth')[0];
 				let in_ip = parent.find('.ip')[0];
@@ -233,22 +381,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 				let in_name = parent.find('.name')[0];
 				let in_ws = parent.find('.ws')[0];
 				let in_tz = parent.find('.tz')[0];
-
-				if (in_domain.value == "" || index > -1 || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(in_domain.value)) {
-					in_domain.classList.add('is-error');
-					return;
-				}
-
-				in_domain.classList.remove('is-error');
-
-				if (in_re.checked && in_pattern.value == "") {
-					in_pattern.classList.add('is-error');
-					return;
-				}
-
-				if (in_pattern) {
-					in_pattern.classList.remove('is-error');
-				}
 
 				if (in_spoof.value != "") {
 					if (!/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(in_spoof.value)) {
@@ -260,9 +392,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 				in_spoof.classList.remove('is-error');
 
 				data.whitelist.urlList.push({
-					"url": in_domain.value,
-					"re": in_re.checked,
-					"pattern": in_pattern ? in_pattern.value : "",
+					"id": Math.random().toString(36).substring(7),
+					"domains": domains,
 					"lang": lang ? lang : "",
 					"profile": profile ? profile : "default",
 					"spoofIP": in_spoof.value,
@@ -295,15 +426,18 @@ document.addEventListener('DOMContentLoaded', async function() {
 				$('.content')[0].insertAdjacentHTML('afterbegin', `
 					<div class="card text-left mt-2" style="background-color: #f7f8f9;" id="create">
 					  <div class="card-header">
-						<input class="form-input domain" type="text" placeholder="Enter domain">
+					  	<div class="domains">
+							${siteTemplate()}
+						</div>
 						<button class="btn btn-success btn-sm d-inline-block mt-2">Create</button>
+						<button class="btn btn-primary btn-sm d-inline-block mt-2">Add domain</button>
 						<button class="btn btn-error btn-sm d-inline-block mt-2">Close</button>
 					  </div>
 					  <div class="divider"></div>
 					  <div class="card-body">
-					    <div class="container ">
-					      <div class="columns">
-					        <div class="column col-xs-6">
+						<div class="container ">
+						  <div class="columns">
+							<div class="column col-xs-6">
 								<label class="form-switch">
 									<input class="auth" type="checkbox">
 									<i class="form-icon"></i> Disable auth header
@@ -316,42 +450,41 @@ document.addEventListener('DOMContentLoaded', async function() {
 									<input class="ws" type="checkbox">
 									<i class="form-icon"></i> Disable WebSocket
 								</label>
-					        </div>
-					        <div class="column col-xs-6">
-					            <label class="form-switch">
-					                <input class="ip" type="checkbox">
-					                <i class="form-icon"></i> Enable IP headers
-					            </label>
-					            <label class="form-switch">
-					                <input class="name" type="checkbox">
-					                <i class="form-icon"></i> Enable Protect window name
-					            </label>
-					            <label class="form-switch">
-					                <input class="tz" type="checkbox">
-					                <i class="form-icon"></i> Enable Timezone Spoofing
-					            </label>
-					        </div>
-					      </div>
-					    </div>  
-					    <label class="form-checkbox">
-					        <input class="re" type="checkbox">
-					        <i class="form-icon"></i> Regex enabled
-					    </label>
-					    <label class="form-label">
-					        <i class="form-icon"></i> Header IP (Via & X-Forwarded For) 
-					        <input class="form-input spoof" type="text">
-					    </label>
-		    		    ${languageTemplate('')}
-		    		    ${whitelistTemplate('')}
+							</div>
+							<div class="column col-xs-6">
+								<label class="form-switch">
+									<input class="ip" type="checkbox">
+									<i class="form-icon"></i> Enable IP headers
+								</label>
+								<label class="form-switch">
+									<input class="name" type="checkbox">
+									<i class="form-icon"></i> Enable Protect window name
+								</label>
+								<label class="form-switch">
+									<input class="tz" type="checkbox">
+									<i class="form-icon"></i> Enable Timezone Spoofing
+								</label>
+							</div>
+						  </div>
+						</div>
+						<label class="form-label">
+							<i class="form-icon"></i> Header IP (Via & X-Forwarded For) 
+							<input class="form-input spoof" type="text">
+						</label>
+						${languageTemplate('')}
+						${whitelistTemplate('')}
 					  </div>
 					</div>
 					`);	
 			}
 		} else if (e.target.parentNode.innerText == "Regex enabled") {
 			if (e.target.checked) {
-				$(e.target).parent()[0].insertAdjacentHTML('afterend', patternTemplate("",1, false));
+				let el = $(e.target).parents('.columns').find('.col-5 input')[0];
+				el.classList.remove('d-hide');
+				el.value = "";
 			} else {
-				$(e.target).parent().parent().find('.pattern').remove();
+				let el = $(e.target).parents('.columns').find('.col-5 input')[0];
+				el.classList.add('d-hide');
 			}
 		}
 	});
