@@ -777,20 +777,20 @@ function whitelisted(req) {
 		}
 
 		if (url) {
-			var idx = chameleon.whitelist.urlList.findIndex(u => url.indexOf(u.url) > -1);
-			if (idx > -1) {
-				if (chameleon.whitelist.urlList[idx].re) {
-					if (!new RegExp(chameleon.whitelist.urlList[idx].pattern, "i").test(url)) {
+			var idx = findRule(chameleon.whitelist.urlList, url);
+			if (idx[0] > -1) {
+				if (chameleon.whitelist.urlList[idx[0]].domains[idx[1]].re) {
+					if (!new RegExp(chameleon.whitelist.urlList[idx[0]].domains[idx[1]].pattern, "i").test(url)) {
 						return {on: false};
 					};
 				}
 
 				return {
 					on: true,
-					opt: chameleon.whitelist.urlList[idx].options,
-					lang: chameleon.whitelist.urlList[idx].lang,
-					profile: chameleon.whitelist.urlList[idx].profile,
-					spoofIP: chameleon.whitelist.urlList[idx].spoofIP
+					opt: chameleon.whitelist.urlList[idx[0]].options,
+					lang: chameleon.whitelist.urlList[idx[0]].lang,
+					profile: chameleon.whitelist.urlList[idx[0]].profile,
+					spoofIP: chameleon.whitelist.urlList[idx[0]].spoofIP
 				};
 			}
 		}

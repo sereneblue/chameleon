@@ -41,18 +41,25 @@ let inject = (props, whitelist, injectionText, settings, uaList, languages, zone
 				};
 
 				if (whitelist.enabled) {
-					let idx = whitelist.urlList.findIndex(u => window.location.href.indexOf(u.url) > -1);
-					if (idx > -1) {
+					let idx = [-1, -1];
+
+					for (var i = 0; i < whitelist.urlList.length; i++) {
+						for (var j = 0; j < whitelist.urlList[i].domains.length; j++) {
+							if (window.location.href.includes(whitelist.urlList[i].domains[j].domain)) idx = [i, j];
+						}
+					}
+
+					if (idx[0] > -1) {
 						urlOK = true;
-						wlOptions = whitelist.urlList[idx].options;
-						wlOptions.lang = whitelist.urlList[idx].lang;
+						wlOptions = whitelist.urlList[idx[0]].options;
+						wlOptions.lang = whitelist.urlList[idx[0]].lang;
 
-						wlProfile.profile = whitelist.urlList[idx].profile; 
-						wlProfile.screen = whitelist.urlList[idx].injectProfile.screen;
-						wlProfile.nav = whitelist.urlList[idx].injectProfile.nav;
+						wlProfile.profile = whitelist.urlList[idx[0]].profile; 
+						wlProfile.screen = whitelist.urlList[idx[0]].injectProfile.screen;
+						wlProfile.nav = whitelist.urlList[idx[0]].injectProfile.nav;
 
-						if (whitelist.urlList[idx].re) {
-							urlOK = new RegExp(whitelist.urlList[idx].pattern, "i").test(window.location.href) ? true : false;
+						if (whitelist.urlList[idx[0]].domains[idx[1]].re) {
+							urlOK = new RegExp(whitelist.urlList[idx[0]].domains[idx[1]].pattern, "i").test(window.location.href) ? true : false;
 						}
 					}
 				}

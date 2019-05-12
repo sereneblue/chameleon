@@ -898,7 +898,7 @@ function findRule(rules, needle) {
 		}
 	}
 
-	return [-1, 0];
+	return [-1, -1];
 }
 
 // flat polyfill for Firefox < 62
