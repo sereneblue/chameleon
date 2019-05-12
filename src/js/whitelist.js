@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					in_re = $(site).find('.re')[0];
 					in_pattern = $(site).find('.pattern')[0];
 
-					found = findRule(data.whitelist.urlList, domain)[0] > -1;
+					found = findRule(data.whitelist.urlList, d)[0] > -1;
 
 					if (d == "" || found || domains.includes(d) || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(d)) {
 						in_domain.classList.add('is-error');
