@@ -414,8 +414,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 						value: JSON.stringify(data.whitelist.urlList)
 					}
 				});
-
-				window.location.reload(false);
+				window.location = window.location.href.split("?")[0];
 			} else if (e.target.innerText == "Close") {
 				document.getElementById('create').remove();
 			} else if (e.target.innerText == "Create new rule") {
@@ -496,11 +495,14 @@ document.addEventListener('DOMContentLoaded', async function() {
 	if (mode == "edit") {
 		searchInput.val(domain);
 		$('#searchInput').trigger('keyup');
-		$('.card :button')[0].click();	
+		$('.edit-buttons button')[0].click();
 	} else if (mode == "create") {
-		if (data.whitelist.urlList.findIndex(r => r.url.includes(domain)) == -1) {
+		if (data.whitelist.urlList
+				.filter(r => r.domains
+							.map(d => d.domain)
+							.findIndex(d => d.includes(domain)) > -1)) {
 			$('.header-container button')[0].click();
-			$('.card .form-input.domain').val(domain);
+			$('.card .col-4 .domain:first').val(domain);
 		}
 	}
 });
