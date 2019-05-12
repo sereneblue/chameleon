@@ -344,12 +344,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 					in_re = $(site).find('.re')[0];
 					in_pattern = $(site).find('.pattern')[0];
 
-					found = data.whitelist.urlList
-							.filter(r => r.domains
-										.map(d => d.domain)
-										.findIndex(s => s.includes(d)) > -1);
+					found = findRule(data.whitelist.urlList, domain)[0] > -1;
 
-					if (d == "" || found.length || domains.includes(d) || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(d)) {
+					if (d == "" || found || domains.includes(d) || !/^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/.test(d)) {
 						in_domain.classList.add('is-error');
 						return;
 					}
@@ -497,10 +494,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		$('#searchInput').trigger('keyup');
 		$('.edit-buttons button')[0].click();
 	} else if (mode == "create") {
-		if (data.whitelist.urlList
-				.filter(r => r.domains
-							.map(d => d.domain)
-							.findIndex(d => d.includes(domain)) > -1)) {
+		if (findRule(data.whitelist.urlList, domain)[0] == -1) {
 			$('.header-container button')[0].click();
 			$('.card .col-4 .domain:first').val(domain);
 		}

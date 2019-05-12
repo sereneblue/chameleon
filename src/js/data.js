@@ -891,8 +891,18 @@ let chameleonTimezones = [
   { "zone": "Pacific/Kiritimati", "offset": "+14:00" }
 ];
 
+function findRule(rules, needle) {
+	for (var i = 0; i < rules.length; i++) {
+		for (var j = 0; j < rules[i].domains.length; j++) {
+			if (needle.includes(rules[i].domains[j].domain)) return [i, j];
+		}
+	}
+
+	return [-1, 0];
+}
+
 // flat polyfill for Firefox < 62
-function flatten (arg) {
+function flatten(arg) {
   return arg.reduce(function (accumulator, currentValue) {
     return accumulator.concat(
       Array.isArray(currentValue) ? flatten(currentValue) : currentValue

@@ -196,10 +196,10 @@ async function updateUI() {
     	l.protocol != "file:") {
 		$('.whitelist h5').text(l.host);
 
-		let idx = data.whitelist.urlList.findIndex(r => currentTab[0].url.indexOf(r.url) > -1);
+		let idx = findRule(data.whitelist.urlList, currentTab[0].url);
 
-		if (idx > -1) {
-			let profile = profiles.find(p => p.value == data.whitelist.urlList[idx].profile);
+		if (idx[0] > -1) {
+			let profile = profiles.find(p => p.value == data.whitelist.urlList[idx[0]].profile);
 			profile = profile ? profile.name : "Default Whitelist Profile";
 
 			$('.whitelist p').html(`
@@ -211,8 +211,9 @@ async function updateUI() {
 					<strong>Profile:</strong><br/>
 					${profile}
 				</div>
-				${data.whitelist.urlList[idx].re ? 
-				"<div><strong>Pattern:</strong></br>" + data.whitelist.urlList[idx].pattern + "</div>" : "" }`);
+				<input id="whitelistMode" type="hidden" value="1">
+				${data.whitelist.urlList[idx[0]].domains[idx[1]].re ? 
+				"<div><strong>Pattern:</strong></br>" + data.whitelist.urlList[idx[0]].domains[idx[1]].pattern + "</div>" : "" }`);
 			return;
 		}
 
@@ -625,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var domain = $('.whitelist h5').text();
 
 		chrome.tabs.create({
-		    url:  chrome.runtime.getURL(`/whitelist.html?url=${domain}&mode=${$('.whitelist p').text() == "Status: Whitelisted" ? "edit" : "create"}`)
+		    url:  chrome.runtime.getURL(`/whitelist.html?url=${domain}&mode=${document.querySelector('#whitelistMode') ? "edit" : "create"}`)
 		});
 
 		window.close();
