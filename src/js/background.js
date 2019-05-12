@@ -603,9 +603,9 @@ function blockWebsocket(details) {
 }
 
 // fix youtube issue
-// only check if script injection enabled and whitelist doesn't contain youtube
+// only check if script injection enabled
 function fixYoutube(request) {
-	if (chameleon.settings.enableScriptInjection && chameleon.whitelist.urlList.findIndex(r => r.url.includes("youtube.com")) == -1) {
+	if (chameleon.settings.enableScriptInjection) {
 		if (!request.url.includes("disable_polymer")) {
 			let link = new URL(request.url);
 			let params = new URLSearchParams(link.search);
