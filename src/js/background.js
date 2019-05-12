@@ -812,10 +812,11 @@ function init(data) {
 	if (data.ipRules) {
 		chameleon.ipRules = data.ipRules;
 	}
+
 	saveSettings();
 }
 
-// migrate from < 0.11.0
+// migrate settings to newer version
 function migrate(data) {
 	delete data.whitelist.enableRealProfile;
 	delete data.whitelist.profile;
@@ -824,6 +825,19 @@ function migrate(data) {
 	for (var i = 0; i < data.whitelist.urlList.length; i++) {
 		delete data.whitelist.urlList[i].options.screen;
 		data.whitelist.urlList[i].profile = "default";
+
+		if (data.whitelist.urlList[i].url) {
+			data.whitelist.urlList[i].id = Math.random().toString(36).substring(7);
+			data.whitelist.urlList[i].domains = [{
+	            "domain": data.whitelist.urlList[i].url,
+	            "re": data.whitelist.urlList[i].re,
+	            "pattern": data.whitelist.urlList[i].pattern
+			}];
+
+			delete data.whitelist.urlList[i].url;
+			delete data.whitelist.urlList[i].re;
+			delete data.whitelist.urlList[i].pattern;
+		}
 	}
 
 	return data;
@@ -1060,7 +1074,7 @@ browser.runtime.onInstalled.addListener((details) => {
 		}
 	}
 
-	if (data.version && data.version < "0.11.0") {
+	if (data.version && data.version < "0.12.2") {
 		data = migrate(data);
 	}
 
@@ -1097,6 +1111,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.12.1"});
+	await save({ version: "0.12.2"});
 	changeTimer();
 })();
