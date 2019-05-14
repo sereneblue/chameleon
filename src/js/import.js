@@ -138,7 +138,7 @@ function validate(cfg) {
 		}
 
 		if (w == "defaultProfile") {
-			if (cfg.whitelist.defaultProfile != "none" && profiles.findIndex(cfg.whitelist.defaultProfile) == -1) {
+			if (cfg.whitelist.defaultProfile != "none" && profiles.findIndex(p => p.value == cfg.whitelist.defaultProfile) == -1) {
 				throw Error;
 			}
 			continue;
