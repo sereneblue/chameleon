@@ -71,7 +71,7 @@ let tooltipData = {};
 
 // builds script to inject into pages
 async function buildInjectScript() {
-	let injection = {};
+	let injectionProps = {};
 	let injectionText = {
 		audioContext: "",
 		clientRects: "",
@@ -89,33 +89,33 @@ async function buildInjectScript() {
 	}
 
 	if (chameleon.settings.enableScriptInjection) {
-		injection = spoof.name(injection);
-		injection = spoof.navigator(chameleon.headers.useragent, injection);
+		injectionProps = spoof.name(injectionProps);
+		injectionProps = spoof.navigator(chameleon.headers.useragent, injectionProps);
 
-		if (chameleon.settings.limitHistory) injection = spoof.history(injection);
+		if (chameleon.settings.limitHistory) injectionProps = spoof.history(injectionProps);
 		if (chameleon.settings.protectKeyboardFingerprint) injectionText.kbFingerprint = protectKB();
 		if (chameleon.settings.spoofAudioContext) injectionText.audioContext = spoofAudioContext(`_${Math.random().toString(36)}`);
 		if (chameleon.settings.spoofClientRects) injectionText.clientRects = spoofRects(`_${Math.random().toString(36)}`);
 
 		if (chameleon.settings.screenSize != "default") {
-			injection = spoof.screen(
+			injectionProps = spoof.screen(
 				chameleon.settings.screenSize,
 				chameleon.headers.useragent,
 				chameleon.settings.useragent,
 				chameleon.settings.customScreen,
-				injection
+				injectionProps
 			);
 		}
 
 		if (chameleon.headers.enableDNT) {
-			injection = spoof.dnt(injection);
+			injectionProps = spoof.dnt(injectionProps);
 		}
 
 		if (chameleon.headers.spoofAcceptLang) {
-			injection = spoof.language(
+			injectionProps = spoof.language(
 				chameleon.headers.spoofAcceptLangValue,
 				chameleon.ipInfo.language, 
-				injection);
+				injectionProps);
 		}
 
 		if (chameleon.settings.timeZone != "default") {
@@ -175,7 +175,7 @@ async function buildInjectScript() {
 		}
 
 		if (profile && chameleon.settings.notificationsEnabled) {
-			let screenRes = injection.screen ? ` / Screen:  ${injection.screen[0].value}x${injection.screen[1].value}` : "";
+			let screenRes = injectionProps.screen ? ` / Screen:  ${injectionProps.screen[0].value}x${injectionProps.screen[1].value}` : "";
 
 			chrome.notifications.create({
 				"type": "basic",
@@ -185,13 +185,12 @@ async function buildInjectScript() {
 		}
 
 		return inject(
-			injection,
+			injectionProps,
 			wl,
 			injectionText,
 			{
 				name : chameleon.settings.protectWinName
 			},
-			uaList,
 			languages,
 			chameleon.settings.timeZone == "ip" ? chameleon.ipInfo.timezone : chameleon.settings.timeZone
 		);
