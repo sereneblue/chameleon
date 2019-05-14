@@ -48,28 +48,28 @@ const loopScreenResolutions = (options) => {
 
 const loopTimezones = (options) => {
 	let curTime = new Date();
-	options.forEach(function(tz) {
-		let offset = curTime.getTimezoneOffset(); 
-		if (offset != moment.tz.zone(tz.zone).utcOffset(curTime.getTime())) {
-			it(`should use timezone: ${tz.zone}`, async () => {
-				await driver.executeScript(`
-					var el = document.querySelector('select[name="timeZone"]');
-					el.value = "${tz.zone}";
-					el.dispatchEvent(new Event('change'));
-				`);
+	let tz = options[Math.floor(Math.random() * options.length)];
+	let offset = curTime.getTimezoneOffset();
 
-				await wait(SLEEP_TIME);
-				await driver.get(LOCALSERVER);
-				await wait(SLEEP_TIME);
+	if (offset != moment.tz.zone(tz.zone).utcOffset(curTime.getTime())) {
+		it(`should use timezone: ${tz.zone}`, async () => {
+			await driver.executeScript(`
+				var el = document.querySelector('select[name="timeZone"]');
+				el.value = "${tz.zone}";
+				el.dispatchEvent(new Event('change'));
+			`);
 
-				let spoofedOffset = await driver.executeScript(`
-					return document.querySelector('#offset').innerText;
-				`);
+			await wait(SLEEP_TIME);
+			await driver.get(LOCALSERVER);
+			await wait(SLEEP_TIME);
 
-				expect(spoofedOffset).to.not.equal(offset);
-			});
-		};
-	});
+			let spoofedOffset = await driver.executeScript(`
+				return document.querySelector('#offset').innerText;
+			`);
+
+			expect(spoofedOffset).to.not.equal(offset);
+		});
+	};
 }
 
 const selectOption = async (selector) => {
