@@ -200,7 +200,14 @@ async function updateUI() {
 
 		if (idx[0] > -1) {
 			let profile = profiles.find(p => p.value == data.whitelist.urlList[idx[0]].profile);
-			profile = profile ? profile.name : "Default Whitelist Profile";
+
+			if (profile) {
+				profile = profile.name;
+			} else if (data.whitelist.urlList[idx[0]].profile == "default") {
+				profile = "Default Whitelist Profile";
+			} else if (data.whitelist.urlList[idx[0]].profile == "real") {
+				profile = "Real Profile";
+			}
 
 			$('.whitelist p').html(`
 				<div>
