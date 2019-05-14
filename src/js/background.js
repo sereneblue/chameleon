@@ -476,7 +476,7 @@ function rewriteHeaders(e) {
 					if (chameleon.whitelist.defaultProfile != "none") {
 						header.value = profiles.find(p => p.value == chameleon.whitelist.defaultProfile).ua;
 					}
-				} else {
+				} else if (wl.profile != "real") {
 					header.value = profiles.find(p => p.value == wl.profile).ua;
 				}
 			} else {
