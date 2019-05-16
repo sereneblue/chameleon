@@ -604,7 +604,37 @@ function blockWebsocket(details) {
 // fix youtube issue
 // only check if script injection enabled
 function fixYoutube(request) {
+	let isChrome = (type, match) => {
+		if (type == "profile") {
+			return [
+				"win1", "win2", "win3", "win4", 
+				"mac1", "mac2", "linux1", "linux2", "linux3",
+				"linux4", "linux5", "linux6"].includes(match);
+		} else {
+			if (/Chrome/.test(match) && 
+				!/Edge/.test(match) || !/Android/.test(match)) {
+				return true;
+			}
+		}
+	}
+
 	if (chameleon.settings.enableScriptInjection) {
+		// check if youtube in whitelist
+		let wl = whitelisted(request);
+		if (!wl.on) {
+			if (!isChrome("ua", chameleon.settings.useragent)) {
+				return;
+			}
+		} else {
+			if (wl.profile == "default") {
+				if (!isChrome("profile", chameleon.whitelist.defaultProfile)) {
+					return;
+				}
+			} else if (!isChrome("profile", wl.profile)) {
+				return;
+			}
+		}
+
 		if (!request.url.includes("disable_polymer")) {
 			let link = new URL(request.url);
 			let params = new URLSearchParams(link.search);
