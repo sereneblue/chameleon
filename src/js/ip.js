@@ -57,7 +57,7 @@ function buildTable(rules) {
 			<tr>
 		      <td>
 				<div class="form-group">
-			      	<span class="display text-bold">${rule.ip}</span>
+			      	<div class="display text-bold">${rule.ip}</div>
 					<input class="form-input d-hide" type="text" value="${rule.ip}">
 					<div class="range" style="color: rgba(0,0,0,0.5);">${getIPRange(rule.ip)}</div>
 				</div>
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 			<tr>
 		      <td>
 			  	<div class="form-group">
-			      	<span class="display text-bold">${ip.join(',')}</span>
+			      	<div class="display text-bold">${ip.join(',')}</div>
 					<input class="form-input d-hide" type="text" value="${ip.join(',')}">
 					<div class="range" style="color: rgba(0,0,0,0.5);">${getIPRange(ip)}</div>
 				</div>
