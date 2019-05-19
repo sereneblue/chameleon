@@ -58,6 +58,7 @@ let chameleon = {
 		webSockets: "allow_all"
 	},
 	timeout: null,
+	version: "0.12.2",
 	whitelist: {
 		enabled: false,
 		defaultProfile: "none",
@@ -1140,6 +1141,6 @@ browser.runtime.onInstalled.addListener((details) => {
 		chameleon.ipInfo.update = 1;
 	}
 
-	await save({ version: "0.12.2"});
+	await save({ version: chameleon.version });
 	changeTimer();
 })();
