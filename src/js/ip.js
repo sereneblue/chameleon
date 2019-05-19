@@ -9,15 +9,23 @@ function get(key) {
 }
 
 function getIPRange(ip) {
-	let cidr = new IPCIDR(ip);
+	let display = "";
 
-	if (cidr.isValid()) {
-		let range = cidr.toRange();
+	for (var i = 0; i < ip.length; i++) {
+		let cidr = new IPCIDR(ip[i]);
 
-		return range[0] == range[1] ? "" : `{ ${range[0]} - ${range[1]} }`;
+		if (cidr.isValid()) {
+			let range = cidr.toRange();
+
+			display += range[0] == range[1] ? range[0] : `{ ${range[0]} - ${range[1]} }`;
+		}
+
+		if (i < ip.length - 1) {
+			display += "<br/>";
+		}
 	}
 
-	return "";
+	return display;
 }
 
 function languageTemplate(lang, visible=false) {
@@ -51,7 +59,7 @@ function buildTable(rules) {
 				<div class="form-group">
 			      	<span class="display text-bold">${rule.ip}</span>
 					<input class="form-input d-hide" type="text" value="${rule.ip}">
-					<span class="range" style="color: rgba(0,0,0,0.5);">${getIPRange(rule.ip)}</span>
+					<div class="range" style="color: rgba(0,0,0,0.5);">${getIPRange(rule.ip)}</div>
 				</div>
 	      	  </td>
 		      <td>
@@ -112,12 +120,15 @@ document.addEventListener('DOMContentLoaded', async function() {
 	});
 
 	$(document).on('click', '#saveRule', function (e) {
-		let ip = $('.create .ip')[0].value;
-		let cidr = new IPCIDR(ip);
+		let ip = $('.create .ip')[0].value.split(',').map(i => i.trim());
 
-		if (!cidr.isValid()) {
-			$('.create .card-header .form-group').addClass('has-error');
-			return;
+		for (var i = 0; i < ip.length; i++) {
+			let cidr = new IPCIDR(ip[i]);
+
+			if (!cidr.isValid()) {
+				$('.create .card-header .form-group').addClass('has-error');
+				return;
+			}
 		}
 
 		$('.create .card-header .form-group').removeClass('has-error');
@@ -129,17 +140,21 @@ document.addEventListener('DOMContentLoaded', async function() {
 		$('tbody tr').each(function () {
 			rule = {};
 			$(this).find('td .display').each(function (i) {
-				var key =  i == 0 ? "ip" : (i == 1 ? "lang" : "tz"); 
+				var key = i == 0 ? "ip" : (i == 1 ? "lang" : "tz"); 
 
-				rule[key] = this.innerText;
+				rule[key] = key == "ip" ? this.innerText.split(",") : this.innerText;
 			});
 
 			ipRules.push(rule);
 		})
+
+		ipRules.flat();
 		
-		if (ipRules.findIndex(r => r.ip == ip) > -1) {
-			$('.create .card-header .form-group').addClass('has-error');
-			return;
+		for (var i = 0; i < ip.length; i++) {
+			if (ipRules.includes(ip[i])) {
+				$('.create .card-header .form-group').addClass('has-error');
+				return;
+			}
 		}
 
 		$('.create .card-header .form-group').removeClass('has-error');
@@ -157,9 +172,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 			<tr>
 		      <td>
 			  	<div class="form-group">
-			      	<span class="display text-bold">${ip}</span>
-					<input class="form-input d-hide" type="text" value="${ip}">
-					<span class="range" style="color: rgba(0,0,0,0.5);">${getIPRange(ip)}</span>
+			      	<span class="display text-bold">${ip.join(',')}</span>
+					<input class="form-input d-hide" type="text" value="${ip.join(',')}">
+					<div class="range" style="color: rgba(0,0,0,0.5);">${getIPRange(ip)}</div>
 				</div>
 	      	  </td>
 		      <td>
@@ -220,13 +235,15 @@ document.addEventListener('DOMContentLoaded', async function() {
 	$(document).on('click', '.save-btn', function (e) {
 		let parent = $(e.target).parent().parent();
 
-		let ip = parent.find('input')[0].value;
+		let ip = parent.find('input')[0].value.split(',').map(i => i.trim());
 
-		let cidr = new IPCIDR(ip);
-				
-		if (!cidr.isValid()) {
-			$('.create .card-header .form-group').addClass('has-error');
-			return;
+		for (var i = 0; i < ip.length; i++) {
+			let cidr = new IPCIDR(ip[i]);
+
+			if (!cidr.isValid()) {
+				$('.create .card-header .form-group').addClass('has-error');
+				return;
+			}
 		}
 
 		parent.find('.form-group').removeClass('has-error');
@@ -240,16 +257,24 @@ document.addEventListener('DOMContentLoaded', async function() {
 			$(this).find('td .display').each(function (i) {
 				var key =  i == 0 ? "ip" : (i == 1 ? "lang" : "tz"); 
 
-				rule[key] = this.innerText;
+				rule[key] = key == "ip" ? this.innerText.split(",") : this.innerText;
 			});
 
 			ipRules.push(rule);
 		});
 
+		ipRules.flat();
 		
 		if (ip != parent.find('.display')[0].innerText) {
-			if (ipRules.findIndex(r => r.ip == ip) > -1) {
+			if (ipRules.includes(ip)) {
 				parent.find('.form-group').addClass('has-error');
+				return;
+			}
+		}
+
+		for (var i = 0; i < ip.length; i++) {
+			if (ipRules.includes(ip[i])) {
+				$('.create .card-header .form-group').addClass('has-error');
 				return;
 			}
 		}
@@ -259,7 +284,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		let idx = ipRules.findIndex(r => r.ip == parent.find('.display')[0].innerText);
 		
 		// only change if value was changed
-		if (!(ipRules[idx].ip == ip && ipRules[idx].lang == lang && ipRules[idx].tz == tz)) {
+		if (!(ipRules[idx].ip.join(',') == ip.join(',') && ipRules[idx].lang == lang && ipRules[idx].tz == tz)) {
 			ipRules[idx].ip = ip;
 			ipRules[idx].lang = lang;
 			ipRules[idx].tz = tz;
@@ -267,7 +292,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 			parent.find('.display')[0].innerText = ip;
 			parent.find('.display')[1].innerText = lang;
 			parent.find('.display')[2].innerText = tz;
-			parent.find('.range')[0].innerText = getIPRange(ip);
+			parent.find('.range')[0].innerHTML = getIPRange(ip);
 
 			chrome.runtime.sendMessage({
 				action: "ipRules",

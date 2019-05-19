@@ -218,24 +218,27 @@ async function getIPInfo() {
 
 		if (data.timezone && data.languages) {
 			// check if in ip rules
-			let inIPRules = -1;
+			let ruleIndex = (function(ip) {
+					for (var i = 0; i < chameleon.ipRules.length; i++) {
+						for (var j = 0; j < chameleon.ipRules[i].ip.length; j++) {
+							let cidr = new IPCIDR(chameleon.ipRules[i].ip[j]);
 
-			for (var i = 0; i < chameleon.ipRules.length; i++) {
-				let cidr = new IPCIDR(chameleon.ipRules[i].ip);
+							if (cidr.contains(data.ip)) {
+								return i;
+							}
+						}
+					}
 
-				if (cidr.contains(data.ip)) {
-					inIPRules = i;
-					break;
-				}
-			}
+					return -1;
+				})();
 
-			if (inIPRules > -1) {
-				let lang = languages.find(l => l.display == chameleon.ipRules[i].lang);
+			if (ruleIndex > -1) {
+				let lang = languages.find(l => l.display == chameleon.ipRules[ruleIndex].lang);
 
-				tzSpoof = ` timezone: UTC${moment().tz(chameleon.ipRules[i].tz).format('Z')}`;
+				tzSpoof = ` timezone: UTC${moment().tz(chameleon.ipRules[ruleIndex].tz).format('Z')}`;
 				langSpoof = ` lang: ${lang.display}`;
 
-				chameleon.ipInfo.timezone = chameleon.ipRules[i].tz;
+				chameleon.ipInfo.timezone = chameleon.ipRules[ruleIndex].tz;
 				chameleon.ipInfo.language = lang.value;;
 			} else {
 				if (chameleon.settings.timeZone == "ip") {
@@ -848,25 +851,33 @@ function init(data) {
 
 // migrate settings to newer version
 function migrate(data) {
-	delete data.whitelist.enableRealProfile;
-	delete data.whitelist.profile;
+	if (data.whitelist.enableRealProfile) delete data.whitelist.enableRealProfile;
+	if (data.whitelist.profile) delete data.whitelist.profile;
 
-	data.whitelist.defaultProfile = "none";
-	for (var i = 0; i < data.whitelist.urlList.length; i++) {
-		delete data.whitelist.urlList[i].options.screen;
-		data.whitelist.urlList[i].profile = "default";
+	if (data.whitelist.defaultProfile == undefined) {
+		data.whitelist.defaultProfile = "none";
+		for (var i = 0; i < data.whitelist.urlList.length; i++) {
+			delete data.whitelist.urlList[i].options.screen;
+			data.whitelist.urlList[i].profile = "default";
 
-		if (data.whitelist.urlList[i].url) {
-			data.whitelist.urlList[i].id = Math.random().toString(36).substring(7);
-			data.whitelist.urlList[i].domains = [{
-	            "domain": data.whitelist.urlList[i].url,
-	            "re": data.whitelist.urlList[i].re,
-	            "pattern": data.whitelist.urlList[i].pattern
-			}];
+			if (data.whitelist.urlList[i].url) {
+				data.whitelist.urlList[i].id = Math.random().toString(36).substring(7);
+				data.whitelist.urlList[i].domains = [{
+		            "domain": data.whitelist.urlList[i].url,
+		            "re": data.whitelist.urlList[i].re,
+		            "pattern": data.whitelist.urlList[i].pattern
+				}];
 
-			delete data.whitelist.urlList[i].url;
-			delete data.whitelist.urlList[i].re;
-			delete data.whitelist.urlList[i].pattern;
+				delete data.whitelist.urlList[i].url;
+				delete data.whitelist.urlList[i].re;
+				delete data.whitelist.urlList[i].pattern;
+			}
+		}
+	}
+	
+	if (data.ipRules != undefined) {
+		for (var i = 0; i < data.ipRules.length; i++) {
+			data.ipRules[i].ip = [data.ipRules[i].ip];
 		}
 	}
 
@@ -1104,7 +1115,7 @@ browser.runtime.onInstalled.addListener((details) => {
 		}
 	}
 
-	if (data.version && data.version < "0.12.2") {
+	if (data.version == undefined || (data.version && data.version < "0.12.3")) {
 		data = migrate(data);
 	}
 
@@ -1122,7 +1133,7 @@ browser.runtime.onInstalled.addListener((details) => {
 		data.excluded.android.push(false);
 	}
 
-	if (data.settings.timeZone == "America/Puerto_Rico") {
+	if (data.settings && data.settings.timeZone == "America/Puerto_Rico") {
 		data.settings.timeZone = "America/Santiago";
 	}
 
