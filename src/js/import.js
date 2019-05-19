@@ -91,8 +91,17 @@ function validate(cfg) {
 	}
 
 	for (r in cfg.ipRules) {
-		let cidr = new IPCIDR(cfg.ipRules[r].ip);
-		if (!cidr.isValid()) throw Error;
+		if (typeof cfg.ipRules[r].ip == "string") {
+			let cidr = new IPCIDR(cfg.ipRules[r].ip);
+			if (!cidr.isValid()) throw Error;
+
+			cfg.ipRules[r].ip = [cfg.ipRules[r].ip];
+		} else {
+			for (var i = 0; i < cfg.ipRules[r].ip.length; i++) {
+				let cidr = new IPCIDR(cfg.ipRules[r].ip[i]);
+				if (!cidr.isValid()) throw Error;
+			}
+		}
 
 		if (languages.findIndex(l => l.display == cfg.ipRules[r].lang) == -1) throw Error;
 		if (chameleonTimezones.findIndex(t => t.zone == cfg.ipRules[r].tz) == -1) throw Error;

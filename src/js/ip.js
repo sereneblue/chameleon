@@ -17,7 +17,7 @@ function getIPRange(ip) {
 		if (cidr.isValid()) {
 			let range = cidr.toRange();
 
-			display += range[0] == range[1] ? range[0] : `{ ${range[0]} - ${range[1]} }`;
+			display += range[0] == range[1] ? range[0] : `${range[0]} - ${range[1]}`;
 		}
 
 		if (i < ip.length - 1) {
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 			let cidr = new IPCIDR(ip[i]);
 
 			if (!cidr.isValid()) {
-				$('.create .card-header .form-group').addClass('has-error');
+				parent.find('.form-group').addClass('has-error');
 				return;
 			}
 		}
@@ -265,6 +265,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 		ipRules.flat();
 		
+		// check if already created rule
 		if (ip != parent.find('.display')[0].innerText) {
 			if (ipRules.includes(ip)) {
 				parent.find('.form-group').addClass('has-error');
@@ -272,9 +273,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 			}
 		}
 
+		// check if any ip in input exists in rules
 		for (var i = 0; i < ip.length; i++) {
 			if (ipRules.includes(ip[i])) {
-				$('.create .card-header .form-group').addClass('has-error');
+				parent.find('.form-group').addClass('has-error');
 				return;
 			}
 		}
