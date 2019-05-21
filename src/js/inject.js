@@ -70,7 +70,7 @@ let inject = (props, whitelist, injectionText, settings, languages, zoneName) =>
 			}
 		}
 
-		if (!(urlOK && (wlOptions.name && wlOptions.timezone) && 
+		if (!(urlOK && (wlOptions.winName == false && wlOptions.timezone == false) && 
 			 (
 				wlProfile.profile == "real" ||
 				(wlProfile.profile == "default" && whitelist.injectProfile.screen.length == 0) // real profile
