@@ -49,6 +49,7 @@ function validate(cfg) {
 		cfg.settings && 
 		cfg.whitelist)) throw Error;
 
+	console.log('[DEBUG] Validating headers...');
 	for (h in cfg.headers) {
 		if (['blockEtag', 'disableAuth', 'disableRef', 'enableDNT', 
 			 'spoofAccept', 'spoofAcceptLang',  'spoofSourceRef', 'spoofVia',
@@ -78,6 +79,7 @@ function validate(cfg) {
 		}
 	}
 
+	console.log('[DEBUG] Validating excluded...');
 	for (e in cfg.excluded) {
 		if (e == "all") {
 			if (cfg.excluded[e].length != Object.entries(uaList).length) throw Error;
@@ -90,6 +92,7 @@ function validate(cfg) {
 		}
 	}
 
+	console.log('[DEBUG] Validating IP rules...');
 	for (r in cfg.ipRules) {
 		if (typeof cfg.ipRules[r].ip == "string") {
 			let cidr = new IPCIDR(cfg.ipRules[r].ip);
@@ -107,6 +110,7 @@ function validate(cfg) {
 		if (chameleonTimezones.findIndex(t => t.zone == cfg.ipRules[r].tz) == -1) throw Error;
 	}
 
+	console.log('[DEBUG] Validating settings...');
     for (s in cfg.settings) {
 		if (['disableWebSockets', 'enableScriptInjection', 'limitHistory', 'notificationsEnabled', 
 				  'protectKeyboardFingerprint', 'protectWinName', 'spoofAudioContext', 'spoofClientRects'].includes(s)) {
@@ -128,12 +132,15 @@ function validate(cfg) {
 		if (s == "useragent" && !profileValues.includes(cfg.settings[s])) throw Error;
 	}
 
+	console.log('[DEBUG] Validating whitelist...');
 	for (w in cfg.whitelist) {
 		if (w == "urlList") {
 			for (index in cfg.whitelist[w]) {
-				if (!cfg.whitelist[w][index].url || 
-					(cfg.whitelist[w][index].re == true && !cfg.whitelist[w][index].pattern)) throw Error;
-				
+				for (var i in cfg.whitelist[w][index].domains) {
+					if (!cfg.whitelist[w][index].domains[i].domain || 
+						(cfg.whitelist[w][index].domains[i].re == true && !cfg.whitelist[w][index].domains[i].pattern)) throw Error;		
+				}
+
 				for (opt in cfg.whitelist[w][index].options) {
 					if (!whitelistOptions.includes(opt)) throw Error;
 					if (typeof(cfg.whitelist[w][index].options[opt]) != "boolean") throw Error;
