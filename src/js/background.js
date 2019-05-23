@@ -626,7 +626,7 @@ function fixYoutube(request) {
 		// check if youtube in whitelist
 		let wl = whitelisted(request);
 		if (!wl.on) {
-			if (!isChrome("ua", chameleon.settings.useragent)) {
+			if (!isChrome("ua", chameleon.headers.useragent)) {
 				return;
 			}
 		} else {
