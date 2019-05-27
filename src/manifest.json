@@ -12,7 +12,7 @@
 	"description": "Spoof your browser profile. Includes a few privacy enhancing options.",
 	"background": {
 		"scripts": [
-			"js/dep/jquery-3.3.1.slim.min.js",
+			"js/dep/jquery-3.4.1.slim.min.js",
 			"js/dep/ip-cidr.min.js",
 			"js/dep/moment.min.js",
 			"js/dep/moment-timezone-with-data.min.js",
