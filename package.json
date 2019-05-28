@@ -8,7 +8,7 @@
     "archiver": "^3.0.0",
     "chai": "^4.2.0",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "geckodriver": "^1.16.2",
     "http-auth": "^3.2.3",
     "mocha": "^5.2.0",
