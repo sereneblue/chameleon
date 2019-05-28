@@ -16,6 +16,6 @@
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "dependencies": {
-    "ws": "^6.2.1"
+    "ws": "^7.0.0"
   }
 }
