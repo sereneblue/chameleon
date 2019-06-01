@@ -42,7 +42,7 @@
                 <p id="settingsHeader"></p>
                 <button id="importSettings" style="margin-top: 1em;"></button>
                 <button id="exportSettings" style="margin-top: 1em;"></button>
-                <button id="resetSettings" style="margin-top: 1em;"></button>
+                <button id="resetSettings" style="margin-top: 1em;"><span class="genericReset" /></button>
             </div>
         </div>
         <div class="active tab" id="profile">
@@ -237,44 +237,44 @@
         <div class="tab" id="options">
             <ul class="groups">
                 <li id="sub_scriptInjection">
-                    Script Injection Options
+                    <span id="optionsGroupScriptInjection"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_scriptInjection">
                     <div class="opt">
-                        <label><input name="enableScriptInjection" type="checkbox"> Enable script injection</label>
+                        <label><input name="enableScriptInjection" type="checkbox">&nbsp;<span id="optionsEnableScriptInjection" /></label>
                         <br/>
-                        <span style="font-size: 12px;">An option with * requires script injection</span>
+                        <span style="font-size: 12px;"><span id="optionsEnableScriptInjectionMsg" /></span>
                     </div>
                     <div class="opt">
-                        <label>Websockets:</label>
+                        <label><span id="optionsWebsockets"/>:</label>
                         <select name="webSockets">
-                            <option value="allow_all">Allow all</option>
-                            <option value="block_3rd_party">Block 3rd Party</option>
-                            <option value="block_all">Block All</option>
+                            <option value="allow_all"></option>
+                            <option value="block_3rd_party"></option>
+                            <option value="block_all"></option>
                         </select>
                     </div>
                     <div class="opt">
-                        <label><input name="limitHistory" type="checkbox"> Limit tab history*</label>
+                        <label><input name="limitHistory" type="checkbox">&nbsp;<span id="optionsLimitHistory"></span>*</label>
                     </div>
                     <div class="opt">
-                        <label><input name="protectWinName" type="checkbox"> Protect window.name*</label>
+                        <label><input name="protectWinName" type="checkbox">&nbsp;<span id="optionsProtectWinName"></span>*</label>
                     </div>
                     <div class="opt">
-                        <label><input name="protectKeyboardFingerprint" type="checkbox"> Protect keyboard fingerprint*</label>
+                        <label><input name="protectKeyboardFingerprint" type="checkbox">&nbsp;<span id="optionsProtectKBFingerprint"></span>*</label>
                     </div>
                     <div class="opt">
-                        <label><input name="spoofAudioContext" type="checkbox"> Spoof Audio Context*</label>
+                        <label><input name="spoofAudioContext" type="checkbox">&nbsp;<span id="optionsSpoofAudioContext"></span>*</label>
                     </div>
                     <div class="opt">
-                        <label><input name="spoofClientRects" type="checkbox"> Spoof Client Rects*</label>
+                        <label><input name="spoofClientRects" type="checkbox">&nbsp;<span id="optionsSpoofClientRects"></span>*</label>
                     </div>
                     <div class="opt">
-                        <label>Screen size spoofing*: </label>
+                        <label><span id="optionsSpoofScreenSize"></span>*:&nbsp;</label>
                         <select name="screenSize">
-                            <option value="default">Default</option>
-                            <option value="custom">Custom</option>
-                            <option value="profile">Profile</option>
+                            <option value="default"></option>
+                            <option value="custom"></option>
+                            <option value="profile"></option>
                             <option value="1366x768">1366x768</option>
                             <option value="1440x900">1440x900</option>
                             <option value="1600x900">1600x900</option>
@@ -284,78 +284,78 @@
                         </select>
                         <table id="customScreen" style="width: unset; margin-left: auto; display: none">
                             <tr>
-                                <td><label for="customWidth">Screen Width (px): </label></td>
+                                <td><label for="customWidth"><span id="optionsSpoofScreenSizeCustomWidth"></span>:&nbsp;</label></td>
                                 <td><input type="number" name="customWidth" id="customWidth" style="width: 50px" min="0"></td>
                             </tr>
                             <tr>
-                                <td><label for="customHeight">Screen Height (px): </label></td>
+                                <td><label for="customHeight"><span id="optionsSpoofScreenSizeCustomHeight"></span>:&nbsp;</label></td>
                                 <td><input type="number" name="customHeight" id="customHeight" style="width: 50px"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="opt">
-                        <label>Timezone*: </label>
+                        <label><span id="optionsSpoofTimezone"></span>*:&nbsp;</label>
                         <select name="timeZone">
-                            <option value="default" selected="selected">Default</option>
+                            <option value="default" selected="selected"></option>
                             <option value="ip">IP</option>
                         </select>
                     </div>
                 </div>
                 <li id="sub_standard">
-                    Standard Options
+                    <span id="optionsGroupStandard"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_standard">
                     <div class="opt">
                         <div class="opt">
-                            <label><input name="firstPartyIsolate" type="checkbox"> Enable 1st party isolation</label>
-                            <button style="float: right" name="resetFirstParty">reset</button>
+                            <label><input name="firstPartyIsolate" type="checkbox">&nbsp;<span id="optionsFirstPartyIsolate" /></label>
+                            <button style="float: right" name="resetFirstParty"><span class="genericReset" /></button>
                         </div>
                         <div class="opt">
-                            <label><input name="resistFingerprinting" type="checkbox"> Resist fingerprinting</label>
-                            <button style="float: right" name="resetFingerprinting">reset</button>
+                            <label><input name="resistFingerprinting" type="checkbox">&nbsp;<span id="optionsResistFingerprinting" /></label>
+                            <button style="float: right" name="resetFingerprinting"><span class="genericReset" /></button>
                         </div>
                         <div class="opt">
-                            <label for="trackingProtectionMode">Tracking protection mode: </label>
+                            <label for="trackingProtectionMode"><span id="optionsTrackingProtection" />:&nbsp;</label>
                             <select name="trackingProtectionMode">
-                                <option value="always">On</option>
-                                <option value="never">Off</option>
-                                <option value="private_browsing" selected="selected">Enabled in private browsing</option>
+                                <option value="always"></option>
+                                <option value="never"></option>
+                                <option value="private_browsing" selected="selected"></option>
                             </select>
                         </div>
                         <div class="opt">
-                            <label for="webRTCIPHandlingPolicy">WebRTC Policy: </label>
+                            <label for="webRTCIPHandlingPolicy"><span id="optionsWebRTC"></span>: </label>
                             <select name="webRTCIPHandlingPolicy">
-                                <option value="default" selected="selected">Default</option>
-                                <option value="default_public_and_private_interfaces">Use Public and Private interface</option>
-                                <option value="default_public_interface_only">Only use Public interface (best)</option>
-                                <option value="disable_non_proxied_udp">Disable non-proxified UDP</option>
+                                <option value="default" selected="selected"></option>
+                                <option value="default_public_and_private_interfaces"></option>
+                                <option value="default_public_interface_only"></option>
+                                <option value="disable_non_proxied_udp"></option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <li id="sub_cookies">
-                    Cookie Options
+                    <span id="optionsGroupCookie"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_cookies">
                     <div class="opt">
-                        <label>Policy: </label>
+                        <label><span id="optionsCookiePolicy"/>:&nbsp;</label>
                         <select name="cookieConfig" style="float: right">
-                            <option value="allow_all">Allow all</option>
-                            <option value="reject_all">Block all</option>
-                            <option value="reject_third_party">Block 3rd party</option>
-                            <option value="allow_visited">Allow 3rd party from visited</option>
-                            <option value="reject_trackers">Reject trackers</option>
+                            <option value="allow_all"></option>
+                            <option value="reject_all"></option>
+                            <option value="reject_third_party"></option>
+                            <option value="allow_visited"></option>
+                            <option value="reject_trackers"></option>
                         </select>
                     </div>
                 </div>
                 <li id="sub_misc">
-                    Misc Options
+                    <span id="optionsGroupMisc"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_misc">
-                    <p style="text-align: center;">Copy link to about:config entry</p>
+                    <p style="text-align: center;"><span class="aboutConfigMsg"/></p>
                     <div class="opt">
                         <a href="about:config?filter=security.mixed_content.block_active_content">→ Block active mixed content</a>
                     </div>
@@ -454,11 +454,11 @@
                     </div>
                 </div>
                 <li id="sub_reporting">
-                    Reporting Options
+                    <span id="optionsGroupReports"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_reporting">
-                    <p style="text-align: center;">Copy link to about:config entry</p>
+                    <p style="text-align: center;"><span class="aboutConfigMsg"/></p>
                     <div class="opt">
                         <a href="about:config?filter=datareporting.policy.dataSubmissionEnabled">→ Disable data submission</a>
                     </div>
@@ -501,22 +501,22 @@
         <div class="tab" id="whitelist">
             <div id="wlEnable">
                 <div>
-                    <label><input type="checkbox" name="enableWhitelist"> Enable whitelist (requires script injection)</label>
+                    <label><input type="checkbox" name="enableWhitelist">&nbsp;<span id="whitelistEnable" /></label>
                 </div>
                 <div style="margin-bottom: 10px 0px;">
-                    <label>Default Whitelist Profile:</label><br/>
+                    <label><span id="whitelistUseDefault" />:</label><br/>
                     <select name="defaultProfile">
-                        <option value="none">Real Profile</option>
+                        <option value="none"></option>
                     </select>
                 </div>
             </div>
-            <button id="viewIPRules" style="width: 100%; margin: 10px 0px 0px 0px;">View Timezone/Language IP rules</button>
-            <button id="viewRules" style="width: 100%; margin: 10px 0px;">View whitelist</button>
+            <button id="viewIPRules" style="width: 100%; margin: 10px 0px 0px 0px;"><span id="whitelistViewIPRules" /></button>
+            <button id="viewRules" style="width: 100%; margin: 10px 0px;"><span id="whitelistViewRules" /></button>
             <div class="whitelist">
-                <h4>Current domain:</h4>
+                <h4><span id="whitelistCurrentDomain"></span>:</h4>
                 <h5></h5>
                 <p></p>
-                <button id="openEditor" style="width: 100%; margin: 10px 0px;">Add/edit domain in whitelist</button>
+                <button id="openEditor" style="width: 100%; margin: 10px 0px;"><span id="whitelistOpenEditor" /></button>
             </div>
         </div>
     </div>

@@ -62,7 +62,6 @@ function localize() {
 	$("#settingsHeader").text(browser.i18n.getMessage("aboutSettings"));
 	$("#importSettings").text(browser.i18n.getMessage("aboutBtnImport"));
 	$("#exportSettings").text(browser.i18n.getMessage("aboutBtnExport"));
-	$("#resetSettings").text(browser.i18n.getMessage("aboutBtnReset"));
 
 	// tab headers
 	$("#menu_profile").text(browser.i18n.getMessage("tabProfile"));
@@ -72,7 +71,6 @@ function localize() {
 
 	// profiles tab
 	$("#notifications").text(browser.i18n.getMessage("profileEnableNotification"));
-	$("#profileReal").text(browser.i18n.getMessage("profileReal"));
 	$("#profileRandom").text(browser.i18n.getMessage("profileRandom"));
 	$("#profileRandomDesktop").text(browser.i18n.getMessage("profileRandomDesktop"));
 	$("#profileRandomMobile").text(browser.i18n.getMessage("profileRandomMobile"));
@@ -128,6 +126,61 @@ function localize() {
 	$("select[name='refererTrimming'] option:eq(2)").text(browser.i18n.getMessage("headersRefererTrimmingOption3"));
 	$("#headersSpoofAccept").text(browser.i18n.getMessage("headersSpoofAccept"));
 	$("#headersSpoofAcceptLang").text(browser.i18n.getMessage("headersSpoofAcceptLang"));
+
+	// options tab
+	$("#optionsGroupScriptInjection").text(browser.i18n.getMessage("optionsGroupScriptInjection"));
+	$("#optionsEnableScriptInjection").text(browser.i18n.getMessage("optionsEnableScriptInjection"));
+	$("#optionsEnableScriptInjectionMsg").text(browser.i18n.getMessage("optionsEnableScriptInjectionMsg"));
+	$("#optionsWebsockets").text(browser.i18n.getMessage("optionsWebsockets"));
+	$("select[name='webSockets'] option:eq(0)").text(browser.i18n.getMessage("optionsWebsocketsOption1"));
+	$("select[name='webSockets'] option:eq(1)").text(browser.i18n.getMessage("optionsWebsocketsOption2"));
+	$("select[name='webSockets'] option:eq(2)").text(browser.i18n.getMessage("optionsWebsocketsOption3"));
+	$("#optionsLimitHistory").text(browser.i18n.getMessage("optionsLimitHistory"));
+	$("#optionsProtectWinName").text(browser.i18n.getMessage("optionsProtectWinName"));
+	$("#optionsProtectKBFingerprint").text(browser.i18n.getMessage("optionsProtectKBFingerprint"));
+	$("#optionsSpoofAudioContext").text(browser.i18n.getMessage("optionsSpoofAudioContext"));
+	$("#optionsSpoofClientRects").text(browser.i18n.getMessage("optionsSpoofClientRects"));
+	$("#optionsSpoofScreenSize").text(browser.i18n.getMessage("optionsSpoofScreenSize"));
+	$("select[name='screenSize'] option:eq(2)").text(browser.i18n.getMessage("optionsSpoofScreenSizeOptionProfile"));
+	$("#optionsSpoofScreenSizeCustomWidth").text(browser.i18n.getMessage("optionsSpoofScreenSizeCustomWidth"));
+	$("#optionsSpoofScreenSizeCustomHeight").text(browser.i18n.getMessage("optionsSpoofScreenSizeCustomHeight"));
+	$("#optionsSpoofTimezone").text(browser.i18n.getMessage("optionsSpoofTimezone"));
+	$("#optionsGroupStandard").text(browser.i18n.getMessage("optionsGroupStandard"));
+	$("#optionsFirstPartyIsolate").text(browser.i18n.getMessage("optionsFirstPartyIsolate"));
+	$("#optionsResistFingerprinting").text(browser.i18n.getMessage("optionsResistFingerprinting"));
+	$("#optionsTrackingProtection").text(browser.i18n.getMessage("optionsTrackingProtection"));
+	$("select[name='trackingProtectionMode'] option:eq(0)").text(browser.i18n.getMessage("optionsTrackingProtectionOption1"));
+	$("select[name='trackingProtectionMode'] option:eq(1)").text(browser.i18n.getMessage("optionsTrackingProtectionOption2"));
+	$("select[name='trackingProtectionMode'] option:eq(2)").text(browser.i18n.getMessage("optionsTrackingProtectionOption3"));
+	$("#optionsWebRTC").text(browser.i18n.getMessage("optionsWebRTC"));
+	$("select[name='webRTCIPHandlingPolicy'] option:eq(1)").text(browser.i18n.getMessage("optionsWebRTCOption2"));
+	$("select[name='webRTCIPHandlingPolicy'] option:eq(2)").text(browser.i18n.getMessage("optionsWebRTCOption3"));
+	$("select[name='webRTCIPHandlingPolicy'] option:eq(3)").text(browser.i18n.getMessage("optionsWebRTCOption4"));
+	$("#optionsGroupCookie").text(browser.i18n.getMessage("optionsGroupCookie"));
+	$('.aboutConfigMsg').text(browser.i18n.getMessage("optionsAboutConfigMsg"));
+	$("#optionsCookiePolicy").text(browser.i18n.getMessage("optionsCookiePolicy"));
+	$("select[name='cookieConfig'] option:eq(0)").text(browser.i18n.getMessage("optionsCookiePolicyOption1"));
+	$("select[name='cookieConfig'] option:eq(1)").text(browser.i18n.getMessage("optionsCookiePolicyOption2"));
+	$("select[name='cookieConfig'] option:eq(2)").text(browser.i18n.getMessage("optionsCookiePolicyOption3"));
+	$("select[name='cookieConfig'] option:eq(3)").text(browser.i18n.getMessage("optionsCookiePolicyOption4"));
+	$("select[name='cookieConfig'] option:eq(4)").text(browser.i18n.getMessage("optionsCookiePolicyOption5"));
+	$("#optionsGroupMisc").text(browser.i18n.getMessage("optionsGroupMisc"));
+	$("#optionsGroupReports").text(browser.i18n.getMessage("optionsGroupReports"));
+	$("#whitelistEnable").text(browser.i18n.getMessage("whitelistEnable"));
+	$("#whitelistUseDefault").text(browser.i18n.getMessage("whitelistUseDefault"));
+	$("#whitelistViewIPRules").text(browser.i18n.getMessage("whitelistViewIPRules"));
+	$("#whitelistViewRules").text(browser.i18n.getMessage("whitelistViewRules"));
+	$("#whitelistCurrentDomain").text(browser.i18n.getMessage("whitelistCurrentDomain"));
+	$("#whitelistOpenEditor").text(browser.i18n.getMessage("whitelistOpenEditor"));
+
+	// generic text
+	$(".genericReset").text(browser.i18n.getMessage("genericReset"));
+	$("select[name='screenSize'] option:eq(1)").text(browser.i18n.getMessage("genericCustom"));
+	$("select[name='screenSize'] option:eq(0)").text(browser.i18n.getMessage("genericDefault"));
+	$("select[name='timeZone'] option:eq(0)").text(browser.i18n.getMessage("genericDefault"));
+	$("select[name='webRTCIPHandlingPolicy'] option:eq(0)").text(browser.i18n.getMessage("genericDefault"));
+	$("#profileReal").text(browser.i18n.getMessage("genericRealProfile"));
+	$("select[name='defaultProfile'] option:eq(0)").text(browser.i18n.getMessage("genericRealProfile"));
 }
 
 // update ui display

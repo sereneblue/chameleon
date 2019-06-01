@@ -51,21 +51,13 @@
     "message": "Export",
     "description": "Label for export settings button"
   },
-  "aboutBtnReset" : {
-    "message": "Reset",
-    "description": "Label for reset settings button"
-  },
   "tabProfile": {
     "message": "Profile",
-    "description": "Title of profile popup tab"
+    "description": "Title of popup tab: profile"
   },
   "profileEnableNotification" : {
     "message": "Enable notifications",
     "description": "Label for enable notifcations"
-  },
-  "profileReal" : {
-    "message": "Real Profile",
-    "description": "Label for real profile"
   },
   "profileRandom" : {
     "message": "Random",
@@ -173,7 +165,7 @@
   },
   "tabHeaders": {
     "message": "Headers",
-    "description": "Title of headers popup tab"
+    "description": "Title of popup tab: headers"
   },
   "headersDisableAuth" : {
     "message" : "Disable Authorization",
@@ -269,10 +261,210 @@
   },
   "tabOptions": {
     "message": "Options",
-    "description": "Title of options popup tab"
+    "description": "Title of popup tab: options"
+  },
+  "optionsGroupScriptInjection": {
+    "message": "Script Injection Options",
+    "description": "Label for group: script injection options"
+  },
+  "optionsEnableScriptInjection": {
+    "message": "Enable script injection",
+    "description": "Label for enable script injection"
+  },
+  "optionsEnableScriptInjectionMsg": {
+    "message": "An option with * requires script injection",
+    "description": "Text for script injection options message"
+  },
+  "optionsWebsockets": {
+    "message": "Websockets",
+    "description": "Label for websocket options"
+  },
+  "optionsWebsocketsOption1": {
+    "message": "Allow all",
+    "description": "Option to allow all websocket connections"
+  },
+  "optionsWebsocketsOption2": {
+    "message": "Block 3rd Party",
+    "description": "Option to block 3rd party websocket connections"
+  },
+  "optionsWebsocketsOption3": {
+    "message": "Block All",
+    "description": "Option to block all websocket connections"
+  },
+  "optionsLimitHistory": {
+    "message": "Limit tab history",
+    "description": "Label for limit tab history"
+  },
+  "optionsProtectCSSExfil": {
+    "message": "Protect CSS Exfil",
+    "description": "Label for protect CSS Exfil"
+  },
+  "optionsProtectWinName": {
+    "message": "Protect window name",
+    "description": "Label for protect window name"
+  },
+  "optionsProtectKBFingerprint": {
+    "message": "Protect keyboard fingerprint",
+    "description": "Label for protect keyboard fingerprint"
+  },
+  "optionsSpoofAudioContext": {
+    "message": "Spoof Audio Context",
+    "description": "Label for spoof audio context"
+  },
+  "optionsSpoofClientRects": {
+    "message": "Spoof Client Rects",
+    "description": "Label for spoof client rects"
+  },
+  "optionsSpoofFontFingerprint": {
+    "message": "Spoof Font fingerprint",
+    "description": "Label for spoof font fingerprint"
+  },
+  "optionsSpoofScreenSize" : {
+    "message": "Screen size spoofing",
+    "description": "Label for spoof screen size"
+  },
+  "optionsSpoofScreenSizeOptionProfile" : {
+    "message": "Profile",
+    "description": "Option for spoof screen size: profile"
+  },
+  "optionsSpoofScreenSizeCustomWidth" : {
+    "message": "Screen Width (px)",
+    "description": "Label for custom screen size: width"
+  },
+  "optionsSpoofScreenSizeCustomHeight" : {
+    "message": "Screen Height (px)",
+    "description": "Label for custom screen size: height"
+  },
+  "optionsSpoofTimezone" : {
+    "message": "Timezone",
+    "description": "Label for spoof timezone"
+  },
+  "optionsGroupStandard": {
+    "message": "Standard Options",
+    "description": "Label for group: standard options"
+  },
+  "optionsFirstPartyIsolate": {
+    "message": "Enable 1st party isolation",
+    "description": "Label for enable 1st party isolation"
+  },
+  "optionsResistFingerprinting": {
+    "message": "Resist fingerprinting",
+    "description": "Label for enable resist fingerprinting"
+  },
+  "optionsTrackingProtection": {
+    "message": "Tracking protection mode",
+    "description": "Label for tracking protection"
+  },
+  "optionsTrackingProtectionOption1": {
+    "message": "On",
+    "description": "Option to enable tracking protection"
+  },
+  "optionsTrackingProtectionOption2": {
+    "message": "Off",
+    "description": "Option to disable tracking protection"
+  },
+  "optionsTrackingProtectionOption3": {
+    "message": "Enabled in private browsing",
+    "description": "Option to enable tracking protection only in private browsing"
+  },
+  "optionsWebRTC": {
+    "message": "WebRTC Policy",
+    "description": "Label for tracking protection"
+  },
+  "optionsWebRTCOption2": {
+    "message": "Use Public and Private interface",
+    "description": "Option to use public & private interface"
+  },
+  "optionsWebRTCOption3": {
+    "message": "Only use Public interface (best)",
+    "description": "Option to only use public interface"
+  },
+  "optionsWebRTCOption4": {
+    "message": "Disable non-proxified UDP",
+    "description": "Option to disable non-proxified UDP"
+  },
+  "optionsGroupCookie": {
+    "message": "Cookie Options",
+    "description": "Label for group: cookie"
+  },
+  "optionsCookiePolicy": {
+    "message": "Policy",
+    "description": "Label for cookie policy"
+  },
+  "optionsCookiePolicyOption1": {
+    "message": "Allow all",
+    "description": "Option to allow all cookies"
+  },
+  "optionsCookiePolicyOption2": {
+    "message": "Block all",
+    "description": "Option to block all cookies"
+  },
+  "optionsCookiePolicyOption3": {
+    "message": "Block 3rd party",
+    "description": "Option to block 3rd party cookies"
+  },
+  "optionsCookiePolicyOption4": {
+    "message": "Allow 3rd party from visited",
+    "description": "Option to allow 3rd party from visited"
+  },
+  "optionsCookiePolicyOption5": {
+    "message": "Reject trackers",
+    "description": "Option to reject trackers"
+  },
+  "optionsGroupMisc": {
+    "message": "Misc Options",
+    "description": "Label for group: miscellaneous"
+  },
+  "optionsAboutConfigMsg": {
+    "message": "Copy link to about:config entry",
+    "description": "Text for misc options message"
+  },
+  "optionsGroupReports": {
+    "message": "Reporting Options",
+    "description": "Label for group: report"
   },
   "tabWhitelist": {
     "message": "Whitelist",
     "description": "Title of whitelist popup tab"
+  },
+  "whitelistEnable": {
+    "message": "Enable whitelist (requires script injection)",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistUseDefault": {
+    "message": "Default Whitelist Profile",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistViewIPRules": {
+    "message": "View Timezone/Language IP rules",
+    "description": "Label for IP rules"
+  },
+  "whitelistViewRules": {
+    "message": "View whitelist",
+    "description": "Label for whitelist rules editor"
+  },
+  "whitelistCurrentDomain": {
+    "message": "Current domain",
+    "description": "Text: Current domain"
+  },
+  "whitelistOpenEditor": {
+    "message": "Add/edit domain in whitelist",
+    "description": "Label for add/edit domain in whitelist"
+  },
+  "genericDefault" : {
+    "message": "Default",
+    "description": "Text: Default"
+  },
+  "genericCustom" : {
+    "message": "Custom",
+    "description": "Text: Custom"
+  },
+  "genericRealProfile" : {
+    "message": "Real Profile",
+    "description": "Text: Real Profile"
+  },
+  "genericReset" : {
+    "message": "Reset",
+    "description": "Text: Reset"
   }
 }
