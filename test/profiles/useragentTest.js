@@ -56,13 +56,15 @@ describe('Profiles', () => {
 				.headless())
 			.build();
 
-	    await driver.get('about:debugging');
+	    await driver.get('about:debugging#/runtime/this-firefox');
 
-		EXTENSION_URI = await driver.executeScript(` 
+		await wait(SLEEP_TIME);
+
+		EXTENSION_URI = await driver.executeScript(`
 			return Array
-			.from(document.querySelectorAll('.addon-target-container'))
-			.filter(e => e.dataset.addonId == "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}")[0]
-			.querySelector('.manifest-url').href.replace('manifest.json', 'popup.html');`
+			.from(document.querySelectorAll('.card.debug-target-item'))
+			.filter(e => e.querySelector('span.debug-target-item__name').title == "Chameleon")[0]
+			.querySelector('.qa-manifest-url').href.replace('manifest.json', 'popup.html');`
 		);
 
 		app.set('view engine', 'ejs')
