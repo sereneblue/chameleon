@@ -6,10 +6,10 @@
 			"strict_min_version": "59.0a1"
 		}
 	},
-	"name": "Chameleon",
+	"name": "__MSG_extName__",
 	"version": "0.12.4",
 	"manifest_version": 2,
-	"description": "Spoof your browser profile. Includes a few privacy enhancing options.",
+	"description": "__MSG_extDescription__",
 	"background": {
 		"scripts": [
 			"js/dep/jquery-3.4.1.slim.min.js",
@@ -31,6 +31,7 @@
 		"default_icon": "img/icon_48.png",
 		"default_popup": "popup.html"
 	},
+	"default_locale": "en",
 	"icons": {
 		"48": "img/icon_48.png",
 		"128": "img/icon_128.png"

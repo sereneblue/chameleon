@@ -1,0 +1,278 @@
+{
+  "extName": {
+    "message": "Chameleon",
+    "description": "Name of the extension."
+  },
+  "extDescription": {
+    "message": "Spoof your browser profile. Includes a few privacy enhancing options.",
+    "description": "Description of the extension."
+  },
+  "aboutContributors" : {
+    "message": "Developed by <a href=\"$AUTHOR$\">sereneblue</a> and <a href=\"$CONTRIB$\">contributors</a>",
+    "description": "Contributors text",
+    "placeholders": {
+      "author" : {
+        "content" : "https://github.com/sereneblue"
+      },
+      "contrib" : {
+        "content" : "https://github.com/sereneblue/chameleon/graphs/contributors"
+      }
+    }
+  },
+  "aboutLicense" : {
+    "message": "Distributed under the GNU GPL v3 license.",
+    "description": "Text for license"
+  },
+  "aboutSrcCode" : {
+    "message": "Source Code",
+    "description": "Text for Github repository link"
+  },
+  "aboutReport" : {
+    "message": "Report a bug",
+    "description": "Text for Github issues link"
+  },
+  "aboutTranslate" : {
+    "message": "Help translate Chameleon",
+    "description": "Text for Crowdin localizations"
+  },
+  "aboutWiki" : {
+    "message": "Wiki",
+    "description": "Text for Chameleon wiki"
+  },
+  "aboutSettings" : {
+    "message": "Settings",
+    "description": "Text for settings section"
+  },
+  "aboutBtnImport" : {
+    "message": "Import",
+    "description": "Label for import settings button"
+  },
+  "aboutBtnExport" : {
+    "message": "Export",
+    "description": "Label for export settings button"
+  },
+  "aboutBtnReset" : {
+    "message": "Reset",
+    "description": "Label for reset settings button"
+  },
+  "tabProfile": {
+    "message": "Profile",
+    "description": "Title of profile popup tab"
+  },
+  "profileEnableNotification" : {
+    "message": "Enable notifications",
+    "description": "Label for enable notifcations"
+  },
+  "profileReal" : {
+    "message": "Real Profile",
+    "description": "Label for real profile"
+  },
+  "profileRandom" : {
+    "message": "Random",
+    "description": "Label for random profile"
+  },
+  "profileRandomDesktop" : {
+    "message": "Random Profile (Desktop)",
+    "description": "Label for random desktop profile"
+  },
+  "profileRandomMobile" : {
+    "message": "Random Profile (Mobile)",
+    "description": "Label for random mobile profile"
+  },
+  "profileScriptInjectionMsg" : {
+    "message": "Script injection must be enabled to fully use profiles.",
+    "description": "Script injection message"
+  },
+  "profilePeriodically" : {
+    "message": "Change periodically",
+    "description" : "Text for interval change"
+  },
+  "profileIntervalNo" : {
+    "message" : "No",
+    "description" : "Option to not change periodically"
+  },
+  "profileIntervalCustom" : {
+    "message" : "Custom interval",
+    "description" : "Option to change periodically using custom interval"
+  },
+  "profileIntervalMinute" : {
+    "message" : "Every minute",
+    "description" : "Option to change periodically: 1 min"
+  },
+  "profileIntervalMinute5" : {
+    "message" : "Every 5 minutes",
+    "description" : "Option to change periodically: 5 min"
+  },
+  "profileIntervalMinute10" : {
+    "message" : "Every 10 minutes",
+    "description" : "Option to change periodically: 10 min"
+  },
+  "profileIntervalMinute20" : {
+    "message" : "Every 20 minutes",
+    "description" : "Option to change periodically: 20 min"
+  },
+  "profileIntervalMinute30" : {
+    "message" : "Every 30 minutes",
+    "description" : "Option to change periodically: 30 min"
+  },
+  "profileIntervalMinute40" : {
+    "message" : "Every 40 minutes",
+    "description" : "Option to change periodically: 40 min"
+  },
+  "profileIntervalMinute50" : {
+    "message" : "Every 50 minutes",
+    "description" : "Option to change periodically: 50 min"
+  },
+  "profileIntervalHour" : {
+    "message" : "Every hour",
+    "description" : "Option to change periodically: 1 hour"
+  },
+  "profileIntervalRefresh" : {
+    "message" : "refresh",
+    "description" : "Label for refresh profile button"
+  },
+  "profileIntervalCustomMin" : {
+    "message" : "Min (minutes):",
+    "description" : "Label for custom interval input: min"
+  },
+  "profileIntervalCustomMax" : {
+    "message" : "Max (minutes):",
+    "description" : "Label for custom interval input: max"
+  },
+  "profileBrowser" : {
+    "message" : "Browsers",
+    "description" : "Text to append to platform, ex. Windows Browsers"
+  },
+  "profileExclude" : {
+    "message" : "Exclude",
+    "description" : "Lbael for exclude profiles"
+  },
+  "profileRandomWindows" : {
+    "message" : "Random Windows Browsers",
+    "description" : "Label for random Windows browsers option"
+  },
+  "profileRandomMacOS" : {
+    "message" : "Random macOS Browsers",
+    "description" : "Label for random macOS browsers option"
+  },
+  "profileRandomLinux" : {
+    "message" : "Random Linux Browsers",
+    "description" : "Label for random Linux browsers option"
+  },
+  "profileRandomIOS" : {
+    "message" : "Random iOS Browsers",
+    "description" : "Label for random iOS browsers option"
+  },
+  "profileRandomAndroid" : {
+    "message" : "Random Android Browsers",
+    "description" : "Label for random Android browsers option"
+  },
+  "profileCustom" : {
+    "message" : "Custom User Agent",
+    "description" : "Lbael for custom user agent"
+  },
+  "tabHeaders": {
+    "message": "Headers",
+    "description": "Title of headers popup tab"
+  },
+  "headersDisableAuth" : {
+    "message" : "Disable Authorization",
+    "description" : "Label for disable auth header"
+  },
+  "headersEnableDNT" : {
+    "message" : "Enable DNT (Do Not Track)",
+    "description" : "Label for enable Do Not Track"
+  },
+  "headersBlockEtag" : {
+    "message" : "Prevent Etag tracking",
+    "description" : "Label for prevent Etag"
+  },
+  "headersSpoofVIa" : {
+    "message" : "Spoof Via using a",
+    "description" : "Label for spoof IP headers (Via)"
+  },
+  "headersSpoofXForwarded" : {
+    "message" : "Spoof X-Forwarded-For using a",
+    "description" : "Label for spoof IP headers (Via)"
+  },
+  "headersIPRandom" : {
+    "message" : "random IP",
+    "description" : "Label for IP address (random)"
+  },
+  "headersIPCustom" : {
+    "message" : "custom IP",
+    "description" : "Label for IP address (custom)"
+  },
+  "headersIP" : {
+    "message" : "IP address:",
+    "description" : "Label for IP address text"
+  },
+  "headersDisableRef" : {
+    "message" : "Disable Referer",
+    "description" : "Label for disable referer"
+  },
+  "headersSpoofSourceRef" : {
+    "message" : "Spoof Source Referer",
+    "description" : "Label for disable referer"
+  },
+  "headersUpgradeInsecureReq" : {
+    "message" : "Upgrade Insecure Requests",
+    "description" : "Label for disable referer"
+  },
+  "headersMsg1" : {
+    "message" : "Don't modify about:config settings for the options below.",
+    "description" : "Warning message for referer options"
+  },
+  "headersMsg2" : {
+    "message" : "More info in wiki.",
+    "description" : "Wiki link text"
+  },
+  "headersRefererXorigin" : {
+    "message" : "Referer X Origin Policy",
+    "description" : "Label for referer X Origin policy"
+  },
+  "headersRefererXoriginOption1" : {
+    "message" : "Always send (default)",
+    "description" : "Option to set referer X Origin policy to: always send"
+  },
+  "headersRefererXoriginOption2" : {
+    "message" : "Match base domain",
+    "description" : "Option to set referer X Origin policy to: match base domain"
+  },
+  "headersRefererXoriginOption3" : {
+    "message" : "Match host",
+    "description" : "Option to set referer X Origin policy to: match host"
+  },
+  "headersRefererTrimming" : {
+    "message" : "Referer Trimming Policy",
+    "description" : "Label for referer trimming policy"
+  },
+  "headersRefererTrimmingOption1" : {
+    "message" : "Send full URI (default)",
+    "description" : "Option to set referer trimming policy to: send full URI"
+  },
+  "headersRefererTrimmingOption2" : {
+    "message" : "Scheme, host, port + path",
+    "description" : "Option to set referer trimming policy to: Scheme, host, port + path"
+  },
+  "headersRefererTrimmingOption3" : {
+    "message" : "Scheme, host + port",
+    "description" : "Option to set referer trimming policy to: Scheme, host + port"
+  },
+  "headersSpoofAccept" : {
+    "message" : "Spoof Accept & Accept-Encoding headers",
+    "description" : "Label for spoof accept"
+  },
+  "headersSpoofAcceptLang" : {
+    "message" : "Spoof Accept-Language as",
+    "description" : "Label for disable referer"
+  },
+  "tabOptions": {
+    "message": "Options",
+    "description": "Title of options popup tab"
+  },
+  "tabWhitelist": {
+    "message": "Whitelist",
+    "description": "Title of whitelist popup tab"
+  }
+}

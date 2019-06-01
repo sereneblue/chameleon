@@ -5,92 +5,97 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/popup.css" />
-    <title>Chameleon</title>
+    <title></title>
 </head>
 
 <body>
     <div class="headers">
         <div class="item about" id="menu_about">?
-        </div><div class="active item" id="menu_profile">Profile
-        </div><div class="item" id="menu_headers">Headers
-        </div><div class="item" id="menu_options">Options
-        </div><div class="item" id="menu_whitelist">Whitelist
+        </div><div class="active item" id="menu_profile">
+        </div><div class="item" id="menu_headers">
+        </div><div class="item" id="menu_options">
+        </div><div class="item" id="menu_whitelist">
         </div>
     </div>
     <div class="tabs">
         <div class="tab" id="about">
             <img src="img/icon_48.png">
-            <h2 class="centered">Chameleon</h2>
+            <h2 id="extName" class="centered"></h2>
             <h4 class="centered">v0.12.4</h4>
             <br/>
             <p class="centered">
-                Developed by <a href="https://github.com/sereneblue">sereneblue</a> and <a href="https://github.com/sereneblue/chameleon/graphs/contributors">contributors</a>
+                <span id="contrib" />
                 <br/>
-                Distributed under the GNU GPL v3 license.
+                <span id="license" />
             </p>
-            <br/>
-            <div class="centered">
-                <a href="https://github.com/sereneblue/chameleon">Source Code</a>&nbsp;
-                <a href="https://github.com/sereneblue/chameleon/issues">Report a bug</a>&nbsp;
-                <a href="https://github.com/sereneblue/chameleon/wiki">Wiki</a><br/>
+            <br/>  
+            <div class="centered"> 
+                <div>
+                    <a id="sourceCode" href="https://github.com/sereneblue/chameleon"></a>&nbsp;
+                    <a id="reportBug" href="https://github.com/sereneblue/chameleon/issues"></a>&nbsp;
+                </div>
+                <div>
+                    <a id="translate" href="https://crowdin.com/project/chameleon"></a>&nbsp;
+                    <a id="wiki" href="https://github.com/sereneblue/chameleon/wiki"></a><br/>
+                </div>
                 <hr style="margin: 10px 0px;">
-                <p>Settings</p>
-                <button name="import" style="margin-top: 1em;">Import</button>
-                <button name="export" style="margin-top: 1em;">Export</button>
-                <button name="reset" style="margin-top: 1em;">Reset</button>
-                <a id="export" style="display:none"></a>
+                <p id="settingsHeader"></p>
+                <button id="importSettings" style="margin-top: 1em;"></button>
+                <button id="exportSettings" style="margin-top: 1em;"></button>
+                <button id="resetSettings" style="margin-top: 1em;"></button>
             </div>
         </div>
         <div class="active tab" id="profile">
             <div style="padding-bottom: 10px;">
                 <label>
-                    <input type="checkbox" name="notificationsEnabled"> Enable notifications
+                    <input type="checkbox" name="notificationsEnabled">
+                    <span id="notifications" />
                 </label>
             </div>
             <table>
                 <tbody>
                     <tr>
                         <td style="padding-right: 20px;">
-                            <label><input name="profile_type" type="radio" value="real"> Real Profile</label>
+                            <label><input name="profile_type" type="radio" value="real">&nbsp;<span id="profileReal" /></label>
                         </td>
                         <td>
-                            <label><input name="profile_type" type="radio" value="randomDesktop"> Random Profile (Desktop)</label>
+                            <label><input name="profile_type" type="radio" value="randomDesktop">&nbsp;<span id="profileRandomDesktop" /></label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label><input name="profile_type" type="radio" value="random"> Random</label>
+                            <label><input name="profile_type" type="radio" value="random">&nbsp;<span id="profileRandom" /></label>
                         </td>
                         <td>
-                            <label><input name="profile_type" type="radio" value="randomMobile"> Random Profile (Mobile)</label>
+                            <label><input name="profile_type" type="radio" value="randomMobile">&nbsp;<span id="profileRandomMobile" /></label>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <p><span style="color: red;">*</span>Script injection must be enabled to fully use profiles.</p>
+            <p><span style="color: red;">*</span><span id="profileScriptInjectionMsg" /></p>
             <div id="interval">
-                <label>Change periodically: </label>
+                <label><span id="profilePeriodically" />&nbsp;</label>
                 <select name="interval">
-                    <option value="0">No</option>
-                    <option value="-1">Custom interval</option>
-                    <option value="1">Every minute</option>
-                    <option value="5">Every 5 minutes</option>
-                    <option value="10">Every 10 minutes</option>
-                    <option value="20">Every 20 minutes</option>
-                    <option value="30">Every 30 minutes</option>
-                    <option value="40">Every 40 minutes</option>
-                    <option value="50">Every 50 minutes</option>
-                    <option value="60">Every hour</option>
+                    <option value="0"></option>
+                    <option value="-1"></option>
+                    <option value="1"></option>
+                    <option value="5"></option>
+                    <option value="10"></option>
+                    <option value="20"></option>
+                    <option value="30"></option>
+                    <option value="40"></option>
+                    <option value="50"></option>
+                    <option value="60"></option>
                 </select>
-                <button name="changeNow">refresh</button>
+                <button name="changeNow"><span id="profileIntervalRefresh" /></button>
                 <div id="range" style="display: none; margin-top: .5em;">
                     <table style="width: unset; margin-left: auto;">
                         <tr>
-                            <td><label for="minInterval">Min (minutes): </label></td>
+                            <td><label for="minInterval"></label>&nbsp;</td>
                             <td><input type="number" name="minInterval" id="minInterval" style="width: 50px" min="0"></td>
                         </tr>
                         <tr>
-                            <td><label for="maxInterval">Max (minutes): </label></td>
+                            <td><label for="maxInterval"></label>&nbsp;</td>
                             <td><input type="number" name="maxInterval" id="maxInterval" style="width: 50px"></td>
                         </tr>
                     </table>
@@ -98,62 +103,62 @@
             </div>
             <ul class="groups">
                 <li id="sub_win">
-                    Windows Browsers
+                    Windows <span class="profileBrowser"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_win">
                     <div class="useragent">
-                        <label><input name="profile_type" type="radio" value="random_win"> Random Windows Browsers</label>
-                        <span class="excludeall">Exclude&nbsp;<input type="checkbox" name="exc_all1"></span>
+                        <label><input name="profile_type" type="radio" value="random_win">&nbsp;<span id="profileRandomWindows" /></label>
+                        <span class="excludeall"><span class="profileExclude"></span>&nbsp;<input type="checkbox" name="exc_all1"></span>
                     </div>
                 </div>
                 <li id="sub_mac">
-                    macOS Browsers
+                    macOS <span class="profileBrowser"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_mac">
                     <div class="useragent">
-                        <label><input name="profile_type" type="radio" value="random_mac"> Random macOS Browsers</label>
-                        <span class="excludeall">Exclude&nbsp;<input type="checkbox" name="exc_all2"></span>
+                        <label><input name="profile_type" type="radio" value="random_mac">&nbsp;<span id="profileRandomMacOS" /></label>
+                        <span class="excludeall"><span class="profileExclude"></span>&nbsp;<input type="checkbox" name="exc_all2"></span>
                     </div>
                 </div>
                 <li id="sub_linux">
-                    Linux Browsers
+                    Linux <span class="profileBrowser"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_linux">
                     <div class="useragent">
-                        <label><input name="profile_type" type="radio" value="random_linux"> Random Linux Browsers</label>
-                        <span class="excludeall">Exclude&nbsp;<input type="checkbox" name="exc_all3"></span>
+                        <label><input name="profile_type" type="radio" value="random_linux">&nbsp;<span id="profileRandomLinux" /></label>
+                        <span class="excludeall"><span class="profileExclude"></span>&nbsp;<input type="checkbox" name="exc_all3"></span>
                     </div>
                 </div>
                 <li id="sub_ios">
-                    iOS Browsers
+                    iOS <span class="profileBrowser"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_ios">
                     <div class="useragent">
-                        <label><input name="profile_type" type="radio" value="random_ios"> Random iOS Browsers</label>
-                        <span class="excludeall">Exclude&nbsp;<input type="checkbox" name="exc_all4"></span>
+                        <label><input name="profile_type" type="radio" value="random_ios">&nbsp;<span id="profileRandomIOS" /></label>
+                        <span class="excludeall"><span class="profileExclude"></span>&nbsp;<input type="checkbox" name="exc_all4"></span>
                     </div>
                 </div>
                 <li id="sub_android">
-                    Android Browsers
+                    Android <span class="profileBrowser"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_android">
                     <div class="useragent">
-                        <label><input name="profile_type" type="radio" value="random_android"> Random Android Browsers</label>
-                        <span class="excludeall">Exclude&nbsp;<input type="checkbox" name="exc_all5"></span>
+                        <label><input name="profile_type" type="radio" value="random_android">&nbsp;<span id="profileRandomAndroid" /></label>
+                        <span class="excludeall"><span class="profileExclude"></span>&nbsp;<input type="checkbox" name="exc_all5"></span>
                     </div>
                 </div>
                 <li id="sub_custom">
-                    Custom User Agent
+                    <span class="profileCustom"></span>
                     <span style="float: right;">+</span>
                 </li>
                 <div class="list" id="list_custom">
                     <div class="useragent">
-                        <label><input name="profile_type" type="radio" value="custom"> Custom User Agent</label>
+                        <label><input name="profile_type" type="radio" value="custom">&nbsp;<span class="profileCustom" /></label>
                         <input name="custom_ua" type="text" style="width: 90%;">
                     </div>
                 </div>
@@ -161,69 +166,69 @@
         </div>
         <div class="tab" id="headers">
             <div class="opt">
-                <label><input type="checkbox" name="disableAuth"> Disable Authorization</label>
+                <label><input type="checkbox" name="disableAuth">&nbsp;<span id="headersDisableAuth" /></label>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="enableDNT"> Enable DNT (Do Not Track)</label>
+                <label><input type="checkbox" name="enableDNT">&nbsp;<span id="headersEnableDNT" /></label>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="blockEtag"> Prevent Etag tracking</label>
+                <label><input type="checkbox" name="blockEtag">&nbsp;<span id="headersBlockEtag" /></label>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="spoofVia"> Spoof Via using a</label>
+                <label><input type="checkbox" name="spoofVia">&nbsp;<span id="headersSpoofVia" /></label>
                 <select name="spoofViaValue">
-                    <option value="0">random IP</option>
-                    <option value="1">custom IP</option>
+                    <option value="0"></option>
+                    <option value="1"></option>
                 </select>
                 <div class="ipAddr" style="display: none">
-                    <label>IP address: <input type="text" name="viaIP" id="viaIP" size="15" maxlength="15"></label>
+                    <label><span class="headersIP"></span>&nbsp;<input type="text" name="viaIP" id="viaIP" size="15" maxlength="15"></label>
                 </div>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="spoofXFor"> Spoof X-Forwarded-For using a</label>
+                <label><input type="checkbox" name="spoofXFor">&nbsp;<span id="headersSpoofXForwarded" /></label>
                 <select name="spoofXForValue">
-                    <option value="0">random IP</option>
-                    <option value="1">custom IP</option>
+                    <option value="0"></option>
+                    <option value="1"></option>
                 </select>
                 <div class="ipAddr" style="display: none">
-                    <label>IP address: <input type="text" name="xforwardedforIP" size="15" maxlength="15"></label>
+                    <label><span class="headersIP"></span>&nbsp;<input type="text" name="xforwardedforIP" size="15" maxlength="15"></label>
                 </div>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="disableRef"> Disable Referer</label>
+                <label><input type="checkbox" name="disableRef">&nbsp;<span id="headersDisableRef" /></label>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="spoofSourceRef"> Spoof Source Referer</label>
+                <label><input type="checkbox" name="spoofSourceRef">&nbsp;<span id="headersSpoofSourceRef" /></label>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="upgradeInsecureRequests"> Upgrade Insecure Requests</label>
+                <label><input type="checkbox" name="upgradeInsecureRequests">&nbsp;<span id="headersUpgradeInsecureReq" /></label>
             </div>
-            <p style="margin-top: 10px; color: maroon;">Don't modify about:config settings for the options below. <a href="https://github.com/sereneblue/chameleon/wiki/Headers">More info in wiki.</a></p>
+            <p style="margin-top: 10px; color: maroon;"><span id="headersMsg1" />&nbsp;<a href="https://github.com/sereneblue/chameleon/wiki/Headers"><span id="headersMsg2" /></a></p>
             <div class="opt">
-                <label for="refererXorigin">Referer X Origin Policy :</label>
+                <label for="refererXorigin"><span id="headersRefererXorigin" />&nbsp;:</label>
                 <br/>
                 <select name="refererXorigin" id="refererXorigin">
-                    <option value="0">Always send (default)</option>
-                    <option value="1">Match base domain</option>
-                    <option value="2">Match host</option>
+                    <option value="0"></option>
+                    <option value="1"></option>
+                    <option value="2"></option>
                 </select>
             </div>
             <div class="opt">
-                <label for="refererTrimming">Referer Trimming Policy :</label>
+                <label for="refererTrimming"><span id="headersRefererTrimming" />&nbsp;:</label>
                 <br/>
                 <select name="refererTrimming" id="refererTrimming">
-                    <option value="0">Send full URI (default)</option>
-                    <option value="1">Scheme, host, port + path</option>
-                    <option value="2">Scheme, host + port</option>
+                    <option value="0"></option>
+                    <option value="1"></option>
+                    <option value="2"></option>
                 </select>
             </div>
             <br/>
             <hr><br/>
             <div class="opt">
-                <label><input type="checkbox" name="spoofAccept"> Spoof Accept & Accept-Encoding headers</label>
+                <label><input type="checkbox" name="spoofAccept">&nbsp;<span id="headersSpoofAccept" /></label>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="spoofAcceptLang"> Spoof Accept-Language as </label>
+                <label><input type="checkbox" name="spoofAcceptLang">&nbsp;<span id="headersSpoofAcceptLang" /></label>
                 <select name="spoofAcceptLangValue">
                     <option value="ip">IP</option>
                 </select>

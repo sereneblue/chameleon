@@ -48,6 +48,88 @@ async function exportSettings() {
 	exportElement.click();
 };
 
+// set localized text
+function localize() {
+	// about tab
+	$("title").text(browser.i18n.getMessage("extName"));
+	$("#extName").text(browser.i18n.getMessage("extName"));
+	$("#contrib").html(browser.i18n.getMessage("aboutContributors"));
+	$("#license").text(browser.i18n.getMessage("aboutLicense"));
+	$("#sourceCode").text(browser.i18n.getMessage("aboutSrcCode"));
+	$("#reportBug").text(browser.i18n.getMessage("aboutReport"));
+	$("#translate").text(browser.i18n.getMessage("aboutTranslate"));
+	$("#wiki").text(browser.i18n.getMessage("aboutWiki"));
+	$("#settingsHeader").text(browser.i18n.getMessage("aboutSettings"));
+	$("#importSettings").text(browser.i18n.getMessage("aboutBtnImport"));
+	$("#exportSettings").text(browser.i18n.getMessage("aboutBtnExport"));
+	$("#resetSettings").text(browser.i18n.getMessage("aboutBtnReset"));
+
+	// tab headers
+	$("#menu_profile").text(browser.i18n.getMessage("tabProfile"));
+	$("#menu_headers").text(browser.i18n.getMessage("tabHeaders"));
+	$("#menu_options").text(browser.i18n.getMessage("tabOptions"));
+	$("#menu_whitelist").text(browser.i18n.getMessage("tabWhitelist"));
+
+	// profiles tab
+	$("#notifications").text(browser.i18n.getMessage("profileEnableNotification"));
+	$("#profileReal").text(browser.i18n.getMessage("profileReal"));
+	$("#profileRandom").text(browser.i18n.getMessage("profileRandom"));
+	$("#profileRandomDesktop").text(browser.i18n.getMessage("profileRandomDesktop"));
+	$("#profileRandomMobile").text(browser.i18n.getMessage("profileRandomMobile"));
+	$("#profileScriptInjectionMsg").text(browser.i18n.getMessage("profileScriptInjectionMsg"));
+	$("#profilePeriodically").text(browser.i18n.getMessage("profilePeriodically"));
+	$("select[name='interval'] option:eq(0)").text(browser.i18n.getMessage("profileIntervalNo"));
+	$("select[name='interval'] option:eq(1)").text(browser.i18n.getMessage("profileIntervalCustom"));
+	$("select[name='interval'] option:eq(2)").text(browser.i18n.getMessage("profileIntervalMinute"));
+	$("select[name='interval'] option:eq(3)").text(browser.i18n.getMessage("profileIntervalMinute5"));
+	$("select[name='interval'] option:eq(4)").text(browser.i18n.getMessage("profileIntervalMinute10"));
+	$("select[name='interval'] option:eq(5)").text(browser.i18n.getMessage("profileIntervalMinute20"));
+	$("select[name='interval'] option:eq(6)").text(browser.i18n.getMessage("profileIntervalMinute30"));
+	$("select[name='interval'] option:eq(7)").text(browser.i18n.getMessage("profileIntervalMinute40"));
+	$("select[name='interval'] option:eq(8)").text(browser.i18n.getMessage("profileIntervalMinute50"));
+	$("select[name='interval'] option:eq(9)").text(browser.i18n.getMessage("profileIntervalHour"));
+	$("#profileIntervalRefresh").text(browser.i18n.getMessage("profileIntervalRefresh"));
+	$("label[for='minInterval']").text(browser.i18n.getMessage("profileIntervalCustomMin"));
+	$("label[for='maxInterval']").text(browser.i18n.getMessage("profileIntervalCustomMax"));
+	$(".profileBrowser").text(browser.i18n.getMessage("profileBrowser"));
+	$(".profileCustom").text(browser.i18n.getMessage("profileCustom"));
+	$(".profileExclude").text(browser.i18n.getMessage("profileExclude"));
+	$("#profileRandomWindows").text(browser.i18n.getMessage("profileRandomWindows"));
+	$("#profileRandomMacOS").text(browser.i18n.getMessage("profileRandomMacOS"));
+	$("#profileRandomLinux").text(browser.i18n.getMessage("profileRandomLinux"));
+	$("#profileRandomIOS").text(browser.i18n.getMessage("profileRandomIOS"));
+	$("#profileRandomAndroid").text(browser.i18n.getMessage("profileRandomAndroid"));
+
+	// headers tab
+	$("#headersDisableAuth").text(browser.i18n.getMessage("headersDisableAuth"));
+	$("#headersEnableDNT").text(browser.i18n.getMessage("headersEnableDNT"));
+	$("#headersBlockEtag").text(browser.i18n.getMessage("headersBlockEtag"));
+	$("#headersSpoofVia").text(browser.i18n.getMessage("headersSpoofVia"));
+	$("#headersSpoofXForwarded").text(browser.i18n.getMessage("headersSpoofXForwarded"));
+	$("#headersIP").text(browser.i18n.getMessage("headersIP"));
+	$("select[name='spoofViaValue'] option:eq(0)").text(browser.i18n.getMessage("headersIPRandom"));
+	$("select[name='spoofViaValue'] option:eq(1)").text(browser.i18n.getMessage("headersIPCustom"));
+	$("select[name='spoofXForValue'] option:eq(0)").text(browser.i18n.getMessage("headersIPRandom"));
+	$("select[name='spoofXForValue'] option:eq(1)").text(browser.i18n.getMessage("headersIPCustom"));
+	$(".headersIP").text(browser.i18n.getMessage("headersIP"));
+	$(".headersIP").text(browser.i18n.getMessage("headersIP"));
+	$("#headersDisableRef").text(browser.i18n.getMessage("headersDisableRef"));
+	$("#headersSpoofSourceRef").text(browser.i18n.getMessage("headersSpoofSourceRef"));
+	$("#headersUpgradeInsecureReq").text(browser.i18n.getMessage("headersUpgradeInsecureReq"));
+	$("#headersMsg1").text(browser.i18n.getMessage("headersMsg1"));
+	$("#headersMsg2").text(browser.i18n.getMessage("headersMsg2"));
+	$("#headersRefererXorigin").text(browser.i18n.getMessage("headersRefererXorigin"));
+	$("select[name='refererXorigin'] option:eq(0)").text(browser.i18n.getMessage("headersRefererXoriginOption1"));
+	$("select[name='refererXorigin'] option:eq(1)").text(browser.i18n.getMessage("headersRefererXoriginOption2"));
+	$("select[name='refererXorigin'] option:eq(2)").text(browser.i18n.getMessage("headersRefererXoriginOption3"));
+	$("#headersRefererTrimming").text(browser.i18n.getMessage("headersRefererTrimming"));
+	$("select[name='refererTrimming'] option:eq(0)").text(browser.i18n.getMessage("headersRefererTrimmingOption1"));
+	$("select[name='refererTrimming'] option:eq(1)").text(browser.i18n.getMessage("headersRefererTrimmingOption2"));
+	$("select[name='refererTrimming'] option:eq(2)").text(browser.i18n.getMessage("headersRefererTrimmingOption3"));
+	$("#headersSpoofAccept").text(browser.i18n.getMessage("headersSpoofAccept"));
+	$("#headersSpoofAcceptLang").text(browser.i18n.getMessage("headersSpoofAcceptLang"));
+}
+
 // update ui display
 // loop through input/select fields and get stored value
 async function updateUI() {
@@ -252,9 +334,9 @@ function changeView(val, category) {
 	for (var i in menu) {
 		var vis = $(`#list_${menu[i]}`).is(':visible');
 		if (!vis) {
-			$(`#sub_${menu[i]} span`).text(`+`);
+			$(`#sub_${menu[i]} span:eq(1)`).text(`+`);
 		} else {
-			$(`#sub_${menu[i]} span`).text(`—`);
+			$(`#sub_${menu[i]} span:eq(1)`).text(`—`);
 		}
 	}
 }
@@ -289,6 +371,7 @@ function getPlatform(v) {
 
 document.addEventListener('DOMContentLoaded', function() {
 	buildInputs();
+	localize();
 	updateUI();
 
 	// capture events to profile settings
@@ -343,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	})
 
 	// import settings button
-	$('button[name="import"]').on('click', function(e) {
+	$('#importSettings').on('click', function(e) {
 		chrome.tabs.create({
 		    url:  chrome.runtime.getURL('/import.html')
 		});
@@ -351,12 +434,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	})
 
 	// export settings button
-	$('button[name="export"]').on('click', function(e) {
+	$('#exportSettings').on('click', function(e) {
 		exportSettings();
 	})
 
 	// reset extension settings
-	$('button[name="reset"]').on('click', function(e) {
+	$('#resetSettings').on('click', function(e) {
 		chrome.runtime.sendMessage({
 			action: "reset"
 		});
