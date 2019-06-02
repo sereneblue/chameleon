@@ -173,14 +173,14 @@ function localize() {
 	$("#whitelistCurrentDomain").text(browser.i18n.getMessage("whitelistCurrentDomain"));
 	$("#whitelistOpenEditor").text(browser.i18n.getMessage("whitelistOpenEditor"));
 
-	// generic text
-	$(".genericReset").text(browser.i18n.getMessage("genericReset"));
-	$("select[name='screenSize'] option:eq(1)").text(browser.i18n.getMessage("genericCustom"));
-	$("select[name='screenSize'] option:eq(0)").text(browser.i18n.getMessage("genericDefault"));
-	$("select[name='timeZone'] option:eq(0)").text(browser.i18n.getMessage("genericDefault"));
-	$("select[name='webRTCIPHandlingPolicy'] option:eq(0)").text(browser.i18n.getMessage("genericDefault"));
-	$("#profileReal").text(browser.i18n.getMessage("genericRealProfile"));
-	$("select[name='defaultProfile'] option:eq(0)").text(browser.i18n.getMessage("genericRealProfile"));
+	// text
+	$(".textReset").text(browser.i18n.getMessage("textReset"));
+	$("select[name='screenSize'] option:eq(1)").text(browser.i18n.getMessage("textCustom"));
+	$("select[name='screenSize'] option:eq(0)").text(browser.i18n.getMessage("textDefault"));
+	$("select[name='timeZone'] option:eq(0)").text(browser.i18n.getMessage("textDefault"));
+	$("select[name='webRTCIPHandlingPolicy'] option:eq(0)").text(browser.i18n.getMessage("textDefault"));
+	$("#profileReal").text(browser.i18n.getMessage("textRealProfile"));
+	$("select[name='defaultProfile'] option:eq(0)").text(browser.i18n.getMessage("textRealProfile"));
 }
 
 // update ui display

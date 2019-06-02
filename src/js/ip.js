@@ -42,7 +42,7 @@ function timezoneTemplate(tz, visible=false) {
 	let template = `<select class="form-select ${visible ? "" : "d-hide"}">`;
 
 	for (var t of chameleonTimezones) {
-		template += `<option value="${t.zone}" ${t.zone == tz ? "selected" : ""}>${t.zone}</option>`
+		template += `<option value="${t.zone}" ${t.zone == tz ? "selected" : ""}>(${t.offset}) ${t.zone}</option>`
 	}
 
 	return template + `</select>`;
@@ -71,18 +71,32 @@ function buildTable(rules) {
 				${timezoneTemplate(rule.tz)}
 		      </td>
   		      <td>
-				<button class="btn edit-btn">Edit</button>
-				<button class="btn save-btn d-hide">Save</button>
-				<button class="btn btn-error del-btn">Delete</button>
+				<button class="btn edit-btn">${browser.i18n.getMessage("textEdit")}</button>
+				<button class="btn save-btn d-hide">${browser.i18n.getMessage("textSave")}</button>
+				<button class="btn btn-error del-btn">${browser.i18n.getMessage("textDelete")}</button>
   		      </td>
 		    </tr>
 		`)
 	}
 }
 
+function localize() {
+	$("title").text('Chameleon ' + browser.i18n.getMessage("ipRulesSubheader"));
+	$("#subheader").text(browser.i18n.getMessage("ipRulesSubheader"));
+	$("#create").text(browser.i18n.getMessage("ipRulesCreateRule"));
+	$("#reload").html(browser.i18n.getMessage("ipRulesReloadIP"));
+	$("#tip").html(browser.i18n.getMessage("ipRulesTip"));
+	$("#instructions").html(browser.i18n.getMessage("ipRulesInstructions"));
+	$("table thead th:eq(0)").text(browser.i18n.getMessage("ipRulesTableIPRange"));
+	$("table thead th:eq(1)").text(browser.i18n.getMessage("ipRulesTableLanguage"));
+	$("table thead th:eq(2)").text(browser.i18n.getMessage("ipRulesTableTimezone"));
+	$("table thead th:eq(3)").text(browser.i18n.getMessage("ipRulesTableActions"));
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
 	data = await get(null);
 
+	localize();
 	buildTable(data.ipRules);
 
 	$('#create').click(function (e) {
@@ -91,17 +105,17 @@ document.addEventListener('DOMContentLoaded', async function() {
 				<div class="card text-left mt-2 create" style="background-color: #f7f8f9;">
 				  <div class="card-header">
 				  	<div class="form-group">
-					  	<label>IP or CIDR</label>
-						<input class="form-input ip" type="text" placeholder="Enter IP or CIDR">
+					  	<label>${browser.i18n.getMessage("ipRulesCIDR")}</label>
+						<input class="form-input ip" type="text" placeholder="${browser.i18n.getMessage("ipRulesCIDRPlaceholder")}">
 					</div>
-					<button id="saveRule" class="btn btn-success btn-sm d-inline-block mt-2">Create</button>
-					<button id="close" class="btn btn-error btn-sm d-inline-block mt-2">Close</button>
+					<button id="saveRule" class="btn btn-success btn-sm d-inline-block mt-2">${browser.i18n.getMessage("textCreate")}</button>
+					<button id="close" class="btn btn-error btn-sm d-inline-block mt-2">${browser.i18n.getMessage("textClose")}</button>
 				  </div>
 				  <div class="divider"></div>
 				  <div class="card-body">
-					<label>Language</label>
+					<label>${browser.i18n.getMessage("textLanguage")}</label>
 	    		    ${languageTemplate('', true)}
-				  	<label>Timezone</label>
+				  	<label>${browser.i18n.getMessage("textTimezone")}</label>
 	    		    ${timezoneTemplate('', true)}
 				  </div>
 				</div>
@@ -186,9 +200,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 				${timezoneTemplate(tz)}
 		      </td>
   		      <td>
-				<button class="btn edit-btn">Edit</button>
-				<button class="btn save-btn d-hide">Save</button>
-				<button class="btn btn-error del-btn">Delete</button>
+				<button class="btn edit-btn">${browser.i18n.getMessage("textEdit")}</button>
+				<button class="btn save-btn d-hide">${browser.i18n.getMessage("textSave")}</button>
+				<button class="btn btn-error del-btn">${browser.i18n.getMessage("textDelete")}</button>
   		      </td>
 		    </tr>
 		`)

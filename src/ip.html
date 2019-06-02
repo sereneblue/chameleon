@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/spectre.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/popup.css" />
-	<title>Chameleon Timezone/Language IP Rules</title>
+	<title></title>
 	<style type="text/css">
 		.form-group div.text-bold {
 			max-width: 500px;
@@ -18,14 +18,14 @@
 <body>
 	<div class="header-container">
 		<h1>Chameleon</h1>
-		<h4>Timezone/Language IP rules</h4>
-		<button id="create" class="btn btn-primary btn-sm mt-2">Create new rule</button>
-		<button id="reload" class="btn btn-primary btn-sm mt-2">Reload IP info</button>
+		<h4 id="subheader"></h4>
+		<button id="create" class="btn btn-primary btn-sm mt-2"></button>
+		<button id="reload" class="btn btn-primary btn-sm mt-2"></button>
 		<div class="container" style="padding-top: 10px;">
 		  <div class="columns">
 		    <div class="column col-5 col-mx-auto">
-		    	<h5>Tip: 8.8.8.0/24 corresponds to the range 8.8.8.0 - 8.8.8.255</h5>
-		    	<h5>*Click the Reload IP info button after making changes to IP rules*</h5>
+		    	<h5 id="tip"></h5>
+		    	<h5>*<span id="instructions"></span>*</h5>
 		    </div>
 		  </div>
 		</div>
@@ -34,10 +34,10 @@
 		<table class="table">
 		  <thead>
 		    <tr>
-		      <th>IP Range</th>
-		      <th>Language</th>
-		      <th>Timezone</th>
-  		      <th>Actions</th>
+		      <th></th>
+		      <th></th>
+		      <th></th>
+  		      <th></th>
 		    </tr>
 		  </thead>
 		  <tbody>

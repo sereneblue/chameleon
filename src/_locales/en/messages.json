@@ -451,20 +451,92 @@
     "message": "Add/edit domain in whitelist",
     "description": "Label for add/edit domain in whitelist"
   },
-  "genericDefault" : {
+  "ipRulesSubheader" : {
+    "message": "Timezone/Language IP rules",
+    "description": "Subheader for IP rules"
+  },
+  "ipRulesCreateRule" : {
+    "message": "Create new rule",
+    "description": "Label for button: create new rule"
+  },
+  "ipRulesReloadIP" : {
+    "message": "Reload IP info",
+    "description": "Label for button: reload IP info"
+  },
+  "ipRulesTip" : {
+    "message": "Tip: 8.8.8.0/24 corresponds to the range 8.8.8.0 - 8.8.8.255",
+    "description": "Text for IP rules tip"
+  },
+  "ipRulesInstructions" : {
+    "message": "Click the Reload IP info button after making changes to IP rules",
+    "description": "Text for IP rules instructions"
+  },
+  "ipRulesTableIPRange" : {
+    "message": "IP Range",
+    "description": "Table column header: IP Range"
+  },
+  "ipRulesTableLanguage" : {
+    "message": "Language",
+    "description": "Table column header: Language"
+  },
+  "ipRulesTableTimezone" : {
+    "message": "Timezone",
+    "description": "Table column header: Timezone"
+  },
+  "ipRulesTableActions" : {
+    "message": "Actions",
+    "description": "Table column header: Actions"
+  },
+  "ipRulesCIDR" : {
+    "message": "IP or CIDR",
+    "description": "Label for IP/CIDR range"
+  },
+  "ipRulesCIDRPlaceholder" : {
+    "message": "Enter IP or CIDR",
+    "description": "Placeholder for IP/CIDR range"
+  },
+  "textClose" : {
+    "message": "Close",
+    "description": "Text: Close"
+  },
+  "textCreate" : {
+    "message": "Create",
+    "description": "Text: Create"
+  },
+  "textDefault" : {
     "message": "Default",
     "description": "Text: Default"
   },
-  "genericCustom" : {
+  "textDelete" : {
+    "message": "Delete",
+    "description": "Text: Delete"
+  },
+  "textEdit" : {
+    "message": "Edit",
+    "description": "Text: Edit"
+  },
+  "textCustom" : {
     "message": "Custom",
     "description": "Text: Custom"
   },
-  "genericRealProfile" : {
+  "textLanguage" : {
+    "message": "Language",
+    "description": "Text: Language"
+  },
+  "textRealProfile" : {
     "message": "Real Profile",
     "description": "Text: Real Profile"
   },
-  "genericReset" : {
+  "textReset" : {
     "message": "Reset",
     "description": "Text: Reset"
+  },
+  "textSave" : {
+    "message": "Save",
+    "description": "Text: Save"
+  },
+  "textTimezone" : {
+    "message": "Timezone",
+    "description": "Text: Timezone"
   }
 }
