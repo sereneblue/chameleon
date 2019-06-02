@@ -84,9 +84,9 @@ function localize() {
 	$("title").text('Chameleon ' + browser.i18n.getMessage("ipRulesSubheader"));
 	$("#subheader").text(browser.i18n.getMessage("ipRulesSubheader"));
 	$("#create").text(browser.i18n.getMessage("ipRulesCreateRule"));
-	$("#reload").html(browser.i18n.getMessage("ipRulesReloadIP"));
-	$("#tip").html(browser.i18n.getMessage("ipRulesTip"));
-	$("#instructions").html(browser.i18n.getMessage("ipRulesInstructions"));
+	$("#reload").text(browser.i18n.getMessage("ipRulesReloadIP"));
+	$("#tip").text(browser.i18n.getMessage("ipRulesTip"));
+	$("#instructions").text(browser.i18n.getMessage("ipRulesInstructions"));
 	$("table thead th:eq(0)").text(browser.i18n.getMessage("ipRulesTableIPRange"));
 	$("table thead th:eq(1)").text(browser.i18n.getMessage("ipRulesTableLanguage"));
 	$("table thead th:eq(2)").text(browser.i18n.getMessage("ipRulesTableTimezone"));
