@@ -423,10 +423,6 @@
     "message": "Reporting Options",
     "description": "Label for group: report"
   },
-  "tabWhitelist": {
-    "message": "Whitelist",
-    "description": "Title of whitelist popup tab"
-  },
   "whitelistEnable": {
     "message": "Enable whitelist (requires script injection)",
     "description": "Label for enable whitelist"
@@ -454,10 +450,6 @@
   "ipRulesSubheader" : {
     "message": "Timezone/Language IP rules",
     "description": "Subheader for IP rules"
-  },
-  "ipRulesCreateRule" : {
-    "message": "Create new rule",
-    "description": "Label for button: create new rule"
   },
   "ipRulesReloadIP" : {
     "message": "Reload IP info",
@@ -495,6 +487,70 @@
     "message": "Enter IP or CIDR",
     "description": "Placeholder for IP/CIDR range"
   },
+  "whitelistSearchPlaceholder" : {
+    "message": "Search rules",
+    "description": "Placeholder for search rules input"
+  },
+  "whitelistEnterDomain" : {
+    "message": "Enter domain",
+    "description": "Placeholder for domain input"
+  },
+  "whitelistRegexEnabled" : {
+    "message": "Regex enabled",
+    "description": "Label for regex checkbox"
+  },
+  "whitelistEnterPattern" : {
+    "message": "Enter pattern",
+    "description": "Placeholder for regex pattern"    
+  },
+  "whitelistSpoofAcceptLang" : {
+    "message": "Spoof Accept-Language",
+    "description": "Label for spoof accept-language"
+  },
+  "whitelistSpoofProfile" : {
+    "message": "Spoof Profile",
+    "description": "Label for spoof profile"
+  },
+  "whitelistSpoofProfileDefault" : {
+    "message": "Default Whitelist Profile",
+    "description": "Option to use default whitelist profile"
+  },
+  "whitelistAddDomain" : {
+    "message": "Add domain",
+    "description": "Label for add domain button"
+  },
+  "whitelistDisableAuth" : {
+    "message": "Disable auth header",
+    "description": "Label for disable auth header"
+  },
+  "whitelistDisableReferer" : {
+    "message": "Disable referer",
+    "description": "Label for disable referer"
+  },
+  "whitelistDisableWebsocket" : {
+    "message": "Disable WebSocket",
+    "description": "Label for disable websocket"
+  },
+  "whitelistEnableIPHeaders" : {
+    "message": "Enable IP headers spoofing",
+    "description": "Label for enable IP headers spoof"
+  },
+  "whitelistEnableProtectWinName" : {
+    "message": "Enable Protect window name",
+    "description": "Label for enable protect window name"
+  },
+  "whitelistEnableTimezoneSpoofing" : {
+    "message": "Enable Timezone spoofing",
+    "description": "Label for enable timezone spoofing"
+  },
+  "whitelistSpoofHeaderIPLabel" : {
+    "message": "Header IP (Via & X-Forwarded For)",
+    "description": "Label for IP headers spoof value"
+  },
+  "whitelistConfirmation" : {
+    "message": "Are you sure you want to delete this rule?",
+    "description": "Text for delete confirmation"
+  },
   "textClose" : {
     "message": "Close",
     "description": "Text: Close"
@@ -503,6 +559,10 @@
     "message": "Create",
     "description": "Text: Create"
   },
+  "textCreateRule" : {
+    "message": "Create new rule",
+    "description": "Label for button: create new rule"
+  },
   "textDefault" : {
     "message": "Default",
     "description": "Text: Default"
@@ -510,6 +570,10 @@
   "textDelete" : {
     "message": "Delete",
     "description": "Text: Delete"
+  },
+  "textDomains" : {
+    "message": "domains",
+    "description": "Text: domains"
   },
   "textEdit" : {
     "message": "Edit",
@@ -522,6 +586,10 @@
   "textLanguage" : {
     "message": "Language",
     "description": "Text: Language"
+  },
+  "textNo" : {
+    "message": "No",
+    "description": "Text: No"
   },
   "textRealProfile" : {
     "message": "Real Profile",
@@ -538,5 +606,13 @@
   "textTimezone" : {
     "message": "Timezone",
     "description": "Text: Timezone"
+  },
+  "textYes" : {
+    "message": "Yes",
+    "description": "Text: Yes"
+  },
+  "textWhitelist" : {
+    "message": "Whitelist",
+    "description": "Text: Whitelist"
   }
 }
