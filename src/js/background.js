@@ -181,7 +181,7 @@ async function buildInjectScript() {
 			chrome.notifications.create({
 				"type": "basic",
 				"title": "Chameleon",
-				"message": `Browser Profile Changed\r\n${profile}${screenRes}`
+				"message": `${browser.i18n.getMessage("notificationMessage")}\r\n${profile}${screenRes}`
 			});
 		}
 
@@ -201,7 +201,7 @@ async function buildInjectScript() {
 		chrome.notifications.create({
 			"type": "basic",
 			"title": "Chameleon",
-			"message": `Browser Profile Changed\r\n${profile}`
+			"message": `${browser.i18n.getMessage("notificationMessage")}\r\n${profile}`
 		});
 	}
 
@@ -284,7 +284,7 @@ async function getIPInfo() {
 				chrome.notifications.create({
 					"type": "basic",
 					"title": "Chameleon",
-					"message": `Using${tzSpoof}${langSpoof}`
+					"message": `${browser.i18n.getMessage("textUsing")}${tzSpoof}${langSpoof}`
 				});
 			}
 			
@@ -298,7 +298,7 @@ async function getIPInfo() {
 			chrome.notifications.create({
 				"type": "basic",
 				"title": "Chameleon",
-				"message": "Unable to get timezone data. Using UTC."
+				"message": browser.i18n.getMessage("notificationMessageTimezone")
 			});
 		}
 

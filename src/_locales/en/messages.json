@@ -551,6 +551,14 @@
     "message": "Are you sure you want to delete this rule?",
     "description": "Text for delete confirmation"
   },
+  "notificationMessage" : {
+    "message": "Browser Profile Changed",
+    "description": "Notification message for profile change"
+  },
+  "notificationMessageTimezone" : {
+    "message": "Unable to get timezone data. Using UTC.",
+    "description": "Notification message for timezone IP"
+  },
   "textClose" : {
     "message": "Close",
     "description": "Text: Close"
@@ -606,6 +614,10 @@
   "textTimezone" : {
     "message": "Timezone",
     "description": "Text: Timezone"
+  },
+  "textUsing" : {
+    "message": "Using",
+    "description": "Text: Using"
   },
   "textYes" : {
     "message": "Yes",

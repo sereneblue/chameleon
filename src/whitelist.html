@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/spectre.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/popup.css" />
-	<title>Chameleon Whitelist</title>
+	<title></title>
 	<style>
 		.domains .container:hover {
 			background-color: rgba(0,0,0, 0.05);
@@ -15,9 +15,9 @@
 <body>
 	<div class="header-container">
 		<h1>Chameleon</h1>
-		<h4>Whitelist</h4>
-		<button class="btn btn-primary btn-sm mt-2">Create new rule</button>
-	    <input id="searchInput" name="searchInput" class="form-input search-input mt-2" type="text" placeholder="Search rules">
+		<h4><span id="subheader" /></h4>
+		<button id="create" class="btn btn-primary btn-sm mt-2 createNewRule"></button>
+	    <input id="searchInput" name="searchInput" class="form-input search-input mt-2" type="text">
 	</div>
 	<div class="content" id="rules">
 	</div>

@@ -67,7 +67,7 @@ function localize() {
 	$("#menu_profile").text(browser.i18n.getMessage("tabProfile"));
 	$("#menu_headers").text(browser.i18n.getMessage("tabHeaders"));
 	$("#menu_options").text(browser.i18n.getMessage("tabOptions"));
-	$("#menu_whitelist").text(browser.i18n.getMessage("tabWhitelist"));
+	$("#menu_whitelist").text(browser.i18n.getMessage("textWhitelist"));
 
 	// profiles tab
 	$("#notifications").text(browser.i18n.getMessage("profileEnableNotification"));
