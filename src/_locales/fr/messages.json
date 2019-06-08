@@ -1,0 +1,630 @@
+{
+  "extName": {
+    "message": "Chameleon",
+    "description": "Name of the extension."
+  },
+  "extDescription": {
+    "message": "Spoof your browser profile. Includes a few privacy enhancing options.",
+    "description": "Description of the extension."
+  },
+  "aboutContributors": {
+    "message": "Developed by <a href=\"$AUTHOR$\">sereneblue<\/a> and <a href=\"$CONTRIB$\">contributors<\/a>",
+    "description": "Contributors text",
+    "placeholders": {
+      "author": {
+        "content": "https:\/\/github.com\/sereneblue"
+      },
+      "contrib": {
+        "content": "https:\/\/github.com\/sereneblue\/chameleon\/graphs\/contributors"
+      }
+    }
+  },
+  "aboutLicense": {
+    "message": "Distributed under the GNU GPL v3 license.",
+    "description": "Text for license"
+  },
+  "aboutSrcCode": {
+    "message": "Source Code",
+    "description": "Text for Github repository link"
+  },
+  "aboutReport": {
+    "message": "Report a bug",
+    "description": "Text for Github issues link"
+  },
+  "aboutTranslate": {
+    "message": "Help translate Chameleon",
+    "description": "Text for Crowdin localizations"
+  },
+  "aboutWiki": {
+    "message": "Wiki",
+    "description": "Text for Chameleon wiki"
+  },
+  "aboutSettings": {
+    "message": "Settings",
+    "description": "Text for settings section"
+  },
+  "aboutBtnImport": {
+    "message": "Import",
+    "description": "Label for import settings button"
+  },
+  "aboutBtnExport": {
+    "message": "Export",
+    "description": "Label for export settings button"
+  },
+  "tabProfile": {
+    "message": "Profile",
+    "description": "Title of popup tab: profile"
+  },
+  "profileEnableNotification": {
+    "message": "Enable notifications",
+    "description": "Label for enable notifcations"
+  },
+  "profileRandom": {
+    "message": "Random",
+    "description": "Label for random profile"
+  },
+  "profileRandomDesktop": {
+    "message": "Random Profile (Desktop)",
+    "description": "Label for random desktop profile"
+  },
+  "profileRandomMobile": {
+    "message": "Random Profile (Mobile)",
+    "description": "Label for random mobile profile"
+  },
+  "profileScriptInjectionMsg": {
+    "message": "Script injection must be enabled to fully use profiles.",
+    "description": "Script injection message"
+  },
+  "profilePeriodically": {
+    "message": "Change periodically",
+    "description": "Text for interval change"
+  },
+  "profileIntervalNo": {
+    "message": "No",
+    "description": "Option to not change periodically"
+  },
+  "profileIntervalCustom": {
+    "message": "Custom interval",
+    "description": "Option to change periodically using custom interval"
+  },
+  "profileIntervalMinute": {
+    "message": "Every minute",
+    "description": "Option to change periodically: 1 min"
+  },
+  "profileIntervalMinute5": {
+    "message": "Every 5 minutes",
+    "description": "Option to change periodically: 5 min"
+  },
+  "profileIntervalMinute10": {
+    "message": "Every 10 minutes",
+    "description": "Option to change periodically: 10 min"
+  },
+  "profileIntervalMinute20": {
+    "message": "Every 20 minutes",
+    "description": "Option to change periodically: 20 min"
+  },
+  "profileIntervalMinute30": {
+    "message": "Every 30 minutes",
+    "description": "Option to change periodically: 30 min"
+  },
+  "profileIntervalMinute40": {
+    "message": "Every 40 minutes",
+    "description": "Option to change periodically: 40 min"
+  },
+  "profileIntervalMinute50": {
+    "message": "Every 50 minutes",
+    "description": "Option to change periodically: 50 min"
+  },
+  "profileIntervalHour": {
+    "message": "Every hour",
+    "description": "Option to change periodically: 1 hour"
+  },
+  "profileIntervalRefresh": {
+    "message": "refresh",
+    "description": "Label for refresh profile button"
+  },
+  "profileIntervalCustomMin": {
+    "message": "Min (minutes):",
+    "description": "Label for custom interval input: min"
+  },
+  "profileIntervalCustomMax": {
+    "message": "Max (minutes):",
+    "description": "Label for custom interval input: max"
+  },
+  "profileBrowser": {
+    "message": "Browsers",
+    "description": "Text to append to platform, ex. Windows Browsers"
+  },
+  "profileExclude": {
+    "message": "Exclude",
+    "description": "Lbael for exclude profiles"
+  },
+  "profileRandomWindows": {
+    "message": "Random Windows Browsers",
+    "description": "Label for random Windows browsers option"
+  },
+  "profileRandomMacOS": {
+    "message": "Random macOS Browsers",
+    "description": "Label for random macOS browsers option"
+  },
+  "profileRandomLinux": {
+    "message": "Random Linux Browsers",
+    "description": "Label for random Linux browsers option"
+  },
+  "profileRandomIOS": {
+    "message": "Random iOS Browsers",
+    "description": "Label for random iOS browsers option"
+  },
+  "profileRandomAndroid": {
+    "message": "Random Android Browsers",
+    "description": "Label for random Android browsers option"
+  },
+  "profileCustom": {
+    "message": "Custom User Agent",
+    "description": "Lbael for custom user agent"
+  },
+  "tabHeaders": {
+    "message": "Headers",
+    "description": "Title of popup tab: headers"
+  },
+  "headersDisableAuth": {
+    "message": "Disable Authorization",
+    "description": "Label for disable auth header"
+  },
+  "headersEnableDNT": {
+    "message": "Enable DNT (Do Not Track)",
+    "description": "Label for enable Do Not Track"
+  },
+  "headersBlockEtag": {
+    "message": "Prevent Etag tracking",
+    "description": "Label for prevent Etag"
+  },
+  "headersSpoofVIa": {
+    "message": "Spoof Via using a",
+    "description": "Label for spoof IP headers (Via)"
+  },
+  "headersSpoofXForwarded": {
+    "message": "Spoof X-Forwarded-For using a",
+    "description": "Label for spoof IP headers (Via)"
+  },
+  "headersIPRandom": {
+    "message": "random IP",
+    "description": "Label for IP address (random)"
+  },
+  "headersIPCustom": {
+    "message": "custom IP",
+    "description": "Label for IP address (custom)"
+  },
+  "headersIP": {
+    "message": "IP address:",
+    "description": "Label for IP address text"
+  },
+  "headersDisableRef": {
+    "message": "Disable Referer",
+    "description": "Label for disable referer"
+  },
+  "headersSpoofSourceRef": {
+    "message": "Spoof Source Referer",
+    "description": "Label for disable referer"
+  },
+  "headersUpgradeInsecureReq": {
+    "message": "Upgrade Insecure Requests",
+    "description": "Label for disable referer"
+  },
+  "headersMsg1": {
+    "message": "Don't modify about:config settings for the options below.",
+    "description": "Warning message for referer options"
+  },
+  "headersMsg2": {
+    "message": "More info in wiki.",
+    "description": "Wiki link text"
+  },
+  "headersRefererXorigin": {
+    "message": "Referer X Origin Policy",
+    "description": "Label for referer X Origin policy"
+  },
+  "headersRefererXoriginOption1": {
+    "message": "Always send (default)",
+    "description": "Option to set referer X Origin policy to: always send"
+  },
+  "headersRefererXoriginOption2": {
+    "message": "Match base domain",
+    "description": "Option to set referer X Origin policy to: match base domain"
+  },
+  "headersRefererXoriginOption3": {
+    "message": "Match host",
+    "description": "Option to set referer X Origin policy to: match host"
+  },
+  "headersRefererTrimming": {
+    "message": "Referer Trimming Policy",
+    "description": "Label for referer trimming policy"
+  },
+  "headersRefererTrimmingOption1": {
+    "message": "Send full URI (default)",
+    "description": "Option to set referer trimming policy to: send full URI"
+  },
+  "headersRefererTrimmingOption2": {
+    "message": "Scheme, host, port + path",
+    "description": "Option to set referer trimming policy to: Scheme, host, port + path"
+  },
+  "headersRefererTrimmingOption3": {
+    "message": "Scheme, host + port",
+    "description": "Option to set referer trimming policy to: Scheme, host + port"
+  },
+  "headersSpoofAccept": {
+    "message": "Spoof Accept & Accept-Encoding headers",
+    "description": "Label for spoof accept"
+  },
+  "headersSpoofAcceptLang": {
+    "message": "Spoof Accept-Language as",
+    "description": "Label for disable referer"
+  },
+  "tabOptions": {
+    "message": "Options",
+    "description": "Title of popup tab: options"
+  },
+  "optionsGroupScriptInjection": {
+    "message": "Script Injection Options",
+    "description": "Label for group: script injection options"
+  },
+  "optionsEnableScriptInjection": {
+    "message": "Enable script injection",
+    "description": "Label for enable script injection"
+  },
+  "optionsEnableScriptInjectionMsg": {
+    "message": "An option with * requires script injection",
+    "description": "Text for script injection options message"
+  },
+  "optionsWebsockets": {
+    "message": "Websockets",
+    "description": "Label for websocket options"
+  },
+  "optionsWebsocketsOption1": {
+    "message": "Allow all",
+    "description": "Option to allow all websocket connections"
+  },
+  "optionsWebsocketsOption2": {
+    "message": "Block 3rd Party",
+    "description": "Option to block 3rd party websocket connections"
+  },
+  "optionsWebsocketsOption3": {
+    "message": "Block All",
+    "description": "Option to block all websocket connections"
+  },
+  "optionsLimitHistory": {
+    "message": "Limit tab history",
+    "description": "Label for limit tab history"
+  },
+  "optionsProtectCSSExfil": {
+    "message": "Protect CSS Exfil",
+    "description": "Label for protect CSS Exfil"
+  },
+  "optionsProtectWinName": {
+    "message": "Protect window name",
+    "description": "Label for protect window name"
+  },
+  "optionsProtectKBFingerprint": {
+    "message": "Protect keyboard fingerprint",
+    "description": "Label for protect keyboard fingerprint"
+  },
+  "optionsSpoofAudioContext": {
+    "message": "Spoof Audio Context",
+    "description": "Label for spoof audio context"
+  },
+  "optionsSpoofClientRects": {
+    "message": "Spoof Client Rects",
+    "description": "Label for spoof client rects"
+  },
+  "optionsSpoofFontFingerprint": {
+    "message": "Spoof Font fingerprint",
+    "description": "Label for spoof font fingerprint"
+  },
+  "optionsSpoofScreenSize": {
+    "message": "Screen size spoofing",
+    "description": "Label for spoof screen size"
+  },
+  "optionsSpoofScreenSizeOptionProfile": {
+    "message": "Profile",
+    "description": "Option for spoof screen size: profile"
+  },
+  "optionsSpoofScreenSizeCustomWidth": {
+    "message": "Screen Width (px)",
+    "description": "Label for custom screen size: width"
+  },
+  "optionsSpoofScreenSizeCustomHeight": {
+    "message": "Screen Height (px)",
+    "description": "Label for custom screen size: height"
+  },
+  "optionsSpoofTimezone": {
+    "message": "Timezone",
+    "description": "Label for spoof timezone"
+  },
+  "optionsGroupStandard": {
+    "message": "Standard Options",
+    "description": "Label for group: standard options"
+  },
+  "optionsFirstPartyIsolate": {
+    "message": "Enable 1st party isolation",
+    "description": "Label for enable 1st party isolation"
+  },
+  "optionsResistFingerprinting": {
+    "message": "Resist fingerprinting",
+    "description": "Label for enable resist fingerprinting"
+  },
+  "optionsTrackingProtection": {
+    "message": "Tracking protection mode",
+    "description": "Label for tracking protection"
+  },
+  "optionsTrackingProtectionOption1": {
+    "message": "On",
+    "description": "Option to enable tracking protection"
+  },
+  "optionsTrackingProtectionOption2": {
+    "message": "Off",
+    "description": "Option to disable tracking protection"
+  },
+  "optionsTrackingProtectionOption3": {
+    "message": "Enabled in private browsing",
+    "description": "Option to enable tracking protection only in private browsing"
+  },
+  "optionsWebRTC": {
+    "message": "WebRTC Policy",
+    "description": "Label for tracking protection"
+  },
+  "optionsWebRTCOption2": {
+    "message": "Use Public and Private interface",
+    "description": "Option to use public & private interface"
+  },
+  "optionsWebRTCOption3": {
+    "message": "Only use Public interface (best)",
+    "description": "Option to only use public interface"
+  },
+  "optionsWebRTCOption4": {
+    "message": "Disable non-proxified UDP",
+    "description": "Option to disable non-proxified UDP"
+  },
+  "optionsGroupCookie": {
+    "message": "Cookie Options",
+    "description": "Label for group: cookie"
+  },
+  "optionsCookiePolicy": {
+    "message": "Policy",
+    "description": "Label for cookie policy"
+  },
+  "optionsCookiePolicyOption1": {
+    "message": "Allow all",
+    "description": "Option to allow all cookies"
+  },
+  "optionsCookiePolicyOption2": {
+    "message": "Block all",
+    "description": "Option to block all cookies"
+  },
+  "optionsCookiePolicyOption3": {
+    "message": "Block 3rd party",
+    "description": "Option to block 3rd party cookies"
+  },
+  "optionsCookiePolicyOption4": {
+    "message": "Allow 3rd party from visited",
+    "description": "Option to allow 3rd party from visited"
+  },
+  "optionsCookiePolicyOption5": {
+    "message": "Reject trackers",
+    "description": "Option to reject trackers"
+  },
+  "optionsGroupMisc": {
+    "message": "Misc Options",
+    "description": "Label for group: miscellaneous"
+  },
+  "optionsAboutConfigMsg": {
+    "message": "Copy link to about:config entry",
+    "description": "Text for misc options message"
+  },
+  "optionsGroupReports": {
+    "message": "Reporting Options",
+    "description": "Label for group: report"
+  },
+  "whitelistEnable": {
+    "message": "Enable whitelist (requires script injection)",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistUseDefault": {
+    "message": "Default Whitelist Profile",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistViewIPRules": {
+    "message": "View Timezone\/Language IP rules",
+    "description": "Label for IP rules"
+  },
+  "whitelistViewRules": {
+    "message": "View whitelist",
+    "description": "Label for whitelist rules editor"
+  },
+  "whitelistCurrentDomain": {
+    "message": "Current domain",
+    "description": "Text: Current domain"
+  },
+  "whitelistOpenEditor": {
+    "message": "Add\/edit domain in whitelist",
+    "description": "Label for add\/edit domain in whitelist"
+  },
+  "ipRulesSubheader": {
+    "message": "Timezone\/Language IP rules",
+    "description": "Subheader for IP rules"
+  },
+  "ipRulesReloadIP": {
+    "message": "Reload IP info",
+    "description": "Label for button: reload IP info"
+  },
+  "ipRulesTip": {
+    "message": "Tip: 8.8.8.0\/24 corresponds to the range 8.8.8.0 - 8.8.8.255",
+    "description": "Text for IP rules tip"
+  },
+  "ipRulesInstructions": {
+    "message": "Click the Reload IP info button after making changes to IP rules",
+    "description": "Text for IP rules instructions"
+  },
+  "ipRulesTableIPRange": {
+    "message": "IP Range",
+    "description": "Table column header: IP Range"
+  },
+  "ipRulesTableLanguage": {
+    "message": "Language",
+    "description": "Table column header: Language"
+  },
+  "ipRulesTableTimezone": {
+    "message": "Timezone",
+    "description": "Table column header: Timezone"
+  },
+  "ipRulesTableActions": {
+    "message": "Actions",
+    "description": "Table column header: Actions"
+  },
+  "ipRulesCIDR": {
+    "message": "IP or CIDR",
+    "description": "Label for IP\/CIDR range"
+  },
+  "ipRulesCIDRPlaceholder": {
+    "message": "Enter IP or CIDR",
+    "description": "Placeholder for IP\/CIDR range"
+  },
+  "whitelistSearchPlaceholder": {
+    "message": "Search rules",
+    "description": "Placeholder for search rules input"
+  },
+  "whitelistEnterDomain": {
+    "message": "Enter domain",
+    "description": "Placeholder for domain input"
+  },
+  "whitelistRegexEnabled": {
+    "message": "Regex enabled",
+    "description": "Label for regex checkbox"
+  },
+  "whitelistEnterPattern": {
+    "message": "Enter pattern",
+    "description": "Placeholder for regex pattern"
+  },
+  "whitelistSpoofAcceptLang": {
+    "message": "Spoof Accept-Language",
+    "description": "Label for spoof accept-language"
+  },
+  "whitelistSpoofProfile": {
+    "message": "Spoof Profile",
+    "description": "Label for spoof profile"
+  },
+  "whitelistSpoofProfileDefault": {
+    "message": "Default Whitelist Profile",
+    "description": "Option to use default whitelist profile"
+  },
+  "whitelistAddDomain": {
+    "message": "Add domain",
+    "description": "Label for add domain button"
+  },
+  "whitelistDisableAuth": {
+    "message": "Disable auth header",
+    "description": "Label for disable auth header"
+  },
+  "whitelistDisableReferer": {
+    "message": "Disable referer",
+    "description": "Label for disable referer"
+  },
+  "whitelistDisableWebsocket": {
+    "message": "Disable WebSocket",
+    "description": "Label for disable websocket"
+  },
+  "whitelistEnableIPHeaders": {
+    "message": "Enable IP headers spoofing",
+    "description": "Label for enable IP headers spoof"
+  },
+  "whitelistEnableProtectWinName": {
+    "message": "Enable Protect window name",
+    "description": "Label for enable protect window name"
+  },
+  "whitelistEnableTimezoneSpoofing": {
+    "message": "Enable Timezone spoofing",
+    "description": "Label for enable timezone spoofing"
+  },
+  "whitelistSpoofHeaderIPLabel": {
+    "message": "Header IP (Via & X-Forwarded For)",
+    "description": "Label for IP headers spoof value"
+  },
+  "whitelistConfirmation": {
+    "message": "Are you sure you want to delete this rule?",
+    "description": "Text for delete confirmation"
+  },
+  "notificationMessage": {
+    "message": "Browser Profile Changed",
+    "description": "Notification message for profile change"
+  },
+  "notificationMessageTimezone": {
+    "message": "Unable to get timezone data. Using UTC.",
+    "description": "Notification message for timezone IP"
+  },
+  "textClose": {
+    "message": "Close",
+    "description": "Text: Close"
+  },
+  "textCreate": {
+    "message": "Create",
+    "description": "Text: Create"
+  },
+  "textCreateRule": {
+    "message": "Create new rule",
+    "description": "Label for button: create new rule"
+  },
+  "textDefault": {
+    "message": "Default",
+    "description": "Text: Default"
+  },
+  "textDelete": {
+    "message": "Delete",
+    "description": "Text: Delete"
+  },
+  "textDomains": {
+    "message": "domains",
+    "description": "Text: domains"
+  },
+  "textEdit": {
+    "message": "Edit",
+    "description": "Text: Edit"
+  },
+  "textCustom": {
+    "message": "Custom",
+    "description": "Text: Custom"
+  },
+  "textLanguage": {
+    "message": "Language",
+    "description": "Text: Language"
+  },
+  "textNo": {
+    "message": "No",
+    "description": "Text: No"
+  },
+  "textRealProfile": {
+    "message": "Real Profile",
+    "description": "Text: Real Profile"
+  },
+  "textReset": {
+    "message": "Reset",
+    "description": "Text: Reset"
+  },
+  "textSave": {
+    "message": "Save",
+    "description": "Text: Save"
+  },
+  "textTimezone": {
+    "message": "Timezone",
+    "description": "Text: Timezone"
+  },
+  "textUsing": {
+    "message": "Using",
+    "description": "Text: Using"
+  },
+  "textYes": {
+    "message": "Yes",
+    "description": "Text: Yes"
+  },
+  "textWhitelist": {
+    "message": "Whitelist",
+    "description": "Text: Whitelist"
+  }
+}
