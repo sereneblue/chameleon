@@ -856,22 +856,23 @@ function migrate(data) {
 
 	if (data.whitelist.defaultProfile == undefined) {
 		data.whitelist.defaultProfile = "none";
-		for (var i = 0; i < data.whitelist.urlList.length; i++) {
-			delete data.whitelist.urlList[i].options.screen;
-			data.whitelist.urlList[i].profile = "default";
+	}
+	
+	for (var i = 0; i < data.whitelist.urlList.length; i++) {
+		delete data.whitelist.urlList[i].options.screen;
+		data.whitelist.urlList[i].profile = "default";
 
-			if (data.whitelist.urlList[i].url) {
-				data.whitelist.urlList[i].id = Math.random().toString(36).substring(7);
-				data.whitelist.urlList[i].domains = [{
-		            "domain": data.whitelist.urlList[i].url,
-		            "re": data.whitelist.urlList[i].re,
-		            "pattern": data.whitelist.urlList[i].pattern
-				}];
+		if (data.whitelist.urlList[i].url) {
+			data.whitelist.urlList[i].id = Math.random().toString(36).substring(7);
+			data.whitelist.urlList[i].domains = [{
+	            "domain": data.whitelist.urlList[i].url,
+	            "re": data.whitelist.urlList[i].re,
+	            "pattern": data.whitelist.urlList[i].pattern
+			}];
 
-				delete data.whitelist.urlList[i].url;
-				delete data.whitelist.urlList[i].re;
-				delete data.whitelist.urlList[i].pattern;
-			}
+			delete data.whitelist.urlList[i].url;
+			delete data.whitelist.urlList[i].re;
+			delete data.whitelist.urlList[i].pattern;
 		}
 	}
 	
@@ -1115,9 +1116,8 @@ browser.runtime.onInstalled.addListener((details) => {
 		}
 	}
 
-	if (data.version == undefined || (data.version && data.version < "0.12.3")) {
-		data = migrate(data);
-	}
+	// update old settings if neccessary
+	data = migrate(data);
 
 	if (data.headers && data.headers.spoofAcceptEnc) {
 		data.headers.spoofAccept = data.headers.spoofAcceptEnc;
