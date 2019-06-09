@@ -603,10 +603,6 @@
     "message": "Timezone",
     "description": "Text: Timezone"
   },
-  "textUsing" : {
-    "message": "Using",
-    "description": "Text: Using"
-  },
   "textYes" : {
     "message": "Yes",
     "description": "Text: Yes"
@@ -736,7 +732,7 @@
     "description": "Checklist option to disable TLS 0-RTT"
   },
   "checklistDisableTrustedRecursiveResolver": {
-    "message": "Disable Trusted Recursive Resolver",
+    "message": "Disable TTR (Trusted Recursive Resolver)",
     "description": "Checklist option to disable Trusted Recursive Resolver"
   },
   "checklistDisableWebGL": {

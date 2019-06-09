@@ -235,14 +235,14 @@ async function getIPInfo() {
 			if (ruleIndex > -1) {
 				let lang = languages.find(l => l.display == chameleon.ipRules[ruleIndex].lang);
 
-				tzSpoof = ` timezone: UTC${moment().tz(chameleon.ipRules[ruleIndex].tz).format('Z')}`;
-				langSpoof = ` lang: ${lang.display}`;
+				tzSpoof = `${browser.i18n.getMessage("textTimezone")} UTC${moment().tz(chameleon.ipRules[ruleIndex].tz).format('Z')}`;
+				langSpoof = `${browser.i18n.getMessage("textLanguage")}: ${lang.display}`;
 
 				chameleon.ipInfo.timezone = chameleon.ipRules[ruleIndex].tz;
 				chameleon.ipInfo.language = lang.value;;
 			} else {
 				if (chameleon.settings.timeZone == "ip") {
-					tzSpoof = ` timezone: UTC${moment().tz(data.timezone).format('Z')}`;
+					tzSpoof = `${browser.i18n.getMessage("textTimezone")}: UTC${moment().tz(data.timezone).format('Z')}`;
 					chameleon.ipInfo.timezone = data.timezone;
 				}
 
@@ -275,7 +275,7 @@ async function getIPInfo() {
 						}
 					}
 
-					langSpoof = ` lang: ${lang.display}`;
+					langSpoof = ` ${browser.i18n.getMessage("textLanguage")}: ${lang.display}`;
 					chameleon.ipInfo.language = lang.value;
 				}
 			}
@@ -284,7 +284,7 @@ async function getIPInfo() {
 				chrome.notifications.create({
 					"type": "basic",
 					"title": "Chameleon",
-					"message": `${browser.i18n.getMessage("textUsing")}${tzSpoof}${langSpoof}`
+					"message": `${tzSpoof}${langSpoof}`
 				});
 			}
 			
