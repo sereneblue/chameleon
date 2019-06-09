@@ -668,7 +668,7 @@
     "description": "Checklist option to disable clipboard events"
   },
   "checklistDisableContextMenuEvents": {
-    "message": "Désactiver les options de menu contextuelles",
+    "message": "Désactiver les événements du menu de contenu",
     "description": "Checklist option to disable context menu events"
   },
   "checklistDisableDeviceSensors": {
@@ -788,19 +788,19 @@
     "description": "Checklist option to use disable safe browsing phishing check"
   },
   "checklistDisableHealthReportUploads": {
-    "message": "Disable health report uploads",
+    "message": "Désactiver les envois de rapports de santé",
     "description": "Checklist option to use disable health report uploads"
   },
   "checklistDisableCrashReport": {
-    "message": "Disable crash report",
+    "message": "Désactiver le rapport d'accident",
     "description": "Checklist option to use disable crash report"
   },
   "checklistDisableTelemetryReport": {
-    "message": "Disable telemetry report",
+    "message": "Désactiver le rapport de télémétrie",
     "description": "Checklist option to use disable telemetry report"
   },
   "checklistDisableTelemetryReport2": {
-    "message": "Disable telemetry report 2",
+    "message": "Désactiver le rapport de télémétrie 2",
     "description": "Checklist option to use disable telemetry report 2"
   },
   "checklistDisableTelemetryServer": {
