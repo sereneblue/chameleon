@@ -6,7 +6,7 @@
 			"strict_min_version": "59.0a1"
 		}
 	},
-	"name": "__MSG_extName__",
+	"name": "Chameleon",
 	"version": "0.12.5",
 	"manifest_version": 2,
 	"description": "__MSG_extDescription__",

@@ -51,8 +51,6 @@ async function exportSettings() {
 // set localized text
 function localize() {
 	// about tab
-	$("title").text(browser.i18n.getMessage("extName"));
-	$("#extName").text(browser.i18n.getMessage("extName"));
 	$("#contrib").html(browser.i18n.getMessage("aboutContributors"));
 	$("#license").text(browser.i18n.getMessage("aboutLicense"));
 	$("#sourceCode").text(browser.i18n.getMessage("aboutSrcCode"));

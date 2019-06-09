@@ -1,8 +1,4 @@
 {
-  "extName": {
-    "message": "Chameleon",
-    "description": "Name of the extension."
-  },
   "extDescription": {
     "message": "Spoof your browser profile. Includes a few privacy enhancing options.",
     "description": "Description of the extension."
@@ -798,5 +794,5 @@
   "checklistDisableTelemetryServer": {
     "message": "Disable telemetry server",
     "description": "Checklist option to use disable telemetry server"
-  },
+  }
 }
