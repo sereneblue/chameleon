@@ -1,8 +1,4 @@
 {
-  "extName": {
-    "message": "Chameleon",
-    "description": "Name of the extension."
-  },
   "extDescription": {
     "message": "Spoof your browser profile. Includes a few privacy enhancing options.",
     "description": "Description of the extension."
@@ -275,10 +271,6 @@
     "message": "An option with * requires script injection",
     "description": "Text for script injection options message"
   },
-  "optionsWebsockets": {
-    "message": "Websockets",
-    "description": "Label for websocket options"
-  },
   "optionsWebsocketsOption1": {
     "message": "Allow all",
     "description": "Option to allow all websocket connections"
@@ -411,17 +403,9 @@
     "message": "Reject trackers",
     "description": "Option to reject trackers"
   },
-  "optionsGroupMisc": {
-    "message": "Misc Options",
-    "description": "Label for group: miscellaneous"
-  },
-  "optionsAboutConfigMsg": {
-    "message": "Copy link to about:config entry",
-    "description": "Text for misc options message"
-  },
-  "optionsGroupReports": {
-    "message": "Reporting Options",
-    "description": "Label for group: report"
+  "optionsOpenChecklist": {
+    "message": "Open about:config checklist",
+    "description": "Label for checklist button"
   },
   "whitelistEnable": {
     "message": "Enable whitelist (requires script injection)",
@@ -559,6 +543,10 @@
     "message": "Unable to get timezone data. Using UTC.",
     "description": "Notification message for timezone IP"
   },
+  "textChecklist": {
+    "message": "Checklist",
+    "description": "Text: Checklist"
+  },
   "textClose": {
     "message": "Close",
     "description": "Text: Close"
@@ -626,5 +614,197 @@
   "textWhitelist": {
     "message": "Whitelist",
     "description": "Text: Whitelist"
+  },
+  "checklistTip": {
+    "message": "Create option if it doesn't exist. Research option before changing, some will break sites!",
+    "description": "Text for checklist tip"
+  },
+  "checklistTableHeaderOption": {
+    "message": "Option",
+    "description": "Table header: option"
+  },
+  "checklistTableHeaderPreference": {
+    "message": "Preference",
+    "description": "Table header: preference"
+  },
+  "checklistTableHeaderSet": {
+    "message": "Set to",
+    "description": "Table header: set to"
+  },
+  "checklistBlockActiveMixedContent": {
+    "message": "Block active mixed content",
+    "description": "Checklist option to block active mixed content"
+  },
+  "checklistBlockDisplayMixedContent": {
+    "message": "Block display mixed content",
+    "description": "Checklist option to block display mixed content"
+  },
+  "checklistDisableBatteryAPI": {
+    "message": "Disable Battery API",
+    "description": "Checklist option to disable battery API"
+  },
+  "checklistDisableBrowserPings": {
+    "message": "Disable Browser Pings",
+    "description": "Checklist option to disable browser pings"
+  },
+  "checklistDisableHistory": {
+    "message": "Disable Browsing and Download history",
+    "description": "Checklist option to disable browsing and download history"
+  },
+  "checklistDisableCSSVisited": {
+    "message": "Disable CSS visited links",
+    "description": "Checklist option to disable CSS visited links"
+  },
+  "checklistDisableCacheDisk": {
+    "message": "Disable Cache (disk)",
+    "description": "Checklist option to disable cache: disk"
+  },
+  "checklistDisableCacheMemory": {
+    "message": "Disable Cache (memory)",
+    "description": "Checklist option to disable cache: memory"
+  },
+  "checklistDisableClipboardEvents": {
+    "message": "Disable Clipboard Events",
+    "description": "Checklist option to disable clipboard events"
+  },
+  "checklistDisableContextMenuEvents": {
+    "message": "Disable Content Menu Events",
+    "description": "Checklist option to disable context menu events"
+  },
+  "checklistDisableDeviceSensors": {
+    "message": "Disable Device Sensors",
+    "description": "Checklist option to disable device sensors"
+  },
+  "checklistDisableDNSPrefetch": {
+    "message": "Disable DNS prefetch",
+    "description": "Checklist option to disable DNS prefetch"
+  },
+  "checklistDisableDOMStorage": {
+    "message": "Disable DOM storage",
+    "description": "Checklist option to disable DOM storage"
+  },
+  "checklistDisableDRM": {
+    "message": "Disable DRM",
+    "description": "Checklist option to disable DRM"
+  },
+  "checklistDisableGamepadAPI": {
+    "message": "Disable Gamepad API",
+    "description": "Checklist option to disable gamepad API"
+  },
+  "checklistDisableGeolocation": {
+    "message": "Disable Geolocation",
+    "description": "Checklist option to disable geolocation"
+  },
+  "checklistDisableGeolocation2": {
+    "message": "Disable Geolocation 2",
+    "description": "Checklist option to disable geolocation 2"
+  },
+  "checklistDisableOfflineCache": {
+    "message": "Disable offline cache",
+    "description": "Checklist option to disable offline cache"
+  },
+  "checklistDisablePDFjs": {
+    "message": "Disable PDF.js",
+    "description": "Checklist option to disable pdf.js"
+  },
+  "checklistDisablePocket": {
+    "message": "Disable Pocket",
+    "description": "Checklist option to disable Pocket"
+  },
+  "checklistDisableResourceTiming": {
+    "message": "Disable Resource Timing",
+    "description": "Checklist option to disable resource timing"
+  },
+  "checklistDisableSearchSuggestions": {
+    "message": "Disable Search suggestions",
+    "description": "Checklist option to disable search suggestions"
+  },
+  "checklistDisableSearchUpdates": {
+    "message": "Disable Search Updates",
+    "description": "Checklist option to disable search update"
+  },
+  "checklistDisableSSLFalseStart": {
+    "message": "Disable SSL False Start",
+    "description": "Checklist option to disable SSL False Start"
+  },
+  "checklistDisableSSLSessionIdentifiers": {
+    "message": "Disable SSL Session Identifiers",
+    "description": "Checklist option to disable SSL session identifiers"
+  },
+  "checklistDisableTLS0RTT": {
+    "message": "Disable TLS 0-RTT",
+    "description": "Checklist option to disable TLS 0-RTT"
+  },
+  "checklistDisableTrustedRecursiveResolver": {
+    "message": "Disable Trusted Recursive Resolver",
+    "description": "Checklist option to disable Trusted Recursive Resolver"
+  },
+  "checklistDisableWebGL": {
+    "message": "Disable WebGL",
+    "description": "Checklist option to disable WebGL"
+  },
+  "checklistDisableWebBeacons": {
+    "message": "Disable Web Beacons",
+    "description": "Checklist option to disable Web Beacons"
+  },
+  "checklistEnableClearOfflineApps": {
+    "message": "Enable clear offline apps on shutdown",
+    "description": "Checklist option to enable clear offline apps on shutdown"
+  },
+  "checklistLimitDetectableFonts": {
+    "message": "Limit detectable fonts",
+    "description": "Checklist option to limit detectable fonts"
+  },
+  "checklistUseClickToPlay": {
+    "message": "Use click to play for plugins",
+    "description": "Checklist option to use click to pay for plugins"
+  },
+  "checklistDisableDataSubmission": {
+    "message": "Disable data submission",
+    "description": "Checklist option to use disable data submission"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck": {
+    "message": "Disable safe browsing downloads check",
+    "description": "Checklist option to use disable safe browsing downloads check"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck2": {
+    "message": "Disable safe browsing downloads check 2",
+    "description": "Checklist option to use disable safe browsing downloads check 2"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck3": {
+    "message": "Disable safe browsing downloads check 3",
+    "description": "Checklist option to use disable safe browsing downloads check 3"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck4": {
+    "message": "Disable safe browsing downloads check 4",
+    "description": "Checklist option to use disable safe browsing downloads check 4"
+  },
+  "checklistDisableSafeBrowsingMalwareCheck": {
+    "message": "Disable safe browsing malware check",
+    "description": "Checklist option to use disable safe browsing malware check"
+  },
+  "checklistDisableSafeBrowsingPhishingCheck": {
+    "message": "Disable safe browsing phishing check",
+    "description": "Checklist option to use disable safe browsing phishing check"
+  },
+  "checklistDisableHealthReportUploads": {
+    "message": "Disable health report uploads",
+    "description": "Checklist option to use disable health report uploads"
+  },
+  "checklistDisableCrashReport": {
+    "message": "Disable crash report",
+    "description": "Checklist option to use disable crash report"
+  },
+  "checklistDisableTelemetryReport": {
+    "message": "Disable telemetry report",
+    "description": "Checklist option to use disable telemetry report"
+  },
+  "checklistDisableTelemetryReport2": {
+    "message": "Disable telemetry report 2",
+    "description": "Checklist option to use disable telemetry report 2"
+  },
+  "checklistDisableTelemetryServer": {
+    "message": "Disable telemetry server",
+    "description": "Checklist option to use disable telemetry server"
   }
 }
