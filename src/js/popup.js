@@ -51,8 +51,6 @@ async function exportSettings() {
 // set localized text
 function localize() {
 	// about tab
-	$("title").text(browser.i18n.getMessage("extName"));
-	$("#extName").text(browser.i18n.getMessage("extName"));
 	$("#contrib").html(browser.i18n.getMessage("aboutContributors"));
 	$("#license").text(browser.i18n.getMessage("aboutLicense"));
 	$("#sourceCode").text(browser.i18n.getMessage("aboutSrcCode"));
@@ -131,7 +129,6 @@ function localize() {
 	$("#optionsGroupScriptInjection").text(browser.i18n.getMessage("optionsGroupScriptInjection"));
 	$("#optionsEnableScriptInjection").text(browser.i18n.getMessage("optionsEnableScriptInjection"));
 	$("#optionsEnableScriptInjectionMsg").text(browser.i18n.getMessage("optionsEnableScriptInjectionMsg"));
-	$("#optionsWebsockets").text(browser.i18n.getMessage("optionsWebsockets"));
 	$("select[name='webSockets'] option:eq(0)").text(browser.i18n.getMessage("optionsWebsocketsOption1"));
 	$("select[name='webSockets'] option:eq(1)").text(browser.i18n.getMessage("optionsWebsocketsOption2"));
 	$("select[name='webSockets'] option:eq(2)").text(browser.i18n.getMessage("optionsWebsocketsOption3"));
@@ -164,8 +161,9 @@ function localize() {
 	$("select[name='cookieConfig'] option:eq(2)").text(browser.i18n.getMessage("optionsCookiePolicyOption3"));
 	$("select[name='cookieConfig'] option:eq(3)").text(browser.i18n.getMessage("optionsCookiePolicyOption4"));
 	$("select[name='cookieConfig'] option:eq(4)").text(browser.i18n.getMessage("optionsCookiePolicyOption5"));
-	$("#optionsGroupMisc").text(browser.i18n.getMessage("optionsGroupMisc"));
-	$("#optionsGroupReports").text(browser.i18n.getMessage("optionsGroupReports"));
+	$("#openChecklist").text(browser.i18n.getMessage("optionsOpenChecklist"));
+	
+	// whitelist tab
 	$("#whitelistEnable").text(browser.i18n.getMessage("whitelistEnable"));
 	$("#whitelistUseDefault").text(browser.i18n.getMessage("whitelistUseDefault"));
 	$("#whitelistViewIPRules").text(browser.i18n.getMessage("whitelistViewIPRules"));
@@ -765,6 +763,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		window.close();
 	});
 
+	$('#openChecklist').on('click', function(e) {
+		chrome.tabs.create({
+		    url:  chrome.runtime.getURL('/checklist.html')
+		});
+
+		window.close();
+	});
+
 	$('#openEditor').on('click', function(e) {
 		var domain = $('.whitelist h5').text();
 
@@ -773,5 +779,5 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 
 		window.close();
-	})
+	});
 });

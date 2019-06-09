@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/spectre.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/popup.css" />
+	<title></title>
+	<style type="text/css">
+		tr:hover {
+		  background-color: rgba(0, 0, 0, 0.1);
+		}
+	</style>
+</head>
+<body>
+	<div class="header-container">
+		<h1>Chameleon</h1>
+		<h4 id="subheader"></h4>
+		<br/>
+		<h4 id="tip"></h4>
+	</div>
+	<div class="content" id="rules">
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th><span id="headerOption" /></th>
+		      <th><span id="headerPreference" /></th>
+		      <th><span id="headerSet" /></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<tr>
+		  		<td id="blockActiveContent"></td>
+		  		<td>security.mixed_content.block_active_content</td>
+		  		<td>true</td>
+		  	</tr>
+			<tr>
+		  		<td id="blockMixedContent"></td>
+		  		<td>security.mixed_content.block_display_content</td>
+		  		<td>true</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableBattery"></td>
+		  		<td>dom.battery.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disablePings"></td>
+		  		<td>browser.send_pings</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableHistory"></td>
+		  		<td>places.history.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableCSSVisited"></td>
+		  		<td>layout.css.visited_links_enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableCacheDisk"></td>
+		  		<td>browser.cache.disk.enable</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableCacheMemory"></td>
+		  		<td>browser.cache.memory.enable</td>
+		  		<td>false</td>
+		  	</tr>
+			<tr>
+		  		<td id="disableClipboardEvents"></td>
+		  		<td>dom.event.clipboardevents.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableContextMenuEvents"></td>
+		  		<td>dom.event.contextmenu.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableDeviceSensors"></td>
+		  		<td>device.sensors.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableDNSPrefetch"></td>
+		  		<td>network.dns.disablePrefetch</td>
+		  		<td>true</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableDOMStorage"></td>
+		  		<td>dom.storage.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableDRM"></td>
+		  		<td>media.eme.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableGamepad"></td>
+		  		<td>om.gamepad.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableGeolocation"></td>
+		  		<td>geo.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableGeolocation2"></td>
+		  		<td>geo.wifi.uri</td>
+		  		<td>[blank string]</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableOfflineCache"></td>
+		  		<td>browser.cache.offline.enable</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disablePDFjs"></td>
+		  		<td>pdfjs.disabled</td>
+		  		<td>true</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disablePocket"></td>
+		  		<td>extensions.pocket.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableResourceTiming"></td>
+		  		<td>dom.enable_resource_timing</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disbaleSearchSuggest"></td>
+		  		<td>browser.search.suggest.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disbaleSearchUpdates"></td>
+		  		<td>browser.search.update</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSSLSessIdent"></td>
+		  		<td>security.ssl.enable_false_start</td>
+		  		<td>true</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSSLFalseStart"></td>
+		  		<td>security.ssl.disable_session_identifiers</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableTLS0RTT"></td>
+		  		<td>security.tls.enable_0rtt_data</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disbaleTRR"></td>
+		  		<td>network.trr.mode</td>
+		  		<td>5</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disbaleWebGL"></td>
+		  		<td>webgl.disabled</td>
+		  		<td>true</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableWebBeacons"></td>
+		  		<td>beacon.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="clearOfflineApps"></td>
+		  		<td>privacy.clearOnShutdown.offlineApps</td>
+		  		<td>true</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="limitDetectableFonts"></td>
+		  		<td>browser.display.use_document_fonts</td>
+		  		<td>0</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="useClickToPlay"></td>
+		  		<td>plugins.click_to_play</td>
+		  		<td>true</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableDataSubmission"></td>
+		  		<td>datareporting.policy.dataSubmissionEnabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSafeBrowsingCheck"></td>
+		  		<td>browser.safebrowsing.downloads.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSafeBrowsingCheck2"></td>
+		  		<td>browser.safebrowsing.downloads.remote.block_potentially_unwanted</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSafeBrowsingCheck3"></td>
+		  		<td>browser.safebrowsing.downloads.remote.block_uncommon</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSafeBrowsingCheck4"></td>
+		  		<td>browser.safebrowsing.downloads.remote.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSafeBrowsingMalwareCheck"></td>
+		  		<td>browser.safebrowsing.malware.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSafeBrowsingPhishingCheck"></td>
+		  		<td>browser.safebrowsing.phishing.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableHealthReportUpload"></td>
+		  		<td>datareporting.healthreport.uploadEnabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableCrashReport"></td>
+		  		<td>browser.tabs.crashReporting.sendReport</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableTelemetryReport"></td>
+		  		<td>toolkit.telemetry.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableTelemetryReport2"></td>
+		  		<td>toolkit.telemetry.unified</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableTelemetryServer"></td>
+		  		<td>toolkit.telemetry.server</td>
+		  		<td>[blank string]</td>
+		  	</tr>
+		  </tbody>
+		</table>
+	</div>
+</body>
+<script type="text/javascript" src="js/dep/jquery-3.4.1.slim.min.js"></script>
+<script type="text/javascript" src="js/checklist.js"></script>
+</html>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/popup.css" />
-    <title></title>
+    <title>Chameleon</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     <div class="tabs">
         <div class="tab" id="about">
             <img src="img/icon_48.png">
-            <h2 id="extName" class="centered"></h2>
+            <h2 class="centered">Chameleon</h2>
             <h4 class="centered">v0.12.5</h4>
             <br/>
             <p class="centered">
@@ -248,7 +248,7 @@
                         <span style="font-size: 12px;"><span id="optionsEnableScriptInjectionMsg" /></span>
                     </div>
                     <div class="opt">
-                        <label><span id="optionsWebsockets"/>:</label>
+                        <label>Websockets:</label>
                         <select name="webSockets">
                             <option value="allow_all"></option>
                             <option value="block_3rd_party"></option>
@@ -351,152 +351,7 @@
                         </select>
                     </div>
                 </div>
-                <li id="sub_misc">
-                    <span id="optionsGroupMisc"></span>
-                    <span style="float: right;">+</span>
-                </li>
-                <div class="list" id="list_misc">
-                    <p style="text-align: center;"><span class="aboutConfigMsg"/></p>
-                    <div class="opt">
-                        <a href="about:config?filter=security.mixed_content.block_active_content">→ Block active mixed content</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=security.mixed_content.block_display_content">→ Block display mixed content</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=dom.battery.enabled">→ Disable Battery API</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.send_pings">→ Disable Browser Pings</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=places.history.enabled">→ Disable Browsing and download history</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=layout.css.visited_links_enabled">→ Disable CSS visited links</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.cache.disk.enable">→ Disable Cache (disk)</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.cache.memory.enable">→ Disable Cache (memory)</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=dom.event.clipboardevents.enabled">→ Disable Clipboard Events</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=dom.event.contextmenu.enabled">→ Disable Context Menu Events</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=device.sensors.enabled">→ Disable Device Sensors</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=network.dns.disablePrefetch">→ Disable DNS prefetch</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=dom.storage.enabled">→ Disable DOM storage</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=media.eme.enabled">→ Disable DRM</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=dom.gamepad.enabled">→ Disable Gamepad API</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=geo.enabled">→ Disable Geolocation</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=geo.wifi.uri">→ Disable Geolocation 2 (set to empty string)</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.cache.offline.enable">→ Disable Offline cache (set to false)</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=pdfjs.disabled">→ Disable PDF.js</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=extensions.pocket.enabled">→ Disable Pocket</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=dom.enable_resource_timing">→ Disable Resource Timing</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.search.suggest.enabled">→ Disable Search Suggestions</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.search.update">→ Disable Search Updates</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=security.ssl.enable_false_start">→ Disable SSL False Start</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=security.ssl.disable_session_identifiers">→ Disable SSL Session Identifiers<br/>(need to create, more info in wiki)</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=security.tls.enable_0rtt_data">→ Disable TLS 0-RTT</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=network.trr.mode">→ Disable Trusted Recursive Resolver (set to 5)</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=webgl.disabled">→ Disable WebGL</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=beacon.enabled">→ Disable Web Beacons</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=privacy.clearOnShutdown.offlineApps">→ Enable clear offline apps on shutdown</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.display.use_document_fonts">→ Limit detectable fonts</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=plugins.click_to_play">→ Use click to play for plugins</a>
-                    </div>
-                </div>
-                <li id="sub_reporting">
-                    <span id="optionsGroupReports"></span>
-                    <span style="float: right;">+</span>
-                </li>
-                <div class="list" id="list_reporting">
-                    <p style="text-align: center;"><span class="aboutConfigMsg"/></p>
-                    <div class="opt">
-                        <a href="about:config?filter=datareporting.policy.dataSubmissionEnabled">→ Disable data submission</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.safebrowsing.downloads.enabled">→ Disable safe browsing downloads check</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.safebrowsing.downloads.remote.block_potentially_unwanted">→ Disable safe browsing downloads check 2</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.safebrowsing.downloads.remote.block_uncommon">→ Disable safe browsing downloads check 3</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.safebrowsing.downloads.remote.enabled">→ Disable safe browsing downloads check 4</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.safebrowsing.malware.enabled">→ Disable safe browsing malware check</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.safebrowsing.phishing.enabled">→ Disable safe browsing phishing check</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=datareporting.healthreport.uploadEnabled">→ Disable health report uploads</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=browser.tabs.crashReporting.sendReport">→ Disable crash report</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=toolkit.telemetry.enabled">→ Disable telemetry report</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=toolkit.telemetry.unified">→ Disable telemetry report 2</a>
-                    </div>
-                    <div class="opt">
-                        <a href="about:config?filter=toolkit.telemetry.server">→ Disable telemetry server (set to blank)</a>
-                    </div>
-                </div>
+                <button id="openChecklist" style="width: 100%; margin: 10px 0px;"></button>
             </ul>
         </div>
         <div class="tab" id="whitelist">
