@@ -712,7 +712,7 @@
     "description": "Checklist option to disable Pocket"
   },
   "checklistDisableResourceTiming": {
-    "message": "Désactiver la chronologie des ressources",
+    "message": "Disable Resource Timing API",
     "description": "Checklist option to disable resource timing"
   },
   "checklistDisableSearchSuggestions": {
