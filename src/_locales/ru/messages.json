@@ -1,8 +1,4 @@
 {
-  "extName": {
-    "message": "Chameleon",
-    "description": "Name of the extension."
-  },
   "extDescription": {
     "message": "Spoof your browser profile. Includes a few privacy enhancing options.",
     "description": "Description of the extension."
@@ -20,15 +16,15 @@
     }
   },
   "aboutLicense": {
-    "message": "Distributed under the GNU GPL v3 license.",
+    "message": "Распространяется под лицензией GNU GPL v3.",
     "description": "Text for license"
   },
   "aboutSrcCode": {
-    "message": "Source Code",
+    "message": "Исходный код",
     "description": "Text for Github repository link"
   },
   "aboutReport": {
-    "message": "Report a bug",
+    "message": "Сообщить об ошибке",
     "description": "Text for Github issues link"
   },
   "aboutTranslate": {
@@ -36,39 +32,39 @@
     "description": "Text for Crowdin localizations"
   },
   "aboutWiki": {
-    "message": "Wiki",
+    "message": "Вики",
     "description": "Text for Chameleon wiki"
   },
   "aboutSettings": {
-    "message": "Settings",
+    "message": "Настройки",
     "description": "Text for settings section"
   },
   "aboutBtnImport": {
-    "message": "Import",
+    "message": "Импорт",
     "description": "Label for import settings button"
   },
   "aboutBtnExport": {
-    "message": "Export",
+    "message": "Экспорт",
     "description": "Label for export settings button"
   },
   "tabProfile": {
-    "message": "Profile",
+    "message": "Профиль",
     "description": "Title of popup tab: profile"
   },
   "profileEnableNotification": {
-    "message": "Enable notifications",
+    "message": "Включить уведомления",
     "description": "Label for enable notifcations"
   },
   "profileRandom": {
-    "message": "Random",
+    "message": "Случайный",
     "description": "Label for random profile"
   },
   "profileRandomDesktop": {
-    "message": "Random Profile (Desktop)",
+    "message": "Случайный профиль (Десктоп)",
     "description": "Label for random desktop profile"
   },
   "profileRandomMobile": {
-    "message": "Random Profile (Mobile)",
+    "message": "Случайный профиль (Мобильный)",
     "description": "Label for random mobile profile"
   },
   "profileScriptInjectionMsg": {
@@ -76,87 +72,87 @@
     "description": "Script injection message"
   },
   "profilePeriodically": {
-    "message": "Change periodically",
+    "message": "Изменять периодически",
     "description": "Text for interval change"
   },
   "profileIntervalNo": {
-    "message": "No",
+    "message": "Нет",
     "description": "Option to not change periodically"
   },
   "profileIntervalCustom": {
-    "message": "Custom interval",
+    "message": "Настраиваемый интервал",
     "description": "Option to change periodically using custom interval"
   },
   "profileIntervalMinute": {
-    "message": "Every minute",
+    "message": "Каждую минуту",
     "description": "Option to change periodically: 1 min"
   },
   "profileIntervalMinute5": {
-    "message": "Every 5 minutes",
+    "message": "Каждые 5 минут",
     "description": "Option to change periodically: 5 min"
   },
   "profileIntervalMinute10": {
-    "message": "Every 10 minutes",
+    "message": "Каждые 10 минут",
     "description": "Option to change periodically: 10 min"
   },
   "profileIntervalMinute20": {
-    "message": "Every 20 minutes",
+    "message": "Каждые 20 минут",
     "description": "Option to change periodically: 20 min"
   },
   "profileIntervalMinute30": {
-    "message": "Every 30 minutes",
+    "message": "Каждые 30 минут",
     "description": "Option to change periodically: 30 min"
   },
   "profileIntervalMinute40": {
-    "message": "Every 40 minutes",
+    "message": "Каждые 40 минут",
     "description": "Option to change periodically: 40 min"
   },
   "profileIntervalMinute50": {
-    "message": "Every 50 minutes",
+    "message": "Каждые 50 минут",
     "description": "Option to change periodically: 50 min"
   },
   "profileIntervalHour": {
-    "message": "Every hour",
+    "message": "Каждый час",
     "description": "Option to change periodically: 1 hour"
   },
   "profileIntervalRefresh": {
-    "message": "refresh",
+    "message": "обновить",
     "description": "Label for refresh profile button"
   },
   "profileIntervalCustomMin": {
-    "message": "Min (minutes):",
+    "message": "Мин. (минуты):",
     "description": "Label for custom interval input: min"
   },
   "profileIntervalCustomMax": {
-    "message": "Max (minutes):",
+    "message": "Макс. (минуты):",
     "description": "Label for custom interval input: max"
   },
   "profileBrowser": {
-    "message": "Browsers",
+    "message": "Браузеры",
     "description": "Text to append to platform, ex. Windows Browsers"
   },
   "profileExclude": {
-    "message": "Exclude",
+    "message": "Исключить",
     "description": "Lbael for exclude profiles"
   },
   "profileRandomWindows": {
-    "message": "Random Windows Browsers",
+    "message": "Случайные браузеры Windows",
     "description": "Label for random Windows browsers option"
   },
   "profileRandomMacOS": {
-    "message": "Random macOS Browsers",
+    "message": "Случайные браузеры macOS",
     "description": "Label for random macOS browsers option"
   },
   "profileRandomLinux": {
-    "message": "Random Linux Browsers",
+    "message": "Случайные браузеры Linux",
     "description": "Label for random Linux browsers option"
   },
   "profileRandomIOS": {
-    "message": "Random iOS Browsers",
+    "message": "Случайные браузеры iOS",
     "description": "Label for random iOS browsers option"
   },
   "profileRandomAndroid": {
-    "message": "Random Android Browsers",
+    "message": "Случайные браузеры Android",
     "description": "Label for random Android browsers option"
   },
   "profileCustom": {
@@ -164,7 +160,7 @@
     "description": "Lbael for custom user agent"
   },
   "tabHeaders": {
-    "message": "Headers",
+    "message": "Заголовки",
     "description": "Title of popup tab: headers"
   },
   "headersDisableAuth": {
@@ -176,27 +172,27 @@
     "description": "Label for enable Do Not Track"
   },
   "headersBlockEtag": {
-    "message": "Prevent Etag tracking",
+    "message": "Предотвращать отслеживание по Etag",
     "description": "Label for prevent Etag"
   },
   "headersSpoofVIa": {
-    "message": "Spoof Via using a",
+    "message": "Подменять Via, используя",
     "description": "Label for spoof IP headers (Via)"
   },
   "headersSpoofXForwarded": {
-    "message": "Spoof X-Forwarded-For using a",
+    "message": "Подменять X-Forwarded-For, используя",
     "description": "Label for spoof IP headers (Via)"
   },
   "headersIPRandom": {
-    "message": "random IP",
+    "message": "случайный IP",
     "description": "Label for IP address (random)"
   },
   "headersIPCustom": {
-    "message": "custom IP",
+    "message": "указанный IP",
     "description": "Label for IP address (custom)"
   },
   "headersIP": {
-    "message": "IP address:",
+    "message": "IP-адрес:",
     "description": "Label for IP address text"
   },
   "headersDisableRef": {
@@ -212,7 +208,7 @@
     "description": "Label for disable referer"
   },
   "headersMsg1": {
-    "message": "Don't modify about:config settings for the options below.",
+    "message": "Не изменяйте настройки через about:config для параметров ниже.",
     "description": "Warning message for referer options"
   },
   "headersMsg2": {
@@ -252,15 +248,15 @@
     "description": "Option to set referer trimming policy to: Scheme, host + port"
   },
   "headersSpoofAccept": {
-    "message": "Spoof Accept & Accept-Encoding headers",
+    "message": "Подменять заголовки Accept и Accept-Encoding",
     "description": "Label for spoof accept"
   },
   "headersSpoofAcceptLang": {
-    "message": "Spoof Accept-Language as",
+    "message": "Подменять Accept-Language на",
     "description": "Label for disable referer"
   },
   "tabOptions": {
-    "message": "Options",
+    "message": "Параметры",
     "description": "Title of popup tab: options"
   },
   "optionsGroupScriptInjection": {
@@ -274,10 +270,6 @@
   "optionsEnableScriptInjectionMsg": {
     "message": "An option with * requires script injection",
     "description": "Text for script injection options message"
-  },
-  "optionsWebsockets": {
-    "message": "Websockets",
-    "description": "Label for websocket options"
   },
   "optionsWebsocketsOption1": {
     "message": "Allow all",
@@ -320,23 +312,23 @@
     "description": "Label for spoof font fingerprint"
   },
   "optionsSpoofScreenSize": {
-    "message": "Screen size spoofing",
+    "message": "Подменять размер экрана",
     "description": "Label for spoof screen size"
   },
   "optionsSpoofScreenSizeOptionProfile": {
-    "message": "Profile",
+    "message": "Профиль",
     "description": "Option for spoof screen size: profile"
   },
   "optionsSpoofScreenSizeCustomWidth": {
-    "message": "Screen Width (px)",
+    "message": "Ширина экрана (px)",
     "description": "Label for custom screen size: width"
   },
   "optionsSpoofScreenSizeCustomHeight": {
-    "message": "Screen Height (px)",
+    "message": "Высота экрана (px)",
     "description": "Label for custom screen size: height"
   },
   "optionsSpoofTimezone": {
-    "message": "Timezone",
+    "message": "Временная зона",
     "description": "Label for spoof timezone"
   },
   "optionsGroupStandard": {
@@ -392,7 +384,7 @@
     "description": "Label for cookie policy"
   },
   "optionsCookiePolicyOption1": {
-    "message": "Allow all",
+    "message": "Разрешить все",
     "description": "Option to allow all cookies"
   },
   "optionsCookiePolicyOption2": {
@@ -411,17 +403,9 @@
     "message": "Reject trackers",
     "description": "Option to reject trackers"
   },
-  "optionsGroupMisc": {
-    "message": "Misc Options",
-    "description": "Label for group: miscellaneous"
-  },
-  "optionsAboutConfigMsg": {
-    "message": "Copy link to about:config entry",
-    "description": "Text for misc options message"
-  },
-  "optionsGroupReports": {
-    "message": "Reporting Options",
-    "description": "Label for group: report"
+  "optionsOpenChecklist": {
+    "message": "Open about:config checklist",
+    "description": "Label for checklist button"
   },
   "whitelistEnable": {
     "message": "Enable whitelist (requires script injection)",
@@ -436,15 +420,15 @@
     "description": "Label for IP rules"
   },
   "whitelistViewRules": {
-    "message": "View whitelist",
+    "message": "Просмотр белого списка",
     "description": "Label for whitelist rules editor"
   },
   "whitelistCurrentDomain": {
-    "message": "Current domain",
+    "message": "Текущий домен",
     "description": "Text: Current domain"
   },
   "whitelistOpenEditor": {
-    "message": "Add\/edit domain in whitelist",
+    "message": "Добавить\/редактировать домен в белом списке",
     "description": "Label for add\/edit domain in whitelist"
   },
   "ipRulesSubheader": {
@@ -456,7 +440,7 @@
     "description": "Label for button: reload IP info"
   },
   "ipRulesTip": {
-    "message": "Tip: 8.8.8.0\/24 corresponds to the range 8.8.8.0 - 8.8.8.255",
+    "message": "Подсказка: 8.8.8.0\/24 соответствует диапазону 8.8.0 - 8.8.8.255",
     "description": "Text for IP rules tip"
   },
   "ipRulesInstructions": {
@@ -468,19 +452,19 @@
     "description": "Table column header: IP Range"
   },
   "ipRulesTableLanguage": {
-    "message": "Language",
+    "message": "Язык",
     "description": "Table column header: Language"
   },
   "ipRulesTableTimezone": {
-    "message": "Timezone",
+    "message": "Временная зона",
     "description": "Table column header: Timezone"
   },
   "ipRulesTableActions": {
-    "message": "Actions",
+    "message": "Действия",
     "description": "Table column header: Actions"
   },
   "ipRulesCIDR": {
-    "message": "IP or CIDR",
+    "message": "IP или CIDR",
     "description": "Label for IP\/CIDR range"
   },
   "ipRulesCIDRPlaceholder": {
@@ -488,7 +472,7 @@
     "description": "Placeholder for IP\/CIDR range"
   },
   "whitelistSearchPlaceholder": {
-    "message": "Search rules",
+    "message": "Поиск правил",
     "description": "Placeholder for search rules input"
   },
   "whitelistEnterDomain": {
@@ -516,7 +500,7 @@
     "description": "Option to use default whitelist profile"
   },
   "whitelistAddDomain": {
-    "message": "Add domain",
+    "message": "Добавить домен",
     "description": "Label for add domain button"
   },
   "whitelistDisableAuth": {
@@ -544,47 +528,51 @@
     "description": "Label for enable timezone spoofing"
   },
   "whitelistSpoofHeaderIPLabel": {
-    "message": "Header IP (Via & X-Forwarded For)",
+    "message": "IP для заголовков (Via и X-Forwarded-For)",
     "description": "Label for IP headers spoof value"
   },
   "whitelistConfirmation": {
-    "message": "Are you sure you want to delete this rule?",
+    "message": "Вы уверены, что хотите удалить правило?",
     "description": "Text for delete confirmation"
   },
   "notificationMessage": {
-    "message": "Browser Profile Changed",
+    "message": "Профиль браузера изменен",
     "description": "Notification message for profile change"
   },
   "notificationMessageTimezone": {
-    "message": "Unable to get timezone data. Using UTC.",
+    "message": "Не удалось получить данные часового пояса. Используется UTC.",
     "description": "Notification message for timezone IP"
   },
+  "textChecklist": {
+    "message": "Checklist",
+    "description": "Text: Checklist"
+  },
   "textClose": {
-    "message": "Close",
+    "message": "Закрыть",
     "description": "Text: Close"
   },
   "textCreate": {
-    "message": "Create",
+    "message": "Создать",
     "description": "Text: Create"
   },
   "textCreateRule": {
-    "message": "Create new rule",
+    "message": "Создать новое правило",
     "description": "Label for button: create new rule"
   },
   "textDefault": {
-    "message": "Default",
+    "message": "По умолчанию",
     "description": "Text: Default"
   },
   "textDelete": {
-    "message": "Delete",
+    "message": "Удалить",
     "description": "Text: Delete"
   },
   "textDomains": {
-    "message": "domains",
+    "message": "домены",
     "description": "Text: domains"
   },
   "textEdit": {
-    "message": "Edit",
+    "message": "Редактировать",
     "description": "Text: Edit"
   },
   "textCustom": {
@@ -592,27 +580,27 @@
     "description": "Text: Custom"
   },
   "textLanguage": {
-    "message": "Language",
+    "message": "Язык",
     "description": "Text: Language"
   },
   "textNo": {
-    "message": "No",
+    "message": "Нет",
     "description": "Text: No"
   },
   "textRealProfile": {
-    "message": "Real Profile",
+    "message": "Реальный профиль",
     "description": "Text: Real Profile"
   },
   "textReset": {
-    "message": "Reset",
+    "message": "Сброс",
     "description": "Text: Reset"
   },
   "textSave": {
-    "message": "Save",
+    "message": "Сохранить",
     "description": "Text: Save"
   },
   "textTimezone": {
-    "message": "Timezone",
+    "message": "Часовой пояс",
     "description": "Text: Timezone"
   },
   "textUsing": {
@@ -620,11 +608,203 @@
     "description": "Text: Using"
   },
   "textYes": {
-    "message": "Yes",
+    "message": "Да",
     "description": "Text: Yes"
   },
   "textWhitelist": {
-    "message": "Whitelist",
+    "message": "Белый список",
     "description": "Text: Whitelist"
+  },
+  "checklistTip": {
+    "message": "Create option if it doesn't exist. Research option before changing, some will break sites!",
+    "description": "Text for checklist tip"
+  },
+  "checklistTableHeaderOption": {
+    "message": "Option",
+    "description": "Table header: option"
+  },
+  "checklistTableHeaderPreference": {
+    "message": "Preference",
+    "description": "Table header: preference"
+  },
+  "checklistTableHeaderSet": {
+    "message": "Set to",
+    "description": "Table header: set to"
+  },
+  "checklistBlockActiveMixedContent": {
+    "message": "Block active mixed content",
+    "description": "Checklist option to block active mixed content"
+  },
+  "checklistBlockDisplayMixedContent": {
+    "message": "Block display mixed content",
+    "description": "Checklist option to block display mixed content"
+  },
+  "checklistDisableBatteryAPI": {
+    "message": "Disable Battery API",
+    "description": "Checklist option to disable battery API"
+  },
+  "checklistDisableBrowserPings": {
+    "message": "Disable Browser Pings",
+    "description": "Checklist option to disable browser pings"
+  },
+  "checklistDisableHistory": {
+    "message": "Disable Browsing and Download history",
+    "description": "Checklist option to disable browsing and download history"
+  },
+  "checklistDisableCSSVisited": {
+    "message": "Disable CSS visited links",
+    "description": "Checklist option to disable CSS visited links"
+  },
+  "checklistDisableCacheDisk": {
+    "message": "Disable Cache (disk)",
+    "description": "Checklist option to disable cache: disk"
+  },
+  "checklistDisableCacheMemory": {
+    "message": "Disable Cache (memory)",
+    "description": "Checklist option to disable cache: memory"
+  },
+  "checklistDisableClipboardEvents": {
+    "message": "Disable Clipboard Events",
+    "description": "Checklist option to disable clipboard events"
+  },
+  "checklistDisableContextMenuEvents": {
+    "message": "Disable Content Menu Events",
+    "description": "Checklist option to disable context menu events"
+  },
+  "checklistDisableDeviceSensors": {
+    "message": "Disable Device Sensors",
+    "description": "Checklist option to disable device sensors"
+  },
+  "checklistDisableDNSPrefetch": {
+    "message": "Disable DNS prefetch",
+    "description": "Checklist option to disable DNS prefetch"
+  },
+  "checklistDisableDOMStorage": {
+    "message": "Disable DOM storage",
+    "description": "Checklist option to disable DOM storage"
+  },
+  "checklistDisableDRM": {
+    "message": "Disable DRM",
+    "description": "Checklist option to disable DRM"
+  },
+  "checklistDisableGamepadAPI": {
+    "message": "Disable Gamepad API",
+    "description": "Checklist option to disable gamepad API"
+  },
+  "checklistDisableGeolocation": {
+    "message": "Disable Geolocation",
+    "description": "Checklist option to disable geolocation"
+  },
+  "checklistDisableGeolocation2": {
+    "message": "Disable Geolocation 2",
+    "description": "Checklist option to disable geolocation 2"
+  },
+  "checklistDisableOfflineCache": {
+    "message": "Disable offline cache",
+    "description": "Checklist option to disable offline cache"
+  },
+  "checklistDisablePDFjs": {
+    "message": "Disable PDF.js",
+    "description": "Checklist option to disable pdf.js"
+  },
+  "checklistDisablePocket": {
+    "message": "Disable Pocket",
+    "description": "Checklist option to disable Pocket"
+  },
+  "checklistDisableResourceTiming": {
+    "message": "Disable Resource Timing",
+    "description": "Checklist option to disable resource timing"
+  },
+  "checklistDisableSearchSuggestions": {
+    "message": "Disable Search suggestions",
+    "description": "Checklist option to disable search suggestions"
+  },
+  "checklistDisableSearchUpdates": {
+    "message": "Disable Search Updates",
+    "description": "Checklist option to disable search update"
+  },
+  "checklistDisableSSLFalseStart": {
+    "message": "Disable SSL False Start",
+    "description": "Checklist option to disable SSL False Start"
+  },
+  "checklistDisableSSLSessionIdentifiers": {
+    "message": "Disable SSL Session Identifiers",
+    "description": "Checklist option to disable SSL session identifiers"
+  },
+  "checklistDisableTLS0RTT": {
+    "message": "Disable TLS 0-RTT",
+    "description": "Checklist option to disable TLS 0-RTT"
+  },
+  "checklistDisableTrustedRecursiveResolver": {
+    "message": "Disable Trusted Recursive Resolver",
+    "description": "Checklist option to disable Trusted Recursive Resolver"
+  },
+  "checklistDisableWebGL": {
+    "message": "Disable WebGL",
+    "description": "Checklist option to disable WebGL"
+  },
+  "checklistDisableWebBeacons": {
+    "message": "Disable Web Beacons",
+    "description": "Checklist option to disable Web Beacons"
+  },
+  "checklistEnableClearOfflineApps": {
+    "message": "Enable clear offline apps on shutdown",
+    "description": "Checklist option to enable clear offline apps on shutdown"
+  },
+  "checklistLimitDetectableFonts": {
+    "message": "Limit detectable fonts",
+    "description": "Checklist option to limit detectable fonts"
+  },
+  "checklistUseClickToPlay": {
+    "message": "Use click to play for plugins",
+    "description": "Checklist option to use click to pay for plugins"
+  },
+  "checklistDisableDataSubmission": {
+    "message": "Disable data submission",
+    "description": "Checklist option to use disable data submission"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck": {
+    "message": "Disable safe browsing downloads check",
+    "description": "Checklist option to use disable safe browsing downloads check"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck2": {
+    "message": "Disable safe browsing downloads check 2",
+    "description": "Checklist option to use disable safe browsing downloads check 2"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck3": {
+    "message": "Disable safe browsing downloads check 3",
+    "description": "Checklist option to use disable safe browsing downloads check 3"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck4": {
+    "message": "Disable safe browsing downloads check 4",
+    "description": "Checklist option to use disable safe browsing downloads check 4"
+  },
+  "checklistDisableSafeBrowsingMalwareCheck": {
+    "message": "Disable safe browsing malware check",
+    "description": "Checklist option to use disable safe browsing malware check"
+  },
+  "checklistDisableSafeBrowsingPhishingCheck": {
+    "message": "Disable safe browsing phishing check",
+    "description": "Checklist option to use disable safe browsing phishing check"
+  },
+  "checklistDisableHealthReportUploads": {
+    "message": "Disable health report uploads",
+    "description": "Checklist option to use disable health report uploads"
+  },
+  "checklistDisableCrashReport": {
+    "message": "Disable crash report",
+    "description": "Checklist option to use disable crash report"
+  },
+  "checklistDisableTelemetryReport": {
+    "message": "Disable telemetry report",
+    "description": "Checklist option to use disable telemetry report"
+  },
+  "checklistDisableTelemetryReport2": {
+    "message": "Disable telemetry report 2",
+    "description": "Checklist option to use disable telemetry report 2"
+  },
+  "checklistDisableTelemetryServer": {
+    "message": "Disable telemetry server",
+    "description": "Checklist option to use disable telemetry server"
   }
 }
