@@ -764,27 +764,27 @@
     "description": "Checklist option to use disable data submission"
   },
   "checklistDisableSafeBrowsingDownloadsCheck": {
-    "message": "Disable safe browsing downloads check",
+    "message": "Désactiver la vérification des téléchargements de la navigation sécurisée",
     "description": "Checklist option to use disable safe browsing downloads check"
   },
   "checklistDisableSafeBrowsingDownloadsCheck2": {
-    "message": "Disable safe browsing downloads check 2",
+    "message": "Désactiver la vérification des téléchargements de la navigation sécurisée 2",
     "description": "Checklist option to use disable safe browsing downloads check 2"
   },
   "checklistDisableSafeBrowsingDownloadsCheck3": {
-    "message": "Disable safe browsing downloads check 3",
+    "message": "Désactiver la vérification des téléchargements de la navigation sécurisée 3",
     "description": "Checklist option to use disable safe browsing downloads check 3"
   },
   "checklistDisableSafeBrowsingDownloadsCheck4": {
-    "message": "Disable safe browsing downloads check 4",
+    "message": "Désactiver la vérification des téléchargements de la navigation sécurisée 4",
     "description": "Checklist option to use disable safe browsing downloads check 4"
   },
   "checklistDisableSafeBrowsingMalwareCheck": {
-    "message": "Disable safe browsing malware check",
+    "message": "Désactiver la vérification des logiciels malveillants de la navigation sécurisée",
     "description": "Checklist option to use disable safe browsing malware check"
   },
   "checklistDisableSafeBrowsingPhishingCheck": {
-    "message": "Disable safe browsing phishing check",
+    "message": "Désactiver la vérification des hameçonnages de la navigation sécurisée",
     "description": "Checklist option to use disable safe browsing phishing check"
   },
   "checklistDisableHealthReportUploads": {
