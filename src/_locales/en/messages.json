@@ -271,10 +271,6 @@
     "message": "An option with * requires script injection",
     "description": "Text for script injection options message"
   },
-  "optionsWebsockets": {
-    "message": "Websockets",
-    "description": "Label for websocket options"
-  },
   "optionsWebsocketsOption1": {
     "message": "Allow all",
     "description": "Option to allow all websocket connections"
@@ -408,8 +404,8 @@
     "description": "Option to reject trackers"
   },
   "optionsOpenChecklist": {
-    "message": "View about:config checklist",
-    "description": "Label for view about:config button"
+    "message": "Open about:config checklist",
+    "description": "Label for checklist button"
   },
   "whitelistEnable": {
     "message": "Enable whitelist (requires script injection)",
@@ -547,6 +543,10 @@
     "message": "Unable to get timezone data. Using UTC.",
     "description": "Notification message for timezone IP"
   },
+  "textChecklist": {
+    "message": "Checklist",
+    "description": "Text: Checklist"
+  },
   "textClose" : {
     "message": "Close",
     "description": "Text: Close"
@@ -615,9 +615,21 @@
     "message": "Whitelist",
     "description": "Text: Whitelist"
   },
-  "checklistMsg": {
-    "message": "Copy link to about:config entry",
-    "description": "Text for misc options message"
+  "checklistTip": {
+    "message": "Create option if it doesn't exist. Research option before changing, some will break sites!",
+    "description": "Text for checklist tip"
+  },
+  "checklistTableHeaderOption": {
+    "message": "Option",
+    "description": "Table header: option"
+  },
+  "checklistTableHeaderPreference": {
+    "message": "Preference",
+    "description": "Table header: preference"
+  },
+  "checklistTableHeaderSet": {
+    "message": "Set to",
+    "description": "Table header: set to"
   },
   "checklistBlockActiveMixedContent": {
     "message": "Block active mixed content",
