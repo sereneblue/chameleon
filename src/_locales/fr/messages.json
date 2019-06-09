@@ -216,7 +216,7 @@
     "description": "Wiki link text"
   },
   "headersRefererXorigin": {
-    "message": "Politique d'origine \"Referer\"",
+    "message": "Politique \"Referer X Origin\"",
     "description": "Label for referer X Origin policy"
   },
   "headersRefererXoriginOption1": {
@@ -404,7 +404,7 @@
     "description": "Option to reject trackers"
   },
   "optionsOpenChecklist": {
-    "message": "Open about:config checklist",
+    "message": "Ouvrir la liste de contrôle de about:config",
     "description": "Label for checklist button"
   },
   "whitelistEnable": {
@@ -544,7 +544,7 @@
     "description": "Notification message for timezone IP"
   },
   "textChecklist": {
-    "message": "Checklist",
+    "message": "Liste de contrôle",
     "description": "Text: Checklist"
   },
   "textClose": {
@@ -616,7 +616,7 @@
     "description": "Text: Whitelist"
   },
   "checklistTip": {
-    "message": "Create option if it doesn't exist. Research option before changing, some will break sites!",
+    "message": "Créer une option si elle n'existe pas. Recherchez l'option avant de changer, certaines casseront des sites !",
     "description": "Text for checklist tip"
   },
   "checklistTableHeaderOption": {
@@ -624,143 +624,143 @@
     "description": "Table header: option"
   },
   "checklistTableHeaderPreference": {
-    "message": "Preference",
+    "message": "Préférence",
     "description": "Table header: preference"
   },
   "checklistTableHeaderSet": {
-    "message": "Set to",
+    "message": "Réglé sur",
     "description": "Table header: set to"
   },
   "checklistBlockActiveMixedContent": {
-    "message": "Block active mixed content",
+    "message": "Bloquer le contenu mixte actif",
     "description": "Checklist option to block active mixed content"
   },
   "checklistBlockDisplayMixedContent": {
-    "message": "Block display mixed content",
+    "message": "Bloquer le contenu mixte",
     "description": "Checklist option to block display mixed content"
   },
   "checklistDisableBatteryAPI": {
-    "message": "Disable Battery API",
+    "message": "Désactiver l'API de la batterie",
     "description": "Checklist option to disable battery API"
   },
   "checklistDisableBrowserPings": {
-    "message": "Disable Browser Pings",
+    "message": "Désactiver les Pings du navigateur",
     "description": "Checklist option to disable browser pings"
   },
   "checklistDisableHistory": {
-    "message": "Disable Browsing and Download history",
+    "message": "Désactiver l'historique de la navigation et des téléchargements",
     "description": "Checklist option to disable browsing and download history"
   },
   "checklistDisableCSSVisited": {
-    "message": "Disable CSS visited links",
+    "message": "Désactiver les liens CSS visités",
     "description": "Checklist option to disable CSS visited links"
   },
   "checklistDisableCacheDisk": {
-    "message": "Disable Cache (disk)",
+    "message": "Désactiver le cache (disque)",
     "description": "Checklist option to disable cache: disk"
   },
   "checklistDisableCacheMemory": {
-    "message": "Disable Cache (memory)",
+    "message": "Désactiver le cache (mémoire)",
     "description": "Checklist option to disable cache: memory"
   },
   "checklistDisableClipboardEvents": {
-    "message": "Disable Clipboard Events",
+    "message": "Désactiver les événements du presse-papiers",
     "description": "Checklist option to disable clipboard events"
   },
   "checklistDisableContextMenuEvents": {
-    "message": "Disable Content Menu Events",
+    "message": "Désactiver les options de menu contextuelles",
     "description": "Checklist option to disable context menu events"
   },
   "checklistDisableDeviceSensors": {
-    "message": "Disable Device Sensors",
+    "message": "Désactiver les capteurs de l'appareil",
     "description": "Checklist option to disable device sensors"
   },
   "checklistDisableDNSPrefetch": {
-    "message": "Disable DNS prefetch",
+    "message": "Désactiver la pré-recherche DNS",
     "description": "Checklist option to disable DNS prefetch"
   },
   "checklistDisableDOMStorage": {
-    "message": "Disable DOM storage",
+    "message": "Désactiver le stockage DOM",
     "description": "Checklist option to disable DOM storage"
   },
   "checklistDisableDRM": {
-    "message": "Disable DRM",
+    "message": "Désactiver les DRM",
     "description": "Checklist option to disable DRM"
   },
   "checklistDisableGamepadAPI": {
-    "message": "Disable Gamepad API",
+    "message": "Désactiver l'API Gamepad",
     "description": "Checklist option to disable gamepad API"
   },
   "checklistDisableGeolocation": {
-    "message": "Disable Geolocation",
+    "message": "Désactiver la géolocalisation",
     "description": "Checklist option to disable geolocation"
   },
   "checklistDisableGeolocation2": {
-    "message": "Disable Geolocation 2",
+    "message": "Désactiver la géolocalisation 2",
     "description": "Checklist option to disable geolocation 2"
   },
   "checklistDisableOfflineCache": {
-    "message": "Disable offline cache",
+    "message": "Désactiver le cache hors ligne",
     "description": "Checklist option to disable offline cache"
   },
   "checklistDisablePDFjs": {
-    "message": "Disable PDF.js",
+    "message": "Désactiver PDF.js",
     "description": "Checklist option to disable pdf.js"
   },
   "checklistDisablePocket": {
-    "message": "Disable Pocket",
+    "message": "Désactiver Pocket",
     "description": "Checklist option to disable Pocket"
   },
   "checklistDisableResourceTiming": {
-    "message": "Disable Resource Timing",
+    "message": "Désactiver la synchronisation des ressources",
     "description": "Checklist option to disable resource timing"
   },
   "checklistDisableSearchSuggestions": {
-    "message": "Disable Search suggestions",
+    "message": "Désactiver les suggestions de recherche",
     "description": "Checklist option to disable search suggestions"
   },
   "checklistDisableSearchUpdates": {
-    "message": "Disable Search Updates",
+    "message": "Désactiver les mises à jour de recherche",
     "description": "Checklist option to disable search update"
   },
   "checklistDisableSSLFalseStart": {
-    "message": "Disable SSL False Start",
+    "message": "Désactiver le faux démarrage SSL",
     "description": "Checklist option to disable SSL False Start"
   },
   "checklistDisableSSLSessionIdentifiers": {
-    "message": "Disable SSL Session Identifiers",
+    "message": "Désactiver les identifiants de session SSL",
     "description": "Checklist option to disable SSL session identifiers"
   },
   "checklistDisableTLS0RTT": {
-    "message": "Disable TLS 0-RTT",
+    "message": "Désactiver TLS 0-RTT",
     "description": "Checklist option to disable TLS 0-RTT"
   },
   "checklistDisableTrustedRecursiveResolver": {
-    "message": "Disable Trusted Recursive Resolver",
+    "message": "Désactiver le résolveur récurrent fiable",
     "description": "Checklist option to disable Trusted Recursive Resolver"
   },
   "checklistDisableWebGL": {
-    "message": "Disable WebGL",
+    "message": "Désactiver WebGL",
     "description": "Checklist option to disable WebGL"
   },
   "checklistDisableWebBeacons": {
-    "message": "Disable Web Beacons",
+    "message": "Désactiver les balises Web",
     "description": "Checklist option to disable Web Beacons"
   },
   "checklistEnableClearOfflineApps": {
-    "message": "Enable clear offline apps on shutdown",
+    "message": "Activer l'effacement des applications hors ligne à l'arrêt",
     "description": "Checklist option to enable clear offline apps on shutdown"
   },
   "checklistLimitDetectableFonts": {
-    "message": "Limit detectable fonts",
+    "message": "Limiter les polices détectables",
     "description": "Checklist option to limit detectable fonts"
   },
   "checklistUseClickToPlay": {
-    "message": "Use click to play for plugins",
+    "message": "Utiliser un clic pour lancer les plugins",
     "description": "Checklist option to use click to pay for plugins"
   },
   "checklistDisableDataSubmission": {
-    "message": "Disable data submission",
+    "message": "Désactiver la soumission des données",
     "description": "Checklist option to use disable data submission"
   },
   "checklistDisableSafeBrowsingDownloadsCheck": {
@@ -804,7 +804,7 @@
     "description": "Checklist option to use disable telemetry report 2"
   },
   "checklistDisableTelemetryServer": {
-    "message": "Disable telemetry server",
+    "message": "Désactiver le serveur de télémétrie",
     "description": "Checklist option to use disable telemetry server"
   }
 }
