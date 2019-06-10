@@ -878,7 +878,14 @@ function migrate(data) {
 	
 	if (data.ipRules != undefined) {
 		for (var i = 0; i < data.ipRules.length; i++) {
-			data.ipRules[i].ip = [data.ipRules[i].ip];
+			if (typeof data.ipRules[i].ip == "string") {
+				data.ipRules[i].ip = [data.ipRules[i].ip];
+			} else {
+				// correct settings if invalid
+				if (typeof data.ipRules[i].ip[0] == "object") {
+					data.ipRules[i].ip = data.ipRules[i].ip.flat(10000);
+				}
+			}
 		}
 	}
 

@@ -83,7 +83,7 @@ function buildTable(rules) {
 function localize() {
 	$("title").text('Chameleon ' + browser.i18n.getMessage("ipRulesSubheader"));
 	$("#subheader").text(browser.i18n.getMessage("ipRulesSubheader"));
-	$("#create").text(browser.i18n.getMessage("ipRulesCreateRule"));
+	$("#create").text(browser.i18n.getMessage("textCreateRule"));
 	$("#reload").text(browser.i18n.getMessage("ipRulesReloadIP"));
 	$("#tip").text(browser.i18n.getMessage("ipRulesTip"));
 	$("#instructions").text(browser.i18n.getMessage("ipRulesInstructions"));
