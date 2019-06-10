@@ -708,7 +708,7 @@
     "description": "Checklist option to disable Pocket"
   },
   "checklistDisableResourceTiming": {
-    "message": "Disable Resource Timing API",
+    "message": "Désactiver \"Resource Timing API\"",
     "description": "Checklist option to disable resource timing"
   },
   "checklistDisableSearchSuggestions": {
@@ -732,7 +732,7 @@
     "description": "Checklist option to disable TLS 0-RTT"
   },
   "checklistDisableTrustedRecursiveResolver": {
-    "message": "Disable TTR (Trusted Recursive Resolver)",
+    "message": "Désactiver TTR (Trusted Recursive Resolver)",
     "description": "Checklist option to disable Trusted Recursive Resolver"
   },
   "checklistDisableWebGL": {
