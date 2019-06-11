@@ -296,7 +296,7 @@
     "description": "Label for protect keyboard fingerprint"
   },
   "optionsKBDelay": {
-    "message": "Delay (ms)",
+    "message": "Délai (ms)",
     "description": "Placeholder for keyboard delay"
   },
   "optionsSpoofAudioContext": {
@@ -600,7 +600,7 @@
     "description": "Text: Save"
   },
   "textSettings": {
-    "message": "Settings",
+    "message": "Réglages",
     "description": "Text: Settings"
   },
   "textTimezone": {
