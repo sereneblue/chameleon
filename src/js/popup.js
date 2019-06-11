@@ -57,7 +57,7 @@ function localize() {
 	$("#reportBug").text(browser.i18n.getMessage("aboutReport"));
 	$("#translate").text(browser.i18n.getMessage("aboutTranslate"));
 	$("#wiki").text(browser.i18n.getMessage("aboutWiki"));
-	$("#settingsHeader").text(browser.i18n.getMessage("aboutSettings"));
+	$("#settingsHeader").text(browser.i18n.getMessage("textSettings"));
 	$("#importSettings").text(browser.i18n.getMessage("aboutBtnImport"));
 	$("#exportSettings").text(browser.i18n.getMessage("aboutBtnExport"));
 
@@ -135,6 +135,7 @@ function localize() {
 	$("#optionsLimitHistory").text(browser.i18n.getMessage("optionsLimitHistory"));
 	$("#optionsProtectWinName").text(browser.i18n.getMessage("optionsProtectWinName"));
 	$("#optionsProtectKBFingerprint").text(browser.i18n.getMessage("optionsProtectKBFingerprint"));
+	$("input[name='kbDelay']").attr('placeholder', browser.i18n.getMessage("optionsKBDelay"));
 	$("#optionsSpoofAudioContext").text(browser.i18n.getMessage("optionsSpoofAudioContext"));
 	$("#optionsSpoofClientRects").text(browser.i18n.getMessage("optionsSpoofClientRects"));
 	$("#optionsSpoofScreenSize").text(browser.i18n.getMessage("optionsSpoofScreenSize"));
@@ -154,7 +155,6 @@ function localize() {
 	$("select[name='webRTCIPHandlingPolicy'] option:eq(2)").text(browser.i18n.getMessage("optionsWebRTCOption3"));
 	$("select[name='webRTCIPHandlingPolicy'] option:eq(3)").text(browser.i18n.getMessage("optionsWebRTCOption4"));
 	$("#optionsGroupCookie").text(browser.i18n.getMessage("optionsGroupCookie"));
-	$('.aboutConfigMsg').text(browser.i18n.getMessage("optionsAboutConfigMsg"));
 	$("#optionsCookiePolicy").text(browser.i18n.getMessage("optionsCookiePolicy"));
 	$("select[name='cookieConfig'] option:eq(0)").text(browser.i18n.getMessage("optionsCookiePolicyOption1"));
 	$("select[name='cookieConfig'] option:eq(1)").text(browser.i18n.getMessage("optionsCookiePolicyOption2"));

@@ -35,10 +35,6 @@
     "message": "Wiki",
     "description": "Text for Chameleon wiki"
   },
-  "aboutSettings" : {
-    "message": "Settings",
-    "description": "Text for settings section"
-  },
   "aboutBtnImport" : {
     "message": "Import",
     "description": "Label for import settings button"
@@ -298,6 +294,10 @@
   "optionsProtectKBFingerprint": {
     "message": "Protect keyboard fingerprint",
     "description": "Label for protect keyboard fingerprint"
+  },
+  "optionsKBDelay": {
+    "message": "Delay (ms)",
+    "description": "Placeholder for keyboard delay"
   },
   "optionsSpoofAudioContext": {
     "message": "Spoof Audio Context",
@@ -599,6 +599,10 @@
     "message": "Save",
     "description": "Text: Save"
   },
+  "textSettings" : {
+    "message": "Settings",
+    "description": "Text: Settings"
+  },
   "textTimezone" : {
     "message": "Timezone",
     "description": "Text: Timezone"
@@ -802,5 +806,9 @@
   "checklistDisableTelemetryServer": {
     "message": "Disable telemetry server",
     "description": "Checklist option to use disable telemetry server"
-  }
+  },
+  "importSettingsSubheader" : {
+    "message": "Import settings",
+    "description": "Subheader for import settings"
+  } 
 }

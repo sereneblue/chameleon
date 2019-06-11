@@ -171,8 +171,12 @@ function validate(cfg) {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-	data = await get(null);
+	$('title').text('Chameleon ' + browser.i18n.getMessage("textSettings"));
+	$('h4').text(browser.i18n.getMessage("importSettingsSubheader"));
 	
+	data = await get(null);
+
+
 	$("#import").change(async function() {
 		var reader = new FileReader();
 
