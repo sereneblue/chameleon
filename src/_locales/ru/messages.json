@@ -1,6 +1,6 @@
 {
   "extDescription": {
-    "message": "Spoof your browser profile. Includes a few privacy enhancing options.",
+    "message": "Подменяет профиль вашего браузера. Предоставляет ряд других возможностей повышения конфиденциальности.",
     "description": "Description of the extension."
   },
   "aboutContributors": {
@@ -28,16 +28,12 @@
     "description": "Text for Github issues link"
   },
   "aboutTranslate": {
-    "message": "Help translate Chameleon",
+    "message": "Помочь с переводом Chameleon",
     "description": "Text for Crowdin localizations"
   },
   "aboutWiki": {
     "message": "Вики",
     "description": "Text for Chameleon wiki"
-  },
-  "aboutSettings": {
-    "message": "Настройки",
-    "description": "Text for settings section"
   },
   "aboutBtnImport": {
     "message": "Импорт",
@@ -60,7 +56,7 @@
     "description": "Label for random profile"
   },
   "profileRandomDesktop": {
-    "message": "Случайный профиль (Десктоп)",
+    "message": "Случайный профиль (Настольный)",
     "description": "Label for random desktop profile"
   },
   "profileRandomMobile": {
@@ -80,7 +76,7 @@
     "description": "Option to not change periodically"
   },
   "profileIntervalCustom": {
-    "message": "Настраиваемый интервал",
+    "message": "Произвольный интервал",
     "description": "Option to change periodically using custom interval"
   },
   "profileIntervalMinute": {
@@ -156,7 +152,7 @@
     "description": "Label for random Android browsers option"
   },
   "profileCustom": {
-    "message": "Custom User Agent",
+    "message": "Произвольный юзер-агент",
     "description": "Lbael for custom user agent"
   },
   "tabHeaders": {
@@ -164,11 +160,11 @@
     "description": "Title of popup tab: headers"
   },
   "headersDisableAuth": {
-    "message": "Disable Authorization",
+    "message": "Отключить Authorization",
     "description": "Label for disable auth header"
   },
   "headersEnableDNT": {
-    "message": "Enable DNT (Do Not Track)",
+    "message": "Включить DNT (Не отслеживать)",
     "description": "Label for enable Do Not Track"
   },
   "headersBlockEtag": {
@@ -188,7 +184,7 @@
     "description": "Label for IP address (random)"
   },
   "headersIPCustom": {
-    "message": "указанный IP",
+    "message": "произвольный IP",
     "description": "Label for IP address (custom)"
   },
   "headersIP": {
@@ -196,15 +192,15 @@
     "description": "Label for IP address text"
   },
   "headersDisableRef": {
-    "message": "Disable Referer",
+    "message": "Отключить Referer",
     "description": "Label for disable referer"
   },
   "headersSpoofSourceRef": {
-    "message": "Spoof Source Referer",
+    "message": "Подменять Referer",
     "description": "Label for disable referer"
   },
   "headersUpgradeInsecureReq": {
-    "message": "Upgrade Insecure Requests",
+    "message": "Включить Upgrade Insecure Requests",
     "description": "Label for disable referer"
   },
   "headersMsg1": {
@@ -212,7 +208,7 @@
     "description": "Warning message for referer options"
   },
   "headersMsg2": {
-    "message": "More info in wiki.",
+    "message": "Подробнее в вики.",
     "description": "Wiki link text"
   },
   "headersRefererXorigin": {
@@ -299,6 +295,10 @@
     "message": "Protect keyboard fingerprint",
     "description": "Label for protect keyboard fingerprint"
   },
+  "optionsKBDelay": {
+    "message": "Delay (ms)",
+    "description": "Placeholder for keyboard delay"
+  },
   "optionsSpoofAudioContext": {
     "message": "Spoof Audio Context",
     "description": "Label for spoof audio context"
@@ -328,11 +328,11 @@
     "description": "Label for custom screen size: height"
   },
   "optionsSpoofTimezone": {
-    "message": "Временная зона",
+    "message": "Часовой пояс",
     "description": "Label for spoof timezone"
   },
   "optionsGroupStandard": {
-    "message": "Standard Options",
+    "message": "Стандартные параметры",
     "description": "Label for group: standard options"
   },
   "optionsFirstPartyIsolate": {
@@ -344,19 +344,19 @@
     "description": "Label for enable resist fingerprinting"
   },
   "optionsTrackingProtection": {
-    "message": "Tracking protection mode",
+    "message": "Режим защиты от отслеживания",
     "description": "Label for tracking protection"
   },
   "optionsTrackingProtectionOption1": {
-    "message": "On",
+    "message": "Включен",
     "description": "Option to enable tracking protection"
   },
   "optionsTrackingProtectionOption2": {
-    "message": "Off",
+    "message": "Выключен",
     "description": "Option to disable tracking protection"
   },
   "optionsTrackingProtectionOption3": {
-    "message": "Enabled in private browsing",
+    "message": "Включен при приватном просмотре",
     "description": "Option to enable tracking protection only in private browsing"
   },
   "optionsWebRTC": {
@@ -412,7 +412,7 @@
     "description": "Label for enable whitelist"
   },
   "whitelistUseDefault": {
-    "message": "Default Whitelist Profile",
+    "message": "Профиль белого списка по умолчанию",
     "description": "Label for enable whitelist"
   },
   "whitelistViewIPRules": {
@@ -448,7 +448,7 @@
     "description": "Text for IP rules instructions"
   },
   "ipRulesTableIPRange": {
-    "message": "IP Range",
+    "message": "Диапазон IP",
     "description": "Table column header: IP Range"
   },
   "ipRulesTableLanguage": {
@@ -456,7 +456,7 @@
     "description": "Table column header: Language"
   },
   "ipRulesTableTimezone": {
-    "message": "Временная зона",
+    "message": "Часовой пояс",
     "description": "Table column header: Timezone"
   },
   "ipRulesTableActions": {
@@ -468,7 +468,7 @@
     "description": "Label for IP\/CIDR range"
   },
   "ipRulesCIDRPlaceholder": {
-    "message": "Enter IP or CIDR",
+    "message": "Введите IP или CIDR",
     "description": "Placeholder for IP\/CIDR range"
   },
   "whitelistSearchPlaceholder": {
@@ -476,27 +476,27 @@
     "description": "Placeholder for search rules input"
   },
   "whitelistEnterDomain": {
-    "message": "Enter domain",
+    "message": "Введите домен",
     "description": "Placeholder for domain input"
   },
   "whitelistRegexEnabled": {
-    "message": "Regex enabled",
+    "message": "Использовать регулярное выражение",
     "description": "Label for regex checkbox"
   },
   "whitelistEnterPattern": {
-    "message": "Enter pattern",
+    "message": "Введите шаблон",
     "description": "Placeholder for regex pattern"
   },
   "whitelistSpoofAcceptLang": {
-    "message": "Spoof Accept-Language",
+    "message": "Подменять Accept-Language",
     "description": "Label for spoof accept-language"
   },
   "whitelistSpoofProfile": {
-    "message": "Spoof Profile",
+    "message": "Подменять профиль",
     "description": "Label for spoof profile"
   },
   "whitelistSpoofProfileDefault": {
-    "message": "Default Whitelist Profile",
+    "message": "Профиль белого списка по умолчанию",
     "description": "Option to use default whitelist profile"
   },
   "whitelistAddDomain": {
@@ -504,27 +504,27 @@
     "description": "Label for add domain button"
   },
   "whitelistDisableAuth": {
-    "message": "Disable auth header",
+    "message": "Отключить заголовок auth",
     "description": "Label for disable auth header"
   },
   "whitelistDisableReferer": {
-    "message": "Disable referer",
+    "message": "Отключить referer",
     "description": "Label for disable referer"
   },
   "whitelistDisableWebsocket": {
-    "message": "Disable WebSocket",
+    "message": "Отключить WebSocket",
     "description": "Label for disable websocket"
   },
   "whitelistEnableIPHeaders": {
-    "message": "Enable IP headers spoofing",
+    "message": "Включить подмену заголовков IP",
     "description": "Label for enable IP headers spoof"
   },
   "whitelistEnableProtectWinName": {
-    "message": "Enable Protect window name",
+    "message": "Включить защиту windows name",
     "description": "Label for enable protect window name"
   },
   "whitelistEnableTimezoneSpoofing": {
-    "message": "Enable Timezone spoofing",
+    "message": "Включить подмену часового пояса",
     "description": "Label for enable timezone spoofing"
   },
   "whitelistSpoofHeaderIPLabel": {
@@ -576,7 +576,7 @@
     "description": "Text: Edit"
   },
   "textCustom": {
-    "message": "Custom",
+    "message": "Произвольный",
     "description": "Text: Custom"
   },
   "textLanguage": {
@@ -599,6 +599,10 @@
     "message": "Сохранить",
     "description": "Text: Save"
   },
+  "textSettings": {
+    "message": "Settings",
+    "description": "Text: Settings"
+  },
   "textTimezone": {
     "message": "Часовой пояс",
     "description": "Text: Timezone"
@@ -616,7 +620,7 @@
     "description": "Text for checklist tip"
   },
   "checklistTableHeaderOption": {
-    "message": "Option",
+    "message": "Параметр",
     "description": "Table header: option"
   },
   "checklistTableHeaderPreference": {
@@ -802,5 +806,9 @@
   "checklistDisableTelemetryServer": {
     "message": "Disable telemetry server",
     "description": "Checklist option to use disable telemetry server"
+  },
+  "importSettingsSubheader": {
+    "message": "Import settings",
+    "description": "Subheader for import settings"
   }
 }
