@@ -4,7 +4,7 @@
     "description": "Description of the extension."
   },
   "aboutContributors": {
-    "message": "Développé par <a href=\"$AUTHOR$\">sereneblue<\/a>et<a href=\"$CONTRIB$\">des contributeurs<\/a>",
+    "message": "Développé par <a href=\"$AUTHOR$\">sereneblue<\/a> et <a href=\"$CONTRIB$\">des contributeurs<\/a>",
     "description": "Contributors text",
     "placeholders": {
       "author": {
@@ -34,10 +34,6 @@
   "aboutWiki": {
     "message": "Wiki",
     "description": "Text for Chameleon wiki"
-  },
-  "aboutSettings": {
-    "message": "Réglages",
-    "description": "Text for settings section"
   },
   "aboutBtnImport": {
     "message": "Importer",
@@ -298,6 +294,10 @@
   "optionsProtectKBFingerprint": {
     "message": "Protéger l'empreinte clavier",
     "description": "Label for protect keyboard fingerprint"
+  },
+  "optionsKBDelay": {
+    "message": "Delay (ms)",
+    "description": "Placeholder for keyboard delay"
   },
   "optionsSpoofAudioContext": {
     "message": "Falsifier le contexte audio",
@@ -599,6 +599,10 @@
     "message": "Sauvegarder",
     "description": "Text: Save"
   },
+  "textSettings": {
+    "message": "Settings",
+    "description": "Text: Settings"
+  },
   "textTimezone": {
     "message": "Fuseau horaire",
     "description": "Text: Timezone"
@@ -802,5 +806,9 @@
   "checklistDisableTelemetryServer": {
     "message": "Désactiver le serveur de télémétrie",
     "description": "Checklist option to use disable telemetry server"
+  },
+  "importSettingsSubheader": {
+    "message": "Import settings",
+    "description": "Subheader for import settings"
   }
 }
