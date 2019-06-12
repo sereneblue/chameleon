@@ -200,7 +200,7 @@
     "description": "Label for disable referer"
   },
   "headersUpgradeInsecureReq": {
-    "message": "Demandes d’amélioration des demandes non sécurisés",
+    "message": "Activer \"Upgrade Insecure Requests\"",
     "description": "Label for disable referer"
   },
   "headersMsg1": {
@@ -808,7 +808,7 @@
     "description": "Checklist option to use disable telemetry server"
   },
   "importSettingsSubheader": {
-    "message": "Import settings",
+    "message": "Importer des réglages",
     "description": "Subheader for import settings"
   }
 }
