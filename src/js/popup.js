@@ -266,8 +266,14 @@ async function updateUI() {
 	});
 
 	$('#list_scriptInjection input').each(function (i, element) {
+		if (element.name == "protectKeyboardFingerprint") {
+			$('input[name="kbDelay"]').prop('disabled', !data.settings[element.name]);
+		}
+
 		$(`input[name="${element.name}"]`).prop('checked', data.settings[element.name]);
 	});
+
+	if (data.settings.kbDelay) $('input[name="kbDelay"]').val(data.settings.kbDelay);
 
 	browser.privacy.websites.cookieConfig.get({}).then((c) => {
 		$(`select[name="cookieConfig"]`).val(c.value.behavior);
@@ -667,6 +673,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	$('#options input[type="checkbox"]').on('click', function(e) {
+		if (e.target.name == "protectKeyboardFingerprint") {
+			$('input[name="kbDelay"]').prop('disabled', !this.checked);
+		}
+
 		chrome.runtime.sendMessage({
 			action: "option",
 			data: {
@@ -710,6 +720,19 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	});
+
+	// get kb delay value
+	$('input[name="kbDelay"]').on('change input', function(e) {
+		if (e.target.value >= 1 && e.target.value <= 1000) {
+			chrome.runtime.sendMessage({
+				action: "storage",
+				data: {
+					key: "kbDelay",
+					value: e.target.value
+				}
+			});
+		}
+	})
 
 	// get custom screen info
 	$('#customScreen input').on('change', function(e) {

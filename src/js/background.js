@@ -43,6 +43,7 @@ let chameleon = {
 		customScreen: "",
 		enableScriptInjection: false,
 		interval: 0,
+		kbDelay: 0,
 		limitHistory: false,
 		minInterval: null,
 		maxInterval: null,
@@ -94,7 +95,7 @@ async function buildInjectScript() {
 		injectionProps = spoof.navigator(chameleon.headers.useragent, injectionProps);
 
 		if (chameleon.settings.limitHistory) injectionProps = spoof.history(injectionProps);
-		if (chameleon.settings.protectKeyboardFingerprint) injectionText.kbFingerprint = protectKB();
+		if (chameleon.settings.protectKeyboardFingerprint) injectionText.kbFingerprint = protectKB(chameleon.settings.kbDelay);
 		if (chameleon.settings.spoofAudioContext) injectionText.audioContext = spoofAudioContext(`_${Math.random().toString(36)}`);
 		if (chameleon.settings.spoofClientRects) injectionText.clientRects = spoofRects(`_${Math.random().toString(36)}`);
 
@@ -733,12 +734,12 @@ async function start() {
 async function rebuildInjectionScript() {
 	clearTimeout(chameleon.timeout);
 
-	if (chameleon.ipInfo.update) {
-		chameleon.ipInfo.update = 0;
-		await getIPInfo();
-	}
-
 	chameleon.timeout = setTimeout(async function () {
+		if (chameleon.ipInfo.update) {
+			chameleon.ipInfo.update = 0;
+			await getIPInfo();
+		}
+
 		if (chameleon.injection) {
 			chameleon.injection.unregister();
 			chameleon.injection = null;

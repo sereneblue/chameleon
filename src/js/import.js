@@ -112,7 +112,7 @@ function validate(cfg) {
 
 	console.log('[DEBUG] Validating settings...');
     for (s in cfg.settings) {
-		if (['disableWebSockets', 'enableScriptInjection', 'limitHistory', 'notificationsEnabled', 
+		if (['disableWebSockets', 'enableScriptInjection', 'kbDelay', 'limitHistory', 'notificationsEnabled', 
 				  'protectKeyboardFingerprint', 'protectWinName', 'spoofAudioContext', 'spoofClientRects'].includes(s)) {
 			if (typeof(cfg.settings[s]) != "boolean") throw Error;
 		}
