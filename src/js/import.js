@@ -163,7 +163,7 @@ function validate(cfg) {
 		if (w != "enabled") throw Error;
 	}
 
-	$("#import-msg").text("Successfully imported settings. Reloading extension...").css('color', 'olivedrab');
+	$("#import-msg").text(browser.i18n.getMessage("importSuccess")).css('color', 'olivedrab');
 	chrome.runtime.sendMessage({
 		action: "import",
 		data: cfg
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 				validate(settings);
 			})
 			.catch(err => {
-				$("#import-msg").text("Could not import settings").css('color', 'red');
+				$("#import-msg").text(browser.i18n.getMessage("importError")).css('color', 'red');
 			});
 		}
 

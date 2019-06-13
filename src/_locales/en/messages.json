@@ -810,5 +810,13 @@
   "importSettingsSubheader" : {
     "message": "Import settings",
     "description": "Subheader for import settings"
-  } 
+  },
+  "importSuccess": {
+    "message": "Successfully imported settings. Reloading extension...",
+    "description": "Message for successful import"
+  },
+  "importError": {
+    "message": "Could not import settings",
+    "description": "Message for unsuccessful import"
+  }
 }
