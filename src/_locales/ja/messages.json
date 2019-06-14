@@ -16,19 +16,19 @@
     }
   },
   "aboutLicense": {
-    "message": "Distributed under the GNU GPL v3 license.",
+    "message": "GNU GPL v3ライセンスの下で配布。",
     "description": "Text for license"
   },
   "aboutSrcCode": {
-    "message": "Source Code",
+    "message": "ソース コード",
     "description": "Text for Github repository link"
   },
   "aboutReport": {
-    "message": "Report a bug",
+    "message": "バグを報告する",
     "description": "Text for Github issues link"
   },
   "aboutTranslate": {
-    "message": "Help translate Chameleon",
+    "message": "カメレオンの翻訳に協力する",
     "description": "Text for Crowdin localizations"
   },
   "aboutWiki": {
@@ -36,43 +36,43 @@
     "description": "Text for Chameleon wiki"
   },
   "aboutBtnImport": {
-    "message": "Import",
+    "message": "インポート",
     "description": "Label for import settings button"
   },
   "aboutBtnExport": {
-    "message": "Export",
+    "message": "エクスポート",
     "description": "Label for export settings button"
   },
   "tabProfile": {
-    "message": "Profile",
+    "message": "プロファイル",
     "description": "Title of popup tab: profile"
   },
   "profileEnableNotification": {
-    "message": "Enable notifications",
+    "message": "通知を有効にする",
     "description": "Label for enable notifcations"
   },
   "profileRandom": {
-    "message": "Random",
+    "message": "ランダム",
     "description": "Label for random profile"
   },
   "profileRandomDesktop": {
-    "message": "Random Profile (Desktop)",
+    "message": "ランダムなプロファイル (Desktop)",
     "description": "Label for random desktop profile"
   },
   "profileRandomMobile": {
-    "message": "Random Profile (Mobile)",
+    "message": "ランダムなプロファイル (Mobile)",
     "description": "Label for random mobile profile"
   },
   "profileScriptInjectionMsg": {
-    "message": "Script injection must be enabled to fully use profiles.",
+    "message": "プロファイルを完全に使用するには、スクリプトインジェクションを有効にする必要があります。",
     "description": "Script injection message"
   },
   "profilePeriodically": {
-    "message": "Change periodically",
+    "message": "定期的に変更する",
     "description": "Text for interval change"
   },
   "profileIntervalNo": {
-    "message": "No",
+    "message": "不可",
     "description": "Option to not change periodically"
   },
   "profileIntervalCustom": {
