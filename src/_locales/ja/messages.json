@@ -156,27 +156,27 @@
     "description": "Lbael for custom user agent"
   },
   "tabHeaders": {
-    "message": "Headers",
+    "message": "ヘッダー",
     "description": "Title of popup tab: headers"
   },
   "headersDisableAuth": {
-    "message": "Disable Authorization",
+    "message": "認証を無効にする",
     "description": "Label for disable auth header"
   },
   "headersEnableDNT": {
-    "message": "Enable DNT (Do Not Track)",
+    "message": "DNT (Do Not Track) を有効にする",
     "description": "Label for enable Do Not Track"
   },
   "headersBlockEtag": {
-    "message": "Prevent Etag tracking",
+    "message": "Etag トラッキングを防止する",
     "description": "Label for prevent Etag"
   },
   "headersSpoofVIa": {
-    "message": "Spoof Via using a",
+    "message": "利用する偽装手段",
     "description": "Label for spoof IP headers (Via)"
   },
   "headersSpoofXForwarded": {
-    "message": "Spoof X-Forwarded-For using a",
+    "message": "X-Forwarded-For の偽装手段",
     "description": "Label for spoof IP headers (Via)"
   },
   "headersIPRandom": {
