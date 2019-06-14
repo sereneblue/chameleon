@@ -76,83 +76,83 @@
     "description": "Option to not change periodically"
   },
   "profileIntervalCustom": {
-    "message": "Custom interval",
+    "message": "カスタム間隔",
     "description": "Option to change periodically using custom interval"
   },
   "profileIntervalMinute": {
-    "message": "Every minute",
+    "message": "1 分ごと",
     "description": "Option to change periodically: 1 min"
   },
   "profileIntervalMinute5": {
-    "message": "Every 5 minutes",
+    "message": "5 分ごと",
     "description": "Option to change periodically: 5 min"
   },
   "profileIntervalMinute10": {
-    "message": "Every 10 minutes",
+    "message": "10 分ごと",
     "description": "Option to change periodically: 10 min"
   },
   "profileIntervalMinute20": {
-    "message": "Every 20 minutes",
+    "message": "20 分ごと",
     "description": "Option to change periodically: 20 min"
   },
   "profileIntervalMinute30": {
-    "message": "Every 30 minutes",
+    "message": "30 分ごと",
     "description": "Option to change periodically: 30 min"
   },
   "profileIntervalMinute40": {
-    "message": "Every 40 minutes",
+    "message": "40 分ごと",
     "description": "Option to change periodically: 40 min"
   },
   "profileIntervalMinute50": {
-    "message": "Every 50 minutes",
+    "message": "50 分ごと",
     "description": "Option to change periodically: 50 min"
   },
   "profileIntervalHour": {
-    "message": "Every hour",
+    "message": "1 時間ごと",
     "description": "Option to change periodically: 1 hour"
   },
   "profileIntervalRefresh": {
-    "message": "refresh",
+    "message": "更新",
     "description": "Label for refresh profile button"
   },
   "profileIntervalCustomMin": {
-    "message": "Min (minutes):",
+    "message": "最小 (分):",
     "description": "Label for custom interval input: min"
   },
   "profileIntervalCustomMax": {
-    "message": "Max (minutes):",
+    "message": "最大 (分):",
     "description": "Label for custom interval input: max"
   },
   "profileBrowser": {
-    "message": "Browsers",
+    "message": "ブラウザ",
     "description": "Text to append to platform, ex. Windows Browsers"
   },
   "profileExclude": {
-    "message": "Exclude",
+    "message": "除外",
     "description": "Lbael for exclude profiles"
   },
   "profileRandomWindows": {
-    "message": "Random Windows Browsers",
+    "message": "ランダムな Windows Browsers",
     "description": "Label for random Windows browsers option"
   },
   "profileRandomMacOS": {
-    "message": "Random macOS Browsers",
+    "message": "ランダムな macOS Browsers",
     "description": "Label for random macOS browsers option"
   },
   "profileRandomLinux": {
-    "message": "Random Linux Browsers",
+    "message": "ランダムな Linux Browsers",
     "description": "Label for random Linux browsers option"
   },
   "profileRandomIOS": {
-    "message": "Random iOS Browsers",
+    "message": "ランダムな iOS Browsers",
     "description": "Label for random iOS browsers option"
   },
   "profileRandomAndroid": {
-    "message": "Random Android Browsers",
+    "message": "ランダムな Android Browsers",
     "description": "Label for random Android browsers option"
   },
   "profileCustom": {
-    "message": "Custom User Agent",
+    "message": "カスタムユーザーエージェント",
     "description": "Lbael for custom user agent"
   },
   "tabHeaders": {
