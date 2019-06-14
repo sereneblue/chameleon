@@ -812,11 +812,11 @@
     "description": "Subheader for import settings"
   },
   "importSuccess": {
-    "message": "Successfully imported settings. Reloading extension...",
+    "message": "Réglages importés avec succès. Rechargement de l'extension...",
     "description": "Message for successful import"
   },
   "importError": {
-    "message": "Could not import settings",
+    "message": "Impossible d'importer les paramètres",
     "description": "Message for unsuccessful import"
   }
 }
