@@ -244,39 +244,39 @@
     "description": "Option to set referer trimming policy to: Scheme, host + port"
   },
   "headersSpoofAccept": {
-    "message": "Spoof Accept & Accept-Encoding headers",
+    "message": "Accept & Accept-Encoding ヘッダーを偽装する",
     "description": "Label for spoof accept"
   },
   "headersSpoofAcceptLang": {
-    "message": "Spoof Accept-Language as",
+    "message": "Accept-Language リクエストヘッダーを偽装する",
     "description": "Label for disable referer"
   },
   "tabOptions": {
-    "message": "Options",
+    "message": "オプション",
     "description": "Title of popup tab: options"
   },
   "optionsGroupScriptInjection": {
-    "message": "Script Injection Options",
+    "message": "スクリプトインジェクションのオプション",
     "description": "Label for group: script injection options"
   },
   "optionsEnableScriptInjection": {
-    "message": "Enable script injection",
+    "message": "スクリプトインジェクションを有効にする",
     "description": "Label for enable script injection"
   },
   "optionsEnableScriptInjectionMsg": {
-    "message": "An option with * requires script injection",
+    "message": "* 付きのオプションはスクリプトインジェクションが必要です",
     "description": "Text for script injection options message"
   },
   "optionsWebsocketsOption1": {
-    "message": "Allow all",
+    "message": "すべて許可する",
     "description": "Option to allow all websocket connections"
   },
   "optionsWebsocketsOption2": {
-    "message": "Block 3rd Party",
+    "message": "第三者をブロック",
     "description": "Option to block 3rd party websocket connections"
   },
   "optionsWebsocketsOption3": {
-    "message": "Block All",
+    "message": "全てブロック",
     "description": "Option to block all websocket connections"
   },
   "optionsLimitHistory": {
