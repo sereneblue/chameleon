@@ -200,7 +200,7 @@
     "description": "Label for disable referer"
   },
   "headersUpgradeInsecureReq": {
-    "message": "Upgrade Insecure Requests",
+    "message": "安全でないリクエストをアップグレードする",
     "description": "Label for disable referer"
   },
   "headersMsg1": {
