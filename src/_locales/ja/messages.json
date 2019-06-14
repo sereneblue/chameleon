@@ -172,7 +172,7 @@
     "description": "Label for prevent Etag"
   },
   "headersSpoofVIa": {
-    "message": "利用する偽装手段",
+    "message": "Via の偽装手段",
     "description": "Label for spoof IP headers (Via)"
   },
   "headersSpoofXForwarded": {
@@ -196,7 +196,7 @@
     "description": "Label for disable referer"
   },
   "headersSpoofSourceRef": {
-    "message": "Spoof Source Referer",
+    "message": "なりすましソースの参照元",
     "description": "Label for disable referer"
   },
   "headersUpgradeInsecureReq": {
