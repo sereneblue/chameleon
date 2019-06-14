@@ -204,11 +204,11 @@
     "description": "Label for disable referer"
   },
   "headersMsg1": {
-    "message": "Don't modify about:config settings for the options below.",
+    "message": "以下のオプションの about:config 設定を変更しないでください。",
     "description": "Warning message for referer options"
   },
   "headersMsg2": {
-    "message": "More info in wiki.",
+    "message": "Wiki の詳細情報",
     "description": "Wiki link text"
   },
   "headersRefererXorigin": {
