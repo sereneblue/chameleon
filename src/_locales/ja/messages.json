@@ -280,23 +280,23 @@
     "description": "Option to block all websocket connections"
   },
   "optionsLimitHistory": {
-    "message": "Limit tab history",
+    "message": "タブ履歴を制限する",
     "description": "Label for limit tab history"
   },
   "optionsProtectCSSExfil": {
-    "message": "Protect CSS Exfil",
+    "message": "CSS Exfil を保護する",
     "description": "Label for protect CSS Exfil"
   },
   "optionsProtectWinName": {
-    "message": "Protect window name",
+    "message": "window.name を保護する",
     "description": "Label for protect window name"
   },
   "optionsProtectKBFingerprint": {
-    "message": "Protect keyboard fingerprint",
+    "message": "キーボードの指紋を保護する",
     "description": "Label for protect keyboard fingerprint"
   },
   "optionsKBDelay": {
-    "message": "Delay (ms)",
+    "message": "遅延 (1\/1000 秒)",
     "description": "Placeholder for keyboard delay"
   },
   "optionsSpoofAudioContext": {
