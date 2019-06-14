@@ -300,39 +300,39 @@
     "description": "Placeholder for keyboard delay"
   },
   "optionsSpoofAudioContext": {
-    "message": "Spoof Audio Context",
+    "message": "音声コンテキストを偽装する",
     "description": "Label for spoof audio context"
   },
   "optionsSpoofClientRects": {
-    "message": "Spoof Client Rects",
+    "message": "Client Rects を偽装する",
     "description": "Label for spoof client rects"
   },
   "optionsSpoofFontFingerprint": {
-    "message": "Spoof Font fingerprint",
+    "message": "フォントの指紋を偽装する",
     "description": "Label for spoof font fingerprint"
   },
   "optionsSpoofScreenSize": {
-    "message": "Screen size spoofing",
+    "message": "画面サイズを偽装する",
     "description": "Label for spoof screen size"
   },
   "optionsSpoofScreenSizeOptionProfile": {
-    "message": "Profile",
+    "message": "プロファイル",
     "description": "Option for spoof screen size: profile"
   },
   "optionsSpoofScreenSizeCustomWidth": {
-    "message": "Screen Width (px)",
+    "message": "画面の幅 (ピクセル)",
     "description": "Label for custom screen size: width"
   },
   "optionsSpoofScreenSizeCustomHeight": {
-    "message": "Screen Height (px)",
+    "message": "画面の高さ (ピクセル)",
     "description": "Label for custom screen size: height"
   },
   "optionsSpoofTimezone": {
-    "message": "Timezone",
+    "message": "タイムゾーン",
     "description": "Label for spoof timezone"
   },
   "optionsGroupStandard": {
-    "message": "Standard Options",
+    "message": "標準オプション",
     "description": "Label for group: standard options"
   },
   "optionsFirstPartyIsolate": {
