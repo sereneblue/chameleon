@@ -196,7 +196,7 @@
     "description": "Label for disable referer"
   },
   "headersSpoofSourceRef": {
-    "message": "なりすましソースの参照元",
+    "message": "リファラーのソースを偽装する",
     "description": "Label for disable referer"
   },
   "headersUpgradeInsecureReq": {
@@ -212,11 +212,11 @@
     "description": "Wiki link text"
   },
   "headersRefererXorigin": {
-    "message": "Referer X Origin Policy",
+    "message": "X Origin Policy のリファラー",
     "description": "Label for referer X Origin policy"
   },
   "headersRefererXoriginOption1": {
-    "message": "Always send (default)",
+    "message": "常に送る (規定)",
     "description": "Option to set referer X Origin policy to: always send"
   },
   "headersRefererXoriginOption2": {
