@@ -110,6 +110,7 @@ let spoof = {
 
 		if (/Firefox/.test(ua)) {
 			productSub = "20010725";
+			hardwareConcurrency = 2;
 			buildID = parseInt(ua.match(/Firefox\/(\d+).\d/)[1]) >= 64 ? "20181001000000" : "20100101";
 		} else {
 			oscpu = "undef";
