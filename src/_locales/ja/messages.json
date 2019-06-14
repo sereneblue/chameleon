@@ -220,19 +220,19 @@
     "description": "Option to set referer X Origin policy to: always send"
   },
   "headersRefererXoriginOption2": {
-    "message": "Match base domain",
+    "message": "基本ドメインと一致",
     "description": "Option to set referer X Origin policy to: match base domain"
   },
   "headersRefererXoriginOption3": {
-    "message": "Match host",
+    "message": "host と一致",
     "description": "Option to set referer X Origin policy to: match host"
   },
   "headersRefererTrimming": {
-    "message": "Referer Trimming Policy",
+    "message": "Trimming Policy のリファラー",
     "description": "Label for referer trimming policy"
   },
   "headersRefererTrimmingOption1": {
-    "message": "Send full URI (default)",
+    "message": "完全な URI を送信する (規定)",
     "description": "Option to set referer trimming policy to: send full URI"
   },
   "headersRefererTrimmingOption2": {
