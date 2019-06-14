@@ -336,15 +336,15 @@
     "description": "Label for group: standard options"
   },
   "optionsFirstPartyIsolate": {
-    "message": "Enable 1st party isolation",
+    "message": "ファーストパーティ分離を有効にする",
     "description": "Label for enable 1st party isolation"
   },
   "optionsResistFingerprinting": {
-    "message": "Resist fingerprinting",
+    "message": "フィンガープリント耐性",
     "description": "Label for enable resist fingerprinting"
   },
   "optionsTrackingProtection": {
-    "message": "Tracking protection mode",
+    "message": "トラッキング保護モード",
     "description": "Label for tracking protection"
   },
   "optionsTrackingProtectionOption1": {
@@ -356,43 +356,43 @@
     "description": "Option to disable tracking protection"
   },
   "optionsTrackingProtectionOption3": {
-    "message": "Enabled in private browsing",
+    "message": "プライベートブラウジングで有効",
     "description": "Option to enable tracking protection only in private browsing"
   },
   "optionsWebRTC": {
-    "message": "WebRTC Policy",
+    "message": "WebRTC ポリシー",
     "description": "Label for tracking protection"
   },
   "optionsWebRTCOption2": {
-    "message": "Use Public and Private interface",
+    "message": "パブリックおよびプライベートインターフェイスを使用する",
     "description": "Option to use public & private interface"
   },
   "optionsWebRTCOption3": {
-    "message": "Only use Public interface (best)",
+    "message": "パブリックインターフェースのみを使用する (最善)",
     "description": "Option to only use public interface"
   },
   "optionsWebRTCOption4": {
-    "message": "Disable non-proxified UDP",
+    "message": "プロキシされていない UDP を無効にする",
     "description": "Option to disable non-proxified UDP"
   },
   "optionsGroupCookie": {
-    "message": "Cookie Options",
+    "message": "クッキーオプション",
     "description": "Label for group: cookie"
   },
   "optionsCookiePolicy": {
-    "message": "Policy",
+    "message": "ポリシー",
     "description": "Label for cookie policy"
   },
   "optionsCookiePolicyOption1": {
-    "message": "Allow all",
+    "message": "すべて許可する",
     "description": "Option to allow all cookies"
   },
   "optionsCookiePolicyOption2": {
-    "message": "Block all",
+    "message": "全てブロック",
     "description": "Option to block all cookies"
   },
   "optionsCookiePolicyOption3": {
-    "message": "Block 3rd party",
+    "message": "第三者をブロック",
     "description": "Option to block 3rd party cookies"
   },
   "optionsCookiePolicyOption4": {
