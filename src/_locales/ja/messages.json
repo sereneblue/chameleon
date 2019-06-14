@@ -180,19 +180,19 @@
     "description": "Label for spoof IP headers (Via)"
   },
   "headersIPRandom": {
-    "message": "random IP",
+    "message": "ランダムな IP",
     "description": "Label for IP address (random)"
   },
   "headersIPCustom": {
-    "message": "custom IP",
+    "message": "カスタム IP",
     "description": "Label for IP address (custom)"
   },
   "headersIP": {
-    "message": "IP address:",
+    "message": "IP アドレス:",
     "description": "Label for IP address text"
   },
   "headersDisableRef": {
-    "message": "Disable Referer",
+    "message": "リファラーを無効にする",
     "description": "Label for disable referer"
   },
   "headersSpoofSourceRef": {
