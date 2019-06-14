@@ -236,11 +236,11 @@
     "description": "Option to set referer trimming policy to: send full URI"
   },
   "headersRefererTrimmingOption2": {
-    "message": "Scheme, host, port + path",
+    "message": "host, port + path のスキーム",
     "description": "Option to set referer trimming policy to: Scheme, host, port + path"
   },
   "headersRefererTrimmingOption3": {
-    "message": "Scheme, host + port",
+    "message": "host + port のスキーム",
     "description": "Option to set referer trimming policy to: Scheme, host + port"
   },
   "headersSpoofAccept": {
