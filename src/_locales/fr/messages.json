@@ -816,7 +816,7 @@
     "description": "Message for successful import"
   },
   "importError": {
-    "message": "Impossible d'importer les paramètres",
+    "message": "Impossible d'importer les réglages",
     "description": "Message for unsuccessful import"
   }
 }
