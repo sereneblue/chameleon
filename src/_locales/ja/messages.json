@@ -1,10 +1,10 @@
 {
   "extDescription": {
-    "message": "Spoof your browser profile. Includes a few privacy enhancing options.",
+    "message": "ブラウザのプロファイルを偽装します。いくつかのプライバシー強化オプションを含みます。",
     "description": "Description of the extension."
   },
   "aboutContributors": {
-    "message": "Developed by <a href=\"$AUTHOR$\">sereneblue<\/a> and <a href=\"$CONTRIB$\">contributors<\/a>",
+    "message": "開発者 <a href=\"$AUTHOR$\">sereneblue<\/a> 及び <a href=\"$CONTRIB$\">contributors<\/a>",
     "description": "Contributors text",
     "placeholders": {
       "author": {
