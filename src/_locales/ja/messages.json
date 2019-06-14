@@ -396,19 +396,19 @@
     "description": "Option to block 3rd party cookies"
   },
   "optionsCookiePolicyOption4": {
-    "message": "Allow 3rd party from visited",
+    "message": "第三者からの訪問を許可する",
     "description": "Option to allow 3rd party from visited"
   },
   "optionsCookiePolicyOption5": {
-    "message": "Reject trackers",
+    "message": "トラッカーを拒否",
     "description": "Option to reject trackers"
   },
   "optionsOpenChecklist": {
-    "message": "Open about:config checklist",
+    "message": "about:config の設定内容一覧を開く",
     "description": "Label for checklist button"
   },
   "whitelistEnable": {
-    "message": "Enable whitelist (requires script injection)",
+    "message": "ホワイトリストを有効にする（スクリプトインジェクションが必要です）",
     "description": "Label for enable whitelist"
   },
   "whitelistUseDefault": {
