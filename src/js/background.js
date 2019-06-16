@@ -509,6 +509,32 @@ async function rebuildInjectionScript() {
 	}, 500);
 }
 
+browser.contextMenus.create({
+	id: "chameleon-openInWhitelist",
+	title: browser.i18n.getMessage("whitelistOpenEditor"),
+	contexts: ["all"],
+	onclick: function(details) {
+		var l = document.createElement("a");
+		l.href = details.pageUrl;
+
+		if (l.protocol != "about:" && 
+	    	l.protocol != "moz-extension:" &&
+	    	l.protocol != "ftp:" && 
+	    	l.protocol != "file:") {
+
+			let idx = findRule(chameleon.whitelist.urlList, l.host);
+
+			chrome.tabs.create({
+			    url:  chrome.runtime.getURL(`/whitelist.html?url=${l.host}&mode=${idx[0] >= 0 ? "edit" : "create"}`)
+			});
+	    }
+	},
+	icons: {
+		"16": "img/icon_16.png",
+		"32": "img/icon_32.png"
+	}
+});
+
 function save(obj) {
 	return new Promise((resolve) => {
 		chrome.storage.local.set(obj, () => {
