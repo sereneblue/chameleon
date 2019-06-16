@@ -44,7 +44,7 @@ async function exportSettings() {
 	var settings = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
 	var exportElement = document.getElementById('export');
 	exportElement.setAttribute("href", settings );
-	exportElement.setAttribute("download", `chameleon_settings_${new Date().getTime()}.json`);
+	exportElement.setAttribute("download", `chameleon_${new Date().getTime()}.json`);
 	exportElement.click();
 };
 
