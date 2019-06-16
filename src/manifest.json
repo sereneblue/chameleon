@@ -17,6 +17,7 @@
 			"js/dep/moment.min.js",
 			"js/dep/moment-timezone-with-data.min.js",
 			"js/dep/psl.min.js", 
+			"js/lib/modRequests.js",
 			"js/lib/spoof.js",
 			"js/lib/spoofAudioContext.js",
 			"js/lib/spoofrects.js",
