@@ -358,6 +358,7 @@ async function updateUI() {
 					${profile}
 				</div>
 				<input id="whitelistMode" type="hidden" value="1">
+				<input id="whitelistIndex" type="hidden" value="${idx[0]},${idx[1]}">
 				${data.whitelist.urlList[idx[0]].domains[idx[1]].re ? 
 				"<div><strong>Pattern:</strong></br>" + data.whitelist.urlList[idx[0]].domains[idx[1]].pattern + "</div>" : "" }`);
 			return;
@@ -795,10 +796,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	$('#openEditor').on('click', function(e) {
-		var domain = $('.whitelist h5').text();
+		var idx = $('#whitelistIndex').val().split(',').map(Number);
 
 		chrome.tabs.create({
-		    url:  chrome.runtime.getURL(`/whitelist.html?url=${domain}&mode=${document.querySelector('#whitelistMode') ? "edit" : "create"}`)
+		    url:  chrome.runtime.getURL(`/whitelist.html?url=${data.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=${document.querySelector('#whitelistMode') ? "edit" : "create"}`)
 		});
 
 		window.close();

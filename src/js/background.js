@@ -524,9 +524,11 @@ browser.contextMenus.create({
 
 			let idx = findRule(chameleon.whitelist.urlList, l.host);
 
-			chrome.tabs.create({
-			    url:  chrome.runtime.getURL(`/whitelist.html?url=${l.host}&mode=${idx[0] >= 0 ? "edit" : "create"}`)
-			});
+			if (idx[0] >= 0) {
+				chrome.tabs.create({
+				    url:  chrome.runtime.getURL(`/whitelist.html?url=${chameleon.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=${idx[0] >= 0 ? "edit" : "create"}`)
+				});
+			}
 	    }
 	},
 	icons: {
