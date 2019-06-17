@@ -4,7 +4,7 @@
     "description": "Description of the extension."
   },
   "aboutContributors": {
-    "message": "開発者 <a href=\"$AUTHOR$\">sereneblue<\/a> 及び <a href=\"$CONTRIB$\">contributors<\/a>",
+    "message": "開発者 <a href=\"$AUTHOR$\">sereneblue<\/a> 及び <a href=\"$CONTRIB$\">協力者<\/a>",
     "description": "Contributors text",
     "placeholders": {
       "author": {
@@ -28,7 +28,7 @@
     "description": "Text for Github issues link"
   },
   "aboutTranslate": {
-    "message": "カメレオンの翻訳に協力する",
+    "message": "Chameleon の翻訳に協力する",
     "description": "Text for Crowdin localizations"
   },
   "aboutWiki": {
@@ -160,7 +160,7 @@
     "description": "Title of popup tab: headers"
   },
   "headersDisableAuth": {
-    "message": "認証を無効にする",
+    "message": "「認証ヘッダ」機能を無効にする",
     "description": "Label for disable auth header"
   },
   "headersEnableDNT": {
@@ -200,7 +200,7 @@
     "description": "Label for disable referer"
   },
   "headersUpgradeInsecureReq": {
-    "message": "安全でないリクエストをアップグレードする",
+    "message": "「安全でないリクエストのアップグレード機能」の使用を有効にする",
     "description": "Label for disable referer"
   },
   "headersMsg1": {
@@ -288,7 +288,7 @@
     "description": "Label for protect CSS Exfil"
   },
   "optionsProtectWinName": {
-    "message": "window.name を保護する",
+    "message": "関数 window.name（ウィンドウ名）を保護する",
     "description": "Label for protect window name"
   },
   "optionsProtectKBFingerprint": {
@@ -296,7 +296,7 @@
     "description": "Label for protect keyboard fingerprint"
   },
   "optionsKBDelay": {
-    "message": "遅延 (1\/1000 秒)",
+    "message": "遅延 (ミリ秒)",
     "description": "Placeholder for keyboard delay"
   },
   "optionsSpoofAudioContext": {
@@ -412,411 +412,415 @@
     "description": "Label for enable whitelist"
   },
   "whitelistUseDefault": {
-    "message": "Default Whitelist Profile",
+    "message": "デフォルトのホワイトリストプロファイル",
     "description": "Label for enable whitelist"
   },
   "whitelistViewIPRules": {
-    "message": "View Timezone\/Language IP rules",
+    "message": "タイムゾーン\/言語 IP ルールの表示",
     "description": "Label for IP rules"
   },
   "whitelistViewRules": {
-    "message": "View whitelist",
+    "message": "ホワイトリストを表示",
     "description": "Label for whitelist rules editor"
   },
   "whitelistCurrentDomain": {
-    "message": "Current domain",
+    "message": "現在のドメイン",
     "description": "Text: Current domain"
   },
   "whitelistOpenEditor": {
-    "message": "Add\/edit domain in whitelist",
+    "message": "ホワイトリストにドメインを追加\/編集する",
     "description": "Label for add\/edit domain in whitelist"
   },
   "ipRulesSubheader": {
-    "message": "Timezone\/Language IP rules",
+    "message": "タイムゾーン\/言語 IP ルール",
     "description": "Subheader for IP rules"
   },
   "ipRulesReloadIP": {
-    "message": "Reload IP info",
+    "message": "IP 情報の再読み込み",
     "description": "Label for button: reload IP info"
   },
   "ipRulesTip": {
-    "message": "Tip: 8.8.8.0\/24 corresponds to the range 8.8.8.0 - 8.8.8.255",
+    "message": "ヒント：8.8.8.0\/24は 、8.8.8.0  -  8.8.8.255 の範囲に対応します",
     "description": "Text for IP rules tip"
   },
   "ipRulesInstructions": {
-    "message": "Click the Reload IP info button after making changes to IP rules",
+    "message": "IP ルールを変更したら、[ IP 情報の再読み込み ] ボタンをクリックします。",
     "description": "Text for IP rules instructions"
   },
   "ipRulesTableIPRange": {
-    "message": "IP Range",
+    "message": "IP アドレス範囲",
     "description": "Table column header: IP Range"
   },
   "ipRulesTableLanguage": {
-    "message": "Language",
+    "message": "言語",
     "description": "Table column header: Language"
   },
   "ipRulesTableTimezone": {
-    "message": "Timezone",
+    "message": "タイムゾーン",
     "description": "Table column header: Timezone"
   },
   "ipRulesTableActions": {
-    "message": "Actions",
+    "message": "操作",
     "description": "Table column header: Actions"
   },
   "ipRulesCIDR": {
-    "message": "IP or CIDR",
+    "message": "IP 又は CIDR (Classless Inter-Domain Routing)",
     "description": "Label for IP\/CIDR range"
   },
   "ipRulesCIDRPlaceholder": {
-    "message": "Enter IP or CIDR",
+    "message": "IP または CIDR を入力",
     "description": "Placeholder for IP\/CIDR range"
   },
   "whitelistSearchPlaceholder": {
-    "message": "Search rules",
+    "message": "検索ルール",
     "description": "Placeholder for search rules input"
   },
   "whitelistEnterDomain": {
-    "message": "Enter domain",
+    "message": "ドメインを入力",
     "description": "Placeholder for domain input"
   },
   "whitelistRegexEnabled": {
-    "message": "Regex enabled",
+    "message": "正規表現が有効",
     "description": "Label for regex checkbox"
   },
   "whitelistEnterPattern": {
-    "message": "Enter pattern",
+    "message": "パターンを入力",
     "description": "Placeholder for regex pattern"
   },
   "whitelistSpoofAcceptLang": {
-    "message": "Spoof Accept-Language",
+    "message": "Accept-Language ヘッダーを偽装する",
     "description": "Label for spoof accept-language"
   },
   "whitelistSpoofProfile": {
-    "message": "Spoof Profile",
+    "message": "プロファイルを偽装する",
     "description": "Label for spoof profile"
   },
   "whitelistSpoofProfileDefault": {
-    "message": "Default Whitelist Profile",
+    "message": "デフォルトのホワイトリストプロファイル",
     "description": "Option to use default whitelist profile"
   },
   "whitelistAddDomain": {
-    "message": "Add domain",
+    "message": "ドメインを追加",
     "description": "Label for add domain button"
   },
   "whitelistDisableAuth": {
-    "message": "Disable auth header",
+    "message": "認証ヘッダーを無効にする",
     "description": "Label for disable auth header"
   },
   "whitelistDisableReferer": {
-    "message": "Disable referer",
+    "message": "リファラーを無効にする",
     "description": "Label for disable referer"
   },
   "whitelistDisableWebsocket": {
-    "message": "Disable WebSocket",
+    "message": "WebSocket を無効にする",
     "description": "Label for disable websocket"
   },
   "whitelistEnableIPHeaders": {
-    "message": "Enable IP headers spoofing",
+    "message": "IP ヘッダーのなりすましを有効にする",
     "description": "Label for enable IP headers spoof"
   },
   "whitelistEnableProtectWinName": {
-    "message": "Enable Protect window name",
+    "message": "window.name 保護を有効にする",
     "description": "Label for enable protect window name"
   },
   "whitelistEnableTimezoneSpoofing": {
-    "message": "Enable Timezone spoofing",
+    "message": "タイムゾーンなりすましを有効にする",
     "description": "Label for enable timezone spoofing"
   },
   "whitelistSpoofHeaderIPLabel": {
-    "message": "Header IP (Via & X-Forwarded For)",
+    "message": "IP ヘッダ (Via や X-Forwarded のための)",
     "description": "Label for IP headers spoof value"
   },
   "whitelistConfirmation": {
-    "message": "Are you sure you want to delete this rule?",
+    "message": "このルールを削除してよろしいですか？",
     "description": "Text for delete confirmation"
   },
   "notificationMessage": {
-    "message": "Browser Profile Changed",
+    "message": "ブラウザのプロファイルが変更されました",
     "description": "Notification message for profile change"
   },
   "notificationMessageTimezone": {
-    "message": "Unable to get timezone data. Using UTC.",
+    "message": "タイムゾーンデータを取得できません。 UTC を使用する。",
     "description": "Notification message for timezone IP"
   },
   "textChecklist": {
-    "message": "Checklist",
+    "message": "チェックリスト",
     "description": "Text: Checklist"
   },
   "textClose": {
-    "message": "Close",
+    "message": "閉じる",
     "description": "Text: Close"
   },
   "textCreate": {
-    "message": "Create",
+    "message": "新規作成",
     "description": "Text: Create"
   },
   "textCreateRule": {
-    "message": "Create new rule",
+    "message": "新しいルールを作成する",
     "description": "Label for button: create new rule"
   },
+  "textCustom": {
+    "message": "カスタム設定",
+    "description": "Text: Custom"
+  },
   "textDefault": {
-    "message": "Default",
+    "message": "Default（規定）",
     "description": "Text: Default"
   },
   "textDelete": {
-    "message": "Delete",
+    "message": "削除する",
     "description": "Text: Delete"
   },
   "textDomains": {
-    "message": "domains",
+    "message": "ドメイン",
     "description": "Text: domains"
   },
   "textEdit": {
-    "message": "Edit",
+    "message": "編集する",
     "description": "Text: Edit"
   },
-  "textCustom": {
-    "message": "Custom",
-    "description": "Text: Custom"
-  },
   "textLanguage": {
-    "message": "Language",
+    "message": "言語",
     "description": "Text: Language"
   },
+  "textLeaveEmpty": {
+    "message": "Leave empty",
+    "description": "Text: Leave empty"
+  },
   "textNo": {
-    "message": "No",
+    "message": "不可",
     "description": "Text: No"
   },
   "textRealProfile": {
-    "message": "Real Profile",
+    "message": "真正プロファイル",
     "description": "Text: Real Profile"
   },
   "textReset": {
-    "message": "Reset",
+    "message": "元に戻す",
     "description": "Text: Reset"
   },
   "textSave": {
-    "message": "Save",
+    "message": "保存する",
     "description": "Text: Save"
   },
   "textSettings": {
-    "message": "Settings",
+    "message": "セッティング",
     "description": "Text: Settings"
   },
   "textTimezone": {
-    "message": "Timezone",
+    "message": "タイムゾーン",
     "description": "Text: Timezone"
   },
   "textYes": {
-    "message": "Yes",
+    "message": "承認",
     "description": "Text: Yes"
   },
   "textWhitelist": {
-    "message": "Whitelist",
+    "message": "ホワイトリスト",
     "description": "Text: Whitelist"
   },
   "checklistTip": {
-    "message": "Create option if it doesn't exist. Research option before changing, some will break sites!",
+    "message": "存在しない場合はオプションを作成します。変更前の調査オプションはサイトを壊すものもあります！",
     "description": "Text for checklist tip"
   },
   "checklistTableHeaderOption": {
-    "message": "Option",
+    "message": "オプション",
     "description": "Table header: option"
   },
   "checklistTableHeaderPreference": {
-    "message": "Preference",
+    "message": "環境設定",
     "description": "Table header: preference"
   },
   "checklistTableHeaderSet": {
-    "message": "Set to",
+    "message": "設定する",
     "description": "Table header: set to"
   },
   "checklistBlockActiveMixedContent": {
-    "message": "Block active mixed content",
+    "message": "アクティブな混合コンテンツをブロックする",
     "description": "Checklist option to block active mixed content"
   },
   "checklistBlockDisplayMixedContent": {
-    "message": "Block display mixed content",
+    "message": "混合コンテンツの表示をブロックする",
     "description": "Checklist option to block display mixed content"
   },
   "checklistDisableBatteryAPI": {
-    "message": "Disable Battery API",
+    "message": "バッテリー API を無効にする",
     "description": "Checklist option to disable battery API"
   },
   "checklistDisableBrowserPings": {
-    "message": "Disable Browser Pings",
+    "message": "ブラウザの pings を無効にする",
     "description": "Checklist option to disable browser pings"
   },
   "checklistDisableHistory": {
-    "message": "Disable Browsing and Download history",
+    "message": "ブラウジングとダウンロードの履歴を無効にする",
     "description": "Checklist option to disable browsing and download history"
   },
   "checklistDisableCSSVisited": {
-    "message": "Disable CSS visited links",
+    "message": "CSS の訪問リンクを無効にする",
     "description": "Checklist option to disable CSS visited links"
   },
   "checklistDisableCacheDisk": {
-    "message": "Disable Cache (disk)",
+    "message": "キャッシュを無効にする（ディスク）",
     "description": "Checklist option to disable cache: disk"
   },
   "checklistDisableCacheMemory": {
-    "message": "Disable Cache (memory)",
+    "message": "キャッシュを無効にする（メモリ）",
     "description": "Checklist option to disable cache: memory"
   },
   "checklistDisableClipboardEvents": {
-    "message": "Disable Clipboard Events",
+    "message": "クリップボードの履歴を無効にする",
     "description": "Checklist option to disable clipboard events"
   },
   "checklistDisableContextMenuEvents": {
-    "message": "Disable Content Menu Events",
+    "message": "コンテキスト（右クリック）メニューの履歴を無効にする",
     "description": "Checklist option to disable context menu events"
   },
   "checklistDisableDeviceSensors": {
-    "message": "Disable Device Sensors",
+    "message": "デバイスセンサーを無効にする",
     "description": "Checklist option to disable device sensors"
   },
   "checklistDisableDNSPrefetch": {
-    "message": "Disable DNS prefetch",
+    "message": "DNS プリフェッチを無効にする",
     "description": "Checklist option to disable DNS prefetch"
   },
   "checklistDisableDOMStorage": {
-    "message": "Disable DOM storage",
+    "message": "DOM ストレージを無効にする",
     "description": "Checklist option to disable DOM storage"
   },
   "checklistDisableDRM": {
-    "message": "Disable DRM",
+    "message": "DRM（デジタル著作権管理）を無効にする",
     "description": "Checklist option to disable DRM"
   },
   "checklistDisableGamepadAPI": {
-    "message": "Disable Gamepad API",
+    "message": "Gamepad API を無効にする",
     "description": "Checklist option to disable gamepad API"
   },
   "checklistDisableGeolocation": {
-    "message": "Disable Geolocation",
+    "message": "位置情報を無効にする",
     "description": "Checklist option to disable geolocation"
   },
   "checklistDisableGeolocation2": {
-    "message": "Disable Geolocation 2",
+    "message": "位置情報 2 を無効にする",
     "description": "Checklist option to disable geolocation 2"
   },
   "checklistDisableOfflineCache": {
-    "message": "Disable offline cache",
+    "message": "オフラインキャッシュを無効にする",
     "description": "Checklist option to disable offline cache"
   },
   "checklistDisablePDFjs": {
-    "message": "Disable PDF.js",
+    "message": "PDF.js を無効にする",
     "description": "Checklist option to disable pdf.js"
   },
   "checklistDisablePocket": {
-    "message": "Disable Pocket",
+    "message": "Pocket 機能を無効にする",
     "description": "Checklist option to disable Pocket"
   },
   "checklistDisableResourceTiming": {
-    "message": "Disable Resource Timing API",
+    "message": "Resource Timing API（リソース読み込みのタイムスタンプ）を無効にする",
     "description": "Checklist option to disable resource timing"
   },
   "checklistDisableSearchSuggestions": {
-    "message": "Disable Search suggestions",
+    "message": "検索候補を無効にする",
     "description": "Checklist option to disable search suggestions"
   },
   "checklistDisableSearchUpdates": {
-    "message": "Disable Search Updates",
+    "message": "検索の更新を無効にする",
     "description": "Checklist option to disable search update"
   },
   "checklistDisableSSLFalseStart": {
-    "message": "Disable SSL False Start",
+    "message": "SSL False Start を無効にする",
     "description": "Checklist option to disable SSL False Start"
   },
   "checklistDisableSSLSessionIdentifiers": {
-    "message": "Disable SSL Session Identifiers",
+    "message": "SSL セッション識別子を無効にする",
     "description": "Checklist option to disable SSL session identifiers"
   },
   "checklistDisableTLS0RTT": {
-    "message": "Disable TLS 0-RTT",
+    "message": "TLS 0-RTT を無効にする",
     "description": "Checklist option to disable TLS 0-RTT"
   },
   "checklistDisableTrustedRecursiveResolver": {
-    "message": "Disable TTR (Trusted Recursive Resolver)",
+    "message": "TTR (Trusted Recursive Resolver) を無効にする",
     "description": "Checklist option to disable Trusted Recursive Resolver"
   },
   "checklistDisableWebGL": {
-    "message": "Disable WebGL",
+    "message": "WebGL を無効にする",
     "description": "Checklist option to disable WebGL"
   },
   "checklistDisableWebBeacons": {
-    "message": "Disable Web Beacons",
+    "message": "Web ビーコンを無効にする",
     "description": "Checklist option to disable Web Beacons"
   },
   "checklistEnableClearOfflineApps": {
-    "message": "Enable clear offline apps on shutdown",
+    "message": "シャットダウン時にオフラインアプリのクリアを有効にする",
     "description": "Checklist option to enable clear offline apps on shutdown"
   },
   "checklistLimitDetectableFonts": {
-    "message": "Limit detectable fonts",
+    "message": "検出可能なフォントを制限する",
     "description": "Checklist option to limit detectable fonts"
   },
   "checklistUseClickToPlay": {
-    "message": "Use click to play for plugins",
+    "message": "クリックしてプラグインを再生する",
     "description": "Checklist option to use click to pay for plugins"
   },
   "checklistDisableDataSubmission": {
-    "message": "Disable data submission",
+    "message": "データ送信を無効にする",
     "description": "Checklist option to use disable data submission"
   },
   "checklistDisableSafeBrowsingDownloadsCheck": {
-    "message": "Disable safe browsing downloads check",
+    "message": "セーフブラウジングのダウンロードチェックを無効にする",
     "description": "Checklist option to use disable safe browsing downloads check"
   },
   "checklistDisableSafeBrowsingDownloadsCheck2": {
-    "message": "Disable safe browsing downloads check 2",
+    "message": "セーフブラウジングのダウンロードチェック 2 を無効にする",
     "description": "Checklist option to use disable safe browsing downloads check 2"
   },
   "checklistDisableSafeBrowsingDownloadsCheck3": {
-    "message": "Disable safe browsing downloads check 3",
+    "message": "セーフブラウジングのダウンロードチェック 3 を無効にする",
     "description": "Checklist option to use disable safe browsing downloads check 3"
   },
   "checklistDisableSafeBrowsingDownloadsCheck4": {
-    "message": "Disable safe browsing downloads check 4",
+    "message": "セーフブラウジングのダウンロードチェック 4 を無効にする",
     "description": "Checklist option to use disable safe browsing downloads check 4"
   },
   "checklistDisableSafeBrowsingMalwareCheck": {
-    "message": "Disable safe browsing malware check",
+    "message": "セーフブラウジングのマルウェアチェックを無効にする",
     "description": "Checklist option to use disable safe browsing malware check"
   },
   "checklistDisableSafeBrowsingPhishingCheck": {
-    "message": "Disable safe browsing phishing check",
+    "message": "セーフブラウジングのフィッシングチェックを無効にする",
     "description": "Checklist option to use disable safe browsing phishing check"
   },
   "checklistDisableHealthReportUploads": {
-    "message": "Disable health report uploads",
+    "message": "ヘルスレポートのアップロードを無効にする",
     "description": "Checklist option to use disable health report uploads"
   },
   "checklistDisableCrashReport": {
-    "message": "Disable crash report",
+    "message": "クラッシュレポートを無効にする",
     "description": "Checklist option to use disable crash report"
   },
   "checklistDisableTelemetryReport": {
-    "message": "Disable telemetry report",
+    "message": "テレメトリレポートを無効にする",
     "description": "Checklist option to use disable telemetry report"
   },
   "checklistDisableTelemetryReport2": {
-    "message": "Disable telemetry report 2",
+    "message": "テレメトリレポート 2 を無効にする",
     "description": "Checklist option to use disable telemetry report 2"
   },
   "checklistDisableTelemetryServer": {
-    "message": "Disable telemetry server",
+    "message": "テレメトリサーバーを無効にする",
     "description": "Checklist option to use disable telemetry server"
   },
   "importSettingsSubheader": {
-    "message": "Import settings",
+    "message": "セッティングをインポートする",
     "description": "Subheader for import settings"
   },
   "importSuccess": {
-    "message": "Successfully imported settings. Reloading extension...",
+    "message": "セッティングを正常にインポートしました。 拡張機能を再読み込み中...",
     "description": "Message for successful import"
   },
   "importError": {
-    "message": "Could not import settings",
+    "message": "セッティングをインポートできませんでした",
     "description": "Message for unsuccessful import"
   }
 }
