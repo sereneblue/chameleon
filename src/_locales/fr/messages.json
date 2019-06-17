@@ -559,6 +559,10 @@
     "message": "Créer une nouvelle règle",
     "description": "Label for button: create new rule"
   },
+  "textCustom": {
+    "message": "Personnalisé",
+    "description": "Text: Custom"
+  },
   "textDefault": {
     "message": "Défaut",
     "description": "Text: Default"
@@ -575,13 +579,13 @@
     "message": "Modifier",
     "description": "Text: Edit"
   },
-  "textCustom": {
-    "message": "Personnalisé",
-    "description": "Text: Custom"
-  },
   "textLanguage": {
     "message": "Langue",
     "description": "Text: Language"
+  },
+  "textLeaveEmpty": {
+    "message": "Leave empty",
+    "description": "Text: Leave empty"
   },
   "textNo": {
     "message": "Non",
