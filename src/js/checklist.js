@@ -49,4 +49,5 @@ document.addEventListener('DOMContentLoaded', function() {
 	$('#disableTelemetryReport').text(browser.i18n.getMessage("checklistDisableTelemetryReport"));
 	$('#disableTelemetryReport2').text(browser.i18n.getMessage("checklistDisableTelemetryReport2"));
 	$('#disableTelemetryServer').text(browser.i18n.getMessage("checklistDisableTelemetryServer"));
+	$('.checklistEmpty').text(browser.i18n.getMessage("textLeaveEmpty"));
 });
