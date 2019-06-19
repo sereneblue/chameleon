@@ -59,7 +59,7 @@ let chameleon = {
 		webSockets: "allow_all"
 	},
 	timeout: null,
-	version: "0.12.7",
+	version: "0.12.8",
 	whitelist: {
 		enabled: false,
 		defaultProfile: "none",

@@ -114,7 +114,11 @@ function validate(cfg) {
     for (s in cfg.settings) {
 		if (['disableWebSockets', 'enableScriptInjection', 'kbDelay', 'limitHistory', 'notificationsEnabled', 
 				  'protectKeyboardFingerprint', 'protectWinName', 'spoofAudioContext', 'spoofClientRects'].includes(s)) {
-			if (typeof(cfg.settings[s]) != "boolean") throw Error;
+			if (s == "kbDelay") {
+				if (cfg.settings[s] < 0 || cfg.settings[s] > 1000) throw Error;
+			} else {
+				if (typeof(cfg.settings[s]) != "boolean") throw Error;
+			}
 		}
 
 		if (s == "customScreen" && !/^([0-9]{3,4}x[0-9]{3,4})?$/.test(cfg.settings[s])) throw Error;
