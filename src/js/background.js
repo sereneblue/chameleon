@@ -59,7 +59,7 @@ let chameleon = {
 		webSockets: "allow_all"
 	},
 	timeout: null,
-	version: "0.12.6",
+	version: "0.12.7",
 	whitelist: {
 		enabled: false,
 		defaultProfile: "none",
@@ -217,21 +217,21 @@ async function getIPInfo() {
 		let tzSpoof = "";
 		let langSpoof = "";
 
-		if (data.timezone && data.languages) {
+		if (data.timezone && data.languages || data.ip) {
 			// check if in ip rules
-			let ruleIndex = (function(ip) {
-					for (var i = 0; i < chameleon.ipRules.length; i++) {
-						for (var j = 0; j < chameleon.ipRules[i].ip.length; j++) {
-							let cidr = new IPCIDR(chameleon.ipRules[i].ip[j]);
+			let ruleIndex = (function() {
+								for (var i = 0; i < chameleon.ipRules.length; i++) {
+									for (var j = 0; j < chameleon.ipRules[i].ip.length; j++) {
+										let cidr = new IPCIDR(chameleon.ipRules[i].ip[j]);
 
-							if (cidr.contains(data.ip)) {
-								return i;
-							}
-						}
-					}
+										if (cidr.contains(data.ip)) {
+											return i;
+										}
+									}
+								}
 
-					return -1;
-				})();
+								return -1;
+							})();
 
 			if (ruleIndex > -1) {
 				let lang = languages.find(l => l.display == chameleon.ipRules[ruleIndex].lang);
@@ -242,6 +242,7 @@ async function getIPInfo() {
 				chameleon.ipInfo.timezone = chameleon.ipRules[ruleIndex].tz;
 				chameleon.ipInfo.language = lang.value;;
 			} else {
+				if (!data.timezone && !data.languages) throw "Couldn't find info";
 				if (chameleon.settings.timeZone == "ip") {
 					tzSpoof = `${browser.i18n.getMessage("textTimezone")}: UTC${moment().tz(data.timezone).format('Z')}`;
 					chameleon.ipInfo.timezone = data.timezone;
