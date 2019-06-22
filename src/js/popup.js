@@ -165,6 +165,7 @@ function localize() {
 	
 	// whitelist tab
 	$("#whitelistEnable").text(browser.i18n.getMessage("whitelistEnable"));
+	$("#whitelistEnableContextMenu").text(browser.i18n.getMessage("whitelistEnableContextMenu"));
 	$("#whitelistUseDefault").text(browser.i18n.getMessage("whitelistUseDefault"));
 	$("#whitelistViewIPRules").text(browser.i18n.getMessage("whitelistViewIPRules"));
 	$("#whitelistViewRules").text(browser.i18n.getMessage("whitelistViewRules"));
@@ -310,6 +311,7 @@ async function updateUI() {
 
 	$(`select[name="timeZone"]`).val(data.settings.timeZone);
 	$(`input[name="enableWhitelist"]`).prop('checked', data.whitelist.enabled);
+	$(`input[name="enableContextMenu"]`).prop('checked', data.whitelist.enabledContextMenu);
 
 	// add list of profiles to default whitelist profile dropdown
 

@@ -62,6 +62,7 @@ let chameleon = {
 	version: "0.12.8",
 	whitelist: {
 		enabled: false,
+		enabledContextMenu: false,
 		defaultProfile: "none",
 		urlList: []
 	}
@@ -480,6 +481,7 @@ async function start() {
 
 	saveSettings();
 	rebuildInjectionScript();
+	toggleContextMenu(chameleon.whitelist.enabledContextMenu);
 }
 
 // rebuilds injection script
@@ -509,34 +511,6 @@ async function rebuildInjectionScript() {
 		});
 	}, 500);
 }
-
-browser.contextMenus.create({
-	id: "chameleon-openInWhitelist",
-	title: browser.i18n.getMessage("whitelistOpenEditor"),
-	contexts: ["all"],
-	onclick: function(details) {
-		var l = document.createElement("a");
-		l.href = details.pageUrl;
-
-		if (l.protocol != "about:" && 
-	    	l.protocol != "moz-extension:" &&
-	    	l.protocol != "ftp:" && 
-	    	l.protocol != "file:") {
-
-			let idx = findRule(chameleon.whitelist.urlList, l.host);
-
-			if (idx[0] >= 0) {
-				chrome.tabs.create({
-				    url:  chrome.runtime.getURL(`/whitelist.html?url=${chameleon.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=${idx[0] >= 0 ? "edit" : "create"}`)
-				});
-			}
-	    }
-	},
-	icons: {
-		"16": "img/icon_16.png",
-		"32": "img/icon_32.png"
-	}
-});
 
 function save(obj) {
 	return new Promise((resolve) => {
@@ -612,6 +586,40 @@ function whitelisted(req) {
 	}
 
 	return {on: false};
+}
+
+function toggleContextMenu(show) {
+	browser.contextMenus.removeAll();
+
+	if (show) {
+		browser.contextMenus.create({
+			id: "chameleon-openInWhitelist",
+			title: browser.i18n.getMessage("whitelistOpenEditor"),
+			contexts: ["all"],
+			onclick: function(details) {
+				var l = document.createElement("a");
+				l.href = details.pageUrl;
+
+				if (l.protocol != "about:" && 
+			    	l.protocol != "moz-extension:" &&
+			    	l.protocol != "ftp:" && 
+			    	l.protocol != "file:") {
+
+					let idx = findRule(chameleon.whitelist.urlList, l.host);
+
+					if (idx[0] >= 0) {
+						chrome.tabs.create({
+						    url:  chrome.runtime.getURL(`/whitelist.html?url=${chameleon.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=${idx[0] >= 0 ? "edit" : "create"}`)
+						});
+					}
+			    }
+			},
+			icons: {
+				"16": "img/icon_16.png",
+				"32": "img/icon_32.png"
+			}
+		});
+	}
 }
 
 // initialize settings
@@ -823,6 +831,13 @@ chrome.runtime.onMessage.addListener(function(request) {
 	} else if (request.action == "whitelist") {
 		if (request.data.key == "enableWhitelist") {
 			chameleon.whitelist.enabled = request.data.value;
+		} else if (request.data.key == "enableContextMenu"){
+			chameleon.whitelist.enabledContextMenu = request.data.value;
+			save({
+				whitelist: chameleon.whitelist
+			});
+			toggleContextMenu(request.data.value);
+			return;
 		} else if (request.data.key == "defaultProfile"){
 			chameleon.whitelist.defaultProfile = request.data.value;
 		} else if (request.data.key == "wl_urls"){

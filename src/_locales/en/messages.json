@@ -411,6 +411,10 @@
     "message": "Enable whitelist (requires script injection)",
     "description": "Label for enable whitelist"
   },
+  "whitelistEnableContextMenu": {
+    "message": "Add context menu item to open current tab domain in whitelist",
+    "description": "Label for enable whitelist context menu item"
+  },
   "whitelistUseDefault": {
     "message": "Default Whitelist Profile",
     "description": "Label for enable whitelist"

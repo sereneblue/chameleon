@@ -164,7 +164,7 @@ function validate(cfg) {
 			continue;
 		}
 
-		if (w != "enabled") throw Error;
+		if (w != "enabled" || w != "enabledContextMenu") throw Error;
 	}
 
 	$("#import-msg").text(browser.i18n.getMessage("importSuccess")).css('color', 'olivedrab');
