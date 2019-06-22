@@ -339,7 +339,7 @@ async function updateUI() {
 
 		let idx = findRule(data.whitelist.urlList, currentTab[0].url);
 
-		if (idx[0] > -1) {
+		if (idx[0] >= 0) {
 			let profile = profiles.find(p => p.value == data.whitelist.urlList[idx[0]].profile);
 
 			if (profile) {
@@ -359,7 +359,6 @@ async function updateUI() {
 					<strong>Profile:</strong><br/>
 					${profile}
 				</div>
-				<input id="whitelistMode" type="hidden" value="1">
 				<input id="whitelistIndex" type="hidden" value="${idx[0]},${idx[1]}">
 				${data.whitelist.urlList[idx[0]].domains[idx[1]].re ? 
 				"<div><strong>Pattern:</strong></br>" + data.whitelist.urlList[idx[0]].domains[idx[1]].pattern + "</div>" : "" }`);
@@ -798,11 +797,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	$('#openEditor').on('click', function(e) {
-		var idx = $('#whitelistIndex').val().split(',').map(Number);
+		let wlIdx = $('#whitelistIndex');
+		let idx = wlIdx.length ? wlIdx.val().split(',').map(Number) : [-1, -1];
 
-		chrome.tabs.create({
-		    url:  chrome.runtime.getURL(`/whitelist.html?url=${data.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=${document.querySelector('#whitelistMode') ? "edit" : "create"}`)
-		});
+		if (idx[0] >= 0) {
+			chrome.tabs.create({
+				url: chrome.runtime.getURL(`/whitelist.html?url=${data.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=edit`)
+			});
+		} else {
+			chrome.tabs.create({
+				url: chrome.runtime.getURL(`/whitelist.html?url=${$('.whitelist h5').text()}&mode=create`)
+			});
+		}
 
 		window.close();
 	});

@@ -7,7 +7,7 @@
 		}
 	},
 	"name": "Chameleon",
-	"version": "0.12.8",
+	"version": "0.12.9",
 	"manifest_version": 2,
 	"description": "__MSG_extDescription__",
 	"background": {

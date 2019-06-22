@@ -59,7 +59,7 @@ let chameleon = {
 		webSockets: "allow_all"
 	},
 	timeout: null,
-	version: "0.12.8",
+	version: "0.12.9",
 	whitelist: {
 		enabled: false,
 		enabledContextMenu: false,
@@ -611,7 +611,11 @@ function toggleContextMenu(show) {
 
 							if (idx[0] >= 0) {
 								chrome.tabs.create({
-									url:  chrome.runtime.getURL(`/whitelist.html?url=${chameleon.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=${idx[0] >= 0 ? "edit" : "create"}`)
+									url: chrome.runtime.getURL(`/whitelist.html?url=${chameleon.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=edit`)
+								});
+							} else {
+								chrome.tabs.create({
+									url: chrome.runtime.getURL(`/whitelist.html?url=${l.host}&mode=create`)
 								});
 							}
 						}
