@@ -390,21 +390,21 @@ function filterProfiles(uaList) {
 // make XMLHttpRequest
 function request(url) {
   return new Promise(function(resolve, reject) {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(e) {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          resolve(xhr.response)
-        } else {
-          reject(xhr.status)
-        }
-      }
-    }
-    xhr.ontimeout = function () {
-      reject('timeout')
-    }
-    xhr.open('get', url, true)
-    xhr.send()
+	const xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(e) {
+	  if (xhr.readyState === 4) {
+		if (xhr.status === 200) {
+		  resolve(xhr.response)
+		} else {
+		  reject(xhr.status)
+		}
+	  }
+	}
+	xhr.ontimeout = function () {
+	  reject('timeout')
+	}
+	xhr.open('get', url, true)
+	xhr.send()
   })
 }
 
@@ -592,31 +592,35 @@ function toggleContextMenu(show) {
 	browser.contextMenus.removeAll();
 
 	if (show) {
-		browser.contextMenus.create({
-			id: "chameleon-openInWhitelist",
-			title: browser.i18n.getMessage("whitelistOpenEditor"),
-			contexts: ["all"],
-			onclick: function(details) {
-				var l = document.createElement("a");
-				l.href = details.pageUrl;
+		browser.runtime.getPlatformInfo().then((platformInfo) => {
+			if (platformInfo.os != "android") {
+				browser.contextMenus.create({
+					id: "chameleon-openInWhitelist",
+					title: browser.i18n.getMessage("whitelistOpenEditor"),
+					contexts: ["all"],
+					onclick: function(details) {
+						var l = document.createElement("a");
+						l.href = details.pageUrl;
 
-				if (l.protocol != "about:" && 
-			    	l.protocol != "moz-extension:" &&
-			    	l.protocol != "ftp:" && 
-			    	l.protocol != "file:") {
+						if (l.protocol != "about:" && 
+							l.protocol != "moz-extension:" &&
+							l.protocol != "ftp:" && 
+							l.protocol != "file:") {
 
-					let idx = findRule(chameleon.whitelist.urlList, l.host);
+							let idx = findRule(chameleon.whitelist.urlList, l.host);
 
-					if (idx[0] >= 0) {
-						chrome.tabs.create({
-						    url:  chrome.runtime.getURL(`/whitelist.html?url=${chameleon.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=${idx[0] >= 0 ? "edit" : "create"}`)
-						});
+							if (idx[0] >= 0) {
+								chrome.tabs.create({
+									url:  chrome.runtime.getURL(`/whitelist.html?url=${chameleon.whitelist.urlList[idx[0]].domains[idx[1]].domain}&mode=${idx[0] >= 0 ? "edit" : "create"}`)
+								});
+							}
+						}
+					},
+					icons: {
+						"16": "img/icon_16.png",
+						"32": "img/icon_32.png"
 					}
-			    }
-			},
-			icons: {
-				"16": "img/icon_16.png",
-				"32": "img/icon_32.png"
+				});
 			}
 		});
 	}
@@ -655,9 +659,9 @@ function migrate(data) {
 		if (data.whitelist.urlList[i].url) {
 			data.whitelist.urlList[i].id = Math.random().toString(36).substring(7);
 			data.whitelist.urlList[i].domains = [{
-	            "domain": data.whitelist.urlList[i].url,
-	            "re": data.whitelist.urlList[i].re,
-	            "pattern": data.whitelist.urlList[i].pattern
+				"domain": data.whitelist.urlList[i].url,
+				"re": data.whitelist.urlList[i].re,
+				"pattern": data.whitelist.urlList[i].pattern
 			}];
 
 			delete data.whitelist.urlList[i].url;
