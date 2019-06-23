@@ -1,5 +1,5 @@
 {
-  "name": "chameleon",
+  "name": "chameleon-ext",
   "description": "Spoof your browser profile. Includes a few privacy enhancing options.",
   "scripts": {
     "test": "node test/zipExtension.js && mocha --timeout 0 test/**/*Test.js"
