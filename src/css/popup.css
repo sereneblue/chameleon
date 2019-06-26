@@ -10,7 +10,6 @@
 
 body {
   background-color: white;
-  min-width: 340px;
   min-height: 400px;
   max-height: 450px;
   overflow-x: hidden;
@@ -369,10 +368,10 @@ select[name="timeZone"] {
   content: "\e9ac";
 }
 
-@media only screen and (max-width: 339px) {
+@media only screen and (max-width: 410px) {
   body {
-    min-width: 329px;
-    max-width: 328px;
+    min-width: 410px;
+    max-width: 410px;
     max-height: 450px;
   }
 }
