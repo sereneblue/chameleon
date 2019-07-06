@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.12.9-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.12.10-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/chameleon/localized.svg)](https://crowdin.com/project/chameleon)
 
@@ -81,3 +81,7 @@ Joue Quroi for the timezone spoofing code [Spoof Timezone](https://github.com/jo
 ilGur for the audio context spoofing code [AudioContext Defender](https://mybrowseraddon.com/audiocontext-defender.html)
 
 Princeton Web Transparency & Accountability Project for the audio context fingerprinting code [AudioContext Fingerprint](https://audiofingerprint.openwpm.com/)
+
+## Special Thanks
+
+- melegeti for the French translation

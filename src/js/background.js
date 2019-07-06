@@ -59,7 +59,7 @@ let chameleon = {
 		webSockets: "allow_all"
 	},
 	timeout: null,
-	version: "0.12.9",
+	version: "0.12.10",
 	whitelist: {
 		enabled: false,
 		enabledContextMenu: false,
@@ -658,7 +658,6 @@ function migrate(data) {
 	
 	for (var i = 0; i < data.whitelist.urlList.length; i++) {
 		delete data.whitelist.urlList[i].options.screen;
-		data.whitelist.urlList[i].profile = "default";
 
 		if (data.whitelist.urlList[i].url) {
 			data.whitelist.urlList[i].id = Math.random().toString(36).substring(7);
