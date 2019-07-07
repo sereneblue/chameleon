@@ -8,10 +8,10 @@
     "description": "Contributors text",
     "placeholders": {
       "author": {
-        "content" : "https://github.com/sereneblue"
+        "content": "https:\/\/github.com\/sereneblue"
       },
       "contrib": {
-        "content" : "https://github.com/sereneblue/chameleon/graphs/contributors"
+        "content": "https:\/\/github.com\/sereneblue\/chameleon\/graphs\/contributors"
       }
     }
   },
@@ -340,7 +340,7 @@
     "description": "Label for enable 1st party isolation"
   },
   "optionsResistFingerprinting": {
-    "message": "Résister à la prise d'empreintes digitales",
+    "message": "Résister à la prise d'empreintes numériques",
     "description": "Label for enable resist fingerprinting"
   },
   "optionsTrackingProtection": {
