@@ -85,3 +85,4 @@ Princeton Web Transparency & Accountability Project for the audio context finger
 ## Special Thanks
 
 - melegeti for the French translation
+- 3ibsand and Alexey for the Russian translation

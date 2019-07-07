@@ -180,6 +180,14 @@ function localize() {
 	$("select[name='webRTCIPHandlingPolicy'] option:eq(0)").text(browser.i18n.getMessage("textDefault"));
 	$("#profileReal").text(browser.i18n.getMessage("textRealProfile"));
 	$("select[name='defaultProfile'] option:eq(0)").text(browser.i18n.getMessage("textRealProfile"));
+
+	// load locale CSS
+    let stylesheet  = document.createElement('link');
+    stylesheet.rel  = 'stylesheet';
+    stylesheet.type = 'text/css';
+    stylesheet.href = `css/${browser.i18n.getUILanguage()}.css`;
+    stylesheet.media = 'all';
+    document.getElementsByTagName('head')[0].appendChild(stylesheet);
 }
 
 // update ui display
