@@ -649,6 +649,7 @@ function init(data) {
 
 // migrate settings to newer version
 function migrate(data) {
+	if (data.whitelist == undefined) return;
 	if (data.whitelist.enableRealProfile) delete data.whitelist.enableRealProfile;
 	if (data.whitelist.profile) delete data.whitelist.profile;
 
