@@ -182,12 +182,18 @@ function localize() {
 	$("select[name='defaultProfile'] option:eq(0)").text(browser.i18n.getMessage("textRealProfile"));
 
 	// load locale CSS
+	let lang = browser.i18n.getUILanguage();
+
     let stylesheet  = document.createElement('link');
     stylesheet.rel  = 'stylesheet';
     stylesheet.type = 'text/css';
-    stylesheet.href = `css/${browser.i18n.getUILanguage()}.css`;
+    stylesheet.href = `css/${lang}.css`;
     stylesheet.media = 'all';
     document.getElementsByTagName('head')[0].appendChild(stylesheet);
+
+    if (lang == "ja") {
+    	document.querySelector('#menu_about').innerText = "？";
+    }
 }
 
 // update ui display

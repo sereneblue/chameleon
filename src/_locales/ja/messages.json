@@ -1,0 +1,830 @@
+{
+  "extDescription": {
+    "message": "ブラウザのプロファイルを偽装します。いくつかのプライバシー強化オプションを含みます。",
+    "description": "Description of the extension."
+  },
+  "aboutContributors": {
+    "message": "開発者 <a href=\"$AUTHOR$\">sereneblue<\/a> 及び <a href=\"$CONTRIB$\">協力者<\/a>",
+    "description": "Contributors text",
+    "placeholders": {
+      "author": {
+        "content": "https:\/\/github.com\/sereneblue"
+      },
+      "contrib": {
+        "content": "https:\/\/github.com\/sereneblue\/chameleon\/graphs\/contributors"
+      }
+    }
+  },
+  "aboutLicense": {
+    "message": "GNU GPL v3ライセンスの下で配布。",
+    "description": "Text for license"
+  },
+  "aboutSrcCode": {
+    "message": "ソース コード",
+    "description": "Text for Github repository link"
+  },
+  "aboutReport": {
+    "message": "バグを報告する",
+    "description": "Text for Github issues link"
+  },
+  "aboutTranslate": {
+    "message": "Chameleon の翻訳に協力する",
+    "description": "Text for Crowdin localizations"
+  },
+  "aboutWiki": {
+    "message": "Wiki",
+    "description": "Text for Chameleon wiki"
+  },
+  "aboutBtnImport": {
+    "message": "インポート",
+    "description": "Label for import settings button"
+  },
+  "aboutBtnExport": {
+    "message": "エクスポート",
+    "description": "Label for export settings button"
+  },
+  "tabProfile": {
+    "message": "プロファイル",
+    "description": "Title of popup tab: profile"
+  },
+  "profileEnableNotification": {
+    "message": "通知を有効にする",
+    "description": "Label for enable notifcations"
+  },
+  "profileRandom": {
+    "message": "ランダム",
+    "description": "Label for random profile"
+  },
+  "profileRandomDesktop": {
+    "message": "ランダムなプロファイル (Desktop)",
+    "description": "Label for random desktop profile"
+  },
+  "profileRandomMobile": {
+    "message": "ランダムなプロファイル (Mobile)",
+    "description": "Label for random mobile profile"
+  },
+  "profileScriptInjectionMsg": {
+    "message": "プロファイルを完全に使用するには、スクリプトインジェクションを有効にする必要があります。",
+    "description": "Script injection message"
+  },
+  "profilePeriodically": {
+    "message": "定期的に変更する",
+    "description": "Text for interval change"
+  },
+  "profileIntervalNo": {
+    "message": "不可",
+    "description": "Option to not change periodically"
+  },
+  "profileIntervalCustom": {
+    "message": "カスタム間隔",
+    "description": "Option to change periodically using custom interval"
+  },
+  "profileIntervalMinute": {
+    "message": "1 分ごと",
+    "description": "Option to change periodically: 1 min"
+  },
+  "profileIntervalMinute5": {
+    "message": "5 分ごと",
+    "description": "Option to change periodically: 5 min"
+  },
+  "profileIntervalMinute10": {
+    "message": "10 分ごと",
+    "description": "Option to change periodically: 10 min"
+  },
+  "profileIntervalMinute20": {
+    "message": "20 分ごと",
+    "description": "Option to change periodically: 20 min"
+  },
+  "profileIntervalMinute30": {
+    "message": "30 分ごと",
+    "description": "Option to change periodically: 30 min"
+  },
+  "profileIntervalMinute40": {
+    "message": "40 分ごと",
+    "description": "Option to change periodically: 40 min"
+  },
+  "profileIntervalMinute50": {
+    "message": "50 分ごと",
+    "description": "Option to change periodically: 50 min"
+  },
+  "profileIntervalHour": {
+    "message": "1 時間ごと",
+    "description": "Option to change periodically: 1 hour"
+  },
+  "profileIntervalRefresh": {
+    "message": "更新",
+    "description": "Label for refresh profile button"
+  },
+  "profileIntervalCustomMin": {
+    "message": "最小 (分):",
+    "description": "Label for custom interval input: min"
+  },
+  "profileIntervalCustomMax": {
+    "message": "最大 (分):",
+    "description": "Label for custom interval input: max"
+  },
+  "profileBrowser": {
+    "message": "ブラウザ",
+    "description": "Text to append to platform, ex. Windows Browsers"
+  },
+  "profileExclude": {
+    "message": "除外",
+    "description": "Lbael for exclude profiles"
+  },
+  "profileRandomWindows": {
+    "message": "ランダムな Windows Browsers",
+    "description": "Label for random Windows browsers option"
+  },
+  "profileRandomMacOS": {
+    "message": "ランダムな macOS Browsers",
+    "description": "Label for random macOS browsers option"
+  },
+  "profileRandomLinux": {
+    "message": "ランダムな Linux Browsers",
+    "description": "Label for random Linux browsers option"
+  },
+  "profileRandomIOS": {
+    "message": "ランダムな iOS Browsers",
+    "description": "Label for random iOS browsers option"
+  },
+  "profileRandomAndroid": {
+    "message": "ランダムな Android Browsers",
+    "description": "Label for random Android browsers option"
+  },
+  "profileCustom": {
+    "message": "カスタムユーザーエージェント",
+    "description": "Lbael for custom user agent"
+  },
+  "tabHeaders": {
+    "message": "ヘッダー",
+    "description": "Title of popup tab: headers"
+  },
+  "headersDisableAuth": {
+    "message": "「認証ヘッダ」機能を無効にする",
+    "description": "Label for disable auth header"
+  },
+  "headersEnableDNT": {
+    "message": "DNT (Do Not Track) を有効にする",
+    "description": "Label for enable Do Not Track"
+  },
+  "headersBlockEtag": {
+    "message": "Etag トラッキングを防止する",
+    "description": "Label for prevent Etag"
+  },
+  "headersSpoofVIa": {
+    "message": "Via の偽装手段",
+    "description": "Label for spoof IP headers (Via)"
+  },
+  "headersSpoofXForwarded": {
+    "message": "X-Forwarded-For の偽装手段",
+    "description": "Label for spoof IP headers (Via)"
+  },
+  "headersIPRandom": {
+    "message": "ランダムな IP",
+    "description": "Label for IP address (random)"
+  },
+  "headersIPCustom": {
+    "message": "カスタム IP",
+    "description": "Label for IP address (custom)"
+  },
+  "headersIP": {
+    "message": "IP アドレス:",
+    "description": "Label for IP address text"
+  },
+  "headersDisableRef": {
+    "message": "リファラーを無効にする",
+    "description": "Label for disable referer"
+  },
+  "headersSpoofSourceRef": {
+    "message": "リファラーのソースを偽装する",
+    "description": "Label for disable referer"
+  },
+  "headersUpgradeInsecureReq": {
+    "message": "「安全でないリクエストのアップグレード機能」の使用を有効にする",
+    "description": "Label for disable referer"
+  },
+  "headersMsg1": {
+    "message": "以下のオプションの about:config 設定を変更しないでください。",
+    "description": "Warning message for referer options"
+  },
+  "headersMsg2": {
+    "message": "Wiki の詳細情報",
+    "description": "Wiki link text"
+  },
+  "headersRefererXorigin": {
+    "message": "X Origin Policy のリファラー",
+    "description": "Label for referer X Origin policy"
+  },
+  "headersRefererXoriginOption1": {
+    "message": "常に送る (規定)",
+    "description": "Option to set referer X Origin policy to: always send"
+  },
+  "headersRefererXoriginOption2": {
+    "message": "基本ドメインと一致",
+    "description": "Option to set referer X Origin policy to: match base domain"
+  },
+  "headersRefererXoriginOption3": {
+    "message": "host と一致",
+    "description": "Option to set referer X Origin policy to: match host"
+  },
+  "headersRefererTrimming": {
+    "message": "Trimming Policy のリファラー",
+    "description": "Label for referer trimming policy"
+  },
+  "headersRefererTrimmingOption1": {
+    "message": "完全な URI を送信する (規定)",
+    "description": "Option to set referer trimming policy to: send full URI"
+  },
+  "headersRefererTrimmingOption2": {
+    "message": "host, port + path のスキーム",
+    "description": "Option to set referer trimming policy to: Scheme, host, port + path"
+  },
+  "headersRefererTrimmingOption3": {
+    "message": "host + port のスキーム",
+    "description": "Option to set referer trimming policy to: Scheme, host + port"
+  },
+  "headersSpoofAccept": {
+    "message": "Accept & Accept-Encoding ヘッダーを偽装する",
+    "description": "Label for spoof accept"
+  },
+  "headersSpoofAcceptLang": {
+    "message": "Accept-Language リクエストヘッダーを偽装する",
+    "description": "Label for disable referer"
+  },
+  "tabOptions": {
+    "message": "オプション",
+    "description": "Title of popup tab: options"
+  },
+  "optionsGroupScriptInjection": {
+    "message": "スクリプトインジェクションのオプション",
+    "description": "Label for group: script injection options"
+  },
+  "optionsEnableScriptInjection": {
+    "message": "スクリプトインジェクションを有効にする",
+    "description": "Label for enable script injection"
+  },
+  "optionsEnableScriptInjectionMsg": {
+    "message": "* 付きのオプションはスクリプトインジェクションが必要です",
+    "description": "Text for script injection options message"
+  },
+  "optionsWebsocketsOption1": {
+    "message": "すべて許可する",
+    "description": "Option to allow all websocket connections"
+  },
+  "optionsWebsocketsOption2": {
+    "message": "第三者をブロック",
+    "description": "Option to block 3rd party websocket connections"
+  },
+  "optionsWebsocketsOption3": {
+    "message": "全てブロック",
+    "description": "Option to block all websocket connections"
+  },
+  "optionsLimitHistory": {
+    "message": "タブ履歴を制限する",
+    "description": "Label for limit tab history"
+  },
+  "optionsProtectCSSExfil": {
+    "message": "CSS Exfil を保護する",
+    "description": "Label for protect CSS Exfil"
+  },
+  "optionsProtectWinName": {
+    "message": "関数 window.name（ウィンドウ名）を保護する",
+    "description": "Label for protect window name"
+  },
+  "optionsProtectKBFingerprint": {
+    "message": "キーボードの指紋を保護する",
+    "description": "Label for protect keyboard fingerprint"
+  },
+  "optionsKBDelay": {
+    "message": "遅延 (ミリ秒)",
+    "description": "Placeholder for keyboard delay"
+  },
+  "optionsSpoofAudioContext": {
+    "message": "音声コンテキストを偽装する",
+    "description": "Label for spoof audio context"
+  },
+  "optionsSpoofClientRects": {
+    "message": "Client Rects を偽装する",
+    "description": "Label for spoof client rects"
+  },
+  "optionsSpoofFontFingerprint": {
+    "message": "フォントの指紋を偽装する",
+    "description": "Label for spoof font fingerprint"
+  },
+  "optionsSpoofScreenSize": {
+    "message": "画面サイズを偽装する",
+    "description": "Label for spoof screen size"
+  },
+  "optionsSpoofScreenSizeOptionProfile": {
+    "message": "プロファイル",
+    "description": "Option for spoof screen size: profile"
+  },
+  "optionsSpoofScreenSizeCustomWidth": {
+    "message": "画面の幅 (ピクセル)",
+    "description": "Label for custom screen size: width"
+  },
+  "optionsSpoofScreenSizeCustomHeight": {
+    "message": "画面の高さ (ピクセル)",
+    "description": "Label for custom screen size: height"
+  },
+  "optionsSpoofTimezone": {
+    "message": "タイムゾーン",
+    "description": "Label for spoof timezone"
+  },
+  "optionsGroupStandard": {
+    "message": "標準オプション",
+    "description": "Label for group: standard options"
+  },
+  "optionsFirstPartyIsolate": {
+    "message": "ファーストパーティ分離を有効にする",
+    "description": "Label for enable 1st party isolation"
+  },
+  "optionsResistFingerprinting": {
+    "message": "フィンガープリント耐性",
+    "description": "Label for enable resist fingerprinting"
+  },
+  "optionsTrackingProtection": {
+    "message": "トラッキング保護モード",
+    "description": "Label for tracking protection"
+  },
+  "optionsTrackingProtectionOption1": {
+    "message": "On",
+    "description": "Option to enable tracking protection"
+  },
+  "optionsTrackingProtectionOption2": {
+    "message": "Off",
+    "description": "Option to disable tracking protection"
+  },
+  "optionsTrackingProtectionOption3": {
+    "message": "プライベートブラウジングで有効",
+    "description": "Option to enable tracking protection only in private browsing"
+  },
+  "optionsWebRTC": {
+    "message": "WebRTC ポリシー",
+    "description": "Label for tracking protection"
+  },
+  "optionsWebRTCOption2": {
+    "message": "パブリックおよびプライベートインターフェイスを使用する",
+    "description": "Option to use public & private interface"
+  },
+  "optionsWebRTCOption3": {
+    "message": "パブリックインターフェースのみを使用する (最善)",
+    "description": "Option to only use public interface"
+  },
+  "optionsWebRTCOption4": {
+    "message": "プロキシされていない UDP を無効にする",
+    "description": "Option to disable non-proxified UDP"
+  },
+  "optionsGroupCookie": {
+    "message": "クッキーオプション",
+    "description": "Label for group: cookie"
+  },
+  "optionsCookiePolicy": {
+    "message": "ポリシー",
+    "description": "Label for cookie policy"
+  },
+  "optionsCookiePolicyOption1": {
+    "message": "すべて許可する",
+    "description": "Option to allow all cookies"
+  },
+  "optionsCookiePolicyOption2": {
+    "message": "全てブロック",
+    "description": "Option to block all cookies"
+  },
+  "optionsCookiePolicyOption3": {
+    "message": "第三者をブロック",
+    "description": "Option to block 3rd party cookies"
+  },
+  "optionsCookiePolicyOption4": {
+    "message": "第三者からの訪問を許可する",
+    "description": "Option to allow 3rd party from visited"
+  },
+  "optionsCookiePolicyOption5": {
+    "message": "トラッカーを拒否",
+    "description": "Option to reject trackers"
+  },
+  "optionsOpenChecklist": {
+    "message": "about:config の設定内容一覧を開く",
+    "description": "Label for checklist button"
+  },
+  "whitelistEnable": {
+    "message": "ホワイトリストを有効にする（スクリプトインジェクションが必要です）",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistEnableContextMenu": {
+    "message": "ホワイトリストで現在のタブドメインを開くためのコンテキストメニュー項目を追加する",
+    "description": "Label for enable whitelist context menu item"
+  },
+  "whitelistUseDefault": {
+    "message": "デフォルトのホワイトリストプロファイル",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistViewIPRules": {
+    "message": "タイムゾーン\/言語 IP ルールの表示",
+    "description": "Label for IP rules"
+  },
+  "whitelistViewRules": {
+    "message": "ホワイトリストを表示",
+    "description": "Label for whitelist rules editor"
+  },
+  "whitelistCurrentDomain": {
+    "message": "現在のドメイン",
+    "description": "Text: Current domain"
+  },
+  "whitelistOpenEditor": {
+    "message": "ホワイトリストにドメインを追加\/編集する",
+    "description": "Label for add\/edit domain in whitelist"
+  },
+  "ipRulesSubheader": {
+    "message": "タイムゾーン\/言語 IP ルール",
+    "description": "Subheader for IP rules"
+  },
+  "ipRulesReloadIP": {
+    "message": "IP 情報の再読み込み",
+    "description": "Label for button: reload IP info"
+  },
+  "ipRulesTip": {
+    "message": "ヒント：8.8.8.0\/24は 、8.8.8.0  -  8.8.8.255 の範囲に対応します",
+    "description": "Text for IP rules tip"
+  },
+  "ipRulesInstructions": {
+    "message": "IP ルールを変更したら、[ IP 情報の再読み込み ] ボタンをクリックします。",
+    "description": "Text for IP rules instructions"
+  },
+  "ipRulesTableIPRange": {
+    "message": "IP アドレス範囲",
+    "description": "Table column header: IP Range"
+  },
+  "ipRulesTableLanguage": {
+    "message": "言語",
+    "description": "Table column header: Language"
+  },
+  "ipRulesTableTimezone": {
+    "message": "タイムゾーン",
+    "description": "Table column header: Timezone"
+  },
+  "ipRulesTableActions": {
+    "message": "操作",
+    "description": "Table column header: Actions"
+  },
+  "ipRulesCIDR": {
+    "message": "IP 又は CIDR (Classless Inter-Domain Routing)",
+    "description": "Label for IP\/CIDR range"
+  },
+  "ipRulesCIDRPlaceholder": {
+    "message": "IP または CIDR を入力",
+    "description": "Placeholder for IP\/CIDR range"
+  },
+  "whitelistSearchPlaceholder": {
+    "message": "検索ルール",
+    "description": "Placeholder for search rules input"
+  },
+  "whitelistEnterDomain": {
+    "message": "ドメインを入力",
+    "description": "Placeholder for domain input"
+  },
+  "whitelistRegexEnabled": {
+    "message": "正規表現が有効",
+    "description": "Label for regex checkbox"
+  },
+  "whitelistEnterPattern": {
+    "message": "パターンを入力",
+    "description": "Placeholder for regex pattern"
+  },
+  "whitelistSpoofAcceptLang": {
+    "message": "Accept-Language ヘッダーを偽装する",
+    "description": "Label for spoof accept-language"
+  },
+  "whitelistSpoofProfile": {
+    "message": "プロファイルを偽装する",
+    "description": "Label for spoof profile"
+  },
+  "whitelistSpoofProfileDefault": {
+    "message": "デフォルトのホワイトリストプロファイル",
+    "description": "Option to use default whitelist profile"
+  },
+  "whitelistAddDomain": {
+    "message": "ドメインを追加",
+    "description": "Label for add domain button"
+  },
+  "whitelistDisableAuth": {
+    "message": "認証ヘッダーを無効にする",
+    "description": "Label for disable auth header"
+  },
+  "whitelistDisableReferer": {
+    "message": "リファラーを無効にする",
+    "description": "Label for disable referer"
+  },
+  "whitelistDisableWebsocket": {
+    "message": "WebSocket を無効にする",
+    "description": "Label for disable websocket"
+  },
+  "whitelistEnableIPHeaders": {
+    "message": "IP ヘッダーのなりすましを有効にする",
+    "description": "Label for enable IP headers spoof"
+  },
+  "whitelistEnableProtectWinName": {
+    "message": "window.name 保護を有効にする",
+    "description": "Label for enable protect window name"
+  },
+  "whitelistEnableTimezoneSpoofing": {
+    "message": "タイムゾーンなりすましを有効にする",
+    "description": "Label for enable timezone spoofing"
+  },
+  "whitelistSpoofHeaderIPLabel": {
+    "message": "IP ヘッダ (Via や X-Forwarded のための)",
+    "description": "Label for IP headers spoof value"
+  },
+  "whitelistConfirmation": {
+    "message": "このルールを削除してよろしいですか？",
+    "description": "Text for delete confirmation"
+  },
+  "notificationMessage": {
+    "message": "ブラウザのプロファイルが変更されました",
+    "description": "Notification message for profile change"
+  },
+  "notificationMessageTimezone": {
+    "message": "タイムゾーンデータを取得できません。 UTC を使用する。",
+    "description": "Notification message for timezone IP"
+  },
+  "textChecklist": {
+    "message": "チェックリスト",
+    "description": "Text: Checklist"
+  },
+  "textClose": {
+    "message": "閉じる",
+    "description": "Text: Close"
+  },
+  "textCreate": {
+    "message": "新規作成",
+    "description": "Text: Create"
+  },
+  "textCreateRule": {
+    "message": "新しいルールを作成する",
+    "description": "Label for button: create new rule"
+  },
+  "textCustom": {
+    "message": "カスタム設定",
+    "description": "Text: Custom"
+  },
+  "textDefault": {
+    "message": "Default（規定）",
+    "description": "Text: Default"
+  },
+  "textDelete": {
+    "message": "削除する",
+    "description": "Text: Delete"
+  },
+  "textDomains": {
+    "message": "ドメイン",
+    "description": "Text: domains"
+  },
+  "textEdit": {
+    "message": "編集する",
+    "description": "Text: Edit"
+  },
+  "textLanguage": {
+    "message": "言語",
+    "description": "Text: Language"
+  },
+  "textLeaveEmpty": {
+    "message": "空白のままに",
+    "description": "Text: Leave empty"
+  },
+  "textNo": {
+    "message": "不可",
+    "description": "Text: No"
+  },
+  "textRealProfile": {
+    "message": "真正プロファイル",
+    "description": "Text: Real Profile"
+  },
+  "textReset": {
+    "message": "元に戻す",
+    "description": "Text: Reset"
+  },
+  "textSave": {
+    "message": "保存する",
+    "description": "Text: Save"
+  },
+  "textSettings": {
+    "message": "セッティング",
+    "description": "Text: Settings"
+  },
+  "textTimezone": {
+    "message": "タイムゾーン",
+    "description": "Text: Timezone"
+  },
+  "textYes": {
+    "message": "承認",
+    "description": "Text: Yes"
+  },
+  "textWhitelist": {
+    "message": "ホワイトリスト",
+    "description": "Text: Whitelist"
+  },
+  "checklistTip": {
+    "message": "存在しない場合はオプションを作成します。変更前の調査オプションはサイトを壊すものもあります！",
+    "description": "Text for checklist tip"
+  },
+  "checklistTableHeaderOption": {
+    "message": "オプション",
+    "description": "Table header: option"
+  },
+  "checklistTableHeaderPreference": {
+    "message": "環境設定",
+    "description": "Table header: preference"
+  },
+  "checklistTableHeaderSet": {
+    "message": "設定する",
+    "description": "Table header: set to"
+  },
+  "checklistBlockActiveMixedContent": {
+    "message": "アクティブな混合コンテンツをブロックする",
+    "description": "Checklist option to block active mixed content"
+  },
+  "checklistBlockDisplayMixedContent": {
+    "message": "混合コンテンツの表示をブロックする",
+    "description": "Checklist option to block display mixed content"
+  },
+  "checklistDisableBatteryAPI": {
+    "message": "バッテリー API を無効にする",
+    "description": "Checklist option to disable battery API"
+  },
+  "checklistDisableBrowserPings": {
+    "message": "ブラウザの pings を無効にする",
+    "description": "Checklist option to disable browser pings"
+  },
+  "checklistDisableHistory": {
+    "message": "ブラウジングとダウンロードの履歴を無効にする",
+    "description": "Checklist option to disable browsing and download history"
+  },
+  "checklistDisableCSSVisited": {
+    "message": "CSS の訪問リンクを無効にする",
+    "description": "Checklist option to disable CSS visited links"
+  },
+  "checklistDisableCacheDisk": {
+    "message": "キャッシュを無効にする（ディスク）",
+    "description": "Checklist option to disable cache: disk"
+  },
+  "checklistDisableCacheMemory": {
+    "message": "キャッシュを無効にする（メモリ）",
+    "description": "Checklist option to disable cache: memory"
+  },
+  "checklistDisableClipboardEvents": {
+    "message": "クリップボードの履歴を無効にする",
+    "description": "Checklist option to disable clipboard events"
+  },
+  "checklistDisableContextMenuEvents": {
+    "message": "コンテキスト（右クリック）メニューの履歴を無効にする",
+    "description": "Checklist option to disable context menu events"
+  },
+  "checklistDisableDeviceSensors": {
+    "message": "デバイスセンサーを無効にする",
+    "description": "Checklist option to disable device sensors"
+  },
+  "checklistDisableDNSPrefetch": {
+    "message": "DNS プリフェッチを無効にする",
+    "description": "Checklist option to disable DNS prefetch"
+  },
+  "checklistDisableDOMStorage": {
+    "message": "DOM ストレージを無効にする",
+    "description": "Checklist option to disable DOM storage"
+  },
+  "checklistDisableDRM": {
+    "message": "DRM（デジタル著作権管理）を無効にする",
+    "description": "Checklist option to disable DRM"
+  },
+  "checklistDisableGamepadAPI": {
+    "message": "Gamepad API を無効にする",
+    "description": "Checklist option to disable gamepad API"
+  },
+  "checklistDisableGeolocation": {
+    "message": "位置情報を無効にする",
+    "description": "Checklist option to disable geolocation"
+  },
+  "checklistDisableGeolocation2": {
+    "message": "位置情報 2 を無効にする",
+    "description": "Checklist option to disable geolocation 2"
+  },
+  "checklistDisableOfflineCache": {
+    "message": "オフラインキャッシュを無効にする",
+    "description": "Checklist option to disable offline cache"
+  },
+  "checklistDisablePDFjs": {
+    "message": "PDF.js を無効にする",
+    "description": "Checklist option to disable pdf.js"
+  },
+  "checklistDisablePocket": {
+    "message": "Pocket 機能を無効にする",
+    "description": "Checklist option to disable Pocket"
+  },
+  "checklistDisableResourceTiming": {
+    "message": "Resource Timing API（リソース読み込みのタイムスタンプ）を無効にする",
+    "description": "Checklist option to disable resource timing"
+  },
+  "checklistDisableSearchSuggestions": {
+    "message": "検索候補を無効にする",
+    "description": "Checklist option to disable search suggestions"
+  },
+  "checklistDisableSearchUpdates": {
+    "message": "検索の更新を無効にする",
+    "description": "Checklist option to disable search update"
+  },
+  "checklistDisableSSLFalseStart": {
+    "message": "SSL False Start を無効にする",
+    "description": "Checklist option to disable SSL False Start"
+  },
+  "checklistDisableSSLSessionIdentifiers": {
+    "message": "SSL セッション識別子を無効にする",
+    "description": "Checklist option to disable SSL session identifiers"
+  },
+  "checklistDisableTLS0RTT": {
+    "message": "TLS 0-RTT を無効にする",
+    "description": "Checklist option to disable TLS 0-RTT"
+  },
+  "checklistDisableTrustedRecursiveResolver": {
+    "message": "TTR (Trusted Recursive Resolver) を無効にする",
+    "description": "Checklist option to disable Trusted Recursive Resolver"
+  },
+  "checklistDisableWebGL": {
+    "message": "WebGL を無効にする",
+    "description": "Checklist option to disable WebGL"
+  },
+  "checklistDisableWebBeacons": {
+    "message": "Web ビーコンを無効にする",
+    "description": "Checklist option to disable Web Beacons"
+  },
+  "checklistEnableClearOfflineApps": {
+    "message": "シャットダウン時にオフラインアプリのクリアを有効にする",
+    "description": "Checklist option to enable clear offline apps on shutdown"
+  },
+  "checklistLimitDetectableFonts": {
+    "message": "検出可能なフォントを制限する",
+    "description": "Checklist option to limit detectable fonts"
+  },
+  "checklistUseClickToPlay": {
+    "message": "クリックしてプラグインを再生する",
+    "description": "Checklist option to use click to pay for plugins"
+  },
+  "checklistDisableDataSubmission": {
+    "message": "データ送信を無効にする",
+    "description": "Checklist option to use disable data submission"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck": {
+    "message": "セーフブラウジングのダウンロードチェックを無効にする",
+    "description": "Checklist option to use disable safe browsing downloads check"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck2": {
+    "message": "セーフブラウジングのダウンロードチェック 2 を無効にする",
+    "description": "Checklist option to use disable safe browsing downloads check 2"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck3": {
+    "message": "セーフブラウジングのダウンロードチェック 3 を無効にする",
+    "description": "Checklist option to use disable safe browsing downloads check 3"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck4": {
+    "message": "セーフブラウジングのダウンロードチェック 4 を無効にする",
+    "description": "Checklist option to use disable safe browsing downloads check 4"
+  },
+  "checklistDisableSafeBrowsingMalwareCheck": {
+    "message": "セーフブラウジングのマルウェアチェックを無効にする",
+    "description": "Checklist option to use disable safe browsing malware check"
+  },
+  "checklistDisableSafeBrowsingPhishingCheck": {
+    "message": "セーフブラウジングのフィッシングチェックを無効にする",
+    "description": "Checklist option to use disable safe browsing phishing check"
+  },
+  "checklistDisableHealthReportUploads": {
+    "message": "ヘルスレポートのアップロードを無効にする",
+    "description": "Checklist option to use disable health report uploads"
+  },
+  "checklistDisableCrashReport": {
+    "message": "クラッシュレポートを無効にする",
+    "description": "Checklist option to use disable crash report"
+  },
+  "checklistDisableTelemetryReport": {
+    "message": "テレメトリレポートを無効にする",
+    "description": "Checklist option to use disable telemetry report"
+  },
+  "checklistDisableTelemetryReport2": {
+    "message": "テレメトリレポート 2 を無効にする",
+    "description": "Checklist option to use disable telemetry report 2"
+  },
+  "checklistDisableTelemetryServer": {
+    "message": "テレメトリサーバーを無効にする",
+    "description": "Checklist option to use disable telemetry server"
+  },
+  "importSettingsSubheader": {
+    "message": "セッティングをインポートする",
+    "description": "Subheader for import settings"
+  },
+  "importSuccess": {
+    "message": "セッティングを正常にインポートしました。 拡張機能を再読み込み中...",
+    "description": "Message for successful import"
+  },
+  "importError": {
+    "message": "セッティングをインポートできませんでした",
+    "description": "Message for unsuccessful import"
+  }
+}

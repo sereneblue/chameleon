@@ -86,3 +86,4 @@ Princeton Web Transparency & Accountability Project for the audio context finger
 
 - melegeti for the French translation
 - 3ibsand and Alexey for the Russian translation
+- Shitennouji for the Japanese translation
