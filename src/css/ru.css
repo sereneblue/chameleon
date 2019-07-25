@@ -1,7 +1,6 @@
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 451px) {
   body {
     min-width: 450px;
     max-width: 450px;
-    max-height: 450px;
   }
 }

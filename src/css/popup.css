@@ -10,7 +10,7 @@
 
 body {
   background-color: white;
-  min-height: 400px;
+  min-height: 450px;
   max-height: 450px;
   overflow-x: hidden;
 }
@@ -327,10 +327,9 @@ select[name="timeZone"] {
   margin-bottom: 5px;
 }
 
-@media only screen and (max-width: 410px) {
+@media only screen and (max-width: 411px) {
   body {
     min-width: 410px;
     max-width: 410px;
-    max-height: 450px;
   }
 }
