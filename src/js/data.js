@@ -60,6 +60,10 @@ let uaList = {
 		"ua": "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko",
 		"name": "Internet Explorer 11 (Win 8.1)",
 		"value": "win12"
+	}, {
+		"ua": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
+		"name": "Internet Explorer 11 (Win 10)",
+		"value": "win16"
 	}],
 	"mac": [{
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",

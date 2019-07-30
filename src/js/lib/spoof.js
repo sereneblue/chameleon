@@ -121,7 +121,8 @@ let spoof = {
 				if (/Chrome/.test(ua)) {
 					vendor = "Google Inc.";
 				}
-			} else if (/IE/.test(ua)) {
+			} else if (/Trident/.test(ua)) {
+				hardwareConcurrency = "undef";
 				productSub = null;
 			} else {
 				productSub = "";

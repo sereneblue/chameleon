@@ -84,7 +84,7 @@ function validate(cfg) {
 		if (e == "all") {
 			if (cfg.excluded[e].length != Object.entries(uaList).length) throw Error;
 		} else {
-			if (cfg.excluded[e].length != uaList[e].length) throw Error;
+			if (cfg.excluded[e].length > uaList[e].length) throw Error;
 		}
 
 		for (i in cfg.excluded[e]) {

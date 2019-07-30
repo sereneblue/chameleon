@@ -26,7 +26,7 @@ let chameleon = {
 	},
 	ipRules: [],
 	excluded: {
-		win: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+		win: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
 		mac: [false,false,false,false,false,false,false,false],
 		linux: [false,false,false,false,false,false,false,false,false,false,false],
 		ios: [false,false,false,false,false,false,false,false,false],
@@ -634,7 +634,15 @@ function toggleContextMenu(show) {
 function init(data) {
 	["headers", "excluded", "settings", "whitelist"].forEach(opt => {
 		Object.keys(chameleon[opt]).forEach(key => {
-			if (data[opt][key] != undefined) chameleon[opt][key] = data[opt][key];
+			if (data[opt][key] != undefined) {
+				if (opt == "excluded") {
+					for (var i = 0; i < data[opt][key].length; i++) {
+						chameleon[opt][key][i] = data[opt][key][i];
+					}
+				} else {
+					chameleon[opt][key] = data[opt][key];
+				}
+			}
 		})
 	});
 
