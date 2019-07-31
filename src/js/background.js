@@ -870,6 +870,12 @@ browser.webRequest.onBeforeSendHeaders.addListener(
 	}, ["blocking", "requestHeaders"]
 );
 
+browser.webRequest.onBeforeSendHeaders.addListener(
+	blockWebsocket, {
+		urls: ["<all_urls>"]
+	}, ["blocking", "requestHeaders"]
+);
+
 browser.webRequest.onHeadersReceived.addListener(
 	rewriteResponseHeaders, {
 		urls: ["<all_urls>"]
@@ -886,7 +892,6 @@ browser.webRequest.onBeforeRequest.addListener(
 browser.webRequest.onBeforeRequest.addListener(
 	blockWebsocket, {
 		urls: ["<all_urls>"],
-		types: ["websocket"]
 	}, ["blocking"]
 );
 

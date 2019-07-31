@@ -183,16 +183,27 @@ function blockWebsocket(details) {
 		return { cancel: wl.opt.websocket }
 	}
 
-	if (chameleon.settings.webSockets == "block_all") {
-		return { cancel: true };
-	} else if (chameleon.settings.webSockets == "block_3rd_party") {
-		let frameUrl = details.documentUrl || details.originUrl;
-		let frame = psl.parse(new URL(frameUrl).hostname);
-		let ws = psl.parse(new URL(details.url).hostname);
+	let isWebSocketRequest = false;
+	if (details.requestHeaders) {
+		for (let h of details.requestHeaders) {
+			if (h.name.toLowerCase() == "x-websocket-extensions") {
+				isWebSocketRequest = true;
+			}
+		}
+	}
 
-		if (!frame.error && !ws.error) {
-			if (frame.domain != ws.domain) {
-				return { cancel: true };
+	if (details.type == "websocket" || details.url.includes("transport=polling") || isWebSocketRequest) {
+		if (chameleon.settings.webSockets == "block_all") {
+			return { cancel: true };
+		} else if (chameleon.settings.webSockets == "block_3rd_party") {
+			let frameUrl = details.documentUrl || details.originUrl;
+			let frame = psl.parse(new URL(frameUrl).hostname);
+			let ws = psl.parse(new URL(details.url).hostname);
+
+			if (!frame.error && !ws.error) {
+				if (frame.domain != ws.domain) {
+					return { cancel: true };
+				}
 			}
 		}
 	}
