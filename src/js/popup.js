@@ -366,20 +366,20 @@ async function updateUI() {
 
 			$('.whitelist p').html(`
 				<div>
-					<strong>Status:</strong><br/>
-					Whitelisted<br/>
+					<strong>${browser.i18n.getMessage("textStatus")}:</strong><br/>
+					${browser.i18n.getMessage("textWhitelisted")}<br/>
 				</div>
 				<div>
-					<strong>Profile:</strong><br/>
+					<strong>${browser.i18n.getMessage("optionsSpoofScreenSizeOptionProfile")}:</strong><br/>
 					${profile}
 				</div>
 				<input id="whitelistIndex" type="hidden" value="${idx[0]},${idx[1]}">
 				${data.whitelist.urlList[idx[0]].domains[idx[1]].re ? 
-				"<div><strong>Pattern:</strong></br>" + data.whitelist.urlList[idx[0]].domains[idx[1]].pattern + "</div>" : "" }`);
+				"<div><strong>" + browser.i18n.getMessage("textPattern") + ":</strong></br>" + data.whitelist.urlList[idx[0]].domains[idx[1]].pattern + "</div>" : "" }`);
 			return;
 		}
 
-		$('.whitelist p').text(`Status: Not whitelisted`);
+		$('.whitelist p').text(`${browser.i18n.getMessage("textStatus")}: ${browser.i18n.getMessage("textNotWhitelisted")}`);
 		return;
     }
 
