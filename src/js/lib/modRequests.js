@@ -179,9 +179,6 @@ function blockAuth(details) {
 // block websocket
 function blockWebsocket(details) {
 	let wl = whitelisted(details);
-	if (wl.on){
-		return { cancel: wl.opt.websocket }
-	}
 
 	let isWebSocketRequest = false;
 	if (details.requestHeaders) {
@@ -193,6 +190,10 @@ function blockWebsocket(details) {
 	}
 
 	if (details.type == "websocket" || details.url.includes("transport=polling") || isWebSocketRequest) {
+		if (wl.on) {
+			return { cancel: wl.opt.websocket };
+		}
+
 		if (chameleon.settings.webSockets == "block_all") {
 			return { cancel: true };
 		} else if (chameleon.settings.webSockets == "block_3rd_party") {
