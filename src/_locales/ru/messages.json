@@ -595,6 +595,14 @@
     "message": "Нет",
     "description": "Text: No"
   },
+  "textNotWhitelisted": {
+    "message": "Не в белом списке",
+    "description": "Text: Not Whitelisted"
+  },
+  "textPattern": {
+    "message": "Шаблон",
+    "description": "Text: Pattern"
+  },
   "textRealProfile": {
     "message": "Реальный профиль",
     "description": "Text: Real Profile"
@@ -611,6 +619,10 @@
     "message": "Настройки",
     "description": "Text: Settings"
   },
+  "textStatus": {
+    "message": "Статус",
+    "description": "Text: Status"
+  },
   "textTimezone": {
     "message": "Часовой пояс",
     "description": "Text: Timezone"
@@ -622,6 +634,10 @@
   "textWhitelist": {
     "message": "Белый список",
     "description": "Text: Whitelist"
+  },
+  "textWhitelisted": {
+    "message": "В белом списке",
+    "description": "Text: Whitelisted"
   },
   "checklistTip": {
     "message": "Создайте параметр, если он не существует. Узнавайте больше о параметре перед его изменением, некоторые могут нарушать работу сайтов!",
