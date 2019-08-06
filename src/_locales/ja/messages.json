@@ -595,6 +595,14 @@
     "message": "不可",
     "description": "Text: No"
   },
+  "textNotWhitelisted": {
+    "message": "ホワイトリストに登録されていません",
+    "description": "Text: Not Whitelisted"
+  },
+  "textPattern": {
+    "message": "パターン",
+    "description": "Text: Pattern"
+  },
   "textRealProfile": {
     "message": "真正プロファイル",
     "description": "Text: Real Profile"
@@ -611,6 +619,10 @@
     "message": "セッティング",
     "description": "Text: Settings"
   },
+  "textStatus": {
+    "message": "状態",
+    "description": "Text: Status"
+  },
   "textTimezone": {
     "message": "タイムゾーン",
     "description": "Text: Timezone"
@@ -622,6 +634,10 @@
   "textWhitelist": {
     "message": "ホワイトリスト",
     "description": "Text: Whitelist"
+  },
+  "textWhitelisted": {
+    "message": "ホワイトリストに登録済み",
+    "description": "Text: Whitelisted"
   },
   "checklistTip": {
     "message": "存在しない場合はオプションを作成します。変更前の調査オプションはサイトを壊すものもあります！",
