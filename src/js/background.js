@@ -559,7 +559,7 @@ function whitelisted(req) {
 		} else if (req.frameId == 0) {
 			url = req.documentUrl;
 		} else {
-			let index = req.frameAncestors.findIndex(f => f.frameId == 0);
+			let index = req.frameAncestors ? req.frameAncestors.findIndex(f => f.frameId == 0) : -1;
 			if (index > -1) {
 				url = req.frameAncestors[index].url;
 			}
