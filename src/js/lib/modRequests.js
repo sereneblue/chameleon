@@ -221,7 +221,7 @@ function fixYoutube(request) {
 				"linux4", "linux5", "linux6"].includes(match);
 		} else {
 			if (/Chrome/.test(match) && 
-				!/Edge/.test(match) || !/Android/.test(match)) {
+				(!/Edge/.test(match) || !/Android/.test(match))) {
 				return true;
 			}
 		}
