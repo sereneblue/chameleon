@@ -595,6 +595,14 @@
     "message": "Non",
     "description": "Text: No"
   },
+  "textNotWhitelisted": {
+    "message": "Pas inscrit dans la liste blanche",
+    "description": "Text: Not Whitelisted"
+  },
+  "textPattern": {
+    "message": "Pattern",
+    "description": "Text: Pattern"
+  },
   "textRealProfile": {
     "message": "Profil réel",
     "description": "Text: Real Profile"
@@ -611,6 +619,10 @@
     "message": "Réglages",
     "description": "Text: Settings"
   },
+  "textStatus": {
+    "message": "Statut",
+    "description": "Text: Status"
+  },
   "textTimezone": {
     "message": "Fuseau horaire",
     "description": "Text: Timezone"
@@ -622,6 +634,10 @@
   "textWhitelist": {
     "message": "Liste blanche",
     "description": "Text: Whitelist"
+  },
+  "textWhitelisted": {
+    "message": "Inscrit en liste blanche",
+    "description": "Text: Whitelisted"
   },
   "checklistTip": {
     "message": "Créer une option si elle n'existe pas. Recherchez l'option avant de changer, certaines casseront des sites !",
