@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	$('#disbaleWebGL').text(browser.i18n.getMessage("checklistDisableWebGL"));
 	$('#disableWebBeacons').text(browser.i18n.getMessage("checklistDisableWebBeacons"));
 	$('#clearOfflineApps').text(browser.i18n.getMessage("checklistEnableClearOfflineApps"));
+	$('#socialTrackingProtection').text(browser.i18n.getMessage("checklistEnableSocialTrackingProtection") + " (FF70+)");
 	$('#limitDetectableFonts').text(browser.i18n.getMessage("checklistLimitDetectableFonts"));
 	$('#useClickToPlay').text(browser.i18n.getMessage("checklistUseClickToPlay"));
 	$('#disableDataSubmission').text(browser.i18n.getMessage("checklistDisableDataSubmission"));

@@ -775,6 +775,10 @@
     "message": "Enable clear offline apps on shutdown",
     "description": "Checklist option to enable clear offline apps on shutdown"
   },
+  "checklistEnableSocialTrackingProtection": {
+    "message": "Enable social tracking protection",
+    "description": "Checklist option to enable social tracking protection"
+  },
   "checklistLimitDetectableFonts": {
     "message": "Limit detectable fonts",
     "description": "Checklist option to limit detectable fonts"
