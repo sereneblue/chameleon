@@ -3,16 +3,6 @@
 let spoof = {
 	accept: function(ua, https) {
 		if (/Firefox/.test(ua) || /Edge/.test(ua)) {
-			if (/60\.0/.test(ua)) {
-				return [
-					"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-					https ? "gzip, deflate, br" : "gzip, deflate"
-				];
-			}
-
-			// FF65 used "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
-			// Was changed back to above in FF66
-
 			return [
 				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 				https ? "gzip, deflate, br" : "gzip, deflate"
