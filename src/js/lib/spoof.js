@@ -61,7 +61,9 @@ let spoof = {
 			if (!ua.match(/Firefox/)) {
 				platform = "Win32";
 			} else {
-				platform = parseInt(ua.match(/Firefox\/(\d+).\d/)[1]) <= 63 ? "Win64" : "Win32";
+				let ffVersion = parseInt(ua.match(/Firefox\/(\d+).\d/)[1])
+				platform = ffVersion <= 63 ? "Win64" : "Win32";
+				if (ffVersion >= 69) oscpu = ua.match(/(Windows .*?);/)[1];
 			}
 
 			hardwareConcurrency = 4;
@@ -74,7 +76,7 @@ let spoof = {
 			vendor = "Apple Computer, Inc";
 			appVersion = /Firefox/.test(ua) ? "5.0 (Macintosh)" : ua.match(/Mozilla\/(.*)/)[1];
 		} else if (/X11/.test(ua)) {
-			platform = oscpu = "Linux x86_64";
+			platform = oscpu = "Linux x86_64"; // will be changed in the future to 'Linux'
 			hardwareConcurrency = 4;
 			appVersion = /Firefox/.test(ua) ? "5.0 (X11)" : ua.match(/Mozilla\/(.*)/)[1];
 		} else if (/iPhone/.test(ua)) {
