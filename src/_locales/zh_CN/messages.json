@@ -1,0 +1,850 @@
+{
+  "extDescription": {
+    "message": "欺骗您的浏览器配置文件。包括一些隐私增强选项。",
+    "description": "Description of the extension."
+  },
+  "aboutContributors": {
+    "message": "由<a href=\"$AUTHOR$\">sereneblue</a>和<a href=\"$CONTRIB$\">贡献者</a>开发",
+    "description": "Contributors text",
+    "placeholders": {
+      "author": {
+        "content": "https://github.com/sereneblue"
+      },
+      "contrib": {
+        "content": "https://github.com/sereneblue/chameleon/graphs/contributors"
+      }
+    }
+  },
+  "aboutLicense": {
+    "message": "根据GNU GPL v3许可证分发。",
+    "description": "Text for license"
+  },
+  "aboutSrcCode": {
+    "message": "源码",
+    "description": "Text for Github repository link"
+  },
+  "aboutReport": {
+    "message": "报告错误",
+    "description": "Text for Github issues link"
+  },
+  "aboutTranslate": {
+    "message": "帮助翻译Chameleon",
+    "description": "Text for Crowdin localizations"
+  },
+  "aboutWiki": {
+    "message": "Wiki",
+    "description": "Text for Chameleon wiki"
+  },
+  "aboutBtnImport": {
+    "message": "导入",
+    "description": "Label for import settings button"
+  },
+  "aboutBtnExport": {
+    "message": "导出",
+    "description": "Label for export settings button"
+  },
+  "tabProfile": {
+    "message": "配置文件",
+    "description": "Title of popup tab: profile"
+  },
+  "profileEnableNotification": {
+    "message": "启用通知",
+    "description": "Label for enable notifcations"
+  },
+  "profileRandom": {
+    "message": "随机",
+    "description": "Label for random profile"
+  },
+  "profileRandomDesktop": {
+    "message": "随机配置文件(桌面)",
+    "description": "Label for random desktop profile"
+  },
+  "profileRandomMobile": {
+    "message": "随机配置文件(移动)",
+    "description": "Label for random mobile profile"
+  },
+  "profileScriptInjectionMsg": {
+    "message": "必须启用脚本注入才能完整使用配置文件。",
+    "description": "Script injection message"
+  },
+  "profilePeriodically": {
+    "message": "定期更改",
+    "description": "Text for interval change"
+  },
+  "profileIntervalNo": {
+    "message": "否",
+    "description": "Option to not change periodically"
+  },
+  "profileIntervalCustom": {
+    "message": "自定义间隔",
+    "description": "Option to change periodically using custom interval"
+  },
+  "profileIntervalMinute": {
+    "message": "每分钟",
+    "description": "Option to change periodically: 1 min"
+  },
+  "profileIntervalMinute5": {
+    "message": "每5分钟",
+    "description": "Option to change periodically: 5 min"
+  },
+  "profileIntervalMinute10": {
+    "message": "每10分钟",
+    "description": "Option to change periodically: 10 min"
+  },
+  "profileIntervalMinute20": {
+    "message": "每20分钟",
+    "description": "Option to change periodically: 20 min"
+  },
+  "profileIntervalMinute30": {
+    "message": "每30分钟",
+    "description": "Option to change periodically: 30 min"
+  },
+  "profileIntervalMinute40": {
+    "message": "每40分钟",
+    "description": "Option to change periodically: 40 min"
+  },
+  "profileIntervalMinute50": {
+    "message": "每50分钟",
+    "description": "Option to change periodically: 50 min"
+  },
+  "profileIntervalHour": {
+    "message": "每小时",
+    "description": "Option to change periodically: 1 hour"
+  },
+  "profileIntervalRefresh": {
+    "message": "刷新",
+    "description": "Label for refresh profile button"
+  },
+  "profileIntervalCustomMin": {
+    "message": "最小值(分钟)：",
+    "description": "Label for custom interval input: min"
+  },
+  "profileIntervalCustomMax": {
+    "message": "最大值(分钟)：",
+    "description": "Label for custom interval input: max"
+  },
+  "profileBrowser": {
+    "message": "浏览器",
+    "description": "Text to append to platform, ex. Windows Browsers"
+  },
+  "profileExclude": {
+    "message": "排除",
+    "description": "Lbael for exclude profiles"
+  },
+  "profileRandomWindows": {
+    "message": "随机Windows浏览器",
+    "description": "Label for random Windows browsers option"
+  },
+  "profileRandomMacOS": {
+    "message": "随机macOS浏览器",
+    "description": "Label for random macOS browsers option"
+  },
+  "profileRandomLinux": {
+    "message": "随机Linux浏览器",
+    "description": "Label for random Linux browsers option"
+  },
+  "profileRandomIOS": {
+    "message": "随机的iOS浏览器",
+    "description": "Label for random iOS browsers option"
+  },
+  "profileRandomAndroid": {
+    "message": "随机Android浏览器",
+    "description": "Label for random Android browsers option"
+  },
+  "profileCustom": {
+    "message": "自定义用户代理",
+    "description": "Lbael for custom user agent"
+  },
+  "tabHeaders": {
+    "message": "头信息",
+    "description": "Title of popup tab: headers"
+  },
+  "headersDisableAuth": {
+    "message": "禁用授权标头",
+    "description": "Label for disable auth header"
+  },
+  "headersEnableDNT": {
+    "message": "启用DNT(Do Not Track)",
+    "description": "Label for enable Do Not Track"
+  },
+  "headersBlockEtag": {
+    "message": "阻止Etag跟踪",
+    "description": "Label for prevent Etag"
+  },
+  "headersSpoofVIa": {
+    "message": "欺骗Via方式：",
+    "description": "Label for spoof IP headers (Via)"
+  },
+  "headersSpoofXForwarded": {
+    "message": "欺骗X-Forwarded-For方式：",
+    "description": "Label for spoof IP headers (Via)"
+  },
+  "headersIPRandom": {
+    "message": "随机IP",
+    "description": "Label for IP address (random)"
+  },
+  "headersIPCustom": {
+    "message": "自定义IP",
+    "description": "Label for IP address (custom)"
+  },
+  "headersIP": {
+    "message": "IP地址：",
+    "description": "Label for IP address text"
+  },
+  "headersDisableRef": {
+    "message": "禁用Referer",
+    "description": "Label for disable referer"
+  },
+  "headersSpoofSourceRef": {
+    "message": "欺骗来源Referer",
+    "description": "Label for disable referer"
+  },
+  "headersUpgradeInsecureReq": {
+    "message": "启用升级不安全的请求",
+    "description": "Label for disable referer"
+  },
+  "headersMsg1": {
+    "message": "请勿修改以下选项的about:config设置。",
+    "description": "Warning message for referer options"
+  },
+  "headersMsg2": {
+    "message": "更多信息请查看wiki。",
+    "description": "Wiki link text"
+  },
+  "headersRefererXorigin": {
+    "message": "Referer X Origin策略",
+    "description": "Label for referer X Origin policy"
+  },
+  "headersRefererXoriginOption1": {
+    "message": "总是发送(默认)",
+    "description": "Option to set referer X Origin policy to: always send"
+  },
+  "headersRefererXoriginOption2": {
+    "message": "匹配基本域名",
+    "description": "Option to set referer X Origin policy to: match base domain"
+  },
+  "headersRefererXoriginOption3": {
+    "message": "匹配主机",
+    "description": "Option to set referer X Origin policy to: match host"
+  },
+  "headersRefererTrimming": {
+    "message": "Referer微调政策",
+    "description": "Label for referer trimming policy"
+  },
+  "headersRefererTrimmingOption1": {
+    "message": "发送完整URI(默认)",
+    "description": "Option to set referer trimming policy to: send full URI"
+  },
+  "headersRefererTrimmingOption2": {
+    "message": "方案、主机、端口+路径",
+    "description": "Option to set referer trimming policy to: Scheme, host, port + path"
+  },
+  "headersRefererTrimmingOption3": {
+    "message": "方案、主机+端口",
+    "description": "Option to set referer trimming policy to: Scheme, host + port"
+  },
+  "headersSpoofAccept": {
+    "message": "欺骗Accept和Accept-Encoding头信息",
+    "description": "Label for spoof accept"
+  },
+  "headersSpoofAcceptLang": {
+    "message": "欺骗Accept-Language为",
+    "description": "Label for disable referer"
+  },
+  "tabOptions": {
+    "message": "选项",
+    "description": "Title of popup tab: options"
+  },
+  "optionsGroupScriptInjection": {
+    "message": "脚本注入选项",
+    "description": "Label for group: script injection options"
+  },
+  "optionsEnableScriptInjection": {
+    "message": "启用脚本注入",
+    "description": "Label for enable script injection"
+  },
+  "optionsEnableScriptInjectionMsg": {
+    "message": "含*的选项需要脚本注入",
+    "description": "Text for script injection options message"
+  },
+  "optionsWebsocketsOption1": {
+    "message": "全部允许",
+    "description": "Option to allow all websocket connections"
+  },
+  "optionsWebsocketsOption2": {
+    "message": "阻止第三方",
+    "description": "Option to block 3rd party websocket connections"
+  },
+  "optionsWebsocketsOption3": {
+    "message": "全部阻止",
+    "description": "Option to block all websocket connections"
+  },
+  "optionsLimitHistory": {
+    "message": "限制标签页历史",
+    "description": "Label for limit tab history"
+  },
+  "optionsProtectCSSExfil": {
+    "message": "保护CSS Exfil",
+    "description": "Label for protect CSS Exfil"
+  },
+  "optionsProtectWinName": {
+    "message": "保护窗口名称",
+    "description": "Label for protect window name"
+  },
+  "optionsProtectKBFingerprint": {
+    "message": "保护键盘指纹",
+    "description": "Label for protect keyboard fingerprint"
+  },
+  "optionsKBDelay": {
+    "message": "延迟(毫秒)",
+    "description": "Placeholder for keyboard delay"
+  },
+  "optionsSpoofAudioContext": {
+    "message": "欺骗音频上下文",
+    "description": "Label for spoof audio context"
+  },
+  "optionsSpoofClientRects": {
+    "message": "欺骗客户端矩形",
+    "description": "Label for spoof client rects"
+  },
+  "optionsSpoofFontFingerprint": {
+    "message": "欺骗字体指纹",
+    "description": "Label for spoof font fingerprint"
+  },
+  "optionsSpoofScreenSize": {
+    "message": "屏幕大小欺骗",
+    "description": "Label for spoof screen size"
+  },
+  "optionsSpoofScreenSizeOptionProfile": {
+    "message": "配置文件",
+    "description": "Option for spoof screen size: profile"
+  },
+  "optionsSpoofScreenSizeCustomWidth": {
+    "message": "屏幕宽度(像素)",
+    "description": "Label for custom screen size: width"
+  },
+  "optionsSpoofScreenSizeCustomHeight": {
+    "message": "屏幕高度(像素)",
+    "description": "Label for custom screen size: height"
+  },
+  "optionsSpoofTimezone": {
+    "message": "时区",
+    "description": "Label for spoof timezone"
+  },
+  "optionsGroupStandard": {
+    "message": "标准选项",
+    "description": "Label for group: standard options"
+  },
+  "optionsFirstPartyIsolate": {
+    "message": "启用第一方隔离",
+    "description": "Label for enable 1st party isolation"
+  },
+  "optionsResistFingerprinting": {
+    "message": "抵制指纹识别",
+    "description": "Label for enable resist fingerprinting"
+  },
+  "optionsTrackingProtection": {
+    "message": "跟踪保护模式",
+    "description": "Label for tracking protection"
+  },
+  "optionsTrackingProtectionOption1": {
+    "message": "开",
+    "description": "Option to enable tracking protection"
+  },
+  "optionsTrackingProtectionOption2": {
+    "message": "关",
+    "description": "Option to disable tracking protection"
+  },
+  "optionsTrackingProtectionOption3": {
+    "message": "在隐私浏览中启用",
+    "description": "Option to enable tracking protection only in private browsing"
+  },
+  "optionsWebRTC": {
+    "message": "WebRTC策略",
+    "description": "Label for tracking protection"
+  },
+  "optionsWebRTCOption2": {
+    "message": "使用公共和私有接口",
+    "description": "Option to use public & private interface"
+  },
+  "optionsWebRTCOption3": {
+    "message": "仅使用公共接口(最佳)",
+    "description": "Option to only use public interface"
+  },
+  "optionsWebRTCOption4": {
+    "message": "禁用非代理的UDP",
+    "description": "Option to disable non-proxified UDP"
+  },
+  "optionsGroupCookie": {
+    "message": "Cookie选项",
+    "description": "Label for group: cookie"
+  },
+  "optionsCookiePolicy": {
+    "message": "策略",
+    "description": "Label for cookie policy"
+  },
+  "optionsCookiePolicyOption1": {
+    "message": "全部允许",
+    "description": "Option to allow all cookies"
+  },
+  "optionsCookiePolicyOption2": {
+    "message": "全部阻止",
+    "description": "Option to block all cookies"
+  },
+  "optionsCookiePolicyOption3": {
+    "message": "阻止第三方",
+    "description": "Option to block 3rd party cookies"
+  },
+  "optionsCookiePolicyOption4": {
+    "message": "允许访问过的第三方",
+    "description": "Option to allow 3rd party from visited"
+  },
+  "optionsCookiePolicyOption5": {
+    "message": "拒绝跟踪器",
+    "description": "Option to reject trackers"
+  },
+  "optionsOpenChecklist": {
+    "message": "打开about:config清单",
+    "description": "Label for checklist button"
+  },
+  "whitelistEnable": {
+    "message": "启用白名单(需要脚本注入)",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistEnableContextMenu": {
+    "message": "添加右键菜单条目到当前打开标签页白名单中的域名",
+    "description": "Label for enable whitelist context menu item"
+  },
+  "whitelistUseDefault": {
+    "message": "默认白名单配置文件",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistViewIPRules": {
+    "message": "查看时区/语言IP规则",
+    "description": "Label for IP rules"
+  },
+  "whitelistViewRules": {
+    "message": "查看白名单",
+    "description": "Label for whitelist rules editor"
+  },
+  "whitelistCurrentDomain": {
+    "message": "当前域名",
+    "description": "Text: Current domain"
+  },
+  "whitelistOpenEditor": {
+    "message": "添加/编辑白名单中的域名",
+    "description": "Label for add/edit domain in whitelist"
+  },
+  "ipRulesSubheader": {
+    "message": "时区/语言IP规则",
+    "description": "Subheader for IP rules"
+  },
+  "ipRulesReloadIP": {
+    "message": "重新加载IP信息",
+    "description": "Label for button: reload IP info"
+  },
+  "ipRulesTip": {
+    "message": "提示：8.8.8.0/24对应范围8.8.8.0 - 8.8.8.255",
+    "description": "Text for IP rules tip"
+  },
+  "ipRulesInstructions": {
+    "message": "更改IP规则后请点击重新载入IP信息按钮",
+    "description": "Text for IP rules instructions"
+  },
+  "ipRulesTableIPRange": {
+    "message": "IP范围",
+    "description": "Table column header: IP Range"
+  },
+  "ipRulesTableLanguage": {
+    "message": "语言",
+    "description": "Table column header: Language"
+  },
+  "ipRulesTableTimezone": {
+    "message": "时区",
+    "description": "Table column header: Timezone"
+  },
+  "ipRulesTableActions": {
+    "message": "操作",
+    "description": "Table column header: Actions"
+  },
+  "ipRulesCIDR": {
+    "message": "IP或CIDR",
+    "description": "Label for IP/CIDR range"
+  },
+  "ipRulesCIDRPlaceholder": {
+    "message": "输入IP或CIDR",
+    "description": "Placeholder for IP/CIDR range"
+  },
+  "whitelistSearchPlaceholder": {
+    "message": "搜索规则",
+    "description": "Placeholder for search rules input"
+  },
+  "whitelistEnterDomain": {
+    "message": "输入域名",
+    "description": "Placeholder for domain input"
+  },
+  "whitelistRegexEnabled": {
+    "message": "启用正则表达式",
+    "description": "Label for regex checkbox"
+  },
+  "whitelistEnterPattern": {
+    "message": "输入占位符",
+    "description": "Placeholder for regex pattern"
+  },
+  "whitelistSpoofAcceptLang": {
+    "message": "欺骗Accept-Language",
+    "description": "Label for spoof accept-language"
+  },
+  "whitelistSpoofProfile": {
+    "message": "欺骗配置文件",
+    "description": "Label for spoof profile"
+  },
+  "whitelistSpoofProfileDefault": {
+    "message": "默认白名单配置文件",
+    "description": "Option to use default whitelist profile"
+  },
+  "whitelistAddDomain": {
+    "message": "添加域名",
+    "description": "Label for add domain button"
+  },
+  "whitelistDisableAuth": {
+    "message": "禁用身份验证头信息",
+    "description": "Label for disable auth header"
+  },
+  "whitelistDisableReferer": {
+    "message": "禁用referer",
+    "description": "Label for disable referer"
+  },
+  "whitelistDisableWebsocket": {
+    "message": "禁用WebSocket",
+    "description": "Label for disable websocket"
+  },
+  "whitelistEnableIPHeaders": {
+    "message": "启用IP头信息欺骗",
+    "description": "Label for enable IP headers spoof"
+  },
+  "whitelistEnableProtectWinName": {
+    "message": "启用保护窗口名称",
+    "description": "Label for enable protect window name"
+  },
+  "whitelistEnableTimezoneSpoofing": {
+    "message": "启用时区欺骗",
+    "description": "Label for enable timezone spoofing"
+  },
+  "whitelistSpoofHeaderIPLabel": {
+    "message": "头信息IP(Via和X-Forwarded For)",
+    "description": "Label for IP headers spoof value"
+  },
+  "whitelistConfirmation": {
+    "message": "您确定要删除这条规则吗？",
+    "description": "Text for delete confirmation"
+  },
+  "notificationMessage": {
+    "message": "浏览器配置文件已更改",
+    "description": "Notification message for profile change"
+  },
+  "notificationMessageTimezone": {
+    "message": "无法获取时区数据。使用 UTC。",
+    "description": "Notification message for timezone IP"
+  },
+  "textChecklist": {
+    "message": "清单",
+    "description": "Text: Checklist"
+  },
+  "textClose": {
+    "message": "关闭",
+    "description": "Text: Close"
+  },
+  "textCreate": {
+    "message": "创建",
+    "description": "Text: Create"
+  },
+  "textCreateRule": {
+    "message": "创建新规则",
+    "description": "Label for button: create new rule"
+  },
+  "textCustom": {
+    "message": "自定义",
+    "description": "Text: Custom"
+  },
+  "textDefault": {
+    "message": "默认",
+    "description": "Text: Default"
+  },
+  "textDelete": {
+    "message": "删除",
+    "description": "Text: Delete"
+  },
+  "textDomains": {
+    "message": "域名",
+    "description": "Text: domains"
+  },
+  "textEdit": {
+    "message": "编辑",
+    "description": "Text: Edit"
+  },
+  "textLanguage": {
+    "message": "语言",
+    "description": "Text: Language"
+  },
+  "textLeaveEmpty": {
+    "message": "留空",
+    "description": "Text: Leave empty"
+  },
+  "textNo": {
+    "message": "否",
+    "description": "Text: No"
+  },
+  "textNotWhitelisted": {
+    "message": "未加入白名单",
+    "description": "Text: Not Whitelisted"
+  },
+  "textPattern": {
+    "message": "模式",
+    "description": "Text: Pattern"
+  },
+  "textRealProfile": {
+    "message": "真实配置文件",
+    "description": "Text: Real Profile"
+  },
+  "textReset": {
+    "message": "重置",
+    "description": "Text: Reset"
+  },
+  "textSave": {
+    "message": "保存",
+    "description": "Text: Save"
+  },
+  "textSettings": {
+    "message": "设置",
+    "description": "Text: Settings"
+  },
+  "textStatus": {
+    "message": "状态",
+    "description": "Text: Status"
+  },
+  "textTimezone": {
+    "message": "时区",
+    "description": "Text: Timezone"
+  },
+  "textYes": {
+    "message": "是",
+    "description": "Text: Yes"
+  },
+  "textWhitelist": {
+    "message": "白名单",
+    "description": "Text: Whitelist"
+  },
+  "textWhitelisted": {
+    "message": "已加入白名单",
+    "description": "Text: Whitelisted"
+  },
+  "checklistTip": {
+    "message": "选项不存在时会创建选项。请务必在更改之前充分了解这些选项，某些选项会破坏网站！",
+    "description": "Text for checklist tip"
+  },
+  "checklistTableHeaderOption": {
+    "message": "选项",
+    "description": "Table header: option"
+  },
+  "checklistTableHeaderPreference": {
+    "message": "首选项",
+    "description": "Table header: preference"
+  },
+  "checklistTableHeaderSet": {
+    "message": "设置为",
+    "description": "Table header: set to"
+  },
+  "checklistBlockActiveMixedContent": {
+    "message": "阻止主动混合内容",
+    "description": "Checklist option to block active mixed content"
+  },
+  "checklistBlockDisplayMixedContent": {
+    "message": "阻止显示混合内容",
+    "description": "Checklist option to block display mixed content"
+  },
+  "checklistDisableBatteryAPI": {
+    "message": "禁用电池API",
+    "description": "Checklist option to disable battery API"
+  },
+  "checklistDisableBrowserPings": {
+    "message": "禁用浏览器ping",
+    "description": "Checklist option to disable browser pings"
+  },
+  "checklistDisableHistory": {
+    "message": "禁用浏览和下载历史",
+    "description": "Checklist option to disable browsing and download history"
+  },
+  "checklistDisableCSSVisited": {
+    "message": "禁用已访问链接的CSS",
+    "description": "Checklist option to disable CSS visited links"
+  },
+  "checklistDisableCacheDisk": {
+    "message": "禁用缓存(磁盘)",
+    "description": "Checklist option to disable cache: disk"
+  },
+  "checklistDisableCacheMemory": {
+    "message": "禁用缓存(内存)",
+    "description": "Checklist option to disable cache: memory"
+  },
+  "checklistDisableClipboardEvents": {
+    "message": "禁用剪贴板事件",
+    "description": "Checklist option to disable clipboard events"
+  },
+  "checklistDisableContextMenuEvents": {
+    "message": "禁用右键菜单事件",
+    "description": "Checklist option to disable context menu events"
+  },
+  "checklistDisableDeviceSensors": {
+    "message": "禁用设备传感器",
+    "description": "Checklist option to disable device sensors"
+  },
+  "checklistDisableDNSPrefetch": {
+    "message": "禁用DNS预读取",
+    "description": "Checklist option to disable DNS prefetch"
+  },
+  "checklistDisableDOMStorage": {
+    "message": "禁用DOM存储",
+    "description": "Checklist option to disable DOM storage"
+  },
+  "checklistDisableDRM": {
+    "message": "禁用DRM",
+    "description": "Checklist option to disable DRM"
+  },
+  "checklistDisableGamepadAPI": {
+    "message": "禁用游戏手柄API",
+    "description": "Checklist option to disable gamepad API"
+  },
+  "checklistDisableGeolocation": {
+    "message": "禁用地理位置",
+    "description": "Checklist option to disable geolocation"
+  },
+  "checklistDisableGeolocation2": {
+    "message": "禁用地理位置2",
+    "description": "Checklist option to disable geolocation 2"
+  },
+  "checklistDisableOfflineCache": {
+    "message": "禁用脱机缓存",
+    "description": "Checklist option to disable offline cache"
+  },
+  "checklistDisablePDFjs": {
+    "message": "禁用PDF.js",
+    "description": "Checklist option to disable pdf.js"
+  },
+  "checklistDisablePocket": {
+    "message": "禁用Pocket",
+    "description": "Checklist option to disable Pocket"
+  },
+  "checklistDisableResourceTiming": {
+    "message": "禁用Resource Timing API",
+    "description": "Checklist option to disable resource timing"
+  },
+  "checklistDisableSearchSuggestions": {
+    "message": "禁用搜索建议",
+    "description": "Checklist option to disable search suggestions"
+  },
+  "checklistDisableSearchUpdates": {
+    "message": "禁用搜索更新",
+    "description": "Checklist option to disable search update"
+  },
+  "checklistDisableSSLFalseStart": {
+    "message": "禁用SSL False Start",
+    "description": "Checklist option to disable SSL False Start"
+  },
+  "checklistDisableSSLSessionIdentifiers": {
+    "message": "禁用SSL会话标识符",
+    "description": "Checklist option to disable SSL session identifiers"
+  },
+  "checklistDisableTLS0RTT": {
+    "message": "禁用TLS 0-RTT",
+    "description": "Checklist option to disable TLS 0-RTT"
+  },
+  "checklistDisableTrustedRecursiveResolver": {
+    "message": "禁用TTR(Trusted Recursive Resolver)",
+    "description": "Checklist option to disable Trusted Recursive Resolver"
+  },
+  "checklistDisableWebGL": {
+    "message": "禁用WebGL",
+    "description": "Checklist option to disable WebGL"
+  },
+  "checklistDisableWebBeacons": {
+    "message": "禁用网络信标",
+    "description": "Checklist option to disable Web Beacons"
+  },
+  "checklistEnableClearOfflineApps": {
+    "message": "启用关闭时清除脱机应用程序",
+    "description": "Checklist option to enable clear offline apps on shutdown"
+  },
+  "checklistEnableSocialTrackingProtection": {
+    "message": "启用社交跟踪保护",
+    "description": "Checklist option to enable social tracking protection"
+  },
+  "checklistLimitDetectableFonts": {
+    "message": "限制可探测字体",
+    "description": "Checklist option to limit detectable fonts"
+  },
+  "checklistUseClickToPlay": {
+    "message": "使用点击运行插件",
+    "description": "Checklist option to use click to pay for plugins"
+  },
+  "checklistDisableDataSubmission": {
+    "message": "禁用数据提交",
+    "description": "Checklist option to use disable data submission"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck": {
+    "message": "禁用安全浏览下载检查",
+    "description": "Checklist option to use disable safe browsing downloads check"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck2": {
+    "message": "禁用安全浏览下载检查2",
+    "description": "Checklist option to use disable safe browsing downloads check 2"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck3": {
+    "message": "禁用安全浏览下载检查3",
+    "description": "Checklist option to use disable safe browsing downloads check 3"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck4": {
+    "message": "禁用安全浏览下载检查4",
+    "description": "Checklist option to use disable safe browsing downloads check 4"
+  },
+  "checklistDisableSafeBrowsingMalwareCheck": {
+    "message": "禁用安全浏览恶意软件检查",
+    "description": "Checklist option to use disable safe browsing malware check"
+  },
+  "checklistDisableSafeBrowsingPhishingCheck": {
+    "message": "禁用安全浏览网络钓鱼检查",
+    "description": "Checklist option to use disable safe browsing phishing check"
+  },
+  "checklistDisableHealthReportUploads": {
+    "message": "禁用健康报告上传",
+    "description": "Checklist option to use disable health report uploads"
+  },
+  "checklistDisableCrashReport": {
+    "message": "禁用崩溃报告",
+    "description": "Checklist option to use disable crash report"
+  },
+  "checklistDisableTelemetryReport": {
+    "message": "禁用遥测报告",
+    "description": "Checklist option to use disable telemetry report"
+  },
+  "checklistDisableTelemetryReport2": {
+    "message": "禁用遥测报告2",
+    "description": "Checklist option to use disable telemetry report 2"
+  },
+  "checklistDisableTelemetryServer": {
+    "message": "禁用遥测服务器",
+    "description": "Checklist option to use disable telemetry server"
+  },
+  "importSettingsSubheader": {
+    "message": "导入设置",
+    "description": "Subheader for import settings"
+  },
+  "importSuccess": {
+    "message": "成功导入设置。正在重新加载扩展...",
+    "description": "Message for successful import"
+  },
+  "importError": {
+    "message": "无法导入设置",
+    "description": "Message for unsuccessful import"
+  }
+}
