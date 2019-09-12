@@ -191,7 +191,7 @@ function localize() {
     stylesheet.media = 'all';
     document.getElementsByTagName('head')[0].appendChild(stylesheet);
 
-    if (lang == "ja") {
+    if (lang == "ja" || lang == "zh-CN") {
     	document.querySelector('#menu_about').innerText = "？";
     }
 }
@@ -241,7 +241,6 @@ async function updateUI() {
 	}
 	
 	$(`#profile input[name="notificationsEnabled"]`).prop('checked', data.settings.notificationsEnabled);
-
 
 	acceptLangSelect = $('select[name="spoofAcceptLangValue"]')
 	languages.forEach(function (l) {

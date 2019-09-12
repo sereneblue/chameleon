@@ -84,6 +84,7 @@ Princeton Web Transparency & Accountability Project for the audio context finger
 
 ## Special Thanks
 
+- giwhub for the Chinese translation
 - melegeti for the French translation
 - 3ibsand and Alexey for the Russian translation
 - Shitennouji for the Japanese translation
