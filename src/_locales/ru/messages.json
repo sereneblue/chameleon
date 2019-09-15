@@ -711,10 +711,6 @@
     "message": "Отключить DRM",
     "description": "Checklist option to disable DRM"
   },
-  "checklistDisableGamepadAPI": {
-    "message": "Отключить API геймпада",
-    "description": "Checklist option to disable gamepad API"
-  },
   "checklistDisableGeolocation": {
     "message": "Отключить геолокацию",
     "description": "Checklist option to disable geolocation"

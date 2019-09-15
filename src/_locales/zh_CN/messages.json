@@ -711,10 +711,6 @@
     "message": "禁用DRM",
     "description": "Checklist option to disable DRM"
   },
-  "checklistDisableGamepadAPI": {
-    "message": "禁用游戏手柄API",
-    "description": "Checklist option to disable gamepad API"
-  },
   "checklistDisableGeolocation": {
     "message": "禁用地理位置",
     "description": "Checklist option to disable geolocation"

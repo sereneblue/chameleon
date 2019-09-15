@@ -711,10 +711,6 @@
     "message": "DRM（デジタル著作権管理）を無効にする",
     "description": "Checklist option to disable DRM"
   },
-  "checklistDisableGamepadAPI": {
-    "message": "Gamepad API を無効にする",
-    "description": "Checklist option to disable gamepad API"
-  },
   "checklistDisableGeolocation": {
     "message": "位置情報を無効にする",
     "description": "Checklist option to disable geolocation"

@@ -711,10 +711,6 @@
     "message": "Disable DRM",
     "description": "Checklist option to disable DRM"
   },
-  "checklistDisableGamepadAPI": {
-    "message": "Disable Gamepad API",
-    "description": "Checklist option to disable gamepad API"
-  },
   "checklistDisableGeolocation": {
     "message": "Disable Geolocation",
     "description": "Checklist option to disable geolocation"
