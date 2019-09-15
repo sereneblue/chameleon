@@ -40,6 +40,16 @@
 		  		<td>true</td>
 		  	</tr>
 		  	<tr>
+		  		<td id="disableAddonCache"></td>
+		  		<td>extensions.getAddons.cache.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableAddonUpdates"></td>
+		  		<td>extensions.update.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
 		  		<td id="disableBattery"></td>
 		  		<td>dom.battery.enabled</td>
 		  		<td>false</td>
@@ -130,14 +140,19 @@
 		  		<td>false</td>
 		  	</tr>
 		  	<tr>
-		  		<td id="disbaleSearchSuggest"></td>
+		  		<td id="disableSearchSuggest"></td>
 		  		<td>browser.search.suggest.enabled</td>
 		  		<td>false</td>
 		  	</tr>
 		  	<tr>
-		  		<td id="disbaleSearchUpdates"></td>
+		  		<td id="disableSearchUpdates"></td>
 		  		<td>browser.search.update</td>
 		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableSpeculativePreConnections">
+	  			<td>network.http.speculative-parallel-limit</td>
+	  			<td>0</td>
 		  	</tr>
 		  	<tr>
 		  		<td id="disableSSLSessIdent"></td>
@@ -155,12 +170,12 @@
 		  		<td>false</td>
 		  	</tr>
 		  	<tr>
-		  		<td id="disbaleTRR"></td>
+		  		<td id="disableTRR"></td>
 		  		<td>network.trr.mode</td>
 		  		<td>5</td>
 		  	</tr>
 		  	<tr>
-		  		<td id="disbaleWebGL"></td>
+		  		<td id="disableWebGL"></td>
 		  		<td>webgl.disabled</td>
 		  		<td>true</td>
 		  	</tr>
@@ -182,6 +197,11 @@
 		  	<tr>
 		  		<td id="limitDetectableFonts"></td>
 		  		<td>browser.display.use_document_fonts</td>
+		  		<td>0</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="limitMaxTabsUndo"></td>
+		  		<td>browser.sessionstore.max_tabs_undo</td>
 		  		<td>0</td>
 		  	</tr>
 		  	<tr>
@@ -235,6 +255,11 @@
 		  		<td>false</td>
 		  	</tr>
 		  	<tr>
+		  		<td id="disableTelemetryPings"></td>
+		  		<td>toolkit.telemetry.server</td>
+		  		<td class="checklistEmpty"></td>
+		  	</tr>
+		  	<tr>
 		  		<td id="disableTelemetryReport"></td>
 		  		<td>toolkit.telemetry.enabled</td>
 		  		<td>false</td>
@@ -245,9 +270,19 @@
 		  		<td>false</td>
 		  	</tr>
 		  	<tr>
-		  		<td id="disableTelemetryServer"></td>
-		  		<td>toolkit.telemetry.server</td>
-		  		<td class="checklistEmpty"></td>
+		  		<td id="disableUserMediaEnumeration"></td>
+		  		<td>media.navigator.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="disableUserMediaEnumeration2"></td>
+		  		<td>media.peerconnection.enabled</td>
+		  		<td>false</td>
+		  	</tr>
+		  	<tr>
+		  		<td id="setSessionPrivacyLevel"></td>
+		  		<td>browser.sessionstore.privacy_level</td>
+		  		<td>2</td>
 		  	</tr>
 		  </tbody>
 		</table>

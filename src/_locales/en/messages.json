@@ -663,6 +663,14 @@
     "message": "Block display mixed content",
     "description": "Checklist option to block display mixed content"
   },
+  "checklistDisableAddonCache": {
+    "message": "Disable Addon Cache",
+    "description": "Checklist option to disable addon cache"
+  },
+  "checklistDisableAddonUpdates": {
+    "message": "Disable Addon Updates",
+    "description": "Checklist option to disable addon updates"
+  },
   "checklistDisableBatteryAPI": {
     "message": "Disable Battery API",
     "description": "Checklist option to disable battery API"
@@ -743,6 +751,10 @@
     "message": "Disable Search Updates",
     "description": "Checklist option to disable search update"
   },
+  "checklistDisableSpeculativePreConnections": {
+    "message": "Disable Speculative Pre-Connections",
+    "description": "Checklist option to disable speculative pre-connections"
+  },
   "checklistDisableSSLFalseStart": {
     "message": "Disable SSL False Start",
     "description": "Checklist option to disable SSL False Start"
@@ -779,57 +791,73 @@
     "message": "Limit detectable fonts",
     "description": "Checklist option to limit detectable fonts"
   },
+  "checklistLimitMaxTabsUndo": {
+    "message": "Limit max tabs undo",
+    "description": "Checklist option to limit max tabs undo"
+  },
   "checklistUseClickToPlay": {
     "message": "Use click to play for plugins",
     "description": "Checklist option to use click to pay for plugins"
   },
   "checklistDisableDataSubmission": {
     "message": "Disable data submission",
-    "description": "Checklist option to use disable data submission"
+    "description": "Checklist option to disable data submission"
   },
   "checklistDisableSafeBrowsingDownloadsCheck": {
     "message": "Disable safe browsing downloads check",
-    "description": "Checklist option to use disable safe browsing downloads check"
+    "description": "Checklist option to disable safe browsing downloads check"
   },
   "checklistDisableSafeBrowsingDownloadsCheck2": {
     "message": "Disable safe browsing downloads check 2",
-    "description": "Checklist option to use disable safe browsing downloads check 2"
+    "description": "Checklist option to disable safe browsing downloads check 2"
   },
   "checklistDisableSafeBrowsingDownloadsCheck3": {
     "message": "Disable safe browsing downloads check 3",
-    "description": "Checklist option to use disable safe browsing downloads check 3"
+    "description": "Checklist option to disable safe browsing downloads check 3"
   },
   "checklistDisableSafeBrowsingDownloadsCheck4": {
     "message": "Disable safe browsing downloads check 4",
-    "description": "Checklist option to use disable safe browsing downloads check 4"
+    "description": "Checklist option to disable safe browsing downloads check 4"
   },
   "checklistDisableSafeBrowsingMalwareCheck": {
     "message": "Disable safe browsing malware check",
-    "description": "Checklist option to use disable safe browsing malware check"
+    "description": "Checklist option to disable safe browsing malware check"
   },
   "checklistDisableSafeBrowsingPhishingCheck": {
     "message": "Disable safe browsing phishing check",
-    "description": "Checklist option to use disable safe browsing phishing check"
+    "description": "Checklist option to disable safe browsing phishing check"
   },
   "checklistDisableHealthReportUploads": {
     "message": "Disable health report uploads",
-    "description": "Checklist option to use disable health report uploads"
+    "description": "Checklist option to disable health report uploads"
   },
   "checklistDisableCrashReport": {
     "message": "Disable crash report",
-    "description": "Checklist option to use disable crash report"
+    "description": "Checklist option to disable crash report"
+  },
+  "checklistDisableTelemetryPings": {
+    "message": "Disable telemetry pings",
+    "description": "Checklist option to disable telemetry server"
   },
   "checklistDisableTelemetryReport": {
     "message": "Disable telemetry report",
-    "description": "Checklist option to use disable telemetry report"
+    "description": "Checklist option to disable telemetry report"
   },
   "checklistDisableTelemetryReport2": {
     "message": "Disable telemetry report 2",
-    "description": "Checklist option to use disable telemetry report 2"
+    "description": "Checklist option to disable telemetry report 2"
   },
-  "checklistDisableTelemetryServer": {
-    "message": "Disable telemetry server",
-    "description": "Checklist option to use disable telemetry server"
+  "checklistDisableUserMediaEnumeration": {
+    "message": "Disable user media enumeration",
+    "description": "Checklist option to disable user media enumeration"
+  },
+  "checklistDisableUserMediaEnumeration2": {
+    "message": "Disable user media enumeration 2",
+    "description": "Checklist option to disable user media enumeration 2"
+  },
+  "checklistSetSessionPrivacyLevel": {
+    "message": "Set session privacy level",
+    "description": "Checklist option to set session privacy level"
   },
   "importSettingsSubheader" : {
     "message": "Import settings",
