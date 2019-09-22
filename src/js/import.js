@@ -52,8 +52,8 @@ function validate(cfg) {
 	console.log('[DEBUG] Validating headers...');
 	for (h in cfg.headers) {
 		if (['blockEtag', 'disableAuth', 'disableRef', 'enableDNT', 
-			 'spoofAccept', 'spoofAcceptLang',  'spoofSourceRef', 'spoofVia',
-			 'spoofXFor', 'upgradeInsecureRequests'].includes(h)) {
+			 'spoofAccept', 'spoofAcceptLang',  'spoofSourceRef', 'spoofIP',
+			 'upgradeInsecureRequests'].includes(h)) {
 			if (typeof(cfg.headers[h]) != "boolean") throw Error;
 		}
 
@@ -62,7 +62,7 @@ function validate(cfg) {
 			throw Error;
 		}
 
-		if (['spoofViaValue', 'spoofXForValue'].includes(h) && 
+		if (h == 'spoofIPValue' && 
 		    ( 0 > cfg.headers[h] || cfg.headers[h] > 1)) {
 			throw Error;
 		}
@@ -73,7 +73,7 @@ function validate(cfg) {
 			if ((found == -1 && cfg.headers[h] != "ip") && cfg.headers[h] != "") throw Error;
 		}
 
-		if (['viaIP', 'viaIP_profile', 'xforwardedforIP', 'xforwardedforIP_profile'].includes(h) && 
+		if (['rangeFrom', 'rangeTo'].includes(h) && 
 			!/^((?:[0-9]{1,3}\.){3}[0-9]{1,3})?$/.test(cfg.headers[h])) {
 			throw Error;
 		}

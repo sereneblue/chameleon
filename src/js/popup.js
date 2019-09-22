@@ -100,15 +100,11 @@ function localize() {
 	$("#headersDisableAuth").text(browser.i18n.getMessage("headersDisableAuth"));
 	$("#headersEnableDNT").text(browser.i18n.getMessage("headersEnableDNT"));
 	$("#headersBlockEtag").text(browser.i18n.getMessage("headersBlockEtag"));
-	$("#headersSpoofVia").text(browser.i18n.getMessage("headersSpoofVia"));
-	$("#headersSpoofXForwarded").text(browser.i18n.getMessage("headersSpoofXForwarded"));
-	$("#headersIP").text(browser.i18n.getMessage("headersIP"));
-	$("select[name='spoofViaValue'] option:eq(0)").text(browser.i18n.getMessage("headersIPRandom"));
-	$("select[name='spoofViaValue'] option:eq(1)").text(browser.i18n.getMessage("headersIPCustom"));
-	$("select[name='spoofXForValue'] option:eq(0)").text(browser.i18n.getMessage("headersIPRandom"));
-	$("select[name='spoofXForValue'] option:eq(1)").text(browser.i18n.getMessage("headersIPCustom"));
-	$(".headersIP").text(browser.i18n.getMessage("headersIP"));
-	$(".headersIP").text(browser.i18n.getMessage("headersIP"));
+	$("#headersSpoofIP").text(browser.i18n.getMessage("headersSpoofIP"));
+	$("select[name='spoofIPValue'] option:eq(0)").text(browser.i18n.getMessage("headersIPRandom"));
+	$("select[name='spoofIPValue'] option:eq(1)").text(browser.i18n.getMessage("headersIPCustom"));
+	$("#headersRangeFrom").text(browser.i18n.getMessage("headersRangeFrom"));
+	$("#headersRangeTo").text(browser.i18n.getMessage("headersRangeTo"));
 	$("#headersDisableRef").text(browser.i18n.getMessage("headersDisableRef"));
 	$("#headersSpoofSourceRef").text(browser.i18n.getMessage("headersSpoofSourceRef"));
 	$("#headersUpgradeInsecureReq").text(browser.i18n.getMessage("headersUpgradeInsecureReq"));
@@ -270,12 +266,12 @@ async function updateUI() {
 		if (data.headers[element.name] != undefined) {
 			$(`select[name="${element.name}"]`).val(data.headers[element.name]);
 
-			if (element.name == "spoofViaValue" || element.name == "spoofXForValue") {
+			if (element.name == "spoofIPValue") {
 				var ipDiv = $(`select[name="${element.name}"]`).siblings(".ipAddr");
 				(data.headers[element.name] == 1) ? ipDiv.show() : ipDiv.hide();
 
-				var setting = element.name == "spoofViaValue" ? "viaIP" : "xforwardedforIP";
-				$(`input[name="${setting}"]`).val(data.headers[setting]);
+				$(`#rangeFrom`).val(data.headers.rangeFrom);
+				$(`#rangeTo`).val(data.headers.rangeTo);
 			}
 		}
 	});
@@ -643,20 +639,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	$('#headers select').on('change', function(e) {
-		if (e.target.name == "spoofViaValue" || e.target.name == "spoofXForValue") {
-			var element = $(`select[name="${e.target.name}"]`).siblings(".ipAddr");
+		if (e.target.name == "spoofIPValue") {
+			var element = $(`select[name="spoofIPValue"]`).siblings(".ipAddr");
 
 			if (e.target.value == 1) {
 				element.show()
 			} else {
-				element.find("input").val("");
+				$("#rangeFrom,#rangeTo").val("");
 				element.hide();
 
-				var input = e.target.name == "spoofXForValue" ? "viaIP" : "xforwardedforIP";
 				chrome.runtime.sendMessage({
 					action: "headers",
 					data: {
-						key: input,
+						key: "spoofIPValue",
 						value: ""
 					}});
 			}

@@ -171,13 +171,9 @@
     "message" : "Prevent Etag tracking",
     "description" : "Label for prevent Etag"
   },
-  "headersSpoofVIa" : {
-    "message" : "Spoof Via using a",
-    "description" : "Label for spoof IP headers (Via)"
-  },
-  "headersSpoofXForwarded" : {
-    "message" : "Spoof X-Forwarded-For using a",
-    "description" : "Label for spoof IP headers (Via)"
+  "headersSpoofIP" : {
+    "message" : "Spoof IP",
+    "description" : "Label for spoof IP headers"
   },
   "headersIPRandom" : {
     "message" : "random IP",
@@ -187,9 +183,13 @@
     "message" : "custom IP",
     "description" : "Label for IP address (custom)"
   },
-  "headersIP" : {
-    "message" : "IP address:",
-    "description" : "Label for IP address text"
+  "headersRangeFrom" : {
+    "message" : "From IP range:",
+    "description" : "Label for IP address range (from)"
+  },
+  "headersRangeTo" : {
+    "message" : "To IP range:",
+    "description" : "Label for IP address range (to)"
   },
   "headersDisableRef" : {
     "message" : "Disable Referer",

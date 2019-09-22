@@ -129,20 +129,9 @@ function rewriteHeaders(e) {
 		}
 	}
 
-	if (chameleon.headers.spoofVia) {
-		if (chameleon.headers.spoofViaValue == 1) {
-			e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP });
-		} else {
-			e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.headers.viaIP_profile });
-		}
-	}
-
-	if (chameleon.headers.spoofXFor) {
-		if (chameleon.headers.spoofXForValue == 1) {
-			e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP })
-		} else {
-			e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.headers.xforwardedforIP_profile });
-		}
+	if (chameleon.headers.spoofIP) {
+		e.requestHeaders.push({ name: "Via", value: "1.1 " + chameleon.profileIP });
+		e.requestHeaders.push({ name: "X-Forwarded-For", value: chameleon.profileIP })
 	}
 
 	return { requestHeaders: e.requestHeaders };

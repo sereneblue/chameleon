@@ -7,21 +7,17 @@ let chameleon = {
 		disableAuth: false,
 		disableRef: false,
 		enableDNT: false,
+		rangeFrom: "",
+		rangeTo: "",
 		refererXorigin: 0,
 		refererTrimming: 0,
 		spoofAccept: false,
 		spoofAcceptLang: false,
 		spoofAcceptLangValue: "",
 		spoofSourceRef: false,
-		spoofVia: false,
-		spoofViaValue: 0,
-		spoofXFor: false,
-		spoofXForValue: 0,
+		spoofIP: false,
+		spoofIPValue: 0,
 		upgradeInsecureRequests: false,
-		viaIP: "",
-		viaIP_profile: "",
-		xforwardedforIP: "",
-		xforwardedforIP_profile: "",
 		useragent: ""
 	},
 	ipRules: [],
@@ -39,6 +35,7 @@ let chameleon = {
 		language: "",
 		timezone: ""
 	},
+	profileIP: "",
 	settings: {
 		customScreen: "",
 		enableScriptInjection: false,
@@ -59,7 +56,7 @@ let chameleon = {
 		webSockets: "allow_all"
 	},
 	timeout: null,
-	version: "0.12.15",
+	version: "0.12.16",
 	whitelist: {
 		enabled: false,
 		enabledContextMenu: false,
@@ -470,10 +467,14 @@ async function start() {
 		}
 	}
 
-	let tmpIP = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
+	if (chameleon.headers.spoofIPValue == 0) {
+		chameleon.profileIP = `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
+	} else {
+		let rangeFrom = ip2int(chameleon.headers.rangeFrom);
+		let rangeTo = ip2int(chameleon.headers.rangeTo);
 
-	chameleon.headers.viaIP_profile = (chameleon.headers.spoofVia && chameleon.headers.spoofViaValue == 0) ? tmpIP : "";
-	chameleon.headers.xforwardedforIP_profile = (chameleon.headers.spoofXFor && chameleon.headers.spoofXForValue == 0) ? tmpIP : "";
+		chameleon.profileIP = int2ip(Math.floor(Math.random() * (rangeTo - rangeFrom + 1) + rangeFrom));
+	}
 	
 	title = tooltipData.os ? `Chameleon | ${tooltipData.os} - ${tooltipData.browser}` : "Chameleon";
 	let platformInfo = browser.runtime.getPlatformInfo();
@@ -695,6 +696,22 @@ function migrate(data) {
 		}
 	}
 
+	if (data.headers.spoofVia != undefined) {
+		data.headers.spoofIP = data.headers.spoofVia;
+		data.headers.spoofIPValue = parseInt(data.headers.spoofViaValue);
+		data.headers.rangeFrom = data.headers.viaIP; 
+		data.headers.rangeTo = data.headers.viaIP;
+
+		delete data.headers.spoofVia;
+		delete data.headers.spoofViaValue;
+		delete data.headers.spoofXFor;
+		delete data.headers.spoofXForValue;
+		delete data.headers.viaIP;
+		delete data.headers.viaIP_profile;
+		delete data.headers.xforwardedFor;
+		delete data.headers.xforwardedFor_profile;
+	}
+
 	return data;
 }
 
@@ -772,6 +789,13 @@ chrome.runtime.onMessage.addListener(function(request) {
 		if ((request.data.key == "spoofAcceptLangValue" && request.data.value == "ip" && chameleon.headers.spoofAcceptLang) ||
 			(request.data.key == "spoofAcceptLang" && request.data.value && chameleon.headers.spoofAcceptLangValue == "ip")) {
 			chameleon.ipInfo.update = 1;
+		}
+
+		if (request.data.key == "rangeFrom" || request.data.key == "rangeTo") {
+			let rangeFrom = ip2int(chameleon.headers.rangeFrom);
+			let rangeTo = ip2int(chameleon.headers.rangeTo);
+
+			chameleon.profileIP = int2ip(Math.floor(Math.random() * (rangeTo - rangeFrom + 1) + rangeFrom));
 		}
 
 		saveSettings("headers");

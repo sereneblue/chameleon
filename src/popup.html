@@ -21,7 +21,7 @@
         <div class="tab" id="about">
             <img src="img/icon_48.png">
             <h2 class="centered">Chameleon</h2>
-            <h4 class="centered">v0.12.15</h4>
+            <h4 class="centered">v0.12.16</h4>
             <br/>
             <p class="centered">
                 <span id="contrib" />
@@ -176,23 +176,14 @@
                 <label><input type="checkbox" name="blockEtag">&nbsp;<span id="headersBlockEtag" /></label>
             </div>
             <div class="opt">
-                <label><input type="checkbox" name="spoofVia">&nbsp;<span id="headersSpoofVia" /></label>
-                <select name="spoofViaValue">
+                <label><input type="checkbox" name="spoofIP">&nbsp;<span id="headersSpoofIP" /></label>
+                <select name="spoofIPValue">
                     <option value="0"></option>
                     <option value="1"></option>
                 </select>
                 <div class="ipAddr" style="display: none">
-                    <label><span class="headersIP"></span>&nbsp;<input type="text" name="viaIP" id="viaIP" size="10" maxlength="15"></label>
-                </div>
-            </div>
-            <div class="opt">
-                <label><input type="checkbox" name="spoofXFor">&nbsp;<span id="headersSpoofXForwarded" /></label>
-                <select name="spoofXForValue">
-                    <option value="0"></option>
-                    <option value="1"></option>
-                </select>
-                <div class="ipAddr" style="display: none">
-                    <label><span class="headersIP"></span>&nbsp;<input type="text" name="xforwardedforIP" size="10" maxlength="15"></label>
+                    <label><span id="headersRangeFrom"></span>&nbsp;<input type="text" name="rangeFrom" id="rangeFrom" size="10" maxlength="15"></label><br/>
+                    <label><span id="headersRangeTo"></span>&nbsp;<input type="text" name="rangeTo" id="rangeTo" size="10" maxlength="15"></label>
                 </div>
             </div>
             <div class="opt">
