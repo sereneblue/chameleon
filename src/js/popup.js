@@ -151,6 +151,7 @@ function localize() {
 	$("select[name='trackingProtectionMode'] option:eq(1)").text(browser.i18n.getMessage("optionsTrackingProtectionOption2"));
 	$("select[name='trackingProtectionMode'] option:eq(2)").text(browser.i18n.getMessage("optionsTrackingProtectionOption3"));
 	$("#optionsWebRTC").text(browser.i18n.getMessage("optionsWebRTC"));
+	$("#optionsDisableWebRTC").text(browser.i18n.getMessage("optionsDisableWebRTC"));
 	$("select[name='webRTCIPHandlingPolicy'] option:eq(1)").text(browser.i18n.getMessage("optionsWebRTCOption2"));
 	$("select[name='webRTCIPHandlingPolicy'] option:eq(2)").text(browser.i18n.getMessage("optionsWebRTCOption3"));
 	$("select[name='webRTCIPHandlingPolicy'] option:eq(3)").text(browser.i18n.getMessage("optionsWebRTCOption4"));
@@ -303,6 +304,12 @@ async function updateUI() {
 
 	browser.privacy.websites.resistFingerprinting.get({}).then((r) => {
 		$(`input[name="resistFingerprinting"]`).prop('checked', r.value);
+	});
+
+	browser.privacy.network.peerConnectionEnabled.get({}).then((w) => {
+		$(`input[name="peerConnectionEnabled"]`).prop('checked', !w.value);
+		let el = $('select[name="webRTCIPHandlingPolicy"]').parent();
+		!w.value ? el.hide() : el.show();
 	});
 
 	browser.privacy.network.webRTCIPHandlingPolicy.get({}).then((w) => {
@@ -748,6 +755,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			});
 		}
 	})
+
+	$('input[name="peerConnectionEnabled"]').on('click', function(e) {
+		let el = $('select[name="webRTCIPHandlingPolicy"]').parent();
+		this.checked ? el.hide() : el.show();
+	});
+
 
 	// get custom screen info
 	$('#customScreen input').on('change', function(e) {

@@ -359,9 +359,13 @@
     "message": "Enabled in private browsing",
     "description": "Option to enable tracking protection only in private browsing"
   },
+  "optionsDisableWebRTC": {
+    "message": "Disable WebRTC",
+    "description": "Label for disable WebRTC"
+  },
   "optionsWebRTC": {
     "message": "WebRTC Policy",
-    "description": "Label for tracking protection"
+    "description": "Label for WebRTC Policy"
   },
   "optionsWebRTCOption2": {
     "message": "Use Public and Private interface",

@@ -795,6 +795,10 @@ chrome.runtime.onMessage.addListener(function(request) {
 			chrome.privacy.network[request.data.key].set({
 				"value": request.data.value
 			});
+		} else if (request.data.key == "peerConnectionEnabled") {
+			chrome.privacy.network[request.data.key].set({
+				"value": !request.data.value
+			});
 		} else {
 			let tooltip = (plat) => {
 				if (plat.os != "android") {
