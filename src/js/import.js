@@ -49,6 +49,15 @@ function validate(cfg) {
 		cfg.settings && 
 		cfg.whitelist)) throw Error;
 
+
+	console.log('[DEBUG] Validating version...');
+	let currentVersion = [0, 12, 17]
+	let versionParts = cfg.version.split('.').map(v => parseInt(v));
+	if (currentVersion[1] > versionParts[1] || 
+		(currentVersion[1] == versionParts[1] && versionParts[2] > currentVersion[2])) {
+		throw Error;
+	}
+
 	console.log('[DEBUG] Validating headers...');
 	for (h in cfg.headers) {
 		if (['blockEtag', 'disableAuth', 'disableRef', 'enableDNT', 
