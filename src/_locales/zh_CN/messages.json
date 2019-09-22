@@ -171,13 +171,9 @@
     "message": "阻止Etag跟踪",
     "description": "Label for prevent Etag"
   },
-  "headersSpoofVIa": {
-    "message": "欺骗Via方式：",
-    "description": "Label for spoof IP headers (Via)"
-  },
-  "headersSpoofXForwarded": {
-    "message": "欺骗X-Forwarded-For方式：",
-    "description": "Label for spoof IP headers (Via)"
+  "headersSpoofIP": {
+    "message": "欺骗IP",
+    "description": "Label for spoof IP headers"
   },
   "headersIPRandom": {
     "message": "随机IP",
@@ -187,9 +183,13 @@
     "message": "自定义IP",
     "description": "Label for IP address (custom)"
   },
-  "headersIP": {
-    "message": "IP地址：",
-    "description": "Label for IP address text"
+  "headersRangeFrom": {
+    "message": "来源IP范围：",
+    "description": "Label for IP address range (from)"
+  },
+  "headersRangeTo": {
+    "message": "目标IP范围：",
+    "description": "Label for IP address range (to)"
   },
   "headersDisableRef": {
     "message": "禁用Referer",
@@ -359,9 +359,13 @@
     "message": "在隐私浏览中启用",
     "description": "Option to enable tracking protection only in private browsing"
   },
+  "optionsDisableWebRTC": {
+    "message": "禁用WebRTC",
+    "description": "Label for disable WebRTC"
+  },
   "optionsWebRTC": {
     "message": "WebRTC策略",
-    "description": "Label for tracking protection"
+    "description": "Label for WebRTC Policy"
   },
   "optionsWebRTCOption2": {
     "message": "使用公共和私有接口",
@@ -663,6 +667,14 @@
     "message": "阻止显示混合内容",
     "description": "Checklist option to block display mixed content"
   },
+  "checklistDisableAddonCache": {
+    "message": "禁用附加组件缓存",
+    "description": "Checklist option to disable addon cache"
+  },
+  "checklistDisableAddonUpdates": {
+    "message": "禁用附加组件更新",
+    "description": "Checklist option to disable addon updates"
+  },
   "checklistDisableBatteryAPI": {
     "message": "禁用电池API",
     "description": "Checklist option to disable battery API"
@@ -743,6 +755,10 @@
     "message": "禁用搜索更新",
     "description": "Checklist option to disable search update"
   },
+  "checklistDisableSpeculativePreConnections": {
+    "message": "禁用推测性预连接",
+    "description": "Checklist option to disable speculative pre-connections"
+  },
   "checklistDisableSSLFalseStart": {
     "message": "禁用SSL False Start",
     "description": "Checklist option to disable SSL False Start"
@@ -779,57 +795,73 @@
     "message": "限制可探测字体",
     "description": "Checklist option to limit detectable fonts"
   },
+  "checklistLimitMaxTabsUndo": {
+    "message": "取消最大标签页数限制",
+    "description": "Checklist option to limit max tabs undo"
+  },
   "checklistUseClickToPlay": {
     "message": "使用点击运行插件",
     "description": "Checklist option to use click to pay for plugins"
   },
   "checklistDisableDataSubmission": {
     "message": "禁用数据提交",
-    "description": "Checklist option to use disable data submission"
+    "description": "Checklist option to disable data submission"
   },
   "checklistDisableSafeBrowsingDownloadsCheck": {
     "message": "禁用安全浏览下载检查",
-    "description": "Checklist option to use disable safe browsing downloads check"
+    "description": "Checklist option to disable safe browsing downloads check"
   },
   "checklistDisableSafeBrowsingDownloadsCheck2": {
     "message": "禁用安全浏览下载检查2",
-    "description": "Checklist option to use disable safe browsing downloads check 2"
+    "description": "Checklist option to disable safe browsing downloads check 2"
   },
   "checklistDisableSafeBrowsingDownloadsCheck3": {
     "message": "禁用安全浏览下载检查3",
-    "description": "Checklist option to use disable safe browsing downloads check 3"
+    "description": "Checklist option to disable safe browsing downloads check 3"
   },
   "checklistDisableSafeBrowsingDownloadsCheck4": {
     "message": "禁用安全浏览下载检查4",
-    "description": "Checklist option to use disable safe browsing downloads check 4"
+    "description": "Checklist option to disable safe browsing downloads check 4"
   },
   "checklistDisableSafeBrowsingMalwareCheck": {
     "message": "禁用安全浏览恶意软件检查",
-    "description": "Checklist option to use disable safe browsing malware check"
+    "description": "Checklist option to disable safe browsing malware check"
   },
   "checklistDisableSafeBrowsingPhishingCheck": {
     "message": "禁用安全浏览网络钓鱼检查",
-    "description": "Checklist option to use disable safe browsing phishing check"
+    "description": "Checklist option to disable safe browsing phishing check"
   },
   "checklistDisableHealthReportUploads": {
     "message": "禁用健康报告上传",
-    "description": "Checklist option to use disable health report uploads"
+    "description": "Checklist option to disable health report uploads"
   },
   "checklistDisableCrashReport": {
     "message": "禁用崩溃报告",
-    "description": "Checklist option to use disable crash report"
+    "description": "Checklist option to disable crash report"
+  },
+  "checklistDisableTelemetryPings": {
+    "message": "禁用遥测ping",
+    "description": "Checklist option to disable telemetry server"
   },
   "checklistDisableTelemetryReport": {
     "message": "禁用遥测报告",
-    "description": "Checklist option to use disable telemetry report"
+    "description": "Checklist option to disable telemetry report"
   },
   "checklistDisableTelemetryReport2": {
     "message": "禁用遥测报告2",
-    "description": "Checklist option to use disable telemetry report 2"
+    "description": "Checklist option to disable telemetry report 2"
   },
-  "checklistDisableTelemetryServer": {
-    "message": "禁用遥测服务器",
-    "description": "Checklist option to use disable telemetry server"
+  "checklistDisableUserMediaEnumeration": {
+    "message": "禁用用户媒体枚举",
+    "description": "Checklist option to disable user media enumeration"
+  },
+  "checklistDisableUserMediaEnumeration2": {
+    "message": "禁用用户媒体枚举2",
+    "description": "Checklist option to disable user media enumeration 2"
+  },
+  "checklistSetSessionPrivacyLevel": {
+    "message": "设置会话隐私级别",
+    "description": "Checklist option to set session privacy level"
   },
   "importSettingsSubheader": {
     "message": "导入设置",
