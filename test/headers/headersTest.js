@@ -149,8 +149,8 @@ describe('Headers', () => {
 		expect(etag).to.equal(null);
 	});
 
-	it('should have via ip (random)', async () => {
-		await selectHeaderOption('input[name="spoofVia"]');
+	it('should spoof header ip (random)', async () => {
+		await selectHeaderOption('input[name="spoofIP"]');
 
 		await driver.get(LOCALSERVER);
 		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
@@ -158,13 +158,17 @@ describe('Headers', () => {
 		expect(response.via).to.not.equal("");
 	});
 
-	it('should have via ip (custom)', async () => {
+	it('should spoof header ip (custom)', async () => {
 		await driver.executeScript(`
-			el = document.querySelector('select[name="spoofViaValue"]');
+			el = document.querySelector('select[name="spoofIPValue"]');
 			el.value = 1;
 			el.dispatchEvent(new Event('change'));
 
-			el = document.querySelector('input[name="viaIP"]');
+			el = document.querySelector('input[name="rangeFrom"]');
+			el.value = "1.1.1.1";
+			el.dispatchEvent(new Event('keyup'));
+
+			el = document.querySelector('input[name="rangeTo"]');
 			el.value = "1.1.1.1";
 			el.dispatchEvent(new Event('keyup'));
 		`);
@@ -173,31 +177,6 @@ describe('Headers', () => {
 		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
 
 		expect(response.via).to.equal("1.1 1.1.1.1");
-	});
-
-	it('should have x-forwarded-for (random)', async () => {
-		await selectHeaderOption('input[name="spoofXFor"]');
-
-		await driver.get(LOCALSERVER);
-		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
-
-		expect(response["x-forwarded-for"]).to.not.equal("");
-	});
-
-	it('should have x-forwarded-for (custom)', async () => {
-		await driver.executeScript(`
-			el = document.querySelector('select[name="spoofXForValue"]');
-			el.value = 1;
-			el.dispatchEvent(new Event('change'));
-
-			el = document.querySelector('input[name="xforwardedforIP"]');
-			el.value = "1.1.1.1";
-			el.dispatchEvent(new Event('keyup'));
-		`);
-
-		await driver.get(LOCALSERVER);
-		let response = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
-
 		expect(response["x-forwarded-for"]).to.equal("1.1.1.1");
 	});
 
