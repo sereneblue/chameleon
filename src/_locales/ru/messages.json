@@ -4,14 +4,14 @@
     "description": "Description of the extension."
   },
   "aboutContributors": {
-    "message": "Разработано <a href=\"$AUTHOR$\">sereneblue<\/a> при <a href=\"$CONTRIB$\">участии<\/a>",
+    "message": "Разработано <a href=\"$AUTHOR$\">sereneblue</a> при <a href=\"$CONTRIB$\">участии</a>",
     "description": "Contributors text",
     "placeholders": {
       "author": {
-        "content": "https:\/\/github.com\/sereneblue"
+        "content": "https://github.com/sereneblue"
       },
       "contrib": {
-        "content": "https:\/\/github.com\/sereneblue\/chameleon\/graphs\/contributors"
+        "content": "https://github.com/sereneblue/chameleon/graphs/contributors"
       }
     }
   },
@@ -171,13 +171,9 @@
     "message": "Предотвращать отслеживание по \"Etag\"",
     "description": "Label for prevent Etag"
   },
-  "headersSpoofVIa": {
-    "message": "Подменять \"Via\", используя",
-    "description": "Label for spoof IP headers (Via)"
-  },
-  "headersSpoofXForwarded": {
-    "message": "Подменять \"X-Forwarded-For\", используя",
-    "description": "Label for spoof IP headers (Via)"
+  "headersSpoofIP": {
+    "message": "Подменять IP",
+    "description": "Label for spoof IP headers"
   },
   "headersIPRandom": {
     "message": "случайный IP",
@@ -187,9 +183,13 @@
     "message": "произвольный IP",
     "description": "Label for IP address (custom)"
   },
-  "headersIP": {
-    "message": "IP-адрес:",
-    "description": "Label for IP address text"
+  "headersRangeFrom": {
+    "message": "Диапазон IP. От:",
+    "description": "Label for IP address range (from)"
+  },
+  "headersRangeTo": {
+    "message": "Диапазон IP. До:",
+    "description": "Label for IP address range (to)"
   },
   "headersDisableRef": {
     "message": "Отключить \"Referer\"",
@@ -359,9 +359,13 @@
     "message": "Включен в приватном просмотре",
     "description": "Option to enable tracking protection only in private browsing"
   },
+  "optionsDisableWebRTC": {
+    "message": "Отключить WebRTC",
+    "description": "Label for disable WebRTC"
+  },
   "optionsWebRTC": {
     "message": "Политика WebRTC",
-    "description": "Label for tracking protection"
+    "description": "Label for WebRTC Policy"
   },
   "optionsWebRTCOption2": {
     "message": "Использовать публичный и частный интерфейс",
@@ -420,7 +424,7 @@
     "description": "Label for enable whitelist"
   },
   "whitelistViewIPRules": {
-    "message": "Просмотр правил часового пояса\/языка для IP",
+    "message": "Просмотр правил часового пояса/языка для IP",
     "description": "Label for IP rules"
   },
   "whitelistViewRules": {
@@ -432,11 +436,11 @@
     "description": "Text: Current domain"
   },
   "whitelistOpenEditor": {
-    "message": "Добавить\/редактировать домен в белом списке",
-    "description": "Label for add\/edit domain in whitelist"
+    "message": "Добавить/редактировать домен в белом списке",
+    "description": "Label for add/edit domain in whitelist"
   },
   "ipRulesSubheader": {
-    "message": "Правила часового пояса\/языка для IP",
+    "message": "Правила часового пояса/языка для IP",
     "description": "Subheader for IP rules"
   },
   "ipRulesReloadIP": {
@@ -444,7 +448,7 @@
     "description": "Label for button: reload IP info"
   },
   "ipRulesTip": {
-    "message": "Подсказка: 8.8.8.0\/24 соответствует диапазону 8.8.0 - 8.8.8.255",
+    "message": "Подсказка: 8.8.8.0/24 соответствует диапазону 8.8.0 - 8.8.8.255",
     "description": "Text for IP rules tip"
   },
   "ipRulesInstructions": {
@@ -469,11 +473,11 @@
   },
   "ipRulesCIDR": {
     "message": "IP или CIDR",
-    "description": "Label for IP\/CIDR range"
+    "description": "Label for IP/CIDR range"
   },
   "ipRulesCIDRPlaceholder": {
     "message": "Введите IP или CIDR",
-    "description": "Placeholder for IP\/CIDR range"
+    "description": "Placeholder for IP/CIDR range"
   },
   "whitelistSearchPlaceholder": {
     "message": "Поиск правил",
@@ -663,6 +667,14 @@
     "message": "Блокировать отображаемое смешанное содержимое",
     "description": "Checklist option to block display mixed content"
   },
+  "checklistDisableAddonCache": {
+    "message": "Отключить кэш дополнений",
+    "description": "Checklist option to disable addon cache"
+  },
+  "checklistDisableAddonUpdates": {
+    "message": "Отключить обновление дополнений",
+    "description": "Checklist option to disable addon updates"
+  },
   "checklistDisableBatteryAPI": {
     "message": "Отключить API батареи",
     "description": "Checklist option to disable battery API"
@@ -743,6 +755,10 @@
     "message": "Отключить обновление поисковых систем",
     "description": "Checklist option to disable search update"
   },
+  "checklistDisableSpeculativePreConnections": {
+    "message": "Отключить предварительные соединения",
+    "description": "Checklist option to disable speculative pre-connections"
+  },
   "checklistDisableSSLFalseStart": {
     "message": "Отключить SSL фальстарт",
     "description": "Checklist option to disable SSL False Start"
@@ -771,9 +787,17 @@
     "message": "Включить очистку автономных приложений при завершении работы",
     "description": "Checklist option to enable clear offline apps on shutdown"
   },
+  "checklistEnableSocialTrackingProtection": {
+    "message": "Включить защиту от отслеживания социальными сетями",
+    "description": "Checklist option to enable social tracking protection"
+  },
   "checklistLimitDetectableFonts": {
     "message": "Ограничить обнаруживаемые шрифты",
     "description": "Checklist option to limit detectable fonts"
+  },
+  "checklistLimitMaxTabsUndo": {
+    "message": "Ограничить для вкладок макс. число возвратов",
+    "description": "Checklist option to limit max tabs undo"
   },
   "checklistUseClickToPlay": {
     "message": "Использовать клик для воспроизведения плагинами",
@@ -781,51 +805,63 @@
   },
   "checklistDisableDataSubmission": {
     "message": "Отключить отправку данных",
-    "description": "Checklist option to use disable data submission"
+    "description": "Checklist option to disable data submission"
   },
   "checklistDisableSafeBrowsingDownloadsCheck": {
     "message": "Отключить проверку загрузок сервисом безопасного просмотра",
-    "description": "Checklist option to use disable safe browsing downloads check"
+    "description": "Checklist option to disable safe browsing downloads check"
   },
   "checklistDisableSafeBrowsingDownloadsCheck2": {
     "message": "Отключить проверку загрузок сервисом безопасного просмотра 2",
-    "description": "Checklist option to use disable safe browsing downloads check 2"
+    "description": "Checklist option to disable safe browsing downloads check 2"
   },
   "checklistDisableSafeBrowsingDownloadsCheck3": {
     "message": "Отключить проверку загрузок сервисом безопасного просмотра 3",
-    "description": "Checklist option to use disable safe browsing downloads check 3"
+    "description": "Checklist option to disable safe browsing downloads check 3"
   },
   "checklistDisableSafeBrowsingDownloadsCheck4": {
     "message": "Отключить проверку загрузок сервисом безопасного просмотра 4",
-    "description": "Checklist option to use disable safe browsing downloads check 4"
+    "description": "Checklist option to disable safe browsing downloads check 4"
   },
   "checklistDisableSafeBrowsingMalwareCheck": {
     "message": "Отключить проверку вредоносных программ сервисом безопасного просмотра",
-    "description": "Checklist option to use disable safe browsing malware check"
+    "description": "Checklist option to disable safe browsing malware check"
   },
   "checklistDisableSafeBrowsingPhishingCheck": {
     "message": "Отключить проверку фишинга сервисом безопасного просмотра",
-    "description": "Checklist option to use disable safe browsing phishing check"
+    "description": "Checklist option to disable safe browsing phishing check"
   },
   "checklistDisableHealthReportUploads": {
     "message": "Отключить отправку отчетов о работоспособности",
-    "description": "Checklist option to use disable health report uploads"
+    "description": "Checklist option to disable health report uploads"
   },
   "checklistDisableCrashReport": {
     "message": "Отключить отправку отчетов об ошибках",
-    "description": "Checklist option to use disable crash report"
+    "description": "Checklist option to disable crash report"
+  },
+  "checklistDisableTelemetryPings": {
+    "message": "Отключить пинги телеметрии",
+    "description": "Checklist option to disable telemetry server"
   },
   "checklistDisableTelemetryReport": {
     "message": "Отключить отправку телеметрии",
-    "description": "Checklist option to use disable telemetry report"
+    "description": "Checklist option to disable telemetry report"
   },
   "checklistDisableTelemetryReport2": {
     "message": "Отключить отправку телеметрии 2",
-    "description": "Checklist option to use disable telemetry report 2"
+    "description": "Checklist option to disable telemetry report 2"
   },
-  "checklistDisableTelemetryServer": {
-    "message": "Отключить сервер телеметрии",
-    "description": "Checklist option to use disable telemetry server"
+  "checklistDisableUserMediaEnumeration": {
+    "message": "Отключить получение информации о медиа-устройствах пользователя",
+    "description": "Checklist option to disable user media enumeration"
+  },
+  "checklistDisableUserMediaEnumeration2": {
+    "message": "Отключить получение информации о медиа-устройствах пользователя 2",
+    "description": "Checklist option to disable user media enumeration 2"
+  },
+  "checklistSetSessionPrivacyLevel": {
+    "message": "Установить уровень конфиденциальности сессии",
+    "description": "Checklist option to set session privacy level"
   },
   "importSettingsSubheader": {
     "message": "Импорт настроек",
