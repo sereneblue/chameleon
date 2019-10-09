@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -53,6 +55,8 @@
     "prettier": "^1.17.1",
     "pretty-quick": "^1.8.0",
     "sass-loader": "^7.1.0",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.3",
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.20.2",

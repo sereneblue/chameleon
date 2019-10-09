@@ -10,7 +10,7 @@ const config = {
   mode: process.env.NODE_ENV,
   context: __dirname + '/src',
   entry: {
-    background: './background.js',
+    background: './background.ts',
     'popup/popup': './popup/popup.js',
     'options/options': './options/options.js',
   },
@@ -31,6 +31,16 @@ const config = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: [/node_modules/],
+        use: {
+          loader: 'ts-loader',
+          options: {
+            appendTsSuffixTo: [/\.vue$/],
+          },
+        },
       },
       {
         test: /\.css$/,
