@@ -1,21 +1,25 @@
 {
-  "name": "chameleon-ext",
-  "description": "Spoof your browser profile. Includes a few privacy enhancing options.",
+  "name": "Chameleon",
+  "description": "__MSG_extDescription__",
+  "author": "sereneblue",
   "version": "v0.20.0",
   "manifest_version": 2,
+  "applications": {
+    "gecko": {
+      "id": "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}",
+      "strict_min_version": "59.0a1"
+    }
+  },
+  "default_locale": "en",
   "icons": {
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
   "browser_action": {
-    "default_title": "chameleon-ext",
+    "default_icon": "icons/icon_48.png",
     "default_popup": "popup/popup.html"
   },
   "background": {
     "scripts": ["background.js"]
-  },
-  "options_ui": {
-    "page": "options/options.html",
-    "chrome_style": true
   }
 }
