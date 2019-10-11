@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('notosans.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.tab {
+  @apply px-2 pt-2 pb-1 cursor-pointer;
+}
