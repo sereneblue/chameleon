@@ -82,6 +82,39 @@
           </div>
         </div>
       </div>
+      <div v-else-if="currentTab == 'whitelist'" class="m-4 text-md">
+        <div class="text-lg border-primary border-b-2 mb-2" :class="[theme.text]">Whitelist</div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
+            <input type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Enable whitelist (requires script injection)</span>
+          </label>
+        </div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
+            <input type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Add context menu item to open current tab domain in whitelist</span>
+          </label>
+        </div>
+        <div class="flex items-center mb-2">
+          <label class="w-full mt-4">
+            <span :class="[theme.text]">Default Profile</span>
+            <select class="form-select mt-1 block w-full">
+              <option>Real Profile</option>
+            </select>
+          </label>
+        </div>
+        <div class="text-center mt-6 py-2" :class="[theme.text]">
+          <feather class="text-primary mb-2" type="check-circle" size="4em"></feather>
+          <div class="max-w-xs mx-auto truncate">
+            example.com
+          </div>
+          <div class="mb-6">
+            is whitelisted
+          </div>
+          <button @click="openWhitelist" class="bg-primary font-semibold text-light py-2 px-4 border border-primary hover:bg-primary-soft rounded">Open in whitelist</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -127,6 +160,13 @@ export default class App extends Vue {
   private openOptionsPage(): void {
     browser.tabs.create({
       url: browser.runtime.getURL('/options/options.html'),
+    });
+    window.close();
+  }
+
+  private openWhitelist(): void {
+    browser.tabs.create({
+      url: browser.runtime.getURL('/options/options.html#whitelist'),
     });
     window.close();
   }
