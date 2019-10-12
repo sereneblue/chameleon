@@ -15,3 +15,11 @@
 .tab {
   @apply px-2 pt-2 pb-1 cursor-pointer;
 }
+
+.tab {
+  @apply text-light;
+}
+
+.tab.active {
+  @apply text-primary;
+}
