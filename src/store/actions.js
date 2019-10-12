@@ -1,5 +1,13 @@
 import * as types from './mutation-types';
 
-export const setFoo = ({ commit }, payload) => {
-  commit(types.UPDATE_FOO, payload);
+export const toggleChameleon = ({ commit }, payload) => {
+  commit(types.TOGGLE_CHAMELEON);
+};
+
+export const toggleNotifications = ({ commit }, payload) => {
+  commit(types.TOGGLE_NOTIFICATIONS);
+};
+
+export const toggleTheme = ({ commit }, payload) => {
+  commit(types.TOGGLE_THEME);
 };
