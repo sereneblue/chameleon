@@ -2,18 +2,26 @@ module.exports = {
   theme: {
     customForms: theme => ({
       default: {
-        select: {
-          borderColor: theme('colors.gray.500'),
-          '&:focus': {
-            boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.5)',
-            borderColor: '#6b8e23',
-          },
-        },
         checkbox: {
           borderColor: theme('colors.gray.500'),
           '&:focus': {
             boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.5)',
-            borderColor: '#6b8e23',
+            borderColor: theme('colors.primary'),
+          },
+        },
+        radio: {
+          color: theme('colors.primary'),
+          borderColor: theme('colors.gray.500'),
+          '&:focus': {
+            boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.5)',
+            borderColor: theme('colors.primary'),
+          },
+        },
+        select: {
+          borderColor: theme('colors.gray.500'),
+          '&:focus': {
+            boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.5)',
+            borderColor: theme('colors.primary'),
           },
         },
       },
@@ -23,9 +31,11 @@ module.exports = {
         primary: '#6b8e23',
         'primary-soft': '#7aa329',
         dark: '#33313b',
-        'dark-softer': '#403E48',
+        'dark-fg': '#403E48',
+        'dark-fg-alt': '#4D4B55',
         light: '#fbfbfb',
-        'light-darker': '#C8C8C8',
+        'light-fg': '#e5e4e4',
+        'light-fg-alt': '#CECDCD',
       },
     },
   },

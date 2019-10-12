@@ -12,6 +12,22 @@
   font-family: 'Noto Sans', sans-serif !important;
 }
 
+.cursor-pointer.bg-dark-fg:hover {
+  @apply bg-dark-fg-alt;
+}
+
+.cursor-pointer.bg-light-fg:hover {
+  @apply bg-light-fg-alt;
+}
+
+.profile-group {
+  @apply flex justify-between items-center px-2 py-1 mb-1;
+}
+
+.profile-group.active {
+  @apply bg-primary text-light;
+}
+
 .tab {
   @apply px-2 pt-2 pb-1 cursor-pointer;
 }

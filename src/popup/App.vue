@@ -31,14 +31,14 @@
           </div>
           <div class="text-2xl mb-2 font-thin" :class="[theme.text]">Chameleon is {{ config.enabled ? 'enabled' : 'disabled' }}</div>
           <div class="flex justify-center text-sm">
-            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[darkMode ? 'bg-gray-700' : 'bg-gray-300', theme.text]">
+            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[darkMode ? 'bg-dark-fg' : 'bg-light-fg', theme.text]">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
                 <feather v-else type="sun" size="1.5em"></feather>
                 <span class="ml-1">{{ darkMode ? 'Dark' : 'Light' }}</span>
               </div>
             </div>
-            <div @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[darkMode ? 'bg-gray-700' : 'bg-gray-300', theme.text]">
+            <div @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[darkMode ? 'bg-dark-fg' : 'bg-light-fg', theme.text]">
               <div class="flex items-center px-2 py-1 ">
                 <feather v-if="config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
@@ -53,14 +53,14 @@
             <div class="text-lg" :class="[theme.text]">Android &middot; Firefox 77</div>
             <div class="text-lg" :class="[theme.text]">1366x768</div>
             <div class="text-lg" :class="[theme.text]">Europe/Berlin</div>
-            <div class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[darkMode ? 'bg-gray-700' : 'bg-gray-300', theme.text]">
+            <div class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[darkMode ? 'bg-dark-fg' : 'bg-light-fg', theme.text]">
               <div class="flex items-center">
                 <feather type="repeat" size=".8em"></feather>
                 <span class="ml-1 text-xs">change</span>
               </div>
             </div>
           </div>
-          <div class="absolute bottom-0 py-2" :class="[darkMode ? 'bg-dark-softer' : 'bg-gray-200', theme.text]" style="width: -moz-available;">
+          <div class="absolute bottom-0 py-2" :class="[darkMode ? 'bg-dark-fg' : 'bg-light-fg', theme.text]" style="width: -moz-available;">
             <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
             <div class="flex w-full justify-around">
               <div class="">
