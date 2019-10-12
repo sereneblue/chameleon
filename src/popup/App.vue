@@ -1,6 +1,6 @@
 <template>
   <div class="app h-screen flex" :class="[theme.bg]">
-    <div class="text-xs bg-primary flex-col text-center">
+    <div class="text-xs bg-primary flex-none flex-col text-center">
       <div @click="currentTab = 'home'" class="tab" :class="activeTab('home')">
         <feather type="home" size="1.5em"></feather>
       </div>
@@ -144,16 +144,24 @@ export default class App extends Vue {
 </script>
 
 <style type="text/css">
+body {
+  background-color: white;
+  border: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
 .app {
   overflow: hidden;
 }
 
-@media only screen and (max-width: 411px) {
+@media only screen and (max-width: 511px) {
   .app {
-    min-width: 410px;
-    max-width: 410px;
-    min-height: 480px;
-    max-height: 480px;
+    min-width: 510px;
+    max-width: 510px;
+    min-height: 800px;
+    max-height: 800px;
   }
 }
 </style>
