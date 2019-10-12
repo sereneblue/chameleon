@@ -172,7 +172,7 @@ export default class App extends Vue {
   }
 
   private toggleChameleon(): void {
-    this['$store'].dispatch('toggleChameleon');
+    this['$store'].dispatch('toggleChameleon', !this.config.enabled);
   }
 
   private toggleNotifications(): void {

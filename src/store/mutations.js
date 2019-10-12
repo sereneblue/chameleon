@@ -2,7 +2,7 @@ import * as types from './mutation-types';
 
 export default {
   [types.TOGGLE_CHAMELEON](state, payload) {
-    state.config.enabled = !state.config.enabled;
+    state.config.enabled = payload;
   },
   [types.TOGGLE_NOTIFICATIONS](state, payload) {
     state.config.notificationsEnabled = !state.config.notificationsEnabled;
