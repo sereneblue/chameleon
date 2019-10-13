@@ -11,7 +11,7 @@ export default new Vuex.Store({
     config: {
       enabled: true,
       notificationsEnabled: false,
-      theme: 'dark',
+      theme: 'light',
     },
     headers: {
       blockEtag: false,
