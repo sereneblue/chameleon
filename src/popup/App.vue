@@ -470,8 +470,8 @@ body {
   padding: 0;
   min-width: 510px;
   max-width: 510px;
-  min-height: 800px;
-  max-height: 800px;
+  min-height: 600px;
+  max-height: 600px;
 }
 
 @media only screen and (min-width: 600px) {
