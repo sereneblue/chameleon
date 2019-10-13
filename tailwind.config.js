@@ -11,6 +11,10 @@ module.exports = {
         },
         input: {
           borderColor: theme('colors.gray.500'),
+          paddingTop: theme('spacing.1'),
+          paddingRight: theme('spacing.2'),
+          paddingBottom: theme('spacing.1'),
+          paddingLeft: theme('spacing.2'),
           '&:focus': {
             boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.5)',
             borderColor: theme('colors.primary'),
@@ -26,6 +30,10 @@ module.exports = {
         },
         select: {
           borderColor: theme('colors.gray.500'),
+          paddingTop: theme('spacing.1'),
+          paddingRight: theme('spacing.2'),
+          paddingBottom: theme('spacing.1'),
+          paddingLeft: theme('spacing.2'),
           '&:focus': {
             boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.5)',
             borderColor: theme('colors.primary'),
