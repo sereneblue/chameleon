@@ -1,19 +1,19 @@
 // useragent list
 let uaList = {
 	"win": [{
-		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (Win 7)",
 		"value": "win1"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (Win 8)",
 		"value": "win2"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (Win 8.1)",
 		"value": "win3"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (Win 10)",
 		"value": "win4"
 	}, {
@@ -66,11 +66,11 @@ let uaList = {
 		"value": "win16"
 	}],
 	"mac": [{
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (macOS 10.13)",
 		"value": "mac1"
 	}, {
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (macOS 10.14)",
 		"value": "mac2"
 	}, {
@@ -99,27 +99,27 @@ let uaList = {
 		"value": "mac7"
 	}],
 	"linux": [{
-		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (Linux 64)",
 		"value": "linux1"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Fedora; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Fedora; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (Fedora 64)",
 		"value": "linux2"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chrome 77 (Ubuntu 64)",
 		"value": "linux3"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/77.0.3865.90 Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/77.0.3865.120 Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chromium 77 (Linux 64)",
 		"value": "linux4"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Fedora; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/77.0.3865.90 Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Fedora; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/77.0.3865.120 Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chromium 77 (Fedora 64)",
 		"value": "linux5"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/77.0.3865.90 Chrome/77.0.3865.90 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/77.0.3865.120 Chrome/77.0.3865.120 Safari/537.36",
 		"name": "Chromium 77 (Ubuntu 64)",
 		"value": "linux6"
 	}, {
@@ -176,7 +176,7 @@ let uaList = {
 		"name": "iOS 12.1 - iPad - Safari 12",
 		"value": "ios8"
 	}, {
-		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/77.0.3865.69 Mobile/15E148 Safari/604.1",
+		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/77.0.3865.103 Mobile/15E148 Safari/604.1",
 		"name": "iOS 13 - iPhone - Chrome 77",
 		"value": "ios9"
 	}],
@@ -189,11 +189,11 @@ let uaList = {
 		"name": "Android 5.1 - Chrome 69",
 		"value": "android2"
 	}, {
-		"ua": "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG-SM-G530AZ Build/LMY48B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.92 Mobile Safari/537.36",
+		"ua": "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG-SM-G530AZ Build/LMY48B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.116 Mobile Safari/537.36",
 		"name": "Android 5.1.1 - Chrome 77",
 		"value": "android3"
 	}, {
-		"ua": "Mozilla/5.0 (Linux; Android 6.0.1; N9136 Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.92 Mobile Safari/537.36",
+		"ua": "Mozilla/5.0 (Linux; Android 6.0.1; N9136 Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.116 Mobile Safari/537.36",
 		"name": "Android 6.0.1 - Chrome 77",
 		"value": "android4"
 	}, {
@@ -201,7 +201,7 @@ let uaList = {
 		"name": "Android 6.0.1 - UC Browser 11.5",
 		"value": "android5"
 	}, {
-		"ua": "Mozilla/5.0 (Linux; Android 7.0; SM-N920C Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.92 Mobile Safari/537.36",
+		"ua": "Mozilla/5.0 (Linux; Android 7.0; SM-N920C Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.116 Mobile Safari/537.36",
 		"name": "Android 7 - Chrome 77",
 		"value": "android6"
 	}, {
@@ -213,7 +213,7 @@ let uaList = {
 		"name": "Android 8.1 - UC Browser 12.9",
 		"value": "android8"
 	}, {
-		"ua": "Mozilla/5.0 (Linux; Android 9; Mi A1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.92 Mobile Safari/537.36",
+		"ua": "Mozilla/5.0 (Linux; Android 9; Mi A1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.116 Mobile Safari/537.36",
 		"name": "Android 9 - Chrome 77",
 		"value": "android9"
 	}]
