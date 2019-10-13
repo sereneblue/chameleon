@@ -32,20 +32,20 @@
           <div class="text-2xl" :class="[theme.text]">Chameleon is {{ config.enabled ? 'enabled' : 'disabled' }}</div>
           <div class="text-lg mb-6" :class="[theme.text]">v0.20.0</div>
           <div class="flex justify-center text-sm">
-            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg, theme.text]">
+            <button @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg, theme.text]">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
                 <feather v-else type="sun" size="1.5em"></feather>
                 <span class="ml-1">{{ darkMode ? 'Dark' : 'Light' }}</span>
               </div>
-            </div>
-            <div @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[theme.fg, theme.text]">
+            </button>
+            <button @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[theme.fg, theme.text]">
               <div class="flex items-center px-2 py-1 ">
                 <feather v-if="config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
                 <span class="ml-1">Notifications</span>
               </div>
-            </div>
+            </button>
           </div>
         </div>
         <div>
@@ -54,12 +54,12 @@
             <div class="text-lg" :class="[theme.text]">Android &middot; Firefox 77</div>
             <div class="text-lg" :class="[theme.text]">1366x768</div>
             <div class="text-lg" :class="[theme.text]">Europe/Berlin</div>
-            <div class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
+            <button class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
               <div class="flex items-center">
                 <feather type="repeat" size=".8em"></feather>
                 <span class="ml-1 text-xs">change</span>
               </div>
-            </div>
+            </button>
           </div>
           <div class="absolute bottom-0 py-2" :class="[theme.fg, theme.text]" style="width: -moz-available;">
             <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
