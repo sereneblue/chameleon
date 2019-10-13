@@ -1,19 +1,19 @@
 <template>
   <div class="app h-screen flex" :class="[theme.bg]">
     <div class="text-xs bg-primary flex-none flex-col text-center">
-      <div @click="currentTab = 'home'" class="tab" :class="activeTab('home')">
+      <div @click="setSelected('tab', 'home')" class="tab" :class="activeTab('home')">
         <feather type="home" size="1.5em"></feather>
       </div>
-      <div @click="currentTab = 'profile'" class="tab" :class="activeTab('profile')">
+      <div @click="setSelected('tab', 'profile')" class="tab" :class="activeTab('profile')">
         <feather type="globe" size="1.5em"></feather>
       </div>
-      <div @click="currentTab = 'headers'" class="tab" :class="activeTab('headers')">
+      <div @click="setSelected('tab', 'headers')" class="tab" :class="activeTab('headers')">
         <feather type="code" size="1.5em"></feather>
       </div>
-      <div @click="currentTab = 'options'" class="tab" :class="activeTab('options')">
+      <div @click="setSelected('tab', 'options')" class="tab" :class="activeTab('options')">
         <feather type="sliders" size="1.5em"></feather>
       </div>
-      <div @click="currentTab = 'whitelist'" class="tab" :class="activeTab('whitelist')">
+      <div @click="setSelected('tab', 'whitelist')" class="tab" :class="activeTab('whitelist')">
         <feather type="edit" size="1.5em"></feather>
       </div>
       <div @click="openOptionsPage" class="tab hover:bg-primary-soft">
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="flex-grow flex-col justify-around">
-      <div v-if="isTab('home')">
+      <div v-if="isSelected('tab', 'home')">
         <div class="text-center mt-16">
           <div class="my-6 h-24">
             <div class="inline-block cursor-pointer" @click="toggleChameleon">
@@ -29,7 +29,8 @@
               <feather v-else type="shield-off" class="text-red-500" size="6em" stroke-width="2" />
             </div>
           </div>
-          <div class="text-2xl mb-2 font-thin" :class="[theme.text]">Chameleon is {{ config.enabled ? 'enabled' : 'disabled' }}</div>
+          <div class="text-2xl" :class="[theme.text]">Chameleon is {{ config.enabled ? 'enabled' : 'disabled' }}</div>
+          <div class="text-lg mb-6" :class="[theme.text]">v0.20.0</div>
           <div class="flex justify-center text-sm">
             <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg, theme.text]">
               <div class="flex items-center px-2 py-1">
@@ -82,26 +83,26 @@
           </div>
         </div>
       </div>
-      <div v-else-if="isTab('profile')" class="m-4 text-md">
+      <div v-else-if="isSelected('tab', 'profile')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Profile</div>
         <div class="flex" :class="[theme.text]">
           <div class="flex flex-col mr-16">
             <label class="inline-flex items-center mb-2">
-              <input @click="selectProfile('none')" type="radio" class="form-radio" :checked="isProfile('none')" />
+              <input @click="setSelected('profile', 'none')" type="radio" class="form-radio" :checked="isSelected('profile', 'none')" />
               <span class="ml-2">Real Profile</span>
             </label>
             <label class="inline-flex items-center">
-              <input @click="selectProfile('random')" type="radio" class="form-radio" :checked="isProfile('random')" />
+              <input @click="setSelected('profile', 'random')" type="radio" class="form-radio" :checked="isSelected('profile', 'random')" />
               <span class="ml-2">Random</span>
             </label>
           </div>
           <div class="flex flex-col">
             <label class="inline-flex items-center mb-2">
-              <input @click="selectProfile('randomDesktop')" type="radio" class="form-radio" :checked="isProfile('randomDesktop')" />
+              <input @click="setSelected('profile', 'randomDesktop')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomDesktop')" />
               <span class="ml-2">Random Profile (Desktop)</span>
             </label>
             <label class="inline-flex items-center">
-              <input @click="selectProfile('randomMobile')" type="radio" class="form-radio" :checked="isProfile('randomMobile')" />
+              <input @click="setSelected('profile', 'randomMobile')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomMobile')" />
               <span class="ml-2">Random Profile (Mobile)</span>
             </label>
           </div>
@@ -129,26 +130,26 @@
         </div>
         <div class="mt-6" :class="[theme.text]">
           <ul class="flex text-center w-full">
-            <li @click="setGroup('windows')" :class="[theme.fg, isGroup('windows') ? 'active' : '']" class="profile-group cursor-pointer">
+            <li @click="setSelected('os', 'windows')" :class="[theme.fg, isSelected('os', 'windows') ? 'active' : '']" class="group rounded-l-sm cursor-pointer">
               Windows
             </li>
-            <li @click="setGroup('macOS')" :class="[theme.fg, isGroup('macOS') ? 'active' : '']" class="profile-group cursor-pointer">
+            <li @click="setSelected('os', 'macOS')" :class="[theme.fg, isSelected('os', 'macOS') ? 'active' : '']" class="group cursor-pointer">
               macOS
             </li>
-            <li @click="setGroup('linux')" :class="[theme.fg, isGroup('linux') ? 'active' : '']" class="profile-group cursor-pointer">
+            <li @click="setSelected('os', 'linux')" :class="[theme.fg, isSelected('os', 'linux') ? 'active' : '']" class="group cursor-pointer">
               Linux
             </li>
-            <li @click="setGroup('iOS')" :class="[theme.fg, isGroup('iOS') ? 'active' : '']" class="profile-group cursor-pointer">
+            <li @click="setSelected('os', 'iOS')" :class="[theme.fg, isSelected('os', 'iOS') ? 'active' : '']" class="group cursor-pointer">
               iOS
             </li>
-            <li @click="setGroup('android')" :class="[theme.fg, isGroup('android') ? 'active' : '']" class="profile-group cursor-pointer">
+            <li @click="setSelected('os', 'android')" :class="[theme.fg, isSelected('os', 'android') ? 'active' : '']" class="group rounded-r-sm cursor-pointer">
               Android
             </li>
           </ul>
-          <div v-show="currentProfileGroup" class="px-3 mt-4 h-64 overflow-y-auto" :class="[theme.fg]">
+          <div v-show="currentProfileGroup" class="px-3 mt-2 rounded-sm h-64 overflow-y-auto" :class="[theme.fg]">
             <div class="profile-item" :class="[theme.fg]">
               <label class="flex items-center cursor-pointer">
-                <input @click="selectProfile(currentProfileGroup)" type="radio" class="form-radio" :checked="isProfile(currentProfileGroup)" />
+                <input @click="setSelected('profile', currentProfileGroup)" type="radio" class="form-radio" :checked="isSelected('profile', currentProfileGroup)" />
                 <span class="ml-2">Random {{ currentProfileGroup }} Browsers</span>
               </label>
               <div class="flex items-center">
@@ -158,7 +159,7 @@
             </div>
             <div v-for="p in profiles" class="profile-item" :class="[theme.fg]">
               <label class="flex items-center cursor-pointer">
-                <input @click="selectProfile(p.value)" type="radio" class="form-radio" :checked="isProfile(p.value)" />
+                <input @click="setSelected('profile', p.value)" type="radio" class="form-radio" :checked="isSelected('profile', p.value)" />
                 <span class="ml-2">{{ p.name }}</span>
               </label>
               <div class="flex items-center">
@@ -168,7 +169,7 @@
           </div>
         </div>
       </div>
-      <div v-else-if="isTab('whitelist')" class="m-4 text-md">
+      <div v-else-if="isSelected('tab', 'whitelist')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Whitelist</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
@@ -254,16 +255,18 @@ export default class App extends Vue {
     this['$store'].dispatch('excludeProfile', profile);
   }
 
-  private isGroup(os: string): boolean {
-    return this.currentProfileGroup === os;
-  }
+  private isSelected(type: string, value: string): boolean {
+    if (type === 'options') {
+      return this.currentOption === value;
+    } else if (type === 'os') {
+      return this.currentProfileGroup === value;
+    } else if (type === 'profile') {
+      return this['$store'].state.profile.selected === value;
+    } else if (type === 'tab') {
+      return this.currentTab === value;
+    }
 
-  private isProfile(profile: string): boolean {
-    return this['$store'].state.profile.selected === profile;
-  }
-
-  private isTab(tab: string): boolean {
-    return this.currentTab === tab;
+    return false;
   }
 
   private openOptionsPage(): void {
@@ -280,12 +283,16 @@ export default class App extends Vue {
     window.close();
   }
 
-  private setGroup(os: string): void {
-    this.currentProfileGroup = this.currentProfileGroup === os ? '' : os;
-  }
-
-  private selectProfile(profile: string): void {
-    this['$store'].dispatch('changeProfile', profile);
+  private setSelected(type: string, value: string): void {
+    if (type === 'options') {
+      this.currentOption = value;
+    } else if (type === 'os') {
+      this.currentProfileGroup = this.currentProfileGroup === value ? '' : value;
+    } else if (type === 'profile') {
+      this['$store'].dispatch('changeProfile', value);
+    } else if (type === 'tab') {
+      this.currentTab = value;
+    }
   }
 
   private toggleChameleon(): void {
