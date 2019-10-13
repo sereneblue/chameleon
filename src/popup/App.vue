@@ -25,11 +25,11 @@
         <div class="text-center mt-16">
           <div class="my-6 h-24">
             <div class="inline-block cursor-pointer" @click="toggleChameleon">
-              <feather v-if="config.enabled" type="shield" class="text-primary" size="6em" stroke-width="2" />
+              <feather v-if="settings.config.enabled" type="shield" class="text-primary" size="6em" stroke-width="2" />
               <feather v-else type="shield-off" class="text-red-500" size="6em" stroke-width="2" />
             </div>
           </div>
-          <div class="text-2xl" :class="[theme.text]">Chameleon is {{ config.enabled ? 'enabled' : 'disabled' }}</div>
+          <div class="text-2xl" :class="[theme.text]">Chameleon is {{ settings.config.enabled ? 'enabled' : 'disabled' }}</div>
           <div class="text-lg mb-6" :class="[theme.text]">v0.20.0</div>
           <div class="flex justify-center text-sm">
             <button @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg, theme.text]">
@@ -41,7 +41,7 @@
             </button>
             <button @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[theme.fg, theme.text]">
               <div class="flex items-center px-2 py-1 ">
-                <feather v-if="config.notificationsEnabled" type="bell" size="1.5em"></feather>
+                <feather v-if="settings.config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
                 <span class="ml-1">Notifications</span>
               </div>
@@ -218,16 +218,16 @@ export default class App extends Vue {
   public currentProfileGroup: string = '';
   public currentOption: string = 'injection';
 
-  get config(): any {
-    return this['$store'].state.config;
-  }
-
   get darkMode(): boolean {
-    return this['$store'].state.config.theme === 'dark';
+    return this.settings.config.theme === 'dark';
   }
 
   get profiles(): any {
     return [];
+  }
+
+  get settings(): any {
+    return this['$store'].state;
   }
 
   get theme(): any {
@@ -292,7 +292,7 @@ export default class App extends Vue {
   }
 
   private toggleChameleon(): void {
-    this['$store'].dispatch('toggleChameleon', !this.config.enabled);
+    this['$store'].dispatch('toggleChameleon', !this.settings.config.enabled);
   }
 
   private toggleNotifications(): void {
