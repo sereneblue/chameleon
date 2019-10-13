@@ -124,7 +124,7 @@
             </select>
           </label>
         </div>
-        <div class="flex justify-around mb-2 w-full">
+        <div v-show="settings.profile.interval.option == -1" class="flex justify-around mb-2 w-full">
           <input class="block w-2/5 form-input mr-2" placeholder="Min (minutes)" />
           <input class="block w-2/5 form-input" placeholder="Max (minutes)" />
         </div>
