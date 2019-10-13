@@ -316,18 +316,15 @@ body {
   margin: 0;
   overflow: hidden;
   padding: 0;
+  min-width: 510px;
+  max-width: 510px;
+  min-height: 800px;
+  max-height: 800px;
 }
 
-.app {
-  overflow: hidden;
-}
-
-@media only screen and (max-width: 511px) {
-  .app {
-    min-width: 510px;
-    max-width: 510px;
-    min-height: 800px;
-    max-height: 800px;
+@media only screen and (min-width: 600px) {
+  body {
+    min-width: 100% !important;
   }
 }
 </style>
