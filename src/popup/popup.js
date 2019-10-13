@@ -4,6 +4,10 @@ import App from './App';
 import store from '../store';
 import '../css/tailwind.css';
 
+import PerfectScrollbar from 'vue2-perfect-scrollbar';
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css';
+
+Vue.use(PerfectScrollbar);
 Vue.use(VueFeather);
 
 /* eslint-disable no-new */

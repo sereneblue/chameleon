@@ -146,26 +146,28 @@
               Android
             </li>
           </ul>
-          <div v-show="currentProfileGroup" class="px-3 mt-2 rounded-sm h-64 overflow-y-auto" :class="[theme.fg]">
-            <div class="profile-item" :class="[theme.fg]">
-              <label class="flex items-center cursor-pointer">
-                <input @click="setSelected('profile', currentProfileGroup)" type="radio" class="form-radio" :checked="isSelected('profile', currentProfileGroup)" />
-                <span class="ml-2">Random {{ currentProfileGroup }} Browsers</span>
-              </label>
-              <div class="flex items-center">
-                Exclude
-                <input @click="excludeProfile(currentProfileGroup)" type="checkbox" class="ml-2 text-primary form-checkbox" />
+          <div v-show="currentProfileGroup" class="mt-2 rounded-sm" :class="[theme.fg, settings.profile.interval.option == 0 ? 'h-72' : 'h-64']">
+            <perfect-scrollbar class="pl-3 pr-3">
+              <div class="profile-item" :class="[theme.fg]">
+                <label class="flex items-center cursor-pointer">
+                  <input @click="setSelected('profile', currentProfileGroup)" type="radio" class="form-radio" :checked="isSelected('profile', currentProfileGroup)" />
+                  <span class="ml-2">Random {{ currentProfileGroup }} Browsers</span>
+                </label>
+                <div class="flex items-center">
+                  Exclude
+                  <input @click="excludeProfile(currentProfileGroup)" type="checkbox" class="ml-2 text-primary form-checkbox" />
+                </div>
               </div>
-            </div>
-            <div v-for="p in profiles" class="profile-item" :class="[theme.fg]">
-              <label class="flex items-center cursor-pointer">
-                <input @click="setSelected('profile', p.value)" type="radio" class="form-radio" :checked="isSelected('profile', p.value)" />
-                <span class="ml-2">{{ p.name }}</span>
-              </label>
-              <div class="flex items-center">
-                <input @click="excludeProfile(p.value)" type="checkbox" class="ml-2 text-primary form-checkbox" />
+              <div v-for="p in profiles" class="profile-item" :class="[theme.fg]">
+                <label class="flex items-center cursor-pointer">
+                  <input @click="setSelected('profile', p.value)" type="radio" class="form-radio" :checked="isSelected('profile', p.value)" />
+                  <span class="ml-2">{{ p.name }}</span>
+                </label>
+                <div class="flex items-center">
+                  <input @click="excludeProfile(p.value)" type="checkbox" class="ml-2 text-primary form-checkbox" />
+                </div>
               </div>
-            </div>
+            </perfect-scrollbar>
           </div>
         </div>
       </div>
@@ -322,5 +324,8 @@ body {
   body {
     min-width: 100% !important;
   }
+}
+.ps {
+  height: 100%;
 }
 </style>
