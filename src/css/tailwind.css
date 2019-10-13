@@ -21,11 +21,27 @@
 }
 
 .profile-group {
-  @apply flex justify-between items-center px-2 py-1 mb-1;
+  @apply flex-grow items-center px-2 py-1 mb-1;
 }
 
 .profile-group.active {
   @apply bg-primary text-light;
+}
+
+.profile-group.active:hover {
+  @apply bg-primary text-light;
+}
+
+.profile-item {
+  @apply -mx-3 px-3 flex justify-between py-1;
+}
+
+.profile-item.bg-dark-fg:hover {
+  @apply bg-dark-fg-alt;
+}
+
+.profile-item.bg-light-fg:hover {
+  @apply bg-light-fg-alt;
 }
 
 .tab {

@@ -9,6 +9,13 @@ module.exports = {
             borderColor: theme('colors.primary'),
           },
         },
+        input: {
+          borderColor: theme('colors.gray.500'),
+          '&:focus': {
+            boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.5)',
+            borderColor: theme('colors.primary'),
+          },
+        },
         radio: {
           color: theme('colors.primary'),
           borderColor: theme('colors.gray.500'),
