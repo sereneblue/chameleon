@@ -82,8 +82,94 @@
           </div>
         </div>
       </div>
+      <div v-else-if="currentTab == 'profile'" class="m-4 text-md">
+        <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Profile</div>
+        <div class="flex" :class="[theme.text]">
+          <div class="flex flex-col mr-16">
+            <label class="inline-flex items-center mb-2">
+              <input @click="selectProfile('none')" type="radio" class="form-radio" :checked="isProfile('none')" />
+              <span class="ml-2">Real Profile</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input @click="selectProfile('random')" type="radio" class="form-radio" :checked="isProfile('random')" />
+              <span class="ml-2">Random</span>
+            </label>
+          </div>
+          <div class="flex flex-col">
+            <label class="inline-flex items-center mb-2">
+              <input @click="selectProfile('randomDesktop')" type="radio" class="form-radio" :checked="isProfile('randomDesktop')" />
+              <span class="ml-2">Random Profile (Desktop)</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input @click="selectProfile('randomMobile')" type="radio" class="form-radio" :checked="isProfile('randomMobile')" />
+              <span class="ml-2">Random Profile (Mobile)</span>
+            </label>
+          </div>
+        </div>
+        <div class="flex items-center mb-2">
+          <label class="w-full mt-4">
+            <span :class="[theme.text]">Change periodically</span>
+            <select class="form-select mt-1 block w-full">
+              <option value="0"></option>
+              <option value="-1"></option>
+              <option value="1"></option>
+              <option value="5"></option>
+              <option value="10"></option>
+              <option value="20"></option>
+              <option value="30"></option>
+              <option value="40"></option>
+              <option value="50"></option>
+              <option value="60"></option>
+            </select>
+          </label>
+        </div>
+        <div class="flex justify-around mb-2 w-full">
+          <input class="block w-2/5 form-input mr-2" placeholder="Min (minutes)" />
+          <input class="block w-2/5 form-input" placeholder="Max (minutes)" />
+        </div>
+        <div class="mt-6" :class="[theme.text]">
+          <ul class="flex text-center w-full">
+            <li @click="setGroup('windows')" :class="[theme.fg, isGroup('windows') ? 'active' : '']" class="profile-group cursor-pointer">
+              Windows
+            </li>
+            <li @click="setGroup('macOS')" :class="[theme.fg, isGroup('macOS') ? 'active' : '']" class="profile-group cursor-pointer">
+              macOS
+            </li>
+            <li @click="setGroup('linux')" :class="[theme.fg, isGroup('linux') ? 'active' : '']" class="profile-group cursor-pointer">
+              Linux
+            </li>
+            <li @click="setGroup('iOS')" :class="[theme.fg, isGroup('iOS') ? 'active' : '']" class="profile-group cursor-pointer">
+              iOS
+            </li>
+            <li @click="setGroup('android')" :class="[theme.fg, isGroup('android') ? 'active' : '']" class="profile-group cursor-pointer">
+              Android
+            </li>
+          </ul>
+          <div v-show="currentProfileGroup" class="px-3 mt-4 h-64 overflow-y-auto" :class="[theme.fg]">
+            <div class="profile-item" :class="[theme.fg]">
+              <label class="flex items-center cursor-pointer">
+                <input @click="selectProfile(currentProfileGroup)" type="radio" class="form-radio" :checked="isProfile(currentProfileGroup)" />
+                <span class="ml-2">Random {{ currentProfileGroup }} Browsers</span>
+              </label>
+              <div class="flex items-center">
+                Exclude
+                <input @click="excludeProfile(currentProfileGroup)" type="checkbox" class="ml-2 text-primary form-checkbox" />
+              </div>
+            </div>
+            <div v-for="p in profiles" class="profile-item" :class="[theme.fg]">
+              <label class="flex items-center cursor-pointer">
+                <input @click="selectProfile(p.value)" type="radio" class="form-radio" :checked="isProfile(p.value)" />
+                <span class="ml-2">{{ p.name }}</span>
+              </label>
+              <div class="flex items-center">
+                <input @click="excludeProfile(p.value)" type="checkbox" class="ml-2 text-primary form-checkbox" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div v-else-if="currentTab == 'whitelist'" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-2" :class="[theme.text]">Whitelist</div>
+        <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Whitelist</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input type="checkbox" class="text-primary form-checkbox" />
@@ -100,7 +186,7 @@
           <label class="w-full mt-4">
             <span :class="[theme.text]">Default Profile</span>
             <select class="form-select mt-1 block w-full">
-              <option>Real Profile</option>
+              <option value="none">Real Profile</option>
             </select>
           </label>
         </div>
@@ -137,7 +223,7 @@ export default class App extends Vue {
   }
 
   get profiles(): any {
-  	return [];
+    return [];
   }
 
   get theme(): any {
@@ -145,7 +231,7 @@ export default class App extends Vue {
       return {
         bg: 'bg-dark',
         fg: 'bg-dark-fg',
-        text: 'text-light'
+        text: 'text-light',
       };
     }
 
@@ -164,6 +250,18 @@ export default class App extends Vue {
     return ['hover:bg-primary-soft'];
   }
 
+  private excludeProfile(profile: string): void {
+    this['$store'].dispatch('excludeProfile', profile);
+  }
+
+  private isGroup(os: string): boolean {
+    return this.currentProfileGroup === os;
+  }
+
+  private isProfile(profile: string): boolean {
+    return profile === this['$store'].state.profile.selected;
+  }
+
   private openOptionsPage(): void {
     browser.tabs.create({
       url: browser.runtime.getURL('/options/options.html'),
@@ -176,6 +274,14 @@ export default class App extends Vue {
       url: browser.runtime.getURL('/options/options.html#whitelist'),
     });
     window.close();
+  }
+
+  private setGroup(os: string): void {
+    this.currentProfileGroup = this.currentProfileGroup === os ? '' : os;
+  }
+
+  private selectProfile(profile: string): void {
+    this['$store'].dispatch('changeProfile', profile);
   }
 
   private toggleChameleon(): void {

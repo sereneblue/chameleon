@@ -1,5 +1,9 @@
 import * as types from './mutation-types';
 
+export const changeProfile = ({ commit }, payload) => {
+  commit(types.CHANGE_PROFILE, payload);
+};
+
 export const toggleChameleon = ({ commit }, payload) => {
   commit(types.TOGGLE_CHAMELEON, payload);
   browser.runtime.getPlatformInfo().then(plat => {

@@ -1,6 +1,9 @@
 import * as types from './mutation-types';
 
 export default {
+  [types.CHANGE_PROFILE](state, payload) {
+    state.profile.selected = payload;
+  },
   [types.TOGGLE_CHAMELEON](state, payload) {
     state.config.enabled = payload;
   },
