@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="flex-grow flex-col justify-around">
-      <div v-if="currentTab == 'home'">
+      <div v-if="isTab('home')">
         <div class="text-center mt-16">
           <div class="my-6 h-24">
             <div class="inline-block cursor-pointer" @click="toggleChameleon">
@@ -82,7 +82,7 @@
           </div>
         </div>
       </div>
-      <div v-else-if="currentTab == 'profile'" class="m-4 text-md">
+      <div v-else-if="isTab('profile')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Profile</div>
         <div class="flex" :class="[theme.text]">
           <div class="flex flex-col mr-16">
@@ -168,7 +168,7 @@
           </div>
         </div>
       </div>
-      <div v-else-if="currentTab == 'whitelist'" class="m-4 text-md">
+      <div v-else-if="isTab('whitelist')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Whitelist</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
@@ -259,7 +259,11 @@ export default class App extends Vue {
   }
 
   private isProfile(profile: string): boolean {
-    return profile === this['$store'].state.profile.selected;
+    return this['$store'].state.profile.selected === profile;
+  }
+
+  private isTab(tab: string): boolean {
+    return this.currentTab === tab;
   }
 
   private openOptionsPage(): void {
