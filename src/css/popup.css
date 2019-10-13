@@ -4,14 +4,27 @@
 }
 
 * {
-  margin: 0;
   font-family: 'Noto Sans', sans-serif !important;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin-inline-end: 0;
+  margin-inline-start: 0;
+  padding-block-end: 0;
+  padding-block-start: 0;
+  padding-inline-end: 0;
+  padding-inline-start: 0;
+}
+
+html {
+  box-sizing: border-box;
 }
 
 body {
   background-color: white;
   min-height: 450px;
   max-height: 450px;
+  min-width: 410px;
+  max-width: 410px;
   overflow-x: hidden;
 }
 
@@ -326,9 +339,8 @@ select[name="timeZone"] {
   margin-bottom: 5px;
 }
 
-@media only screen and (max-width: 411px) {
+@media only screen and (min-width: 480px) {
   body {
-    min-width: 410px;
-    max-width: 410px;
+    min-width: 100% !important;
   }
 }
