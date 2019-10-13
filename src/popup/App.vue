@@ -171,6 +171,160 @@
           </div>
         </div>
       </div>
+      <div v-else-if="isSelected('tab', 'options')" class="m-4 text-md">
+        <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Options</div>
+        <div class="w-full mb-4">
+          <button @click="openOptionsPage('checklist')" class="w-full bg-primary font-semibold text-light py-1 px-4 border border-primary hover:bg-primary-soft rounded">
+            Open about:config checklist
+          </button>
+        </div>
+        <div>
+          <ul class="flex text-center w-full rounded-lg" :class="[theme.text]">
+            <li @click="setSelected('options', 'injection')" :class="[theme.fg, isSelected('options', 'injection') ? 'active' : '']" class="group group-options rounded-l-sm">
+              Injection
+            </li>
+            <li @click="setSelected('options', 'standard')" :class="[theme.fg, isSelected('options', 'standard') ? 'active' : '']" class="group group-options">
+              Standard
+            </li>
+            <li @click="setSelected('options', 'cookie')" :class="[theme.fg, isSelected('options', 'cookie') ? 'active' : '']" class="group group-options rounded-r-sm">
+              Cookie
+            </li>
+          </ul>
+          <div>
+            <div v-if="isSelected('options', 'injection')">
+              <div class="flex items-center mt-2 mb-1">
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <span class="ml-1" :class="[theme.text]">Enable script injection</span>
+                </label>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <span class="ml-1" :class="[theme.text]">Limit tab history</span>
+                </label>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <span class="ml-1" :class="[theme.text]">Protect window name</span>
+                </label>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <span class="ml-1" :class="[theme.text]">Spoof Audio Context</span>
+                </label>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <span class="ml-1" :class="[theme.text]">Spoof Client Rects</span>
+                </label>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <span class="ml-1" :class="[theme.text]">Protect keyboard fingerprint</span>
+                </label>
+              </div>
+              <div v-show="settings.options.protectKBFingerprint.enabled" class="flex items-center mb-1 pl-6">
+                <input class="block w-2/5 form-input" placeholder="Delay (ms)" />
+              </div>
+              <div class="flex items-center mb-2">
+                <label class="w-full mt-2">
+                  <span :class="[theme.text]">Screen Size</span>
+                  <select class="form-select mt-1 block w-full">
+                    <option></option>
+                  </select>
+                </label>
+              </div>
+              <div class="flex items-center mb-2">
+                <label class="w-full mt-2">
+                  <span :class="[theme.text]">Timezone</span>
+                  <select class="form-select mt-1 block w-full">
+                    <option></option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div v-else-if="isSelected('options', 'standard')">
+              <div class="flex items-center mt-2 mb-1">
+                <div class="flex-grow">
+                  <label class="cursor-pointer">
+                    <input type="checkbox" class="text-primary form-checkbox" />
+                    <span class="ml-1" :class="[theme.text]">Enable 1st party isolation</span>
+                  </label>
+                </div>
+                <button class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
+                  <div class="flex items-center">
+                    <feather type="repeat" size=".8em"></feather>
+                    <span class="ml-1 text-xs">reset</span>
+                  </div>
+                </button>
+              </div>
+              <div class="flex items-center mb-1">
+                <div class="flex-grow">
+                  <label class="cursor-pointer">
+                    <input type="checkbox" class="text-primary form-checkbox" />
+                    <span class="ml-1" :class="[theme.text]">Enable resist fingerprinting</span>
+                  </label>
+                </div>
+                <button class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
+                  <div class="flex items-center">
+                    <feather type="repeat" size=".8em"></feather>
+                    <span class="ml-1 text-xs">reset</span>
+                  </div>
+                </button>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <span class="ml-1" :class="[theme.text]">Disable WebRTC</span>
+                </label>
+              </div>
+              <div class="flex items-center pl-6 mb-2">
+                <label class="w-full mt-2">
+                  <span :class="[theme.text]">WebRTC Policy</span>
+                  <select class="form-select mt-1 block w-full">
+                    <option></option>
+                  </select>
+                </label>
+              </div>
+              <div class="flex items-center mb-2">
+                <label class="w-full mt-2">
+                  <span :class="[theme.text]">Tracking protection mode</span>
+                  <select class="form-select mt-1 block w-full">
+                    <option></option>
+                  </select>
+                </label>
+              </div>
+              <div class="flex items-center mb-2">
+                <label class="w-full mt-2">
+                  <span :class="[theme.text]">Websockets</span>
+                  <select class="form-select mt-1 block w-full">
+                    <option></option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div v-else-if="isSelected('options', 'cookie')">
+              <div class="flex items-center mb-2">
+                <label class="w-full mt-2">
+                  <span :class="[theme.text]">Policy</span>
+                  <select class="form-select mt-1 block w-full">
+                    <option value="allow_all">Allow all</option>
+                    <option value="allow_visited">Allow visited</option>
+                    <option value="reject_all">Reject all</option>
+                    <option value="reject_third_party">Reject third party</option>
+                    <option value="reject_trackers">Reject trackers</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div v-else-if="isSelected('tab', 'whitelist')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Whitelist</div>
         <div class="flex items-center mb-1">
