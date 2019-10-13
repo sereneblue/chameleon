@@ -1,7 +1,7 @@
 <template>
   <div class="app h-screen flex" :class="[theme.bg]">
     <div class="text-xs bg-primary flex-none flex-col text-center">
-      <div @click="setSelected('tab', 'home')" class="tab" :class="activeTab('home')">
+      <div @click="setSelected('tab', 'main')" class="tab" :class="activeTab('main')">
         <feather type="home" size="1.5em"></feather>
       </div>
       <div @click="setSelected('tab', 'profile')" class="tab" :class="activeTab('profile')">
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="flex-grow flex-col justify-around">
-      <div v-if="isSelected('tab', 'home')">
+      <div v-if="isSelected('tab', 'main')">
         <div class="text-center mt-16">
           <div class="my-6 h-24">
             <div class="inline-block cursor-pointer" @click="toggleChameleon">
@@ -199,7 +199,9 @@
           <div class="mb-6">
             is whitelisted
           </div>
-          <button @click="openWhitelist" class="bg-primary font-semibold text-light py-2 px-4 border border-primary hover:bg-primary-soft rounded">Open in whitelist</button>
+          <button @click="openOptionsPage('whitelist')" class="bg-primary font-semibold text-light py-2 px-4 border border-primary hover:bg-primary-soft rounded">
+            Open in whitelist
+          </button>
         </div>
       </div>
     </div>
@@ -212,15 +214,16 @@ import { Component } from 'vue-property-decorator';
 
 @Component
 export default class App extends Vue {
-  public currentTab: string = 'home';
+  public currentTab: string = 'main';
   public currentProfileGroup: string = '';
+  public currentOption: string = 'injection';
 
   get config(): any {
     return this['$store'].state.config;
   }
 
   get darkMode(): boolean {
-    return this['$store'].state.config.theme == 'dark';
+    return this['$store'].state.config.theme === 'dark';
   }
 
   get profiles(): any {
@@ -269,16 +272,9 @@ export default class App extends Vue {
     return false;
   }
 
-  private openOptionsPage(): void {
+  private openOptionsPage(tab: string): void {
     browser.tabs.create({
-      url: browser.runtime.getURL('/options/options.html'),
-    });
-    window.close();
-  }
-
-  private openWhitelist(): void {
-    browser.tabs.create({
-      url: browser.runtime.getURL('/options/options.html#whitelist'),
+      url: browser.runtime.getURL(`/options/options.html${'#' + tab}`),
     });
     window.close();
   }
