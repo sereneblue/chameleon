@@ -44,9 +44,11 @@ export default new Vuex.Store({
     },
     options: {
       enableScriptInjection: false,
-      kbDelay: 0,
       limitHistory: false,
-      protectKeyboardFingerprint: false,
+      protectKBFingerprint: {
+        enable: false,
+        delay: 0,
+      },
       protectWinName: false,
       screenSize: 'default',
       spoofAudioContext: false,
