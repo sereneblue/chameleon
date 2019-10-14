@@ -405,31 +405,38 @@
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Whitelist</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input type="checkbox" class="text-primary form-checkbox" />
+            <input @change="setOption($event)" :checked="settings.whitelist.enabled" name="whitelist.enabled" type="checkbox" class="text-primary form-checkbox" />
             <span class="ml-1" :class="[theme.text]">Enable whitelist (requires script injection)</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input type="checkbox" class="text-primary form-checkbox" />
+            <input
+              @change="setOption($event)"
+              :checked="settings.whitelist.enabledContextMenu"
+              name="whitelist.enabledContextMenu"
+              type="checkbox"
+              class="text-primary form-checkbox"
+            />
             <span class="ml-1" :class="[theme.text]">Add context menu item to open current tab domain in whitelist</span>
           </label>
         </div>
         <div class="flex items-center mb-2">
           <label class="w-full mt-4">
             <span :class="[theme.text]">Default Profile</span>
-            <select class="form-select mt-1 block w-full">
+            <select @change="setOption($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
               <option value="none">Real Profile</option>
             </select>
           </label>
         </div>
-        <div class="text-center mt-6 py-2" :class="[theme.text]">
-          <feather class="text-primary mb-2" type="check-circle" size="4em"></feather>
-          <div class="max-w-xs mx-auto truncate">
-            example.com
+        <div v-show="currentPage.domain" class="text-center mt-6 py-2" :class="[theme.text]">
+          <feather v-if="currentPage.whitelisted" class="text-primary mb-2" type="check-circle" size="4em"></feather>
+          <feather v-else class="text-primary mb-2" type="alert-circle" size="4em"></feather>
+          <div class="max-w-xs text-lg mx-auto truncate">
+            {{ currentPage.domain }}
           </div>
-          <div class="mb-6">
-            is whitelisted
+          <div class="mb-6 text-lg">
+            {{ currentPage.whitelisted ? 'is whitelisted' : 'is not whitelisted' }}
           </div>
           <button @click="openOptionsPage('whitelist')" class="bg-primary font-semibold text-light py-2 px-4 border border-primary hover:bg-primary-soft rounded">
             Open in whitelist
@@ -443,12 +450,22 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import util from '../store/util';
 
 @Component
 export default class App extends Vue {
   public currentTab: string = 'main';
   public currentProfileGroup: string = '';
   public currentOption: string = 'injection';
+  public currentPage = {
+    domain: '',
+    whitelisted: false,
+    rule: {
+      id: '',
+      idx: 0,
+      profile: '',
+    },
+  };
 
   get darkMode(): boolean {
     return this.settings.config.theme === 'dark';
@@ -482,7 +499,7 @@ export default class App extends Vue {
     return browser.runtime.getManifest().version;
   }
 
-  private activeTab(tab: string): string[] {
+  activeTab(tab: string): string[] {
     if (this.currentTab === tab) {
       return [this.theme.bg, 'active'];
     }
@@ -490,11 +507,33 @@ export default class App extends Vue {
     return ['hover:bg-primary-soft'];
   }
 
-  private excludeProfile(profile: string): void {
+  created(): void {
+    // this.loadSettings();
+    // this.localize();
+    this.getCurrentPage();
+  }
+
+  async getCurrentPage(): Promise<void> {
+    const currentTab = await browser.tabs.query({ active: true, currentWindow: true });
+
+    let l = document.createElement('a');
+    if (['http:', 'https:'].includes(l.protocol)) {
+      l.href = currentTab[0].url;
+      this.currentPage.domain = l.host;
+
+      let rule = util.findWhitelistRule(this.settings.whitelist.rules, l.host, l.href);
+      if (rule !== null) {
+        this.currentPage.whitelisted = true;
+        this.currentPage.rule = rule;
+      }
+    }
+  }
+
+  excludeProfile(profile: string): void {
     this['$store'].dispatch('excludeProfile', profile);
   }
 
-  private isSelected(type: string, value: string): boolean {
+  isSelected(type: string, value: string): boolean {
     if (type === 'options') {
       return this.currentOption === value;
     } else if (type === 'os') {
@@ -508,14 +547,35 @@ export default class App extends Vue {
     return false;
   }
 
-  private openOptionsPage(tab: string): void {
+  openOptionsPage(tab: string): void {
+    let params: string = '';
+
+    if (tab === 'whitelist') {
+      if (this.currentPage.whitelisted) {
+        params = `?id=${this.currentPage.rule.id}&index=${this.currentPage.rule.idx}`;
+      } else {
+        params = `?url=${this.currentPage.domain}`;
+      }
+    }
+
     browser.tabs.create({
-      url: browser.runtime.getURL(`/options/options.html${'#' + tab}`),
+      url: browser.runtime.getURL(`/options/options.html${'#' + tab + params}`),
     });
     window.close();
   }
 
-  private setSelected(type: string, value: string): void {
+  setOption(evt: any) {
+    let v = evt.target.value;
+
+    this['$store'].dispatch('changeSetting', [
+      {
+        name: evt.target.name,
+        value: v === 'on' ? true : v === 'off' ? false : evt.target.value,
+      },
+    ]);
+  }
+
+  setSelected(type: string, value: string): void {
     if (type === 'options') {
       this.currentOption = value;
     } else if (type === 'os') {
@@ -527,15 +587,15 @@ export default class App extends Vue {
     }
   }
 
-  private toggleChameleon(): void {
+  toggleChameleon(): void {
     this['$store'].dispatch('toggleChameleon', !this.settings.config.enabled);
   }
 
-  private toggleNotifications(): void {
+  toggleNotifications(): void {
     this['$store'].dispatch('toggleNotifications');
   }
 
-  private toggleTheme(): void {
+  toggleTheme(): void {
     this['$store'].dispatch('toggleTheme');
   }
 }
