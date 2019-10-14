@@ -435,8 +435,12 @@
           <div class="max-w-xs text-lg mx-auto truncate">
             {{ currentPage.domain }}
           </div>
-          <div class="mb-6 text-lg">
+          <div class="mb-2 text-lg">
             {{ currentPage.whitelisted ? 'is whitelisted' : 'is not whitelisted' }}
+          </div>
+          <div class="mb-6 text-lg">
+            <div class="font-semibold">Profile:</div>
+            {{ getWhitelistProfile(currentPage.rule.profile) }}
           </div>
           <button @click="openOptionsPage('whitelist')" class="bg-primary font-semibold text-light py-2 px-4 border border-primary hover:bg-primary-soft rounded">
             Open in whitelist
@@ -527,6 +531,12 @@ export default class App extends Vue {
         this.currentPage.rule = rule;
       }
     }
+  }
+
+  getWhitelistProfile(profile: string): string {
+    let p = this.profiles.find(p => p.id === profile);
+
+    return p ? p.name : profile === 'default' ? 'Default Whitelist Profile' : 'Real Profile';
   }
 
   excludeProfile(profile: string): void {
