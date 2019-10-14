@@ -16,10 +16,13 @@ export default new Vuex.Store({
     headers: {
       blockEtag: false,
       disableAuth: false,
-      disableRef: false,
       enableDNT: false,
-      refererXorigin: 0,
-      refererTrimming: 0,
+      referer: {
+        disabled: false,
+        spoofSource: false,
+        xorigin: 0,
+        trimming: 0,
+      },
       spoofAcceptLang: {
         enabled: false,
         lang: '',
@@ -30,7 +33,6 @@ export default new Vuex.Store({
         rangeFrom: '',
         rangeTo: '',
       },
-      spoofSourceRef: false,
       upgradeInsecureRequests: false,
     },
     ipRules: [],
