@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="text-2xl" :class="[theme.text]">Chameleon is {{ settings.config.enabled ? 'enabled' : 'disabled' }}</div>
-          <div class="text-lg mb-6" :class="[theme.text]">v0.20.0</div>
+          <div class="text-lg mb-6" :class="[theme.text]">v{{ version }}</div>
           <div class="flex justify-center text-sm">
             <button @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg, theme.text]">
               <div class="flex items-center px-2 py-1">
@@ -476,6 +476,10 @@ export default class App extends Vue {
       fg: 'bg-light-fg',
       text: 'text-dark',
     };
+  }
+
+  get version(): string {
+    return browser.runtime.getManifest().version;
   }
 
   private activeTab(tab: string): string[] {
