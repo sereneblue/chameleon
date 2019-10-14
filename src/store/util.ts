@@ -26,7 +26,7 @@ export default {
               var l = document.createElement('a');
               l.href = details.pageUrl;
 
-              if (['http', 'https'].includes(l.protocol)) {
+              if (['http:', 'https:'].includes(l.protocol)) {
                 let rule = this.findWhitelistRule(rules, l.host, l.href);
 
                 if (rule !== null) {
