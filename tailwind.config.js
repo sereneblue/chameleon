@@ -52,6 +52,9 @@ module.exports = {
         'light-fg': '#e5e4e4',
         'light-fg-alt': '#CECDCD',
       },
+      spacing: {
+        '80': '20rem',
+      },
     },
   },
   variants: {},
