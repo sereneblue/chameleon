@@ -11,15 +11,15 @@ const config = {
   context: __dirname + '/src',
   entry: {
     background: './background.ts',
-    'popup/popup': './popup/popup.js',
-    'options/options': './options/options.js',
+    'popup/popup': './popup/popup.ts',
+    'options/options': './options/options.ts',
   },
   output: {
     path: __dirname + '/dist',
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.js', '.ts', '.vue'],
   },
   module: {
     rules: [
