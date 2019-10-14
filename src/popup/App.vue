@@ -171,6 +171,82 @@
           </div>
         </div>
       </div>
+      <div v-else-if="isSelected('tab', 'headers')" class="m-4 text-md">
+        <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Headers</div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
+            <input type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Disable Authorization</span>
+          </label>
+        </div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
+            <input type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Enable DNT (Do Not Track)</span>
+          </label>
+        </div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
+            <input type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Prevent Etag tracking</span>
+          </label>
+        </div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
+            <input type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Spoof X-Forwarded-For/Via IP</span>
+          </label>
+        </div>
+        <div v-show="!settings.headers.spoofIP.enabled" class="flex flex-col mb-1">
+          <label class="ml-6">
+            <select class="form-select mt-1 w-full">
+              <option>Random IP</option>
+              <option>Custom IP</option>
+            </select>
+          </label>
+          <div v-show="settings.headers.spoofIP.option" class="flex ml-6 mt-2">
+            <input class="form-input flex-grow w-2/5 mr-2" placeholder="Range From" />
+            <input class="form-input flex-grow w-2/5" placeholder="Range To" />
+          </div>
+        </div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
+            <input type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Upgrade Insecure Requests</span>
+          </label>
+        </div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
+            <input type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Disable Referer</span>
+          </label>
+        </div>
+        <div v-show="!settings.headers.referer.disabled">
+          <div class="flex items-center mb-1">
+            <label class="cursor-pointer">
+              <input type="checkbox" class="text-primary form-checkbox" />
+              <span class="ml-1" :class="[theme.text]">Spoof Source Referer</span>
+            </label>
+          </div>
+          <div class="text-sm mt-2" :class="[darkMode ? 'text-red-400' : 'text-red-800']">Don't modify about:config settings for the options below.</div>
+          <div class="flex items-center mb-1">
+            <label class="w-full mt-2">
+              <span :class="[theme.text]">Referer X Origin Policy</span>
+              <select class="form-select mt-1 block w-full">
+                <option></option>
+              </select>
+            </label>
+          </div>
+          <div class="flex items-center mb-1">
+            <label class="w-full mt-2">
+              <span :class="[theme.text]">Referer Trimming Policy</span>
+              <select class="form-select mt-1 block w-full">
+                <option></option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
       <div v-else-if="isSelected('tab', 'options')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Options</div>
         <div class="w-full mb-4">
