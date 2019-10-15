@@ -110,17 +110,17 @@
         <div class="flex items-center mb-2">
           <label class="w-full mt-4">
             <span :class="[theme.text]">Change periodically</span>
-            <select class="form-select mt-1 block w-full">
-              <option value="0"></option>
-              <option value="-1"></option>
-              <option value="1"></option>
-              <option value="5"></option>
-              <option value="10"></option>
-              <option value="20"></option>
-              <option value="30"></option>
-              <option value="40"></option>
-              <option value="50"></option>
-              <option value="60"></option>
+            <select @change="setOption($event)" :value="settings.profile.interval.option" name="profile.interval.option" class="form-select mt-1 block w-full">
+              <option value="0">No</option>
+              <option value="-1">Custom interval</option>
+              <option value="1">Every minute</option>
+              <option value="5">Every 5 minutes</option>
+              <option value="10">Every 10 minutes</option>
+              <option value="20">Every 20 minutes</option>
+              <option value="30">Every 30 minutes</option>
+              <option value="40">Every 40 minutes</option>
+              <option value="50">Every 50 minutes</option>
+              <option value="60">Every 60 minutes</option>
             </select>
           </label>
         </div>
