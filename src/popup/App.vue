@@ -54,11 +54,7 @@
             <div class="text-lg" :class="[theme.text]">Android &middot; Firefox 77</div>
             <div class="text-lg" :class="[theme.text]">1366x768</div>
             <div class="text-lg" :class="[theme.text]">Europe/Berlin</div>
-            <button
-              v-show="['random', 'randomDesktop', 'randomMobile'].includes(settings.profile.selected)"
-              class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1"
-              :class="[theme.fg, theme.text]"
-            >
+            <button v-show="!/none|\d/.test(settings.profile.selected)" class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
               <div class="flex items-center">
                 <feather type="repeat" size=".8em"></feather>
                 <span class="ml-1 text-xs">change</span>
