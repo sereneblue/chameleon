@@ -49,7 +49,7 @@
           </div>
         </div>
         <div>
-          <div class="text-center px-4 py-8">
+          <div v-if="settings.profile.selected != 'none'" class="text-center px-4 py-8">
             <div class="text-xs uppercase opacity-75 tracking-widest" :class="[theme.text]">Current Profile</div>
             <div class="text-lg" :class="[theme.text]">Android &middot; Firefox 77</div>
             <div class="text-lg" :class="[theme.text]">1366x768</div>
@@ -426,7 +426,7 @@
             <span :class="[theme.text]">Default Profile</span>
             <select @change="setOption($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
               <option value="default">Default Whitelist Profile</option>
-              <option value="real">Real Profile</option>
+              <option value="none">Real Profile</option>
               <option v-for="p in profileList" :value="p.id">{{ p.name }}</option>
             </select>
           </label>
