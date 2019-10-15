@@ -604,7 +604,7 @@ export default class App extends Vue {
   }
 
   excludeProfile(profile: string): void {
-    if (!/[0-9]/.test(profile)) {
+    if (!/\d/.test(profile)) {
       this['$store'].dispatch('excludeProfile', this.profileListing.map(p => p.id));
     } else {
       this['$store'].dispatch('excludeProfile', profile);
@@ -614,7 +614,7 @@ export default class App extends Vue {
   isExcluded(profileId: string): boolean {
     if (!profileId) return false;
 
-    if (!/[0-9]/.test(profileId)) {
+    if (!/\d/.test(profileId)) {
       return this.profileListing.every(p => p.excluded);
     }
   }
