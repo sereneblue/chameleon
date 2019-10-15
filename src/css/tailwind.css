@@ -28,12 +28,20 @@
   @apply bg-primary text-light;
 }
 
-.group.active:hover {
-  @apply bg-primary text-light;
-}
-
 .group-options {
   @apply flex flex-1 justify-center cursor-pointer;
+}
+
+.group-options.bg-dark-fg:hover {
+  @apply bg-dark-fg-alt;
+}
+
+.group-options.bg-light-fg:hover {
+  @apply bg-light-fg-alt;
+}
+
+.group.active:hover {
+  @apply bg-primary text-light;
 }
 
 .profile-item {
