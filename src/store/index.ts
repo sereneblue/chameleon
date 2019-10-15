@@ -13,6 +13,7 @@ export default new Vuex.Store({
       notificationsEnabled: false,
       theme: 'light',
     },
+    excluded: [],
     headers: {
       blockEtag: false,
       disableAuth: false,
@@ -61,7 +62,7 @@ export default new Vuex.Store({
     whitelist: {
       enabled: false,
       enabledContextMenu: false,
-      defaultProfile: 'none',
+      defaultProfile: 'default',
       rules: [],
     },
   },

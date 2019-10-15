@@ -13,6 +13,31 @@ export const changeSetting = ({ commit, state }, payload) => {
   }
 };
 
+export const excludeProfile = ({ commit, state }, payload) => {
+  if (typeof payload === 'string') {
+    let profileIndex: number = state.excluded.indexOf(payload);
+    if (profileIndex > -1) {
+      state.excluded.splice(profileIndex, 1);
+    } else {
+      state.excluded.push(payload);
+    }
+  } else {
+    // check if every profile is in excluded list
+    let indexes = payload.map(p => state.excluded.indexOf(p));
+    indexes.sort((a, b) => b - a);
+
+    for (let i = 0; i < indexes.length; i++) {
+      if (indexes[i] > -1) state.excluded.splice(indexes[i], 1);
+    }
+
+    if (indexes.includes(-1)) {
+      state.excluded = state.excluded.concat(payload);
+    }
+  }
+
+  commit(mtypes.UPDATE_EXCLUSIONS, state.excluded);
+};
+
 export const toggleChameleon = ({ commit }, payload) => {
   commit(mtypes.TOGGLE_CHAMELEON, payload);
   util.enableChameleon(payload);
