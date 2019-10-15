@@ -50,11 +50,15 @@
         </div>
         <div>
           <div class="text-center px-4 py-8">
-            <div class="text-xs uppercase tracking-widest" :class="[theme.text]">Current Profile</div>
+            <div class="text-xs uppercase opacity-75 tracking-widest" :class="[theme.text]">Current Profile</div>
             <div class="text-lg" :class="[theme.text]">Android &middot; Firefox 77</div>
             <div class="text-lg" :class="[theme.text]">1366x768</div>
             <div class="text-lg" :class="[theme.text]">Europe/Berlin</div>
-            <button class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
+            <button
+              v-show="['random', 'randomDesktop', 'randomMobile'].includes(settings.profile.selected)"
+              class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1"
+              :class="[theme.fg, theme.text]"
+            >
               <div class="flex items-center">
                 <feather type="repeat" size=".8em"></feather>
                 <span class="ml-1 text-xs">change</span>
@@ -139,32 +143,32 @@
             <li @click="setSelected('os', 'linux')" :class="[theme.fg, isSelected('os', 'linux') ? 'active' : '']" class="group cursor-pointer">
               Linux
             </li>
-            <li @click="setSelected('os', 'iOS')" :class="[theme.fg, isSelected('os', 'iOS') ? 'active' : '']" class="group cursor-pointer">
+            <li @click="setSelected('os', 'ios')" :class="[theme.fg, isSelected('os', 'ios') ? 'active' : '']" class="group cursor-pointer">
               iOS
             </li>
             <li @click="setSelected('os', 'android')" :class="[theme.fg, isSelected('os', 'android') ? 'active' : '']" class="group rounded-r-sm cursor-pointer">
               Android
             </li>
           </ul>
-          <div v-show="currentProfileGroup" class="mt-2 rounded-sm" :class="[theme.fg, settings.profile.interval.option == 0 ? 'h-72' : 'h-64']">
+          <div v-show="currentProfileGroup" class="mt-2 rounded-sm" :class="[theme.fg, settings.profile.interval.option != -1 ? 'h-80' : 'h-64']">
             <perfect-scrollbar class="pl-3 pr-3">
               <div class="profile-item" :class="[theme.fg]">
-                <label class="flex items-center cursor-pointer">
-                  <input @click="setSelected('profile', currentProfileGroup)" type="radio" class="form-radio" :checked="isSelected('profile', currentProfileGroup)" />
-                  <span class="ml-2">Random {{ currentProfileGroup }} Browsers</span>
+                <label :class="{ 'opacity-50': isExcluded(currentProfileGroup) }" class="flex items-center cursor-pointer">
+                  <input @click="setSelected('profile', currentProfileGroup)" :checked="isSelected('profile', currentProfileGroup)" type="radio" class="form-radio" />
+                  <span class="ml-2">Random {{ displayOS }} Browsers</span>
                 </label>
                 <div class="flex items-center">
                   Exclude
-                  <input @click="excludeProfile(currentProfileGroup)" type="checkbox" class="ml-2 text-primary form-checkbox" />
+                  <input @click="excludeProfile(currentProfileGroup)" :checked="isExcluded(currentProfileGroup)" type="checkbox" class="ml-2 text-primary form-checkbox" />
                 </div>
               </div>
-              <div v-for="p in profiles" class="profile-item" :class="[theme.fg]">
-                <label class="flex items-center cursor-pointer">
-                  <input @click="setSelected('profile', p.value)" type="radio" class="form-radio" :checked="isSelected('profile', p.value)" />
+              <div v-for="p in profileListing" class="profile-item" :class="[theme.fg]">
+                <label class="flex items-center cursor-pointer" :class="{ 'opacity-50': p.excluded }">
+                  <input @click="setSelected('profile', p.id)" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
                   <span class="ml-2">{{ p.name }}</span>
                 </label>
                 <div class="flex items-center">
-                  <input @click="excludeProfile(p.value)" type="checkbox" class="ml-2 text-primary form-checkbox" />
+                  <input @click="excludeProfile(p.id)" :checked="p.excluded" type="checkbox" class="ml-2 text-primary form-checkbox" />
                 </div>
               </div>
             </perfect-scrollbar>
@@ -425,7 +429,9 @@
           <label class="w-full mt-4">
             <span :class="[theme.text]">Default Profile</span>
             <select @change="setOption($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
-              <option value="none">Real Profile</option>
+              <option value="default">Default Whitelist Profile</option>
+              <option value="real">Real Profile</option>
+              <option v-for="p in profileList" :value="p.id">{{ p.name }}</option>
             </select>
           </label>
         </div>
@@ -455,6 +461,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import util from '../store/util';
+import * as prof from '../lib/profiles';
 
 @Component
 export default class App extends Vue {
@@ -470,12 +477,41 @@ export default class App extends Vue {
       profile: '',
     },
   };
+  public profiles: prof.ProfileListItem[];
 
   get darkMode(): boolean {
     return this.settings.config.theme === 'dark';
   }
 
-  get profiles(): any {
+  get displayOS(): string {
+    if (this.currentProfileGroup === 'windows') {
+      return 'Windows';
+    } else if (this.currentProfileGroup === 'macOS') {
+      return 'macOS';
+    } else if (this.currentProfileGroup === 'linux') {
+      return 'Linux';
+    } else if (this.currentProfileGroup === 'ios') {
+      return 'iOS';
+    } else if (this.currentProfileGroup === 'android') {
+      return 'Android';
+    }
+  }
+
+  get profileList(): prof.ProfileListItem[] {
+    return [].concat.apply([], Object.values(this.profiles));
+  }
+
+  get profileListing(): any {
+    if (this.currentProfileGroup) {
+      let profiles = this.profiles[this.currentProfileGroup];
+
+      for (let i = 0; i < profiles.length; i++) {
+        profiles[i].excluded = this.settings.excluded.includes(profiles[i].id);
+      }
+
+      return profiles;
+    }
+
     return [];
   }
 
@@ -515,14 +551,40 @@ export default class App extends Vue {
     // this.loadSettings();
     // this.localize();
     this.getCurrentPage();
+    this.profiles = new prof.Generator().getAllProfiles();
+
+    if (!/random|none/.test(this.settings.profile.selected)) {
+      let os = this.settings.profile.selected.match(/[a-z]+/)[0];
+
+      switch (os) {
+        case 'win':
+          this.currentProfileGroup = 'windows';
+          break;
+        case 'mac':
+          this.currentProfileGroup = 'macOS';
+          break;
+        case 'lin':
+          this.currentProfileGroup = 'linux';
+          break;
+        case 'ios':
+          this.currentProfileGroup = 'iOS';
+          break;
+        case 'android':
+          this.currentProfileGroup = 'android';
+          break;
+        default:
+          break;
+      }
+    }
   }
 
   async getCurrentPage(): Promise<void> {
     const currentTab = await browser.tabs.query({ active: true, currentWindow: true });
 
     let l = document.createElement('a');
+    l.href = currentTab[0].url;
+
     if (['http:', 'https:'].includes(l.protocol)) {
-      l.href = currentTab[0].url;
       this.currentPage.domain = l.host;
 
       let rule = util.findWhitelistRule(this.settings.whitelist.rules, l.host, l.href);
@@ -530,17 +592,31 @@ export default class App extends Vue {
         this.currentPage.whitelisted = true;
         this.currentPage.rule = rule;
       }
+    } else {
+      this.currentPage.domain = '';
     }
   }
 
   getWhitelistProfile(profile: string): string {
-    let p = this.profiles.find(p => p.id === profile);
+    let p = this.profileList.find(p => p.id === profile);
 
     return p ? p.name : profile === 'default' ? 'Default Whitelist Profile' : 'Real Profile';
   }
 
   excludeProfile(profile: string): void {
-    this['$store'].dispatch('excludeProfile', profile);
+    if (!/[0-9]/.test(profile)) {
+      this['$store'].dispatch('excludeProfile', this.profileListing.map(p => p.id));
+    } else {
+      this['$store'].dispatch('excludeProfile', profile);
+    }
+  }
+
+  isExcluded(profileId: string): boolean {
+    if (!profileId) return false;
+
+    if (!/[0-9]/.test(profileId)) {
+      return this.profileListing.every(p => p.excluded);
+    }
   }
 
   isSelected(type: string, value: string): boolean {
