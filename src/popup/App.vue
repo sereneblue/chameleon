@@ -147,7 +147,7 @@
             </li>
           </ul>
           <div v-show="currentProfileGroup" class="mt-2 rounded-sm" :class="[theme.fg, settings.profile.interval.option != -1 ? 'h-80' : 'h-64']">
-            <perfect-scrollbar class="pl-3 pr-3">
+            <perfect-scrollbar ref="scrollView" class="pl-3 pr-3">
               <div class="profile-item" :class="[theme.fg]">
                 <label :class="{ 'opacity-50': isExcluded(currentProfileGroup) }" class="flex items-center cursor-pointer">
                   <input @click="setSelected('profile', currentProfileGroup)" :checked="isSelected('profile', currentProfileGroup)" type="radio" class="form-radio" />
@@ -662,6 +662,7 @@ export default class App extends Vue {
       this.currentOption = value;
     } else if (type === 'os') {
       this.currentProfileGroup = this.currentProfileGroup === value ? '' : value;
+      (this.$refs.scrollView as any).$el.scrollTop = 0;
     } else if (type === 'profile') {
       this['$store'].dispatch('changeProfile', value);
     } else if (type === 'tab') {
