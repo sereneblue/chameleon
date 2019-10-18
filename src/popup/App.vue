@@ -31,21 +31,21 @@
           </div>
           <div class="text-2xl" :class="[theme.text]">Chameleon is {{ settings.config.enabled ? 'enabled' : 'disabled' }}</div>
           <div class="text-lg mb-6" :class="[theme.text]">v{{ version }}</div>
-          <div class="flex justify-center text-sm">
-            <button @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg, theme.text]">
-              <div class="flex items-center px-2 py-1">
+          <div class="flex justify-center text-md">
+            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg, theme.text]">
+              <div class="flex items-center px-2 py-2">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
                 <feather v-else type="sun" size="1.5em"></feather>
                 <span class="ml-1">{{ darkMode ? 'Dark' : 'Light' }}</span>
               </div>
-            </button>
-            <button @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[theme.fg, theme.text]">
-              <div class="flex items-center px-2 py-1 ">
+            </div>
+            <div @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[theme.fg, theme.text]">
+              <div class="flex items-center px-2 py-2">
                 <feather v-if="settings.config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
-                <span class="ml-1">Notifications</span>
+                <span class="ml-1">Notifications {{ settings.config.notificationsEnabled ? 'On' : 'Off' }}</span>
               </div>
-            </button>
+            </div>
           </div>
         </div>
         <div>
