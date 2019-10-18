@@ -39,6 +39,7 @@ export default new Vuex.Store({
     ipRules: [],
     profile: {
       selected: 'none',
+      current: '',
       interval: {
         option: 0,
         min: 1,
@@ -46,17 +47,23 @@ export default new Vuex.Store({
       },
     },
     options: {
+      cookiePolicy: 'allow_all',
+      disableWebRTC: false,
       enableScriptInjection: false,
+      firstPartyIsolation: false,
       limitHistory: false,
       protectKBFingerprint: {
-        enable: false,
-        delay: 0,
+        enabled: false,
+        delay: 1,
       },
       protectWinName: false,
+      resistFingerprinting: false,
       screenSize: 'default',
       spoofAudioContext: false,
       spoofClientRects: false,
       timeZone: 'default',
+      trackingProtectionMode: 'always',
+      webRTCPolicy: 'default',
       webSockets: 'allow_all',
     },
     whitelist: {
