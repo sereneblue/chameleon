@@ -110,7 +110,7 @@
         <div class="flex items-center mb-2">
           <label class="w-full mt-4">
             <span :class="[theme.text]">Change periodically</span>
-            <select @change="setOption($event)" :value="settings.profile.interval.option" name="profile.interval.option" class="form-select mt-1 block w-full">
+            <select @change="changeSetting($event)" :value="settings.profile.interval.option" name="profile.interval.option" class="form-select mt-1 block w-full">
               <option value="0">No</option>
               <option value="-1">Custom interval</option>
               <option value="1">Every minute</option>
@@ -125,8 +125,14 @@
           </label>
         </div>
         <div v-show="settings.profile.interval.option == -1" class="flex justify-around mb-2 w-full">
-          <input class="block w-2/5 form-input mr-2" placeholder="Min (minutes)" />
-          <input class="block w-2/5 form-input" placeholder="Max (minutes)" />
+          <div class="mr-1">
+            <label :class="[theme.text]" for="profile.interval.min">Min (minutes)</label>
+            <input @input="changeSetting($event)" name="profile.interval.min" :value="settings.profile.interval.min" type="number" min="1" class="block w-full form-input" />
+          </div>
+          <div class="ml-1">
+            <label :class="[theme.text]" for="profile.interval.min">Max (minutes)</label>
+            <input @input="changeSetting($event)" name="profile.interval.max" :value="settings.profile.interval.max" type="number" min="1" class="block w-full form-input" />
+          </div>
         </div>
         <div class="mt-6" :class="[theme.text]">
           <ul class="flex text-center w-full">
@@ -175,56 +181,92 @@
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Headers</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input type="checkbox" class="text-primary form-checkbox" />
+            <input @change="changeSetting($event)" :checked="settings.headers.disableAuth" name="headers.disableAuth" type="checkbox" class="text-primary form-checkbox" />
             <span class="ml-1" :class="[theme.text]">Disable Authorization</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input type="checkbox" class="text-primary form-checkbox" />
+            <input @change="changeSetting($event)" :checked="settings.headers.enableDNT" name="headers.enableDNT" type="checkbox" class="text-primary form-checkbox" />
             <span class="ml-1" :class="[theme.text]">Enable DNT (Do Not Track)</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input type="checkbox" class="text-primary form-checkbox" />
+            <input @change="changeSetting($event)" :checked="settings.headers.blockEtag" name="headers.blockEtag" type="checkbox" class="text-primary form-checkbox" />
             <span class="ml-1" :class="[theme.text]">Prevent Etag tracking</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input type="checkbox" class="text-primary form-checkbox" />
+            <input @change="changeSetting($event)" :checked="settings.headers.spoofIP.enabled" name="headers.spoofIP.enabled" type="checkbox" class="text-primary form-checkbox" />
             <span class="ml-1" :class="[theme.text]">Spoof X-Forwarded-For/Via IP</span>
           </label>
         </div>
-        <div v-show="!settings.headers.spoofIP.enabled" class="flex flex-col mb-1">
+        <div v-show="settings.headers.spoofIP.enabled" class="flex flex-col mb-1">
           <label class="ml-6">
-            <select class="form-select mt-1 w-full">
-              <option>Random IP</option>
-              <option>Custom IP</option>
+            <select @change="changeSetting($event)" :value="settings.headers.spoofIP.option" name="headers.spoofIP.option" class="form-select mt-1 w-full">
+              <option value="0">Random IP</option>
+              <option value="1">Custom IP</option>
             </select>
           </label>
-          <div v-show="settings.headers.spoofIP.option" class="flex ml-6 mt-2">
-            <input class="form-input flex-grow w-2/5 mr-2" placeholder="Range From" />
-            <input class="form-input flex-grow w-2/5" placeholder="Range To" />
+          <div v-show="settings.headers.spoofIP.option == 1" class="flex w-full ml-6 mt-2">
+            <div class="mr-1 w-2/5">
+              <label :class="[theme.text]" for="headers.spoofIP.rangeFrom">Range From</label>
+              <input
+                @input="setIPRange($event)"
+                v-model="tmp.rangeFrom"
+                name="headers.spoofIP.rangeFrom"
+                class="block w-full form-input"
+                :class="[errors.rangeFrom ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+              />
+            </div>
+            <div class="ml-1 w-2/5">
+              <label :class="[theme.text]" for="headers.spoofIP.rangeTo">Range To</label>
+              <input
+                @input="setIPRange($event)"
+                v-model="tmp.rangeTo"
+                name="headers.spoofIP.rangeTo"
+                class="block w-full form-input"
+                :class="[errors.rangeTo ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+              />
+            </div>
           </div>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input type="checkbox" class="text-primary form-checkbox" />
+            <input
+              @change="changeSetting($event)"
+              :checked="settings.headers.upgradeInsecureRequests"
+              name="headers.upgradeInsecureRequests"
+              type="checkbox"
+              class="text-primary form-checkbox"
+            />
             <span class="ml-1" :class="[theme.text]">Upgrade Insecure Requests</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input type="checkbox" class="text-primary form-checkbox" />
+            <input
+              @change="changeSetting($event)"
+              :checked="settings.headers.referer.disabled"
+              name="headers.referer.disabled"
+              type="checkbox"
+              class="text-primary form-checkbox"
+            />
             <span class="ml-1" :class="[theme.text]">Disable Referer</span>
           </label>
         </div>
         <div v-show="!settings.headers.referer.disabled">
           <div class="flex items-center mb-1">
             <label class="cursor-pointer">
-              <input type="checkbox" class="text-primary form-checkbox" />
+              <input
+                @change="changeSetting($event)"
+                :checked="settings.headers.referer.spoofSource"
+                name="headers.referer.spoofSource"
+                type="checkbox"
+                class="text-primary form-checkbox"
+              />
               <span class="ml-1" :class="[theme.text]">Spoof Source Referer</span>
             </label>
           </div>
@@ -232,16 +274,20 @@
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
               <span :class="[theme.text]">Referer X Origin Policy</span>
-              <select class="form-select mt-1 block w-full">
-                <option></option>
+              <select @change="changeSetting($event)" :value="settings.headers.referer.xorigin" name="headers.referer.xorigin" class="form-select mt-1 block w-full">
+                <option value="0">Always send (default)</option>
+                <option value="1">Match base domain</option>
+                <option value="2">Match host</option>
               </select>
             </label>
           </div>
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
               <span :class="[theme.text]">Referer Trimming Policy</span>
-              <select class="form-select mt-1 block w-full">
-                <option></option>
+              <select @change="changeSetting($event)" :value="settings.headers.referer.trimming" name="headers.referer.trimming" class="form-select mt-1 block w-full">
+                <option value="0">Send full URI (default)</option>
+                <option value="1">Scheme, host, port + path</option>
+                <option value="2">Scheme, host + port</option>
               </select>
             </label>
           </div>
@@ -405,14 +451,14 @@
         <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Whitelist</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input @change="setOption($event)" :checked="settings.whitelist.enabled" name="whitelist.enabled" type="checkbox" class="text-primary form-checkbox" />
+            <input @change="changeSetting($event)" :checked="settings.whitelist.enabled" name="whitelist.enabled" type="checkbox" class="text-primary form-checkbox" />
             <span class="ml-1" :class="[theme.text]">Enable whitelist (requires script injection)</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
-              @change="setOption($event)"
+              @change="changeSetting($event)"
               :checked="settings.whitelist.enabledContextMenu"
               name="whitelist.enabledContextMenu"
               type="checkbox"
@@ -424,7 +470,7 @@
         <div class="flex items-center mb-2">
           <label class="w-full mt-4">
             <span :class="[theme.text]">Default Profile</span>
-            <select @change="setOption($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
+            <select @change="changeSetting($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
               <option value="default">Default Whitelist Profile</option>
               <option value="none">Real Profile</option>
               <option v-for="p in profileList" :value="p.id">{{ p.name }}</option>
@@ -456,8 +502,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import util from '../store/util';
 import * as prof from '../lib/profiles';
+import util from '../lib/util';
 
 @Component
 export default class App extends Vue {
@@ -473,7 +519,15 @@ export default class App extends Vue {
       profile: '',
     },
   };
+  public errors = {
+    rangeFrom: false,
+    rangeTo: false,
+  };
   public profiles: prof.ProfileListItem[];
+  public tmp = {
+    rangeFrom: '',
+    rangeTo: '',
+  };
 
   get darkMode(): boolean {
     return this.settings.config.theme === 'dark';
@@ -543,6 +597,23 @@ export default class App extends Vue {
     return ['hover:bg-primary-soft'];
   }
 
+  changeSetting(evt: any): void {
+    let v: string | boolean;
+
+    if (evt.target.type === 'checkbox') {
+      v = evt.target.checked;
+    } else {
+      v = evt.target.value;
+    }
+
+    this['$store'].dispatch('changeSetting', [
+      {
+        name: evt.target.name,
+        value: v,
+      },
+    ]);
+  }
+
   created(): void {
     // this.loadSettings();
     // this.localize();
@@ -572,6 +643,9 @@ export default class App extends Vue {
           break;
       }
     }
+
+    this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;
+    this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
   }
 
   async getCurrentPage(): Promise<void> {
@@ -646,13 +720,35 @@ export default class App extends Vue {
     window.close();
   }
 
-  setOption(evt: any) {
-    let v = evt.target.value;
+  setIPRange(evt: any): void {
+    let regex = new RegExp(/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/);
+    let key: string = evt.target.name.includes('rangeFrom') ? 'rangeFrom' : 'rangeTo';
+    let compareTo: string = key === 'rangeFrom' ? 'rangeTo' : 'rangeFrom';
+
+    if (!regex.test(evt.target.value)) {
+      this.errors[key] = true;
+      return;
+    }
+
+    let valid: boolean = util.validateIPRange(this.tmp.rangeFrom, this.tmp.rangeTo);
+
+    if (valid) {
+      this.errors.rangeFrom = false;
+      this.errors.rangeTo = false;
+    } else {
+      this.errors.rangeFrom = true;
+      this.errors.rangeTo = true;
+      return;
+    }
 
     this['$store'].dispatch('changeSetting', [
       {
-        name: evt.target.name,
-        value: v === 'on' ? true : v === 'off' ? false : evt.target.value,
+        name: 'headers.spoofIP.rangeFrom',
+        value: this.tmp.rangeFrom,
+      },
+      {
+        name: 'headers.spoofIP.rangeTo',
+        value: this.tmp.rangeTo,
       },
     ]);
   }

@@ -1,5 +1,5 @@
 import * as mtypes from './mutation-types';
-import util from './util';
+import util from '../lib/util';
 
 export const changeProfile = ({ commit }, payload) => {
   commit(mtypes.CHANGE_PROFILE, payload);
