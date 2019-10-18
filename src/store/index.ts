@@ -41,8 +41,8 @@ export default new Vuex.Store({
       selected: 'none',
       interval: {
         option: 0,
-        min: 0,
-        max: 0,
+        min: 1,
+        max: 1,
       },
     },
     options: {
