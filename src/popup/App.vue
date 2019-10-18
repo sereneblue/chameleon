@@ -316,56 +316,104 @@
             <div v-if="isSelected('options', 'injection')">
               <div class="flex items-center mt-2 mb-1">
                 <label class="cursor-pointer">
-                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <input
+                    @change="changeSetting($event)"
+                    :checked="settings.options.enableScriptInjection"
+                    name="options.enableScriptInjection"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
                   <span class="ml-1" :class="[theme.text]">Enable script injection</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
-                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <input @change="changeSetting($event)" :checked="settings.options.limitHistory" name="options.limitHistory" type="checkbox" class="text-primary form-checkbox" />
                   <span class="ml-1" :class="[theme.text]">Limit tab history</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
-                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <input
+                    @change="changeSetting($event)"
+                    :checked="settings.options.protectWinName"
+                    name="options.protectWinName"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
                   <span class="ml-1" :class="[theme.text]">Protect window name</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
-                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <input
+                    @change="changeSetting($event)"
+                    :checked="settings.options.spoofAudioContext"
+                    name="options.spoofAudioContext"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
                   <span class="ml-1" :class="[theme.text]">Spoof Audio Context</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
-                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <input
+                    @change="changeSetting($event)"
+                    :checked="settings.options.spoofClientRects"
+                    name="options.spoofClientRects"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
                   <span class="ml-1" :class="[theme.text]">Spoof Client Rects</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
-                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <input
+                    @change="changeSetting($event)"
+                    :checked="settings.options.protectKBFingerprint.enabled"
+                    name="options.protectKBFingerprint.enabled"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
                   <span class="ml-1" :class="[theme.text]">Protect keyboard fingerprint</span>
                 </label>
               </div>
               <div v-show="settings.options.protectKBFingerprint.enabled" class="flex items-center mb-1 pl-6">
-                <input class="block w-2/5 form-input" placeholder="Delay (ms)" />
+                <input
+                  @input="changeSetting($event)"
+                  name="options.protectKBFingerprint.delay"
+                  :value="settings.options.protectKBFingerprint.delay"
+                  type="number"
+                  min="1"
+                  max="1000"
+                  class="block w-2/5 form-input"
+                  placeholder="Delay (ms)"
+                />
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span :class="[theme.text]">Screen Size</span>
-                  <select class="form-select mt-1 block w-full">
-                    <option></option>
+                  <select @change="changeSetting($event)" :value="settings.options.screenSize" name="options.screenSize" class="form-select mt-1 block w-full">
+                    <option value="default">Default</option>
+                    <option value="profile">Profile</option>
+                    <option value="1366x768">1366x768</option>
+                    <option value="1440x900">1440x900</option>
+                    <option value="1600x900">1600x900</option>
+                    <option value="1920x1080">1920x1080</option>
+                    <option value="2560x1440">2560x1440</option>
+                    <option value="2560x1600">2560x1600</option>
                   </select>
                 </label>
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span :class="[theme.text]">Timezone</span>
-                  <select class="form-select mt-1 block w-full">
-                    <option></option>
+                  <select @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
+                    <option value="default">Default</option>
+                    <option value="ip">IP</option>
+                    <option v-for="t in timezones" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                   </select>
                 </label>
               </div>
@@ -374,58 +422,88 @@
               <div class="flex items-center mt-2 mb-1">
                 <div class="flex-grow">
                   <label class="cursor-pointer">
-                    <input type="checkbox" class="text-primary form-checkbox" />
+                    <input
+                      @change="changeSetting($event)"
+                      :checked="settings.options.firstPartyIsolation"
+                      name="options.firstPartyIsolation"
+                      type="checkbox"
+                      class="text-primary form-checkbox"
+                    />
                     <span class="ml-1" :class="[theme.text]">Enable 1st party isolation</span>
                   </label>
                 </div>
                 <button class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
                   <div class="flex items-center">
                     <feather type="repeat" size=".8em"></feather>
-                    <span class="ml-1 text-xs">reset</span>
+                    <span class="ml-1 text-sm">reset</span>
                   </div>
                 </button>
               </div>
               <div class="flex items-center mb-1">
                 <div class="flex-grow">
                   <label class="cursor-pointer">
-                    <input type="checkbox" class="text-primary form-checkbox" />
+                    <input
+                      @change="changeSetting($event)"
+                      :checked="settings.options.resistFingerprinting"
+                      name="options.resistFingerprinting"
+                      type="checkbox"
+                      class="text-primary form-checkbox"
+                    />
                     <span class="ml-1" :class="[theme.text]">Enable resist fingerprinting</span>
                   </label>
                 </div>
                 <button class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
                   <div class="flex items-center">
                     <feather type="repeat" size=".8em"></feather>
-                    <span class="ml-1 text-xs">reset</span>
+                    <span class="ml-1 text-sm">reset</span>
                   </div>
                 </button>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
-                  <input type="checkbox" class="text-primary form-checkbox" />
+                  <input
+                    @change="changeSetting($event)"
+                    :checked="settings.options.disableWebRTC"
+                    name="options.disableWebRTC"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
                   <span class="ml-1" :class="[theme.text]">Disable WebRTC</span>
                 </label>
               </div>
-              <div class="flex items-center pl-6 mb-2">
-                <label class="w-full mt-2">
+              <div v-show="!settings.options.disableWebRTC" class="flex items-center pl-6 mb-2">
+                <label class="w-full">
                   <span :class="[theme.text]">WebRTC Policy</span>
-                  <select class="form-select mt-1 block w-full">
-                    <option></option>
+                  <select @change="changeSetting($event)" :value="settings.options.webRTCPolicy" name="options.webRTCPolicy" class="form-select mt-1 block w-full">
+                    <option value="default">Default</option>
+                    <option value="default_public_and_private_interfaces">Use Public and Private Interface</option>
+                    <option value="default_public_interface_only">Only use Public interface (best)</option>
+                    <option value="disable_non_proxied_udp">Disable non-proxified UDP</option>
                   </select>
                 </label>
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span :class="[theme.text]">Tracking protection mode</span>
-                  <select class="form-select mt-1 block w-full">
-                    <option></option>
+                  <select
+                    @change="changeSetting($event)"
+                    :value="settings.options.trackingProtectionMode"
+                    name="options.trackingProtectionMode"
+                    class="form-select mt-1 block w-full"
+                  >
+                    <option value="always">On</option>
+                    <option value="never">Off</option>
+                    <option value="private_browsing">Enabled in private browsing</option>
                   </select>
                 </label>
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span :class="[theme.text]">Websockets</span>
-                  <select class="form-select mt-1 block w-full">
-                    <option></option>
+                  <select @change="changeSetting($event)" :value="settings.options.webSockets" name="options.webSockets" class="form-select mt-1 block w-full">
+                    <option value="allow_all">Allow all</option>
+                    <option value="block_3rd_party">Block 3rd party</option>
+                    <option value="block_all">Block all</option>
                   </select>
                 </label>
               </div>
@@ -434,7 +512,7 @@
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span :class="[theme.text]">Policy</span>
-                  <select class="form-select mt-1 block w-full">
+                  <select @change="changeSetting($event)" :value="settings.options.cookiePolicy" name="options.cookiePolicy" class="form-select mt-1 block w-full">
                     <option value="allow_all">Allow all</option>
                     <option value="allow_visited">Allow visited</option>
                     <option value="reject_all">Reject all</option>
@@ -503,6 +581,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import * as prof from '../lib/profiles';
+import * as tz from '../lib/tz';
 import util from '../lib/util';
 
 @Component
@@ -524,6 +603,7 @@ export default class App extends Vue {
     rangeTo: false,
   };
   public profiles: prof.ProfileListItem[];
+  public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
     rangeFrom: '',
     rangeTo: '',
