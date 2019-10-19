@@ -127,11 +127,27 @@
         <div v-show="settings.profile.interval.option == -1" class="flex justify-around mb-2 w-full">
           <div class="mr-1">
             <label :class="[theme.text]" for="profile.interval.min">Min (minutes)</label>
-            <input @input="changeSetting($event)" name="profile.interval.min" :value="settings.profile.interval.min" type="number" min="1" class="block w-full form-input" />
+            <input
+              @input="setProfileInterval($event)"
+              v-model="tmp.intervalMin"
+              :class="[errors.intervalMin ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+              name="profile.interval.min"
+              type="number"
+              min="1"
+              class="block w-full form-input"
+            />
           </div>
           <div class="ml-1">
             <label :class="[theme.text]" for="profile.interval.min">Max (minutes)</label>
-            <input @input="changeSetting($event)" name="profile.interval.max" :value="settings.profile.interval.max" type="number" min="1" class="block w-full form-input" />
+            <input
+              @input="setProfileInterval($event)"
+              v-model="tmp.intervalMax"
+              :class="[errors.intervalMax ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+              name="profile.interval.max"
+              type="number"
+              min="1"
+              class="block w-full form-input"
+            />
           </div>
         </div>
         <div class="mt-6" :class="[theme.text]">
@@ -584,12 +600,16 @@ export default class App extends Vue {
     },
   };
   public errors = {
+    intervalMax: false,
+    intervalMin: false,
     rangeFrom: false,
     rangeTo: false,
   };
   public profiles: prof.ProfileListItem[];
   public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
+    intervalMax: '',
+    intervalMin: '',
     rangeFrom: '',
     rangeTo: '',
   };
@@ -712,6 +732,8 @@ export default class App extends Vue {
       }
     }
 
+    this.tmp.intervalMax = this.settings.profile.interval.max;
+    this.tmp.intervalMin = this.settings.profile.interval.min;
     this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;
     this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
   }
@@ -819,6 +841,38 @@ export default class App extends Vue {
       {
         name: 'headers.spoofIP.rangeTo',
         value: this.tmp.rangeTo,
+      },
+    ]);
+
+    webext.sendToBackground(this.settings);
+  }
+
+  async setProfileInterval(evt: any) {
+    let key: string = evt.target.name.includes('min') ? 'intervalMin' : 'intervalMax';
+    let compareTo: string = key === 'intervalMin' ? 'intervalMax' : 'intervalMin';
+
+    this.tmp[key] = parseInt(evt.target.value, 10);
+
+    let min: number = parseInt(this.tmp.intervalMin, 10) || 0;
+    let max: number = parseInt(this.tmp.intervalMax, 10) || 0;
+
+    if (min > 0 && max > 0 && min <= max) {
+      this.errors.intervalMin = false;
+      this.errors.intervalMax = false;
+    } else {
+      this.errors.intervalMin = true;
+      this.errors.intervalMax = true;
+      return;
+    }
+
+    await this['$store'].dispatch('changeSetting', [
+      {
+        name: 'profile.interval.min',
+        value: this.tmp.intervalMin,
+      },
+      {
+        name: 'profile.interval.max',
+        value: this.tmp.intervalMax,
       },
     ]);
 
