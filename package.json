@@ -25,6 +25,7 @@
     "vue": "^2.6.10",
     "vue-class-component": "^7.1.0",
     "vue-feather": "^1.0.0",
+    "vue-object-merge": "^0.1.7",
     "vue-property-decorator": "^8.2.2",
     "vue2-perfect-scrollbar": "^1.2.1",
     "vuex": "^3.0.1"
