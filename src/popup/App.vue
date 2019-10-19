@@ -564,7 +564,7 @@
           <div class="mb-2 text-lg">
             {{ currentPage.whitelisted ? 'is whitelisted' : 'is not whitelisted' }}
           </div>
-          <div class="mb-6 text-lg">
+          <div v-show="currentPage.whitelisted" class="mb-6 text-lg">
             <div class="font-semibold">Profile:</div>
             {{ getWhitelistProfile(currentPage.rule.profile) }}
           </div>
