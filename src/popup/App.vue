@@ -420,44 +420,28 @@
             </div>
             <div v-else-if="isSelected('options', 'standard')">
               <div class="flex items-center mt-2 mb-1">
-                <div class="flex-grow">
-                  <label class="cursor-pointer">
-                    <input
-                      @change="changeSetting($event)"
-                      :checked="settings.options.firstPartyIsolation"
-                      name="options.firstPartyIsolation"
-                      type="checkbox"
-                      class="text-primary form-checkbox"
-                    />
-                    <span class="ml-1" :class="[theme.text]">Enable 1st party isolation</span>
-                  </label>
-                </div>
-                <button class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
-                  <div class="flex items-center">
-                    <feather type="repeat" size=".8em"></feather>
-                    <span class="ml-1 text-sm">reset</span>
-                  </div>
-                </button>
+                <label class="cursor-pointer">
+                  <input
+                    @change="changeSetting($event)"
+                    :checked="settings.options.firstPartyIsolate"
+                    name="options.firstPartyIsolate"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
+                  <span class="ml-1" :class="[theme.text]">Enable 1st party isolation</span>
+                </label>
               </div>
               <div class="flex items-center mb-1">
-                <div class="flex-grow">
-                  <label class="cursor-pointer">
-                    <input
-                      @change="changeSetting($event)"
-                      :checked="settings.options.resistFingerprinting"
-                      name="options.resistFingerprinting"
-                      type="checkbox"
-                      class="text-primary form-checkbox"
-                    />
-                    <span class="ml-1" :class="[theme.text]">Enable resist fingerprinting</span>
-                  </label>
-                </div>
-                <button class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
-                  <div class="flex items-center">
-                    <feather type="repeat" size=".8em"></feather>
-                    <span class="ml-1 text-sm">reset</span>
-                  </div>
-                </button>
+                <label class="cursor-pointer">
+                  <input
+                    @change="changeSetting($event)"
+                    :checked="settings.options.resistFingerprinting"
+                    name="options.resistFingerprinting"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
+                  <span class="ml-1" :class="[theme.text]">Enable resist fingerprinting</span>
+                </label>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
