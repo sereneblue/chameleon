@@ -55,6 +55,8 @@ browser.runtime.onMessage.addListener((request: any) => {
       chameleon.saveSettings(request.data);
     }, 400);
   }
+
+  return true;
 });
 
 (async () => {
