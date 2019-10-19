@@ -145,7 +145,7 @@
             <li @click="setSelected('os', 'linux')" :class="[theme.fg, isSelected('os', 'linux') ? 'active' : '']" class="group cursor-pointer">
               Linux
             </li>
-            <li @click="setSelected('os', 'ios')" :class="[theme.fg, isSelected('os', 'ios') ? 'active' : '']" class="group cursor-pointer">
+            <li @click="setSelected('os', 'iOS')" :class="[theme.fg, isSelected('os', 'iOS') ? 'active' : '']" class="group cursor-pointer">
               iOS
             </li>
             <li @click="setSelected('os', 'android')" :class="[theme.fg, isSelected('os', 'android') ? 'active' : '']" class="group rounded-r-sm cursor-pointer">
@@ -605,7 +605,7 @@ export default class App extends Vue {
       return 'macOS';
     } else if (this.currentProfileGroup === 'linux') {
       return 'Linux';
-    } else if (this.currentProfileGroup === 'ios') {
+    } else if (this.currentProfileGroup === 'iOS') {
       return 'iOS';
     } else if (this.currentProfileGroup === 'android') {
       return 'Android';
@@ -681,8 +681,8 @@ export default class App extends Vue {
     webext.sendToBackground(this.settings);
   }
 
-  created(): void {
-    this['$store'].dispatch('initialize');
+  async created() {
+    await this['$store'].dispatch('initialize');
 
     // this.localize();
     this.getCurrentPage();
@@ -704,7 +704,7 @@ export default class App extends Vue {
         case 'ios':
           this.currentProfileGroup = 'iOS';
           break;
-        case 'android':
+        case 'and':
           this.currentProfileGroup = 'android';
           break;
         default:

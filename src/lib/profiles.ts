@@ -122,22 +122,22 @@ export class Generator {
     ],
     linux: [
       {
-        id: 'linux1',
+        id: 'lin1',
         name: 'Linux',
         browsers: ['cr', 'ff', 'esr', 'gcr'],
       },
       {
-        id: 'linux2',
+        id: 'lin2',
         name: 'Fedora',
         browsers: ['cr', 'ff', 'esr', 'gcr'],
       },
       {
-        id: 'linux3',
+        id: 'lin3',
         name: 'Ubuntu',
         browsers: ['cr', 'ff', 'esr', 'gcr'],
       },
     ],
-    ios: [
+    iOS: [
       {
         id: 'ios1',
         name: 'iOS 11',
@@ -156,22 +156,22 @@ export class Generator {
     ],
     android: [
       {
-        id: 'android1',
+        id: 'and1',
         name: 'Android 6',
         browsers: ['ff', 'gcr', 'sm'],
       },
       {
-        id: 'android2',
+        id: 'and2',
         name: 'Android 7',
         browsers: ['ff', 'gcr', 'sm'],
       },
       {
-        id: 'android3',
+        id: 'and3',
         name: 'Android 8',
         browsers: ['ff', 'gcr', 'sm'],
       },
       {
-        id: 'android3',
+        id: 'and4',
         name: 'Android 9',
         browsers: ['ff', 'gcr', 'sm'],
       },
