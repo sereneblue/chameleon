@@ -567,6 +567,7 @@ import { Component } from 'vue-property-decorator';
 import * as prof from '../lib/profiles';
 import * as tz from '../lib/tz';
 import util from '../lib/util';
+import webext from '../lib/webext';
 
 @Component
 export default class App extends Vue {
@@ -661,7 +662,7 @@ export default class App extends Vue {
     return ['hover:bg-primary-soft'];
   }
 
-  changeSetting(evt: any): void {
+  async changeSetting(evt: any) {
     let v: string | boolean;
 
     if (evt.target.type === 'checkbox') {
@@ -670,16 +671,19 @@ export default class App extends Vue {
       v = evt.target.value;
     }
 
-    this['$store'].dispatch('changeSetting', [
+    await this['$store'].dispatch('changeSetting', [
       {
         name: evt.target.name,
         value: v,
       },
     ]);
+
+    webext.sendToBackground(this.settings);
   }
 
   created(): void {
-    // this.loadSettings();
+    this['$store'].dispatch('initialize');
+
     // this.localize();
     this.getCurrentPage();
     this.profiles = new prof.Generator().getAllProfiles();
@@ -712,7 +716,7 @@ export default class App extends Vue {
     this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
   }
 
-  async getCurrentPage(): Promise<void> {
+  async getCurrentPage() {
     const currentTab = await browser.tabs.query({ active: true, currentWindow: true });
 
     let l = document.createElement('a');
@@ -737,12 +741,14 @@ export default class App extends Vue {
     return p ? p.name : profile === 'default' ? 'Default Whitelist Profile' : 'Real Profile';
   }
 
-  excludeProfile(profile: string): void {
+  async excludeProfile(profile: string) {
     if (!/\d/.test(profile)) {
-      this['$store'].dispatch('excludeProfile', this.profileListing.map(p => p.id));
+      await this['$store'].dispatch('excludeProfile', this.profileListing.map(p => p.id));
     } else {
-      this['$store'].dispatch('excludeProfile', profile);
+      await this['$store'].dispatch('excludeProfile', profile);
     }
+
+    webext.sendToBackground(this.settings);
   }
 
   isExcluded(profileId: string): boolean {
@@ -784,7 +790,7 @@ export default class App extends Vue {
     window.close();
   }
 
-  setIPRange(evt: any): void {
+  async setIPRange(evt: any) {
     let regex = new RegExp(/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/);
     let key: string = evt.target.name.includes('rangeFrom') ? 'rangeFrom' : 'rangeTo';
     let compareTo: string = key === 'rangeFrom' ? 'rangeTo' : 'rangeFrom';
@@ -805,7 +811,7 @@ export default class App extends Vue {
       return;
     }
 
-    this['$store'].dispatch('changeSetting', [
+    await this['$store'].dispatch('changeSetting', [
       {
         name: 'headers.spoofIP.rangeFrom',
         value: this.tmp.rangeFrom,
@@ -815,31 +821,37 @@ export default class App extends Vue {
         value: this.tmp.rangeTo,
       },
     ]);
+
+    webext.sendToBackground(this.settings);
   }
 
-  setSelected(type: string, value: string): void {
+  async setSelected(type: string, value: string) {
     if (type === 'options') {
       this.currentOption = value;
     } else if (type === 'os') {
       this.currentProfileGroup = this.currentProfileGroup === value ? '' : value;
       (this.$refs.scrollView as any).$el.scrollTop = 0;
     } else if (type === 'profile') {
-      this['$store'].dispatch('changeProfile', value);
+      await this['$store'].dispatch('changeProfile', value);
+      webext.sendToBackground(this.settings);
     } else if (type === 'tab') {
       this.currentTab = value;
     }
   }
 
-  toggleChameleon(): void {
-    this['$store'].dispatch('toggleChameleon', !this.settings.config.enabled);
+  async toggleChameleon() {
+    await this['$store'].dispatch('toggleChameleon', !this.settings.config.enabled);
+    webext.sendToBackground(this.settings);
   }
 
-  toggleNotifications(): void {
-    this['$store'].dispatch('toggleNotifications');
+  async toggleNotifications() {
+    await this['$store'].dispatch('toggleNotifications');
+    webext.sendToBackground(this.settings);
   }
 
-  toggleTheme(): void {
-    this['$store'].dispatch('toggleTheme');
+  async toggleTheme() {
+    await this['$store'].dispatch('toggleTheme');
+    webext.sendToBackground(this.settings);
   }
 }
 </script>
