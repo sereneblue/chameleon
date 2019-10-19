@@ -8,8 +8,19 @@ export const changeProfile = ({ commit }, payload) => {
 export const changeSetting = ({ commit, state }, payload) => {
   commit(mtypes.CHANGE_SETTING, payload);
 
-  if (payload[0].name == 'whitelist.enabledContextMenu') {
+  if (payload[0].name === 'whitelist.enabledContextMenu') {
     util.enableContextMenu(payload[0].value, state.whitelist.rules);
+  } else if (
+    [
+      'options.cookiePolicy',
+      'options.disableWebRTC',
+      'options.firstPartyIsolate',
+      'options.resistFingerprinting',
+      'options.trackingProtectionMode',
+      'options.webRTCPolicy',
+    ].includes(payload[0].name)
+  ) {
+    util.setBrowserConfig(payload[0].name, payload[0].value);
   }
 };
 

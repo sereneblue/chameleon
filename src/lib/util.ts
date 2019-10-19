@@ -30,14 +30,14 @@ let enableContextMenu = (enabled: boolean, rules: any): void => {
               let rule = this.findWhitelistRule(rules, l.host, l.href);
 
               if (rule !== null) {
-                chrome.tabs.create({
-                  url: chrome.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}&index=${rule.idx}`),
+                browser.tabs.create({
+                  url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}&index=${rule.idx}`),
                 });
                 return;
               }
 
-              chrome.tabs.create({
-                url: chrome.runtime.getURL(`/options/options.html#whitelist?domain=${l.host}`),
+              browser.tabs.create({
+                url: browser.runtime.getURL(`/options/options.html#whitelist?domain=${l.host}`),
               });
             }
           },
@@ -85,6 +85,29 @@ let ipConverter = (ip: any): number | string => {
   return (ip.num >>> 24) + '.' + ((ip.num >> 16) & 255) + '.' + ((ip.num >> 8) & 255) + '.' + (ip.num & 255);
 };
 
+let setBrowserConfig = (setting: string, value: string): void => {
+  if (setting === 'options.cookiePolicy') {
+    browser.privacy.websites.cookieConfig.set({
+      value: {
+        behavior: value,
+      },
+    });
+  } else if (['options.firstPartyIsolate', 'options.resistFingerprinting', 'options.trackingProtectionMode'].includes(setting)) {
+    let key: string = setting.split('.')[1];
+    browser.privacy.websites[key].set({
+      value: value,
+    });
+  } else if (setting === 'options.disableWebRTC') {
+    browser.privacy.network.peerConnectionEnabled.set({
+      value: !value,
+    });
+  } else if (setting === 'options.webRTCPolicy') {
+    browser.privacy.network.webRTCIPHandlingPolicy.set({
+      value: value,
+    });
+  }
+};
+
 let validateIPRange = (from: string, to: string): boolean => {
   return ipConverter({ data: from, type: 'full' }) <= ipConverter({ data: to, type: 'full' });
 };
@@ -94,5 +117,6 @@ export default {
   enableContextMenu,
   findWhitelistRule,
   ipConverter,
+  setBrowserConfig,
   validateIPRange,
 };
