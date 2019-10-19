@@ -1,5 +1,6 @@
 import * as mtypes from './mutation-types';
 import util from '../lib/util';
+import webext from '../lib/webext';
 
 export const changeProfile = ({ commit }, payload) => {
   commit(mtypes.CHANGE_PROFILE, payload);
@@ -20,7 +21,7 @@ export const changeSetting = ({ commit, state }, payload) => {
       'options.webRTCPolicy',
     ].includes(payload[0].name)
   ) {
-    util.setBrowserConfig(payload[0].name, payload[0].value);
+    webext.setBrowserConfig(payload[0].name, payload[0].value);
   }
 };
 
@@ -49,9 +50,15 @@ export const excludeProfile = ({ commit, state }, payload) => {
   commit(mtypes.UPDATE_EXCLUSIONS, state.excluded);
 };
 
+export const initialize = async ({ commit }) => {
+  let settings: any = await webext.getSettings(null);
+
+  commit(mtypes.INITIALIZE, settings);
+};
+
 export const toggleChameleon = ({ commit }, payload) => {
   commit(mtypes.TOGGLE_CHAMELEON, payload);
-  util.enableChameleon(payload);
+  webext.enableChameleon(payload);
 };
 
 export const toggleNotifications = ({ commit }, payload) => {

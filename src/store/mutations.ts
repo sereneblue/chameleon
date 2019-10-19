@@ -1,4 +1,5 @@
 import * as mtypes from './mutation-types';
+import { stateMerge } from 'vue-object-merge';
 
 export default {
   [mtypes.CHANGE_PROFILE](state, payload) {
@@ -11,6 +12,9 @@ export default {
 
       beforeLast[keys.slice(-1).pop()] = payload[i].value;
     }
+  },
+  [mtypes.INITIALIZE](state, payload) {
+    stateMerge(state, payload);
   },
   [mtypes.TOGGLE_CHAMELEON](state, payload) {
     state.config.enabled = payload;

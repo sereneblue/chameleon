@@ -1,17 +1,3 @@
-let enableChameleon = (enabled: boolean): void => {
-  browser.runtime.getPlatformInfo().then(plat => {
-    if (enabled === false && plat.os != 'android') {
-      browser.browserAction.setIcon({
-        path: '../icons/icon_disabled_48.png',
-      });
-    } else {
-      browser.browserAction.setIcon({
-        path: '../icons/icon_48.png',
-      });
-    }
-  });
-};
-
 let enableContextMenu = (enabled: boolean, rules: any): void => {
   browser.contextMenus.removeAll();
 
@@ -85,38 +71,13 @@ let ipConverter = (ip: any): number | string => {
   return (ip.num >>> 24) + '.' + ((ip.num >> 16) & 255) + '.' + ((ip.num >> 8) & 255) + '.' + (ip.num & 255);
 };
 
-let setBrowserConfig = (setting: string, value: string): void => {
-  if (setting === 'options.cookiePolicy') {
-    browser.privacy.websites.cookieConfig.set({
-      value: {
-        behavior: value,
-      },
-    });
-  } else if (['options.firstPartyIsolate', 'options.resistFingerprinting', 'options.trackingProtectionMode'].includes(setting)) {
-    let key: string = setting.split('.')[1];
-    browser.privacy.websites[key].set({
-      value: value,
-    });
-  } else if (setting === 'options.disableWebRTC') {
-    browser.privacy.network.peerConnectionEnabled.set({
-      value: !value,
-    });
-  } else if (setting === 'options.webRTCPolicy') {
-    browser.privacy.network.webRTCIPHandlingPolicy.set({
-      value: value,
-    });
-  }
-};
-
 let validateIPRange = (from: string, to: string): boolean => {
   return ipConverter({ data: from, type: 'full' }) <= ipConverter({ data: to, type: 'full' });
 };
 
 export default {
-  enableChameleon,
   enableContextMenu,
   findWhitelistRule,
   ipConverter,
-  setBrowserConfig,
   validateIPRange,
 };
