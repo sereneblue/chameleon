@@ -13,6 +13,13 @@ let enableChameleon = (enabled: boolean): void => {
   });
 };
 
+let enableContextMenu = (enabled: boolean): void => {
+  browser.runtime.sendMessage({
+    action: 'contextMenu',
+    data: enabled,
+  });
+};
+
 let getSettings = (key: string | null) => {
   return new Promise((resolve: any) => {
     browser.storage.local.get(key, (item: any) => {
@@ -61,6 +68,7 @@ let setSettings = (settings: any) => {
 
 export default {
   enableChameleon,
+  enableContextMenu,
   getSettings,
   sendToBackground,
   setBrowserConfig,

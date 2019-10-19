@@ -1,42 +1,3 @@
-let enableContextMenu = (enabled: boolean, rules: any): void => {
-  browser.contextMenus.removeAll();
-
-  if (enabled) {
-    browser.runtime.getPlatformInfo().then(plat => {
-      if (plat.os != 'android') {
-        browser.contextMenus.create({
-          id: 'chameleon-openInWhitelist',
-          title: 'Open in whitelist editor',
-          contexts: ['page'],
-          onclick: function(details) {
-            var l = document.createElement('a');
-            l.href = details.pageUrl;
-
-            if (['http:', 'https:'].includes(l.protocol)) {
-              let rule = this.findWhitelistRule(rules, l.host, l.href);
-
-              if (rule !== null) {
-                browser.tabs.create({
-                  url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}&index=${rule.idx}`),
-                });
-                return;
-              }
-
-              browser.tabs.create({
-                url: browser.runtime.getURL(`/options/options.html#whitelist?domain=${l.host}`),
-              });
-            }
-          },
-          icons: {
-            '16': 'icon/icon_16.png',
-            '32': 'icon/icon_32.png',
-          },
-        });
-      }
-    });
-  }
-};
-
 let findWhitelistRule = (rules: any, host: string, url: string): any => {
   for (var i = 0; i < rules.length; i++) {
     for (var j = 0; j < rules[i].domains.length; j++) {
@@ -76,7 +37,6 @@ let validateIPRange = (from: string, to: string): boolean => {
 };
 
 export default {
-  enableContextMenu,
   findWhitelistRule,
   ipConverter,
   validateIPRange,

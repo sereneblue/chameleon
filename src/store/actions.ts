@@ -10,7 +10,7 @@ export const changeSetting = ({ commit, state }, payload) => {
   commit(mtypes.CHANGE_SETTING, payload);
 
   if (payload[0].name === 'whitelist.enabledContextMenu') {
-    util.enableContextMenu(payload[0].value, state.whitelist.rules);
+    webext.enableContextMenu(payload[0].value);
   } else if (
     [
       'options.cookiePolicy',
