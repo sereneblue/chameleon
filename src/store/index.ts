@@ -50,7 +50,7 @@ export default new Vuex.Store({
       cookiePolicy: 'allow_all',
       disableWebRTC: false,
       enableScriptInjection: false,
-      firstPartyIsolation: false,
+      firstPartyIsolate: false,
       limitHistory: false,
       protectKBFingerprint: {
         enabled: false,
