@@ -56,6 +56,23 @@ export class Generator {
         return `${os.name} - Google Chrome ${version.split('.')[0]}`;
       }
     },
+    gcrt: (isDesktop, nameOnly, os): string | BrowserProfile => {
+      let versions = { ios: '77.0.3865.103', android: '77.0.3865.116' };
+      let version: string;
+      let device: string;
+
+      if (os.id.charAt(0) === 'i') {
+        version = versions.ios;
+        device = 'iPad';
+      } else {
+        version = versions.android;
+        device = 'Tablet';
+      }
+
+      if (nameOnly) {
+        return `${os.name} (${device}) - Google Chrome ${version.split('.')[0]}`;
+      }
+    },
     ie: (isDesktop, nameOnly, os): string | BrowserProfile => {
       let version = '11';
 
@@ -68,6 +85,13 @@ export class Generator {
 
       if (nameOnly) {
         return `${os.name} - Safari ${version}`;
+      }
+    },
+    sft: (isDesktop, nameOnly, os): string | BrowserProfile => {
+      let version = '13';
+
+      if (nameOnly) {
+        return `${os.name} (iPad) - Safari ${version}`;
       }
     },
     sm: (isDesktop, nameOnly, os): string | BrowserProfile => {
@@ -141,39 +165,39 @@ export class Generator {
       {
         id: 'ios1',
         name: 'iOS 11',
-        browsers: ['gcr', 'sf'],
+        browsers: ['gcr', 'gcrt', 'sf', 'sft'],
       },
       {
         id: 'ios2',
         name: 'iOS 12',
-        browsers: ['gcr', 'sf'],
+        browsers: ['gcr', 'gcrt', 'sf', 'sft'],
       },
       {
         id: 'ios3',
         name: 'iOS 13',
-        browsers: ['gcr', 'sf'],
+        browsers: ['gcr', 'gcrt', 'sf', 'sft'],
       },
     ],
     android: [
       {
         id: 'and1',
         name: 'Android 6',
-        browsers: ['ff', 'gcr', 'sm'],
+        browsers: ['ff', 'gcr', 'gcrt', 'sm'],
       },
       {
         id: 'and2',
         name: 'Android 7',
-        browsers: ['ff', 'gcr', 'sm'],
+        browsers: ['ff', 'gcr', 'gcrt', 'sm'],
       },
       {
         id: 'and3',
         name: 'Android 8',
-        browsers: ['ff', 'gcr', 'sm'],
+        browsers: ['ff', 'gcr', 'gcrt', 'sm'],
       },
       {
         id: 'and4',
         name: 'Android 9',
-        browsers: ['ff', 'gcr', 'sm'],
+        browsers: ['ff', 'gcr', 'gcrt', 'sm'],
       },
     ],
   };
