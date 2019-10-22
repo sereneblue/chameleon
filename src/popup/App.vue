@@ -215,6 +215,20 @@
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
+            <input @change="changeSetting($event)" :checked="settings.headers.spoofAcceptLang.enabled" name="headers.spoofAcceptLang.enabled" type="checkbox" class="text-primary form-checkbox" />
+            <span class="ml-1" :class="[theme.text]">Spoof Accept Language</span>
+          </label>
+        </div>
+        <div v-show="settings.headers.spoofAcceptLang.enabled" class="flex flex-col mb-1">
+          <label class="ml-6">
+            <select @change="changeSetting($event)" :value="settings.headers.spoofAcceptLang.lang" name="headers.spoofAcceptLang.lang" class="form-select mt-1 w-full">
+              <option value="IP">IP</option>
+              <option v-for="l in languages" :value="l.lang">{{ l.display }}</option>
+            </select>
+          </label>
+        </div>
+        <div class="flex items-center mb-1">
+          <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.headers.spoofIP.enabled" name="headers.spoofIP.enabled" type="checkbox" class="text-primary form-checkbox" />
             <span class="ml-1" :class="[theme.text]">Spoof X-Forwarded-For/Via IP</span>
           </label>
@@ -580,6 +594,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import * as lang from '../lib/language';
 import * as prof from '../lib/profiles';
 import * as tz from '../lib/tz';
 import util from '../lib/util';
@@ -605,6 +620,7 @@ export default class App extends Vue {
     rangeFrom: false,
     rangeTo: false,
   };
+  public languages: lang.Language[];
   public profiles: prof.ProfileListItem[];
   public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
@@ -706,7 +722,6 @@ export default class App extends Vue {
 
     // this.localize();
     this.getCurrentPage();
-    this.profiles = new prof.Generator().getAllProfiles();
 
     if (!/random|none/.test(this.settings.profile.selected)) {
       let os = this.settings.profile.selected.match(/[a-z]+/)[0];
@@ -793,6 +808,11 @@ export default class App extends Vue {
     }
 
     return false;
+  }
+
+  mounted() {
+    this.profiles = new prof.Generator().getAllProfiles();
+    this.languages = lang.languages;
   }
 
   openOptionsPage(tab: string): void {
