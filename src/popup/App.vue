@@ -107,47 +107,49 @@
             </label>
           </div>
         </div>
-        <div class="flex items-center mb-2">
-          <label class="w-full mt-4">
-            <span :class="[theme.text]">Change periodically</span>
-            <select @change="changeSetting($event)" :value="settings.profile.interval.option" name="profile.interval.option" class="form-select mt-1 block w-full">
-              <option value="0">No</option>
-              <option value="-1">Custom interval</option>
-              <option value="1">Every minute</option>
-              <option value="5">Every 5 minutes</option>
-              <option value="10">Every 10 minutes</option>
-              <option value="20">Every 20 minutes</option>
-              <option value="30">Every 30 minutes</option>
-              <option value="40">Every 40 minutes</option>
-              <option value="50">Every 50 minutes</option>
-              <option value="60">Every 60 minutes</option>
-            </select>
-          </label>
-        </div>
-        <div v-show="settings.profile.interval.option == -1" class="flex justify-around mb-2 w-full">
-          <div class="mr-1">
-            <label :class="[theme.text]" for="profile.interval.min">Min (minutes)</label>
-            <input
-              @input="setProfileInterval($event)"
-              v-model="tmp.intervalMin"
-              :class="[errors.intervalMin ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
-              name="profile.interval.min"
-              type="number"
-              min="1"
-              class="block w-full form-input"
-            />
+        <div v-show="!/\d|none/.test(settings.profile.selected)">
+          <div class="flex items-center mb-2">
+            <label class="w-full mt-4">
+              <span :class="[theme.text]">Change periodically</span>
+              <select @change="changeSetting($event)" :value="settings.profile.interval.option" name="profile.interval.option" class="form-select mt-1 block w-full">
+                <option value="0">No</option>
+                <option value="-1">Custom interval</option>
+                <option value="1">Every minute</option>
+                <option value="5">Every 5 minutes</option>
+                <option value="10">Every 10 minutes</option>
+                <option value="20">Every 20 minutes</option>
+                <option value="30">Every 30 minutes</option>
+                <option value="40">Every 40 minutes</option>
+                <option value="50">Every 50 minutes</option>
+                <option value="60">Every 60 minutes</option>
+              </select>
+            </label>
           </div>
-          <div class="ml-1">
-            <label :class="[theme.text]" for="profile.interval.min">Max (minutes)</label>
-            <input
-              @input="setProfileInterval($event)"
-              v-model="tmp.intervalMax"
-              :class="[errors.intervalMax ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
-              name="profile.interval.max"
-              type="number"
-              min="1"
-              class="block w-full form-input"
-            />
+          <div v-show="settings.profile.interval.option == -1" class="flex justify-around mb-2 w-full">
+            <div class="mr-1">
+              <label :class="[theme.text]" for="profile.interval.min">Min (minutes)</label>
+              <input
+                @input="setProfileInterval($event)"
+                v-model="tmp.intervalMin"
+                :class="[errors.intervalMin ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+                name="profile.interval.min"
+                type="number"
+                min="1"
+                class="block w-full form-input"
+              />
+            </div>
+            <div class="ml-1">
+              <label :class="[theme.text]" for="profile.interval.min">Max (minutes)</label>
+              <input
+                @input="setProfileInterval($event)"
+                v-model="tmp.intervalMax"
+                :class="[errors.intervalMax ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+                name="profile.interval.max"
+                type="number"
+                min="1"
+                class="block w-full form-input"
+              />
+            </div>
           </div>
         </div>
         <div class="mt-6" :class="[theme.text]">
