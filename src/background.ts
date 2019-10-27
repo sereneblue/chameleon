@@ -18,6 +18,8 @@ class Chameleon {
   public async init(storedSettings: any) {
     if (storedSettings.version < this.version) {
       this.migrate(storedSettings);
+    } else {
+      this.settings = storedSettings;
     }
 
     this.platform = await browser.runtime.getPlatformInfo();
@@ -32,8 +34,8 @@ class Chameleon {
 
   public start(): void {}
 
-  public saveSettings(settings: any): void {
-    webext.setSettings({ ...settings, version: this.version });
+  public async saveSettings(settings: any) {
+    await webext.setSettings({ ...settings, version: this.version });
   }
 }
 
