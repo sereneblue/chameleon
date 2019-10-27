@@ -152,12 +152,12 @@ export class Generator {
       },
       {
         id: 'lin2',
-        name: 'Fedora',
+        name: 'Fedora Linux',
         browsers: ['cr', 'ff', 'esr', 'gcr'],
       },
       {
         id: 'lin3',
-        name: 'Ubuntu',
+        name: 'Ubuntu Linux',
         browsers: ['cr', 'ff', 'esr', 'gcr'],
       },
     ],
