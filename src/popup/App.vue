@@ -833,7 +833,7 @@ export default class App extends Vue {
     }
 
     browser.tabs.create({
-      url: browser.runtime.getURL(`/options/options.html${tab}`),
+      url: browser.runtime.getURL(`/options/options.html#${tab}`),
     });
     window.close();
   }
