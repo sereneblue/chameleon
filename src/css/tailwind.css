@@ -12,6 +12,18 @@
   font-family: 'Noto Sans', sans-serif !important;
 }
 
+.bg-light {
+  @apply text-dark;
+}
+
+.bg-dark {
+  @apply text-light;
+}
+
+input, select {
+  @apply text-dark;
+}
+
 .cursor-pointer.bg-dark-fg:hover {
   @apply bg-dark-fg-alt;
 }

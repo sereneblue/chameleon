@@ -29,18 +29,18 @@
               <feather v-else type="shield-off" class="text-red-500" size="6em" stroke-width="2" />
             </div>
           </div>
-          <div class="text-2xl" :class="[theme.text]">Chameleon is {{ settings.config.enabled ? 'enabled' : 'disabled' }}</div>
-          <div class="text-lg mb-6" :class="[theme.text]">v{{ version }}</div>
+          <div class="text-2xl">Chameleon is {{ settings.config.enabled ? 'enabled' : 'disabled' }}</div>
+          <div class="text-lg mb-6">v{{ version }}</div>
           <div class="flex justify-center text-md">
-            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg, theme.text]">
-              <div class="flex items-center px-2 py-2">
+            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg]">
+              <div class="flex items-center px-2 py-1">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
                 <feather v-else type="sun" size="1.5em"></feather>
                 <span class="ml-1">{{ darkMode ? 'Dark' : 'Light' }}</span>
               </div>
             </div>
-            <div @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[theme.fg, theme.text]">
-              <div class="flex items-center px-2 py-2">
+            <div @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[theme.fg]">
+              <div class="flex items-center px-2 py-1">
                 <feather v-if="settings.config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
                 <span class="ml-1">Notifications {{ settings.config.notificationsEnabled ? 'On' : 'Off' }}</span>
@@ -61,7 +61,7 @@
               </div>
             </button>
           </div>
-          <div class="absolute bottom-0 py-2" :class="[theme.fg, theme.text]" style="width: -moz-available;">
+          <div class="absolute bottom-0 py-2" :class="[theme.fg]" style="width: -moz-available;">
             <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
             <div class="flex w-full justify-around">
               <div class="">
@@ -84,8 +84,8 @@
         </div>
       </div>
       <div v-else-if="isSelected('tab', 'profile')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Profile</div>
-        <div class="flex" :class="[theme.text]">
+        <div class="text-lg border-primary border-b-2 mb-4">Profile</div>
+        <div class="flex">
           <div class="flex flex-col mr-16">
             <label class="inline-flex items-center mb-2">
               <input @click="setSelected('profile', 'none')" type="radio" class="form-radio" :checked="isSelected('profile', 'none')" />
@@ -110,7 +110,7 @@
         <div v-show="!/\d|none/.test(settings.profile.selected)">
           <div class="flex items-center mb-2">
             <label class="w-full mt-4">
-              <span :class="[theme.text]">Change periodically</span>
+              Change periodically
               <select @change="changeSetting($event)" :value="settings.profile.interval.option" name="profile.interval.option" class="form-select mt-1 block w-full">
                 <option value="0">No</option>
                 <option value="-1">Custom interval</option>
@@ -127,7 +127,7 @@
           </div>
           <div v-show="settings.profile.interval.option == -1" class="flex justify-around mb-2 w-full">
             <div class="mr-1">
-              <label :class="[theme.text]" for="profile.interval.min">Min (minutes)</label>
+              <label for="profile.interval.min">Min (minutes)</label>
               <input
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMin"
@@ -139,7 +139,7 @@
               />
             </div>
             <div class="ml-1">
-              <label :class="[theme.text]" for="profile.interval.min">Max (minutes)</label>
+              <label for="profile.interval.min">Max (minutes)</label>
               <input
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMax"
@@ -152,7 +152,7 @@
             </div>
           </div>
         </div>
-        <div class="mt-6" :class="[theme.text]">
+        <div class="mt-6">
           <ul class="flex text-center w-full">
             <li @click="setSelected('os', 'windows')" :class="[theme.fg, isSelected('os', 'windows') ? 'active' : '']" class="group rounded-l-sm cursor-pointer">
               Windows
@@ -196,29 +196,35 @@
         </div>
       </div>
       <div v-else-if="isSelected('tab', 'headers')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Headers</div>
+        <div class="text-lg border-primary border-b-2 mb-4">Headers</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.headers.disableAuth" name="headers.disableAuth" type="checkbox" class="text-primary form-checkbox" />
-            <span class="ml-1" :class="[theme.text]">Disable Authorization</span>
+            <span class="ml-1">Disable Authorization</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.headers.enableDNT" name="headers.enableDNT" type="checkbox" class="text-primary form-checkbox" />
-            <span class="ml-1" :class="[theme.text]">Enable DNT (Do Not Track)</span>
+            <span class="ml-1">Enable DNT (Do Not Track)</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.headers.blockEtag" name="headers.blockEtag" type="checkbox" class="text-primary form-checkbox" />
-            <span class="ml-1" :class="[theme.text]">Prevent Etag tracking</span>
+            <span class="ml-1">Prevent Etag tracking</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input @change="changeSetting($event)" :checked="settings.headers.spoofAcceptLang.enabled" name="headers.spoofAcceptLang.enabled" type="checkbox" class="text-primary form-checkbox" />
-            <span class="ml-1" :class="[theme.text]">Spoof Accept Language</span>
+            <input
+              @change="changeSetting($event)"
+              :checked="settings.headers.spoofAcceptLang.enabled"
+              name="headers.spoofAcceptLang.enabled"
+              type="checkbox"
+              class="text-primary form-checkbox"
+            />
+            <span class="ml-1">Spoof Accept Language</span>
           </label>
         </div>
         <div v-show="settings.headers.spoofAcceptLang.enabled" class="flex flex-col mb-1">
@@ -232,7 +238,7 @@
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.headers.spoofIP.enabled" name="headers.spoofIP.enabled" type="checkbox" class="text-primary form-checkbox" />
-            <span class="ml-1" :class="[theme.text]">Spoof X-Forwarded-For/Via IP</span>
+            <span class="ml-1">Spoof X-Forwarded-For/Via IP</span>
           </label>
         </div>
         <div v-show="settings.headers.spoofIP.enabled" class="flex flex-col mb-1">
@@ -244,7 +250,7 @@
           </label>
           <div v-show="settings.headers.spoofIP.option == 1" class="flex w-full ml-6 mt-2">
             <div class="mr-1 w-2/5">
-              <label :class="[theme.text]" for="headers.spoofIP.rangeFrom">Range From</label>
+              <label for="headers.spoofIP.rangeFrom">Range From</label>
               <input
                 @input="setIPRange($event)"
                 v-model="tmp.rangeFrom"
@@ -254,7 +260,7 @@
               />
             </div>
             <div class="ml-1 w-2/5">
-              <label :class="[theme.text]" for="headers.spoofIP.rangeTo">Range To</label>
+              <label for="headers.spoofIP.rangeTo">Range To</label>
               <input
                 @input="setIPRange($event)"
                 v-model="tmp.rangeTo"
@@ -274,7 +280,7 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1" :class="[theme.text]">Upgrade Insecure Requests</span>
+            <span class="ml-1">Upgrade Insecure Requests</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
@@ -286,7 +292,7 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1" :class="[theme.text]">Disable Referer</span>
+            <span class="ml-1">Disable Referer</span>
           </label>
         </div>
         <div v-show="!settings.headers.referer.disabled">
@@ -299,13 +305,13 @@
                 type="checkbox"
                 class="text-primary form-checkbox"
               />
-              <span class="ml-1" :class="[theme.text]">Spoof Source Referer</span>
+              <span class="ml-1">Spoof Source Referer</span>
             </label>
           </div>
           <div class="text-sm mt-2" :class="[darkMode ? 'text-red-400' : 'text-red-800']">Don't modify about:config settings for the options below.</div>
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
-              <span :class="[theme.text]">Referer X Origin Policy</span>
+              Referer X Origin Policy
               <select @change="changeSetting($event)" :value="settings.headers.referer.xorigin" name="headers.referer.xorigin" class="form-select mt-1 block w-full">
                 <option value="0">Always send (default)</option>
                 <option value="1">Match base domain</option>
@@ -315,7 +321,7 @@
           </div>
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
-              <span :class="[theme.text]">Referer Trimming Policy</span>
+              Referer Trimming Policy
               <select @change="changeSetting($event)" :value="settings.headers.referer.trimming" name="headers.referer.trimming" class="form-select mt-1 block w-full">
                 <option value="0">Send full URI (default)</option>
                 <option value="1">Scheme, host, port + path</option>
@@ -326,14 +332,14 @@
         </div>
       </div>
       <div v-else-if="isSelected('tab', 'options')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Options</div>
+        <div class="text-lg border-primary border-b-2 mb-4">Options</div>
         <div class="w-full mb-4">
           <button @click="openOptionsPage('checklist')" class="w-full bg-primary font-semibold text-light py-1 px-4 border border-primary hover:bg-primary-soft rounded">
             Open about:config checklist
           </button>
         </div>
         <div>
-          <ul class="flex text-center w-full rounded-lg" :class="[theme.text]">
+          <ul class="flex text-center w-full rounded-lg">
             <li @click="setSelected('options', 'injection')" :class="[theme.fg, isSelected('options', 'injection') ? 'active' : '']" class="group group-options rounded-l-sm">
               Injection
             </li>
@@ -355,13 +361,13 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1" :class="[theme.text]">Enable script injection</span>
+                  <span class="ml-1">Enable script injection</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input @change="changeSetting($event)" :checked="settings.options.limitHistory" name="options.limitHistory" type="checkbox" class="text-primary form-checkbox" />
-                  <span class="ml-1" :class="[theme.text]">Limit tab history</span>
+                  <span class="ml-1">Limit tab history</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -373,7 +379,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1" :class="[theme.text]">Protect window name</span>
+                  <span class="ml-1">Protect window name</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -385,7 +391,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1" :class="[theme.text]">Spoof Audio Context</span>
+                  <span class="ml-1">Spoof Audio Context</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -397,7 +403,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1" :class="[theme.text]">Spoof Client Rects</span>
+                  <span class="ml-1">Spoof Client Rects</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -409,7 +415,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1" :class="[theme.text]">Protect keyboard fingerprint</span>
+                  <span class="ml-1">Protect keyboard fingerprint</span>
                 </label>
               </div>
               <div v-show="settings.options.protectKBFingerprint.enabled" class="flex items-center mb-1 pl-6">
@@ -426,7 +432,7 @@
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  <span :class="[theme.text]">Screen Size</span>
+                  Screen Size
                   <select @change="changeSetting($event)" :value="settings.options.screenSize" name="options.screenSize" class="form-select mt-1 block w-full">
                     <option value="default">Default</option>
                     <option value="profile">Profile</option>
@@ -441,7 +447,7 @@
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  <span :class="[theme.text]">Timezone</span>
+                  Timezone
                   <select @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
                     <option value="default">Default</option>
                     <option value="ip">IP</option>
@@ -460,7 +466,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1" :class="[theme.text]">Enable 1st party isolation</span>
+                  <span class="ml-1">Enable 1st party isolation</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -472,7 +478,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1" :class="[theme.text]">Enable resist fingerprinting</span>
+                  <span class="ml-1">Enable resist fingerprinting</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -484,12 +490,12 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1" :class="[theme.text]">Disable WebRTC</span>
+                  <span class="ml-1">Disable WebRTC</span>
                 </label>
               </div>
               <div v-show="!settings.options.disableWebRTC" class="flex items-center pl-6 mb-2">
                 <label class="w-full">
-                  <span :class="[theme.text]">WebRTC Policy</span>
+                  WebRTC Policy
                   <select @change="changeSetting($event)" :value="settings.options.webRTCPolicy" name="options.webRTCPolicy" class="form-select mt-1 block w-full">
                     <option value="default">Default</option>
                     <option value="default_public_and_private_interfaces">Use Public and Private Interface</option>
@@ -500,7 +506,7 @@
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  <span :class="[theme.text]">Tracking protection mode</span>
+                  Tracking protection mode
                   <select
                     @change="changeSetting($event)"
                     :value="settings.options.trackingProtectionMode"
@@ -515,7 +521,7 @@
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  <span :class="[theme.text]">Websockets</span>
+                  Websockets
                   <select @change="changeSetting($event)" :value="settings.options.webSockets" name="options.webSockets" class="form-select mt-1 block w-full">
                     <option value="allow_all">Allow all</option>
                     <option value="block_3rd_party">Block 3rd party</option>
@@ -527,7 +533,7 @@
             <div v-else-if="isSelected('options', 'cookie')">
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  <span :class="[theme.text]">Policy</span>
+                  Policy
                   <select @change="changeSetting($event)" :value="settings.options.cookiePolicy" name="options.cookiePolicy" class="form-select mt-1 block w-full">
                     <option value="allow_all">Allow all</option>
                     <option value="allow_visited">Allow visited</option>
@@ -542,11 +548,11 @@
         </div>
       </div>
       <div v-else-if="isSelected('tab', 'whitelist')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4" :class="[theme.text]">Whitelist</div>
+        <div class="text-lg border-primary border-b-2 mb-4">Whitelist</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.whitelist.enabled" name="whitelist.enabled" type="checkbox" class="text-primary form-checkbox" />
-            <span class="ml-1" :class="[theme.text]">Enable whitelist (requires script injection)</span>
+            <span class="ml-1">Enable whitelist (requires script injection)</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
@@ -558,12 +564,12 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1" :class="[theme.text]">Add context menu item to open current tab domain in whitelist</span>
+            <span class="ml-1">Add context menu item to open current tab domain in whitelist</span>
           </label>
         </div>
         <div class="flex items-center mb-2">
           <label class="w-full mt-4">
-            <span :class="[theme.text]">Default Profile</span>
+            Default Profile
             <select @change="changeSetting($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
               <option value="default">Default Whitelist Profile</option>
               <option value="none">Real Profile</option>
@@ -571,7 +577,7 @@
             </select>
           </label>
         </div>
-        <div v-show="currentPage.domain" class="text-center mt-6 py-2" :class="[theme.text]">
+        <div v-show="currentPage.domain" class="text-center mt-6 py-2">
           <feather v-if="currentPage.whitelisted" class="text-primary mb-2" type="check-circle" size="4em"></feather>
           <feather v-else class="text-primary mb-2" type="alert-circle" size="4em"></feather>
           <div class="max-w-xs text-lg mx-auto truncate">
