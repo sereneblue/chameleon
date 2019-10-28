@@ -16,7 +16,7 @@
       <div @click="setSelected('tab', 'whitelist')" class="tab" :class="activeTab('whitelist')">
         <feather type="edit" size="1.5em"></feather>
       </div>
-      <div @click="openOptionsPage" class="tab hover:bg-primary-soft">
+      <div @click="openOptionsPage('')" class="tab hover:bg-primary-soft">
         <feather type="settings" size="1.5em"></feather>
       </div>
     </div>
@@ -818,18 +818,16 @@ export default class App extends Vue {
   }
 
   openOptionsPage(tab: string): void {
-    let params: string = '';
-
     if (tab === 'whitelist') {
       if (this.currentPage.whitelisted) {
-        params = `?id=${this.currentPage.rule.id}&index=${this.currentPage.rule.idx}`;
+        tab += `?id=${this.currentPage.rule.id}&index=${this.currentPage.rule.idx}`;
       } else {
-        params = `?url=${this.currentPage.domain}`;
+        tab += `?url=${this.currentPage.domain}`;
       }
     }
 
     browser.tabs.create({
-      url: browser.runtime.getURL(`/options/options.html${'#' + tab + params}`),
+      url: browser.runtime.getURL(`/options/options.html${tab}`),
     });
     window.close();
   }
