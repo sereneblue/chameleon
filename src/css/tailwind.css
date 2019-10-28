@@ -16,19 +16,25 @@
   @apply text-dark;
 }
 
+.bg-light .fg {
+  @apply bg-light-fg;
+}
+
 .bg-dark {
   @apply text-light;
 }
 
-input, select {
-  @apply text-dark;
+.bg-dark .fg {
+  @apply bg-dark-fg;
 }
 
-.cursor-pointer.bg-dark-fg:hover {
+.bg-dark .cursor-pointer.fg:hover,
+.bg-dark .group.fg:hover {
   @apply bg-dark-fg-alt;
 }
 
-.cursor-pointer.bg-light-fg:hover {
+.bg-light .cursor-pointer.fg:hover,
+.bg-light .group.fg:hover {
   @apply bg-light-fg-alt;
 }
 
@@ -39,21 +45,20 @@ input, select {
 .group.active {
   @apply bg-primary text-light;
 }
+.group.active.fg:hover {
+  @apply bg-primary text-light;
+}
 
 .group-options {
   @apply flex flex-1 justify-center cursor-pointer;
 }
 
-.group-options.bg-dark-fg:hover {
+.group-options.fg:hover {
   @apply bg-dark-fg-alt;
 }
 
-.group-options.bg-light-fg:hover {
+.group-options.fg:hover {
   @apply bg-light-fg-alt;
-}
-
-.group.active:hover {
-  @apply bg-primary text-light;
 }
 
 .profile-item {
@@ -69,13 +74,38 @@ input, select {
 }
 
 .tab {
-  @apply px-2 pt-2 pb-1 cursor-pointer;
+  @apply px-2 pt-2 pb-1 cursor-pointer text-light;
 }
 
-.tab {
+.app.bg-light .tab.active {
+  @apply text-primary;
+}
+
+.app.bg-dark .tab.active {
   @apply text-light;
 }
 
-.tab.active {
+.options-tab {
+  @apply px-4 py-1 cursor-pointer text-light;
+}
+
+.bg-light .options-tab.active {
   @apply text-primary;
+}
+
+.bg-dark .options-tab.active {
+  @apply text-light;
+}
+
+.about-btn {
+  @apply bg-transparent py-2 px-4 border border-primary-soft rounded block mb-4 mr-4;
+}
+
+.about-btn:hover {
+  @apply bg-primary-soft text-white border-transparent;
+}
+
+input,
+select {
+  @apply text-dark;
 }

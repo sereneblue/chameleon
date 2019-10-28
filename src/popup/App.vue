@@ -32,14 +32,14 @@
           <div class="text-2xl">Chameleon is {{ settings.config.enabled ? 'enabled' : 'disabled' }}</div>
           <div class="text-lg mb-6">v{{ version }}</div>
           <div class="flex justify-center text-md">
-            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2" :class="[theme.fg]">
+            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2 fg">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
                 <feather v-else type="sun" size="1.5em"></feather>
                 <span class="ml-1">{{ darkMode ? 'Dark' : 'Light' }}</span>
               </div>
             </div>
-            <div @click="toggleNotifications" class="rounded-lg cursor-pointer" :class="[theme.fg]">
+            <div @click="toggleNotifications" class="rounded-lg cursor-pointer fg">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="settings.config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
@@ -54,14 +54,14 @@
             <div class="text-lg" :class="[theme.text]">Android &middot; Firefox 77</div>
             <div class="text-lg" :class="[theme.text]">1366x768</div>
             <div class="text-lg" :class="[theme.text]">Europe/Berlin</div>
-            <button v-show="!/none|\d/.test(settings.profile.selected)" class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1" :class="[theme.fg, theme.text]">
+            <button v-show="!/none|\d/.test(settings.profile.selected)" class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1 fg">
               <div class="flex items-center">
                 <feather type="repeat" size=".8em"></feather>
                 <span class="ml-1 text-xs">change</span>
               </div>
             </button>
           </div>
-          <div class="absolute bottom-0 py-2" :class="[theme.fg]" style="width: -moz-available;">
+          <div class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
             <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
             <div class="flex w-full justify-around">
               <div class="">
@@ -154,25 +154,25 @@
         </div>
         <div class="mt-6">
           <ul class="flex text-center w-full">
-            <li @click="setSelected('os', 'windows')" :class="[theme.fg, isSelected('os', 'windows') ? 'active' : '']" class="group rounded-l-sm cursor-pointer">
+            <li @click="setSelected('os', 'windows')" :class="[isSelected('os', 'windows') ? 'active' : '']" class="group fg rounded-l-sm cursor-pointer">
               Windows
             </li>
-            <li @click="setSelected('os', 'macOS')" :class="[theme.fg, isSelected('os', 'macOS') ? 'active' : '']" class="group cursor-pointer">
+            <li @click="setSelected('os', 'macOS')" :class="[isSelected('os', 'macOS') ? 'active' : '']" class="group fg cursor-pointer">
               macOS
             </li>
-            <li @click="setSelected('os', 'linux')" :class="[theme.fg, isSelected('os', 'linux') ? 'active' : '']" class="group cursor-pointer">
+            <li @click="setSelected('os', 'linux')" :class="[isSelected('os', 'linux') ? 'active' : '']" class="group fg cursor-pointer">
               Linux
             </li>
-            <li @click="setSelected('os', 'iOS')" :class="[theme.fg, isSelected('os', 'iOS') ? 'active' : '']" class="group cursor-pointer">
+            <li @click="setSelected('os', 'iOS')" :class="[isSelected('os', 'iOS') ? 'active' : '']" class="group fg cursor-pointer">
               iOS
             </li>
-            <li @click="setSelected('os', 'android')" :class="[theme.fg, isSelected('os', 'android') ? 'active' : '']" class="group rounded-r-sm cursor-pointer">
+            <li @click="setSelected('os', 'android')" :class="[isSelected('os', 'android') ? 'active' : '']" class="group fg rounded-r-sm cursor-pointer">
               Android
             </li>
           </ul>
-          <div v-show="currentProfileGroup" class="mt-2 rounded-sm" :class="[theme.fg, settings.profile.interval.option != -1 ? 'h-80' : 'h-64']">
+          <div v-show="currentProfileGroup" class="mt-2 rounded-sm fg" :class="[settings.profile.interval.option != -1 ? 'h-80' : 'h-64']">
             <perfect-scrollbar ref="scrollView" class="pl-3 pr-3">
-              <div class="profile-item" :class="[theme.fg]">
+              <div class="profile-item fg">
                 <label :class="{ 'opacity-50': isExcluded(currentProfileGroup) }" class="flex items-center cursor-pointer">
                   <input @click="setSelected('profile', currentProfileGroup)" :checked="isSelected('profile', currentProfileGroup)" type="radio" class="form-radio" />
                   <span class="ml-2">Random {{ displayOS }} Browsers</span>
@@ -182,7 +182,7 @@
                   <input @click="excludeProfile(currentProfileGroup)" :checked="isExcluded(currentProfileGroup)" type="checkbox" class="ml-2 text-primary form-checkbox" />
                 </div>
               </div>
-              <div v-for="p in profileListing" class="profile-item" :class="[theme.fg]">
+              <div v-for="p in profileListing" class="profile-item fg">
                 <label class="flex items-center cursor-pointer" :class="{ 'opacity-50': p.excluded }">
                   <input @click="setSelected('profile', p.id)" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
                   <span class="ml-2">{{ p.name }}</span>
@@ -340,13 +340,13 @@
         </div>
         <div>
           <ul class="flex text-center w-full rounded-lg">
-            <li @click="setSelected('options', 'injection')" :class="[theme.fg, isSelected('options', 'injection') ? 'active' : '']" class="group group-options rounded-l-sm">
+            <li @click="setSelected('options', 'injection')" :class="[isSelected('options', 'injection') ? 'active' : '']" class="group fg group-options rounded-l-sm">
               Injection
             </li>
-            <li @click="setSelected('options', 'standard')" :class="[theme.fg, isSelected('options', 'standard') ? 'active' : '']" class="group group-options">
+            <li @click="setSelected('options', 'standard')" :class="[isSelected('options', 'standard') ? 'active' : '']" class="group fg group-options">
               Standard
             </li>
-            <li @click="setSelected('options', 'cookie')" :class="[theme.fg, isSelected('options', 'cookie') ? 'active' : '']" class="group group-options rounded-r-sm">
+            <li @click="setSelected('options', 'cookie')" :class="[isSelected('options', 'cookie') ? 'active' : '']" class="group fg group-options rounded-r-sm">
               Cookie
             </li>
           </ul>
