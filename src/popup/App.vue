@@ -673,6 +673,8 @@ export default class App extends Vue {
           language = this.languages.find(l => l.lang === this.settings.headers.spoofAcceptLang.lang).display;
         }
       }
+    } else {
+      language = 'Default';
     }
 
     return {
