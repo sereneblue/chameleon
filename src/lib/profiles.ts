@@ -229,4 +229,15 @@ export class Generator {
 
     return profiles;
   }
+
+  public getRandom(device: string, osType: string): string {
+    device = device ? device : Math.random() > 0.5 ? 'desktop' : 'mobile';
+
+    let os = device === 'desktop' ? ['windows', 'macOS', 'linux'] : ['iOS', 'android'];
+    let osFamily = this.profiles[osType ? osType : os[Math.floor(Math.random() * os.length)]];
+    let selectedOS = osFamily[Math.floor(Math.random() * osFamily.length)];
+    let selectedBrowser = selectedOS.browsers[Math.floor(Math.random() * selectedOS.browsers.length)];
+
+    return `${selectedOS.id}-${selectedBrowser}`;
+  }
 }

@@ -49,12 +49,15 @@
           </div>
         </div>
         <div>
-          <div v-if="settings.profile.selected != 'none'" class="text-center px-4 py-8">
-            <div class="text-xs uppercase opacity-75 tracking-widest" :class="[theme.text]">Current Profile</div>
-            <div class="text-lg" :class="[theme.text]">Android &middot; Firefox 77</div>
-            <div class="text-lg" :class="[theme.text]">1366x768</div>
-            <div class="text-lg" :class="[theme.text]">Europe/Berlin</div>
-            <button v-show="!/none|\d/.test(settings.profile.selected)" class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1 fg">
+          <div class="text-center px-4 py-8">
+            <div class="text-xs uppercase opacity-75 tracking-widest">Current Profile</div>
+            <div class="text-lg">
+              <div>{{ currentProfile.profile }}</div>
+              <div>{{ currentProfile.screen }}</div>
+              <div>{{ currentProfile.timezone }}</div>
+              <div>{{ currentProfile.lang }}</div>
+            </div>
+            <button v-show="!/none|\d/.test(settings.profile.selected)" @click="changeProfile" class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1 fg">
               <div class="flex items-center">
                 <feather type="repeat" size=".8em"></feather>
                 <span class="ml-1 text-xs">change</span>
@@ -638,6 +641,50 @@ export default class App extends Vue {
     rangeTo: '',
   };
 
+  get currentProfile(): any {
+    let language: string;
+    let profile: string;
+    let timezone: string;
+    let screen: string;
+
+    if (this.settings.profile.selected === 'none') {
+      profile = 'Real Profile';
+    } else {
+      profile = this.profileList
+        .find(p => p.id === (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.settings.profile.current))
+        .name.replace('-', '/');
+    }
+
+    screen = /^\d/.test(this.settings.options.screenSize)
+      ? this.settings.options.screenSize
+      : this.settings.options.screenSize[0].toUpperCase() + this.settings.options.screenSize.slice(1);
+
+    if (this.settings.options.timeZone === 'default') {
+      timezone = 'Default';
+    } else if (this.settings.options.timeZone === 'ip') {
+      timezone = 'IP';
+    } else {
+      timezone = this.settings.options.timeZone;
+    }
+
+    if (this.settings.headers.spoofAcceptLang.enabled) {
+      if (this.settings.headers.spoofAcceptLang.lang) {
+        if (this.settings.headers.spoofAcceptLang.lang === 'ip') {
+          language = 'IP';
+        } else {
+          language = this.languages.find(l => l.lang === this.settings.headers.spoofAcceptLang.lang).display;
+        }
+      }
+    }
+
+    return {
+      profile,
+      screen: 'Screen: ' + screen,
+      timezone: 'TZ: ' + timezone,
+      lang: 'Lang: ' + language,
+    };
+  }
+
   get darkMode(): boolean {
     return this.settings.config.theme === 'dark';
   }
@@ -704,6 +751,32 @@ export default class App extends Vue {
     }
 
     return ['hover:bg-primary-soft'];
+  }
+
+  async changeProfile(value: any) {
+    if (typeof value != 'string') {
+      value = this.settings.profile.selected;
+    }
+
+    if (!/\d|none/.test(value)) {
+      let randProfile: string;
+      let device: string | null;
+
+      let profiles = new prof.Generator();
+      if (value.includes('random')) {
+        device = value === 'random' ? null : value.includes('Desktop') ? 'desktop' : 'mobile';
+        randProfile = profiles.getRandom(device, null);
+      } else {
+        randProfile = profiles.getRandom(null, value);
+      }
+
+      await this['$store'].dispatch('changeSetting', [
+        {
+          name: 'profile.current',
+          value: randProfile,
+        },
+      ]);
+    }
   }
 
   async changeSetting(evt: any) {
@@ -912,6 +985,7 @@ export default class App extends Vue {
       this.currentProfileGroup = this.currentProfileGroup === value ? '' : value;
       (this.$refs.scrollView as any).$el.scrollTop = 0;
     } else if (type === 'profile') {
+      await this.changeProfile(value);
       await this['$store'].dispatch('changeProfile', value);
       webext.sendToBackground(this.settings);
     } else if (type === 'tab') {
