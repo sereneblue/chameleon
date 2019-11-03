@@ -1,5 +1,5 @@
 <template>
-  <div class="app h-screen flex" :class="[theme.bg]">
+  <div class="app h-screen w-screen flex" :class="[theme.bg]">
     <div class="text-xs bg-primary flex-none flex-col text-center">
       <div @click="setSelected('tab', 'main')" class="tab" :class="activeTab('main')">
         <feather type="home" size="1.5em"></feather>
@@ -20,7 +20,7 @@
         <feather type="settings" size="1.5em"></feather>
       </div>
     </div>
-    <div class="flex-grow flex-col justify-around">
+    <div class="flex-grow flex-col w-full justify-around">
       <div v-if="isSelected('tab', 'main')">
         <div class="text-center mt-16">
           <div class="my-6 h-24">
@@ -48,40 +48,38 @@
             </div>
           </div>
         </div>
-        <div>
-          <div class="text-center px-4 py-8">
-            <div class="text-xs uppercase opacity-75 tracking-widest">Current Profile</div>
-            <div class="text-lg">
-              <div>{{ currentProfile.profile }}</div>
-              <div>{{ currentProfile.screen }}</div>
-              <div>{{ currentProfile.timezone }}</div>
-              <div>{{ currentProfile.lang }}</div>
-            </div>
-            <button v-show="!/none|\d/.test(settings.profile.selected)" @click="changeProfile" class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1 fg">
-              <div class="flex items-center">
-                <feather type="repeat" size=".8em"></feather>
-                <span class="ml-1 text-xs">change</span>
-              </div>
-            </button>
+        <div class="text-center px-4 py-8">
+          <div class="text-xs uppercase opacity-75 tracking-widest">Current Profile</div>
+          <div class="text-lg">
+            <div>{{ currentProfile.profile }}</div>
+            <div>{{ currentProfile.screen }}</div>
+            <div>{{ currentProfile.timezone }}</div>
+            <div>{{ currentProfile.lang }}</div>
           </div>
-          <div class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
-            <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
-            <div class="flex w-full justify-around">
-              <div class="">
-                <feather type="headphones" size="1.5em"></feather>
-              </div>
-              <div class="">
-                <feather type="box" size="1.5em"></feather>
-              </div>
-              <div class="">
-                <feather type="calendar" size="1.5em"></feather>
-              </div>
-              <div class="">
-                <feather type="monitor" size="1.5em"></feather>
-              </div>
-              <div class="">
-                <feather type="wifi" size="1.5em"></feather>
-              </div>
+          <button v-show="!/none|\d/.test(settings.profile.selected)" @click="changeProfile" class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1 fg">
+            <div class="flex items-center">
+              <feather type="repeat" size=".8em"></feather>
+              <span class="ml-1 text-xs">change</span>
+            </div>
+          </button>
+        </div>
+        <div class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
+          <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
+          <div class="flex justify-around">
+            <div class="">
+              <feather type="headphones" size="1.5em"></feather>
+            </div>
+            <div class="">
+              <feather type="box" size="1.5em"></feather>
+            </div>
+            <div class="">
+              <feather type="calendar" size="1.5em"></feather>
+            </div>
+            <div class="">
+              <feather type="monitor" size="1.5em"></feather>
+            </div>
+            <div class="">
+              <feather type="wifi" size="1.5em"></feather>
             </div>
           </div>
         </div>

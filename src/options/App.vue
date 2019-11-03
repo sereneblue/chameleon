@@ -21,7 +21,7 @@
       <div v-show="isSelected('tab', 'about')" class="text-2xl flex flex-col h-screen">
         <div class="border-b-2 border-primary">
           <div class="text-3xl mb-4">Chameleon v{{ version }}</div>
-          <div class="flex mb-4">
+          <div class="flex flex-col md:flex-row mb-4">
             <button class="about-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="help-circle" size="1em"></feather>
@@ -56,7 +56,7 @@
         </div>
         <div class="mt-4">
           <div class="text-3xl mb-4">Settings</div>
-          <div class="flex">
+          <div class="flex flex-col md:flex-row">
             <button class="about-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="upload" size="1em"></feather>
