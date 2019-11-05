@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col" :class="[theme.bg]">
-    <div class="fixed w-full z-10">
+  <div class="flex flex-col min-h-screen" :class="[theme.bg]">
+    <div class="flex-none fixed w-full z-10">
       <div class="bg-primary flex items-center">
         <img class="h-6 mx-2" :src="iconPath" />
         <div @click="setSelected('tab', 'about')" class="options-tab" :class="activeTab('about')">
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="flex-grow px-4 pt-12 z-0">
-      <div v-show="isSelected('tab', 'about')" class="text-2xl flex flex-col h-screen">
+      <div v-show="isSelected('tab', 'about')" class="text-2xl flex flex-col">
         <div class="border-b-2 border-primary">
           <div class="text-3xl mb-4">Chameleon v{{ version }}</div>
           <div class="flex flex-col md:flex-row mb-4">
