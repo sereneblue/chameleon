@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="flex-grow flex-col w-full justify-around">
-      <div v-if="isSelected('tab', 'main')">
+      <div v-show="isSelected('tab', 'main')">
         <div class="text-center mt-16">
           <div class="my-6 h-24">
             <div class="inline-block cursor-pointer" @click="toggleChameleon">
@@ -84,7 +84,7 @@
           </div>
         </div>
       </div>
-      <div v-else-if="isSelected('tab', 'profile')" class="m-4 text-md">
+      <div v-show="isSelected('tab', 'profile')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4">Profile</div>
         <div class="flex">
           <div class="flex flex-col mr-16">
@@ -196,7 +196,7 @@
           </div>
         </div>
       </div>
-      <div v-else-if="isSelected('tab', 'headers')" class="m-4 text-md">
+      <div v-show="isSelected('tab', 'headers')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4">Headers</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
@@ -332,7 +332,7 @@
           </div>
         </div>
       </div>
-      <div v-else-if="isSelected('tab', 'options')" class="m-4 text-md">
+      <div v-show="isSelected('tab', 'options')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4">Options</div>
         <div class="w-full mb-4">
           <button @click="openOptionsPage('checklist')" class="w-full bg-primary font-semibold text-light py-1 px-4 border border-primary hover:bg-primary-soft rounded">
@@ -548,7 +548,7 @@
           </div>
         </div>
       </div>
-      <div v-else-if="isSelected('tab', 'whitelist')" class="m-4 text-md">
+      <div v-show="isSelected('tab', 'whitelist')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4">Whitelist</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
@@ -704,7 +704,7 @@ export default class App extends Vue {
   }
 
   get profileList(): prof.ProfileListItem[] {
-    return [].concat.apply([], Object.values(this.profiles));
+    return Object.freeze([].concat.apply([], Object.values(this.profiles)));
   }
 
   get profileListing(): any {
