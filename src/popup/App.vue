@@ -704,7 +704,7 @@ export default class App extends Vue {
   }
 
   get profileList(): prof.ProfileListItem[] {
-    return Object.freeze([].concat.apply([], Object.values(this.profiles)));
+    return [].concat.apply([], Object.values(this.profiles));
   }
 
   get profileListing(): any {
