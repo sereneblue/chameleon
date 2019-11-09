@@ -26,7 +26,7 @@ export default new Vuex.Store({
       },
       spoofAcceptLang: {
         enabled: false,
-        lang: '',
+        value: '',
       },
       spoofIP: {
         enabled: false,
