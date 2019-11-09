@@ -22,5 +22,5 @@
   "background": {
     "scripts": ["background.js"]
   },
-  "permissions": ["alarms", "contextMenus", "privacy", "storage", "tabs"]
+  "permissions": ["alarms", "contextMenus", "privacy", "storage", "tabs", "webRequest", "webRequestBlocking"]
 }
