@@ -1,52 +1,14 @@
+import { Chameleon } from './lib/chameleon';
 import store from './store';
 import webext from './lib/webext';
 import util from './lib/util';
 
-class Chameleon {
-  public settings: any;
-  private defaultSettings: any;
-  public platform: any;
-  public timeout: any;
-  public version: string;
-
-  constructor(initSettings: any) {
-    this.settings = initSettings;
-    this.defaultSettings = initSettings;
-    this.version = browser.runtime.getManifest().version;
-  }
-
-  public async init(storedSettings: any) {
-    if (storedSettings.version < this.version) {
-      this.migrate(storedSettings);
-    } else {
-      this.settings = storedSettings;
-    }
-
-    this.platform = await browser.runtime.getPlatformInfo();
-    this.saveSettings(this.settings);
-  }
-
-  private migrate(prevSettings: any): void {}
-
-  private reset(): void {
-    this.saveSettings(this.defaultSettings);
-  }
-
-  public start(): void {}
-
-  public async saveSettings(settings: any) {
-    await webext.setSettings({ ...settings, version: this.version });
-  }
-}
+webext.firstTimeInstall();
 
 let chameleon = new Chameleon(JSON.parse(JSON.stringify(store.state)));
 
-browser.runtime.onInstalled.addListener((details: any) => {
-  if (!details.temporary && details.reason === 'install') {
-    browser.tabs.create({
-      url: 'https://sereneblue.github.io/chameleon',
-    });
-  }
+browser.alarms.onAlarm.addListener(alarmInfo => {
+  chameleon.run();
 });
 
 browser.runtime.onMessage.addListener((request: any) => {
@@ -100,5 +62,5 @@ browser.runtime.onMessage.addListener((request: any) => {
 (async () => {
   let settings: any = await webext.getSettings(null);
   await chameleon.init(settings);
-  chameleon.start();
+  chameleon.setupTimer();
 })();

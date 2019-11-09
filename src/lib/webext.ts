@@ -20,6 +20,16 @@ let enableContextMenu = (enabled: boolean): void => {
   });
 };
 
+let firstTimeInstall = (): void => {
+  browser.runtime.onInstalled.addListener((details: any) => {
+    if (!details.temporary && details.reason === 'install') {
+      browser.tabs.create({
+        url: 'https://sereneblue.github.io/chameleon',
+      });
+    }
+  });
+};
+
 let getSettings = (key: string | null) => {
   return new Promise((resolve: any) => {
     browser.storage.local.get(key, (item: any) => {
@@ -69,6 +79,7 @@ let setSettings = (settings: any) => {
 export default {
   enableChameleon,
   enableContextMenu,
+  firstTimeInstall,
   getSettings,
   sendToBackground,
   setBrowserConfig,
