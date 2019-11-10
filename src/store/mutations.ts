@@ -10,7 +10,13 @@ export default {
       let keys = payload[i].name.split('.');
       let beforeLast = keys.slice(0, -1).reduce((o, i) => o[i], state);
 
-      beforeLast[keys.slice(-1).pop()] = !isNaN(Number(payload[i].value)) ? parseInt(payload[i].value, 10) : payload[i].value;
+      if (typeof payload[i].value != 'boolean') {
+        if (!isNaN(Number(payload[i].value))) {
+          payload[i].value = parseInt(payload[i].value, 10);
+        }
+      }
+
+      beforeLast[keys.slice(-1).pop()] = payload[i].value;
     }
   },
   [mtypes.INITIALIZE](state, payload) {
