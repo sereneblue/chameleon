@@ -629,8 +629,8 @@ export default class App extends Vue {
     rangeFrom: false,
     rangeTo: false,
   };
-  public languages: lang.Language[];
-  public profiles: prof.ProfileListItem[];
+  public languages: lang.Language[] = lang.languages;
+  public profiles: prof.ProfileListItem[] = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
     intervalMax: '',
@@ -889,11 +889,6 @@ export default class App extends Vue {
     }
 
     return false;
-  }
-
-  mounted() {
-    this.profiles = new prof.Generator().getAllProfiles();
-    this.languages = lang.languages;
   }
 
   openOptionsPage(tab: string): void {
