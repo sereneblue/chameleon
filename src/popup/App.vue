@@ -63,7 +63,7 @@
             </div>
           </button>
         </div>
-        <div class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
+        <div v-show="currentPage.domain" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
           <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
           <div class="flex justify-around">
             <div class="">
