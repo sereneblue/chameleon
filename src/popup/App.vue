@@ -200,12 +200,6 @@
         <div class="text-lg border-primary border-b-2 mb-4">Headers</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input @change="changeSetting($event)" :checked="settings.headers.disableAuth" name="headers.disableAuth" type="checkbox" class="text-primary form-checkbox" />
-            <span class="ml-1">Disable Authorization</span>
-          </label>
-        </div>
-        <div class="flex items-center mb-1">
-          <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.headers.enableDNT" name="headers.enableDNT" type="checkbox" class="text-primary form-checkbox" />
             <span class="ml-1">Enable DNT (Do Not Track)</span>
           </label>
@@ -297,18 +291,6 @@
           </label>
         </div>
         <div v-show="!settings.headers.referer.disabled">
-          <div class="flex items-center mb-1">
-            <label class="cursor-pointer">
-              <input
-                @change="changeSetting($event)"
-                :checked="settings.headers.referer.spoofSource"
-                name="headers.referer.spoofSource"
-                type="checkbox"
-                class="text-primary form-checkbox"
-              />
-              <span class="ml-1">Spoof Source Referer</span>
-            </label>
-          </div>
           <div class="text-sm mt-2" :class="[darkMode ? 'text-red-400' : 'text-red-800']">Don't modify about:config settings for the options below.</div>
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">

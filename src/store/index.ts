@@ -16,11 +16,9 @@ export default new Vuex.Store({
     excluded: [],
     headers: {
       blockEtag: false,
-      disableAuth: false,
       enableDNT: false,
       referer: {
         disabled: false,
-        spoofSource: false,
         xorigin: 0,
         trimming: 0,
       },
