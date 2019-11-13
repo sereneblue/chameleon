@@ -175,7 +175,13 @@
             <perfect-scrollbar ref="scrollView" class="pl-3 pr-3">
               <div class="profile-item fg">
                 <label :class="{ 'opacity-50': isExcluded(currentProfileGroup) }" class="flex items-center cursor-pointer">
-                  <input @click="setSelected('profile', currentProfileGroup)" :checked="isSelected('profile', currentProfileGroup)" type="radio" class="form-radio" />
+                  <input
+                    @click="setSelected('profile', currentProfileGroup)"
+                    :disabled="isExcluded(currentProfileGroup)"
+                    :checked="isSelected('profile', currentProfileGroup)"
+                    type="radio"
+                    class="form-radio"
+                  />
                   <span class="ml-2">Random {{ displayOS }} Browsers</span>
                 </label>
                 <div class="flex items-center">
@@ -185,7 +191,7 @@
               </div>
               <div v-for="p in profileListing" class="profile-item fg">
                 <label class="flex items-center cursor-pointer" :class="{ 'opacity-50': p.excluded }">
-                  <input @click="setSelected('profile', p.id)" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
+                  <input @click="setSelected('profile', p.id)" :disabled="p.excluded" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
                   <span class="ml-2">{{ p.name }}</span>
                 </label>
                 <div class="flex items-center">
