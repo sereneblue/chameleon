@@ -22,16 +22,25 @@ let findWhitelistRule = (rules: any, host: string, url: string): any => {
   return null;
 };
 
-let ipConverter = (ip: any): number | string => {
-  if (ip['type'] === 'full') {
-    return (
-      ip.data.split('.').reduce(function(ipInt: number, octet: string) {
-        return (ipInt << 8) + parseInt(octet, 10);
-      }, 0) >>> 0
-    );
-  }
+let generateByte = (): number => {
+  let octet: number = Math.floor(Math.random() * 256);
+  return octet === 10 || octet === 172 || octet === 192 ? generateByte() : octet;
+};
 
-  return (ip.num >>> 24) + '.' + ((ip.num >> 16) & 255) + '.' + ((ip.num >> 8) & 255) + '.' + (ip.num & 255);
+let generateIP = (): string => {
+  return `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
+};
+
+let ipToInt = (ip: string): number => {
+  return (
+    ip.split('.').reduce(function(ipInt: number, octet: string) {
+      return (ipInt << 8) + parseInt(octet, 10);
+    }, 0) >>> 0
+  );
+};
+
+let ipToString = (ip: number): string => {
+  return (ip >>> 24) + '.' + ((ip >> 16) & 255) + '.' + ((ip >> 8) & 255) + '.' + (ip & 255);
 };
 
 let parseURL = (url: string): any => {
@@ -51,12 +60,14 @@ let parseURL = (url: string): any => {
 };
 
 let validateIPRange = (from: string, to: string): boolean => {
-  return ipConverter({ data: from, type: 'full' }) <= ipConverter({ data: to, type: 'full' });
+  return ipToInt(from) <= ipToInt(to);
 };
 
 export default {
   findWhitelistRule,
-  ipConverter,
+  generateIP,
+  ipToInt,
+  ipToString,
   parseURL,
   validateIPRange,
 };
