@@ -1,10 +1,11 @@
+const devices = require('./devices');
+
 export interface BrowserProfile {
   accept: {
     header: string;
     encodingHTTP: string;
     encodingHTTPS: string;
   };
-  display: string;
   navigator?: {
     appVersion: string;
     buildID: string;
@@ -28,11 +29,42 @@ export interface ProfileListItem {
   name: string;
 }
 
+const BrowserVersions: any = {
+  esr: { desktop: '68' },
+  ff: { all: '70' },
+  gcr: { desktop: '78.0.3904.97', ios: '78.0.3904.84', android: '78.0.3904.96' },
+  sf: { desktop: '13.0.2', mobile: '13' },
+};
+
+let getName = (os: string, browser: string) => {
+  if (browser === 'esr') {
+    return `${os} - Firefox ${BrowserVersions.esr.desktop} ESR`;
+  } else if (browser === 'ff') {
+    return `${os} - Firefox ${BrowserVersions.ff.all}`;
+  } else if (browser === 'gcr') {
+    return `${os} - Google Chrome ${BrowserVersions.gcr.desktop.split('.')[0]}`;
+  } else if (browser === 'gcrm') {
+    let key = os.charAt(0) === 'i' ? 'ios' : 'android';
+    return `${os} - Google Chrome ${BrowserVersions.gcr[key].split('.')[0]} (Phone)`;
+  } else if (browser === 'gcrt') {
+    let key = os.charAt(0) === 'i' ? 'ios' : 'android';
+    return `${os} - Google Chrome ${BrowserVersions.gcr[key].split('.')[0]} (Tablet)`;
+  } else if (browser === 'ie') {
+    return `${os} - Internet Explorer 11`;
+  } else if (browser === 'sf') {
+    return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
+  } else if (browser === 'sfm') {
+    return `${os} - Safari ${BrowserVersions.sf.mobile.split('.')[0]} (iPad)`;
+  } else if (browser === 'sft') {
+    return `${os} - Safari ${BrowserVersions.sf.mobile.split('.')[0]} (iPhone)`;
+  }
+};
+
 export class Generator {
   private browsers = {
     // firefox esr
     esr: (os): BrowserProfile => {
-      let version: string = '68';
+      let version: string = BrowserVersions.esr.desktop;
       let platform: string;
 
       switch (os.id) {
@@ -48,13 +80,9 @@ export class Generator {
           platform = `Macintosh; ${os.nav.oscpu}`;
           break;
         case 'lin1':
-          platform = 'X11; Linux x86_64';
-          break;
         case 'lin2':
-          platform = 'X11; Fedora; Linux x86_64';
-          break;
         case 'lin3':
-          platform = 'X11; Ubuntu; Linux x86_64';
+          platform = os.uaPlatform;
           break;
         default:
           break;
@@ -68,13 +96,12 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        display: `${os.name} - Firefox ${version} ESR`,
         useragent: ua,
       };
     },
     // firefox
     ff: (os): BrowserProfile => {
-      let version: string = '70';
+      let version: string = BrowserVersions.ff.desktop;
       let platform: string;
       let device: string;
 
@@ -91,21 +118,15 @@ export class Generator {
           platform = `Macintosh; ${os.nav.oscpu}`;
           break;
         case 'lin1':
-          platform = 'X11; Linux x86_64';
-          break;
         case 'lin2':
-          platform = 'X11; Fedora; Linux x86_64';
-          break;
         case 'lin3':
-          platform = 'X11; Ubuntu; Linux x86_64';
+          platform = os.uaPlatform;
           break;
         case 'and1':
         case 'and2':
         case 'and3':
         case 'and4':
-          // Firefox for Android has two distinct UAs for phones and tablets
-          device = Math.random() > 0.5 ? 'Mobile' : 'Tablet';
-          platform = `${os.name}; ${device}`;
+          platform = `${os.name}; Mobile`;
         default:
           break;
       }
@@ -118,13 +139,12 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        display: `${os.name} - Firefox ${version}`,
         useragent: ua,
       };
     },
     // google chrome
     gcr: (os): BrowserProfile => {
-      let version: string = '78.0.3904.97';
+      let version: string = BrowserVersions.gcr.desktop;
       let platform: string;
 
       switch (os.id) {
@@ -137,14 +157,14 @@ export class Generator {
         case 'mac1':
         case 'mac2':
         case 'mac3':
+        case 'lin1':
+        case 'lin2':
           platform = os.uaPlatform;
           break;
-        case 'lin1':
         case 'lin3':
           platform = 'X11; Linux x86_64';
           break;
-        case 'lin2':
-          platform = 'X11; Fedora; Linux x86_64';
+        default:
           break;
       }
 
@@ -156,31 +176,39 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        display: `${os.name} - Google Chrome ${version.split('.')[0]}`,
         useragent: ua,
       };
     },
     // google chrome (mobile)
     gcrm: (os): BrowserProfile => {
-      let versions: any = { ios: '78.0.3904.84', android: '78.0.3904.96' };
+      let versions: any = BrowserVersions.gcrm;
       let platform: string;
       let version: string;
+
+      const device = devices.getDevice('mobile', os.id);
 
       switch (os.id) {
         case 'ios1':
         case 'ios2':
         case 'ios3':
-          platform = '';
+          platform = os.uaPlatform;
           version = versions.ios;
           break;
         case 'and1':
         case 'and2':
         case 'and3':
         case 'and4':
-          platform = ``;
+          platform = `Linux; ${os.uaPlatform}; ${device.build}`;
           version = versions.android;
         default:
           break;
+      }
+
+      let ua: string;
+      if (os.id.charAt(0) === 'i') {
+        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${version} Mobile/${device.builld} Safari/605.1`;
+      } else {
+        ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Mobile Safari/537.36`;
       }
 
       return {
@@ -189,32 +217,40 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        display: `${os.name} - Google Chrome ${version.split('.')[0]} (Phone)`,
-        useragent: '',
+        useragent: ua,
       };
     },
     // google chrome (tablet)
     gcrt: (os): BrowserProfile => {
-      let versions: any = { ios: '78.0.3904.84', android: '78.0.3904.96' };
+      let versions: any = BrowserVersions.gcrm;
       let platform: string;
       let version: string;
+
+      // const device = devices.getDevice('tablet', os.id);
 
       switch (os.id) {
         case 'ios1':
         case 'ios2':
         case 'ios3':
-          platform = '';
+          platform = os.uaPlatform;
           version = versions.ios;
           break;
         case 'and1':
         case 'and2':
         case 'and3':
         case 'and4':
-          platform = '';
+          // platform = `Linux; ${os.uaPlatform}; ${device.build}`;
           version = versions.android;
         default:
           break;
       }
+
+      // let ua: string;
+      // if (os.id.charAt(0) === 'i') {
+      //   ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${version} Mobile/${device.builld} Safari/605.1`;
+      // } else {
+      //   ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Safari/537.36`;
+      // }exc
 
       return {
         accept: {
@@ -222,7 +258,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        display: `${os.name} - Google Chrome ${version.split('.')[0]} (Tablet)`,
         useragent: '',
       };
     },
@@ -234,13 +269,12 @@ export class Generator {
           encodingHTTP: 'gzip',
           encodingHTTPS: 'gzip, deflate',
         },
-        display: `${os.name} - Internet Explorer 11`,
         useragent: `Mozilla/5.0 (${os.nav.oscpu.split(';')[0]}; WOW64; Trident/7.0; rv:11.0) like Gecko`,
       };
     },
     // safari
     sf: (os): BrowserProfile => {
-      let version: string = '13.0.2';
+      let version: string = BrowserVersions.sf.desktop;
 
       let ua = `Mozilla/5.0 (${os.uaPlatform}) AppleWebKit/602.3.12 (KHTML, like Gecko) Version/${version} Safari/602.3.12`;
 
@@ -250,13 +284,12 @@ export class Generator {
           encodingHTTP: 'gzip',
           encodingHTTPS: 'gzip, deflate',
         },
-        display: `${os.name} - Safari ${version.split('.')[0]}`,
         useragent: ua,
       };
     },
     // safari (mobile)
     sfm: (os): BrowserProfile => {
-      let version: string = '13';
+      let version: string = BrowserVersions.sf.mobile;
 
       return {
         accept: {
@@ -264,13 +297,12 @@ export class Generator {
           encodingHTTP: 'gzip',
           encodingHTTPS: 'gzip, deflate',
         },
-        display: `${os.name} - Safari ${version.split('.')[0]} (iPhone)`,
         useragent: '',
       };
     },
     // safari (tablet)
     sft: (os): BrowserProfile => {
-      let version: string = '13';
+      let version: string = BrowserVersions.sf.mobile;
 
       return {
         accept: {
@@ -278,7 +310,6 @@ export class Generator {
           encodingHTTP: 'gzip',
           encodingHTTPS: 'gzip, deflate',
         },
-        display: `${os.name} - Safari ${version.split('.')[0]} (iPad)`,
         useragent: '',
       };
     },
@@ -373,6 +404,7 @@ export class Generator {
           oscpu: 'Linux x86_64',
           platform: 'Linux x86_64',
         },
+        uaPlatform: 'X11; Linux x86_64',
       },
       {
         id: 'lin2',
@@ -383,6 +415,7 @@ export class Generator {
           oscpu: 'Linux x86_64',
           platform: 'Linux x86_64',
         },
+        uaPlatform: 'X11; Fedora; Linux x86_64',
       },
       {
         id: 'lin3',
@@ -393,6 +426,7 @@ export class Generator {
           oscpu: 'Linux x86_64',
           platform: 'Linux x86_64',
         },
+        uaPlatform: 'X11; Ubuntu; Linux x86_64',
       },
     ],
     iOS: [
@@ -400,16 +434,19 @@ export class Generator {
         id: 'ios1',
         name: 'iOS 11',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
+        uaPlatform: '11_4_1',
       },
       {
         id: 'ios2',
         name: 'iOS 12',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
+        uaPlatform: '12_4_3',
       },
       {
         id: 'ios3',
         name: 'iOS 13',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
+        uaPlatform: '13_2',
       },
     ],
     android: [
@@ -417,21 +454,25 @@ export class Generator {
         id: 'and1',
         name: 'Android 6',
         browsers: ['ff', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 6.0.1',
       },
       {
         id: 'and2',
         name: 'Android 7',
         browsers: ['ff', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 7.1.2',
       },
       {
         id: 'and3',
         name: 'Android 8',
         browsers: ['ff', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 8.1.0',
       },
       {
         id: 'and4',
         name: 'Android 9',
         browsers: ['ff', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 9',
       },
     ],
   };
@@ -445,7 +486,7 @@ export class Generator {
         let id = `${target[i].id}-${target[i].browsers[j]}`;
         profiles.push({
           id,
-          name: this.getProfile(id).display,
+          name: getName(target[i].name, target[i].browsers[j]),
         });
       }
     }
