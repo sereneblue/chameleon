@@ -85,12 +85,12 @@ let devices: any = {
         build: 'Moto G (7)',
       },
       {
-        name: 'OnePlus 7',
-        build: 'GM1903',
+        name: 'Lenovo Tab v7',
+        build: 'Lenovo PB-6505M',
       },
       {
-        name: 'Samsung Galaxy S10',
-        build: 'SM-G973U',
+        name: 'Samsung Galaxy Tab S6',
+        build: 'SM-T860',
       },
     ],
     ios1: [
@@ -140,6 +140,134 @@ let devices: any = {
       },
     ],
   },
+  tablet: {
+    and1: [
+      {
+        name: 'Google Pixel C',
+        build: 'Pixel C',
+      },
+      {
+        name: 'Nexus 9',
+        build: 'Nexus 9',
+      },
+      {
+        name: 'Samsung Galaxy Tab S2 8.0',
+        build: 'SM-T710',
+      },
+      {
+        name: 'Samsung Galaxy Tab S2 9.7',
+        build: 'SM-T810',
+      },
+      {
+        name: 'Samsung Galaxy Tab A 10.1',
+        build: 'SM-T580',
+      },
+    ],
+    and2: [
+      {
+        name: 'Huawei MediaPad T3 10',
+        build: 'AGS-W09',
+      },
+      {
+        name: 'Lenovo Tab 4 8',
+        build: 'Lenovo TB-8504F',
+      },
+      {
+        name: 'Lenovo Tab 7 Essential',
+        build: 'Lenovo TB-7304F',
+      },
+      {
+        name: 'Samsung Galaxy Tab S3 9.7',
+        build: 'SM-T820',
+      },
+      {
+        name: 'Samsung Galaxy Tab A 8.0',
+        build: 'SM-T380',
+      },
+    ],
+    and3: [
+      {
+        name: 'Samsung Galaxy Tab S4 10.5',
+        build: 'SM-T830',
+      },
+      {
+        name: 'Samsung Galaxy Tab A 10.5',
+        build: 'SM-T590',
+      },
+      {
+        name: 'Xiaomi Mi Pad 4',
+        build: 'MI PAD 4',
+      },
+      {
+        name: 'Xiaomi Mi Pad 4 Plus',
+        build: 'MI PAD 4 PLUS',
+      },
+    ],
+    and4: [
+      {
+        name: 'Google Pixel 3',
+        build: 'Pixel 3',
+      },
+      {
+        name: 'Huawei P30',
+        build: 'ELE-L09',
+      },
+      {
+        name: 'Motorola Moto G7',
+        build: 'Moto G (7)',
+      },
+      {
+        name: 'OnePlus 7',
+        build: 'GM1903',
+      },
+      {
+        name: 'Samsung Galaxy S10',
+        build: 'SM-G973U',
+      },
+    ],
+    ios1: [
+      {
+        device: 'iPad Air',
+        build: '15G77',
+      },
+      {
+        device: 'iPad Air 2',
+        build: '15G77',
+      },
+      {
+        device: 'iPad (2017)',
+        build: '15G77',
+      },
+      {
+        device: 'iPad (2018)',
+        build: '15G77',
+      },
+      {
+        device: 'iPad Mini 2',
+        build: '15G77',
+      },
+      {
+        device: 'iPad Mini 3',
+        build: '15G77',
+      },
+      {
+        device: 'iPad Mini 4',
+        build: '15G77',
+      },
+      {
+        device: 'iPad Pro (9.7in)',
+        build: '15G77',
+      },
+      {
+        device: 'iPad Pro (10.5in)',
+        build: '15G77',
+      },
+      {
+        device: 'iPad Pro (12.9in, 1st gen)',
+        build: '15G77',
+      },
+    ],
+  },
 };
 
 devices.mobile.ios2 = (devices.mobile.ios1.map((d: Device) => {
@@ -175,6 +303,31 @@ devices.mobile.ios3 = (devices.mobile.ios2.map((d: Device) => {
     build: '17B102',
   },
 ]);
+
+devices.tablet.ios2 = (devices.tablet.ios1.map((d: Device) => {
+  return { build: '16G130', name: d.name };
+}) as any).concat([
+  {
+    name: 'iPad Air (2019)',
+    build: '16G102',
+  },
+  {
+    name: 'iPad Mini (5th gen)',
+    build: '16G102',
+  },
+  {
+    name: 'iPad Pro (12.9-inch 2nd gen)',
+    build: '16G102',
+  },
+  {
+    name: 'iPad Pro (12.9-inch 3rg gen)',
+    build: '16G102',
+  },
+]);
+
+devices.tablet.ios3 = devices.tablet.ios2.map((d: Device) => {
+  return { build: '17B102', name: d.name };
+}) as any;
 
 let getDevice = (hardware: string, id: string): Device => {
   let len: number = devices[hardware][id].length;
