@@ -54,9 +54,9 @@ let getName = (os: string, browser: string) => {
   } else if (browser === 'sf') {
     return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
   } else if (browser === 'sfm') {
-    return `${os} - Safari ${BrowserVersions.sf.mobile.split('.')[0]} (iPad)`;
-  } else if (browser === 'sft') {
     return `${os} - Safari ${BrowserVersions.sf.mobile.split('.')[0]} (iPhone)`;
+  } else if (browser === 'sft') {
+    return `${os} - Safari ${BrowserVersions.sf.mobile.split('.')[0]} (iPad)`;
   }
 };
 
@@ -101,7 +101,7 @@ export class Generator {
     },
     // firefox
     ff: (os): BrowserProfile => {
-      let version: string = BrowserVersions.ff.desktop;
+      let version: string = BrowserVersions.ff.all;
       let platform: string;
       let device: string;
 
@@ -181,7 +181,7 @@ export class Generator {
     },
     // google chrome (mobile)
     gcrm: (os): BrowserProfile => {
-      let versions: any = BrowserVersions.gcrm;
+      let versions: any = BrowserVersions.gcr;
       let platform: string;
       let version: string;
 
@@ -206,7 +206,7 @@ export class Generator {
 
       let ua: string;
       if (os.id.charAt(0) === 'i') {
-        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${version} Mobile/${device.builld} Safari/605.1`;
+        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${version} Mobile/${device.build} Safari/605.1`;
       } else {
         ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Mobile Safari/537.36`;
       }
@@ -222,43 +222,44 @@ export class Generator {
     },
     // google chrome (tablet)
     gcrt: (os): BrowserProfile => {
-      let versions: any = BrowserVersions.gcrm;
+      let versions: any = BrowserVersions.gcr;
       let platform: string;
       let version: string;
 
-      // const device = devices.getDevice('tablet', os.id);
+      const device = devices.getDevice('tablet', os.id);
 
       switch (os.id) {
         case 'ios1':
         case 'ios2':
         case 'ios3':
-          platform = os.uaPlatform;
           version = versions.ios;
           break;
         case 'and1':
         case 'and2':
         case 'and3':
         case 'and4':
-          // platform = `Linux; ${os.uaPlatform}; ${device.build}`;
           version = versions.android;
         default:
           break;
       }
 
-      // let ua: string;
-      // if (os.id.charAt(0) === 'i') {
-      //   ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${version} Mobile/${device.builld} Safari/605.1`;
-      // } else {
-      //   ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Safari/537.36`;
-      // }exc
+      let ua: string;
+      if (os.id.charAt(0) === 'i') {
+        ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${version} Mobile/${device.build} Safari/605.1`;
+      } else {
+        ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Safari/537.36`;
+      }
 
       return {
         accept: {
-          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+          header:
+            os.id.charAt(0) === 'i'
+              ? 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+              : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
           encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: 'gzip, deflate, br',
+          encodingHTTPS: os.id.charAt(0) === 'i' ? 'br, gzip, deflate' : 'gzip, deflate, br',
         },
-        useragent: '',
+        useragent: ua,
       };
     },
     // internet explorer
@@ -282,9 +283,9 @@ export class Generator {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: 'br, gzip, deflate'
+          encodingHTTPS: 'br, gzip, deflate',
         },
-        useragent: ua
+        useragent: ua,
       };
     },
     // safari (mobile)
@@ -294,14 +295,14 @@ export class Generator {
       const device = devices.getDevice('mobile', os.id);
 
       let ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/${device.build} Safari/604.1`;
-      
+
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: 'br, gzip, deflate'
+          encodingHTTPS: 'br, gzip, deflate',
         },
-        useragent: ua
+        useragent: ua,
       };
     },
     // safari (tablet)
@@ -316,9 +317,9 @@ export class Generator {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: 'br, gzip, deflate'
+          encodingHTTPS: 'br, gzip, deflate',
         },
-        useragent: ua
+        useragent: ua,
       };
     },
   };
