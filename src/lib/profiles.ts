@@ -33,7 +33,7 @@ const BrowserVersions: any = {
   esr: { desktop: '68' },
   ff: { all: '70' },
   gcr: { desktop: '78.0.3904.97', ios: '78.0.3904.84', android: '78.0.3904.96' },
-  sf: { desktop: '13.0.2', mobile: '13' },
+  sf: { desktop: '13.0.3', mobile: '13.0.4' },
 };
 
 let getName = (os: string, browser: string) => {
@@ -281,36 +281,44 @@ export class Generator {
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-          encodingHTTP: 'gzip',
-          encodingHTTPS: 'gzip, deflate',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'br, gzip, deflate'
         },
-        useragent: ua,
+        useragent: ua
       };
     },
     // safari (mobile)
     sfm: (os): BrowserProfile => {
       let version: string = BrowserVersions.sf.mobile;
 
+      const device = devices.getDevice('mobile', os.id);
+
+      let ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/${device.build} Safari/604.1`;
+      
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-          encodingHTTP: 'gzip',
-          encodingHTTPS: 'gzip, deflate',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'br, gzip, deflate'
         },
-        useragent: '',
+        useragent: ua
       };
     },
     // safari (tablet)
     sft: (os): BrowserProfile => {
       let version: string = BrowserVersions.sf.mobile;
 
+      const device = devices.getDevice('tablet', os.id);
+
+      let ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/${device.build} Safari/604.1`;
+
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-          encodingHTTP: 'gzip',
-          encodingHTTPS: 'gzip, deflate',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'br, gzip, deflate'
         },
-        useragent: '',
+        useragent: ua
       };
     },
   };
