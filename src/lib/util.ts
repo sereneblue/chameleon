@@ -43,6 +43,12 @@ let ipToString = (ip: number): string => {
   return (ip >>> 24) + '.' + ((ip >> 16) & 255) + '.' + ((ip >> 8) & 255) + '.' + (ip & 255);
 };
 
+let isValidIP = (ip: string): boolean => {
+  return /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+    ip
+  );
+};
+
 let parseURL = (url: string): any => {
   let u = new URL(url);
   let uParsed = psl.parse(u.hostname);
@@ -60,7 +66,7 @@ let parseURL = (url: string): any => {
 };
 
 let validateIPRange = (from: string, to: string): boolean => {
-  return ipToInt(from) <= ipToInt(to);
+  return isValidIP(from) && isValidIP(to) && ipToInt(from) <= ipToInt(to);
 };
 
 export default {
