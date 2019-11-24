@@ -48,6 +48,7 @@ module.exports = {
         dark: '#33313b',
         'dark-fg': '#403E48',
         'dark-fg-alt': '#4D4B55',
+        'dark-modal': 'rgba(51, 49, 59, .8)',
         light: '#fbfbfb',
         'light-fg': '#e5e4e4',
         'light-fg-alt': '#CECDCD',

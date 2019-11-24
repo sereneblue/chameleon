@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen" :class="[theme.bg]">
+  <div class="flex flex-col min-h-screen" :class="darkMode ? ['bg-dark'] : ['bg-light']">
     <div class="flex-none fixed w-full z-10">
       <div class="bg-primary flex items-center">
         <img class="h-6 mx-2" :src="iconPath" />
@@ -94,7 +94,7 @@
           </button>
         </div>
         <div class="flex flex-wrap pb-12">
-          <table class="w-full">
+          <table id="iprules" class="w-full">
             <thead class="border-b-2">
               <tr class="flex flex-col flex-no wrap md:table-row text-left">
                 <th class="font-bold py-4 w-2/5">IP Rule</th>
@@ -103,11 +103,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                v-for="r in settings.ipRules"
-                :class="[darkMode ? 'hover:bg-dark-fg' : 'hover:bg-light-fg', darkMode ? 'border-dark-fg-alt' : 'border-light-fg-alt']"
-                class="flex flex-col px-2 border-b-2 md:table-row text-left"
-              >
+              <tr v-for="r in settings.ipRules" :key="r.id" class="flex flex-col px-2 border-b-2 md:table-row text-left">
                 <td class="flex justify-between py-4 mr-8">
                   <span class="max-w-lg truncate">{{ r.name }} ({{ r.ips.length }})</span>
                   <div>
@@ -131,7 +127,7 @@
       <div v-show="showModal" class="h-screen w-full fixed top-0 z-30 bg-dark-modal">
         <div class="flex flex-col justify-center h-full">
           <div v-on-clickaway="modalEventHandler">
-            <div v-if="modalType === Modal.IP_RULE" class="w-3/4 m-auto h-128 bg-white shadow-xl rounded-lg">
+            <div v-if="modalType === Modal.IP_RULE" class="w-3/4 modal h-128">
               <div class="px-6 pt-6 pb-8 text-xl">
                 <div class="text-xl font-bold border-primary border-b-2 mb-4">IP Rule Editor</div>
                 <div class="w-full">
@@ -139,12 +135,7 @@
                     <label for="headers.spoofIP.rangeFrom">
                       <span class="text-dark">Name</span>
                     </label>
-                    <input
-                      v-model="tmp.ipRule.name"
-                      name="headers.spoofIP.rangeFrom"
-                      class="block w-full form-input"
-                      :class="[errors.ipRuleName ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
-                    />
+                    <input v-model="tmp.ipRule.name" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error: errors.ipRuleName }" />
                   </div>
                   <div class="flex items-center mb-4">
                     <label class="mr-2 w-1/2">
@@ -165,7 +156,7 @@
                     <textarea
                       v-model="tmp.ipRule.ips"
                       class="form-textarea mt-1 text-xl block w-full"
-                      :class="[errors.ipRuleIPs ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+                      :class="{ error: errors.ipRuleIPs }"
                       rows="10"
                       placeholder="One IP/IP range per line"
                     ></textarea>
@@ -173,7 +164,7 @@
                   <div class="flex items-center">
                     <div class="flex mt-6 w-full">
                       <button @click="saveRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">Save</button>
-                      <button @click="showModal = false" class="bg-transparent text-gray-600 hover:text-gray-700 font-semibold py-2 px-4 rounded">
+                      <button @click="showModal = false" class="bg-transparent font-semibold py-2 px-4 rounded">
                         Cancel
                       </button>
                     </div>
@@ -181,7 +172,7 @@
                 </div>
               </div>
             </div>
-            <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE || modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 m-auto h-128 bg-white shadow-xl rounded-lg">
+            <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE || modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 modal h-128">
               <div class="flex flex-col px-6 pt-6 pb-8">
                 <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
                 <span class="my-1 text-xl font-semibold text-center">Are you sure you want to delete this rule?</span>
@@ -191,7 +182,7 @@
                 </div>
                 <div class="flex justify-center">
                   <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">Yes, delete it!</button>
-                  <button @click="showModal = false" class="bg-transparent text-gray-600 hover:text-gray-700 font-semibold py-2 px-4 rounded">
+                  <button @click="showModal = false" class="bg-transparent font-semibold py-2 px-4 rounded">
                     Cancel
                   </button>
                 </div>
@@ -239,6 +230,7 @@ export default class App extends Vue {
     ipRuleName: false,
     ipRuleIPs: false,
   };
+  public version: string;
   public tmp: any = {
     ipRule: {
       id: '',
@@ -253,40 +245,18 @@ export default class App extends Vue {
     return this.settings.config.theme === 'dark';
   }
 
-  get theme(): any {
-    if (this.darkMode) {
-      return {
-        bg: 'bg-dark',
-        fg: 'bg-dark-fg',
-        text: 'text-light',
-      };
-    }
-
-    return {
-      bg: 'bg-light',
-      fg: 'bg-light-fg',
-      text: 'text-dark',
-    };
-  }
-
   get settings(): any {
     return this['$store'].state;
   }
 
-  get version(): string {
-    return browser.runtime.getManifest().version;
-  }
-
   activeTab(tab: string): string[] {
-    if (this.currentTab === tab) {
-      return [this.theme.bg, 'active'];
-    }
-
-    return ['hover:bg-primary-soft'];
+    return this.currentTab === tab ? ['active'] : ['hover:bg-primary-soft'];
   }
 
   async created(): Promise<void> {
     this.iconPath = browser.runtime.getURL('icons/icon_32.png');
+    this.version = browser.runtime.getManifest().version;
+
     await this['$store'].dispatch('initialize');
 
     let hash = window.location.hash.substr(1).split('?')[0];
@@ -339,6 +309,15 @@ export default class App extends Vue {
     if (this.showModal && this.ready) {
       this.showModal = false;
     }
+  }
+
+  mounted(): void {
+    // listen for settings changes
+    browser.runtime.onMessage.addListener(
+      function(request: any): void {
+        if (request.action === 'save') this.settings = Object.assign(this.settings, request.data);
+      }.bind(this)
+    );
   }
 
   reallyDelete(): void {
