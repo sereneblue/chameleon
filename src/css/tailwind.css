@@ -91,10 +91,12 @@
 
 .bg-light .options-tab.active {
   @apply text-primary;
+  background-color: #fbfbfb;
 }
 
 .bg-dark .options-tab.active {
   @apply text-light;
+  background-color: #33313b;
 }
 
 .about-btn {
@@ -108,4 +110,61 @@
 input,
 select {
   @apply text-dark;
+}
+
+.bg-dark input.error {
+  @apply bg-red-300;
+}
+
+.bg-light input.error {
+  @apply bg-red-200;
+}
+
+.bg-dark button.bg-transparent {
+  @apply text-light;
+}
+
+.bg-light button.bg-transparent {
+  @apply text-primary;
+}
+
+.bg-light button.bg-transparent:hover {
+  @apply text-light;
+}
+
+.bg-dark #iprules tbody tr {
+  @apply border-dark-fg-alt;
+}
+
+.bg-dark #iprules tbody tr:hover {
+  @apply bg-dark-fg;
+}
+
+.bg-light #iprules tbody tr {
+  @apply border-light-fg-alt;
+}
+
+.bg-light #iprules tbody tr:hover {
+  @apply bg-light-fg;
+}
+
+.modal {
+  @apply m-auto shadow-xl text-dark rounded-lg;
+}
+
+/* cancel button */
+.modal button.bg-transparent {
+  @apply text-gray-600;
+}
+
+.modal button.bg-transparent:hover {
+  @apply text-gray-700;
+}
+
+.bg-dark .modal {
+  @apply bg-gray-400;
+}
+
+.bg-light .modal {
+  background-color: #fbfbfb;
 }
