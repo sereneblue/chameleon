@@ -132,7 +132,7 @@
               <input
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMin"
-                :class="[errors.intervalMin ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+                :class="{ error: errors.intervalMin }"
                 name="profile.interval.min"
                 type="number"
                 min="1"
@@ -144,7 +144,7 @@
               <input
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMax"
-                :class="[errors.intervalMax ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
+                :class="{ error: errors.intervalMax }"
                 name="profile.interval.max"
                 type="number"
                 min="1"
@@ -252,23 +252,11 @@
           <div v-show="settings.headers.spoofIP.option == 1" class="flex w-full ml-6 mt-2">
             <div class="mr-1 w-2/5">
               <label for="headers.spoofIP.rangeFrom">Range From</label>
-              <input
-                @input="setIPRange($event)"
-                v-model="tmp.rangeFrom"
-                name="headers.spoofIP.rangeFrom"
-                class="block w-full form-input"
-                :class="[errors.rangeFrom ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
-              />
+              <input @input="setIPRange($event)" v-model="tmp.rangeFrom" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error: errors.rangeFrom }" />
             </div>
             <div class="ml-1 w-2/5">
               <label for="headers.spoofIP.rangeTo">Range To</label>
-              <input
-                @input="setIPRange($event)"
-                v-model="tmp.rangeTo"
-                name="headers.spoofIP.rangeTo"
-                class="block w-full form-input"
-                :class="[errors.rangeTo ? (darkMode ? 'bg-red-300' : 'bg-red-200') : '']"
-              />
+              <input @input="setIPRange($event)" v-model="tmp.rangeTo" name="headers.spoofIP.rangeTo" class="block w-full form-input" :class="{ error: errors.rangeTo }" />
             </div>
           </div>
         </div>
@@ -323,7 +311,7 @@
       <div v-show="isSelected('tab', 'options')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4">Options</div>
         <div class="w-full mb-4">
-          <button @click="openOptionsPage('checklist')" class="w-full bg-primary font-semibold text-light py-1 px-4 border border-primary hover:bg-primary-soft rounded">
+          <button @click="openOptionsPage('checklist')" class="w-full bg-transparent font-semibold py-1 px-4 border border-primary hover:bg-primary-soft rounded">
             Open about:config checklist
           </button>
         </div>
