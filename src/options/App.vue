@@ -147,7 +147,7 @@
                     <label class="ml-2 w-1/2">
                       <span class="text-dark">Timezone</span>
                       <select v-model="tmp.ipRule.tz" name="profile.interval.option" class="form-select mt-1 block w-full">
-                        <option v-for="t in timezones" :value="t.zone">{{ t.zone }}</option>
+                        <option v-for="t in timezones" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                       </select>
                     </label>
                   </div>
