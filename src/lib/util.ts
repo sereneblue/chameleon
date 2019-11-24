@@ -31,6 +31,18 @@ let generateIP = (): string => {
   return `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
 };
 
+let ipInRange = (ip: string, range: string): boolean => {
+  if (range.length === 1) {
+    return ip === range[0];
+  } else {
+    let ipToCompare: number = ipToInt(ip);
+    let ipRangeFrom: number = ipToInt(range[0]);
+    let ipRangeTo: number = ipToInt(range[1]);
+
+    return ipRangeFrom <= ipToCompare && ipToCompare <= ipRangeTo;
+  }
+};
+
 let ipToInt = (ip: string): number => {
   return (
     ip.split('.').reduce(function(ipInt: number, octet: string) {
@@ -72,6 +84,7 @@ let validateIPRange = (from: string, to: string): boolean => {
 export default {
   findWhitelistRule,
   generateIP,
+  ipInRange,
   ipToInt,
   ipToString,
   parseURL,
