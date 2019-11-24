@@ -233,7 +233,7 @@
             <select @change="changeSetting($event)" :value="settings.headers.spoofAcceptLang.value" name="headers.spoofAcceptLang.value" class="form-select mt-1 w-full">
               <option value="ip">IP</option>
               <option value="default">Default</option>
-              <option v-for="l in languages" :value="l.lang">{{ l.display }}</option>
+              <option v-for="l in languages" :value="l.code">{{ l.name }}</option>
             </select>
           </label>
         </div>
@@ -606,7 +606,7 @@ export default class App extends Vue {
     rangeFrom: false,
     rangeTo: false,
   };
-  public languages: lang.Language[] = lang.languages;
+  public languages: lang.Language[] = lang.getAllLanguages();
   public profiles: prof.ProfileListItem[] = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
@@ -649,7 +649,7 @@ export default class App extends Vue {
         } else if (this.settings.headers.spoofAcceptLang.value === 'ip') {
           language = 'IP';
         } else {
-          language = this.languages.find(l => l.lang === this.settings.headers.spoofAcceptLang.value).display;
+          language = lang.getLanguage(this.settings.headers.spoofAcceptLang.value).name;
         }
       }
     } else {

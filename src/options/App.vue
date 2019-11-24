@@ -115,7 +115,7 @@
                     </button>
                   </div>
                 </td>
-                <td class="py-4">{{ languages.find(l => l.lang === r.lang).display }}</td>
+                <td class="py-4">{{ getLangName(r.lang) }}</td>
                 <td class="py-4">{{ r.tz }}</td>
               </tr>
             </tbody>
@@ -141,7 +141,7 @@
                     <label class="mr-2 w-1/2">
                       <span class="text-dark">Language</span>
                       <select v-model="tmp.ipRule.lang" name="profile.interval.option" class="form-select mt-1 block w-full">
-                        <option v-for="l in languages" :value="l.lang">{{ l.display }}</option>
+                        <option v-for="l in languages" :value="l.code">{{ l.name }}</option>
                       </select>
                     </label>
                     <label class="ml-2 w-1/2">
@@ -224,7 +224,7 @@ export default class App extends Vue {
   public modalType: Modal = Modal.DEFAULT;
   public ready: boolean = false;
   public showModal: boolean = false;
-  public languages: lang.Language[] = lang.languages;
+  public languages: lang.Language[] = lang.getAllLanguages();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public errors: any = {
     ipRuleName: false,
@@ -271,7 +271,7 @@ export default class App extends Vue {
   createNewRule(): void {
     this.tmp.ipRule.id = '';
     this.tmp.ipRule.name = '';
-    this.tmp.ipRule.lang = this.languages[0].lang;
+    this.tmp.ipRule.lang = this.languages[0].code;
     this.tmp.ipRule.tz = this.timezones[0].zone;
     this.tmp.ipRule.ips = '';
 
@@ -303,6 +303,10 @@ export default class App extends Vue {
 
     this.showModal = true;
     this.modalType = Modal.CONFIRM_IP_DELETE;
+  }
+
+  getLangName(langCode: string): lang.Language {
+    return lang.getLanguage(langCode).name;
   }
 
   modalEventHandler(): void {
