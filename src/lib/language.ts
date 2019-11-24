@@ -125,12 +125,14 @@ const languages: Language[] = [
   { name: 'Xhosa', value: 'xh-ZA,xh;q=0.8,en-US;q=0.5,en;q=0.3', code: 'xh-ZA', nav: ['xh-ZA', 'xh', 'en-US', 'en'] },
 ];
 
+const languageMap = languages.reduce((m, l) => ((m[l.code] = { name: l.name, nav: l.nav }), m), {});
+
 let getAllLanguages = (): Language[] => {
   return languages;
 };
 
 let getLanguage = (langCode: string): Language => {
-  return languages.find(l => l.code === langCode);
+  return languageMap[langCode];
 };
 
 export { getAllLanguages, getLanguage };
