@@ -231,7 +231,8 @@
         <div v-show="settings.headers.spoofAcceptLang.enabled" class="flex flex-col mb-1">
           <label class="ml-6">
             <select @change="changeSetting($event)" :value="settings.headers.spoofAcceptLang.value" name="headers.spoofAcceptLang.value" class="form-select mt-1 w-full">
-              <option value="IP">IP</option>
+              <option value="ip">IP</option>
+              <option value="default">Default</option>
               <option v-for="l in languages" :value="l.lang">{{ l.display }}</option>
             </select>
           </label>
@@ -643,7 +644,9 @@ export default class App extends Vue {
 
     if (this.settings.headers.spoofAcceptLang.enabled) {
       if (this.settings.headers.spoofAcceptLang.value) {
-        if (this.settings.headers.spoofAcceptLang.value === 'ip') {
+        if (this.settings.options.timeZone === 'default') {
+          language = 'Default';
+        } else if (this.settings.headers.spoofAcceptLang.value === 'ip') {
           language = 'IP';
         } else {
           language = this.languages.find(l => l.lang === this.settings.headers.spoofAcceptLang.value).display;
