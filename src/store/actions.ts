@@ -16,6 +16,11 @@ export const changeSetting = ({ commit, state }, payload) => {
 
   if (payload[0].name === 'whitelist.enabledContextMenu') {
     webext.enableContextMenu(payload[0].value);
+  } else if (payload[0].name === 'profile.interval.option') {
+    browser.runtime.sendMessage({
+      action: 'reloadProfile',
+      data: payload[0].value,
+    });
   } else if (
     [
       'options.cookiePolicy',
