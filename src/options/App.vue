@@ -3,16 +3,16 @@
     <div class="flex-none fixed w-full z-10">
       <div class="bg-primary flex items-center">
         <img class="h-6 mx-2" :src="iconPath" />
-        <div @click="currentTab = 'about'" class="options-tab" :class="activeTab('about')">
+        <div @click="changeTab('about')" class="options-tab" :class="activeTab('about')">
           About
         </div>
-        <div @click="currentTab = 'whitelist'" class="options-tab" :class="activeTab('whitelist')">
+        <div @click="changeTab('whitelist')" class="options-tab" :class="activeTab('whitelist')">
           Whitelist
         </div>
-        <div @click="currentTab = 'iprules'" class="options-tab" :class="activeTab('iprules')">
+        <div @click="changeTab('iprules')" class="options-tab" :class="activeTab('iprules')">
           IP Rules
         </div>
-        <div @click="currentTab = 'checklist'" class="options-tab" :class="activeTab('checklist')">
+        <div @click="changeTab('checklist')" class="options-tab" :class="activeTab('checklist')">
           Checklist
         </div>
       </div>
@@ -86,7 +86,7 @@
               Create new rule
             </div>
           </button>
-          <button class="about-btn">
+          <button @click="reloadIPInfo" class="about-btn">
             <div class="flex items-center">
               <feather class="mr-2" type="refresh-cw" size="1em"></feather>
               Reload IP info
@@ -152,7 +152,7 @@
                     </label>
                   </div>
                   <div>
-                    <div class="mb-2">IP Ranges</div>
+                    <div class="mb-2">IP Ranges / Addresses</div>
                     <textarea
                       v-model="tmp.ipRule.ips"
                       class="form-textarea mt-1 text-xl block w-full"
@@ -253,18 +253,22 @@ export default class App extends Vue {
     return this.currentTab === tab ? ['active'] : ['hover:bg-primary-soft'];
   }
 
+  changeTab(tab: string): void {
+    window.location.hash = '#' + tab;
+  }
+
   async created(): Promise<void> {
     this.iconPath = browser.runtime.getURL('icons/icon_32.png');
     this.version = browser.runtime.getManifest().version;
 
     await this['$store'].dispatch('initialize');
 
-    let hash = window.location.hash.substr(1).split('?')[0];
-
-    if (hash === 'whitelist') {
-      this.currentTab = 'whitelist';
-    } else if (hash === 'checklist') {
+    if (window.location.hash === '#checklist') {
       this.currentTab = 'checklist';
+    } else if (window.location.hash === '#iprules') {
+      this.currentTab = 'iprules';
+    } else if (window.location.hash === '#whitelist') {
+      this.currentTab = 'whitelist';
     }
   }
 
@@ -305,7 +309,7 @@ export default class App extends Vue {
     this.modalType = Modal.CONFIRM_IP_DELETE;
   }
 
-  getLangName(langCode: string): lang.Language {
+  getLangName(langCode: string): string {
     return lang.getLanguage(langCode).name;
   }
 
@@ -316,12 +320,26 @@ export default class App extends Vue {
   }
 
   mounted(): void {
-    // listen for settings changes
+    // listen for theme change
     browser.runtime.onMessage.addListener(
       function(request: any): void {
-        if (request.action === 'save') this.settings = Object.assign(this.settings, request.data);
+        if (request.action === 'save') {
+          this.settings.config = Object.assign(this.settings.config, request.data.config);
+        }
       }.bind(this)
     );
+
+    window.onhashchange = function() {
+      if (window.location.hash === '#checklist') {
+        this.currentTab = 'checklist';
+      } else if (window.location.hash === '#iprules') {
+        this.currentTab = 'iprules';
+      } else if (window.location.hash === '#whitelist') {
+        this.currentTab = 'whitelist';
+      } else {
+        this.currentTab = 'about';
+      }
+    }.bind(this);
   }
 
   reallyDelete(): void {
@@ -333,6 +351,12 @@ export default class App extends Vue {
 
       webext.sendToBackground(this.settings);
     }
+  }
+
+  reloadIPInfo(): void {
+    browser.runtime.sendMessage({
+      action: 'reloadIPInfo',
+    });
   }
 
   async saveRule(): Promise<void> {
