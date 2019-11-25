@@ -56,12 +56,6 @@
             <div>{{ currentProfile.timezone }}</div>
             <div>{{ currentProfile.lang }}</div>
           </div>
-          <button v-show="!/none|\d/.test(settings.profile.selected)" @click="changeProfile" class="inline-block mx-auto rounded-lg cursor-pointer px-2 py-1 my-1 fg">
-            <div class="flex items-center">
-              <feather type="repeat" size=".8em"></feather>
-              <span class="ml-1 text-xs">change</span>
-            </div>
-          </button>
         </div>
         <div v-show="currentPage.domain" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
           <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
@@ -614,6 +608,9 @@ export default class App extends Vue {
     intervalMin: '',
     rangeFrom: '',
     rangeTo: '',
+    store: {
+      profile: '',
+    },
   };
 
   get currentProfile(): any {
@@ -625,9 +622,8 @@ export default class App extends Vue {
     if (this.settings.profile.selected === 'none') {
       profile = 'Real Profile';
     } else {
-      profile = this.profileList
-        .find(p => p.id === (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.settings.profile.current))
-        .name.replace('-', '/');
+      let p: any = this.profileList.find(p => p.id === (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tmp.store.profile));
+      profile = p ? p.name.replace('-', '/') : '';
     }
 
     screen = /^\d/.test(this.settings.options.screenSize)
@@ -732,32 +728,6 @@ export default class App extends Vue {
     return ['hover:bg-primary-soft'];
   }
 
-  async changeProfile(value: any) {
-    if (typeof value != 'string') {
-      value = this.settings.profile.selected;
-    }
-
-    if (!/\d|none/.test(value)) {
-      let randProfile: string;
-      let device: string | null;
-
-      let profiles = new prof.Generator();
-      if (value.includes('random')) {
-        device = value === 'random' ? null : value.includes('Desktop') ? 'desktop' : 'mobile';
-        randProfile = profiles.getRandom(device, null);
-      } else {
-        randProfile = profiles.getRandom(null, value);
-      }
-
-      await this['$store'].dispatch('changeSetting', [
-        {
-          name: 'profile.current',
-          value: randProfile,
-        },
-      ]);
-    }
-  }
-
   async changeSetting(evt: any) {
     let v: string | boolean;
 
@@ -778,6 +748,14 @@ export default class App extends Vue {
   }
 
   async created() {
+    browser.runtime.onMessage.addListener(
+      function(request: any): void {
+        if (request.action === 'tempStore') {
+          this.tmp.store = Object.assign(this.tmp.store, request.data);
+        }
+      }.bind(this)
+    );
+
     await this['$store'].dispatch('initialize');
 
     // this.localize();
@@ -959,7 +937,6 @@ export default class App extends Vue {
       this.currentProfileGroup = this.currentProfileGroup === value ? '' : value;
       (this.$refs.scrollView as any).$el.scrollTop = 0;
     } else if (type === 'profile') {
-      await this.changeProfile(value);
       await this['$store'].dispatch('changeProfile', value);
       webext.sendToBackground(this.settings);
     } else if (type === 'tab') {

@@ -4,6 +4,11 @@ import webext from '../lib/webext';
 
 export const changeProfile = ({ commit }, payload) => {
   commit(mtypes.CHANGE_PROFILE, payload);
+
+  browser.runtime.sendMessage({
+    action: 'updateProfile',
+    data: payload,
+  });
 };
 
 export const changeSetting = ({ commit, state }, payload) => {
@@ -52,6 +57,10 @@ export const excludeProfile = ({ commit, state }, payload) => {
 
 export const initialize = async ({ commit }) => {
   let settings: any = await webext.getSettings(null);
+
+  browser.runtime.sendMessage({
+    action: 'tempStore',
+  });
 
   commit(mtypes.INITIALIZE, settings);
 };

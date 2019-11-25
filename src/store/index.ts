@@ -37,7 +37,6 @@ export default new Vuex.Store({
     ipRules: [],
     profile: {
       selected: 'none',
-      current: '',
       interval: {
         option: 0,
         min: 1,
