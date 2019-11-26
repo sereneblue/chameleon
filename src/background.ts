@@ -72,7 +72,10 @@ browser.runtime.onMessage.addListener((request: any) => {
   } else if (request.action === 'reloadProfile') {
     chameleon.setupTimer(request.data);
   } else if (request.action === 'updateProfile') {
-    chameleon.updateProfile(request.data);
+    chameleon.settings.profile.selected = request.data;
+
+    // reset interval timer and send notification
+    chameleon.setupTimer();
   }
 
   return true;
