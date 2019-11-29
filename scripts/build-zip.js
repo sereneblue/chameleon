@@ -27,6 +27,7 @@ const buildZip = (src, dist, zipFilename) => {
 
   const archive = archiver('zip', { zlib: { level: 9 } });
   const stream = fs.createWriteStream(path.join(dist, zipFilename));
+  const xpiStream = fs.createWriteStream(path.join(dist, zipFilename.replace('.zip', '.xpi')));
 
   return new Promise((resolve, reject) => {
     archive
@@ -34,7 +35,13 @@ const buildZip = (src, dist, zipFilename) => {
       .on('error', err => reject(err))
       .pipe(stream);
 
+    archive
+      .directory(src, false)
+      .on('error', err => reject(err))
+      .pipe(xpiStream);
+
     stream.on('close', () => resolve());
+    xpiStream.on('close', () => resolve());
     archive.finalize();
   });
 };
