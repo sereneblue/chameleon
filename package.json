@@ -20,6 +20,13 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
+  "jest": {
+    "globals": {
+      "__DEV__": true
+    },
+    "globalSetup": "<rootDir>/tests/setup.js",
+    "globalTeardown": "<rootDir>/tests/teardown.js"
+  },
   "dependencies": {
     "feather-icons": "^4.24.1",
     "psl": "^1.4.0",
@@ -60,6 +67,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.2.2",
+    "express": "^4.17.1",
     "file-loader": "^1.1.11",
     "geckodriver": "^1.19.1",
     "husky": "^2.4.0",
