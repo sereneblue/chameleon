@@ -124,7 +124,6 @@ class Interceptor {
     let isSecure: boolean = this.regex.HTTPS.test(details.url);
 
     let dntIndex: number = -1;
-    let insecureRequestIndex: number = -1;
 
     let profile: prof.BrowserProfile;
     if (wl.active) {
@@ -207,8 +206,6 @@ class Interceptor {
         }
       } else if (header === 'dnt') {
         dntIndex = i;
-      } else if (header === 'upgrade-insecure-requests') {
-        insecureRequestIndex = i;
       }
     }
 
@@ -219,19 +216,6 @@ class Interceptor {
     } else {
       if (dntIndex > -1) {
         details.requestHeaders.splice(dntIndex, 1);
-        if (dntIndex < insecureRequestIndex) {
-          insecureRequestIndex--;
-        }
-      }
-    }
-
-    if (this.settings.headers.upgradeInsecureRequests) {
-      if (insecureRequestIndex === -1) {
-        details.requestHeaders.push({ name: 'Upgrade-Insecure-Requests', value: '1' });
-      }
-    } else {
-      if (insecureRequestIndex > -1) {
-        details.requestHeaders.splice(insecureRequestIndex, 1);
       }
     }
 

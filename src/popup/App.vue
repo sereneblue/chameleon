@@ -259,18 +259,6 @@
           <label class="cursor-pointer">
             <input
               @change="changeSetting($event)"
-              :checked="settings.headers.upgradeInsecureRequests"
-              name="headers.upgradeInsecureRequests"
-              type="checkbox"
-              class="text-primary form-checkbox"
-            />
-            <span class="ml-1">Upgrade Insecure Requests</span>
-          </label>
-        </div>
-        <div class="flex items-center mb-1">
-          <label class="cursor-pointer">
-            <input
-              @change="changeSetting($event)"
               :checked="settings.headers.referer.disabled"
               name="headers.referer.disabled"
               type="checkbox"

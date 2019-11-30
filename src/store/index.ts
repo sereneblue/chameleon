@@ -32,7 +32,6 @@ export default new Vuex.Store({
         rangeFrom: '',
         rangeTo: '',
       },
-      upgradeInsecureRequests: false,
     },
     ipRules: [],
     profile: {
