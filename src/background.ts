@@ -64,13 +64,24 @@ browser.runtime.onMessage.addListener((request: any) => {
         message: 'Neither timezone or Language are set to use IP.',
       });
     }
+  } else if (request.action === 'reloadProfile') {
+    chameleon.setupTimer(request.data);
+  } else if (request.action === 'reloadSpoofIP') {
+    if (request.data[0].name === 'headers.spoofIP.enabled') {
+      chameleon.settings.headers.spoofIP.enabled = request.data[0].value;
+    } else if (request.data[0].name === 'headers.spoofIP.option') {
+      chameleon.settings.headers.spoofIP.option = request.data[0].value;
+    } else if (request.data[0].name === 'headers.spoofIP.rangeFrom') {
+      chameleon.settings.headers.spoofIP.rangeFrom = request.data[0].value;
+      chameleon.settings.headers.spoofIP.rangeTo = request.data[1].value;
+    }
+
+    chameleon.updateSpoofIP();
   } else if (request.action === 'tempStore') {
     browser.runtime.sendMessage({
       action: 'tempStore',
       data: chameleon.tempStore,
     });
-  } else if (request.action === 'reloadProfile') {
-    chameleon.setupTimer(request.data);
   } else if (request.action === 'updateProfile') {
     chameleon.settings.profile.selected = request.data;
 

@@ -21,6 +21,11 @@ export const changeSetting = ({ commit, state }, payload) => {
       action: 'reloadProfile',
       data: payload[0].value,
     });
+  } else if (['headers.spoofIP.enabled', 'headers.spoofIP.option', 'headers.spoofIP.rangeFrom'].includes(payload[0].name)) {
+    browser.runtime.sendMessage({
+      action: 'reloadSpoofIP',
+      data: payload,
+    });
   } else if (
     [
       'options.cookiePolicy',

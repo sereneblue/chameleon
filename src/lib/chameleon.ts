@@ -140,19 +140,8 @@ export class Chameleon {
   }
 
   public start(): void {
-    // change spoof IP settings
-    if (this.settings.headers.spoofIP.enabled) {
-      if (this.settings.headers.spoofIP.option === SpoofIPOption.Random) {
-        this.tempStore.spoofIP = util.generateIP();
-      } else {
-        let rangeFrom = util.ipToInt(this.settings.headers.spoofIP.rangeFrom);
-        let rangeTo = util.ipToInt(this.settings.headers.spoofIP.rangeTo);
-
-        this.tempStore.spoofIP = util.ipToString(Math.floor(Math.random() * (rangeTo - rangeFrom + 1) + rangeFrom));
-      }
-    }
-
     this.updateProfile(this.settings.profile.selected);
+    this.updateSpoofIP();
   }
 
   public async saveSettings(settings: any): Promise<void> {
@@ -282,5 +271,18 @@ export class Chameleon {
       action: 'tempStore',
       data: this.tempStore,
     });
+  }
+
+  public updateSpoofIP(): void {
+    if (this.settings.headers.spoofIP.enabled) {
+      if (this.settings.headers.spoofIP.option === SpoofIPOption.Random) {
+        this.tempStore.spoofIP = util.generateIP();
+      } else {
+        let rangeFrom = util.ipToInt(this.settings.headers.spoofIP.rangeFrom);
+        let rangeTo = util.ipToInt(this.settings.headers.spoofIP.rangeTo);
+
+        this.tempStore.spoofIP = util.ipToString(Math.floor(Math.random() * (rangeTo - rangeFrom + 1) + rangeFrom));
+      }
+    }
   }
 }
