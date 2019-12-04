@@ -21,20 +21,20 @@ let uaList = {
 		"name": "Edge 19 (Win 10)",
 		"value": "win5"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (Win 7)",
+		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (Win 7)",
 		"value": "win6"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (Win 8)",
+		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (Win 8)",
 		"value": "win7"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (Win 8.1)",
+		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (Win 8.1)",
 		"value": "win8"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (Win 10)",
+		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (Win 10)",
 		"value": "win9"
 	}, {
 		"ua": "Mozilla/5.0 (Windows NT 6.1; rv:68.0) Gecko/20100101 Firefox/68.0",
@@ -74,12 +74,12 @@ let uaList = {
 		"name": "Chrome 78 (macOS 10.14)",
 		"value": "mac2"
 	}, {
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (macOS 10.13)",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (macOS 10.13)",
 		"value": "mac3"
 	}, {
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (macOS 10.14)",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (macOS 10.14)",
 		"value": "mac4"
 	}, {
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:68.0) Gecko/20100101 Firefox/68.0",
@@ -123,16 +123,16 @@ let uaList = {
 		"name": "Chromium 78 (Ubuntu 64)",
 		"value": "linux6"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (Linux 64)",
+		"ua": "Mozilla/5.0 (X11; Linux; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (Linux 64)",
 		"value": "linux7"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Fedora; Linux; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (Fedora 64)",
+		"ua": "Mozilla/5.0 (X11; Fedora; Linux; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (Fedora 64)",
 		"value": "linux8"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux; rv:70.0) Gecko/20100101 Firefox/70.0",
-		"name": "Firefox 70 (Ubuntu 64)",
+		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux; rv:71.0) Gecko/20100101 Firefox/71.0",
+		"name": "Firefox 71 (Ubuntu 64)",
 		"value": "linux9"
 	}, {
 		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0",
