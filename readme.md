@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.12.19-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.12.20-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/chameleon/localized.svg)](https://crowdin.com/project/chameleon)
 
@@ -88,3 +88,4 @@ Princeton Web Transparency & Accountability Project for the audio context finger
 - melegeti for the French translation
 - 3ibsand and Alexey for the Russian translation
 - Shitennouji for the Japanese translation
+- Wursttorte for the German translation
