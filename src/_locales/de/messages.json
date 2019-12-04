@@ -1,0 +1,878 @@
+{
+  "extDescription": {
+    "message": "Spoofe dein Browserprofil. Enthält einige Einstellungen zur Verbesserung der Privatsphäre.",
+    "description": "Description of the extension."
+  },
+  "aboutContributors": {
+    "message": "Entwickelt von <a href=\"$AUTHOR$\">sereneblue</a> und <a href=\"$CONTRIB$\">Beitragenden</a>",
+    "description": "Contributors text",
+    "placeholders": {
+      "author": {
+        "content": "https://github.com/sereneblue"
+      },
+      "contrib": {
+        "content": "https://github.com/sereneblue/chameleon/graphs/contributors"
+      }
+    }
+  },
+  "aboutLicense": {
+    "message": "Freigegeben unter der GNU GPLv3-Lizenz.",
+    "description": "Text for license"
+  },
+  "aboutSrcCode": {
+    "message": "Quelltext",
+    "description": "Text for Github repository link"
+  },
+  "aboutReport": {
+    "message": "Melde einen Fehler",
+    "description": "Text for Github issues link"
+  },
+  "aboutTranslate": {
+    "message": "Hilf, Chameleon zu übersetzen",
+    "description": "Text for Crowdin localizations"
+  },
+  "aboutWiki": {
+    "message": "Wiki",
+    "description": "Text for Chameleon wiki"
+  },
+  "aboutBtnImport": {
+    "message": "Importieren",
+    "description": "Label for import settings button"
+  },
+  "aboutBtnExport": {
+    "message": "Exportieren",
+    "description": "Label for export settings button"
+  },
+  "tabProfile": {
+    "message": "Profil",
+    "description": "Title of popup tab: profile"
+  },
+  "profileEnableNotification": {
+    "message": "Benachrichtigungen einschalten",
+    "description": "Label for enable notifcations"
+  },
+  "profileRandom": {
+    "message": "Zufällig",
+    "description": "Label for random profile"
+  },
+  "profileRandomDesktop": {
+    "message": "Zufälliges Profil (Desktop)",
+    "description": "Label for random desktop profile"
+  },
+  "profileRandomMobile": {
+    "message": "Zufälliges Profil (Mobil)",
+    "description": "Label for random mobile profile"
+  },
+  "profileScriptInjectionMsg": {
+    "message": "Script injection muss aktiviert sein, um Profile vollständig zu verwenden.",
+    "description": "Script injection message"
+  },
+  "profilePeriodically": {
+    "message": "Periodisch ändern",
+    "description": "Text for interval change"
+  },
+  "profileIntervalNo": {
+    "message": "Nein",
+    "description": "Option to not change periodically"
+  },
+  "profileIntervalCustom": {
+    "message": "Benutzerdefiniertes Intervall",
+    "description": "Option to change periodically using custom interval"
+  },
+  "profileIntervalMinute": {
+    "message": "Jede Minute",
+    "description": "Option to change periodically: 1 min"
+  },
+  "profileIntervalMinute5": {
+    "message": "Alle 5 Minuten",
+    "description": "Option to change periodically: 5 min"
+  },
+  "profileIntervalMinute10": {
+    "message": "Alle 10 Minuten",
+    "description": "Option to change periodically: 10 min"
+  },
+  "profileIntervalMinute20": {
+    "message": "Alle 20 Minuten",
+    "description": "Option to change periodically: 20 min"
+  },
+  "profileIntervalMinute30": {
+    "message": "Alle 30 Minuten",
+    "description": "Option to change periodically: 30 min"
+  },
+  "profileIntervalMinute40": {
+    "message": "Alle 40 Minuten",
+    "description": "Option to change periodically: 40 min"
+  },
+  "profileIntervalMinute50": {
+    "message": "Alle 50 Minuten",
+    "description": "Option to change periodically: 50 min"
+  },
+  "profileIntervalHour": {
+    "message": "Stündlich",
+    "description": "Option to change periodically: 1 hour"
+  },
+  "profileIntervalRefresh": {
+    "message": "Aktualisieren",
+    "description": "Label for refresh profile button"
+  },
+  "profileIntervalCustomMin": {
+    "message": "Min (Minuten):",
+    "description": "Label for custom interval input: min"
+  },
+  "profileIntervalCustomMax": {
+    "message": "Max (Minuten):",
+    "description": "Label for custom interval input: max"
+  },
+  "profileBrowser": {
+    "message": "Browser",
+    "description": "Text to append to platform, ex. Windows Browsers"
+  },
+  "profileExclude": {
+    "message": "Ausschließen",
+    "description": "Lbael for exclude profiles"
+  },
+  "profileRandomWindows": {
+    "message": "Zufällige Windows Browser",
+    "description": "Label for random Windows browsers option"
+  },
+  "profileRandomMacOS": {
+    "message": "Zufällige macOS Browser",
+    "description": "Label for random macOS browsers option"
+  },
+  "profileRandomLinux": {
+    "message": "Zufällige Linux Browser",
+    "description": "Label for random Linux browsers option"
+  },
+  "profileRandomIOS": {
+    "message": "Zufällige iOS Browser",
+    "description": "Label for random iOS browsers option"
+  },
+  "profileRandomAndroid": {
+    "message": "Zufällige Android Browser",
+    "description": "Label for random Android browsers option"
+  },
+  "profileCustom": {
+    "message": "Benutzerdefinierter Benutzer-Agent",
+    "description": "Lbael for custom user agent"
+  },
+  "tabHeaders": {
+    "message": "Kopfzeilen",
+    "description": "Title of popup tab: headers"
+  },
+  "headersDisableAuth": {
+    "message": "Autorisierung deaktivieren",
+    "description": "Label for disable auth header"
+  },
+  "headersEnableDNT": {
+    "message": "DNT (Do Not Track) aktivieren",
+    "description": "Label for enable Do Not Track"
+  },
+  "headersBlockEtag": {
+    "message": "Etag-Tracking verhindern",
+    "description": "Label for prevent Etag"
+  },
+  "headersSpoofIP": {
+    "message": "Spoof IP",
+    "description": "Label for spoof IP headers"
+  },
+  "headersIPRandom": {
+    "message": "zufällige IP",
+    "description": "Label for IP address (random)"
+  },
+  "headersIPCustom": {
+    "message": "benutzerdefinierte IP",
+    "description": "Label for IP address (custom)"
+  },
+  "headersRangeFrom": {
+    "message": "From IP range:",
+    "description": "Label for IP address range (from)"
+  },
+  "headersRangeTo": {
+    "message": "To IP range:",
+    "description": "Label for IP address range (to)"
+  },
+  "headersDisableRef": {
+    "message": "Referrer deaktivieren",
+    "description": "Label for disable referer"
+  },
+  "headersSpoofSourceRef": {
+    "message": "Spoof Quell-Referrer",
+    "description": "Label for disable referer"
+  },
+  "headersUpgradeInsecureReq": {
+    "message": "Aktiviere \"Upgrade Insecure Requests\"",
+    "description": "Label for disable referer"
+  },
+  "headersMsg1": {
+    "message": "Verändern Sie nicht die about:config Einstellungen für die unten stehenden Optionen.",
+    "description": "Warning message for referer options"
+  },
+  "headersMsg2": {
+    "message": "Weitere Informationen im Wiki.",
+    "description": "Wiki link text"
+  },
+  "headersRefererXorigin": {
+    "message": "Referer X Origin Policy",
+    "description": "Label for referer X Origin policy"
+  },
+  "headersRefererXoriginOption1": {
+    "message": "Immer senden (Standard)",
+    "description": "Option to set referer X Origin policy to: always send"
+  },
+  "headersRefererXoriginOption2": {
+    "message": "Basis-Domain anpassen",
+    "description": "Option to set referer X Origin policy to: match base domain"
+  },
+  "headersRefererXoriginOption3": {
+    "message": "Host anpassen",
+    "description": "Option to set referer X Origin policy to: match host"
+  },
+  "headersRefererTrimming": {
+    "message": "Referer-Trimming-Richtlinien",
+    "description": "Label for referer trimming policy"
+  },
+  "headersRefererTrimmingOption1": {
+    "message": "Vollständige URI senden (Standard)",
+    "description": "Option to set referer trimming policy to: send full URI"
+  },
+  "headersRefererTrimmingOption2": {
+    "message": "Schema, Host, Port + Pfad",
+    "description": "Option to set referer trimming policy to: Scheme, host, port + path"
+  },
+  "headersRefererTrimmingOption3": {
+    "message": "Schema, Host + Port",
+    "description": "Option to set referer trimming policy to: Scheme, host + port"
+  },
+  "headersSpoofAccept": {
+    "message": "Spoof Accept & Accept-Encoding Header",
+    "description": "Label for spoof accept"
+  },
+  "headersSpoofAcceptLang": {
+    "message": "Spoof Accept-Language als",
+    "description": "Label for disable referer"
+  },
+  "tabOptions": {
+    "message": "Optionen",
+    "description": "Title of popup tab: options"
+  },
+  "optionsGroupScriptInjection": {
+    "message": "Script Injection Optionen",
+    "description": "Label for group: script injection options"
+  },
+  "optionsEnableScriptInjection": {
+    "message": "Script injection aktivieren",
+    "description": "Label for enable script injection"
+  },
+  "optionsEnableScriptInjectionMsg": {
+    "message": "Eine Option mit * erfordert script injection",
+    "description": "Text for script injection options message"
+  },
+  "optionsWebsocketsOption1": {
+    "message": "Alle erlauben",
+    "description": "Option to allow all websocket connections"
+  },
+  "optionsWebsocketsOption2": {
+    "message": "Drittanbieter blockieren",
+    "description": "Option to block 3rd party websocket connections"
+  },
+  "optionsWebsocketsOption3": {
+    "message": "Alle blockieren",
+    "description": "Option to block all websocket connections"
+  },
+  "optionsLimitHistory": {
+    "message": "Tab-Verlauf begrenzen",
+    "description": "Label for limit tab history"
+  },
+  "optionsProtectCSSExfil": {
+    "message": "CSS Exfil schützen",
+    "description": "Label for protect CSS Exfil"
+  },
+  "optionsProtectWinName": {
+    "message": "\"Protect window name\" aktivieren",
+    "description": "Label for protect window name"
+  },
+  "optionsProtectKBFingerprint": {
+    "message": "Tastatur-Fingerprint schützen",
+    "description": "Label for protect keyboard fingerprint"
+  },
+  "optionsKBDelay": {
+    "message": "Verzögerung (ms)",
+    "description": "Placeholder for keyboard delay"
+  },
+  "optionsSpoofAudioContext": {
+    "message": "Spoof Audio Kontext",
+    "description": "Label for spoof audio context"
+  },
+  "optionsSpoofClientRects": {
+    "message": "Spoof Client Rects",
+    "description": "Label for spoof client rects"
+  },
+  "optionsSpoofFontFingerprint": {
+    "message": "Spoof Schrift-Fingerprint",
+    "description": "Label for spoof font fingerprint"
+  },
+  "optionsSpoofScreenSize": {
+    "message": "Bildschirmgröße spoofen",
+    "description": "Label for spoof screen size"
+  },
+  "optionsSpoofScreenSizeOptionProfile": {
+    "message": "Profil",
+    "description": "Option for spoof screen size: profile"
+  },
+  "optionsSpoofScreenSizeCustomWidth": {
+    "message": "Bildschirmbreite (px)",
+    "description": "Label for custom screen size: width"
+  },
+  "optionsSpoofScreenSizeCustomHeight": {
+    "message": "Bildschirmhöhe (px)",
+    "description": "Label for custom screen size: height"
+  },
+  "optionsSpoofTimezone": {
+    "message": "Zeitzone",
+    "description": "Label for spoof timezone"
+  },
+  "optionsGroupStandard": {
+    "message": "Standardoptionen",
+    "description": "Label for group: standard options"
+  },
+  "optionsFirstPartyIsolate": {
+    "message": "\"1st party isolation\" aktivieren",
+    "description": "Label for enable 1st party isolation"
+  },
+  "optionsResistFingerprinting": {
+    "message": "\"Fingerprinting\" widerstehen",
+    "description": "Label for enable resist fingerprinting"
+  },
+  "optionsTrackingProtection": {
+    "message": "\"Protection mode\" verfolgen",
+    "description": "Label for tracking protection"
+  },
+  "optionsTrackingProtectionOption1": {
+    "message": "An",
+    "description": "Option to enable tracking protection"
+  },
+  "optionsTrackingProtectionOption2": {
+    "message": "Aus",
+    "description": "Option to disable tracking protection"
+  },
+  "optionsTrackingProtectionOption3": {
+    "message": "Im privaten Browsen aktiviert",
+    "description": "Option to enable tracking protection only in private browsing"
+  },
+  "optionsDisableWebRTC": {
+    "message": "Disable WebRTC",
+    "description": "Label for disable WebRTC"
+  },
+  "optionsWebRTC": {
+    "message": "WebRTC-Richtlinien",
+    "description": "Label for WebRTC Policy"
+  },
+  "optionsWebRTCOption2": {
+    "message": "Öffentliche und private Schnittstelle verwenden",
+    "description": "Option to use public & private interface"
+  },
+  "optionsWebRTCOption3": {
+    "message": "Nur öffentliche Schnittstelle verwenden (am besten)",
+    "description": "Option to only use public interface"
+  },
+  "optionsWebRTCOption4": {
+    "message": "\"Non-proxified UDP\" deaktivieren",
+    "description": "Option to disable non-proxified UDP"
+  },
+  "optionsGroupCookie": {
+    "message": "Cookie-Optionen",
+    "description": "Label for group: cookie"
+  },
+  "optionsCookiePolicy": {
+    "message": "Richtlinie",
+    "description": "Label for cookie policy"
+  },
+  "optionsCookiePolicyOption1": {
+    "message": "Alle zulassen",
+    "description": "Option to allow all cookies"
+  },
+  "optionsCookiePolicyOption2": {
+    "message": "Alle blockieren",
+    "description": "Option to block all cookies"
+  },
+  "optionsCookiePolicyOption3": {
+    "message": "Drittanbieter blockieren",
+    "description": "Option to block 3rd party cookies"
+  },
+  "optionsCookiePolicyOption4": {
+    "message": "Besuch von Drittanbietern erlauben",
+    "description": "Option to allow 3rd party from visited"
+  },
+  "optionsCookiePolicyOption5": {
+    "message": "Tracker ablehnen",
+    "description": "Option to reject trackers"
+  },
+  "optionsOpenChecklist": {
+    "message": "Öffne über:config Checkliste",
+    "description": "Label for checklist button"
+  },
+  "whitelistEnable": {
+    "message": "Whitelist aktivieren (erfordert script injection)",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistEnableContextMenu": {
+    "message": "Kontextmenü hinzufügen, um die aktuelle Tab-Domäne in der Whitelist zu öffnen",
+    "description": "Label for enable whitelist context menu item"
+  },
+  "whitelistUseDefault": {
+    "message": "Standard Whitelist-Profil",
+    "description": "Label for enable whitelist"
+  },
+  "whitelistViewIPRules": {
+    "message": "Zeitzonen-/Sprach-IP-Regeln anzeigen",
+    "description": "Label for IP rules"
+  },
+  "whitelistViewRules": {
+    "message": "Whitelist anzeigen",
+    "description": "Label for whitelist rules editor"
+  },
+  "whitelistCurrentDomain": {
+    "message": "Aktuelle Domain",
+    "description": "Text: Current domain"
+  },
+  "whitelistOpenEditor": {
+    "message": "Domain in Whitelist hinzufügen/bearbeiten",
+    "description": "Label for add/edit domain in whitelist"
+  },
+  "ipRulesSubheader": {
+    "message": "Zeitzonen-/Sprach-IP-Regeln anzeigen",
+    "description": "Subheader for IP rules"
+  },
+  "ipRulesReloadIP": {
+    "message": "IP-Info neu laden",
+    "description": "Label for button: reload IP info"
+  },
+  "ipRulesTip": {
+    "message": "Tipp: 8.8.8.0/24 entspricht dem Bereich 8.8.8.8.0 - 8.8.8.255",
+    "description": "Text for IP rules tip"
+  },
+  "ipRulesInstructions": {
+    "message": "Klicken Sie auf die IP-Info-Schaltfläche, nachdem Sie Änderungen an IP-Regeln vorgenommen haben",
+    "description": "Text for IP rules instructions"
+  },
+  "ipRulesTableIPRange": {
+    "message": "IP-Bereich",
+    "description": "Table column header: IP Range"
+  },
+  "ipRulesTableLanguage": {
+    "message": "Sprache",
+    "description": "Table column header: Language"
+  },
+  "ipRulesTableTimezone": {
+    "message": "Zeitzone",
+    "description": "Table column header: Timezone"
+  },
+  "ipRulesTableActions": {
+    "message": "Aktionen",
+    "description": "Table column header: Actions"
+  },
+  "ipRulesCIDR": {
+    "message": "IP oder CIDR",
+    "description": "Label for IP/CIDR range"
+  },
+  "ipRulesCIDRPlaceholder": {
+    "message": "IP oder CIDR eingeben",
+    "description": "Placeholder for IP/CIDR range"
+  },
+  "whitelistSearchPlaceholder": {
+    "message": "Suchregeln",
+    "description": "Placeholder for search rules input"
+  },
+  "whitelistEnterDomain": {
+    "message": "Domain eingeben",
+    "description": "Placeholder for domain input"
+  },
+  "whitelistRegexEnabled": {
+    "message": "Regex einschalten",
+    "description": "Label for regex checkbox"
+  },
+  "whitelistEnterPattern": {
+    "message": "Muster eingeben",
+    "description": "Placeholder for regex pattern"
+  },
+  "whitelistSpoofAcceptLang": {
+    "message": "Spoof \"Accept-Language\"",
+    "description": "Label for spoof accept-language"
+  },
+  "whitelistSpoofProfile": {
+    "message": "Profil spoofen",
+    "description": "Label for spoof profile"
+  },
+  "whitelistSpoofProfileDefault": {
+    "message": "Standard Whitelist-Profil",
+    "description": "Option to use default whitelist profile"
+  },
+  "whitelistAddDomain": {
+    "message": "Domain hinzufügen",
+    "description": "Label for add domain button"
+  },
+  "whitelistDisableAuth": {
+    "message": "Auth header deaktivieren",
+    "description": "Label for disable auth header"
+  },
+  "whitelistDisableReferer": {
+    "message": "Referrer deaktivieren",
+    "description": "Label for disable referer"
+  },
+  "whitelistDisableWebsocket": {
+    "message": "WebSocket-Unterstützung ausschalten",
+    "description": "Label for disable websocket"
+  },
+  "whitelistEnableIPHeaders": {
+    "message": "IP-Header-Spoofing aktivieren",
+    "description": "Label for enable IP headers spoof"
+  },
+  "whitelistEnableProtectWinName": {
+    "message": "\"Protect window name\" aktivieren",
+    "description": "Label for enable protect window name"
+  },
+  "whitelistEnableTimezoneSpoofing": {
+    "message": "Zeitzonen-Spoofing aktivieren",
+    "description": "Label for enable timezone spoofing"
+  },
+  "whitelistSpoofHeaderIPLabel": {
+    "message": "Header IP (Via & X-Forwarded For)",
+    "description": "Label for IP headers spoof value"
+  },
+  "whitelistConfirmation": {
+    "message": "Sind Sie sicher, dass Sie diese Regel löschen möchten?",
+    "description": "Text for delete confirmation"
+  },
+  "notificationMessage": {
+    "message": "Browser-Profil geändert",
+    "description": "Notification message for profile change"
+  },
+  "notificationMessageTimezone": {
+    "message": "Zeitzonen-Daten konnten nicht abgerufen werden. Verwende UTC.",
+    "description": "Notification message for timezone IP"
+  },
+  "textChecklist": {
+    "message": "Checkliste",
+    "description": "Text: Checklist"
+  },
+  "textClose": {
+    "message": "Schließen",
+    "description": "Text: Close"
+  },
+  "textCreate": {
+    "message": "Erstellen",
+    "description": "Text: Create"
+  },
+  "textCreateRule": {
+    "message": "Neue Regel erstellen",
+    "description": "Label for button: create new rule"
+  },
+  "textCustom": {
+    "message": "Benutzerdefiniert",
+    "description": "Text: Custom"
+  },
+  "textDefault": {
+    "message": "Standard",
+    "description": "Text: Default"
+  },
+  "textDelete": {
+    "message": "Löschen",
+    "description": "Text: Delete"
+  },
+  "textDomains": {
+    "message": "Domains",
+    "description": "Text: domains"
+  },
+  "textEdit": {
+    "message": "Bearbeiten",
+    "description": "Text: Edit"
+  },
+  "textLanguage": {
+    "message": "Sprache",
+    "description": "Text: Language"
+  },
+  "textLeaveEmpty": {
+    "message": "Leer lassen",
+    "description": "Text: Leave empty"
+  },
+  "textNo": {
+    "message": "Nein",
+    "description": "Text: No"
+  },
+  "textNotWhitelisted": {
+    "message": "Nicht auf der Whitelist",
+    "description": "Text: Not Whitelisted"
+  },
+  "textPattern": {
+    "message": "Muster",
+    "description": "Text: Pattern"
+  },
+  "textRealProfile": {
+    "message": "Echtes Profil",
+    "description": "Text: Real Profile"
+  },
+  "textReset": {
+    "message": "Zurücksetzen",
+    "description": "Text: Reset"
+  },
+  "textSave": {
+    "message": "Speichern",
+    "description": "Text: Save"
+  },
+  "textSettings": {
+    "message": "Einstellungen",
+    "description": "Text: Settings"
+  },
+  "textStatus": {
+    "message": "Status",
+    "description": "Text: Status"
+  },
+  "textTimezone": {
+    "message": "Zeitzone",
+    "description": "Text: Timezone"
+  },
+  "textYes": {
+    "message": "Ja",
+    "description": "Text: Yes"
+  },
+  "textWhitelist": {
+    "message": "Whitelist",
+    "description": "Text: Whitelist"
+  },
+  "textWhitelisted": {
+    "message": "Whitelisted",
+    "description": "Text: Whitelisted"
+  },
+  "checklistTip": {
+    "message": "Create option if it doesn't exist. Research option before changing, some will break sites!",
+    "description": "Text for checklist tip"
+  },
+  "checklistTableHeaderOption": {
+    "message": "Option",
+    "description": "Table header: option"
+  },
+  "checklistTableHeaderPreference": {
+    "message": "Präferenz",
+    "description": "Table header: preference"
+  },
+  "checklistTableHeaderSet": {
+    "message": "Festlegen auf",
+    "description": "Table header: set to"
+  },
+  "checklistBlockActiveMixedContent": {
+    "message": "Aktiven gemischten Inhalt blockieren",
+    "description": "Checklist option to block active mixed content"
+  },
+  "checklistBlockDisplayMixedContent": {
+    "message": "Angezeigten gemischten Inhalt blockieren",
+    "description": "Checklist option to block display mixed content"
+  },
+  "checklistDisableAddonCache": {
+    "message": "Disable Addon Cache",
+    "description": "Checklist option to disable addon cache"
+  },
+  "checklistDisableAddonUpdates": {
+    "message": "Disable Addon Updates",
+    "description": "Checklist option to disable addon updates"
+  },
+  "checklistDisableBatteryAPI": {
+    "message": "Batterie-API deaktivieren",
+    "description": "Checklist option to disable battery API"
+  },
+  "checklistDisableBrowserPings": {
+    "message": "Browser-Pings deaktivieren",
+    "description": "Checklist option to disable browser pings"
+  },
+  "checklistDisableHistory": {
+    "message": "Browser- und Download-History deaktivieren",
+    "description": "Checklist option to disable browsing and download history"
+  },
+  "checklistDisableCSSVisited": {
+    "message": "CSS für besuchte Links deaktivieren",
+    "description": "Checklist option to disable CSS visited links"
+  },
+  "checklistDisableCacheDisk": {
+    "message": "Cache (Festplatte) deaktivieren",
+    "description": "Checklist option to disable cache: disk"
+  },
+  "checklistDisableCacheMemory": {
+    "message": "Cache (Arbeitsspeicher) deaktivieren",
+    "description": "Checklist option to disable cache: memory"
+  },
+  "checklistDisableClipboardEvents": {
+    "message": "Clipboard-Ereignisse deaktivieren",
+    "description": "Checklist option to disable clipboard events"
+  },
+  "checklistDisableContextMenuEvents": {
+    "message": "Ereignisse des Inhaltsmenüs deaktivieren",
+    "description": "Checklist option to disable context menu events"
+  },
+  "checklistDisableDeviceSensors": {
+    "message": "Gerätesensoren deaktivieren",
+    "description": "Checklist option to disable device sensors"
+  },
+  "checklistDisableDNSPrefetch": {
+    "message": "DNS prefetch deaktivieren",
+    "description": "Checklist option to disable DNS prefetch"
+  },
+  "checklistDisableDOMStorage": {
+    "message": "DOM-Speicher deaktivieren",
+    "description": "Checklist option to disable DOM storage"
+  },
+  "checklistDisableDRM": {
+    "message": "DRM deaktivieren",
+    "description": "Checklist option to disable DRM"
+  },
+  "checklistDisableGeolocation": {
+    "message": "Geolocation deaktivieren",
+    "description": "Checklist option to disable geolocation"
+  },
+  "checklistDisableGeolocation2": {
+    "message": "Geolocation 2 deaktivieren",
+    "description": "Checklist option to disable geolocation 2"
+  },
+  "checklistDisableOfflineCache": {
+    "message": "Offline-Cache deaktivieren",
+    "description": "Checklist option to disable offline cache"
+  },
+  "checklistDisablePDFjs": {
+    "message": "PDF.js deaktivieren",
+    "description": "Checklist option to disable pdf.js"
+  },
+  "checklistDisablePocket": {
+    "message": "Pocket deaktivieren",
+    "description": "Checklist option to disable Pocket"
+  },
+  "checklistDisableResourceTiming": {
+    "message": "Resource Timing API deaktivieren",
+    "description": "Checklist option to disable resource timing"
+  },
+  "checklistDisableSearchSuggestions": {
+    "message": "Suchvorschläge deaktivieren",
+    "description": "Checklist option to disable search suggestions"
+  },
+  "checklistDisableSearchUpdates": {
+    "message": "Suchupdates deaktivieren",
+    "description": "Checklist option to disable search update"
+  },
+  "checklistDisableSpeculativePreConnections": {
+    "message": "Disable Speculative Pre-Connections",
+    "description": "Checklist option to disable speculative pre-connections"
+  },
+  "checklistDisableSSLFalseStart": {
+    "message": "SSL False Start deaktivieren",
+    "description": "Checklist option to disable SSL False Start"
+  },
+  "checklistDisableSSLSessionIdentifiers": {
+    "message": "SSL Session Identifiers deaktivieren",
+    "description": "Checklist option to disable SSL session identifiers"
+  },
+  "checklistDisableTLS0RTT": {
+    "message": "TLS 0-RTT deaktivieren",
+    "description": "Checklist option to disable TLS 0-RTT"
+  },
+  "checklistDisableTrustedRecursiveResolver": {
+    "message": "TTR (Trusted Recursive Resolver) deaktivieren",
+    "description": "Checklist option to disable Trusted Recursive Resolver"
+  },
+  "checklistDisableWebGL": {
+    "message": "WebGL deaktivieren",
+    "description": "Checklist option to disable WebGL"
+  },
+  "checklistDisableWebBeacons": {
+    "message": "Web Beacons deaktivieren",
+    "description": "Checklist option to disable Web Beacons"
+  },
+  "checklistEnableClearOfflineApps": {
+    "message": "Offline-Apps beim Herunterfahren aufräumen",
+    "description": "Checklist option to enable clear offline apps on shutdown"
+  },
+  "checklistEnableSocialTrackingProtection": {
+    "message": "Enable social tracking protection",
+    "description": "Checklist option to enable social tracking protection"
+  },
+  "checklistLimitDetectableFonts": {
+    "message": "Erkennbare Schriftarten begrenzen",
+    "description": "Checklist option to limit detectable fonts"
+  },
+  "checklistLimitMaxTabsUndo": {
+    "message": "Limit max tabs undo",
+    "description": "Checklist option to limit max tabs undo"
+  },
+  "checklistUseClickToPlay": {
+    "message": "Click-to-play für Plugins verwenden",
+    "description": "Checklist option to use click to pay for plugins"
+  },
+  "checklistDisableDataSubmission": {
+    "message": "Datenübermittlung deaktivieren",
+    "description": "Checklist option to disable data submission"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck": {
+    "message": "Safe browsing downloads check deaktivieren",
+    "description": "Checklist option to disable safe browsing downloads check"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck2": {
+    "message": "Safe browsing downloads check 2 deaktivieren",
+    "description": "Checklist option to disable safe browsing downloads check 2"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck3": {
+    "message": "Safe browsing downloads check 3 deaktivieren",
+    "description": "Checklist option to disable safe browsing downloads check 3"
+  },
+  "checklistDisableSafeBrowsingDownloadsCheck4": {
+    "message": "Safe browsing downloads check 4 deaktivieren",
+    "description": "Checklist option to disable safe browsing downloads check 4"
+  },
+  "checklistDisableSafeBrowsingMalwareCheck": {
+    "message": "Safe browsing malware check deaktivieren",
+    "description": "Checklist option to disable safe browsing malware check"
+  },
+  "checklistDisableSafeBrowsingPhishingCheck": {
+    "message": "\"Safe browsing phishing check\" deaktivieren",
+    "description": "Checklist option to disable safe browsing phishing check"
+  },
+  "checklistDisableHealthReportUploads": {
+    "message": "Health report uploads deaktivieren",
+    "description": "Checklist option to disable health report uploads"
+  },
+  "checklistDisableCrashReport": {
+    "message": "Absturzberichte deaktivieren",
+    "description": "Checklist option to disable crash report"
+  },
+  "checklistDisableTelemetryPings": {
+    "message": "Disable telemetry pings",
+    "description": "Checklist option to disable telemetry server"
+  },
+  "checklistDisableTelemetryReport": {
+    "message": "Telemetriebericht deaktivieren",
+    "description": "Checklist option to disable telemetry report"
+  },
+  "checklistDisableTelemetryReport2": {
+    "message": "Telemetriebericht 2 deaktivieren",
+    "description": "Checklist option to disable telemetry report 2"
+  },
+  "checklistDisableUserMediaEnumeration": {
+    "message": "Disable user media enumeration",
+    "description": "Checklist option to disable user media enumeration"
+  },
+  "checklistDisableUserMediaEnumeration2": {
+    "message": "Disable user media enumeration 2",
+    "description": "Checklist option to disable user media enumeration 2"
+  },
+  "checklistSetSessionPrivacyLevel": {
+    "message": "Set session privacy level",
+    "description": "Checklist option to set session privacy level"
+  },
+  "importSettingsSubheader": {
+    "message": "Importiere Einstellungen",
+    "description": "Subheader for import settings"
+  },
+  "importSuccess": {
+    "message": "Einstellungen erfolgreich importiert. Erweiterung wird neu geladen...",
+    "description": "Message for successful import"
+  },
+  "importError": {
+    "message": "Einstellungen konnten nicht importiert werden",
+    "description": "Message for unsuccessful import"
+  }
+}
