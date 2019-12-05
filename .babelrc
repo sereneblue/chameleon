@@ -1,13 +1,13 @@
 {
   "plugins": [
-    "@babel/plugin-proposal-optional-chaining"
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-proposal-export-default-from"
   ],
   "presets": [
     ["@babel/preset-env", {
       "useBuiltIns": "usage",
       "corejs": 3,
       "targets": {
-        // https://jamie.build/last-2-versions
         "firefox": "59"
       }
     }]

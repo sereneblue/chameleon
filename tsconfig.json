@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "module": "es2015",
     "moduleResolution": "node",

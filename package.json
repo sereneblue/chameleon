@@ -11,7 +11,7 @@
     "build": "cross-env NODE_ENV=production webpack --hide-modules",
     "build:dev": "cross-env NODE_ENV=development webpack --hide-modules",
     "build-zip": "node scripts/build-zip.js",
-    "test": "npm run build && npm run build-zip && jest",
+    "test": "npm build && npm run build-zip && jest",
     "watch": "npm run build -- --watch",
     "watch:dev": "cross-env HMR=true npm run build:dev -- --watch"
   },
@@ -25,7 +25,10 @@
       "__DEV__": true
     },
     "globalSetup": "<rootDir>/tests/setup.js",
-    "globalTeardown": "<rootDir>/tests/teardown.js"
+    "globalTeardown": "<rootDir>/tests/teardown.js",
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    }
   },
   "dependencies": {
     "feather-icons": "^4.24.1",
@@ -43,6 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-export-default-from": "^7.7.4",
     "@babel/plugin-proposal-optional-chaining": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/runtime-corejs3": "^7.4.0",
@@ -79,6 +83,7 @@
     "pretty-quick": "^1.8.0",
     "sass-loader": "^7.1.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
+    "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.0",
     "typescript": "^3.6.3",
     "vue-loader": "^15.4.2",
