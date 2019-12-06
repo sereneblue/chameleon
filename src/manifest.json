@@ -12,11 +12,11 @@
   },
   "default_locale": "en",
   "icons": {
-    "48": "icons/icon_48.png",
-    "128": "icons/icon_128.png"
+    "48": "icons/icon.svg",
+    "128": "icons/icon.svg"
   },
   "browser_action": {
-    "default_icon": "icons/icon_48.png",
+    "default_icon": "icons/icon.svg",
     "default_popup": "popup/popup.html"
   },
   "background": {
