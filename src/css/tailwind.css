@@ -112,11 +112,13 @@ select {
   @apply text-dark;
 }
 
-.bg-dark input.error {
+.bg-dark input.error,
+.bg-dark textarea.error {
   @apply bg-red-300;
 }
 
-.bg-light input.error {
+.bg-light input.error,
+.bg-light textarea.error {
   @apply bg-red-200;
 }
 
