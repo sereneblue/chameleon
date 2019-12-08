@@ -11,7 +11,7 @@
     "build": "cross-env NODE_ENV=production webpack --hide-modules",
     "build:dev": "cross-env NODE_ENV=development webpack --hide-modules",
     "build-zip": "node scripts/build-zip.js",
-    "test": "npm build && npm run build-zip && jest",
+    "test": "npm run build && npm run build-zip && jest",
     "watch": "npm run build -- --watch",
     "watch:dev": "cross-env HMR=true npm run build:dev -- --watch"
   },
