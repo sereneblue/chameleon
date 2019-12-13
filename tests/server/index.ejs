@@ -10,7 +10,36 @@
 	<h3>Referer Test</h3>
 	<a href="/headers" id="refTest">Test referer</a>
 	
+	<h3>WebRTC Test</h3>
+	<h5>WebRTC Connection</h5>
+	<p id="webrtcStatus"></p>
+	
+	<h3>WebSocket Test</h3>
+	<h5>WebSocket Connection</h5>
+	<p id="wsStatus">CLOSED</p>
+	<h5>WebSocket Connection (3rd Party)</h5>
+	<p id="wsStatus3rdParty">CLOSED</p>
+
 	<script type="text/javascript">
+		// webrtc
+		(() => {
+			document.querySelector('#webrtcStatus').innerText = window.RTCPeerConnection ? 'OK' : 'ERROR';
+		})();
+
+		// websocket
+		(() => {
+			let socket = new WebSocket('ws://chameleon1.test:3000/echo');
+			// Connection opened
+			socket.addEventListener('open', function (event) {
+				document.querySelector('#wsStatus').innerHTML = 'OPEN';
+			});
+
+			let socket2 = new WebSocket('ws://chameleon2.test:3000/echo');
+			// Connection opened
+			socket2.addEventListener('open', function (event) {
+				document.querySelector('#wsStatus3rdParty').innerHTML = 'OPEN';
+			});
+		})();
 	</script>
 </body>
 </html>
