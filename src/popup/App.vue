@@ -1,19 +1,19 @@
 <template>
   <div class="app h-screen w-screen flex" :class="[theme.bg]">
     <div class="text-xs bg-primary flex-none flex-col text-center">
-      <div @click="setSelected('tab', 'main')" class="tab" :class="activeTab('main')">
+      <div @click="setSelected('tab', 'main')" id="homeTab" class="tab" :class="activeTab('main')">
         <feather type="home" size="1.5em"></feather>
       </div>
-      <div @click="setSelected('tab', 'profile')" class="tab" :class="activeTab('profile')">
+      <div @click="setSelected('tab', 'profile')" id="profileTab" class="tab" :class="activeTab('profile')">
         <feather type="globe" size="1.5em"></feather>
       </div>
-      <div @click="setSelected('tab', 'headers')" class="tab" :class="activeTab('headers')">
+      <div @click="setSelected('tab', 'headers')" id="headersTab" class="tab" :class="activeTab('headers')">
         <feather type="code" size="1.5em"></feather>
       </div>
-      <div @click="setSelected('tab', 'options')" class="tab" :class="activeTab('options')">
+      <div @click="setSelected('tab', 'options')" id="optionsTab" class="tab" :class="activeTab('options')">
         <feather type="sliders" size="1.5em"></feather>
       </div>
-      <div @click="setSelected('tab', 'whitelist')" class="tab" :class="activeTab('whitelist')">
+      <div @click="setSelected('tab', 'whitelist')" id="whitelistTab" class="tab" :class="activeTab('whitelist')">
         <feather type="edit" size="1.5em"></feather>
       </div>
       <div @click="openOptionsPage('')" class="tab hover:bg-primary-soft">
@@ -24,7 +24,7 @@
       <div v-show="isSelected('tab', 'main')">
         <div class="text-center mt-16">
           <div class="my-6 h-24">
-            <div class="inline-block cursor-pointer" @click="toggleChameleon">
+            <div id="chameleonEnabled" class="inline-block cursor-pointer" @click="toggleChameleon">
               <feather v-if="settings.config.enabled" type="shield" class="text-primary" size="6em" stroke-width="2" />
               <feather v-else type="shield-off" class="text-red-500" size="6em" stroke-width="2" />
             </div>
@@ -166,7 +166,7 @@
             </li>
           </ul>
           <div v-show="currentProfileGroup" class="mt-2 rounded-sm fg" :class="[settings.profile.interval.option != -1 ? 'h-80' : 'h-64']">
-            <perfect-scrollbar ref="scrollView" class="pl-3 pr-3">
+            <perfect-scrollbar ref="scrollView" class="px-3">
               <div class="profile-item fg">
                 <label :class="{ 'opacity-50': isExcluded(currentProfileGroup) }" class="flex items-center cursor-pointer">
                   <input
@@ -200,19 +200,34 @@
         <div class="text-lg border-primary border-b-2 mb-4">Headers</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input @change="changeSetting($event)" :checked="settings.headers.enableDNT" name="headers.enableDNT" type="checkbox" class="text-primary form-checkbox" />
+            <input
+              id="enableDNT"
+              @change="changeSetting($event)"
+              :checked="settings.headers.enableDNT"
+              name="headers.enableDNT"
+              type="checkbox"
+              class="text-primary form-checkbox"
+            />
             <span class="ml-1">Enable DNT (Do Not Track)</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input @change="changeSetting($event)" :checked="settings.headers.blockEtag" name="headers.blockEtag" type="checkbox" class="text-primary form-checkbox" />
+            <input
+              id="blockEtag"
+              @change="changeSetting($event)"
+              :checked="settings.headers.blockEtag"
+              name="headers.blockEtag"
+              type="checkbox"
+              class="text-primary form-checkbox"
+            />
             <span class="ml-1">Prevent Etag tracking</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
+              id="spoofAcceptLang"
               @change="changeSetting($event)"
               :checked="settings.headers.spoofAcceptLang.enabled"
               name="headers.spoofAcceptLang.enabled"
@@ -224,7 +239,13 @@
         </div>
         <div v-show="settings.headers.spoofAcceptLang.enabled" class="flex flex-col mb-1">
           <label class="ml-6">
-            <select @change="changeSetting($event)" :value="settings.headers.spoofAcceptLang.value" name="headers.spoofAcceptLang.value" class="form-select mt-1 w-full">
+            <select
+              id="spoofAcceptLangSelect"
+              @change="changeSetting($event)"
+              :value="settings.headers.spoofAcceptLang.value"
+              name="headers.spoofAcceptLang.value"
+              class="form-select mt-1 w-full"
+            >
               <option value="ip">IP</option>
               <option value="default">Default</option>
               <option v-for="l in languages" :value="l.code">{{ l.name }}</option>
@@ -233,13 +254,20 @@
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input @change="changeSetting($event)" :checked="settings.headers.spoofIP.enabled" name="headers.spoofIP.enabled" type="checkbox" class="text-primary form-checkbox" />
+            <input
+              id="spoofIP"
+              @change="changeSetting($event)"
+              :checked="settings.headers.spoofIP.enabled"
+              name="headers.spoofIP.enabled"
+              type="checkbox"
+              class="text-primary form-checkbox"
+            />
             <span class="ml-1">Spoof X-Forwarded-For/Via IP</span>
           </label>
         </div>
         <div v-show="settings.headers.spoofIP.enabled" class="flex flex-col mb-1">
           <label class="ml-6">
-            <select @change="changeSetting($event)" :value="settings.headers.spoofIP.option" name="headers.spoofIP.option" class="form-select mt-1 w-full">
+            <select id="spoofIPSelect" @change="changeSetting($event)" :value="settings.headers.spoofIP.option" name="headers.spoofIP.option" class="form-select mt-1 w-full">
               <option value="0">Random IP</option>
               <option value="1">Custom IP</option>
             </select>
@@ -247,17 +275,32 @@
           <div v-show="settings.headers.spoofIP.option == 1" class="flex w-full ml-6 mt-2">
             <div class="mr-1 w-2/5">
               <label for="headers.spoofIP.rangeFrom">Range From</label>
-              <input @input="setIPRange($event)" v-model="tmp.rangeFrom" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error: errors.rangeFrom }" />
+              <input
+                id="spoofIPRangeFrom"
+                @input="setIPRange($event)"
+                v-model="tmp.rangeFrom"
+                name="headers.spoofIP.rangeFrom"
+                class="block w-full form-input"
+                :class="{ error: errors.rangeFrom }"
+              />
             </div>
             <div class="ml-1 w-2/5">
               <label for="headers.spoofIP.rangeTo">Range To</label>
-              <input @input="setIPRange($event)" v-model="tmp.rangeTo" name="headers.spoofIP.rangeTo" class="block w-full form-input" :class="{ error: errors.rangeTo }" />
+              <input
+                id="spoofIPRangeTo"
+                @input="setIPRange($event)"
+                v-model="tmp.rangeTo"
+                name="headers.spoofIP.rangeTo"
+                class="block w-full form-input"
+                :class="{ error: errors.rangeTo }"
+              />
             </div>
           </div>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
+              id="disableReferer"
               @change="changeSetting($event)"
               :checked="settings.headers.referer.disabled"
               name="headers.referer.disabled"
@@ -272,7 +315,13 @@
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
               Referer X Origin Policy
-              <select @change="changeSetting($event)" :value="settings.headers.referer.xorigin" name="headers.referer.xorigin" class="form-select mt-1 block w-full">
+              <select
+                id="refererXorigin"
+                @change="changeSetting($event)"
+                :value="settings.headers.referer.xorigin"
+                name="headers.referer.xorigin"
+                class="form-select mt-1 block w-full"
+              >
                 <option value="0">Always send (default)</option>
                 <option value="1">Match base domain</option>
                 <option value="2">Match host</option>
@@ -282,7 +331,13 @@
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
               Referer Trimming Policy
-              <select @change="changeSetting($event)" :value="settings.headers.referer.trimming" name="headers.referer.trimming" class="form-select mt-1 block w-full">
+              <select
+                id="refererTrim"
+                @change="changeSetting($event)"
+                :value="settings.headers.referer.trimming"
+                name="headers.referer.trimming"
+                class="form-select mt-1 block w-full"
+              >
                 <option value="0">Send full URI (default)</option>
                 <option value="1">Scheme, host, port + path</option>
                 <option value="2">Scheme, host + port</option>
