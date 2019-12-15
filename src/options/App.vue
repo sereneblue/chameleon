@@ -22,31 +22,31 @@
         <div class="border-b-2 border-primary">
           <div class="text-3xl mb-4">Chameleon v{{ version }}</div>
           <div class="flex flex-col md:flex-row mb-4">
-            <button class="about-btn">
+            <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="help-circle" size="1em"></feather>
                 <a href="https://sereneblue.github.io/chameleon/#/wiki">Wiki</a>
               </div>
             </button>
-            <button class="about-btn">
+            <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="alert-triangle" size="1em"></feather>
                 <a href="https://github.com/sereneblue/chameleon/issues">Issue Tracker</a>
               </div>
             </button>
-            <button class="about-btn">
+            <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="message-circle" size="1em"></feather>
                 <a href="https://sereneblue.github.io/chameleon/#/support">Support</a>
               </div>
             </button>
-            <button class="about-btn">
+            <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="github" size="1em"></feather>
                 <a href="https://github.com/sereneblue/chameleon">Source Code</a>
               </div>
             </button>
-            <button class="about-btn">
+            <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="mic" size="1em"></feather>
                 <a href="https://crowdin.com/project/chameleon">Help Translate</a>
@@ -57,19 +57,19 @@
         <div class="mt-4">
           <div class="text-3xl mb-4">Settings</div>
           <div class="flex flex-col md:flex-row">
-            <button class="about-btn">
+            <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="upload" size="1em"></feather>
                 Import
               </div>
             </button>
-            <button class="about-btn">
+            <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="download" size="1em"></feather>
                 Export
               </div>
             </button>
-            <button class="about-btn">
+            <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="rotate-ccw" size="1em"></feather>
                 Reset to Default
@@ -80,13 +80,13 @@
       </div>
       <div v-show="currentTab === 'iprules'" class="text-2xl flex flex-col">
         <div class="flex flex-col md:flex-row">
-          <button @click="createNewRule" class="about-btn">
+          <button @click="createNewRule" class="transparent-btn">
             <div class="flex items-center">
               <feather class="mr-2" type="plus" size="1em"></feather>
               Create new rule
             </div>
           </button>
-          <button @click="reloadIPInfo" class="about-btn">
+          <button @click="reloadIPInfo" class="transparent-btn">
             <div class="flex items-center">
               <feather class="mr-2" type="refresh-cw" size="1em"></feather>
               Reload IP info
@@ -140,13 +140,13 @@
                   <div class="flex items-center mb-4">
                     <label class="mr-2 w-1/2">
                       <span class="text-dark">Language</span>
-                      <select v-model="tmp.ipRule.lang" name="profile.interval.option" class="form-select mt-1 block w-full">
+                      <select v-model="tmp.ipRule.lang" class="form-select mt-1 block w-full">
                         <option v-for="l in languages" :value="l.code">{{ l.name }}</option>
                       </select>
                     </label>
                     <label class="ml-2 w-1/2">
                       <span class="text-dark">Timezone</span>
-                      <select v-model="tmp.ipRule.tz" name="profile.interval.option" class="form-select mt-1 block w-full">
+                      <select v-model="tmp.ipRule.tz" class="form-select mt-1 block w-full">
                         <option v-for="t in timezones" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                       </select>
                     </label>
