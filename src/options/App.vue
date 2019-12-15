@@ -425,4 +425,12 @@ export default class App extends Vue {
 .fade-leave-to {
   opacity: 0;
 }
+
+.ps {
+  height: 100%;
+}
+
+.ps__rail-y {
+  opacity: 0.6 !important;
+}
 </style>
