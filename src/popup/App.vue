@@ -531,7 +531,7 @@
           <label class="w-full mt-4">
             Default Profile
             <select @change="changeSetting($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
-              <option value="default">Real Profile</option>
+              <option value="none">Real Profile</option>
               <option v-for="p in profileList" :value="p.id">{{ p.name }}</option>
             </select>
           </label>

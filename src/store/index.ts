@@ -65,7 +65,7 @@ export default new Vuex.Store({
     whitelist: {
       enabled: false,
       enabledContextMenu: false,
-      defaultProfile: 'default',
+      defaultProfile: 'none',
       rules: [],
     },
   },
