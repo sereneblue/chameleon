@@ -99,11 +99,11 @@
   background-color: #33313b;
 }
 
-.about-btn {
+.transparent-btn {
   @apply bg-transparent py-2 px-4 border border-primary-soft rounded block mb-4 mr-4;
 }
 
-.about-btn:hover {
+.transparent-btn:hover {
   @apply bg-primary-soft text-white border-transparent;
 }
 
