@@ -78,6 +78,57 @@
           </div>
         </div>
       </div>
+      <div v-show="currentTab === 'whitelist'" class="text-2xl flex flex-col">
+        <div class="flex flex-col md:flex-row">
+          <button @click="createNewWhitelistRule" class="transparent-btn">
+            <div class="flex items-center">
+              <feather class="mr-2" type="plus" size="1em"></feather>
+              Create new rule
+            </div>
+          </button>
+        </div>
+        <input
+          v-model="query"
+          class="bg-gray-300 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 my-4 text-gray-800 leading-tight focus:outline-none focus:bg-white focus:border-primary"
+          type="text"
+          placeholder="Search rules"
+        />
+        <div class="flex flex-wrap pb-12">
+          <table id="iprules" class="w-full">
+            <thead class="border-b-2">
+              <tr class="flex flex-col flex-no wrap md:table-row text-left">
+                <th class="font-bold py-4 w-2/5">Whitelist Rule</th>
+                <th class="font-bold py-4">Profile</th>
+                <th class="font-bold py-4">URLs</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="r in filteredWhitelist" :key="r.id" class="flex flex-col px-2 border-b-2 md:table-row text-left">
+                <td class="flex justify-between py-4 mr-8">
+                  <span class="max-w-lg truncate">{{ r.name }} ({{ r.sites.length }})</span>
+                  <div>
+                    <button @click="editWLRule(r.id)" class="px-2">
+                      <feather type="edit-2" size="1em"></feather>
+                    </button>
+                    <button @click="deleteWLRule(r.id)" class="px-2">
+                      <feather type="trash" size="1em"></feather>
+                    </button>
+                  </div>
+                </td>
+                <td class="py-4">{{ r.profile }}</td>
+                <td class="py-4">
+                  {{
+                    r.sites
+                      .map(s => s.domain)
+                      .slice(0, 3)
+                      .join(', ')
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div v-show="currentTab === 'iprules'" class="text-2xl flex flex-col">
         <div class="flex flex-col md:flex-row">
           <button @click="createNewRule" class="transparent-btn">
@@ -163,8 +214,10 @@
                   </div>
                   <div class="flex items-center">
                     <div class="flex mt-6 w-full">
-                      <button @click="saveRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">Save</button>
-                      <button @click="showModal = false" class="bg-transparent font-semibold py-2 px-4 rounded">
+                      <button @click="saveIPRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">
+                        Save
+                      </button>
+                      <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
                         Cancel
                       </button>
                     </div>
@@ -172,7 +225,101 @@
                 </div>
               </div>
             </div>
-            <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE || modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 modal h-128">
+            <div v-else-if="modalType === Modal.WL_RULE" class="w-3/4 modal h-128">
+              <div class="px-6 pt-6 pb-8 text-xl">
+                <div class="text-xl font-bold border-primary border-b-2 mb-4">Whitelist Rule Editor</div>
+                <div class="flex-col lg:flex">
+                  <div class="mb-2 md:mb-0">
+                    <div class="mb-2">
+                      <label>
+                        <span class="text-dark">Name</span>
+                      </label>
+                      <input v-model="tmp.wlRule.name" class="block w-full form-input" :class="{ error: errors.wlRuleName }" />
+                    </div>
+                    <div class="mb-2">
+                      <label>
+                        Accept-Language
+                        <select v-model="tmp.wlRule.lang" class="form-select mt-1 block w-full">
+                          <option v-for="l in languages" :value="l.code">{{ l.name }}</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="mb-2">
+                      <label>
+                        Profile
+                        <select v-model="tmp.wlRule.profile" class="form-select mt-1 block w-full">
+                          <option value="default">Default Whitelist Profile</option>
+                          <option value="none">Real Profile</option>
+                          <option v-for="p in profileList" :value="p.id">{{ p.name }}</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="mb-2">
+                      <label for="headers.spoofIP.rangeFrom">
+                        <span class="text-dark">Header IP (VIa & X-Forwarded-For)</span>
+                      </label>
+                      <input v-model="tmp.wlRule.spoofIP" class="block w-full form-input" :class="{ error: errors.wlRuleIP }" />
+                    </div>
+                    <div class="my-4">
+                      <div class="flex justify-around">
+                        <div>
+                          <div class="mb-2">
+                            <div class="form-switch inline-block align-middle">
+                              <input v-model="tmp.wlRule.options.ref" id="ref" type="checkbox" class="form-switch-checkbox" />
+                              <label class="form-switch-label" for="ref"></label>
+                            </div>
+                            <label class="text-sm">Disable Referer</label>
+                          </div>
+                          <div>
+                            <div class="form-switch inline-block align-middle">
+                              <input v-model="tmp.wlRule.options.ws" id="ws" type="checkbox" class="form-switch-checkbox" />
+                              <label class="form-switch-label" for="ws"></label>
+                            </div>
+                            <label class="text-sm">Disable WebSocket</label>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="mb-2">
+                            <div class="form-switch inline-block align-middle">
+                              <input v-model="tmp.wlRule.options.name" id="name" type="checkbox" class="form-switch-checkbox" />
+                              <label class="form-switch-label" for="name"></label>
+                            </div>
+                            <label class="text-sm">Enable protect window name</label>
+                          </div>
+                          <div>
+                            <div class="form-switch inline-block align-middle">
+                              <input v-model="tmp.wlRule.options.tz" id="tz" type="checkbox" class="form-switch-checkbox" />
+                              <label class="form-switch-label" for="tz"></label>
+                            </div>
+                            <label class="text-sm">Enable timezone spoofing</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>Sites</div>
+                  <div class="text-sm">One rule per line: domain,[optional regex pattern]</div>
+                  <textarea
+                    v-model="tmp.wlRule.sites"
+                    class="form-textarea mt-1 text-xl block w-full"
+                    :class="{ error: errors.wlRuleSites }"
+                    rows="7"
+                    placeholder="Ex. reddit.com,r/(webdev|popular|privacy)"
+                  ></textarea>
+                </div>
+                <div class="flex items-center">
+                  <div class="flex mt-6 w-full">
+                    <button @click="saveWLRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">
+                      Save
+                    </button>
+                    <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE" class="w-1/3 modal h-128">
               <div class="flex flex-col px-6 pt-6 pb-8">
                 <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
                 <span class="my-1 text-xl font-semibold text-center">Are you sure you want to delete this rule?</span>
@@ -182,7 +329,23 @@
                 </div>
                 <div class="flex justify-center">
                   <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">Yes, delete it!</button>
-                  <button @click="showModal = false" class="bg-transparent font-semibold py-2 px-4 rounded">
+                  <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 modal h-128">
+              <div class="flex flex-col px-6 pt-6 pb-8">
+                <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
+                <span class="my-1 text-xl font-semibold text-center">Are you sure you want to delete this rule?</span>
+                <div class="my-4 text-center text-lg">
+                  <div>{{ tmp.wlRule.name }}</div>
+                  <div>{{ tmp.wlRule.sites.length }} site(s)</div>
+                </div>
+                <div class="flex justify-center">
+                  <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">Yes, delete it!</button>
+                  <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
                     Cancel
                   </button>
                 </div>
@@ -198,6 +361,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import * as lang from '../lib/language';
+import * as prof from '../lib/profiles';
 import * as tz from '../lib/tz';
 import util from '../lib/util';
 import webext from '../lib/webext';
@@ -208,6 +372,7 @@ const uuidv4 = require('uuid/v4');
 enum Modal {
   DEFAULT,
   IP_RULE,
+  WL_RULE,
   CONFIRM_IP_DELETE,
   CONFIRM_WL_DELETE,
 }
@@ -218,17 +383,23 @@ enum Modal {
   },
 })
 export default class App extends Vue {
+  public REGEX_DOMAIN: any = /^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/;
   public currentTab: string = 'about';
   public iconPath: string;
   public Modal = Modal;
   public modalType: Modal = Modal.DEFAULT;
+  public query: string = '';
   public ready: boolean = false;
   public showModal: boolean = false;
   public languages: lang.Language[] = lang.getAllLanguages();
+  public profiles: prof.ProfileListItem[] = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public errors: any = {
     ipRuleName: false,
     ipRuleIPs: false,
+    wlRuleName: false,
+    wlRuleIP: false,
+    wlRuleSites: false,
   };
   public version: string;
   public tmp: any = {
@@ -239,10 +410,39 @@ export default class App extends Vue {
       tz: '',
       ips: '',
     },
+    wlRule: {
+      id: '',
+      name: '',
+      sites: '',
+      lang: '',
+      profile: '',
+      spoofIP: '',
+      options: {
+        name: false,
+        ref: false,
+        tz: false,
+        ws: false,
+      },
+    },
   };
 
   get darkMode(): boolean {
     return this.settings.config.theme === 'dark';
+  }
+
+  get filteredWhitelist(): any {
+    return this.settings.whitelist.rules.filter(r => {
+      return (
+        r.name.toLowerCase().includes(this.query) ||
+        JSON.stringify(r.sites.map(s => s.domain))
+          .toLowerCase()
+          .includes(this.query)
+      );
+    });
+  }
+
+  get profileList(): prof.ProfileListItem[] {
+    return [].concat.apply([], Object.values(this.profiles));
   }
 
   get settings(): any {
@@ -253,12 +453,19 @@ export default class App extends Vue {
     return this.currentTab === tab ? ['active'] : ['hover:bg-primary-soft'];
   }
 
+  addSite(): void {
+    this.tmp.wlRule.sites.push({
+      domain: '',
+      pattern: '',
+    });
+  }
+
   changeTab(tab: string): void {
     window.location.hash = '#' + tab;
   }
 
   async created(): Promise<void> {
-    this.iconPath = browser.runtime.getURL('icons/icon_32.png');
+    this.iconPath = browser.runtime.getURL('icons/icon.svg');
     this.version = browser.runtime.getManifest().version;
 
     await this['$store'].dispatch('initialize');
@@ -272,6 +479,14 @@ export default class App extends Vue {
     }
   }
 
+  closeModal(): void {
+    this.showModal = false;
+
+    for (let e in this.errors) {
+      this.errors[e] = false;
+    }
+  }
+
   createNewRule(): void {
     this.tmp.ipRule.id = '';
     this.tmp.ipRule.name = '';
@@ -281,6 +496,22 @@ export default class App extends Vue {
 
     this.showModal = true;
     this.modalType = Modal.IP_RULE;
+  }
+
+  createNewWhitelistRule(): void {
+    this.tmp.wlRule.id = '';
+    this.tmp.wlRule.name = '';
+    this.tmp.wlRule.sites = '';
+    this.tmp.wlRule.lang = this.languages[0].code;
+    this.tmp.wlRule.profile = 'default';
+    this.tmp.wlRule.spoofIP = '';
+    this.tmp.wlRule.options.name = false;
+    this.tmp.wlRule.options.ref = false;
+    this.tmp.wlRule.options.tz = false;
+    this.tmp.wlRule.options.ws = false;
+
+    this.showModal = true;
+    this.modalType = Modal.WL_RULE;
   }
 
   editIPRule(id: string): void {
@@ -296,6 +527,16 @@ export default class App extends Vue {
     this.modalType = Modal.IP_RULE;
   }
 
+  editWLRule(id: string): void {
+    let rule: any = this.settings.whitelist.rules.find(r => r.id === id);
+    this.tmp.wlRule = Object.assign({}, rule);
+
+    this.tmp.wlRule.sites = rule.sites.map(r => Object.values(r).join(',')).join('\n');
+
+    this.showModal = true;
+    this.modalType = Modal.WL_RULE;
+  }
+
   deleteIPRule(id: string): void {
     let rule: any = this.settings.ipRules.find(r => r.id === id);
 
@@ -309,13 +550,32 @@ export default class App extends Vue {
     this.modalType = Modal.CONFIRM_IP_DELETE;
   }
 
+  deleteWLRule(id: string): void {
+    let rule: any = this.settings.whitelist.rules.find(r => r.id === id);
+
+    this.tmp.wlRule = Object.assign({}, rule);
+
+    this.showModal = true;
+    this.modalType = Modal.CONFIRM_WL_DELETE;
+  }
+
+  deleteSite(index: number): void {
+    this.tmp.wlRule.sites.splice(index, 1);
+    if (index === 0 && this.tmp.wlRule.sites.length === 0) {
+      this.tmp.wlRule.sites.push({
+        domain: '',
+        pattern: '',
+      });
+    }
+  }
+
   getLangName(langCode: string): string {
     return lang.getLanguage(langCode).name;
   }
 
   modalEventHandler(): void {
     if (this.showModal && this.ready) {
-      this.showModal = false;
+      this.closeModal();
     }
   }
 
@@ -350,6 +610,13 @@ export default class App extends Vue {
       this.modalType = Modal.DEFAULT;
 
       webext.sendToBackground(this.settings);
+    } else {
+      this.settings.whitelist.rules.splice(this.settings.whitelist.rules.findIndex(r => r.id === this.tmp.wlRule.id), 1);
+
+      this.showModal = false;
+      this.modalType = Modal.DEFAULT;
+
+      webext.sendToBackground(this.settings);
     }
   }
 
@@ -359,7 +626,7 @@ export default class App extends Vue {
     });
   }
 
-  async saveRule(): Promise<void> {
+  async saveIPRule(): Promise<void> {
     this.tmp.ipRule.name = this.tmp.ipRule.name.trim();
     this.tmp.ipRule.ips = this.tmp.ipRule.ips.trim();
     if (this.tmp.ipRule.name === '') {
@@ -402,6 +669,75 @@ export default class App extends Vue {
       this.settings.ipRules[idx] = Object.assign({}, this.tmp.ipRule, { ips: rules });
     } else {
       this.settings.ipRules.push(Object.assign({}, this.tmp.ipRule, { id: uuidv4(), ips: rules }));
+    }
+
+    webext.sendToBackground(this.settings);
+
+    this.showModal = false;
+  }
+
+  async saveWLRule(): Promise<void> {
+    this.tmp.wlRule.name = this.tmp.wlRule.name.trim();
+    if (this.tmp.wlRule.name === '') {
+      this.errors.wlRuleName = true;
+      return;
+    } else {
+      this.errors.wlRuleName = false;
+    }
+
+    // validate ip
+    if (this.tmp.wlRule.spoofIP != '') {
+      if (!util.isValidIP(this.tmp.wlRule.spoofIP)) {
+        this.errors.wlRuleIP = true;
+        return;
+      } else {
+        this.errors.wlRuleIP = false;
+      }
+    }
+
+    // validate sites patterns
+    let sites = this.tmp.wlRule.sites.split('\n').map(s => s.split(','));
+
+    let foundDomains = {};
+    for (let i = 0; i < sites.length; i++) {
+      if (sites[i].length > 2) {
+        this.errors.wlRuleSites = true;
+        return;
+      }
+
+      // check if already a rule
+      if (foundDomains[sites[i][0]]) {
+        this.errors.wlRuleSites = true;
+        return;
+      }
+
+      // test if valid domain
+      if (sites[i][0] === '' || !this.REGEX_DOMAIN.test(sites[i][0])) {
+        this.errors.wlRuleSites = true;
+        return;
+      }
+
+      foundDomains[sites[i][0]] = true;
+    }
+
+    this.errors.wlRuleSites = false;
+
+    sites = sites.map(s => {
+      return s.length === 2
+        ? {
+            domain: s[0],
+            pattern: s[1],
+          }
+        : {
+            domain: s[0],
+          };
+    });
+
+    if (this.tmp.wlRule.id) {
+      let idx: number = this.settings.whitelist.rules.findIndex(r => r.id === this.tmp.wlRule.id);
+      this.settings.whitelist.rules[idx] = Object.assign({}, this.tmp.wlRule, { sites });
+    } else {
+      this.settings.whitelist.rules.push(Object.assign({}, this.tmp.wlRule, { id: uuidv4(), sites }));
     }
 
     webext.sendToBackground(this.settings);

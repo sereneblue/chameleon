@@ -87,6 +87,7 @@ export default {
   ipInRange,
   ipToInt,
   ipToString,
+  isValidIP,
   parseURL,
   validateIPRange,
 };
