@@ -21,7 +21,7 @@
       <div v-show="currentTab === 'about'" class="text-2xl flex flex-col">
         <div class="border-b-2 border-primary">
           <div class="text-3xl mb-4">Chameleon v{{ version }}</div>
-          <div class="flex flex-col md:flex-row mb-4">
+          <div class="flex flex-col xl:flex-row mb-4">
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="help-circle" size="1em"></feather>
@@ -56,7 +56,7 @@
         </div>
         <div class="mt-4">
           <div class="text-3xl mb-4">Settings</div>
-          <div class="flex flex-col md:flex-row">
+          <div class="flex flex-col xl:flex-row">
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="upload" size="1em"></feather>
@@ -192,13 +192,13 @@
                     <label class="mr-2 w-1/2">
                       <span class="text-dark">Language</span>
                       <select v-model="tmp.ipRule.lang" class="form-select mt-1 block w-full">
-                        <option v-for="l in languages" :value="l.code">{{ l.name }}</option>
+                        <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
                       </select>
                     </label>
                     <label class="ml-2 w-1/2">
                       <span class="text-dark">Timezone</span>
                       <select v-model="tmp.ipRule.tz" class="form-select mt-1 block w-full">
-                        <option v-for="t in timezones" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
+                        <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                       </select>
                     </label>
                   </div>
@@ -240,7 +240,7 @@
                       <label>
                         Accept-Language
                         <select v-model="tmp.wlRule.lang" class="form-select mt-1 block w-full">
-                          <option v-for="l in languages" :value="l.code">{{ l.name }}</option>
+                          <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
                         </select>
                       </label>
                     </div>
@@ -250,7 +250,7 @@
                         <select v-model="tmp.wlRule.profile" class="form-select mt-1 block w-full">
                           <option value="default">Default Whitelist Profile</option>
                           <option value="none">Real Profile</option>
-                          <option v-for="p in profileList" :value="p.id">{{ p.name }}</option>
+                          <option v-for="p in profileList" :key="p.id" :value="p.id">{{ p.name }}</option>
                         </select>
                       </label>
                     </div>
