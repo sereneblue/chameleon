@@ -58,6 +58,8 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    cursor: ['responsive', 'hover'],
+  },
   plugins: [require('@tailwindcss/custom-forms')],
 };
