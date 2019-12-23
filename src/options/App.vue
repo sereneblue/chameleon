@@ -173,6 +173,29 @@
           </table>
         </div>
       </div>
+      <div v-show="currentTab === 'checklist'" class="text-2xl flex flex-col">
+        <div class="text-xl border-b-2 border-primary mb-4">
+          <div class="mb-0">Note: To view a list of changed preferences, visit: <strong>about:support#prefs-tbody</strong></div>
+          <div class="mb-2">Create option if it does not exist.</div>
+        </div>
+        <div class="">
+          <div v-for="c in checklist" :key="c.preference" class="border-primary border-1 p-4 shadow-lg mb-8 rounded-md fg">
+            <div class="text-md pb-2 mb-4 border-b-2 border-primary flex items-center">
+              <div>{{ c.name }}</div>
+              <feather @click="showInfo(c)" class="ml-2 hover:cursor-pointer" type="help-circle"></feather>
+            </div>
+            <div class="mb-2">
+              <p class="text-base">Set</p>
+              <p class="text-md break-all">{{ c.preference }}</p>
+              <p class="text-base">to</p>
+              <p class="text-md">
+                <strong>{{ c.value }}</strong>
+              </p>
+            </div>
+            <p v-if="c.causeBreak" class="flex items-center text-md mt-8"><feather class="mr-2" type="alert-triangle"></feather>Likely to break sites</p>
+          </div>
+        </div>
+      </div>
     </div>
     <transition name="fade" @after-enter="toggleOpen" @after-leave="toggleOpen">
       <div v-show="showModal" class="h-screen w-full fixed top-0 z-30 bg-dark-modal">
@@ -351,6 +374,14 @@
                 </div>
               </div>
             </div>
+            <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-1/3 modal h-128">
+              <div class="flex flex-col px-6 pt-6 pb-8">
+                <span class="my-1 text-xl font-semibold text-center">{{ tmp.checklistItem.name }}</span>
+                <div class="my-4 text-center text-lg">
+                  {{ tmp.checklistItem.description }}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -360,6 +391,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { Checklist, ChecklistItem } from '../lib/checklist';
 import * as lang from '../lib/language';
 import * as prof from '../lib/profiles';
 import * as tz from '../lib/tz';
@@ -375,6 +407,7 @@ enum Modal {
   WL_RULE,
   CONFIRM_IP_DELETE,
   CONFIRM_WL_DELETE,
+  CHECKLIST_INFO,
 }
 
 @Component({
@@ -384,10 +417,11 @@ enum Modal {
 })
 export default class App extends Vue {
   public REGEX_DOMAIN: any = /^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/;
-  public currentTab: string = 'about';
-  public iconPath: string;
   public Modal = Modal;
   public modalType: Modal = Modal.DEFAULT;
+  public checklist: ChecklistItem[] = Checklist;
+  public currentTab: string = 'about';
+  public iconPath: string;
   public query: string = '';
   public ready: boolean = false;
   public showModal: boolean = false;
@@ -403,6 +437,9 @@ export default class App extends Vue {
   };
   public version: string;
   public tmp: any = {
+    checklistItem: {
+      description: '',
+    },
     ipRule: {
       id: '',
       name: '',
@@ -604,14 +641,20 @@ export default class App extends Vue {
 
   reallyDelete(): void {
     if (this.modalType === Modal.CONFIRM_IP_DELETE) {
-      this.settings.ipRules.splice(this.settings.ipRules.findIndex(r => r.id === this.tmp.ipRule.id), 1);
+      this.settings.ipRules.splice(
+        this.settings.ipRules.findIndex(r => r.id === this.tmp.ipRule.id),
+        1
+      );
 
       this.showModal = false;
       this.modalType = Modal.DEFAULT;
 
       webext.sendToBackground(this.settings);
     } else {
-      this.settings.whitelist.rules.splice(this.settings.whitelist.rules.findIndex(r => r.id === this.tmp.wlRule.id), 1);
+      this.settings.whitelist.rules.splice(
+        this.settings.whitelist.rules.findIndex(r => r.id === this.tmp.wlRule.id),
+        1
+      );
 
       this.showModal = false;
       this.modalType = Modal.DEFAULT;
@@ -743,6 +786,12 @@ export default class App extends Vue {
     webext.sendToBackground(this.settings);
 
     this.showModal = false;
+  }
+
+  showInfo(checklistItem: any): void {
+    this.tmp.checklistItem = checklistItem;
+    this.modalType = Modal.CHECKLIST_INFO;
+    this.showModal = true;
   }
 
   toggleOpen(): void {
