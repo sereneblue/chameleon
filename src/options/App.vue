@@ -176,25 +176,23 @@
         </div>
       </div>
       <div v-show="currentTab === 'checklist'" class="text-2xl flex flex-col">
-        <div class="text-xl border-b-2 border-primary mb-4">
+        <div class="text-xl mb-4">
           <div class="mb-0">Note: To view a list of changed preferences, visit: <strong>about:support#prefs-tbody</strong></div>
           <div class="mb-2">Create option if it does not exist.</div>
         </div>
-        <div class="">
-          <div v-for="c in checklist" :key="c.preference" class="border-primary border-1 p-4 shadow-lg mb-8 rounded-md fg">
+        <div>
+          <div v-for="c in checklist" :key="c.preference" class="border-primary border-1 p-4 shadow-sm mb-8 rounded fg">
             <div class="text-md pb-2 mb-4 border-b-2 border-primary flex items-center">
               <div>{{ c.name }}</div>
               <feather @click="showInfo(c)" class="ml-2 hover:cursor-pointer" type="help-circle"></feather>
             </div>
-            <div class="mb-2">
-              <p class="text-base">Set</p>
-              <p class="text-md break-all">{{ c.preference }}</p>
-              <p class="text-base">to</p>
-              <p class="text-md">
-                <strong>{{ c.value }}</strong>
-              </p>
+            <div>
+              <span class="break-all">{{ c.preference }}</span>
+              <div>
+                Set to <strong>{{ c.value }}</strong>
+              </div>
             </div>
-            <p v-if="c.causeBreak" class="flex items-center text-md mt-8"><feather class="mr-2" type="alert-triangle"></feather>Likely to break sites</p>
+            <p v-if="c.causeBreak" class="flex items-center text-md mt-4"><feather class="mr-2" type="alert-triangle"></feather>Likely to break sites</p>
           </div>
         </div>
       </div>
