@@ -115,7 +115,9 @@
                     </button>
                   </div>
                 </td>
-                <td class="py-4">{{ r.profile }}</td>
+                <td class="py-4">
+                  {{ getProfile(r.profile) }}
+                </td>
                 <td class="py-4">
                   {{
                     r.sites
@@ -629,6 +631,15 @@ export default class App extends Vue {
     return lang.getLanguage(langCode).name;
   }
 
+  getProfile(profile: string): string {
+    if (profile === 'default') {
+      return 'Default Whitelist Profile';
+    } else if (profile === 'none') {
+      return 'None';
+    }
+
+    return this.profileList.find(p => p.id === profile).name;
+  }
   modalEventHandler(): void {
     if (this.showModal && this.ready) {
       this.closeModal();
