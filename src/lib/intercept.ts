@@ -16,16 +16,14 @@ enum RefererTrimOption {
 }
 
 interface WhitelistOptions {
-  auth?: boolean;
-  ip?: boolean;
-  ref?: boolean;
-  timezone?: boolean;
-  websocket?: boolean;
-  winName?: boolean;
+  name: boolean;
+  ref: boolean;
+  tz: boolean;
+  ws: boolean;
 }
 
 interface WhitelistResult {
-  active?: boolean;
+  active: boolean;
   opt?: WhitelistOptions;
   lang?: string;
   pattern?: object;
@@ -73,7 +71,7 @@ class Interceptor {
 
     if (details.type === 'websocket' || details.url.includes('transport=polling') || isWebSocketRequest) {
       if (wl.active) {
-        return { cancel: wl.opt.websocket };
+        return { cancel: wl.opt.ws };
       }
 
       if (this.settings.options.webSockets === 'block_all') {
@@ -229,7 +227,7 @@ class Interceptor {
       }
     }
 
-    if (wl.active && wl.opt.ip) {
+    if (wl.active && wl.spoofIP) {
       details.requestHeaders.push({
         name: 'Via',
         value: '1.1 ' + wl.spoofIP,
