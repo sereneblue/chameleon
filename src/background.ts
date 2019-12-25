@@ -38,7 +38,7 @@ browser.runtime.onMessage.addListener((request: any) => {
 
             if (rule !== null) {
               browser.tabs.create({
-                url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}&index=${rule.idx}`),
+                url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}}`),
               });
               return;
             }

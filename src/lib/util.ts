@@ -2,18 +2,21 @@ const psl = require('psl');
 
 let findWhitelistRule = (rules: any, host: string, url: string): any => {
   for (var i = 0; i < rules.length; i++) {
-    for (var j = 0; j < rules[i].domains.length; j++) {
-      if (host.includes(rules[i].domains[j].domain)) {
-        if (rules[i].domains[j].re) {
-          if (!new RegExp(rules[i].domains[j].pattern).test(url)) {
+    for (var j = 0; j < rules[i].sites.length; j++) {
+      if (host.includes(rules[i].sites[j].domain)) {
+        if (rules[i].sites[j].pattern) {
+          if (!new RegExp(rules[i].sites[j].pattern).test(url)) {
             return null;
           }
         }
 
         return {
           id: rules[i].id,
-          idx: j,
+          lang: rules[i].lang,
+          pattern: rules[i].sites[j],
           profile: rules[i].profile,
+          options: rules[i].options,
+          spoofIP: rules[i].spoofIP,
         };
       }
     }

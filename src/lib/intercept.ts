@@ -28,6 +28,7 @@ interface WhitelistResult {
   active?: boolean;
   opt?: WhitelistOptions;
   lang?: string;
+  pattern?: object;
   profile?: string;
   spoofIP?: string;
 }
@@ -109,6 +110,15 @@ class Interceptor {
       if (url) {
         this.LINK.href = url;
         let rule = util.findWhitelistRule(this.settings.whitelist.rules, this.LINK.host, url);
+
+        return {
+          active: true,
+          lang: rule.lang,
+          opt: rule.options,
+          pattern: rule.pattern,
+          profile: rule.profile,
+          spoofIP: rule.spoofIP,
+        };
       }
     }
 

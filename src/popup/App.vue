@@ -893,9 +893,9 @@ export default class App extends Vue {
   openOptionsPage(tab: string): void {
     if (tab === 'whitelist') {
       if (this.currentPage.whitelisted) {
-        tab += `?id=${this.currentPage.rule.id}&index=${this.currentPage.rule.idx}`;
+        tab += `?id=${this.currentPage.rule.id}`;
       } else {
-        tab += `?url=${this.currentPage.domain}`;
+        tab += `?site=${this.currentPage.domain}`;
       }
     }
 

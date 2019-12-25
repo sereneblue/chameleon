@@ -507,12 +507,29 @@ export default class App extends Vue {
 
     await this['$store'].dispatch('initialize');
 
-    if (window.location.hash === '#checklist') {
+    let hash = window.location.hash.split('?');
+    let queryParams = hash.length > 1 ? hash[1] : '';
+
+    if (hash[0] === '#checklist') {
       this.currentTab = 'checklist';
-    } else if (window.location.hash === '#iprules') {
+    } else if (hash[0] === '#iprules') {
       this.currentTab = 'iprules';
-    } else if (window.location.hash === '#whitelist') {
+    } else if (hash[0] === '#whitelist') {
       this.currentTab = 'whitelist';
+
+      let params = new URLSearchParams(queryParams);
+
+      let id = params.get('id');
+      let site = params.get('site');
+
+      if (id) {
+        this.editWLRule(id);
+      } else {
+        if (site) {
+          this.createNewWhitelistRule();
+          this.tmp.wlRule.sites = site;
+        }
+      }
     }
   }
 
@@ -554,14 +571,16 @@ export default class App extends Vue {
   editIPRule(id: string): void {
     let rule: any = this.settings.ipRules.find(r => r.id === id);
 
-    this.tmp.ipRule.id = rule.id;
-    this.tmp.ipRule.name = rule.name;
-    this.tmp.ipRule.lang = rule.lang;
-    this.tmp.ipRule.tz = rule.tz;
-    this.tmp.ipRule.ips = rule.ips.join('\n');
+    if (rule) {
+      this.tmp.ipRule.id = rule.id;
+      this.tmp.ipRule.name = rule.name;
+      this.tmp.ipRule.lang = rule.lang;
+      this.tmp.ipRule.tz = rule.tz;
+      this.tmp.ipRule.ips = rule.ips.join('\n');
 
-    this.showModal = true;
-    this.modalType = Modal.IP_RULE;
+      this.showModal = true;
+      this.modalType = Modal.IP_RULE;
+    }
   }
 
   editWLRule(id: string): void {
