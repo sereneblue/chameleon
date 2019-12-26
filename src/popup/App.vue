@@ -349,19 +349,28 @@
       <div v-show="isSelected('tab', 'options')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4">Options</div>
         <div class="w-full mb-4">
-          <button @click="openOptionsPage('checklist')" class="w-full bg-transparent font-semibold py-1 px-4 border border-primary hover:bg-primary-soft rounded">
+          <button
+            @click="openOptionsPage('checklist')"
+            id="aboutConfigChecklist"
+            class="w-full bg-transparent font-semibold py-1 px-4 border border-primary hover:bg-primary-soft rounded"
+          >
             Open about:config checklist
           </button>
         </div>
         <div>
           <ul class="flex text-center w-full rounded-lg">
-            <li @click="setSelected('options', 'injection')" :class="[isSelected('options', 'injection') ? 'active' : '']" class="group fg group-options rounded-l-sm">
+            <li
+              id="injectionTab"
+              @click="setSelected('options', 'injection')"
+              :class="[isSelected('options', 'injection') ? 'active' : '']"
+              class="group fg group-options rounded-l-sm"
+            >
               Injection
             </li>
-            <li @click="setSelected('options', 'standard')" :class="[isSelected('options', 'standard') ? 'active' : '']" class="group fg group-options">
+            <li id="standardTab" @click="setSelected('options', 'standard')" :class="[isSelected('options', 'standard') ? 'active' : '']" class="group fg group-options">
               Standard
             </li>
-            <li @click="setSelected('options', 'cookie')" :class="[isSelected('options', 'cookie') ? 'active' : '']" class="group fg group-options rounded-r-sm">
+            <li id="cookieTab" @click="setSelected('options', 'cookie')" :class="[isSelected('options', 'cookie') ? 'active' : '']" class="group fg group-options rounded-r-sm">
               Cookie
             </li>
           </ul>
@@ -476,6 +485,7 @@
                 <label class="cursor-pointer">
                   <input
                     @change="changeSetting($event)"
+                    id="firstPartyIsolate"
                     :checked="settings.options.firstPartyIsolate"
                     name="options.firstPartyIsolate"
                     type="checkbox"
@@ -487,6 +497,7 @@
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
+                    id="resistFingerprinting"
                     @change="changeSetting($event)"
                     :checked="settings.options.resistFingerprinting"
                     name="options.resistFingerprinting"
@@ -499,6 +510,7 @@
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
+                    id="disableWebRTC"
                     @change="changeSetting($event)"
                     :checked="settings.options.disableWebRTC"
                     name="options.disableWebRTC"
@@ -511,7 +523,13 @@
               <div v-show="!settings.options.disableWebRTC" class="flex items-center pl-6 mb-2">
                 <label class="w-full">
                   WebRTC Policy
-                  <select @change="changeSetting($event)" :value="settings.options.webRTCPolicy" name="options.webRTCPolicy" class="form-select mt-1 block w-full">
+                  <select
+                    id="webRTCPolicy"
+                    @change="changeSetting($event)"
+                    :value="settings.options.webRTCPolicy"
+                    name="options.webRTCPolicy"
+                    class="form-select mt-1 block w-full"
+                  >
                     <option value="default">Default</option>
                     <option value="default_public_and_private_interfaces">Use Public and Private Interface</option>
                     <option value="default_public_interface_only">Only use Public interface (best)</option>
@@ -523,6 +541,7 @@
                 <label class="w-full mt-2">
                   Tracking protection mode
                   <select
+                    id="trackingProtectionMode"
                     @change="changeSetting($event)"
                     :value="settings.options.trackingProtectionMode"
                     name="options.trackingProtectionMode"
@@ -537,7 +556,7 @@
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   Websockets
-                  <select @change="changeSetting($event)" :value="settings.options.webSockets" name="options.webSockets" class="form-select mt-1 block w-full">
+                  <select id="websockets" @change="changeSetting($event)" :value="settings.options.webSockets" name="options.webSockets" class="form-select mt-1 block w-full">
                     <option value="allow_all">Allow all</option>
                     <option value="block_3rd_party">Block 3rd party</option>
                     <option value="block_all">Block all</option>
@@ -549,7 +568,13 @@
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   Policy
-                  <select @change="changeSetting($event)" :value="settings.options.cookiePolicy" name="options.cookiePolicy" class="form-select mt-1 block w-full">
+                  <select
+                    id="cookiePolicy"
+                    @change="changeSetting($event)"
+                    :value="settings.options.cookiePolicy"
+                    name="options.cookiePolicy"
+                    class="form-select mt-1 block w-full"
+                  >
                     <option value="allow_all">Allow all</option>
                     <option value="allow_visited">Allow visited</option>
                     <option value="reject_all">Reject all</option>
@@ -860,7 +885,10 @@ export default class App extends Vue {
 
   async excludeProfile(profile: string) {
     if (!/\d/.test(profile)) {
-      await this['$store'].dispatch('excludeProfile', this.profileListing.map(p => p.id));
+      await this['$store'].dispatch(
+        'excludeProfile',
+        this.profileListing.map(p => p.id)
+      );
     } else {
       await this['$store'].dispatch('excludeProfile', profile);
     }
