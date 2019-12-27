@@ -376,18 +376,6 @@
           </ul>
           <div>
             <div v-if="isSelected('options', 'injection')">
-              <div class="flex items-center mt-2 mb-1">
-                <label class="cursor-pointer">
-                  <input
-                    @change="changeSetting($event)"
-                    :checked="settings.options.enableScriptInjection"
-                    name="options.enableScriptInjection"
-                    type="checkbox"
-                    class="text-primary form-checkbox"
-                  />
-                  <span class="ml-1">Enable script injection</span>
-                </label>
-              </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input @change="changeSetting($event)" :checked="settings.options.limitHistory" name="options.limitHistory" type="checkbox" class="text-primary form-checkbox" />

@@ -45,7 +45,6 @@ export default new Vuex.Store({
     options: {
       cookiePolicy: 'allow_all',
       disableWebRTC: false,
-      enableScriptInjection: false,
       firstPartyIsolate: false,
       limitHistory: false,
       protectKBFingerprint: {
