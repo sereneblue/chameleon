@@ -192,7 +192,7 @@ let inject = (props, whitelist, injectionText, settings, languages, zoneName) =>
 			(document.head || document.documentElement).appendChild(script);
 
 			try {
-				URL.revokeObjectURL(url);
+				URL.revokeObjectURL(script.src);
 			} catch (e) {
 			}
 			script.remove();

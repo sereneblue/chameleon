@@ -143,6 +143,8 @@ let spoofTime = (randomStr) => {
 			return _d2.apply(null, args);
 		}
 
+		window.Intl.DateTimeFormat.supportedLocalesOf = _d2.supportedLocalesOf;
+
 	    Element.prototype.appendChild = function(oAppend, topDate, topIntl) {
 	    	return function() {
 	    		var tmp = oAppend.apply(this, arguments);
