@@ -94,6 +94,7 @@ browser.runtime.onMessage.addListener((request: any) => {
 
 (async () => {
   await chameleon.init(await webext.getSettings(null));
+  await chameleon.buildInjectionScript();
   chameleon.setupHeaderListeners();
   chameleon.setupTimer();
   if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {

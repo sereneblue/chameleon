@@ -23,6 +23,7 @@ interface TemporarySettings {
 export class Chameleon {
   public settings: any;
   private defaultSettings: any;
+  private injectionScript: any;
   private intercept: Interceptor;
   public intervalTimeout: any;
   public platform: any;
@@ -41,8 +42,23 @@ export class Chameleon {
       profile: '',
       spoofIP: '',
     };
+    this.injectionScript = null;
     this.intervalTimeout = null;
     this.version = browser.runtime.getManifest().version;
+  }
+
+  public async buildInjectionScript() {
+    if (this.injectionScript) {
+      await this.injectionScript.unregister();
+      this.injectionScript = null;
+    }
+
+    this.injectionScript = await browser.contentScripts.register({
+      allFrames: true,
+      matches: ['http://*/*', 'https://*/*'],
+      js: [{ code: `let chameleonSettings = JSON.parse(\`${JSON.stringify(this.settings)}\`);` }, { file: 'inject.js' }],
+      runAt: 'document_start',
+    });
   }
 
   public async init(storedSettings: any) {

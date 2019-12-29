@@ -13,6 +13,7 @@ const config = {
     background: './background.ts',
     'popup/popup': './popup/popup.ts',
     'options/options': './options/options.ts',
+    inject: './lib/inject.ts',
   },
   output: {
     path: __dirname + '/dist',
