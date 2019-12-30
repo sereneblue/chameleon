@@ -183,7 +183,7 @@
                   <input @click="excludeProfile(currentProfileGroup)" :checked="isExcluded(currentProfileGroup)" type="checkbox" class="ml-2 text-primary form-checkbox" />
                 </div>
               </div>
-              <div v-for="p in profileListing" class="profile-item fg">
+              <div v-for="p in profileListing" :key="p.id" class="profile-item fg">
                 <label class="flex items-center cursor-pointer" :class="{ 'opacity-50': p.excluded }">
                   <input @click="setSelected('profile', p.id)" :disabled="p.excluded" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
                   <span class="ml-2">{{ p.name }}</span>
@@ -376,7 +376,7 @@
           </ul>
           <div>
             <div v-if="isSelected('options', 'injection')">
-              <div class="flex items-center mb-1">
+              <div class="flex items-center mt-2 mb-1">
                 <label class="cursor-pointer">
                   <input @change="changeSetting($event)" :checked="settings.options.limitHistory" name="options.limitHistory" type="checkbox" class="text-primary form-checkbox" />
                   <span class="ml-1">Limit tab history</span>
