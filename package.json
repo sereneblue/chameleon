@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "feather-icons": "^4.25.0",
+    "moment-timezone": "^0.5.27",
     "psl": "^1.6.0",
     "tailwindcss": "^1.1.4",
     "tailwindcss-toggle": "github:TowelSoftware/tailwindcss-toggle",
