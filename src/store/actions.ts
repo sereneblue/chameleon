@@ -9,9 +9,13 @@ export const changeProfile = ({ commit }, payload) => {
     action: 'updateProfile',
     data: payload,
   });
+
+  browser.runtime.sendMessage({
+    action: 'reloadInjectionScript',
+  });
 };
 
-export const changeSetting = ({ commit, state }, payload) => {
+export const changeSetting = ({ commit, state }, payload: any) => {
   commit(mtypes.CHANGE_SETTING, payload);
 
   if (payload[0].name === 'whitelist.enabledContextMenu') {
@@ -20,6 +24,21 @@ export const changeSetting = ({ commit, state }, payload) => {
     browser.runtime.sendMessage({
       action: 'reloadProfile',
       data: payload[0].value,
+    });
+  } else if (
+    [
+      'options.limitHistory',
+      'options.protectWinName',
+      'options.spoofAudioContext',
+      'options.spoofClientRects',
+      'options.protectKBFingerprint.enabled',
+      'options.protectKBFingerprint.delay',
+      'options.screenSize',
+      'options.timeZone',
+    ].includes(payload[0].name)
+  ) {
+    browser.runtime.sendMessage({
+      action: 'reloadInjectionScript',
     });
   } else if (['headers.spoofIP.enabled', 'headers.spoofIP.option', 'headers.spoofIP.rangeFrom'].includes(payload[0].name)) {
     browser.runtime.sendMessage({

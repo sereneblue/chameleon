@@ -463,7 +463,7 @@
                   <select @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
                     <option value="default">Default</option>
                     <option value="ip">IP</option>
-                    <option v-for="t in timezones" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
+                    <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                   </select>
                 </label>
               </div>

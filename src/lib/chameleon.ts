@@ -126,7 +126,7 @@ export class Chameleon {
     );
   }
 
-  public setupTimer(option = null): void {
+  public setTimer(option = null): void {
     browser.alarms.clearAll();
 
     let alarmInfo = { when: Date.now() + 250 };
@@ -146,7 +146,7 @@ export class Chameleon {
         */
 
         if (this.intervalTimeout) clearTimeout(this.intervalTimeout);
-        this.intervalTimeout = setTimeout(this.setupTimer, interval);
+        this.intervalTimeout = setTimeout(this.setTimer, interval);
       } else {
         alarmInfo['periodInMinutes'] = option;
       }

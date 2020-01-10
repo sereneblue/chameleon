@@ -54,6 +54,8 @@ browser.runtime.onMessage.addListener((request: any) => {
         },
       });
     }
+  } else if (request.action === 'reloadInjectionScript') {
+    chameleon.buildInjectionScript();
   } else if (request.action === 'reloadIPInfo') {
     if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
       chameleon.updateIPInfo();
@@ -65,7 +67,8 @@ browser.runtime.onMessage.addListener((request: any) => {
       });
     }
   } else if (request.action === 'reloadProfile') {
-    chameleon.setupTimer(request.data);
+    chameleon.setTimer(request.data);
+    chameleon.buildInjectionScript();
   } else if (request.action === 'reloadSpoofIP') {
     if (request.data[0].name === 'headers.spoofIP.enabled') {
       chameleon.settings.headers.spoofIP.enabled = request.data[0].value;
@@ -86,7 +89,7 @@ browser.runtime.onMessage.addListener((request: any) => {
     chameleon.settings.profile.selected = request.data;
 
     // reset interval timer and send notification
-    chameleon.setupTimer();
+    chameleon.setTimer();
   }
 
   return true;
@@ -96,7 +99,7 @@ browser.runtime.onMessage.addListener((request: any) => {
   await chameleon.init(await webext.getSettings(null));
   await chameleon.buildInjectionScript();
   chameleon.setupHeaderListeners();
-  chameleon.setupTimer();
+  chameleon.setTimer();
   if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
     chameleon.updateIPInfo();
   }
