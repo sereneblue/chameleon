@@ -171,13 +171,9 @@
     "message": "Etag トラッキングを防止する",
     "description": "Label for prevent Etag"
   },
-  "headersSpoofVIa": {
-    "message": "Via の偽装手段",
-    "description": "Label for spoof IP headers (Via)"
-  },
-  "headersSpoofXForwarded": {
-    "message": "X-Forwarded-For の偽装手段",
-    "description": "Label for spoof IP headers (Via)"
+  "headersSpoofIP": {
+    "message": "IP を偽装する",
+    "description": "Label for spoof IP headers"
   },
   "headersIPRandom": {
     "message": "ランダムな IP",
@@ -187,9 +183,13 @@
     "message": "カスタム IP",
     "description": "Label for IP address (custom)"
   },
-  "headersIP": {
-    "message": "IP アドレス:",
-    "description": "Label for IP address text"
+  "headersRangeFrom": {
+    "message": "IP 範囲の起点 :",
+    "description": "Label for IP address range (from)"
+  },
+  "headersRangeTo": {
+    "message": "IP 範囲の終点 :",
+    "description": "Label for IP address range (to)"
   },
   "headersDisableRef": {
     "message": "リファラーを無効にする",
@@ -359,9 +359,13 @@
     "message": "プライベートブラウジングで有効",
     "description": "Option to enable tracking protection only in private browsing"
   },
+  "optionsDisableWebRTC": {
+    "message": "WebRTC を無効にする",
+    "description": "Label for disable WebRTC"
+  },
   "optionsWebRTC": {
     "message": "WebRTC ポリシー",
-    "description": "Label for tracking protection"
+    "description": "Label for WebRTC Policy"
   },
   "optionsWebRTCOption2": {
     "message": "パブリックおよびプライベートインターフェイスを使用する",
@@ -663,6 +667,14 @@
     "message": "混合コンテンツの表示をブロックする",
     "description": "Checklist option to block display mixed content"
   },
+  "checklistDisableAddonCache": {
+    "message": "アドオンキャッシュを無効にする",
+    "description": "Checklist option to disable addon cache"
+  },
+  "checklistDisableAddonUpdates": {
+    "message": "アドオンの更新を無効にする",
+    "description": "Checklist option to disable addon updates"
+  },
   "checklistDisableBatteryAPI": {
     "message": "バッテリー API を無効にする",
     "description": "Checklist option to disable battery API"
@@ -743,6 +755,10 @@
     "message": "検索の更新を無効にする",
     "description": "Checklist option to disable search update"
   },
+  "checklistDisableSpeculativePreConnections": {
+    "message": "投機的な事前接続を無効にする",
+    "description": "Checklist option to disable speculative pre-connections"
+  },
   "checklistDisableSSLFalseStart": {
     "message": "SSL False Start を無効にする",
     "description": "Checklist option to disable SSL False Start"
@@ -771,9 +787,17 @@
     "message": "シャットダウン時にオフラインアプリのクリアを有効にする",
     "description": "Checklist option to enable clear offline apps on shutdown"
   },
+  "checklistEnableSocialTrackingProtection": {
+    "message": "ソーシャルトラッキング保護を有効にする",
+    "description": "Checklist option to enable social tracking protection"
+  },
   "checklistLimitDetectableFonts": {
     "message": "検出可能なフォントを制限する",
     "description": "Checklist option to limit detectable fonts"
+  },
+  "checklistLimitMaxTabsUndo": {
+    "message": "タブの最大制限を元に戻す",
+    "description": "Checklist option to limit max tabs undo"
   },
   "checklistUseClickToPlay": {
     "message": "クリックしてプラグインを再生する",
@@ -781,51 +805,63 @@
   },
   "checklistDisableDataSubmission": {
     "message": "データ送信を無効にする",
-    "description": "Checklist option to use disable data submission"
+    "description": "Checklist option to disable data submission"
   },
   "checklistDisableSafeBrowsingDownloadsCheck": {
     "message": "セーフブラウジングのダウンロードチェックを無効にする",
-    "description": "Checklist option to use disable safe browsing downloads check"
+    "description": "Checklist option to disable safe browsing downloads check"
   },
   "checklistDisableSafeBrowsingDownloadsCheck2": {
     "message": "セーフブラウジングのダウンロードチェック 2 を無効にする",
-    "description": "Checklist option to use disable safe browsing downloads check 2"
+    "description": "Checklist option to disable safe browsing downloads check 2"
   },
   "checklistDisableSafeBrowsingDownloadsCheck3": {
     "message": "セーフブラウジングのダウンロードチェック 3 を無効にする",
-    "description": "Checklist option to use disable safe browsing downloads check 3"
+    "description": "Checklist option to disable safe browsing downloads check 3"
   },
   "checklistDisableSafeBrowsingDownloadsCheck4": {
     "message": "セーフブラウジングのダウンロードチェック 4 を無効にする",
-    "description": "Checklist option to use disable safe browsing downloads check 4"
+    "description": "Checklist option to disable safe browsing downloads check 4"
   },
   "checklistDisableSafeBrowsingMalwareCheck": {
     "message": "セーフブラウジングのマルウェアチェックを無効にする",
-    "description": "Checklist option to use disable safe browsing malware check"
+    "description": "Checklist option to disable safe browsing malware check"
   },
   "checklistDisableSafeBrowsingPhishingCheck": {
     "message": "セーフブラウジングのフィッシングチェックを無効にする",
-    "description": "Checklist option to use disable safe browsing phishing check"
+    "description": "Checklist option to disable safe browsing phishing check"
   },
   "checklistDisableHealthReportUploads": {
     "message": "ヘルスレポートのアップロードを無効にする",
-    "description": "Checklist option to use disable health report uploads"
+    "description": "Checklist option to disable health report uploads"
   },
   "checklistDisableCrashReport": {
     "message": "クラッシュレポートを無効にする",
-    "description": "Checklist option to use disable crash report"
+    "description": "Checklist option to disable crash report"
+  },
+  "checklistDisableTelemetryPings": {
+    "message": "ping テレメトリを無効にする",
+    "description": "Checklist option to disable telemetry server"
   },
   "checklistDisableTelemetryReport": {
     "message": "テレメトリレポートを無効にする",
-    "description": "Checklist option to use disable telemetry report"
+    "description": "Checklist option to disable telemetry report"
   },
   "checklistDisableTelemetryReport2": {
     "message": "テレメトリレポート 2 を無効にする",
-    "description": "Checklist option to use disable telemetry report 2"
+    "description": "Checklist option to disable telemetry report 2"
   },
-  "checklistDisableTelemetryServer": {
-    "message": "テレメトリサーバーを無効にする",
-    "description": "Checklist option to use disable telemetry server"
+  "checklistDisableUserMediaEnumeration": {
+    "message": "ユーザーメディアの列挙を無効にする",
+    "description": "Checklist option to disable user media enumeration"
+  },
+  "checklistDisableUserMediaEnumeration2": {
+    "message": "ユーザーメディア列挙2を無効にする",
+    "description": "Checklist option to disable user media enumeration 2"
+  },
+  "checklistSetSessionPrivacyLevel": {
+    "message": "セッションのプライバシーレベルを設定する",
+    "description": "Checklist option to set session privacy level"
   },
   "importSettingsSubheader": {
     "message": "セッティングをインポートする",
