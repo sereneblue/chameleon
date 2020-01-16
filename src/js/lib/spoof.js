@@ -62,7 +62,7 @@ let spoof = {
 				platform = "Win32";
 			} else {
 				let ffVersion = parseInt(ua.match(/Firefox\/(\d+).\d/)[1])
-				platform = ffVersion <= 63 ? "Win64" : "Win32";
+				platform = "Win32";
 				if (ffVersion >= 69) oscpu = ua.match(/(Windows .*?);/)[1];
 			}
 
@@ -101,9 +101,9 @@ let spoof = {
 		}
 
 		if (/Firefox/.test(ua)) {
-			productSub = "20010725";
+			productSub = "20100101";
 			hardwareConcurrency = 2;
-			buildID = parseInt(ua.match(/Firefox\/(\d+).\d/)[1]) >= 64 ? "20181001000000" : "20100101";
+			buildID = "20181001000000";
 		} else {
 			oscpu = "undef";
 			buildID = "undef";
