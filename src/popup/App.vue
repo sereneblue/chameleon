@@ -1,5 +1,5 @@
 <template>
-  <div class="app h-screen w-screen flex" :class="[theme.bg]">
+  <div class="app h-screen w-screen flex" :class="darkMode ? ['bg-dark'] : ['bg-light']">
     <div class="text-xs bg-primary flex-none flex-col text-center">
       <div @click="setSelected('tab', 'main')" id="homeTab" class="tab" :class="activeTab('main')">
         <feather type="home" size="1.5em"></feather>
@@ -755,29 +755,13 @@ export default class App extends Vue {
     return this['$store'].state;
   }
 
-  get theme(): any {
-    if (this.darkMode) {
-      return {
-        bg: 'bg-dark',
-        fg: 'bg-dark-fg',
-        text: 'text-light',
-      };
-    }
-
-    return {
-      bg: 'bg-light',
-      fg: 'bg-light-fg',
-      text: 'text-dark',
-    };
-  }
-
   get version(): string {
     return browser.runtime.getManifest().version;
   }
 
   activeTab(tab: string): string[] {
     if (this.currentTab === tab) {
-      return [this.theme.bg, 'active'];
+      return [this.darkMode ? 'bg-dark' : 'bg-light', 'active'];
     }
 
     return ['hover:bg-primary-soft'];
