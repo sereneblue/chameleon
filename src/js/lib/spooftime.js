@@ -29,7 +29,7 @@ let spoofTime = (randomStr) => {
 		}).format(new Date()).split(', ')[1];
 		
 		_tz.spoof = new Intl.DateTimeFormat('en', {
-			timeZone: tzName, timeZoneName: _oldFF ? 'short' : 'long'
+			timeZone: tzName, timeZoneName: 'long'
 		}).format(new Date()).split(', ')[1];
 
 		const timezoneOffset = new window.Date().getTimezoneOffset();

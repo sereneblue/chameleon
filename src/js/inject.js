@@ -90,17 +90,6 @@ let inject = (props, whitelist, injectionText, settings, languages, zoneName) =>
 
 					let settings = ${JSON.stringify(settings)};
 
-					// check if older firefox for time spoof
-					let _oldFF = false;
-					if (properties.nav) {
-						let navUA =  properties.nav.find(p => p.prop == "userAgent");
-						if (navUA) {
-							_oldFF = /60\.0/.test(navUA.value);
-						}
-					} else {
-						_oldFF = /60\.0/.test(navigator.userAgent);
-					}
-
 					(function(props, tz){
 						let override = ((window, injection, inFrame, tz) => {
 							if (!urlOK) {
@@ -181,20 +170,23 @@ let inject = (props, whitelist, injectionText, settings, languages, zoneName) =>
 				})();\`;
 
 			// inject directly into the page
-			document.documentElement.appendChild(Object.assign(document.createElement('script'), {
-	        textContent: code }));
+			let script = Object.assign(document.createElement('script'), {
+				textContent: code
+			});
+
+			document.documentElement.appendChild(script);
+			script.remove();
 
 			// https://github.com/violentmonkey/violentmonkey/pull/246
 			// Fix CSP issue
 			// injection for CSP sites, not run if already injected
-			let script = document.createElement('script');
+			script = document.createElement('script');
 			script.src = URL.createObjectURL(new Blob([code], { type: 'text/javascript' }));
 			(document.head || document.documentElement).appendChild(script);
 
 			try {
 				URL.revokeObjectURL(script.src);
-			} catch (e) {
-			}
+			} catch (e) {}
 			script.remove();
 		}`;
 };
