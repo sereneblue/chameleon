@@ -57,23 +57,28 @@
             <div>{{ currentProfile.lang }}</div>
           </div>
         </div>
-        <div v-show="currentPage.domain" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
+        <div v-show="currentPage.domain" id="navMenu" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
           <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
-          <div class="flex justify-around">
-            <div class="">
-              <feather type="headphones" size="1.5em"></feather>
+          <div id="detected" class="flex hover:ml-2 justify-around">
+            <div class="flex align-center">
+              <feather type="music" size="1.5em"></feather>
+              <span class="ml-2">Audio context accessed</span>
             </div>
-            <div class="">
-              <feather type="box" size="1.5em"></feather>
+            <div class="flex align-center">
+              <feather type="grid" size="1.5em"></feather>
+              <span class="ml-2">Client rectangles accessed</span>
             </div>
-            <div class="">
+            <div class="flex align-center">
               <feather type="calendar" size="1.5em"></feather>
+              <span class="ml-2">Date accessed</span>
             </div>
-            <div class="">
+            <div class="flex align-center">
               <feather type="monitor" size="1.5em"></feather>
+              <span class="ml-2">Screen accessed</span>
             </div>
-            <div class="">
-              <feather type="wifi" size="1.5em"></feather>
+            <div class="flex align-center">
+              <feather type="activity" size="1.5em"></feather>
+              <span class="ml-2">WebSocket accessed</span>
             </div>
           </div>
         </div>
@@ -1027,5 +1032,25 @@ body {
 
 .ps__rail-y {
   opacity: 0.6 !important;
+}
+
+#navMenu #detected {
+  height: 35px;
+  transition: height 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+#navMenu #detected span {
+  display: none;
+}
+
+#navMenu:hover #detected {
+  flex-direction: column;
+  height: 230px;
+  margin-left: 8px;
+  transition: height 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+#navMenu:hover #detected span {
+  display: block;
 }
 </style>
