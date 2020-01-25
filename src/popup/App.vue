@@ -248,7 +248,7 @@
             >
               <option value="ip">IP</option>
               <option value="default">Default</option>
-              <option v-for="l in languages" :value="l.code">{{ l.name }}</option>
+              <option v-for="l in languages" :value="l.code" :key="l.code">{{ l.name }}</option>
             </select>
           </label>
         </div>
@@ -600,7 +600,7 @@
             Default Profile
             <select @change="changeSetting($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
               <option value="none">Real Profile</option>
-              <option v-for="p in profileList" :value="p.id">{{ p.name }}</option>
+              <option v-for="p in profileList" :value="p.id" :key="p.id">{{ p.name }}</option>
             </select>
           </label>
         </div>
