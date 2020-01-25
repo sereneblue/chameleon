@@ -199,3 +199,19 @@ select {
 .form-switch-checkbox:checked + .form-switch-label:before {
   @apply inset-y-0 right-0;
 }
+
+.bg-dark #detected .fp {
+  @apply bg-dark-fg-alt;
+}
+
+.bg-light #detected .fp {
+  @apply bg-light-fg-alt text-black;
+}
+
+#detected .fp {
+  @apply flex items-center justify-center rounded-full p-1 border-primary w-10;
+}
+
+#detected .fp.active {
+  @apply bg-primary text-white;
+}
