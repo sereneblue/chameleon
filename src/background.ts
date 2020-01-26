@@ -11,7 +11,7 @@ browser.alarms.onAlarm.addListener(alarmInfo => {
   chameleon.run();
 });
 
-browser.runtime.onMessage.addListener((request: any) => {
+browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: any) => {
   if (request.action === 'save') {
     if (chameleon.timeout) {
       clearTimeout(chameleon.timeout);
@@ -90,6 +90,20 @@ browser.runtime.onMessage.addListener((request: any) => {
 
     // reset interval timer and send notification
     chameleon.setTimer();
+  } else if (request.action === 'fpDetect') {
+    let tabId = sender.tab.id;
+
+    chameleon.setTabFPDetected(tabId, request.data);
+    browser.browserAction.setBadgeText({
+      text: Object.values(chameleon.getTabFPDetected(tabId))
+        .filter(detected => detected === true)
+        .length.toString(),
+      tabId,
+    });
+  } else if (request.action === 'getTabFP') {
+    browser.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+      sendResponse(chameleon.getTabFPDetected(tabs[0].id));
+    });
   }
 
   return true;
@@ -102,5 +116,11 @@ browser.runtime.onMessage.addListener((request: any) => {
   chameleon.setTimer();
   if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
     chameleon.updateIPInfo();
+  }
+
+  if (chameleon.platform.os != 'android') {
+    browser.browserAction.setBadgeBackgroundColor({
+      color: 'green',
+    });
   }
 })();

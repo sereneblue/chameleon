@@ -59,21 +59,26 @@
         </div>
         <div v-show="currentPage.domain" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
           <div class="text-center text-sm uppercase mb-2 tracking-wider">on this page</div>
-          <div id="detected" class="flex justify-around h-10">
-            <div class="fp">
+          <div id="detected" class="flex justify-around h-10 mb-2">
+            <div class="fp" :class="{ active: fpPanel.audioContext }">
               <feather type="music" size="1.1em"></feather>
+              <span class="absolute text-black -mt-24 ml-20 z-20 rounded text-sm bg-gray-300 p-1">Audio context accessed</span>
             </div>
-            <div class="fp">
+            <div class="fp" :class="{ active: fpPanel.clientRects }">
               <feather type="grid" size="1.1em"></feather>
+              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Client Rects accessed</span>
             </div>
-            <div class="fp">
+            <div class="fp" :class="{ active: fpPanel.date }">
               <feather type="calendar" size="1.1em"></feather>
+              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Date accessed</span>
             </div>
-            <div class="fp">
+            <div class="fp" :class="{ active: fpPanel.screen }">
               <feather type="monitor" size="1.1em"></feather>
+              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Screen accessed</span>
             </div>
-            <div class="fp">
+            <div class="fp" :class="{ active: fpPanel.webSocket }">
               <feather type="activity" size="1.1em"></feather>
+              <span class="absolute text-black -mt-24 -ml-24 z-20 rounded text-sm bg-gray-300 p-1">WebSocket accessed</span>
             </div>
           </div>
         </div>
@@ -667,6 +672,13 @@ export default class App extends Vue {
       profile: '',
     },
   };
+  public fpPanel = {
+    audioContext: false,
+    clientRects: false,
+    screen: false,
+    timeZone: false,
+    webSocket: false,
+  };
 
   get currentProfile(): any {
     let language: string;
@@ -828,6 +840,12 @@ export default class App extends Vue {
     this.tmp.intervalMin = this.settings.profile.interval.min;
     this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;
     this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
+
+    let detectedFP = await browser.runtime.sendMessage({
+      action: 'getTabFP',
+    });
+
+    this.fpPanel = detectedFP;
   }
 
   async getCurrentPage() {

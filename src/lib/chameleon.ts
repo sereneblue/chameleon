@@ -25,6 +25,7 @@ export class Chameleon {
   private defaultSettings: any;
   private injectionScript: any;
   private intercept: Interceptor;
+  private tabsFP: any;
   public intervalTimeout: any;
   public platform: any;
   public tempStore: TemporarySettings;
@@ -44,6 +45,7 @@ export class Chameleon {
     };
     this.injectionScript = null;
     this.intervalTimeout = null;
+    this.tabsFP = {};
     this.version = browser.runtime.getManifest().version;
   }
 
@@ -124,6 +126,32 @@ export class Chameleon {
       },
       ['blocking', 'responseHeaders']
     );
+  }
+
+  public getTabFPDetected(tabId: number): any {
+    return this.tabsFP[tabId]
+      ? this.tabsFP[tabId]
+      : {
+          audioContext: false,
+          clientRects: false,
+          date: false,
+          screen: false,
+          webSocket: false,
+        };
+  }
+
+  public setTabFPDetected(tabId: number, fpDetected: string): void {
+    if (!this.tabsFP[tabId]) {
+      this.tabsFP[tabId] = {
+        audioContext: false,
+        clientRects: false,
+        date: false,
+        screen: false,
+        webSocket: false,
+      };
+    }
+
+    this.tabsFP[tabId][fpDetected] = true;
   }
 
   public setTimer(option = null): void {
