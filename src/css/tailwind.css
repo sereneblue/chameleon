@@ -209,7 +209,7 @@ select {
 }
 
 #detected .fp {
-  @apply flex items-center justify-center rounded-full p-1 border-primary w-10;
+  @apply flex items-center justify-center rounded-lg p-1 border-primary w-10;
 }
 
 #detected .fp.active {
