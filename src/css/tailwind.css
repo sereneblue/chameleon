@@ -215,3 +215,11 @@ select {
 #detected .fp.active {
   @apply bg-primary text-white;
 }
+
+.fp span {
+  display: none;
+}
+
+.fp:hover span {
+  display: block;
+}
