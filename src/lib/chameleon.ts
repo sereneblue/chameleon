@@ -140,6 +140,16 @@ export class Chameleon {
         };
   }
 
+  public resetTabFP(tabId: number): void {
+    this.tabsFP[tabId] = {
+      audioContext: false,
+      clientRects: false,
+      date: false,
+      screen: false,
+      webSocket: false,
+    };
+  }
+
   public setTabFPDetected(tabId: number, fpDetected: string): void {
     if (!this.tabsFP[tabId]) {
       this.tabsFP[tabId] = {

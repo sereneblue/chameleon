@@ -100,6 +100,10 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
         .length.toString(),
       tabId,
     });
+  } else if (request.action === 'fpReset') {
+    let tabId = sender.tab.id;
+
+    chameleon.resetTabFP(tabId);
   } else if (request.action === 'getTabFP') {
     browser.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       sendResponse(chameleon.getTabFPDetected(tabs[0].id));
