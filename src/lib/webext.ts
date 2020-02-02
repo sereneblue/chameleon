@@ -38,7 +38,7 @@ let getSettings = (key: string | null) => {
   });
 };
 
-let sendToBackground = (settings: any) => {
+let sendToBackground = (settings: any): void => {
   browser.runtime.sendMessage({
     action: 'save',
     data: settings,

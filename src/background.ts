@@ -31,7 +31,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     chameleon.timeout = setTimeout(() => {
       chameleon.settings = Object.assign(chameleon.settings, request.data);
       chameleon.saveSettings(request.data);
-    }, 300);
+    }, 200);
   } else if (request.action === 'contextMenu') {
     browser.contextMenus.removeAll();
 

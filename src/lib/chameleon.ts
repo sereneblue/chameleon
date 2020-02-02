@@ -56,7 +56,8 @@ export class Chameleon {
     }
 
     this.injectionScript = await browser.contentScripts.register({
-      allFrames: true,
+      allFrames: false,
+      matchAboutBlank: true,
       matches: ['http://*/*', 'https://*/*'],
       js: [{ code: `let chameleonSettings = JSON.parse(\`${JSON.stringify(this.settings)}\`);` }, { file: 'inject.js' }],
       runAt: 'document_start',
