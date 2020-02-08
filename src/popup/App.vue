@@ -22,39 +22,47 @@
     </div>
     <div class="flex-grow flex-col w-full justify-around">
       <div v-show="isSelected('tab', 'main')">
-        <div class="text-center mt-16">
-          <div class="my-6 h-24">
+        <div class="text-center mt-12">
+          <div class="my-4 h-24">
             <div id="chameleonEnabled" class="inline-block cursor-pointer" @click="toggleChameleon">
               <feather v-if="settings.config.enabled" type="shield" class="text-primary" size="6em" stroke-width="2" />
               <feather v-else type="shield-off" class="text-red-500" size="6em" stroke-width="2" />
             </div>
           </div>
           <div class="text-2xl">Chameleon is {{ settings.config.enabled ? 'enabled' : 'disabled' }}</div>
-          <div class="text-lg mb-6">v{{ version }}</div>
+          <div class="text-lg mb-4">v{{ version }}</div>
           <div class="flex justify-center text-md">
-            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-2 fg">
+            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-4 fg">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
                 <feather v-else type="sun" size="1.5em"></feather>
-                <span class="ml-1">{{ darkMode ? 'Dark' : 'Light' }}</span>
+                <span class="ml-2">{{ darkMode ? 'Dark' : 'Light' }}</span>
               </div>
             </div>
             <div @click="toggleNotifications" class="rounded-lg cursor-pointer fg">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="settings.config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
-                <span class="ml-1">Notifications {{ settings.config.notificationsEnabled ? 'On' : 'Off' }}</span>
+                <span class="ml-2">Notifications {{ settings.config.notificationsEnabled ? 'On' : 'Off' }}</span>
               </div>
             </div>
           </div>
         </div>
         <div class="text-center px-4 py-8">
           <div class="text-xs uppercase opacity-75 tracking-widest">Current Profile</div>
-          <div class="text-lg">
+          <div class="text-md py-2">
             <div>{{ currentProfile.profile }}</div>
             <div>{{ currentProfile.screen }}</div>
             <div>{{ currentProfile.timezone }}</div>
             <div>{{ currentProfile.lang }}</div>
+          </div>
+          <div v-show="isRandomProfile" class="flex justify-center text-md">
+            <div @click="changeProfile" class="rounded-lg cursor-pointer fg">
+              <div class="flex items-center px-2 py-1">
+                <feather type="refresh-cw" size="1em"></feather>
+                <span class="ml-2">change</span>
+              </div>
+            </div>
           </div>
         </div>
         <div v-show="currentPage.domain" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
@@ -62,23 +70,23 @@
           <div id="detected" class="flex justify-around h-10 mb-2">
             <div class="fp" :class="{ active: fpPanel.audioContext }">
               <feather type="music" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 ml-20 z-20 rounded text-sm bg-gray-300 p-1">Audio context accessed</span>
+              <span class="absolute text-black -mt-24 ml-12 z-20 rounded text-sm bg-gray-300 p-1">Audio context</span>
             </div>
             <div class="fp" :class="{ active: fpPanel.clientRects }">
               <feather type="grid" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Client Rects accessed</span>
+              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Client Rects</span>
             </div>
             <div class="fp" :class="{ active: fpPanel.date }">
               <feather type="calendar" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Date accessed</span>
+              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Date</span>
             </div>
             <div class="fp" :class="{ active: fpPanel.screen }">
               <feather type="monitor" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Screen accessed</span>
+              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Screen</span>
             </div>
             <div class="fp" :class="{ active: fpPanel.webSocket }">
               <feather type="activity" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 -ml-24 z-20 rounded text-sm bg-gray-300 p-1">WebSocket accessed</span>
+              <span class="absolute text-black -mt-24 -ml-12 z-20 rounded text-sm bg-gray-300 p-1">WebSocket</span>
             </div>
           </div>
         </div>
@@ -745,6 +753,14 @@ export default class App extends Vue {
     }
   }
 
+  get isRandomProfile(): boolean {
+    if (this.settings.profile.selected.includes('random')) {
+      return true;
+    }
+
+    return false;
+  }
+
   get profileList(): prof.ProfileListItem[] {
     return [].concat.apply([], Object.values(this.profiles));
   }
@@ -779,7 +795,14 @@ export default class App extends Vue {
     return ['hover:bg-primary-soft'];
   }
 
-  async changeSetting(evt: any) {
+  async changeProfile(): Promise<void> {
+    browser.runtime.sendMessage({
+      action: 'reloadProfile',
+      data: null,
+    });
+  }
+
+  async changeSetting(evt: any): Promise<void> {
     let v: string | boolean;
 
     if (evt.target.type === 'checkbox') {
