@@ -1030,6 +1030,10 @@ export default class App extends Vue {
   async toggleChameleon() {
     await this['$store'].dispatch('toggleChameleon', !this.settings.config.enabled);
     webext.sendToBackground(this.settings);
+
+    browser.runtime.sendMessage({
+      action: 'reloadInjectionScript',
+    });
   }
 
   async toggleNotifications() {

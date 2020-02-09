@@ -28,8 +28,8 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
       clearTimeout(chameleon.timeout);
     }
 
+    chameleon.settings = Object.assign(chameleon.settings, request.data);
     chameleon.timeout = setTimeout(() => {
-      chameleon.settings = Object.assign(chameleon.settings, request.data);
       chameleon.saveSettings(request.data);
     }, 200);
   } else if (request.action === 'contextMenu') {
@@ -117,7 +117,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     });
   }
 
-  return true;
+  return sendResponse(true);
 });
 
 (async () => {
