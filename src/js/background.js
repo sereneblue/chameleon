@@ -56,7 +56,7 @@ let chameleon = {
 		webSockets: "allow_all"
 	},
 	timeout: null,
-	version: "0.12.24",
+	version: "0.12.25",
 	whitelist: {
 		enabled: false,
 		enabledContextMenu: false,
@@ -503,6 +503,7 @@ async function rebuildInjectionScript() {
 
 		chameleon.injection = await browser.contentScripts.register({
 			matches: ["http://*/*", "https://*/*"],
+			excludeMatches: ["http://127.0.0.1/*", "http://localhost/*"],
 			js: [
 				{file: "js/dep/moment.min.js"},
 				{file: "js/dep/moment-timezone-with-data.min.js"},
