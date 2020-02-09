@@ -117,7 +117,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     });
   }
 
-  return sendResponse(true);
+  return true;
 });
 
 (async () => {
