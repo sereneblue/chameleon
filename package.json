@@ -91,6 +91,7 @@
     "typescript": "^3.7.5",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11",
+    "web-ext": "^4.0.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-extension-reloader": "^1.1.4"
