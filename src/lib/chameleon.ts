@@ -59,6 +59,7 @@ export class Chameleon {
       allFrames: false,
       matchAboutBlank: true,
       matches: ['http://*/*', 'https://*/*'],
+      excludeMatches: ['http://127.0.0.1/*', 'http://localhost/*'],
       js: [{ code: `let chameleonSettings = JSON.parse(\`${JSON.stringify(this.settings)}\`);` }, { file: 'inject.js' }],
       runAt: 'document_start',
     });
