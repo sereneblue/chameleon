@@ -1,40 +1,40 @@
 // useragent list
 let uaList = {
 	"win": [{
-		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (Win 7)",
 		"value": "win1"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (Win 8)",
 		"value": "win2"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (Win 8.1)",
 		"value": "win3"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (Win 10)",
 		"value": "win4"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/605.1.15 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/605.1 Edge/19.17763",
-		"name": "Edge 19 (Win 10)",
+		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 Edg/80.0.361.50",
+		"name": "Edge 80 (Win 10)",
 		"value": "win5"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (Win 7)",
+		"ua": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (Win 7)",
 		"value": "win6"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (Win 8)",
+		"ua": "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (Win 8)",
 		"value": "win7"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (Win 8.1)",
+		"ua": "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (Win 8.1)",
 		"value": "win8"
 	}, {
-		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (Win 10)",
+		"ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (Win 10)",
 		"value": "win9"
 	}, {
 		"ua": "Mozilla/5.0 (Windows NT 6.1; rv:68.0) Gecko/20100101 Firefox/68.0",
@@ -66,20 +66,20 @@ let uaList = {
 		"value": "win16"
 	}],
 	"mac": [{
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (macOS 10.13)",
 		"value": "mac1"
 	}, {
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (macOS 10.14)",
 		"value": "mac2"
 	}, {
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (macOS 10.13)",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (macOS 10.13)",
 		"value": "mac3"
 	}, {
-		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (macOS 10.14)",
+		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (macOS 10.14)",
 		"value": "mac4"
 	}, {
 		"ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:68.0) Gecko/20100101 Firefox/68.0",
@@ -99,40 +99,40 @@ let uaList = {
 		"value": "mac7"
 	}],
 	"linux": [{
-		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (Linux 64)",
 		"value": "linux1"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Fedora; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Fedora; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (Fedora 64)",
 		"value": "linux2"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chrome 80 (Ubuntu 64)",
 		"value": "linux3"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/80.0.3987.87 Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/80.0.3987.100 Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chromium 80 (Linux 64)",
 		"value": "linux4"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Fedora; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/80.0.3987.87 Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Fedora; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/80.0.3987.100 Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chromium 80 (Fedora 64)",
 		"value": "linux5"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/80.0.3987.87 Chrome/80.0.3987.87 Safari/537.36",
+		"ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/80.0.3987.100 Chrome/80.0.3987.100 Safari/537.36",
 		"name": "Chromium 80 (Ubuntu 64)",
 		"value": "linux6"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Linux; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (Linux 64)",
+		"ua": "Mozilla/5.0 (X11; Linux; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (Linux 64)",
 		"value": "linux7"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Fedora; Linux; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (Fedora 64)",
+		"ua": "Mozilla/5.0 (X11; Fedora; Linux; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (Fedora 64)",
 		"value": "linux8"
 	}, {
-		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux; rv:72.0) Gecko/20100101 Firefox/72.0",
-		"name": "Firefox 72 (Ubuntu 64)",
+		"ua": "Mozilla/5.0 (X11; Ubuntu; Linux; rv:73.0) Gecko/20100101 Firefox/73.0",
+		"name": "Firefox 73 (Ubuntu 64)",
 		"value": "linux9"
 	}, {
 		"ua": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0",
@@ -160,8 +160,8 @@ let uaList = {
 		"name": "iOS 10.3 - iPad - Safari 10",
 		"value": "ios4",
 	}, {
-		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/78.0.3904.84 Mobile/15E148 Safari/604.1",
-		"name": "iOS 11.3 - iPhone - Chrome 78",
+		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/79.0.3945.73 Mobile/15E148 Safari/604.1",
+		"name": "iOS 11.3 - iPhone - Chrome 79",
 		"value": "ios5"
 	}, {
 		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1",
@@ -176,8 +176,8 @@ let uaList = {
 		"name": "iOS 12.1 - iPad - Safari 12",
 		"value": "ios8"
 	}, {
-		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/79.0.3945.73 Mobile/15E148 Safari/604.1",
-		"name": "iOS 13 - iPhone - Chrome 79",
+		"ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/80.0.3987.95 Mobile/15E148 Safari/604.1",
+		"name": "iOS 13 - iPhone - Chrome 80",
 		"value": "ios9"
 	}],
 	"android": [{
@@ -189,11 +189,11 @@ let uaList = {
 		"name": "Android 5.1 - Chrome 69",
 		"value": "android2"
 	}, {
-		"ua": "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG-SM-G530AZ Build/LMY48B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Mobile Safari/537.36",
+		"ua": "Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG-SM-G530AZ Build/LMY48B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.99 Mobile Safari/537.36",
 		"name": "Android 5.1.1 - Chrome 80",
 		"value": "android3"
 	}, {
-		"ua": "Mozilla/5.0 (Linux; Android 6.0.1; N9136 Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Mobile Safari/537.36",
+		"ua": "Mozilla/5.0 (Linux; Android 6.0.1; N9136 Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.99 Mobile Safari/537.36",
 		"name": "Android 6.0.1 - Chrome 80",
 		"value": "android4"
 	}, {
@@ -201,7 +201,7 @@ let uaList = {
 		"name": "Android 6.0.1 - UC Browser 11.5",
 		"value": "android5"
 	}, {
-		"ua": "Mozilla/5.0 (Linux; Android 7.0; SM-N920C Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.87 Mobile Safari/537.36",
+		"ua": "Mozilla/5.0 (Linux; Android 7.0; SM-N920C Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.99 Mobile Safari/537.36",
 		"name": "Android 7 - Chrome 80",
 		"value": "android6"
 	}, {
@@ -213,7 +213,7 @@ let uaList = {
 		"name": "Android 8.1 - UC Browser 12.9",
 		"value": "android8"
 	}, {
-		"ua": "Mozilla/5.0 (Linux; Android 9; Mi A1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Mobile Safari/537.36",
+		"ua": "Mozilla/5.0 (Linux; Android 9; Mi A1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.99 Mobile Safari/537.36",
 		"name": "Android 9 - Chrome 80",
 		"value": "android9"
 	}]

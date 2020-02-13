@@ -2,7 +2,7 @@
 // also contains the profileResolution to persist profile resolution
 let spoof = {
 	accept: function(ua, https) {
-		if (/Firefox/.test(ua) || /Edge/.test(ua)) {
+		if (/Firefox/.test(ua)) {
 			return [
 				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 				https ? "gzip, deflate, br" : "gzip, deflate"
