@@ -946,52 +946,53 @@ browser.runtime.onInstalled.addListener((details) => {
 (async function run(){
 	let data = await get(null);
 
-	if (data.version == undefined) {
+	if (JSON.stringify(data) != "{}") {
 		saveSettings();
-	}
 
-	if (data.headers && data.headers.hasOwnProperty('spoofEtag')) {
-		var blockEtag = data.headers.spoofEtag;
-		delete data.headers.spoofEtag;
-		data.headers.blockEtag = blockEtag;
+		if (data.headers && data.headers.hasOwnProperty('spoofEtag')) {
+			var blockEtag = data.headers.spoofEtag;
+			delete data.headers.spoofEtag;
+			data.headers.blockEtag = blockEtag;
 
-		for (var i in data.whitelist.urlList) {
-			data.whitelist.urlList[i].lang = "";
-		}
-	}
-
-	// check for exclusion settings
-	if (data.excluded && (data.excluded.win.length != uaList.win.length)) {
-		for (var os of ["win", "mac", "linux", "ios", "android"]) {
-			var diff = chameleon.excluded[os].length - data.excluded[os].length;
-			for (var i = 0; i < diff; i++) {
-				data.excluded[os].push(false);
+			for (var i in data.whitelist.urlList) {
+				data.whitelist.urlList[i].lang = "";
 			}
 		}
-	}
 
-	// update old settings if neccessary
-	data = migrate(data);
+		// check for exclusion settings
+		if (data.excluded && (data.excluded.win.length != uaList.win.length)) {
+			for (var os of ["win", "mac", "linux", "ios", "android"]) {
+				var diff = chameleon.excluded[os].length - data.excluded[os].length;
+				for (var i = 0; i < diff; i++) {
+					data.excluded[os].push(false);
+				}
+			}
+		}
 
-	if (data.headers && data.headers.spoofAcceptEnc) {
-		data.headers.spoofAccept = data.headers.spoofAcceptEnc;
-		delete data.headers.spoofAcceptEnc;
-	}
-
-	if (data.settings && data.settings.disableWebSockets) {
-		data.settings.webSockets = data.settings.disableWebSockets ? "block_3rd_party": "allow_all";
-		delete data.settings.disableWebSockets;
-	}
+		// update old settings if neccessary
+		data = migrate(data);
 	
-	if (data.excluded && (data.excluded.android.length == 8)) {
-		data.excluded.android.push(false);
+		if (data.headers && data.headers.spoofAcceptEnc) {
+			data.headers.spoofAccept = data.headers.spoofAcceptEnc;
+			delete data.headers.spoofAcceptEnc;
+		}
+
+		if (data.settings && data.settings.disableWebSockets) {
+			data.settings.webSockets = data.settings.disableWebSockets ? "block_3rd_party": "allow_all";
+			delete data.settings.disableWebSockets;
+		}
+		
+		if (data.excluded && (data.excluded.android.length == 8)) {
+			data.excluded.android.push(false);
+		}
+
+		if (data.settings && data.settings.timeZone == "America/Puerto_Rico") {
+			data.settings.timeZone = "America/Santiago";
+		}
+
+		init(data);
 	}
 
-	if (data.settings && data.settings.timeZone == "America/Puerto_Rico") {
-		data.settings.timeZone = "America/Santiago";
-	}
-
-	init(data);
 	let plat = await browser.runtime.getPlatformInfo();
 
 	if (chameleon.settings.useragent == "real") {

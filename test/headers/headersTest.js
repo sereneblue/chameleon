@@ -8,9 +8,9 @@ const path = require('path')
 const app = express()
 const auth = require('http-auth')
 
-var authMiddleware = auth.connect(auth.basic({ realm: 'SECRET LAIR'}, (username, password, callback) => {
+var basic = auth.basic({ realm: 'SECRET LAIR'}, (username, password, callback) => {
 	callback(username == 'username' && password == 'password');
-}));
+});
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -73,7 +73,9 @@ describe('Headers', () => {
 		app.use(allowCrossDomain);
 		app.get('/', (req, res) => res.send(req.headers) );
 		app.get('/ref_test', (req, res) => res.render('index'));
-		app.get('/basic_auth', authMiddleware, (req, res) => res.send('Permission granted'));
+		app.get('/basic_auth', basic.check((req, res) => {
+      res.send('Permission granted');
+    }));
 		app.get('/auth_test', (req, res) => {
 			res.send(`
 				<html>
