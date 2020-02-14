@@ -85,7 +85,7 @@ describe('Script Injection', () => {
 	before(async () => {
 		extPath = path.join(__dirname, '../{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}.xpi');
 		EXTENSION_URI = "";
-		LOCALSERVER = "http://localhost:3000";
+		LOCALSERVER = "http://chameleon1.test:3000";
 		SLEEP_TIME = 750; // need to increase sleep time because of failing tests
 
 		driver = await new Builder()
