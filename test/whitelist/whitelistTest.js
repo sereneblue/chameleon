@@ -14,9 +14,9 @@ const wss = new WebSocket.Server({ server: wsServer });
 const auth = require('http-auth');
 const browserData = require('../../src/js/data.js');
 
-var authMiddleware = auth.connect(auth.basic({ realm: 'SECRET LAIR'}, (username, password, callback) => {
+var basic = auth.basic({ realm: 'SECRET LAIR'}, (username, password, callback) => {
 	callback(username == 'username' && password == 'password');
-}));
+});
 
 const wait = async (sec) => {
 	return new Promise(resolve => setTimeout(resolve, sec));
@@ -61,7 +61,7 @@ describe('Whitelist', () => {
 		extPath = path.join(__dirname, '../{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}.xpi');
 		EXTENSION_URI = "";
 		LOCALSERVER = "http://localhost:3000";
-		SLEEP_TIME = 400;
+		SLEEP_TIME = 500;
 
 		driver = await new Builder()
 			.forBrowser('firefox')
@@ -92,7 +92,9 @@ describe('Whitelist', () => {
 
 		app.get('/', (req, res) => res.send(req.headers) );
 		app.get('/whitelist_test', (req, res) => res.render('index'));
-		app.get('/basic_auth', authMiddleware, (req, res) => res.send('Permission granted'));
+		app.get('/basic_auth', basic.check((req, res) => {
+      res.send('Permission granted');
+    }));
 		app.get('/auth_test', (req, res) => {
 			res.send(`
 				<html>
