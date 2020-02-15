@@ -25,8 +25,8 @@
         <div class="text-center mt-12">
           <div class="my-4 h-24">
             <div id="chameleonEnabled" class="inline-block cursor-pointer" @click="toggleChameleon">
-              <feather v-if="settings.config.enabled" type="shield" class="text-primary" size="6em" stroke-width="2" />
-              <feather v-else type="shield-off" class="text-red-500" size="6em" stroke-width="2" />
+              <feather v-if="settings.config.enabled" type="shield" class="text-primary hover:text-primary-soft" size="6em" stroke-width="2" />
+              <feather v-else type="shield-off" class="text-red-500 hover:text-red-400" size="6em" stroke-width="2" />
             </div>
           </div>
           <div class="text-2xl">Chameleon is {{ settings.config.enabled ? 'enabled' : 'disabled' }}</div>
@@ -784,7 +784,7 @@ export default class App extends Vue {
   }
 
   get version(): string {
-    return browser.runtime.getManifest().version;
+    return browser.runtime.getManifest().version_name;
   }
 
   activeTab(tab: string): string[] {
