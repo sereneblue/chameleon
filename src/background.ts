@@ -129,6 +129,8 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     chameleon.updateIPInfo();
   }
 
+  webext.enableChameleon(chameleon.settings.config.enabled);
+
   if (chameleon.platform.os != 'android') {
     browser.browserAction.setBadgeBackgroundColor({
       color: 'green',
