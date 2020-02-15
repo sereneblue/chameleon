@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 @font-face {
   font-family: 'Noto Sans';
@@ -209,17 +208,20 @@ select {
 }
 
 #detected .fp {
-  @apply flex items-center justify-center rounded-lg p-1 border-primary w-10;
+  @apply flex items-center justify-center rounded-lg p-1 border-primary w-10 shadow-xs;
 }
 
 #detected .fp.active {
   @apply bg-primary text-white;
 }
 
-.fp span {
-  display: none;
+.fp div {
+  opacity: 0%;
+  @apply absolute transition transition-opacity duration-300 ease-in-out flex justify-center -mt-24 px-4 text-black z-20 rounded text-sm bg-yellow-200 border border-yellow-600 p-1 shadow-sm;
 }
 
-.fp:hover span {
-  display: block;
+.fp:hover div {
+  opacity: 100%;
 }
+
+@tailwind utilities;

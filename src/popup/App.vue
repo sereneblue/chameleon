@@ -70,23 +70,23 @@
           <div id="detected" class="flex justify-around h-10 mb-2">
             <div class="fp" :class="{ active: fpPanel.audioContext }">
               <feather type="music" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 ml-12 z-20 rounded text-sm bg-gray-300 p-1">Audio context</span>
+              <div>Audio context</div>
             </div>
             <div class="fp" :class="{ active: fpPanel.clientRects }">
               <feather type="grid" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Client Rects</span>
+              <div>Client Rects</div>
             </div>
             <div class="fp" :class="{ active: fpPanel.date }">
               <feather type="calendar" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Date</span>
+              <div>Date</div>
             </div>
             <div class="fp" :class="{ active: fpPanel.screen }">
               <feather type="monitor" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 z-20 rounded text-sm bg-gray-300 p-1">Screen</span>
+              <div>Screen</div>
             </div>
             <div class="fp" :class="{ active: fpPanel.webSocket }">
               <feather type="activity" size="1.1em"></feather>
-              <span class="absolute text-black -mt-24 -ml-12 z-20 rounded text-sm bg-gray-300 p-1">WebSocket</span>
+              <div>WebSocket</div>
             </div>
           </div>
         </div>
