@@ -60,7 +60,15 @@ export class Chameleon {
       matchAboutBlank: true,
       matches: ['http://*/*', 'https://*/*'],
       excludeMatches: ['http://127.0.0.1/*', 'http://localhost/*'],
-      js: [{ code: `let chameleonSettings = JSON.parse(\`${JSON.stringify(this.settings)}\`);` }, { file: 'inject.js' }],
+      js: [
+        {
+          code: `
+        let chameleonSettings = JSON.parse(\`${JSON.stringify(this.settings)}\`);
+        let chameleonSeed = ${Math.random() * 0.00000001};
+      `,
+        },
+        { file: 'inject.js' },
+      ],
       runAt: 'document_start',
     });
   }
