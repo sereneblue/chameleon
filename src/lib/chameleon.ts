@@ -56,7 +56,7 @@ export class Chameleon {
     }
 
     this.injectionScript = await browser.contentScripts.register({
-      allFrames: false,
+      allFrames: true,
       matchAboutBlank: true,
       matches: ['http://*/*', 'https://*/*'],
       excludeMatches: ['http://127.0.0.1/*', 'http://localhost/*'],
