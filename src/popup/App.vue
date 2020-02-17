@@ -593,7 +593,7 @@
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.whitelist.enabled" name="whitelist.enabled" type="checkbox" class="text-primary form-checkbox" />
-            <span class="ml-1">Enable whitelist (requires script injection)</span>
+            <span class="ml-1">Enable whitelist</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
@@ -715,7 +715,7 @@ export default class App extends Vue {
 
     if (this.settings.headers.spoofAcceptLang.enabled) {
       if (this.settings.headers.spoofAcceptLang.value) {
-        if (this.settings.options.timeZone === 'default') {
+        if (this.settings.headers.spoofAcceptLang.value === 'default') {
           language = 'Default';
         } else if (this.settings.headers.spoofAcceptLang.value === 'ip') {
           language = 'IP';
