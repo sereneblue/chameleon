@@ -1,5 +1,4 @@
 import * as mtypes from './mutation-types';
-import util from '../lib/util';
 import webext from '../lib/webext';
 
 export const changeProfile = ({ commit }, payload) => {
@@ -27,6 +26,8 @@ export const changeSetting = ({ commit, state }, payload: any) => {
     });
   } else if (
     [
+      'headers.spoofAcceptLang.enabled',
+      'headers.spoofAcceptLang.value',
       'options.limitHistory',
       'options.protectWinName',
       'options.spoofAudioContext',
