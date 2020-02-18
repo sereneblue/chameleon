@@ -503,7 +503,7 @@ export default class App extends Vue {
 
   async created(): Promise<void> {
     this.iconPath = browser.runtime.getURL('icons/icon.svg');
-    this.version = browser.runtime.getManifest().version;
+    this.version = browser.runtime.getManifest().version_name;
 
     await this['$store'].dispatch('initialize');
 
