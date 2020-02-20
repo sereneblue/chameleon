@@ -1,0 +1,13 @@
+{
+  "addons": {
+    "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}": {
+      "updates": [
+        {
+          "version": "v0.20.0-alpha0",
+          "browser_specific_settings": { "gecko": { "strict_min_version": "55" } },
+          "update_link": "https://github.com/sereneblue/chameleon/releases/download/v0.20.0-alpha0/chameleon_v0.20.0-alpha0.signed.xpi"
+        }
+      ]
+    }
+  }
+}
