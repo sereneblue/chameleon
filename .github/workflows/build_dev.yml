@@ -2,8 +2,6 @@ name: Chameleon Dev Build
 
 on:
   push:
-    branches:
-      - develop
     tags:
       - v**-alpha**
       - v**-beta**
