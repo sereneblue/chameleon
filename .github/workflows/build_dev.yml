@@ -2,8 +2,6 @@ name: Chameleon Dev Build
 
 on:
   push:
-    branches:
-      - develop
     tags:
       - v**-alpha**
       - v**-beta**
@@ -26,7 +24,7 @@ jobs:
       - name: Sign extension
         run: |
           web-ext sign -s ./dist --channel unlisted
-          mv ./web-ext-artifacts/$(ls web-ext-artifacts) ./web-ext-artifacts/chameleon_$(git describe).signed.xpi
+          mv ./web-ext-artifacts/$(ls web-ext-artifacts) ./web-ext-artifacts/chameleon_$(git describe --tags).signed.xpi
         env:
           WEB_EXT_API_KEY: ${{ secrets.WEBEXT_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.WEBEXT_API_SECRET }}
@@ -34,9 +32,8 @@ jobs:
       - name: Generate variables
         id: chameleon
         run: |
-          python3 ./.github/workflows/chglog.py
-          echo ::set-output name=VERSION::$(git describe)
-          echo ::set-output name=FILENAME::chameleon_${GITHUB_REF/refs\/tags\//}.signed.xpi
+          echo ::set-output name=VERSION::$(git describe --tags)
+          echo ::set-output name=FILENAME::chameleon_$(git describe --tags).signed.xpi
           CHANGELOG=$(python3 ./.github/workflows/dev/chglog.py)
           CHANGELOG="${CHANGELOG//$'%'/%25}"
           CHANGELOG="${CHANGELOG//$'\n'/%0A}"
