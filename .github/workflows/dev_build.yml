@@ -21,6 +21,7 @@ jobs:
       - name: Build extension
         run: |
           npm install
+          npm install --global web-ext
           npm run build
       - name: Sign extension
         run: |
