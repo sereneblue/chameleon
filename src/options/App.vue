@@ -200,138 +200,43 @@
     <transition name="fade" @after-enter="toggleOpen" @after-leave="toggleOpen">
       <div v-show="showModal" class="h-screen w-full fixed top-0 z-30 bg-dark-modal">
         <div class="flex flex-col justify-center h-full">
-            <div v-if="modalType === Modal.IP_RULE" class="w-3/4 modal h-128">
-              <div class="px-6 pt-6 pb-8 text-xl">
-                <div class="text-xl font-bold border-primary border-b-2 mb-4">IP Rule Editor</div>
-                <div class="w-full">
-                  <div class="mb-4">
-                    <label for="headers.spoofIP.rangeFrom">
-                      <span class="text-dark">Name</span>
-                    </label>
-                    <input v-model="tmp.ipRule.name" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error: errors.ipRuleName }" />
-                  </div>
-                  <div class="flex items-center mb-4">
-                    <label class="mr-2 w-1/2">
-                      <span class="text-dark">Language</span>
-                      <select v-model="tmp.ipRule.lang" class="form-select mt-1 block w-full">
-                        <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
-                      </select>
-                    </label>
-                    <label class="ml-2 w-1/2">
-                      <span class="text-dark">Timezone</span>
-                      <select v-model="tmp.ipRule.tz" class="form-select mt-1 block w-full">
-                        <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
-                      </select>
-                    </label>
-                  </div>
-                  <div>
-                    <div class="mb-2">IP Ranges / Addresses</div>
-                    <textarea
-                      v-model="tmp.ipRule.ips"
-                      class="form-textarea mt-1 text-xl block w-full"
-                      :class="{ error: errors.ipRuleIPs }"
-                      rows="10"
-                      placeholder="One IP/IP range per line"
-                    ></textarea>
-                  </div>
-                  <div class="flex items-center">
-                    <div class="flex mt-6 w-full">
-                      <button @click="saveIPRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">
-                        Save
-                      </button>
-                      <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
+          <div v-if="modalType === Modal.IP_RULE" class="w-3/4 modal h-128">
+            <div class="px-6 pt-6 pb-8 text-xl">
+              <div class="text-xl font-bold border-primary border-b-2 mb-4">IP Rule Editor</div>
+              <div class="w-full">
+                <div class="mb-4">
+                  <label for="headers.spoofIP.rangeFrom">
+                    <span class="text-dark">Name</span>
+                  </label>
+                  <input v-model="tmp.ipRule.name" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error: errors.ipRuleName }" />
                 </div>
-              </div>
-            </div>
-            <div v-else-if="modalType === Modal.WL_RULE" class="w-3/4 modal h-128">
-              <div class="px-6 pt-6 pb-8 text-xl">
-                <div class="text-xl font-bold border-primary border-b-2 mb-4">Whitelist Rule Editor</div>
-                <div class="flex-col lg:flex">
-                  <div class="mb-2 md:mb-0">
-                    <div class="mb-2">
-                      <label>
-                        <span class="text-dark">Name</span>
-                      </label>
-                      <input v-model="tmp.wlRule.name" class="block w-full form-input" :class="{ error: errors.wlRuleName }" />
-                    </div>
-                    <div class="mb-2">
-                      <label>
-                        Accept-Language
-                        <select v-model="tmp.wlRule.lang" class="form-select mt-1 block w-full">
-                          <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
-                        </select>
-                      </label>
-                    </div>
-                    <div class="mb-2">
-                      <label>
-                        Profile
-                        <select v-model="tmp.wlRule.profile" class="form-select mt-1 block w-full">
-                          <option value="default">Default Whitelist Profile</option>
-                          <option value="none">Real Profile</option>
-                          <option v-for="p in profileList" :key="p.id" :value="p.id">{{ p.name }}</option>
-                        </select>
-                      </label>
-                    </div>
-                    <div class="mb-2">
-                      <label for="headers.spoofIP.rangeFrom">
-                        <span class="text-dark">Header IP (VIa & X-Forwarded-For)</span>
-                      </label>
-                      <input v-model="tmp.wlRule.spoofIP" class="block w-full form-input" :class="{ error: errors.wlRuleIP }" />
-                    </div>
-                    <div class="my-4">
-                      <div class="flex justify-around">
-                        <div>
-                          <div class="mb-2">
-                            <div class="form-switch inline-block align-middle">
-                              <input v-model="tmp.wlRule.options.ref" id="ref" type="checkbox" class="form-switch-checkbox" />
-                              <label class="form-switch-label" for="ref"></label>
-                            </div>
-                            <label class="text-sm">Disable Referer</label>
-                          </div>
-                          <div>
-                            <div class="form-switch inline-block align-middle">
-                              <input v-model="tmp.wlRule.options.ws" id="ws" type="checkbox" class="form-switch-checkbox" />
-                              <label class="form-switch-label" for="ws"></label>
-                            </div>
-                            <label class="text-sm">Disable WebSocket</label>
-                          </div>
-                        </div>
-                        <div>
-                          <div class="mb-2">
-                            <div class="form-switch inline-block align-middle">
-                              <input v-model="tmp.wlRule.options.name" id="name" type="checkbox" class="form-switch-checkbox" />
-                              <label class="form-switch-label" for="name"></label>
-                            </div>
-                            <label class="text-sm">Enable protect window name</label>
-                          </div>
-                          <div>
-                            <div class="form-switch inline-block align-middle">
-                              <input v-model="tmp.wlRule.options.tz" id="tz" type="checkbox" class="form-switch-checkbox" />
-                              <label class="form-switch-label" for="tz"></label>
-                            </div>
-                            <label class="text-sm">Enable timezone spoofing</label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>Sites</div>
-                  <div class="text-sm">One rule per line: domain,[optional regex pattern]</div>
+                <div class="flex items-center mb-4">
+                  <label class="mr-2 w-1/2">
+                    <span class="text-dark">Language</span>
+                    <select v-model="tmp.ipRule.lang" class="form-select mt-1 block w-full">
+                      <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
+                    </select>
+                  </label>
+                  <label class="ml-2 w-1/2">
+                    <span class="text-dark">Timezone</span>
+                    <select v-model="tmp.ipRule.tz" class="form-select mt-1 block w-full">
+                      <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
+                    </select>
+                  </label>
+                </div>
+                <div>
+                  <div class="mb-2">IP Ranges / Addresses</div>
                   <textarea
-                    v-model="tmp.wlRule.sites"
+                    v-model="tmp.ipRule.ips"
                     class="form-textarea mt-1 text-xl block w-full"
-                    :class="{ error: errors.wlRuleSites }"
-                    rows="7"
-                    placeholder="Ex. reddit.com,r/(webdev|popular|privacy)"
+                    :class="{ error: errors.ipRuleIPs }"
+                    rows="10"
+                    placeholder="One IP/IP range per line"
                   ></textarea>
                 </div>
                 <div class="flex items-center">
                   <div class="flex mt-6 w-full">
-                    <button @click="saveWLRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">
+                    <button @click="saveIPRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">
                       Save
                     </button>
                     <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
@@ -341,48 +246,143 @@
                 </div>
               </div>
             </div>
-            <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE" class="w-1/3 modal h-128">
-              <div class="flex flex-col px-6 pt-6 pb-8">
-                <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
-                <span class="my-1 text-xl font-semibold text-center">Are you sure you want to delete this rule?</span>
-                <div class="my-4 text-center text-lg">
-                  <div>{{ tmp.ipRule.name }}</div>
-                  <div>{{ tmp.ipRule.ips.length }} rule(s)</div>
+          </div>
+          <div v-else-if="modalType === Modal.WL_RULE" class="w-3/4 modal h-128">
+            <div class="px-6 pt-6 pb-8 text-xl">
+              <div class="text-xl font-bold border-primary border-b-2 mb-4">Whitelist Rule Editor</div>
+              <div class="flex-col lg:flex">
+                <div class="mb-2 md:mb-0">
+                  <div class="mb-2">
+                    <label>
+                      <span class="text-dark">Name</span>
+                    </label>
+                    <input v-model="tmp.wlRule.name" class="block w-full form-input" :class="{ error: errors.wlRuleName }" />
+                  </div>
+                  <div class="mb-2">
+                    <label>
+                      Accept-Language
+                      <select v-model="tmp.wlRule.lang" class="form-select mt-1 block w-full">
+                        <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="mb-2">
+                    <label>
+                      Profile
+                      <select v-model="tmp.wlRule.profile" class="form-select mt-1 block w-full">
+                        <option value="default">Default Whitelist Profile</option>
+                        <option value="none">Real Profile</option>
+                        <option v-for="p in profileList" :key="p.id" :value="p.id">{{ p.name }}</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="mb-2">
+                    <label for="headers.spoofIP.rangeFrom">
+                      <span class="text-dark">Header IP (VIa & X-Forwarded-For)</span>
+                    </label>
+                    <input v-model="tmp.wlRule.spoofIP" class="block w-full form-input" :class="{ error: errors.wlRuleIP }" />
+                  </div>
+                  <div class="my-4">
+                    <div class="flex justify-around">
+                      <div>
+                        <div class="mb-2">
+                          <div class="form-switch inline-block align-middle">
+                            <input v-model="tmp.wlRule.options.ref" id="ref" type="checkbox" class="form-switch-checkbox" />
+                            <label class="form-switch-label" for="ref"></label>
+                          </div>
+                          <label class="text-sm">Disable Referer</label>
+                        </div>
+                        <div>
+                          <div class="form-switch inline-block align-middle">
+                            <input v-model="tmp.wlRule.options.ws" id="ws" type="checkbox" class="form-switch-checkbox" />
+                            <label class="form-switch-label" for="ws"></label>
+                          </div>
+                          <label class="text-sm">Disable WebSocket</label>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="mb-2">
+                          <div class="form-switch inline-block align-middle">
+                            <input v-model="tmp.wlRule.options.name" id="name" type="checkbox" class="form-switch-checkbox" />
+                            <label class="form-switch-label" for="name"></label>
+                          </div>
+                          <label class="text-sm">Enable protect window name</label>
+                        </div>
+                        <div>
+                          <div class="form-switch inline-block align-middle">
+                            <input v-model="tmp.wlRule.options.tz" id="tz" type="checkbox" class="form-switch-checkbox" />
+                            <label class="form-switch-label" for="tz"></label>
+                          </div>
+                          <label class="text-sm">Enable timezone spoofing</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex justify-center">
-                  <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">Yes, delete it!</button>
+                <div>Sites</div>
+                <div class="text-sm">One rule per line: domain,[optional regex pattern]</div>
+                <textarea
+                  v-model="tmp.wlRule.sites"
+                  class="form-textarea mt-1 text-xl block w-full"
+                  :class="{ error: errors.wlRuleSites }"
+                  rows="7"
+                  placeholder="Ex. reddit.com,r/(webdev|popular|privacy)"
+                ></textarea>
+              </div>
+              <div class="flex items-center">
+                <div class="flex mt-6 w-full">
+                  <button @click="saveWLRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">
+                    Save
+                  </button>
                   <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
                     Cancel
                   </button>
-                </div>
-              </div>
-            </div>
-            <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 modal h-128">
-              <div class="flex flex-col px-6 pt-6 pb-8">
-                <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
-                <span class="my-1 text-xl font-semibold text-center">Are you sure you want to delete this rule?</span>
-                <div class="my-4 text-center text-lg">
-                  <div>{{ tmp.wlRule.name }}</div>
-                  <div>{{ tmp.wlRule.sites.length }} site(s)</div>
-                </div>
-                <div class="flex justify-center">
-                  <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">Yes, delete it!</button>
-                  <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-1/3 modal h-128">
-              <div class="flex flex-col px-6 pt-6 pb-8">
-                <span class="my-1 text-xl font-semibold text-center">{{ tmp.checklistItem.name }}</span>
-                <div class="my-4 text-center text-lg">
-                  {{ tmp.checklistItem.description }}
                 </div>
               </div>
             </div>
           </div>
+          <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE" class="w-1/3 modal h-128">
+            <div class="flex flex-col px-6 pt-6 pb-8">
+              <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
+              <span class="my-1 text-xl font-semibold text-center">Are you sure you want to delete this rule?</span>
+              <div class="my-4 text-center text-lg">
+                <div>{{ tmp.ipRule.name }}</div>
+                <div>{{ tmp.ipRule.ips.length }} rule(s)</div>
+              </div>
+              <div class="flex justify-center">
+                <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">Yes, delete it!</button>
+                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+          <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 modal h-128">
+            <div class="flex flex-col px-6 pt-6 pb-8">
+              <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
+              <span class="my-1 text-xl font-semibold text-center">Are you sure you want to delete this rule?</span>
+              <div class="my-4 text-center text-lg">
+                <div>{{ tmp.wlRule.name }}</div>
+                <div>{{ tmp.wlRule.sites.length }} site(s)</div>
+              </div>
+              <div class="flex justify-center">
+                <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">Yes, delete it!</button>
+                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+          <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-1/3 modal h-128">
+            <div class="flex flex-col px-6 pt-6 pb-8">
+              <span class="my-1 text-xl font-semibold text-center">{{ tmp.checklistItem.name }}</span>
+              <div class="my-4 text-center text-lg">
+                {{ tmp.checklistItem.description }}
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </transition>
   </div>
 </template>
@@ -414,7 +414,7 @@ export default class App extends Vue {
   public modalType: Modal = Modal.DEFAULT;
   public checklist: ChecklistItem[] = Checklist;
   public currentTab: string = 'about';
-  public iconPath: string;
+  public iconPath: string = '';
   public query: string = '';
   public ready: boolean = false;
   public showModal: boolean = false;
@@ -428,7 +428,7 @@ export default class App extends Vue {
     wlRuleIP: false,
     wlRuleSites: false,
   };
-  public version: string;
+  public version: string = '';
   public tmp: any = {
     checklistItem: {
       description: '',
