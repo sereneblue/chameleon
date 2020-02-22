@@ -379,6 +379,9 @@
               <div class="my-4 text-center text-lg">
                 {{ tmp.checklistItem.description }}
               </div>
+              <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
+                Close
+              </button>
             </div>
           </div>
         </div>
