@@ -200,7 +200,6 @@
     <transition name="fade" @after-enter="toggleOpen" @after-leave="toggleOpen">
       <div v-show="showModal" class="h-screen w-full fixed top-0 z-30 bg-dark-modal">
         <div class="flex flex-col justify-center h-full">
-          <div v-on-clickaway="modalEventHandler">
             <div v-if="modalType === Modal.IP_RULE" class="w-3/4 modal h-128">
               <div class="px-6 pt-6 pb-8 text-xl">
                 <div class="text-xl font-bold border-primary border-b-2 mb-4">IP Rule Editor</div>
@@ -384,7 +383,6 @@
             </div>
           </div>
         </div>
-      </div>
     </transition>
   </div>
 </template>
@@ -397,7 +395,6 @@ import * as prof from '../lib/profiles';
 import * as tz from '../lib/tz';
 import util from '../lib/util';
 import webext from '../lib/webext';
-import { directive as onClickaway } from 'vue-clickaway';
 import { Component } from 'vue-property-decorator';
 const uuidv4 = require('uuid/v4');
 
@@ -410,11 +407,7 @@ enum Modal {
   CHECKLIST_INFO,
 }
 
-@Component({
-  directives: {
-    onClickaway: onClickaway,
-  },
-})
+@Component
 export default class App extends Vue {
   public REGEX_DOMAIN: any = /^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/;
   public Modal = Modal;
