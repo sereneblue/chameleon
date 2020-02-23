@@ -69,7 +69,7 @@
                 Export
               </div>
             </button>
-            <button class="transparent-btn">
+            <button @click="resetSettings" class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="rotate-ccw" size="1em"></feather>
                 Reset to Default
@@ -700,6 +700,14 @@ export default class App extends Vue {
     browser.runtime.sendMessage({
       action: 'reloadIPInfo',
     });
+  }
+
+  async resetSettings(): Promise<void> {
+    await browser.runtime.sendMessage({
+      action: 'reset',
+    });
+
+    window.location.reload();
   }
 
   async saveIPRule(): Promise<void> {

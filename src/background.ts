@@ -91,6 +91,8 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     }
 
     chameleon.updateSpoofIP();
+  } else if (request.action === 'reset') {
+    chameleon.reset();
   } else if (request.action === 'tempStore') {
     browser.runtime.sendMessage({
       action: 'tempStore',

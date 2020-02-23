@@ -87,7 +87,7 @@ export class Chameleon {
 
   private migrate(prevSettings: any): void {}
 
-  private reset(): void {
+  public reset(): void {
     this.saveSettings(this.defaultSettings);
   }
 
