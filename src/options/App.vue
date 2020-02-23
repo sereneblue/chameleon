@@ -591,10 +591,10 @@ export default class App extends Vue {
   }
 
   exportSettings(): void {
-    let settings: string = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.settings, null, 2));
+    let settings: string = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.settings, null, 2));
     let exportElement = document.getElementById('export');
-    exportElement.setAttribute("href", settings );
-    exportElement.setAttribute("download", `chameleon_${new Date().getTime()}.json`);
+    exportElement.setAttribute('href', settings);
+    exportElement.setAttribute('download', `chameleon_${new Date().getTime()}.json`);
     exportElement.click();
   }
 
