@@ -63,7 +63,7 @@
                 Import
               </div>
             </button>
-            <button class="transparent-btn">
+            <button @click="exportSettings" class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="download" size="1em"></feather>
                 Export
@@ -76,6 +76,7 @@
               </div>
             </button>
           </div>
+          <a id="export"></a>
         </div>
       </div>
       <div v-show="currentTab === 'whitelist'" class="text-2xl flex flex-col">
@@ -587,6 +588,14 @@ export default class App extends Vue {
 
     this.showModal = true;
     this.modalType = Modal.WL_RULE;
+  }
+
+  exportSettings(): void {
+    let settings: string = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.settings, null, 2));
+    let exportElement = document.getElementById('export');
+    exportElement.setAttribute("href", settings );
+    exportElement.setAttribute("download", `chameleon_${new Date().getTime()}.json`);
+    exportElement.click();
   }
 
   deleteIPRule(id: string): void {
