@@ -5,12 +5,11 @@ info:
   repository_url: https://github.com/sereneblue/chameleon
 options:
   commits:
-  # filters:
-  #   Type:
-  #     - feat
-  #     - fix
-  #     - perf
-  #     - refactor
+    filters:
+      Type:
+        - feat
+        - fix
+    sort_by: Scope
   commit_groups:
     # title_maps:
     #   feat: Features
