@@ -11,9 +11,9 @@ options:
         - fix
     sort_by: Scope
   commit_groups:
-    # title_maps:
-    #   feat: Features
-    #   fix: Bug Fixes
+    title_maps:
+      feat: Features
+      fix: Bug Fixes
     #   perf: Performance Improvements
     #   refactor: Code Refactoring
   header:
