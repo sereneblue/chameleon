@@ -5,10 +5,9 @@
 ### Feat
 
 - **Options Page:** add close button to modal
-
-  - **Settings:** implement import settings
-  - **Settings:** implement reset settings functionality
-  - **Settings:** implement export settings functionality
+- **Settings:** implement import settings
+- **Settings:** implement reset settings functionality
+- **Settings:** implement export settings functionality
 
 <a name="v0.20.0-alpha0"></a>
 
