@@ -57,11 +57,12 @@
         <div class="mt-4">
           <div class="text-3xl mb-4">Settings</div>
           <div class="flex flex-col xl:flex-row">
-            <button class="transparent-btn">
+            <button @click="importSettings" class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="upload" size="1em"></feather>
                 Import
               </div>
+              <input class="hidden" type="file" ref="chameleonImport" @change="readSettings" />
             </button>
             <button @click="exportSettings" class="transparent-btn">
               <div class="flex items-center">
@@ -77,6 +78,12 @@
             </button>
           </div>
           <a id="export"></a>
+        </div>
+        <div v-show="isImporting" class="mt-4">
+          <div class="">
+            Importing settings...
+          </div>
+          <div class="mt-1 font-bold" :class="[importError.error ? 'text-red-500' : 'text-green-500']" v-text="importError.msg"></div>
         </div>
       </div>
       <div v-show="currentTab === 'whitelist'" class="text-2xl flex flex-col">
@@ -321,13 +328,13 @@
                   </div>
                 </div>
                 <div>Sites</div>
-                <div class="text-sm">One rule per line: domain,[optional regex pattern]</div>
+                <div class="text-sm">One rule per line: domain@@[optional regex pattern]</div>
                 <textarea
                   v-model="tmp.wlRule.sites"
                   class="form-textarea mt-1 text-xl block w-full"
                   :class="{ error: errors.wlRuleSites }"
                   rows="7"
-                  placeholder="Ex. reddit.com,r/(webdev|popular|privacy)"
+                  placeholder="Ex. reddit.com@@r/(webdev|popular|privacy)"
                 ></textarea>
               </div>
               <div class="flex items-center">
@@ -431,6 +438,11 @@ export default class App extends Vue {
     wlRuleName: false,
     wlRuleIP: false,
     wlRuleSites: false,
+  };
+  public isImporting: boolean = false;
+  public importError: any = {
+    error: false,
+    msg: '',
   };
   public version: string = '';
   public tmp: any = {
@@ -565,6 +577,10 @@ export default class App extends Vue {
     this.modalType = Modal.WL_RULE;
   }
 
+  importSettings(evt): void {
+    (this.$refs.chameleonImport as any).click();
+  }
+
   editIPRule(id: string): void {
     let rule: any = this.settings.ipRules.find(r => r.id === id);
 
@@ -584,14 +600,18 @@ export default class App extends Vue {
     let rule: any = this.settings.whitelist.rules.find(r => r.id === id);
     this.tmp.wlRule = Object.assign({}, rule);
 
-    this.tmp.wlRule.sites = rule.sites.map(r => Object.values(r).join(',')).join('\n');
+    this.tmp.wlRule.sites = rule.sites.map(r => Object.values(r).join('@@')).join('\n');
 
     this.showModal = true;
     this.modalType = Modal.WL_RULE;
   }
 
-  exportSettings(): void {
-    let settings: string = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.settings, null, 2));
+  async exportSettings(): Promise<void> {
+    let s: any = await browser.runtime.sendMessage({
+      action: 'getSettings',
+    });
+
+    let settings: string = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(s, null, 2));
     let exportElement = document.getElementById('export');
     exportElement.setAttribute('href', settings);
     exportElement.setAttribute('download', `chameleon_${new Date().getTime()}.json`);
@@ -672,6 +692,29 @@ export default class App extends Vue {
     }.bind(this);
   }
 
+  readSettings(evt: Event): void {
+    this.isImporting = true;
+    let reader = new FileReader();
+
+    // inject an image with the src url
+    reader.onload = async (e: any): Promise<void> => {
+      try {
+        let data: object = JSON.parse(e.target.result);
+        this.importError = await browser.runtime.sendMessage({
+          action: 'validateSettings',
+          data,
+        });
+      } catch (e) {
+        this.importError = {
+          error: true,
+          msg: 'Could not import file',
+        };
+      }
+    };
+
+    reader.readAsText((evt.target as any).files[0]);
+  }
+
   reallyDelete(): void {
     if (this.modalType === Modal.CONFIRM_IP_DELETE) {
       this.settings.ipRules.splice(
@@ -706,8 +749,6 @@ export default class App extends Vue {
     await browser.runtime.sendMessage({
       action: 'reset',
     });
-
-    window.location.reload();
   }
 
   async saveIPRule(): Promise<void> {
@@ -780,7 +821,7 @@ export default class App extends Vue {
     }
 
     // validate sites patterns
-    let sites = this.tmp.wlRule.sites.split('\n').map(s => s.split(','));
+    let sites = this.tmp.wlRule.sites.split('\n').map(s => s.split('@@'));
 
     let foundDomains = {};
     for (let i = 0; i < sites.length; i++) {

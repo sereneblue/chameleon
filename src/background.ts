@@ -65,6 +65,8 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
         },
       });
     }
+  } else if (request.action === 'getSettings') {
+    sendResponse(chameleon.settings);
   } else if (request.action === 'reloadInjectionScript') {
     chameleon.buildInjectionScript();
   } else if (request.action === 'reloadIPInfo') {
@@ -93,6 +95,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     chameleon.updateSpoofIP();
   } else if (request.action === 'reset') {
     chameleon.reset();
+    browser.runtime.reload();
   } else if (request.action === 'tempStore') {
     browser.runtime.sendMessage({
       action: 'tempStore',
@@ -103,6 +106,8 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
 
     // reset interval timer and send notification
     chameleon.setTimer();
+  } else if (request.action === 'validateSettings') {
+    sendResponse(chameleon.validateSettings(request.data));
   } else if (request.action === 'fpDetect') {
     let tabId = sender.tab.id;
 
