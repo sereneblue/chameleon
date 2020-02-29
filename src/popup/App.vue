@@ -669,7 +669,7 @@ export default class App extends Vue {
     rangeTo: false,
   };
   public languages: lang.Language[] = lang.getAllLanguages();
-  public profiles: prof.ProfileListItem[] = new prof.Generator().getAllProfiles();
+  public profiles: any = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
     intervalMax: '',
@@ -754,7 +754,7 @@ export default class App extends Vue {
   }
 
   get isRandomProfile(): boolean {
-    if (this.settings.profile.selected.includes('random')) {
+    if (this.settings.profile.selected.includes('random') || ['windows', 'macOS', 'linux', 'iOS', 'android'].includes(this.settings.profile.selected)) {
       return true;
     }
 
