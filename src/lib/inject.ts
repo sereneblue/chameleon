@@ -13,6 +13,7 @@ const moment = require('moment-timezone');
 
 class Injector {
   public enabled: boolean;
+  public notifyId: string;
   private spoof = {
     custom: '',
     overwrite: [],
@@ -20,13 +21,14 @@ class Injector {
   };
   private spoofInfo: object;
 
-  constructor(settings: any, seed: number) {
+  constructor(settings: any, seed: number, notifyId: string) {
     if (!settings.config.enabled) {
       this.enabled = false;
       return;
     }
 
     this.enabled = true;
+    this.notifyId = notifyId;
     let wl = util.findWhitelistRule(settings.whitelist.rules, window.location.host, window.location.href);
 
     if (wl === null) {
@@ -219,28 +221,28 @@ class Injector {
         // Proxy access to objects for fingerprint panel in popup
         window.AudioContext = new Proxy(window.AudioContext, {  
           construct: function(target, args) {
-            window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'audioContext'}));
+            window.top.postMessage({fp: 'audioContext', id: "${this.notifyId}"}, "*");
             return new target(...args);
           }
         });
 
         window.OfflineAudioContext = new Proxy(window.OfflineAudioContext, {  
           construct: function(target, args) {
-            window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'audioContext'}));
+            window.top.postMessage({fp: 'audioContext', id: "${this.notifyId}"}, "*");
             return new target(...args);
           }
         });
 
         window.WebSocket = new Proxy(window.WebSocket, {  
           construct: function(target, args) {
-            window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'webSocket'}));
+            window.top.postMessage({fp: 'webSocket', id: "${this.notifyId}"}, "*");
             return new target(...args);
           }
         });
 
         window.Date = new Proxy(window.Date, {  
           construct: function(target, args) {
-            window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'date'}));
+            window.top.postMessage({fp: 'date', id: "${this.notifyId}"}, "*");
             return new target(...args);
           }
         });
@@ -249,7 +251,7 @@ class Injector {
           Object.defineProperty(window, 'innerHeight', {
             configurable: true,
             get: () => {
-              window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'screen'}));
+              window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
               return innerHeight;
             }
           });
@@ -257,7 +259,7 @@ class Injector {
           Object.defineProperty(window, 'innerWidth', {
             configurable: true,
             get: () => {
-              window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'screen'}));
+              window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
               return innerWidth;
             }
           });
@@ -265,7 +267,7 @@ class Injector {
           Object.defineProperty(window, 'outerHeight', {
             configurable: true,
             get: () => {
-              window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'screen'}));
+              window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
               return outerHeight;
             }
           });
@@ -273,7 +275,7 @@ class Injector {
           Object.defineProperty(window, 'outerWidth', {
             configurable: true,
             get: () => {
-              window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'screen'}));
+              window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
               return outerWidth;
             }
           });
@@ -281,7 +283,7 @@ class Injector {
           Object.defineProperty(window.document.documentElement, 'clientHeight', {
             configurable: true,
             get: () => {
-              window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'screen'}));
+              window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
               return clientHeight;
             }
           });
@@ -289,14 +291,14 @@ class Injector {
           Object.defineProperty(window.document.documentElement, 'clientWidth', {
             configurable: true,
             get: () => {
-              window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'screen'}));
+              window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
               return clientWidth;
             }
           });
 
           window.screen = new Proxy(window.screen, {  
             get: function(obj, prop) {
-              window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'screen'}));
+              window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
               return obj[prop];
             }
           });
@@ -304,22 +306,22 @@ class Injector {
 
         ((getClientRects, getBoundingClientRect, rgetClientRects, rgetBoundingClientRect) => {
           window.Element.prototype.getClientRects = function(){
-            window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'clientRects'}));
+            window.top.postMessage({fp: 'clientRects', id: "${this.notifyId}"}, "*");
             return getClientRects.apply(this);
           }
 
           window.Element.prototype.getBoundingClientRect = function(){
-            window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'clientRects'}));
+            window.top.postMessage({fp: 'clientRects', id: "${this.notifyId}"}, "*");
             return getBoundingClientRect.apply(this);
           }
 
           window.Range.prototype.getClientRects = function(){
-            window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'clientRects'}));
+            window.top.postMessage({fp: 'clientRects', id: "${this.notifyId}"}, "*");
             return rgetClientRects.apply(this);
           }
 
           window.Range.prototype.getBoundingClientRect = function(){
-            window.dispatchEvent(new CustomEvent("chameleonFPDetect", {detail: 'clientRects'}));
+            window.top.postMessage({fp: 'clientRects', id: "${this.notifyId}"}, "*");
             return rgetBoundingClientRect.apply(this);
           }
         })(window.Element.prototype.getClientRects, window.Element.prototype.getBoundingClientRect, window.Range.prototype.getClientRects, window.Range.prototype.getBoundingClientRect);
@@ -336,15 +338,18 @@ class Injector {
   }
 }
 
-window.addEventListener('chameleonFPDetect', function(evt: any) {
-  chrome.runtime.sendMessage({
-    action: 'fpDetect',
-    data: evt.detail,
-  });
+// @ts-ignore
+let chameleonInjector = new Injector(settings, seed, notifyId);
+
+window.addEventListener('message', function(evt: any) {
+  if (evt.data.id === chameleonInjector.notifyId) {
+    browser.runtime.sendMessage({
+      action: 'fpDetect',
+      data: evt.data.fp,
+    });
+  }
 });
 
-// @ts-ignore
-let chameleonInjector = new Injector(chameleonSettings, chameleonSeed);
 if (chameleonInjector.enabled) {
   chameleonInjector.injectIntoPage();
 }

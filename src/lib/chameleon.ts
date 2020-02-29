@@ -18,6 +18,7 @@ enum SpoofIPOption {
 
 interface TemporarySettings {
   ipInfo: any;
+  notifyId: string;
   profile: string;
   spoofIP: string;
 }
@@ -43,6 +44,7 @@ export class Chameleon {
         lang: '',
         tz: '',
       },
+      notifyId: '',
       profile: '',
       spoofIP: '',
     };
@@ -67,9 +69,10 @@ export class Chameleon {
       js: [
         {
           code: `
-        let chameleonSettings = JSON.parse(\`${JSON.stringify(this.settings)}\`);
-        let chameleonSeed = ${Math.random() * 0.00000001};
-      `,
+            let settings = JSON.parse(\`${JSON.stringify(this.settings)}\`);
+            let seed = ${Math.random() * 0.00000001};
+            let notifyId = "${this.tempStore.notifyId}";
+          `,
         },
         { file: 'inject.js' },
       ],
@@ -87,6 +90,12 @@ export class Chameleon {
     this.intercept = new Interceptor(this.settings, this.tempStore);
     this.platform = await browser.runtime.getPlatformInfo();
     await this.saveSettings(this.settings);
+
+    this.tempStore.notifyId = 
+      String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
+      Math.random()
+        .toString(36)
+        .substring(Math.floor(Math.random() * 5) + 5);
   }
 
   private migrate(prevSettings: any): void {}
@@ -210,6 +219,12 @@ export class Chameleon {
   public start(): void {
     this.updateProfile(this.settings.profile.selected);
     this.updateSpoofIP();
+
+    this.tempStore.notifyId = 
+      String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
+      Math.random()
+        .toString(36)
+        .substring(Math.floor(Math.random() * 5) + 5);
   }
 
   public async saveSettings(settings: any): Promise<void> {
