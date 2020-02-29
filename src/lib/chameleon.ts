@@ -336,15 +336,11 @@ export class Chameleon {
   public updateProfile(profile: string): void {
     // update current profile if random selected
     if (!/\d|none/.test(profile)) {
-      let randProfile: string;
-      let device: string | null;
-
-      let profiles: prof.Generator = new prof.Generator();
+      let profiles: prof.Generator = new prof.Generator(this.settings.excluded);
       if (profile.includes('random')) {
-        device = profile === 'random' ? null : profile.includes('Desktop') ? 'desktop' : 'mobile';
-        this.tempStore.profile = profiles.getRandom(device, null);
+        this.tempStore.profile = profiles.getRandomByDevice(profile);
       } else {
-        this.tempStore.profile = profiles.getRandom(null, profile);
+        this.tempStore.profile = profiles.getRandomByOS(profile);
       }
     } else {
       this.tempStore.profile = '';

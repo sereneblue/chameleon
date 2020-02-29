@@ -486,6 +486,21 @@ export class Generator {
     ],
   };
 
+  private allProfiles = {
+    windows: [],
+    macOS: [],
+    linux: [],
+    iOS: [],
+    android: [],
+  };
+
+  private profileIds = {
+    desktop: [],
+    mobile: [],
+  };
+
+  private excludedProfiles: string[];
+
   private generateProfiles(key: string): any {
     let profiles = [];
 
@@ -503,45 +518,87 @@ export class Generator {
     return profiles;
   }
 
+  constructor(excludedProfiles: string[] = []) {
+    this.excludedProfiles = excludedProfiles;
+
+    for (let p of Object.keys(this.profiles)) {
+      this.allProfiles[p] = this.generateProfiles(p);
+    }
+
+    this.profileIds.desktop = this.profileIds.desktop.concat(
+      this.allProfiles.windows.map(p => p.id),
+      this.allProfiles.macOS.map(p => p.id),
+      this.allProfiles.linux.map(p => p.id)
+    );
+
+    this.profileIds.mobile = this.profileIds.mobile.concat(
+      this.allProfiles.iOS.map(p => p.id),
+      this.allProfiles.android.map(p => p.id)
+    );
+  }
+
   getAllProfiles(): any {
-    let profiles = {};
-
-    let osFamilies = Object.keys(this.profiles);
-    osFamilies.map(k => {
-      profiles[k] = this.generateProfiles(k);
-    });
-
-    return profiles;
+    return this.allProfiles;
   }
 
   getProfile(profile: string): BrowserProfile {
     let profileData = profile.split('-');
 
-    let key: string;
+    let platform: string;
 
     if (profileData[0].indexOf('win') > -1) {
-      key = 'windows';
+      platform = 'windows';
     } else if (profileData[0].indexOf('mac') > -1) {
-      key = 'macOS';
+      platform = 'macOS';
     } else if (profileData[0].indexOf('lin') > -1) {
-      key = 'linux';
+      platform = 'linux';
     } else if (profileData[0].indexOf('ios') > -1) {
-      key = 'iOS';
+      platform = 'iOS';
     } else if (profileData[0].indexOf('and') > -1) {
-      key = 'android';
+      platform = 'android';
     }
 
-    return this.browsers[profileData[1]](this.profiles[key].find(p => p.id === profileData[0]));
+    return this.browsers[profileData[1]](this.profiles[platform].find(p => p.id === profileData[0]));
   }
 
-  getRandom(device: string, osType: string): string {
-    device = device ? device : Math.random() > 0.5 ? 'desktop' : 'mobile';
+  getRandomByDevice(device: string): string {
+    let d: string;
 
-    let os = device === 'desktop' ? ['windows', 'macOS', 'linux'] : ['iOS', 'android'];
-    let osFamily = this.profiles[osType ? osType : os[Math.floor(Math.random() * os.length)]];
-    let selectedOS = osFamily[Math.floor(Math.random() * osFamily.length)];
-    let selectedBrowser = selectedOS.browsers[Math.floor(Math.random() * selectedOS.browsers.length)];
+    if (device === 'random') {
+      d = Math.random() > 0.5 ? 'desktop' : 'mobile';
+    } else if (device === 'randomDesktop') {
+      d = 'desktop';
+    } else {
+      d = 'mobile';
+    }
 
-    return `${selectedOS.id}-${selectedBrowser}`;
+    let profilesCanUse = this.profileIds[d].filter(p => !this.excludedProfiles.includes(p));
+    if (profilesCanUse.length > 0) {
+      return profilesCanUse[Math.floor(Math.random() * profilesCanUse.length)];
+    }
+
+    return '';
+  }
+
+  getRandomByOS(os: string): string {
+    let profilesCanUse: string[];
+
+    if (os === 'windows') {
+      profilesCanUse = this.profileIds.desktop.filter(p => p.includes('win') && !this.excludedProfiles.includes(p));
+    } else if (os === 'macOS') {
+      profilesCanUse = this.profileIds.desktop.filter(p => p.includes('mac') && !this.excludedProfiles.includes(p));
+    } else if (os === 'linux') {
+      profilesCanUse = this.profileIds.desktop.filter(p => p.includes('lin') && !this.excludedProfiles.includes(p));
+    } else if (os === 'iOS') {
+      profilesCanUse = this.profileIds.mobile.filter(p => p.includes('ios') && !this.excludedProfiles.includes(p));
+    } else if (os === 'android') {
+      profilesCanUse = this.profileIds.mobile.filter(p => p.includes('and') && !this.excludedProfiles.includes(p));
+    }
+
+    if (profilesCanUse.length > 0) {
+      return profilesCanUse[Math.floor(Math.random() * profilesCanUse.length)];
+    }
+
+    return '';
   }
 }
