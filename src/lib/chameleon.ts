@@ -91,7 +91,7 @@ export class Chameleon {
     this.platform = await browser.runtime.getPlatformInfo();
     await this.saveSettings(this.settings);
 
-    this.tempStore.notifyId = 
+    this.tempStore.notifyId =
       String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
       Math.random()
         .toString(36)
@@ -220,7 +220,7 @@ export class Chameleon {
     this.updateProfile(this.settings.profile.selected);
     this.updateSpoofIP();
 
-    this.tempStore.notifyId = 
+    this.tempStore.notifyId =
       String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
       Math.random()
         .toString(36)
