@@ -694,10 +694,7 @@ export default class App extends Vue {
     let timezone: string;
     let screen: string;
 
-    if (
-      this.settings.profile.selected === 'none' ||
-      (['random', 'randomDesktop', 'randomMobile', 'windows', 'macOS', 'linux', 'iOS', 'android'].includes(this.settings.profile.selected) && this.tmp.store.profile === 'none')
-    ) {
+    if (this.settings.profile.selected === 'none' || this.tmp.store.profile === 'none') {
       profile = 'Real Profile';
     } else {
       let p: any = this.profileList.find(p => p.id === (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tmp.store.profile));

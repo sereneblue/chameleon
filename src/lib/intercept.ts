@@ -143,7 +143,7 @@ class Interceptor {
         profile = this.profiles.getProfile(wl.profile);
       }
     } else {
-      if (this.settings.profile.selected != 'none') {
+      if (this.settings.profile.selected != 'none' || this.tempStore.profile != 'none') {
         profile = this.profiles.getProfile(this.regex.HAS_INT.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tempStore.profile);
       }
     }
