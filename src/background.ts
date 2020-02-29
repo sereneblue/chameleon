@@ -67,6 +67,11 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     }
   } else if (request.action === 'getSettings') {
     sendResponse(chameleon.settings);
+  } else if (request.action === 'init') {
+    browser.runtime.sendMessage({
+      action: 'tempStore',
+      data: chameleon.tempStore,
+    });
   } else if (request.action === 'reloadInjectionScript') {
     chameleon.buildInjectionScript();
   } else if (request.action === 'reloadIPInfo') {
@@ -96,11 +101,6 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
   } else if (request.action === 'reset') {
     chameleon.reset();
     browser.runtime.reload();
-  } else if (request.action === 'tempStore') {
-    browser.runtime.sendMessage({
-      action: 'tempStore',
-      data: chameleon.tempStore,
-    });
   } else if (request.action === 'updateProfile') {
     chameleon.settings.profile.selected = request.data;
 

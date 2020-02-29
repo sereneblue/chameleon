@@ -91,7 +91,7 @@ export const initialize = async ({ commit }) => {
   let settings: any = await webext.getSettings(null);
 
   browser.runtime.sendMessage({
-    action: 'tempStore',
+    action: 'init',
   });
 
   commit(mtypes.INITIALIZE, settings);
