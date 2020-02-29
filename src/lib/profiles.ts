@@ -562,22 +562,21 @@ export class Generator {
   }
 
   getRandomByDevice(device: string): string {
-    let d: string;
+    let profilesCanUse: string[];
 
     if (device === 'random') {
-      d = Math.random() > 0.5 ? 'desktop' : 'mobile';
+      profilesCanUse = this.profileIds.desktop.concat(this.profileIds.mobile).filter(p => !this.excludedProfiles.includes(p));
     } else if (device === 'randomDesktop') {
-      d = 'desktop';
+      profilesCanUse = this.profileIds.desktop.filter(p => !this.excludedProfiles.includes(p));
     } else {
-      d = 'mobile';
+      profilesCanUse = this.profileIds.mobile.filter(p => !this.excludedProfiles.includes(p));
     }
 
-    let profilesCanUse = this.profileIds[d].filter(p => !this.excludedProfiles.includes(p));
     if (profilesCanUse.length > 0) {
       return profilesCanUse[Math.floor(Math.random() * profilesCanUse.length)];
     }
 
-    return '';
+    return 'none';
   }
 
   getRandomByOS(os: string): string {
@@ -599,6 +598,6 @@ export class Generator {
       return profilesCanUse[Math.floor(Math.random() * profilesCanUse.length)];
     }
 
-    return '';
+    return 'none';
   }
 }
