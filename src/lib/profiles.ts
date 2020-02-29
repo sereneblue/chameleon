@@ -546,15 +546,15 @@ export class Generator {
 
     let platform: string;
 
-    if (profileData[0].indexOf('win') > -1) {
+    if (profileData[0].includes('win')) {
       platform = 'windows';
-    } else if (profileData[0].indexOf('mac') > -1) {
+    } else if (profileData[0].includes('mac')) {
       platform = 'macOS';
-    } else if (profileData[0].indexOf('lin') > -1) {
+    } else if (profileData[0].includes('lin')) {
       platform = 'linux';
-    } else if (profileData[0].indexOf('ios') > -1) {
+    } else if (profileData[0].includes('ios')) {
       platform = 'iOS';
-    } else if (profileData[0].indexOf('and') > -1) {
+    } else if (profileData[0].includes('and')) {
       platform = 'android';
     }
 
