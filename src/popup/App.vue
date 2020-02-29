@@ -836,26 +836,16 @@ export default class App extends Vue {
     this.getCurrentPage();
 
     if (!/random|none/.test(this.settings.profile.selected)) {
-      let os = this.settings.profile.selected.match(/[a-z]+/)[0];
-
-      switch (os) {
-        case 'win':
-          this.currentProfileGroup = 'windows';
-          break;
-        case 'mac':
-          this.currentProfileGroup = 'macOS';
-          break;
-        case 'lin':
-          this.currentProfileGroup = 'linux';
-          break;
-        case 'ios':
-          this.currentProfileGroup = 'iOS';
-          break;
-        case 'and':
-          this.currentProfileGroup = 'android';
-          break;
-        default:
-          break;
+      if (this.settings.profile.selected.includes('win')) {
+        this.currentProfileGroup = 'windows';
+      } else if (this.settings.profile.selected.includes('mac')) {
+        this.currentProfileGroup = 'macOS';
+      } else if (this.settings.profile.selected.includes('lin')) {
+        this.currentProfileGroup = 'linux';
+      } else if (this.settings.profile.selected.toLowerCase().includes('ios')) {
+        this.currentProfileGroup = 'iOS';
+      } else if (this.settings.profile.selected.includes('and')) {
+        this.currentProfileGroup = 'android';
       }
     }
 
