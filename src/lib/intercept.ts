@@ -126,6 +126,9 @@ class Interceptor {
   modifyRequest(details: any): any {
     if (!this.settings.config.enabled) return;
 
+    // don't modify request for recaptcha
+    if ((details.documentUrl ? details.documentUrl : details.originUrl).startsWith('https://www.google.com/recaptcha/api2')) return;
+
     let wl: WhitelistResult = this.checkWhitelist(details);
 
     // used to send different accept headers for https requests

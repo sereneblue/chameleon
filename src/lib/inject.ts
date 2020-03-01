@@ -145,8 +145,8 @@ class Injector {
     return `
     (function(){
         if (
-          window.location.href.includes("https://www.google.com/recaptcha/api2") || 
-          window.location.href.includes("https://disqus.com/embed/comments/")    ||
+          window.location.href.startsWith("https://www.google.com/recaptcha/api2") || 
+          window.location.href.startsWith("https://disqus.com/embed/comments/")    ||
           window.CHAMELEON_SPOOF
         ) { 
           return;
