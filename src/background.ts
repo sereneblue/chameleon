@@ -130,11 +130,12 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
 (async () => {
   await chameleon.init(await webext.getSettings(null));
   await chameleon.buildInjectionScript();
+  if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
+    await chameleon.updateIPInfo();
+  }
+
   chameleon.setupHeaderListeners();
   chameleon.setTimer();
-  if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
-    chameleon.updateIPInfo();
-  }
 
   webext.enableChameleon(chameleon.settings.config.enabled);
 
