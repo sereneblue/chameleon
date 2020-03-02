@@ -677,6 +677,10 @@ export default class App extends Vue {
     rangeFrom: '',
     rangeTo: '',
     store: {
+      ipInfo: {
+        lang: '',
+        tz: '',
+      },
       profile: '',
     },
   };
@@ -708,7 +712,7 @@ export default class App extends Vue {
     if (this.settings.options.timeZone === 'default') {
       timezone = 'Default';
     } else if (this.settings.options.timeZone === 'ip') {
-      timezone = 'IP';
+      timezone = this.tmp.store.ipInfo.tz + ' (IP)';
     } else {
       timezone = this.settings.options.timeZone;
     }
@@ -718,7 +722,11 @@ export default class App extends Vue {
         if (this.settings.headers.spoofAcceptLang.value === 'default') {
           language = 'Default';
         } else if (this.settings.headers.spoofAcceptLang.value === 'ip') {
-          language = 'IP';
+          if (this.tmp.store.ipInfo.lang != '') {
+            language = lang.getLanguage(this.tmp.store.ipInfo.lang).name + ' (IP)';
+          } else {
+            language = 'Getting IP info';
+          }
         } else {
           language = lang.getLanguage(this.settings.headers.spoofAcceptLang.value).name;
         }
@@ -825,7 +833,7 @@ export default class App extends Vue {
     browser.runtime.onMessage.addListener(
       function(request: any): void {
         if (request.action === 'tempStore') {
-          this.tmp.store = Object.assign(this.tmp.store, request.data);
+          Vue.set(this.tmp, 'store', request.data);
         }
       }.bind(this)
     );

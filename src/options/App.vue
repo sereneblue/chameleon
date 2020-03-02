@@ -742,6 +742,7 @@ export default class App extends Vue {
   reloadIPInfo(): void {
     browser.runtime.sendMessage({
       action: 'reloadIPInfo',
+      data: true,
     });
   }
 

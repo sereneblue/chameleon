@@ -21,14 +21,14 @@ class Injector {
   };
   private spoofInfo: object;
 
-  constructor(settings: any, seed: number, notifyId: string) {
+  constructor(settings: any, tempStore: any, seed: number) {
     if (!settings.config.enabled) {
       this.enabled = false;
       return;
     }
 
     this.enabled = true;
-    this.notifyId = notifyId;
+    this.notifyId = tempStore.notifyId;
     let wl = util.findWhitelistRule(settings.whitelist.rules, window.location.host, window.location.href);
 
     if (wl === null) {
@@ -44,7 +44,7 @@ class Injector {
           let spoofedLang: string;
 
           if (settings.headers.spoofAcceptLang.value === 'ip') {
-            spoofedLang = '';
+            spoofedLang = tempStore.ipInfo.lang;
           } else {
             spoofedLang = settings.headers.spoofAcceptLang.value;
           }
@@ -78,7 +78,7 @@ class Injector {
         let tz: string = settings.options.timeZone;
 
         if (settings.options.timeZone === 'ip') {
-          tz = '';
+          tz = tempStore.ipInfo.tz;
         }
 
         this.spoof.metadata['timezone'] = {
@@ -339,7 +339,7 @@ class Injector {
 }
 
 // @ts-ignore
-let chameleonInjector = new Injector(settings, seed, notifyId);
+let chameleonInjector = new Injector(settings, tempStore, seed);
 
 window.addEventListener('message', function(evt: any) {
   if (evt.data.id === chameleonInjector.notifyId) {

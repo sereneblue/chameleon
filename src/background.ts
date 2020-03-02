@@ -76,13 +76,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     chameleon.buildInjectionScript();
   } else if (request.action === 'reloadIPInfo') {
     if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
-      chameleon.updateIPInfo();
-    } else {
-      browser.notifications.create({
-        type: 'basic',
-        title: 'Chameleon',
-        message: 'Neither timezone or Language are set to use IP.',
-      });
+      chameleon.updateIPInfo(request.data);
     }
   } else if (request.action === 'reloadProfile') {
     chameleon.setTimer(request.data);
@@ -129,9 +123,10 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
 
 (async () => {
   await chameleon.init(await webext.getSettings(null));
-  await chameleon.buildInjectionScript();
   if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
-    await chameleon.updateIPInfo();
+    await chameleon.updateIPInfo(false);
+  } else {
+    await chameleon.buildInjectionScript();
   }
 
   chameleon.setupHeaderListeners();

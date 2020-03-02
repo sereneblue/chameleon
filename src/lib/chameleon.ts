@@ -41,8 +41,10 @@ export class Chameleon {
     this.defaultSettings = initSettings;
     this.tempStore = {
       ipInfo: {
+        cache: null,
         lang: '',
         tz: '',
+        updated: 0,
       },
       notifyId: '',
       profile: '',
@@ -70,8 +72,8 @@ export class Chameleon {
         {
           code: `
             let settings = JSON.parse(\`${JSON.stringify(this.settings)}\`);
+            let tempStore = JSON.parse(\`${JSON.stringify(this.tempStore)}\`);
             let seed = ${Math.random() * 0.00000001};
-            let notifyId = "${this.tempStore.notifyId}";
           `,
         },
         { file: 'inject.js' },
@@ -231,15 +233,22 @@ export class Chameleon {
     await webext.setSettings({ ...settings, version: this.version });
   }
 
-  public async updateIPInfo(): Promise<void> {
+  public async updateIPInfo(forceCheck: boolean): Promise<void> {
     try {
-      let res = await fetch('https://ipapi.co/json');
-      let data = await res.json();
       let notificationMsg: string;
+
+      // cache results for 1m
+      if (forceCheck || this.tempStore.ipInfo.updated + 60000 < new Date().getTime()) {
+        let res = await fetch('https://ipapi.co/json');
+        this.tempStore.ipInfo.cache = await res.json();
+        this.tempStore.ipInfo.updated = new Date().getTime();
+      }
+
+      let data = this.tempStore.ipInfo.cache;
 
       if ((data.timezone && data.languages) || data.ip) {
         // check if IP defined in IP rules
-        let foundRule: boolean;
+        let foundRule: boolean = false;
 
         for (let i = 0; i < this.settings.ipRules.length; i++) {
           for (let j = 0; j < this.settings.ipRules[i].ips.length; j++) {
@@ -253,7 +262,6 @@ export class Chameleon {
           }
         }
 
-        // if not defined, use info returned
         if (!foundRule) {
           if ((data.timezone === '' && this.settings.options.timeZone === 'ip') || (data.languages === '' && this.settings.headers.spoofAcceptLang.value === 'ip')) {
             throw 'Couldn\'t find info';
@@ -262,20 +270,20 @@ export class Chameleon {
           notificationMsg = `Using IP Info: `;
 
           if (this.settings.options.timeZone === 'ip') {
-            this.settings.options.timeZone = data.timezone;
+            this.tempStore.ipInfo.tz = data.timezone;
             notificationMsg = `${notificationMsg} ${data.timezone}${this.settings.headers.spoofAcceptLang.value === 'ip' ? ', ' : ''}`;
           }
 
           if (this.settings.headers.spoofAcceptLang.value === 'ip') {
             let ipLang: string = data.languages.split(',')[0];
             let allLanguages: lang.Language[] = lang.getAllLanguages();
-            let foundLang: lang.Language = lang.getLanguage('en-US'); // use english as default lang
+            let foundLang: lang.Language = lang.getLanguage('en-US'); // use english as default
 
             if (ipLang !== 'en' && ipLang !== 'en-US') {
               foundLang = allLanguages.find(l => l.nav.includes(ipLang));
 
               if (foundLang !== null) {
-                this.tempStore.ipInfo.lang = foundLang.value;
+                this.tempStore.ipInfo.lang = foundLang.code;
               } else {
                 let languageIndexes = [];
 
@@ -307,22 +315,29 @@ export class Chameleon {
                     }
                     return 0;
                   });
+
                   foundLang = allLanguages[languageIndexes[0][1]];
+                  this.tempStore.ipInfo.lang = foundLang.code;
                 }
-
-                this.tempStore.ipInfo.lang = foundLang.value;
               }
-            }
 
-            notificationMsg = `${notificationMsg} ${foundLang.name}`;
+              notificationMsg = `${notificationMsg} ${foundLang.name}`;
+            }
           }
         }
+
+        browser.runtime.sendMessage({
+          action: 'tempStore',
+          data: this.tempStore,
+        });
 
         browser.notifications.create({
           type: 'basic',
           title: 'Chameleon',
           message: notificationMsg,
         });
+
+        this.buildInjectionScript();
       }
     } catch (e) {
       browser.notifications.create({

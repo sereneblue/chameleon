@@ -14,7 +14,7 @@ export const changeProfile = ({ commit }, payload) => {
   });
 };
 
-export const changeSetting = ({ commit, state }, payload: any) => {
+export const changeSetting = ({ commit }, payload: any) => {
   commit(mtypes.CHANGE_SETTING, payload);
 
   if (payload[0].name === 'whitelist.enabledContextMenu') {
@@ -38,10 +38,17 @@ export const changeSetting = ({ commit, state }, payload: any) => {
       'options.timeZone',
     ].includes(payload[0].name)
   ) {
-    window.setTimeout(() => {
-      browser.runtime.sendMessage({
-        action: 'reloadInjectionScript',
-      });
+    window.setTimeout(async () => {
+      if (['headers.spoofAcceptLang.value', 'options.timeZone'].includes(payload[0].name) && payload[0].value === 'ip') {
+        await browser.runtime.sendMessage({
+          action: 'reloadIPInfo',
+          data: false,
+        });
+      } else {
+        await browser.runtime.sendMessage({
+          action: 'reloadInjectionScript',
+        });
+      }
     }, 350);
   } else if (['headers.spoofIP.enabled', 'headers.spoofIP.option', 'headers.spoofIP.rangeFrom'].includes(payload[0].name)) {
     browser.runtime.sendMessage({

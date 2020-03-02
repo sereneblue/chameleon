@@ -209,7 +209,9 @@ class Interceptor {
         } else {
           if (this.settings.headers.spoofAcceptLang.enabled) {
             if (this.settings.headers.spoofAcceptLang.value === 'ip') {
-              details.requestHeaders[i].value = lang.getLanguage(this.tempStore.ipInfo.lang).value;
+              if (this.tempStore.ipInfo.lang) {
+                details.requestHeaders[i].value = lang.getLanguage(this.tempStore.ipInfo.lang).value;
+              }
             } else if (this.settings.headers.spoofAcceptLang.value !== 'default') {
               details.requestHeaders[i].value = lang.getLanguage(this.settings.headers.spoofAcceptLang.value).value;
             }
