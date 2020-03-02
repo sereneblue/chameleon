@@ -33,38 +33,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
       chameleon.saveSettings(request.data);
     }, 200);
   } else if (request.action === 'contextMenu') {
-    browser.contextMenus.removeAll();
-
-    if (request.data && chameleon.platform.os != 'android') {
-      browser.contextMenus.create({
-        id: 'chameleon-openInWhitelist',
-        title: 'Open in whitelist editor',
-        contexts: ['page'],
-        onclick: function(details) {
-          var l = document.createElement('a');
-          l.href = details.pageUrl;
-
-          if (['http:', 'https:'].includes(l.protocol)) {
-            let rule = util.findWhitelistRule(chameleon.settings.whitelist.rules, l.host, l.href);
-
-            if (rule !== null) {
-              browser.tabs.create({
-                url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}}`),
-              });
-              return;
-            }
-
-            browser.tabs.create({
-              url: browser.runtime.getURL(`/options/options.html#whitelist?domain=${l.host}`),
-            });
-          }
-        },
-        icons: {
-          '16': 'icon/icon_16.png',
-          '32': 'icon/icon_32.png',
-        },
-      });
-    }
+    chameleon.toggleContextMenu(request.data);
   } else if (request.action === 'getSettings') {
     sendResponse(chameleon.settings);
   } else if (request.action === 'init') {
@@ -133,6 +102,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
   chameleon.setTimer();
 
   webext.enableChameleon(chameleon.settings.config.enabled);
+  chameleon.toggleContextMenu(chameleon.settings.whitelist.enabledContextMenu);
 
   if (chameleon.platform.os != 'android') {
     browser.browserAction.setBadgeBackgroundColor({

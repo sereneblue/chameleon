@@ -401,6 +401,43 @@ export class Chameleon {
     };
   }
 
+  public toggleContextMenu(enabled: boolean): void {
+    browser.contextMenus.removeAll();
+
+    if (enabled && this.platform.os != 'android') {
+      let rules: any = this.settings.whitelist.rules;
+
+      browser.contextMenus.create({
+        id: 'chameleon-openInWhitelist',
+        title: 'Open in whitelist editor',
+        contexts: ['page'],
+        onclick: function(details) {
+          var l = document.createElement('a');
+          l.href = details.pageUrl;
+
+          if (['http:', 'https:'].includes(l.protocol)) {
+            let rule = util.findWhitelistRule(rules, l.host, l.href);
+
+            if (rule !== null) {
+              browser.tabs.create({
+                url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}}`),
+              });
+              return;
+            }
+
+            browser.tabs.create({
+              url: browser.runtime.getURL(`/options/options.html#whitelist?site=${l.host}`),
+            });
+          }
+        },
+        icons: {
+          '16': 'icon/icon_16.png',
+          '32': 'icon/icon_32.png',
+        },
+      });
+    }
+  }
+
   public validateSettings(impSettings: any): object {
     let s: any = Object.assign({}, this.defaultSettings);
 
