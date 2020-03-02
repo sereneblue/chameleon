@@ -109,14 +109,16 @@ class Interceptor {
         this.LINK.href = url;
         let rule = util.findWhitelistRule(this.settings.whitelist.rules, this.LINK.host, url);
 
-        return {
-          active: true,
-          lang: rule.lang,
-          opt: rule.options,
-          pattern: rule.pattern,
-          profile: rule.profile,
-          spoofIP: rule.spoofIP,
-        };
+        if (rule) {
+          return {
+            active: true,
+            lang: rule.lang,
+            opt: rule.options,
+            pattern: rule.pattern,
+            profile: rule.profile,
+            spoofIP: rule.spoofIP,
+          };
+        }
       }
     }
 
