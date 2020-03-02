@@ -868,6 +868,10 @@ export default class App extends Vue {
 
     webext.sendToBackground(this.settings);
 
+    browser.runtime.sendMessage({
+      action: 'reloadInjectionScript',
+    });
+
     this.showModal = false;
   }
 
