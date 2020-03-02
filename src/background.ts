@@ -1,7 +1,6 @@
 import { Chameleon } from './lib/chameleon';
 import store from './store';
 import webext from './lib/webext';
-import util from './lib/util';
 
 webext.firstTimeInstall();
 
