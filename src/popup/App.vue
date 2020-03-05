@@ -147,7 +147,7 @@
               />
             </div>
             <div class="ml-1">
-              <label for="profile.interval.min">Max (minutes)</label>
+              <label for="profile.interval.max">Max (minutes)</label>
               <input
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMax"
