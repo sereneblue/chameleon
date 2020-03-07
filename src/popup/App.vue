@@ -900,7 +900,7 @@ export default class App extends Vue {
   getWhitelistProfile(profile: string): string {
     let p = this.profileList.find(p => p.id === profile);
 
-    return p ? p.name : profile === 'default' ? 'Default Whitelist Profile' : 'Real Profile';
+    return p ? p.name : profile === 'default' ? this.localizations['text.defaultWhitelistProfile'] : this.localizations['text.realProfile'];
   }
 
   async excludeProfile(profile: string) {
