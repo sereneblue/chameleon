@@ -94,12 +94,12 @@
         </div>
       </div>
       <div v-show="isSelected('tab', 'profile')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['popup.profile'] }}</div>
+        <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['text.profile'] }}</div>
         <div class="flex">
           <div class="flex flex-col mr-16">
             <label class="inline-flex items-center mb-2">
               <input @click="setSelected('profile', 'none')" type="radio" class="form-radio" :checked="isSelected('profile', 'none')" />
-              <span class="ml-2">{{ localizations['popup.profile.realProfile'] }}</span>
+              <span class="ml-2">{{ localizations['text.realProfile'] }}</span>
             </label>
             <label class="inline-flex items-center">
               <input @click="setSelected('profile', 'random')" type="radio" class="form-radio" :checked="isSelected('profile', 'random')" />
@@ -262,7 +262,7 @@
               class="form-select mt-1 w-full"
             >
               <option value="ip">{{ localizations['popup.headers.spoofAcceptLang.ip'] }}</option>
-              <option value="default">{{ localizations['popup.headers.spoofAcceptLang.default'] }}</option>
+              <option value="default">{{ localizations['text.default'] }}</option>
               <option v-for="l in languages" :value="l.code" :key="l.code">{{ l.name }}</option>
             </select>
           </label>
@@ -461,8 +461,8 @@
                 <label class="w-full mt-2">
                   {{ localizations['popup.options.injection.screen'] }}
                   <select @change="changeSetting($event)" :value="settings.options.screenSize" name="options.screenSize" class="form-select mt-1 block w-full">
-                    <option value="default">{{ localizations['popup.options.injection.screen.default'] }}</option>
-                    <option value="profile">{{ localizations['popup.options.injection.screen.profile'] }}</option>
+                    <option value="default">{{ localizations['text.default'] }}</option>
+                    <option value="profile">{{ localizations['text.profile'] }}</option>
                     <option value="1366x768">1366x768</option>
                     <option value="1440x900">1440x900</option>
                     <option value="1600x900">1600x900</option>
@@ -474,9 +474,9 @@
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  {{ localizations['popup.options.standard.timeZone'] }}
+                  {{ localizations['text.timezone'] }}
                   <select @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
-                    <option value="default">{{ localizations['popup.options.injection.timeZone.default'] }}</option>
+                    <option value="default">{{ localizations['text.default'] }}</option>
                     <option value="ip">{{ localizations['popup.options.injection.timeZone.ip'] }}</option>
                     <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                   </select>
@@ -533,7 +533,7 @@
                     name="options.webRTCPolicy"
                     class="form-select mt-1 block w-full"
                   >
-                    <option value="default">{{ localizations['popup.options.standard.webRTCPolicy.default'] }}</option>
+                    <option value="default">{{ localizations['text.default'] }}</option>
                     <option value="default_public_and_private_interfaces">{{ localizations['popup.options.standard.webRTCPolicy.publicPrivate'] }}</option>
                     <option value="default_public_interface_only">{{ localizations['popup.options.standard.webRTCPolicy.public'] }}</option>
                     <option value="disable_non_proxied_udp">{{ localizations['popup.options.standard.webRTCPolicy.nonProxified'] }}</option>
@@ -560,7 +560,7 @@
                 <label class="w-full mt-2">
                   {{ localizations['popup.options.standard.webSockets'] }}
                   <select id="websockets" @change="changeSetting($event)" :value="settings.options.webSockets" name="options.webSockets" class="form-select mt-1 block w-full">
-                    <option value="allow_all">{{ localizations['popup.options.standard.webSockets.allowAll'] }}</option>
+                    <option value="allow_all">{{ localizations['text.allowAll'] }}</option>
                     <option value="block_3rd_party">{{ localizations['popup.options.standard.webSockets.blockThirdParty'] }}</option>
                     <option value="block_all">{{ localizations['popup.options.standard.webSockets.blockAll'] }}</option>
                   </select>
@@ -578,7 +578,7 @@
                     name="options.cookiePolicy"
                     class="form-select mt-1 block w-full"
                   >
-                    <option value="allow_all">{{ localizations['popup.options.cookiePolicy.allowAll'] }}</option>
+                    <option value="allow_all">{{ localizations['text.allowAll'] }}</option>
                     <option value="allow_visited">{{ localizations['popup.options.cookiePolicy.allowVisited'] }}</option>
                     <option value="reject_all">{{ localizations['popup.options.cookiePolicy.rejectAll'] }}</option>
                     <option value="reject_third_party">{{ localizations['popup.options.cookiePolicy.rejectThirdParty'] }}</option>
@@ -591,7 +591,7 @@
         </div>
       </div>
       <div v-show="isSelected('tab', 'whitelist')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['popup.whitelist'] }}</div>
+        <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['text.whitelist'] }}</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input @change="changeSetting($event)" :checked="settings.whitelist.enabled" name="whitelist.enabled" type="checkbox" class="text-primary form-checkbox" />
@@ -614,7 +614,7 @@
           <label class="w-full mt-4">
             {{ localizations['popup.whitelist.defaultProfileLabel'] }}
             <select @change="changeSetting($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
-              <option value="none">{{ localizations['popup.whitelist.realProfileLabel'] }}</option>
+              <option value="none">{{ localizations['text.realProfile'] }}</option>
               <option v-for="p in profileList" :value="p.id" :key="p.id">{{ p.name }}</option>
             </select>
           </label>
@@ -702,7 +702,7 @@ export default class App extends Vue {
     let screen: string;
 
     if (this.settings.profile.selected === 'none' || this.tmp.store.profile === 'none') {
-      profile = 'Real Profile';
+      profile = this.localizations['text.realProfile'];
     } else {
       let p: any = this.profileList.find(p => p.id === (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tmp.store.profile));
       profile = p ? p.name.replace('-', '/') : '';
