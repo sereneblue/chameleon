@@ -40,6 +40,8 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
       action: 'tempStore',
       data: chameleon.tempStore,
     });
+  } else if (request.action === 'localize') {
+    sendResponse(chameleon.localization);
   } else if (request.action === 'reloadInjectionScript') {
     chameleon.buildInjectionScript();
   } else if (request.action === 'reloadIPInfo') {
@@ -91,6 +93,8 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
 
 (async () => {
   await chameleon.init(await webext.getSettings(null));
+  chameleon.localize();
+
   if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
     await chameleon.updateIPInfo(false);
   } else {
