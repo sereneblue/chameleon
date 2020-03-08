@@ -91,7 +91,7 @@
           <button @click="createNewWhitelistRule" class="transparent-btn">
             <div class="flex items-center">
               <feather class="mr-2" type="plus" size="1em"></feather>
-              {{ localizations['options.whitelist.create'] }}
+              {{ localizations['text.createNewRule'] }}
             </div>
           </button>
         </div>
@@ -99,7 +99,7 @@
           v-model="query"
           class="bg-gray-300 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 my-4 text-gray-800 leading-tight focus:outline-none focus:bg-white focus:border-primary"
           type="text"
-          :placeholder="localizations['options.whitelist.searchPlaceholder']"
+          :placeholder="localizations['text.searchRules']"
         />
         <div class="flex flex-wrap pb-12">
           <table id="iprules" class="w-full">
@@ -144,7 +144,7 @@
           <button @click="createNewRule" class="transparent-btn">
             <div class="flex items-center">
               <feather class="mr-2" type="plus" size="1em"></feather>
-              {{ localizations['options.ipRules.create'] }}
+              {{ localizations['text.createNewRule'] }}
             </div>
           </button>
           <button @click="reloadIPInfo" class="transparent-btn">
@@ -328,7 +328,7 @@
                     </div>
                   </div>
                 </div>
-                <div>{{ localizations['options.whitelist.sitesLabel'] }}</div>
+                <div>{{ localizations['text.searchRules'] }}</div>
                 <div class="text-sm">{{ localizations['options.whitelist.sitesTip'] }}</div>
                 <textarea
                   v-model="tmp.wlRule.sites"

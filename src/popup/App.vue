@@ -88,7 +88,7 @@
             </div>
             <div class="fp" :class="{ active: fpPanel.webSocket }">
               <feather type="activity" size="1.1em"></feather>
-              <div>{{ localizations['popup.home.fpPanel.webSocket'] }}</div>
+              <div>WebSocket</div>
             </div>
           </div>
         </div>
@@ -261,7 +261,7 @@
               name="headers.spoofAcceptLang.value"
               class="form-select mt-1 w-full"
             >
-              <option value="ip">{{ localizations['popup.headers.spoofAcceptLang.ip'] }}</option>
+              <option value="ip">IP</option>
               <option value="default">{{ localizations['text.default'] }}</option>
               <option v-for="l in languages" :value="l.code" :key="l.code">{{ l.name }}</option>
             </select>
@@ -477,7 +477,7 @@
                   {{ localizations['text.timezone'] }}
                   <select @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
                     <option value="default">{{ localizations['text.default'] }}</option>
-                    <option value="ip">{{ localizations['popup.options.injection.timeZone.ip'] }}</option>
+                    <option value="ip">IP</option>
                     <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                   </select>
                 </label>
@@ -558,7 +558,7 @@
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  {{ localizations['popup.options.standard.webSockets'] }}
+                  Websockets
                   <select id="websockets" @change="changeSetting($event)" :value="settings.options.webSockets" name="options.webSockets" class="form-select mt-1 block w-full">
                     <option value="allow_all">{{ localizations['text.allowAll'] }}</option>
                     <option value="block_3rd_party">{{ localizations['popup.options.standard.webSockets.blockThirdParty'] }}</option>

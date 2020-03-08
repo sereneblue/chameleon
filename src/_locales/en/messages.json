@@ -401,9 +401,6 @@
   "options.import.success": {
     "message": "Successfully imported settings. Reloading extension..."
   },
-  "options.ipRules.create": {
-    "message": "Create new rule"
-  },
   "options.ipRules.editorTitle": {
     "message": "IP Rule Editor"
   },
@@ -452,9 +449,6 @@
   "options.whitelist.acceptLang": {
     "message": "Accept-Language"
   },
-  "options.whitelist.create": {
-    "message": "Create new rule"
-  },
   "options.whitelist.editorTitle": {
     "message": "Whitelist Rule Editor"
   },
@@ -463,9 +457,6 @@
   },
   "options.whitelist.options.name": {
     "message": "Enable protect window name"
-  },
-  "options.whitelist.options.referer": {
-    "message": "Disable Referer"
   },
   "options.whitelist.options.tz": {
     "message": "Enable timezone spoofing"
@@ -476,14 +467,8 @@
   "options.whitelist.rule": {
     "message": "Whitelist Rule"
   },
-  "options.whitelist.sitesLabel": {
-    "message": "Search rules"
-  },
   "options.whitelist.sitesTip": {
     "message": "One rule per line: domain@@[optional regex pattern]"
-  },
-  "options.whitelist.searchPlaceholder": {
-    "message": "Search rules"
   },
   "options.whitelist.textareaLabel": {
     "message": "IP Ranges / Addresses"
@@ -529,9 +514,6 @@
   },
   "popup.home.fpPanel.screen": {
     "message": "Screen"
-  },
-  "popup.home.fpPanel.webSocket": {
-    "message": "webSocket"
   },
   "popup.home.notification.disabled": {
     "message": "Notifications Off"
@@ -629,9 +611,6 @@
   "popup.headers.preventEtag": {
     "message": "Prevent Etag tracking"
   },
-  "popup.headers.disableReferer": {
-    "message": "Disable Referer"
-  },
   "popup.headers.refererWarning": {
     "message": "Don't modify about:config settings for the options below."
   },
@@ -661,9 +640,6 @@
   },
   "popup.headers.spoofAcceptLang": {
     "message": "Spoof Accept Language"
-  },
-  "popup.headers.spoofAcceptLang.ip": {
-    "message": "IP"
   },
   "popup.headers.spoofIP": {
     "message": "Spoof X-Forwarded-For/Via IP"
@@ -713,9 +689,6 @@
   "popup.options.injection.screen": {
     "message": "Screen Size"
   },
-  "popup.options.injection.timeZone.ip": {
-    "message": "IP"
-  },
   "popup.options.standard": {
     "message": "Standard"
   },
@@ -751,9 +724,6 @@
   },
   "popup.options.standard.webRTCPolicy.publicPrivate": {
     "message": "Use Public and Private interface"
-  },
-  "popup.options.standard.webSockets": {
-    "message": "Websockets"
   },
   "popup.options.standard.webSockets.blockAll": {
     "message": "Block all"
@@ -797,11 +767,17 @@
   "text.cancel": {
     "message": "Cancel"
   },
+  "text.createNewRule": {
+    "message": "Create new rule"
+  },
   "text.default": {
     "message": "Default"
   },
   "text.defaultWhitelistProfile": {
     "message": "Default Whitelist Profile"
+  },
+  "text.disableReferer": {
+    "message": "Disable referer"
   },
   "text.language": {
     "message": "Language"
@@ -817,6 +793,9 @@
   },
   "text.save": {
     "message": "Save"
+  },
+  "text.searchRules": {
+    "message": "Search rules"
   },
   "text.timezone": {
     "message": "Timezone"
