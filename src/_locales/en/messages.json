@@ -758,6 +758,12 @@
   "popup.whitelist.enable": {
     "message": "Enable whitelist"
   },
+  "popup.whitelist.isNotWhitelisted": {
+    "message": "is not whitelisted"
+  },
+  "popup.whitelist.isWhitelisted": {
+    "message": "is whitelisted"
+  },
   "popup.whitelist.open": {
     "message": "Open in whitelist"
   },

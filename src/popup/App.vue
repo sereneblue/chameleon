@@ -626,7 +626,7 @@
             {{ currentPage.domain }}
           </div>
           <div class="mb-2 text-lg">
-            {{ currentPage.whitelisted ? 'is whitelisted' : 'is not whitelisted' }}
+            {{ currentPage.whitelisted ? localizations['popup.whitelist.isWhitelisted'] : localizations['popup.whitelist.isNotWhitelisted'] }}
           </div>
           <div v-show="currentPage.whitelisted" class="mb-6 text-lg">
             <div class="font-semibold">Profile:</div>

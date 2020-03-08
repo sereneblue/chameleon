@@ -373,6 +373,8 @@ export class Chameleon {
       'popup.whitelist.contextMenu',
       'popup.whitelist.defaultProfileLabel',
       'popup.whitelist.enable',
+      'popup.whitelist.isNotWhitelisted',
+      'popup.whitelist.isWhitelisted',
       'popup.whitelist.open',
       'text.allowAll',
       'text.cancel',
