@@ -322,7 +322,7 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1">{{ localizations['popup.headers.disableReferer'] }}</span>
+            <span class="ml-1">{{ localizations['text.disableReferer'] }}</span>
           </label>
         </div>
         <div v-show="!settings.headers.referer.disabled">

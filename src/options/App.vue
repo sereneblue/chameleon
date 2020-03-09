@@ -299,7 +299,7 @@
                             <input v-model="tmp.wlRule.options.ref" id="ref" type="checkbox" class="form-switch-checkbox" />
                             <label class="form-switch-label" for="ref"></label>
                           </div>
-                          <label class="text-sm">{{ localizations['options.whitelist.options.referer'] }}</label>
+                          <label class="text-sm">{{ localizations['text.disableReferer'] }}</label>
                         </div>
                         <div>
                           <div class="form-switch inline-block align-middle">
