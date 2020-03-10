@@ -712,9 +712,11 @@ export default class App extends Vue {
           data,
         });
       } catch (e) {
+        let msg: string = this.localizations['options.import.couldNotImport'];
+
         this.importError = {
           error: true,
-          msg: 'Could not import file',
+          msg,
         };
       }
     };

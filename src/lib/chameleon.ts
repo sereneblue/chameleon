@@ -233,6 +233,7 @@ export class Chameleon {
       'options.checklistItem.disableUserMediaEnumDesc',
       'options.checklistItem.sessionPrivacyLevel',
       'options.checklistItem.sessionPrivacyLevelDesc',
+      'options.import.couldNotImport',
       'options.import.invalid.config',
       'options.import.invalid.excluded',
       'options.import.invalid.excludedProfile',
@@ -387,8 +388,9 @@ export class Chameleon {
       'text.profile',
       'text.realProfile',
       'text.save',
+      'text.searchRules',
       'text.timezone',
-      'text.whitelist',
+      'text.whitelist'
     ];
 
     for (let k of keys) {

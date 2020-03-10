@@ -338,6 +338,9 @@
   "options.checklistItem.sessionPrivacyLevelDesc": {
     "message": "Setting session privacy level to 2 prevents Firefox from storing contents of forms, scrollbar positions, cookies, and POST data for restoring a session"
   },
+  "options.import.couldNotImport": {
+    "message": "Could not import file"
+  },
   "options.import.invalid.config": {
     "message": "Invalid settings: missing config"
   },
