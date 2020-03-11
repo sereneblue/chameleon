@@ -31,6 +31,7 @@
     }
   },
   "dependencies": {
+    "cidr-js": "^2.3.1",
     "feather-icons": "^4.25.0",
     "moment-timezone": "^0.5.27",
     "psl": "^1.7.0",
