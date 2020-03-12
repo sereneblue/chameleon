@@ -5,6 +5,7 @@ import { getTimezones } from '../lib/tz';
 import util from './util';
 import webext from './webext';
 import { Interceptor } from './intercept';
+const uuidv4 = require('uuid/v4');
 
 enum IntervalOption {
   None = 0,
@@ -85,9 +86,9 @@ export class Chameleon {
   }
 
   public async init(storedSettings: any) {
-    if (storedSettings.version < this.version) {
-      this.migrate(storedSettings);
-    } else if (storedSettings.profile) {
+    if (/0\.12/.test(storedSettings.version)) {
+      this.migrateLegacy(storedSettings);
+    } else {
       this.settings = storedSettings;
     }
 
@@ -103,7 +104,7 @@ export class Chameleon {
   }
 
   private getProfileInUse(): string {
-    if (this.settings.profile.selected === 'none' || this.tempStore.profile === 'none') {
+    if (this.settings.profile.selected === 'none' || this.settings.excluded.includes(this.settings.profile.selected) || this.tempStore.profile === 'none') {
       return this.localization['text.realProfile'];
     } else {
       let profiles: any = new prof.Generator().getAllProfiles();
@@ -116,7 +117,324 @@ export class Chameleon {
     }
   }
 
-  private migrate(prevSettings: any): void {}
+  private migrateLegacy(prev: any, importing: boolean = false): object {
+    let s: any = Object.assign({}, this.defaultSettings);
+    let msg: string = '';
+
+    let languages: lang.Language[] = lang.getAllLanguages();
+    let profiles = new prof.Generator().getAllProfiles();
+    let timezoneIds: string[] = getTimezones().map(t => t.zone);
+    let mappedProfiles = {
+      custom: ' none',
+      real: 'none',
+      none: 'none',
+      random: 'random',
+      randomDesktop: 'randomDesktop',
+      randomMobile: 'randomMobile',
+      win1: 'win1-gcr',
+      win2: 'win2-gcr',
+      win3: 'win3-gcr',
+      win4: 'win4-gcr',
+      win5: 'win4-edg',
+      win6: 'win1-ff',
+      win7: 'win2-ff',
+      win8: 'win3-ff',
+      win9: 'win4-ff',
+      win10: 'win2-ie',
+      win11: 'win1-ie',
+      win12: 'win3-ie',
+      win13: 'win1-esr',
+      win14: 'win3-esr',
+      win15: 'win4-esr',
+      win16: 'win4-ie',
+      mac1: 'mac1-gcr',
+      mac2: 'mac2-gcr',
+      mac3: 'mac1-ff',
+      mac4: 'mac2-ff',
+      mac5: 'mac1-sf',
+      mac6: 'mac2-sf',
+      mac7: 'mac3-sf',
+      mac8: 'mac1-esr',
+      linux1: 'lin1-gcr',
+      linux2: 'lin2-gcr',
+      linux3: 'lin3-gcr',
+      linux4: 'lin1-cr',
+      linux5: 'lin2-cr',
+      linux6: 'lin3-cr',
+      linux7: 'lin1-ff',
+      linux8: 'lin2-ff',
+      linux9: 'lin3-ff',
+      linux10: 'lin1-esr',
+      linux11: 'lin3-esr',
+      ios1: 'ios1-sfm',
+      ios2: 'ios1-sft',
+      ios3: 'ios1-gcrm',
+      ios4: 'ios2-sft',
+      ios5: 'ios2-gcrm',
+      ios6: 'ios2-sfm',
+      ios7: 'ios3-sfm',
+      ios8: 'ios3-sft',
+      ios9: 'ios3-gcrm',
+      android1: 'and4-ff',
+      android2: 'and1-gcrm',
+      android3: 'and1-gcrm',
+      android4: 'and2-gcrm',
+      android5: 'and2-gcrm',
+      android6: 'and3-gcrm',
+      android7: 'and3-gcrm',
+      android8: 'and3-gcrm',
+      android9: 'and4-gcrm',
+    };
+
+    if (!prev.settings && importing) {
+      msg = this.localization['options.import.invalid.settings'];
+
+      return {
+        error: true,
+        msg,
+      };
+    } else {
+      if (importing) {
+        let options = [
+          ['config.notificationsEnabled', prev.settings.notificationsEnabled, 'boolean'],
+          ['options.limitHistory', prev.settings.limitHistory, 'boolean'],
+          ['options.protectWinName', prev.settings.protectWinName, 'boolean'],
+          ['profile.interval.option', prev.settings.interval, [0, -1, 1, 5, 10, 20, 30, 40, 50, 60]],
+          ['profile.interval.min', prev.settings.minInterval === null ? 1 : prev.settings.minInterval, 'number'],
+          ['profile.interval.max', prev.settings.maxInterval === null ? 1 : prev.settings.maxInterval, 'number'],
+          ['options.spoofClientRects', prev.settings.spoofClientRects, 'boolean'],
+          ['options.spoofAudioContext', prev.settings.spoofAudioContext, 'boolean'],
+          ['options.webSockets', prev.settings.webSockets, ['allow_all', 'block_3rd_party', 'block_all']],
+          ['options.protectKBFingerprint.enabled', prev.settings.protectKeyboardFingerprint, 'boolean'],
+          ['options.protectKBFingerprint.delay', prev.settings.kbDelay, 'number'],
+          ['options.screenSize', prev.settings.screenSize, ['default', 'profile', '1366x768', '1440x900', '1600x900', '1920x1080', '2560x1440', '2560x1600']],
+          ['options.timeZone', prev.settings.timeZone, timezoneIds.concat(['default', 'ip'])],
+        ];
+
+        for (let i = 0; i < options.length; i++) {
+          let v = this.checkValidOption(options[i][0], options[i][1], options[i][2]);
+          if (v.error) {
+            return v;
+          }
+        }
+      }
+
+      s.config.notificationsEnabled = prev.settings.notificationsEnabled;
+      s.options.limitHistory = prev.settings.limitHistory;
+      s.options.protectWinName = prev.settings.protectWinName;
+      s.profile.interval.option = prev.settings.interval;
+      s.profile.interval.min = prev.settings.minInterval === null ? 1 : prev.settings.minInterval;
+      s.profile.interval.max = prev.settings.maxInterval === null ? 1 : prev.settings.maxInterval;
+      s.options.spoofClientRects = prev.settings.spoofClientRects;
+      s.options.spoofAudioContext = prev.settings.spoofAudioContext;
+      s.options.webSockets = prev.settings.webSockets;
+      s.options.protectKBFingerprint.enabled = prev.settings.protectKeyboardFingerprint;
+      s.options.protectKBFingerprint.delay = prev.settings.kbDelay;
+      s.options.screenSize = prev.settings.screenSize;
+      s.options.timeZone = prev.settings.timeZone;
+
+      if (prev.settings.useragent) {
+        if (prev.settings.useragent in mappedProfiles) {
+          s.profile.selected = mappedProfiles[prev.settings.useragent];
+        } else {
+          if (importing) {
+            msg = this.localization['options.import.invalid.profile'];
+
+            return {
+              error: true,
+              msg,
+            };
+          }
+        }
+      }
+    }
+
+    if (!prev.headers && importing) {
+      msg = this.localization['options.import.invalid.headers'];
+
+      return {
+        error: true,
+        msg,
+      };
+    } else {
+      let spoofLangValue: string = '';
+
+      if (prev.headers.spoofAcceptLangValue === '') {
+        spoofLangValue = 'default';
+      } else if (prev.headers.spoofAcceptLangValue === 'ip') {
+        spoofLangValue = 'ip';
+      } else {
+        spoofLangValue = languages.find(l => l.value === prev.headers.spoofAcceptLangValue).code;
+      }
+
+      if (importing) {
+        let options = [
+          ['headers.blockEtag', prev.headers.blockEtag, 'boolean'],
+          ['headers.enableDNT', prev.headers.enableDNT, 'boolean'],
+          ['headers.referer.disabled', prev.headers.disableRef, 'boolean'],
+          ['headers.referer.xorigin', prev.headers.refererXorigin, [0, 1, 2]],
+          ['headers.referer.trimming', prev.headers.refererTrimming, [0, 1, 2]],
+          ['headers.spoofAcceptLang.enabled', prev.headers.spoofAcceptLang, 'boolean'],
+          ['headers.spoofAcceptLang.value', spoofLangValue, ['default', 'ip'].concat(languages.map(l => l.code))],
+          ['headers.spoofIP.enabled', prev.headers.spoofIP, 'boolean'],
+          ['headers.spoofIP.option', Number(prev.headers.spoofIPValue), [0, 1]],
+          ['headers.spoofIP.rangeFrom', util.isValidIP(prev.headers.rangeFrom), 'boolean'],
+          ['headers.spoofIP.rangeTo', util.isValidIP(prev.headers.rangeTo), 'boolean'],
+        ];
+
+        for (let i = 0; i < options.length; i++) {
+          let v = this.checkValidOption(options[i][0], options[i][1], options[i][2]);
+          if (v.error) {
+            return v;
+          }
+        }
+      }
+
+      s.headers.blockEtag = prev.headers.blockEtag;
+      s.headers.enableDNT = prev.headers.enableDNT;
+      s.headers.referer.disabled = prev.headers.disableRef;
+      s.headers.referer.xorigin = prev.headers.refererXorigin;
+      s.headers.referer.trimming = prev.headers.refererTrimming;
+      s.headers.spoofAcceptLang.enabled = prev.headers.spoofAcceptLang;
+      s.headers.spoofAcceptLang.value = spoofLangValue;
+      s.headers.spoofIP.enabled = prev.headers.spoofIP;
+      s.headers.spoofIP.option = prev.headers.spoofIPValue;
+      s.headers.spoofIP.rangeFrom = prev.headers.rangeFrom;
+      s.headers.spoofIP.rangeTo = prev.headers.rangeTo;
+    }
+
+    if (!prev.excluded && importing) {
+      msg = this.localization['options.import.invalid.excluded'];
+
+      return {
+        error: true,
+        msg,
+      };
+    } else {
+      let excludedProfiles = new Set();
+
+      ['win', 'mac', 'linux', 'ios', 'android'].forEach(platform => {
+        prev.excluded[platform].filter((isExcluded: boolean, i: number) => {
+          if (isExcluded) {
+            excludedProfiles.add(mappedProfiles[`${platform}${i + 1}`]);
+          }
+        });
+      });
+
+      let platforms = ['windows', 'macOS', 'linux', 'iOS', 'android'];
+      prev.excluded.all.filter((isExcluded: boolean, i: number) => {
+        if (isExcluded) {
+          profiles[platforms[i]].forEach(p => {
+            excludedProfiles.add(p.id);
+          });
+        }
+      });
+
+      s.excluded = Array.from(excludedProfiles);
+    }
+
+    if (!prev.ipRules && importing) {
+      msg = this.localization['options.import.invalid.ipRules'];
+
+      return {
+        error: true,
+        msg,
+      };
+    } else {
+      for (let i = 0; i < prev.ipRules.length; i++) {
+        let ipRule: any = {};
+
+        ipRule.id = uuidv4();
+        ipRule.name = `Rule #${i + 1}`;
+        ipRule.lang = languages.find(l => l.name == prev.ipRules[i].lang).code;
+        ipRule.tz = prev.ipRules[i].tz;
+        ipRule.ips = [];
+
+        for (let j = 0; j < prev.ipRules[i].ip.length; j++) {
+          ipRule.ips.push(util.getIPRange(prev.ipRules[i].ip[j]));
+        }
+
+        s.ipRules.push(ipRule);
+      }
+    }
+
+    if (!prev.whitelist && importing) {
+      msg = this.localization['options.import.invalid.whitelist'];
+
+      return {
+        error: true,
+        msg,
+      };
+    } else {
+      if (importing) {
+        let options = [
+          ['whitelist.enabled', prev.whitelist.enabled, 'boolean'],
+          ['whitelist.enabledContextMenu', prev.whitelist.enabledContextMenu, 'boolean'],
+          ['whitelist.defaultProfile', prev.whitelist.defaultProfile, Object.keys(mappedProfiles)],
+        ];
+
+        for (let i = 0; i < options.length; i++) {
+          let v = this.checkValidOption(options[i][0], options[i][1], options[i][2]);
+          if (v.error) {
+            return v;
+          }
+        }
+      }
+
+      s.whitelist.enabled = prev.whitelist.enabled;
+      s.whitelist.enabledContextMenu = prev.whitelist.enabledContextMenu;
+      s.whitelist.defaultProfile = mappedProfiles[prev.whitelist.defaultProfile];
+      s.whitelist.rules = [];
+
+      for (let i = 0; i < prev.whitelist.urlList.length; i++) {
+        let wlRule: any = {};
+
+        wlRule.id = uuidv4();
+        wlRule.name = `Rule #${i + 1}`;
+        wlRule.sites = [];
+
+        for (let j = 0; j < prev.whitelist.urlList[i].domains.length; j++) {
+          let site: any = {
+            domain: prev.whitelist.urlList[i].domains[j].domain,
+          };
+
+          if (prev.whitelist.urlList[i].domains[j].pattern != '') {
+            site.pattern = prev.whitelist.urlList[i].domains[j].pattern;
+          }
+
+          wlRule.sites.push(site);
+        }
+
+        wlRule.spoofIP = prev.whitelist.urlList[i].spoofIP;
+        wlRule.profile = prev.whitelist.urlList[i].profile === 'default' ? 'default' : mappedProfiles[prev.whitelist.urlList[i].profile];
+        wlRule.lang = languages.find(l => l.value === prev.whitelist.urlList[i].lang).code;
+        wlRule.options = {
+          name: prev.whitelist.urlList[i].options.winName === true,
+          ref: prev.whitelist.urlList[i].options.ref === true,
+          tz: prev.whitelist.urlList[i].options.timezone === true,
+          ws: prev.whitelist.urlList[i].options.websocket === true,
+        };
+
+        s.whitelist.rules.push(wlRule);
+      }
+    }
+
+    if (importing) {
+      setTimeout(async () => {
+        await this.saveSettings(s);
+        browser.runtime.reload();
+      }, 2500);
+
+      msg = this.localization['options.import.success'];
+
+      return {
+        error: false,
+        msg,
+      };
+    } else {
+      this.settings = s;
+    }
+  }
 
   public localize(): void {
     let keys = [
@@ -246,6 +564,7 @@ export class Chameleon {
       'options.import.invalid.options',
       'options.import.invalid.profile',
       'options.import.invalid.setting',
+      'options.import.invalid.settings',
       'options.import.invalid.spoofIP',
       'options.import.invalid.version',
       'options.import.invalid.whitelist',
@@ -390,7 +709,7 @@ export class Chameleon {
       'text.save',
       'text.searchRules',
       'text.timezone',
-      'text.whitelist'
+      'text.whitelist',
     ];
 
     for (let k of keys) {
@@ -737,6 +1056,10 @@ export class Chameleon {
   }
 
   public validateSettings(impSettings: any): object {
+    if (/0\.12/.test(impSettings.version)) {
+      return this.migrateLegacy(impSettings, true);
+    }
+
     let s: any = Object.assign({}, this.defaultSettings);
     let msg: string = '';
 

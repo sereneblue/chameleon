@@ -701,7 +701,7 @@ export default class App extends Vue {
     let timezone: string;
     let screen: string;
 
-    if (this.settings.profile.selected === 'none' || this.tmp.store.profile === 'none') {
+    if (this.settings.profile.selected === 'none' || this.tmp.store.profile === 'none' || this.settings.excluded.includes(this.settings.profile.selected)) {
       profile = this.localizations['text.realProfile'];
     } else {
       let p: any = this.profileList.find(p => p.id === (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tmp.store.profile));
