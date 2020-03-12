@@ -1,4 +1,7 @@
 const psl = require('psl');
+const CIDR = require('cidr-js');
+
+const cidr = new CIDR();
 
 let findWhitelistRule = (rules: any, host: string, url: string): any => {
   for (var i = 0; i < rules.length; i++) {
@@ -32,6 +35,16 @@ let generateByte = (): number => {
 
 let generateIP = (): string => {
   return `${generateByte()}.${generateByte()}.${generateByte()}.${generateByte()}`;
+};
+
+let getIPRange = (ipRange: string): string => {
+  let range: any = cidr.range(ipRange);
+
+  if (range === null) {
+    return ipRange;
+  }
+
+  return `${range.start}-${range.end}`;
 };
 
 let ipInRange = (ip: string, range: string): boolean => {
@@ -87,6 +100,7 @@ let validateIPRange = (from: string, to: string): boolean => {
 export default {
   findWhitelistRule,
   generateIP,
+  getIPRange,
   ipInRange,
   ipToInt,
   ipToString,
