@@ -34,6 +34,7 @@ interface WhitelistResult {
 class Interceptor {
   private LINK: any;
   private profiles: prof.Generator;
+  private profileCache: any;
   private settings: any;
   private tempStore: any;
   private regex: any;
@@ -49,6 +50,7 @@ class Interceptor {
     this.profiles = new prof.Generator();
     this.settings = settings;
     this.tempStore = tempStore;
+    this.profileCache = {};
   }
 
   blockWebsocket(details: any): any {
@@ -142,14 +144,31 @@ class Interceptor {
     if (wl.active) {
       if (wl.profile === 'default') {
         if (this.settings.whitelist.defaultProfile != 'none') {
-          profile = this.profiles.getProfile(this.settings.whitelist.defaultProfile);
+          if (this.settings.whitelist.defaultProfile in this.profileCache) {
+            profile = this.profileCache[this.settings.whitelist.defaultProfile];
+          } else {
+            profile = this.profiles.getProfile(this.settings.whitelist.defaultProfile);
+            this.profileCache[this.settings.whitelist.defaultProfile] = profile;
+          }
         }
       } else if (wl.profile != 'none') {
-        profile = this.profiles.getProfile(wl.profile);
+        if (this.settings.whitelist.defaultProfile in this.profileCache) {
+          profile = this.profileCache[wl.profile];
+        } else {
+          profile = this.profiles.getProfile(wl.profile);
+          this.profileCache[wl.profile] = profile;
+        }
       }
     } else {
-      if (this.settings.profile.selected != 'none' || this.tempStore.profile != 'none') {
-        profile = this.profiles.getProfile(this.regex.HAS_INT.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tempStore.profile);
+      if (this.settings.profile.selected != 'none' && !this.settings.excluded.includes(this.settings.profile.selected) && this.tempStore.profile != 'none') {
+        let profileUsed: string = this.regex.HAS_INT.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tempStore.profile;
+
+        if (profileUsed in this.profileCache) {
+          profile = this.profileCache[profileUsed];
+        } else {
+          profile = this.profiles.getProfile(profileUsed);
+          this.profileCache[profileUsed] = profile;
+        }
       }
     }
 
