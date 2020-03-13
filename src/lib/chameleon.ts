@@ -1322,7 +1322,11 @@ export class Chameleon {
         ['options.resistFingerprinting', impSettings.options.resistFingerprinting, 'boolean'],
         ['options.spoofAudioContext', impSettings.options.spoofAudioContext, 'boolean'],
         ['options.spoofClientRects', impSettings.options.spoofClientRects, 'boolean'],
-        ['options.screenSize', impSettings.options.screenSize, ['default', 'profile', '1366x768', '1440x900', '1600x900', '1920x1080', '2560x1440', '2560x1600']],
+        [
+          'options.screenSize',
+          impSettings.options.screenSize,
+          ['default', 'profile', '1024x768', '1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'],
+        ],
         ['options.timeZone', impSettings.options.timeZone, timezoneIds.concat(['default', 'ip'])],
         ['options.cookiePolicy', impSettings.options.cookiePolicy, ['allow_all', 'allow_visited', 'reject_all', 'reject_third_party', 'reject_trackers']],
         ['options.trackingProtectionMode', impSettings.options.trackingProtectionMode, ['always', 'never', 'private_browsing']],

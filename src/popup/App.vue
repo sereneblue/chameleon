@@ -463,12 +463,15 @@
                   <select @change="changeSetting($event)" :value="settings.options.screenSize" name="options.screenSize" class="form-select mt-1 block w-full">
                     <option value="default">{{ localizations['text.default'] }}</option>
                     <option value="profile">{{ localizations['text.profile'] }}</option>
+                    <option value="1024x768">1024x768</option>
                     <option value="1366x768">1366x768</option>
                     <option value="1440x900">1440x900</option>
                     <option value="1600x900">1600x900</option>
                     <option value="1920x1080">1920x1080</option>
+                    <option value="1920x1200">1920x1200</option>
                     <option value="2560x1440">2560x1440</option>
                     <option value="2560x1600">2560x1600</option>
+                    <option value="3840x2160">3840x2160</option>
                   </select>
                 </label>
               </div>
