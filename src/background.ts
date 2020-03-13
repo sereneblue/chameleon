@@ -101,6 +101,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     await chameleon.buildInjectionScript();
   }
 
+  chameleon.changeBrowserSettings();
   chameleon.setupHeaderListeners();
   chameleon.setTimer();
 

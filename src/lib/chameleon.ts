@@ -85,7 +85,29 @@ export class Chameleon {
     });
   }
 
-  public async init(storedSettings: any) {
+  public async changeBrowserSettings(): Promise<void> {
+    browser.privacy.websites.cookieConfig.set({
+      value: {
+        behavior: this.settings.options.cookiePolicy,
+      },
+    });
+
+    ['firstPartyIsolate', 'resistFingerprinting', 'trackingProtectionMode'].forEach(key => {
+      browser.privacy.websites[key].set({
+        value: this.settings.options[key],
+      });
+    });
+
+    browser.privacy.network.peerConnectionEnabled.set({
+      value: !this.settings.options.disableWebRTC,
+    });
+
+    browser.privacy.network.webRTCIPHandlingPolicy.set({
+      value: this.settings.options.webRTCPolicy,
+    });
+  }
+
+  public async init(storedSettings: any): Promise<void> {
     if (/0\.12/.test(storedSettings.version)) {
       this.migrateLegacy(storedSettings);
     } else {
