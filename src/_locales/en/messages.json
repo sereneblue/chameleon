@@ -377,6 +377,9 @@
   "options.import.invalid.setting": {
     "message": "Invalid setting value:"
   },
+  "options.import.invalid.settings": {
+    "message": "Invalid settings: missing settings"
+  },
   "options.import.invalid.spoofIP": {
     "message": "Invalid settings: Spoof header IP range is invalid"
   },
