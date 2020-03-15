@@ -77,7 +77,7 @@ class Injector {
       if (settings.options.timeZone != 'default') {
         let tz: string = settings.options.timeZone;
 
-        if (settings.options.timeZone === 'ip') {
+        if (tz === 'ip') {
           tz = tempStore.ipInfo.tz;
         }
 
