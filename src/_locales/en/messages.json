@@ -132,7 +132,7 @@
     "message": "Disable Geolocation"
   },
   "options.checklistItem.disableGeoDesc": {
-    "message": "Disable geolocation feature. Will break sites that request location"
+    "message": "Disable geolocation feature. This will break sites that request your location"
   },
   "options.checklistItem.disableGeo2": {
     "message": "Disable Geolocation 2"
@@ -694,6 +694,9 @@
   },
   "popup.options.injection.screen": {
     "message": "Screen Size"
+  },
+  "popup.options.injection.spoofFontFingerprint": {
+    "message": "Spoof font fingerprint"
   },
   "popup.options.standard": {
     "message": "Standard"

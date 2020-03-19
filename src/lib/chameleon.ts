@@ -692,6 +692,7 @@ export class Chameleon {
       'popup.options.injection.protectKBFingerprint',
       'popup.options.injection.protectKBFingerprintDelay',
       'popup.options.injection.screen',
+      'popup.options.injection.spoofFontFingerprint',
       'popup.options.standard',
       'popup.options.standard.disableWebRTC',
       'popup.options.standard.firstPartyIsolation',
