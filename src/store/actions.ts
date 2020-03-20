@@ -8,10 +8,6 @@ export const changeProfile = ({ commit }, payload) => {
     action: 'updateProfile',
     data: payload,
   });
-
-  browser.runtime.sendMessage({
-    action: 'reloadInjectionScript',
-  });
 };
 
 export const changeSetting = ({ commit }, payload: any) => {

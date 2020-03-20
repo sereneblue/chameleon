@@ -29,6 +29,7 @@ export class Chameleon {
   private defaultSettings: any;
   private injectionScript: any;
   private intercept: Interceptor;
+  private profileCache: any;
   private tabsFP: any;
   private REGEX_UUID: RegExp;
   public intervalTimeout: any;
@@ -55,6 +56,7 @@ export class Chameleon {
     this.injectionScript = null;
     this.intervalTimeout = null;
     this.localization = {};
+    this.profileCache = {};
     this.tabsFP = {};
     this.version = browser.runtime.getManifest().version;
     this.REGEX_UUID = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
@@ -66,6 +68,7 @@ export class Chameleon {
       this.injectionScript = null;
     }
 
+    this.updateProfileCache();
     this.injectionScript = await browser.contentScripts.register({
       allFrames: true,
       matchAboutBlank: true,
@@ -76,6 +79,7 @@ export class Chameleon {
           code: `
             let settings = JSON.parse(\`${JSON.stringify(this.settings)}\`);
             let tempStore = JSON.parse(\`${JSON.stringify(this.tempStore)}\`);
+            let profileCache = JSON.parse(\`${JSON.stringify(this.profileCache)}\`);
             let seed = ${Math.random() * 0.00000001};
           `,
         },
@@ -114,7 +118,7 @@ export class Chameleon {
       this.settings = storedSettings;
     }
 
-    this.intercept = new Interceptor(this.settings, this.tempStore);
+    this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache);
     this.platform = await browser.runtime.getPlatformInfo();
     await this.saveSettings(this.settings);
 
@@ -455,6 +459,38 @@ export class Chameleon {
       };
     } else {
       this.settings = s;
+    }
+  }
+
+  private updateProfileCache(): void {
+    let profGen = new prof.Generator();
+
+    // update cache for default whitelist profile
+    if (!(this.settings.whitelist.defaultProfile in this.profileCache) && this.settings.whitelist.defaultProfile != 'none') {
+      this.profileCache[this.settings.whitelist.defaultProfile] = profGen.getProfile(this.settings.whitelist.defaultProfile);
+    }
+
+    // update cache for whitelist profiles
+    for (let i = 0; i < this.settings.whitelist.rules.length; i++) {
+      let p: string = this.settings.whitelist.rules[i].profile;
+
+      if (!['default', 'none'].includes(p) && !(p in this.profileCache)) {
+        this.profileCache[p] = profGen.getProfile(p);
+      }
+    }
+
+    // update cache for selected profile
+    if (this.settings.profile.selected.includes('-')) {
+      if (!(this.settings.profile.selected in this.profileCache)) {
+        this.profileCache[this.settings.profile.selected] = profGen.getProfile(this.settings.profile.selected);
+      }
+    }
+
+    // update cache for temp profile
+    if (this.tempStore.profile && this.tempStore.profile != 'none') {
+      if (!(this.tempStore.profile in this.profileCache)) {
+        this.profileCache[this.tempStore.profile] = profGen.getProfile(this.tempStore.profile);
+      }
     }
   }
 
@@ -859,6 +895,7 @@ export class Chameleon {
   public start(): void {
     this.updateProfile(this.settings.profile.selected);
     this.updateSpoofIP();
+    this.buildInjectionScript();
 
     this.tempStore.notifyId =
       String.fromCharCode(65 + Math.floor(Math.random() * 26)) +

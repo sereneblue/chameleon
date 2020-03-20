@@ -6,7 +6,7 @@ webext.firstTimeInstall();
 
 let chameleon = new Chameleon(JSON.parse(JSON.stringify(store.state)));
 
-browser.alarms.onAlarm.addListener(alarmInfo => {
+browser.alarms.onAlarm.addListener(() => {
   chameleon.run();
 });
 
@@ -97,8 +97,6 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
 
   if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
     await chameleon.updateIPInfo(false);
-  } else {
-    await chameleon.buildInjectionScript();
   }
 
   chameleon.changeBrowserSettings();
