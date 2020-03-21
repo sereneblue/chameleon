@@ -43,7 +43,6 @@ class Interceptor {
     this.regex = {
       CLOUDFLARE: RegExp(/chk_jschl/),
       HTTPS: RegExp(/^https:\/\//),
-      HAS_INT: RegExp(/\d/),
     };
 
     this.LINK = document.createElement('a');
@@ -151,7 +150,7 @@ class Interceptor {
       }
     } else {
       if (this.settings.profile.selected != 'none' && !this.settings.excluded.includes(this.settings.profile.selected) && this.tempStore.profile != 'none') {
-        let profileUsed: string = this.regex.HAS_INT.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tempStore.profile;
+        let profileUsed: string = this.settings.profile.selected.includes('-') ? this.settings.profile.selected : this.tempStore.profile;
         profile = this.profileCache[profileUsed];
       }
     }
