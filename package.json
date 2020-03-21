@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "postcss src/main.css -o static/main.css && sapper dev",
-    "start": "node __sapper__/build",
-    "build": "NODE_ENV=production postcss src/main.css -o static/main.css"
+    "build": "NODE_ENV=production postcss src/main.css -o static/main.css && sapper export"
   },
   "dependencies": {
     "compression": "^1.7.1",
