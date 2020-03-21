@@ -496,7 +496,7 @@ export class Chameleon {
 
   public localize(): void {
     let keys = [
-      'ext.description',
+      'extDescription',
       'notifications.profileChange',
       'notifications.unableToGetIPInfo',
       'notifications.usingIPInfo',
