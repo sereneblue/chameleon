@@ -2,59 +2,30 @@
 	export let segment;
 </script>
 
-<style>
-	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
-		font-weight: 300;
-		padding: 0 1em;
-	}
-
-	ul {
-		margin: 0;
-		padding: 0;
-	}
-
-	/* clearfix */
-	ul::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
-
+<style lang="postcss">
 	li {
-		display: block;
-		float: left;
+		@apply bg-transparent mx-2 px-2 py-1 rounded;
 	}
 
-	[aria-current] {
-		position: relative;
-		display: inline-block;
-	}
-
-	[aria-current]::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
-	}
-
-	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
+	li.active {
+		@apply bg-blue-600;
 	}
 </style>
 
-<nav>
-	<ul>
-		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>home</a></li>
-		<li><a aria-current='{segment === "about" ? "page" : undefined}' href='about'>about</a></li>
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch aria-current='{segment === "blog" ? "page" : undefined}' href='blog'>blog</a></li>
+<nav class="flex bg-primary px-4 lg: px-0 py-2 w-full text-lg text-white justify-center z-10">
+	<ul class="flex max-w-6xl w-full items-center">
+		<div class="flex-0">
+			<li>
+				<a href='/'>
+					<img class="h-6" src="icon.svg" alt="Chameleon Icon">
+				</a>
+			</li>
+		</div>
+		<div class="flex-1 inline-flex justify-end">
+			<li class:active="{ segment === "about" }"><a aria-current='{segment === "about" ? "page" : undefined}' href='about'>About</a></li>
+			<li class:active="{ segment === "faq" }"><a aria-current='{segment === "faq" ? "page" : undefined}' href='faq'>FAQ</a></li>
+			<li class:active="{ segment === "wiki" }"><a aria-current='{segment === "wiki" ? "page" : undefined}' href='wiki'>Wiki</a></li>
+			<li class:active="{ segment === "contact" }"><a aria-current='{segment === "contact" ? "page" : undefined}' href='contact'>Contact</a></li>
+		</div>
 	</ul>
 </nav>
