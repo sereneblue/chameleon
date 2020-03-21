@@ -4,15 +4,15 @@
 
 <style lang="postcss">
 	li {
-		@apply bg-transparent mx-2 px-2 py-1 rounded;
+		@apply bg-transparent font-bold mx-2 px-2 py-1 rounded opacity-50;
 	}
 
 	li.active {
-		@apply bg-blue-600;
+		@apply opacity-100;
 	}
 </style>
 
-<nav class="flex bg-primary px-4 lg: px-0 py-2 w-full text-lg text-white justify-center z-10">
+<nav class="flex px-4 bg-dark-green lg: px-0 py-2 w-full text-lg text-white justify-center z-10">
 	<ul class="flex max-w-6xl w-full items-center">
 		<div class="flex-0">
 			<li>
