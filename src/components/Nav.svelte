@@ -22,7 +22,6 @@
 			</li>
 		</div>
 		<div class="flex-1 inline-flex justify-end">
-			<li class:active="{ segment === "about" }"><a aria-current='{segment === "about" ? "page" : undefined}' href='about'>About</a></li>
 			<li class:active="{ segment === "faq" }"><a aria-current='{segment === "faq" ? "page" : undefined}' href='faq'>FAQ</a></li>
 			<li class:active="{ segment === "wiki" }"><a aria-current='{segment === "wiki" ? "page" : undefined}' href='wiki'>Wiki</a></li>
 			<li class:active="{ segment === "contact" }"><a aria-current='{segment === "contact" ? "page" : undefined}' href='contact'>Contact</a></li>
