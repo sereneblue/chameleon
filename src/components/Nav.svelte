@@ -16,7 +16,7 @@
 	<ul class="flex max-w-6xl w-full items-center">
 		<div class="flex-0">
 			<li>
-				<a href='/'>
+				<a href='./'>
 					<img class="h-6" src="icon.svg" alt="Chameleon Icon">
 				</a>
 			</li>
