@@ -6,7 +6,7 @@
 	}
 
 	let learnMore = () => {
-		window.location.href = '/faq';
+		window.location.href = './about';
 	}
 </script>
 
