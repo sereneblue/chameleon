@@ -1,13 +1,7 @@
 <script>
+	import { goto } from '@sapper/app';
+
 	import Carousel from '../components/Carousel.svelte';
-
-	let downloadExtension = () => {
-		window.location.href = 'https://addons.mozilla.org/firefox/downloads/latest/chameleon-ext';
-	}
-
-	let learnMore = () => {
-		window.location.href = './about';
-	}
 </script>
 
 <style>
@@ -44,11 +38,11 @@
 					<h2 class="text-3xl opacity-50">Spoof your browser profile.</h2>
 				</div>
 				<div class="w-full flex justify-center lg:justify-start">
-					<button on:click={downloadExtension} class="flex items-center bg-primary hover:bg-primary-soft text-white font-bold py-2 px-4 text-xl rounded shadow-md">
+					<button on:click={e => goto('https://addons.mozilla.org/firefox/downloads/latest/chameleon-ext') } class="flex items-center bg-primary hover:bg-primary-soft text-white font-bold py-2 px-4 text-xl rounded shadow-md">
 						<svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
 						<span class="ml-2">Install</span>
 					</button>
-					<button on:click={learnMore} class="flex items-center bg-transparent hover:bg-primary text-primary hover:text-white font-bold py-2 px-4 text-xl rounded shadow-md border border-primary hover:border-transparent  ml-4">
+					<button on:click={ e => goto('about') } class="flex items-center bg-transparent hover:bg-primary text-primary hover:text-white font-bold py-2 px-4 text-xl rounded shadow-md border border-primary hover:border-transparent  ml-4">
 						Learn more
 					</button>
 				</div>
