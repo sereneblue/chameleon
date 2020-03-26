@@ -3,9 +3,10 @@
 </svelte:head>
 
 <div class="flex bg-light w-full px-2 lg:	px-0 justify-center">
-	<div class="flex lg:max-w-5xl mt-8 md:mt-16 w-full">
+	<div class="flex lg:max-w-5xl mt-8 md:mt-8 w-full">
 		<div class="flex flex-col w-full">
-			<div class="w-full">
+			<h2 class="font-bold text-5xl mb-5 text-center">About</h2>
+			<div class="w-full px-4">
 				<div id="q1" class="mb-8 leading-tight">
 					<h2 class="font-bold text-2xl mb-4">What is Chameleon?</h2>
 					<p class="text-xl mb-4 leading-relaxed md:w-4/5">
