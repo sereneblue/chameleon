@@ -10,7 +10,7 @@
     </a>
     <a class="md:w-2/5 mx-4 md:mx-0 bg-white shadow-md hover:text-primary hover:shadow-lg px-6 py-4 rounded mb-4" href="wiki/developer-guide">
       <span class="font-semibold text-2xl">Developer Guide</span>
-      <p class="text-lg mt-2">How to programatically control Chameleon</p>
+      <p class="text-lg mt-2">How to programmatically control Chameleon</p>
     </a>
   </div>
   <div class="flex flex-col md:flex-row justify-around">
