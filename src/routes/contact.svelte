@@ -79,19 +79,19 @@
           <form on:submit|preventDefault={submitForm} method="POST">
             <label class="block">
               <span class="text-gray-700">Name</span>
-              <input name="name" class="form-input mt-1 block w-full" type="text" required>
+              <input name="name" class="form-input mt-1 block w-full" type="text" autocomplete="off" required>
             </label>
             <label class="block my-2">
               <span class="text-gray-700">Email</span>
-              <input name="email" class="form-input mt-1 block w-full" type="email" required>
+              <input name="email" class="form-input mt-1 block w-full" type="email" autocomplete="off" required>
             </label>
             <label class="block">
               <span class="text-gray-700">Message</span>
-              <textarea name="message" class="form-textarea mt-1 block w-full" rows="5" required></textarea>
+              <textarea name="message" class="form-textarea mt-1 block w-full" rows="5" autocomplete="off" maxlength="1000" required></textarea>
             </label>
             <label class="block my-2">
               <span class="text-gray-700">{ captchaMsg }</span>
-              <input name="solution" class="form-input mt-1 block w-full" type="text" required>
+              <input name="solution" class="form-input mt-1 block w-full" type="text" autocomplete="off" required>
             </label>
             <button class="bg-primary hover:bg-primary-soft text-white font-bold py-2 px-4 mt-4 border border-primary w-full rounded" type="submit" disabled='{pending}'>
               Send message
