@@ -9,7 +9,8 @@
   "dependencies": {
     "compression": "^1.7.1",
     "polka": "next",
-    "sirv": "^0.4.0"
+    "sirv": "^0.4.0",
+    "tiny-hashes": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
