@@ -25,7 +25,7 @@
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="help-circle" size="1em"></feather>
-                <a href="https://sereneblue.github.io/chameleon/#/wiki">{{ localizations['options.about.wiki'] }}</a>
+                <a href="https://sereneblue.github.io/chameleon/wiki">{{ localizations['options.about.wiki'] }}</a>
               </div>
             </button>
             <button class="transparent-btn">
@@ -37,7 +37,7 @@
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="message-circle" size="1em"></feather>
-                <a href="https://sereneblue.github.io/chameleon/#/support">{{ localizations['options.about.support'] }}</a>
+                <a href="https://sereneblue.github.io/chameleon/contact">{{ localizations['options.about.support'] }}</a>
               </div>
             </button>
             <button class="transparent-btn">
