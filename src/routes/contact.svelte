@@ -47,14 +47,14 @@
       } catch (e) {
         reqStatus = "fail";
       }
-
-      pending = false;
     } else {
       firstNum = generateRandomNum();
       secondNum = generateRandomNum();
 
       document.querySelector('input[name="solution"]').value = "";
     }
+
+    pending = false;
   }
 </script>
 
