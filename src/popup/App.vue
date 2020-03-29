@@ -16,7 +16,7 @@
       <div @click="setSelected('tab', 'whitelist')" id="whitelistTab" class="tab" :class="activeTab('whitelist')">
         <feather type="edit" size="1.5em"></feather>
       </div>
-      <div @click="openOptionsPage('')" class="tab hover:bg-primary-soft">
+      <div @click="openOptionsPage('')" id="optionsPage" class="tab hover:bg-primary-soft">
         <feather type="settings" size="1.5em"></feather>
       </div>
     </div>
@@ -30,16 +30,16 @@
             </div>
           </div>
           <div class="text-2xl">{{ settings.config.enabled ? localizations['popup.home.enabled'] : localizations['popup.home.disabled'] }}</div>
-          <div class="text-lg mb-4">v{{ version }}</div>
+          <div class="text-lg mb-4" id="chameleonVersion">v{{ version }}</div>
           <div class="flex justify-center text-md">
-            <div @click="toggleTheme" class="rounded-lg cursor-pointer mr-4 fg">
+            <div id="toggleTheme" @click="toggleTheme" class="rounded-lg cursor-pointer mr-4 fg">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
                 <feather v-else type="sun" size="1.5em"></feather>
                 <span class="ml-2">{{ darkMode ? localizations['popup.home.theme.dark'] : localizations['popup.home.theme.light'] }}</span>
               </div>
             </div>
-            <div @click="toggleNotifications" class="rounded-lg cursor-pointer fg">
+            <div id="notificationsEnabled" @click="toggleNotifications" class="rounded-lg cursor-pointer fg">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="settings.config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
@@ -52,14 +52,14 @@
         </div>
         <div class="text-center px-4 py-8">
           <div class="text-xs uppercase opacity-75 tracking-widest">{{ localizations['popup.home.currentProfile'] }}</div>
-          <div class="text-md py-2">
+          <div id="currentProfile" class="text-md py-2">
             <div>{{ currentProfile.profile }}</div>
             <div>{{ currentProfile.screen }}</div>
             <div>{{ currentProfile.timezone }}</div>
             <div>{{ currentProfile.lang }}</div>
           </div>
           <div v-show="isRandomProfile" class="flex justify-center text-md">
-            <div @click="changeProfile" class="rounded-lg cursor-pointer fg">
+            <div id="changeProfile" @click="changeProfile" class="rounded-lg cursor-pointer fg">
               <div class="flex items-center px-2 py-1">
                 <feather type="refresh-cw" size="1em"></feather>
                 <span class="ml-2">{{ localizations['popup.home.change'] }}</span>
@@ -98,21 +98,21 @@
         <div class="flex">
           <div class="flex flex-col mr-16">
             <label class="inline-flex items-center mb-2">
-              <input @click="setSelected('profile', 'none')" type="radio" class="form-radio" :checked="isSelected('profile', 'none')" />
+              <input id="realProfile" @click="setSelected('profile', 'none')" type="radio" class="form-radio" :checked="isSelected('profile', 'none')" />
               <span class="ml-2">{{ localizations['text.realProfile'] }}</span>
             </label>
             <label class="inline-flex items-center">
-              <input @click="setSelected('profile', 'random')" type="radio" class="form-radio" :checked="isSelected('profile', 'random')" />
+              <input id="randomProfile" @click="setSelected('profile', 'random')" type="radio" class="form-radio" :checked="isSelected('profile', 'random')" />
               <span class="ml-2">{{ localizations['popup.profile.random'] }}</span>
             </label>
           </div>
           <div class="flex flex-col">
             <label class="inline-flex items-center mb-2">
-              <input @click="setSelected('profile', 'randomDesktop')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomDesktop')" />
+              <input id="randomDesktop" @click="setSelected('profile', 'randomDesktop')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomDesktop')" />
               <span class="ml-2">{{ localizations['popup.profile.randomDesktopProfile'] }}</span>
             </label>
             <label class="inline-flex items-center">
-              <input @click="setSelected('profile', 'randomMobile')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomMobile')" />
+              <input id="randomMobile" @click="setSelected('profile', 'randomMobile')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomMobile')" />
               <span class="ml-2">{{ localizations['popup.profile.randomMobileProfile'] }}</span>
             </label>
           </div>
@@ -121,7 +121,13 @@
           <div class="flex items-center mb-2">
             <label class="w-full mt-4">
               {{ localizations['popup.profile.changePeriodically'] }}
-              <select @change="changeSetting($event)" :value="settings.profile.interval.option" name="profile.interval.option" class="form-select mt-1 block w-full">
+              <select
+                id="profileInterval"
+                @change="changeSetting($event)"
+                :value="settings.profile.interval.option"
+                name="profile.interval.option"
+                class="form-select mt-1 block w-full"
+              >
                 <option value="0">{{ localizations['popup.profile.interval.no'] }}</option>
                 <option value="-1">{{ localizations['popup.profile.interval.custom'] }}</option>
                 <option value="1">{{ localizations['popup.profile.interval.minute'] }}</option>
@@ -139,6 +145,7 @@
             <div class="mr-1">
               <label for="profile.interval.min">{{ localizations['popup.profile.interval.customMin'] }}</label>
               <input
+                id="profileIntervalMin"
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMin"
                 :class="{ error: errors.intervalMin }"
@@ -151,6 +158,7 @@
             <div class="ml-1">
               <label for="profile.interval.max">{{ localizations['popup.profile.interval.customMax'] }}</label>
               <input
+                id="profileIntervalMax"
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMax"
                 :class="{ error: errors.intervalMax }"
@@ -164,19 +172,19 @@
         </div>
         <div class="mt-6">
           <ul class="flex text-center w-full">
-            <li @click="setSelected('os', 'windows')" :class="[isSelected('os', 'windows') ? 'active' : '']" class="group fg rounded-l-sm cursor-pointer">
+            <li id="windowsProfiles" @click="setSelected('os', 'windows')" :class="[isSelected('os', 'windows') ? 'active' : '']" class="group fg rounded-l-sm cursor-pointer">
               Windows
             </li>
-            <li @click="setSelected('os', 'macOS')" :class="[isSelected('os', 'macOS') ? 'active' : '']" class="group fg cursor-pointer">
+            <li id="macOSProfiles" @click="setSelected('os', 'macOS')" :class="[isSelected('os', 'macOS') ? 'active' : '']" class="group fg cursor-pointer">
               macOS
             </li>
-            <li @click="setSelected('os', 'linux')" :class="[isSelected('os', 'linux') ? 'active' : '']" class="group fg cursor-pointer">
+            <li id="linuxProfiles" @click="setSelected('os', 'linux')" :class="[isSelected('os', 'linux') ? 'active' : '']" class="group fg cursor-pointer">
               Linux
             </li>
-            <li @click="setSelected('os', 'iOS')" :class="[isSelected('os', 'iOS') ? 'active' : '']" class="group fg cursor-pointer">
+            <li id="iosProfiles" @click="setSelected('os', 'iOS')" :class="[isSelected('os', 'iOS') ? 'active' : '']" class="group fg cursor-pointer">
               iOS
             </li>
-            <li @click="setSelected('os', 'android')" :class="[isSelected('os', 'android') ? 'active' : '']" class="group fg rounded-r-sm cursor-pointer">
+            <li id="androidProfiles" @click="setSelected('os', 'android')" :class="[isSelected('os', 'android') ? 'active' : '']" class="group fg rounded-r-sm cursor-pointer">
               Android
             </li>
           </ul>
@@ -200,7 +208,7 @@
               </div>
               <div v-for="p in profileListing" :key="p.id" class="profile-item fg">
                 <label class="flex items-center cursor-pointer" :class="{ 'opacity-50': p.excluded }">
-                  <input @click="setSelected('profile', p.id)" :disabled="p.excluded" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
+                  <input :id="p.id" @click="setSelected('profile', p.id)" :disabled="p.excluded" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
                   <span class="ml-2">{{ p.name }}</span>
                 </label>
                 <div class="flex items-center">
@@ -393,13 +401,21 @@
             <div v-if="isSelected('options', 'injection')">
               <div class="flex items-center mt-2 mb-1">
                 <label class="cursor-pointer">
-                  <input @change="changeSetting($event)" :checked="settings.options.limitHistory" name="options.limitHistory" type="checkbox" class="text-primary form-checkbox" />
+                  <input
+                    id="limitHistory"
+                    @change="changeSetting($event)"
+                    :checked="settings.options.limitHistory"
+                    name="options.limitHistory"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
                   <span class="ml-1">{{ localizations['popup.options.injection.limitTabHistory'] }}</span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
+                    id="protectWinName"
                     @change="changeSetting($event)"
                     :checked="settings.options.protectWinName"
                     name="options.protectWinName"
@@ -412,6 +428,7 @@
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
+                    id="spoofAudioContext"
                     @change="changeSetting($event)"
                     :checked="settings.options.spoofAudioContext"
                     name="options.spoofAudioContext"
@@ -424,6 +441,7 @@
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
+                    id="spoofClientRects"
                     @change="changeSetting($event)"
                     :checked="settings.options.spoofClientRects"
                     name="options.spoofClientRects"
@@ -436,6 +454,7 @@
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
+                    id="protectKBFingerprint"
                     @change="changeSetting($event)"
                     :checked="settings.options.protectKBFingerprint.enabled"
                     name="options.protectKBFingerprint.enabled"
@@ -447,6 +466,7 @@
               </div>
               <div v-show="settings.options.protectKBFingerprint.enabled" class="flex items-center mb-1 pl-6">
                 <input
+                  id="protectKBFingerprintDelay"
                   @input="changeSetting($event)"
                   name="options.protectKBFingerprint.delay"
                   :value="settings.options.protectKBFingerprint.delay"
@@ -460,7 +480,7 @@
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   {{ localizations['popup.options.injection.screen'] }}
-                  <select @change="changeSetting($event)" :value="settings.options.screenSize" name="options.screenSize" class="form-select mt-1 block w-full">
+                  <select id="screenSize" @change="changeSetting($event)" :value="settings.options.screenSize" name="options.screenSize" class="form-select mt-1 block w-full">
                     <option value="default">{{ localizations['text.default'] }}</option>
                     <option value="profile">{{ localizations['text.profile'] }}</option>
                     <option value="1024x768">1024x768</option>
@@ -478,7 +498,7 @@
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   {{ localizations['text.timezone'] }}
-                  <select @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
+                  <select id="timeZone" @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
                     <option value="default">{{ localizations['text.default'] }}</option>
                     <option value="ip">IP</option>
                     <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
@@ -597,13 +617,21 @@
         <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['text.whitelist'] }}</div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
-            <input @change="changeSetting($event)" :checked="settings.whitelist.enabled" name="whitelist.enabled" type="checkbox" class="text-primary form-checkbox" />
+            <input
+              id="enableWhitelist"
+              @change="changeSetting($event)"
+              :checked="settings.whitelist.enabled"
+              name="whitelist.enabled"
+              type="checkbox"
+              class="text-primary form-checkbox"
+            />
             <span class="ml-1">{{ localizations['popup.whitelist.enable'] }}</span>
           </label>
         </div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
+              id="enableContextMenu"
               @change="changeSetting($event)"
               :checked="settings.whitelist.enabledContextMenu"
               name="whitelist.enabledContextMenu"
@@ -616,7 +644,13 @@
         <div class="flex items-center mb-2">
           <label class="w-full mt-4">
             {{ localizations['popup.whitelist.defaultProfileLabel'] }}
-            <select @change="changeSetting($event)" :value="settings.whitelist.defaultProfile" name="whitelist.defaultProfile" class="form-select mt-1 block w-full">
+            <select
+              id="defaultWhitelistProfile"
+              @change="changeSetting($event)"
+              :value="settings.whitelist.defaultProfile"
+              name="whitelist.defaultProfile"
+              class="form-select mt-1 block w-full"
+            >
               <option value="none">{{ localizations['text.realProfile'] }}</option>
               <option v-for="p in profileList" :value="p.id" :key="p.id">{{ p.name }}</option>
             </select>
