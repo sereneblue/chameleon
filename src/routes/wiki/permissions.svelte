@@ -2,8 +2,8 @@
 	<title>Permissions | Chameleon</title>
 </svelte:head>
 
-<div class="mb-8 px-4 leading-tight">
-  <div class="text-lg mb-4">
+<div class="mb-8 px-4 text-xl leading-tight">
+  <div class="mb-4">
     Chameleon requires several permissions listed below:
   </div>
   <div>
