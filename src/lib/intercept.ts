@@ -91,35 +91,33 @@ class Interceptor {
   }
 
   checkWhitelist(request: any): WhitelistResult {
-    if (this.settings.whitelist.enabled) {
-      let url: string;
+    let url: string;
 
-      /* Get document url of request */
-      if (request.type === 'main_frame') {
-        url = request.url;
-      } else if (request.frameId === 0) {
-        url = request.documentUrl;
-      } else {
-        let root = request.frameAncestors ? request.frameAncestors.find(f => f.frameId === 0) : '';
-        if (root) {
-          url = root.url;
-        }
+    /* Get document url of request */
+    if (request.type === 'main_frame') {
+      url = request.url;
+    } else if (request.frameId === 0) {
+      url = request.documentUrl;
+    } else {
+      let root = request.frameAncestors ? request.frameAncestors.find(f => f.frameId === 0) : '';
+      if (root) {
+        url = root.url;
       }
+    }
 
-      if (url) {
-        this.LINK.href = url;
-        let rule = util.findWhitelistRule(this.settings.whitelist.rules, this.LINK.host, url);
+    if (url) {
+      this.LINK.href = url;
+      let rule = util.findWhitelistRule(this.settings.whitelist.rules, this.LINK.host, url);
 
-        if (rule) {
-          return {
-            active: true,
-            lang: rule.lang,
-            opt: rule.options,
-            pattern: rule.pattern,
-            profile: rule.profile,
-            spoofIP: rule.spoofIP,
-          };
-        }
+      if (rule) {
+        return {
+          active: true,
+          lang: rule.lang,
+          opt: rule.options,
+          pattern: rule.pattern,
+          profile: rule.profile,
+          spoofIP: rule.spoofIP,
+        };
       }
     }
 

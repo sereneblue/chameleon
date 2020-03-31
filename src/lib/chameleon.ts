@@ -394,7 +394,6 @@ export class Chameleon {
     } else {
       if (importing) {
         let options = [
-          ['whitelist.enabled', prev.whitelist.enabled, 'boolean'],
           ['whitelist.enabledContextMenu', prev.whitelist.enabledContextMenu, 'boolean'],
           ['whitelist.defaultProfile', prev.whitelist.defaultProfile, Object.keys(mappedProfiles)],
         ];
@@ -407,7 +406,6 @@ export class Chameleon {
         }
       }
 
-      s.whitelist.enabled = prev.whitelist.enabled;
       s.whitelist.enabledContextMenu = prev.whitelist.enabledContextMenu;
       s.whitelist.defaultProfile = mappedProfiles[prev.whitelist.defaultProfile];
       s.whitelist.rules = [];
@@ -1414,7 +1412,6 @@ export class Chameleon {
       }
 
       let options = [
-        ['whitelist.enabled', impSettings.whitelist.enabled, 'boolean'],
         ['whitelist.enabledContextMenu', impSettings.whitelist.enabledContextMenu, 'boolean'],
         ['whitelist.defaultProfile', impSettings.whitelist.defaultProfile, profileIds.concat(['none'])],
       ];

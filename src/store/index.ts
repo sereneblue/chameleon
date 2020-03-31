@@ -62,7 +62,6 @@ export default new Vuex.Store({
       webSockets: 'allow_all',
     },
     whitelist: {
-      enabled: false,
       enabledContextMenu: false,
       defaultProfile: 'none',
       rules: [],

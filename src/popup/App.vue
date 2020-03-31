@@ -618,19 +618,6 @@
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
-              id="enableWhitelist"
-              @change="changeSetting($event)"
-              :checked="settings.whitelist.enabled"
-              name="whitelist.enabled"
-              type="checkbox"
-              class="text-primary form-checkbox"
-            />
-            <span class="ml-1">{{ localizations['popup.whitelist.enable'] }}</span>
-          </label>
-        </div>
-        <div class="flex items-center mb-1">
-          <label class="cursor-pointer">
-            <input
               id="enableContextMenu"
               @change="changeSetting($event)"
               :checked="settings.whitelist.enabledContextMenu"
