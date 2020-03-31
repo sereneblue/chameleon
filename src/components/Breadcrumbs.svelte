@@ -2,6 +2,10 @@
   export let segment;
   
   let capitalize = (word) => {
+    if (word == 'ip') {
+      return "IP";
+    }
+    
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 </script>
