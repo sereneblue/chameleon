@@ -51,7 +51,7 @@ function validate(cfg) {
 
 
 	console.log('[DEBUG] Validating version...');
-	let currentVersion = [0, 12, 26];
+	let currentVersion = [0, 12, 27];
 	let versionParts = cfg.version.split('.').map(v => parseInt(v));
 	if (currentVersion[1] > versionParts[1] || 
 		(currentVersion[1] == versionParts[1] && versionParts[2] > currentVersion[2])) {
