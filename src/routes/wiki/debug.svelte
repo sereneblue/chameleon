@@ -34,5 +34,30 @@
         If whitelisting a site does not work for you, please open an issue on Github <a href="https://github.com/sereneblue/chameleon/issues" target="_blank" rel="noopener noreferrer">here</a>.
       </p>
     </div>
+    <div class="mb-4">
+      <h2 class="font-semibold text-3xl border-primary border-b-2 mb-4">Report a bug</h2>
+    </div>
+    <div class="mb-4">
+      If you've found a bug, please follow the steps below:
+      <ol class="mt-2 list-decimal list-inside">
+        <li>
+          Check if you're using the latest version of Chameleon.
+        </li>
+        <li>
+          Check if your bug has been reported already <a href="https://github.com/sereneblue/chameleon/issues" target="_blank" rel="noopener noreferrer">here</a>. This helps reduce the number of duplicate issues.
+        </li>
+        <li>
+          Be detailed with your issue. Some useful information to include:
+          <br>
+          <ul class="ml-4 mb-2 list-disc list-inside">
+            <li>What version of Chameleon and Firefox are you using?</li>
+            <li>Can you reproduce your issue?</li>
+            <li>What OS are you using?</li>
+            <li>Anything else that may be useful</li>
+          </ul>
+          Export your settings (can be found on the options page) and post it in the GitHub issue.
+        </li>
+      </ol>
+    </div>
   </div>
 </div>
