@@ -9,6 +9,10 @@
 	:global(p > a) {
 		@apply text-primary underline;
 	}
+
+	:global(li > a) {
+		@apply text-primary underline;
+	}
 </style>
 
 <main>
