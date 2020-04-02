@@ -6,11 +6,7 @@
 </script>
 
 <style lang="postcss">
-	:global(p > a) {
-		@apply text-primary underline;
-	}
-
-	:global(li > a) {
+	:global(p > a), :global(ol > li > a) {
 		@apply text-primary underline;
 	}
 </style>
