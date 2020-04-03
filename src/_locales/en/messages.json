@@ -459,7 +459,7 @@
     "message": "Whitelist Rule Editor"
   },
   "options.whitelist.headerIPLabel": {
-    "message": "Header IP (VIa & X-Forwarded-For)"
+    "message": "Header IP (Via & X-Forwarded-For)"
   },
   "options.whitelist.options.name": {
     "message": "Enable protect window name"
