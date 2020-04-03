@@ -24,6 +24,14 @@
       fix this issue by using a simpler version of Youtube instead.
       <br>
       <br>
+      <div class="w-full my-4 flex flex-col items-center">
+        <img class="max-w-md" src="toggle.png" alt="Chameleon enabled">
+      </div>
+      <p>
+        You can toggle Chameleon by clicking the shield icon on the popup main page. This allows you to quickly
+        disable Chameleon without disabling the extension.
+      </p>
+      <br>
       <p>
         If you come across a site that breaks and you're not sure why, you can whitelist it! This feature
         allows you to use a browser profile (or none) with a subset of spoofing features for a specific site/page.
