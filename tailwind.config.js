@@ -8,9 +8,40 @@ module.exports = {
         'light': '#f7fafc'
       }
     },
+    customForms: theme => ({
+      default: {
+        input: {
+          borderWidth: '1px',
+          '&:focus': {
+            outline: 'none',
+            boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.2)',
+            borderColor: theme('colors.primary')
+          },
+        },
+        textarea: {
+          borderWidth: '1px',
+          '&:focus': {
+            outline: 'none',
+            boxShadow: '0 0 0 3px rgba(107, 142, 35, 0.2)',
+            borderColor: theme('colors.primary')
+          },
+        }
+      }
+    }),
+    spinner: theme => ({
+      default: {
+        color: '#dae1e7',
+        size: '1em',
+        border: '2px',
+        speed: '500ms',
+      },
+    })
   },
-  variants: {},
+  variants: {
+    spinner: ['responsive']
+  },
   plugins: [
     require('@tailwindcss/custom-forms'),
-  ],
+    require('tailwindcss-spinner')()
+  ]
 }
