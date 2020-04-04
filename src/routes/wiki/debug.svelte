@@ -25,7 +25,7 @@
       <br>
       <br>
       <div class="w-full my-4 flex flex-col items-center">
-        <img class="max-w-md" src="toggle.png" alt="Chameleon enabled">
+        <img class="max-w-md" src="disabled.png" alt="Chameleon disabled">
       </div>
       <p>
         You can toggle Chameleon by clicking the shield icon on the popup main page. This allows you to quickly
