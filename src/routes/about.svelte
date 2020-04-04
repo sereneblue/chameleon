@@ -74,7 +74,7 @@
 						<br><br>
 						There are several other Firefox extensions that you should use in addition to
 						Chameleon and privacy practices you should follow.
-						To learn more, check out the <a href="./wiki">wiki</a>.
+						For a list of recommened extensions, check the <a href="./wiki/recommended-extensions">Recommended Extensions</a> page.
 					</p>
 				</div>
 				<div id="q5" class="mb-8 leading-tight">
