@@ -58,6 +58,42 @@
   }
 </script>
 
+<style lang="postcss">
+  .spinner {
+    position: relative;
+    color: white !important;
+    pointer-events: none;
+  }
+
+  .spinner::after {
+    content: '';
+    position: absolute !important;
+    top: calc(50% - (1em / 2));
+    left: calc(50% - (1em / 2));
+    display: block;
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-radius: 9999px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    animation: spinAround 500ms infinite linear;
+  }
+
+  @keyframes spinAround {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  button {
+    @apply bg-primary text-white font-bold py-2 px-4 mt-4 h-10 border border-primary w-full rounded flex justify-center
+  }
+
+  button:not([disabled]):hover {
+    @apply bg-primary-soft 
+  }
+</style>
+
 <svelte:head>
 	<title>Contact | Chameleon</title>
 </svelte:head>
@@ -93,8 +129,12 @@
               <span class="text-gray-700">{ captchaMsg }</span>
               <input name="solution" class="form-input mt-1 block w-full" type="text" autocomplete="off" required>
             </label>
-            <button class="bg-primary hover:bg-primary-soft text-white font-bold py-2 px-4 mt-4 border border-primary w-full rounded" type="submit" disabled='{pending}'>
-              Send message
+            <button type="submit" disabled='{pending}'>
+              {#if pending}
+                <span class="spinner"></span>
+              {:else}
+                <span>Send message</span>
+              {/if}
             </button>
           </form>
         {/if}
