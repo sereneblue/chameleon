@@ -328,7 +328,7 @@
                     </div>
                   </div>
                 </div>
-                <div>{{ localizations['text.searchRules'] }}</div>
+                <div>{{ localizations['options.whitelist.urls'] }}</div>
                 <div class="text-sm">{{ localizations['options.whitelist.sitesTip'] }}</div>
                 <textarea
                   v-model="tmp.wlRule.sites"
