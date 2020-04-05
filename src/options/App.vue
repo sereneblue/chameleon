@@ -62,7 +62,7 @@
                 <feather class="mr-2" type="upload" size="1em"></feather>
                 {{ localizations['options.settings.import'] }}
               </div>
-              <input class="hidden" type="file" ref="chameleonImport" @change="readSettings" />
+              <input class="hidden" type="file" ref="chameleonImport" id="chameleonImport" @change="readSettings" />
             </button>
             <button @click="exportSettings" class="transparent-btn">
               <div class="flex items-center">
