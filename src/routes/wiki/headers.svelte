@@ -114,36 +114,42 @@ Cache-Control: max-age=0`}
         the request is coming from is a "cross origin" request.
       </p>
       <div class="mt-4">
-        <div class="mb-2">
-          <div class="text-xl font-semibold">
-            Always send
-          </div>
-          <p>
-            Always send the referer for X Origin requests
-          </p>
-        </div>
-        <div class="mb-2">
-          <div class="text-xl font-semibold">
-            Match base domain
-          </div>
-          <div>
-            Only send X Origin request if base domain matches.
-            <br>
-            <br>
-            If a request from a web page, <strong>news.example.com</strong>, is made to <strong>test.com</strong>,
-            the referer will <em>not</em> be sent because both URLs <em>do not</em> share the same base domain (example.com, test.com).
-          </div>
-        </div>
-        <div class="text-xl font-semibold">
-          Match host
-        </div>
-        <div>
-          Only send X Origin request if hostname matches.
-          <br>
-          <br>
-          If a request from a web page, <strong>news.example.com</strong>, is made to <strong>news.example.com</strong>,
-          the referer <em>will</em> be sent because both URLs share the same base hostname (news.example.com).
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Always send</td>
+              <td>Always send the referer for X Origin requests</td>
+            </tr>
+            <tr>
+              <td>Match base domain</td>
+              <td>
+                Only send X Origin request if base domain matches
+                <br>
+                <br>
+                If a request from a web page, <strong>news.example.com</strong>, is made to 
+                <strong>test.com</strong>, the referer will <em>not</em> be sent because
+                both URLs <em>do not</em> share the same base domain (example.com, test.com).
+              </td>
+            </tr>
+            <tr>
+              <td>Match host</td>
+              <td>
+                Only send X Origin request if hostname matches
+                <br>
+                <br>
+                If a request from a web page, <strong>news.example.com</strong>, is made to 
+                <strong>news.example.com</strong>, the referer <em>will</em> be sent because
+                both URLs share the same base hostname (news.example.com).
+            </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="mb-6">
@@ -152,46 +158,50 @@ Cache-Control: max-age=0`}
         Do not modify the about:config setting: network.http.referer.trimmingPolicy.
       </p>
       <div class="mt-4">
-        <div class="mb-3">
-          <div class="text-xl font-semibold">
-            Send full URI
-          </div>
-          <p>
-            Sends the full referer.
-          </p>
-        </div>
-        <div class="mb-3">
-          <div class="text-xl font-semibold">
-            Scheme, host, port, path
-          </div>
-          <div>
-            Sends the scheme, host, port and path of the URL; strips query strings.
-            <br>
-            <br>
-            Before:
-            <br>
-            https://example.com:8080/page?privacy=false&trackingid=XYZ
-            <br>
-            After:
-            <br>
-            https://example.com:8080/page
-          </div>
-        </div>
-        <div class="text-xl font-semibold">
-          Scheme, host, port
-        </div>
-        <div>
-          Sends the scheme, host, and port of the URL.
-          <br>
-          <br>
-          Before:
-          <br>
-          https://example.com:8080/page?privacy=false&trackingid=XYZ
-          <br>
-          After:
-          <br>
-          https://example.com:8080/
-        </div>
+      <table>
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Send full URI</td>
+              <td>Sends the full referer</td>
+            </tr>
+            <tr>
+              <td>Scheme, host, port, path</td>
+              <td>
+                Sends the scheme, host, port and path of the URL; strips query strings.
+                <br>
+                <br>
+                <strong>Before:</strong>
+                <br>
+                https://example.com:8080/page?privacy=false&trackingid=XYZ
+                <br>
+                <strong>After:</strong>
+                <br>
+                https://example.com:8080/page
+              </td>
+            </tr>
+            <tr>
+              <td>Scheme, host, port</td>
+              <td>
+                Sends the scheme, host, and port of the URL.
+                <br>
+                <br>
+                <strong>Before:</strong>
+                <br>
+                https://example.com:8080/page?privacy=false&trackingid=XYZ
+                <br>
+                <strong>After:</strong>
+                <br>
+                https://example.com:8080/
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
