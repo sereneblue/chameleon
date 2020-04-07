@@ -1,9 +1,14 @@
 <script>
 	import { goto } from '@sapper/app';
+	import { onMount } from 'svelte';
 
 	import Carousel from '../components/Carousel.svelte';
 
-	let isNotFirefox = !navigator.userAgent.includes("Firefox");
+	let isNotFirefox = false;
+
+	onMount(() => {
+		isNotFirefox = !window.navigator.userAgent.includes("Firefox");
+	})
 </script>
 
 <style>
@@ -42,10 +47,10 @@
 				<div class="w-full flex justify-center lg:justify-start">
 					{#if isNotFirefox}
 							<button on:click={e => goto('https://mozilla.org') } class="flex items-center bg-primary hover:bg-primary-soft text-white font-bold py-2 px-4 text-xl rounded shadow-md">
-								<svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-								<span class="ml-2">
-									Get Firefox Now
+								<span class="mr-2">
+									Only for Firefox
 								</span>
+								<svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
 							</button>
 						{:else}
 							<button on:click={e => goto('https://addons.mozilla.org/firefox/downloads/latest/chameleon-ext') } class="flex items-center bg-primary hover:bg-primary-soft text-white font-bold py-2 px-4 text-xl rounded shadow-md">
