@@ -1,7 +1,7 @@
 <script>
   export let segment;
   
-  let edit = `https://github.com/sereneblue/chameleon/blob/wiki/src/routes/wiki/${segment}.svelte`;
+  $: edit = `https://github.com/sereneblue/chameleon/blob/wiki/src/routes/wiki/${segment}.svelte`;
 
   let capitalize = (word) => {
     if (word == 'ip') {
