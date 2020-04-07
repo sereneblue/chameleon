@@ -1,29 +1,3 @@
-<style lang="postcss">
-  table {
-    @apply text-left w-full rounded border-2 shadow-sm my-4 text-sm;
-  }
-
-  thead {
-    @apply bg-gray-800 text-white;
-  }
-
-  thead th {
-    @apply w-1/3 text-left py-3 px-2 uppercase font-semibold text-sm;
-  }
-
-  tbody {
-    @apply text-gray-700;
-  }
-
-  td {
-    @apply p-2;
-  }
-
-  tr:nth-child(even) {
-    @apply bg-gray-200;
-  }
-</style>
-
 <svelte:head>
 	<title>Options | Chameleon</title>
 </svelte:head>

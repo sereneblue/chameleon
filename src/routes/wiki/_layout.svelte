@@ -9,6 +9,30 @@
 	:global(p > a), :global(ol > li > a) {
 		@apply text-primary underline;
 	}
+
+	:global(table) {
+    @apply text-left w-full rounded border-2 shadow-sm my-4 text-sm;
+  }
+
+  :global(thead) {
+    @apply bg-gray-800 text-white;
+  }
+
+  :global(thead th) {
+		@apply w-1/3 text-left py-3 px-2 uppercase font-semibold text-sm;
+  }
+
+  :global(tbody) {
+    @apply text-gray-700;
+  }
+
+  :global(td) {
+		@apply p-2;
+	}
+	
+  :global(tr:nth-child(even)) {
+    @apply bg-gray-200;
+  }
 </style>
 
 <main>
