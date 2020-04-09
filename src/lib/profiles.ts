@@ -32,11 +32,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '80.0.361.62', desktopChrome: '80.0.3987.122', android: '45.01.4.4920', androidChrome: '77.0.3865.116' },
+  edg: { desktop: '80.0.361.109', desktopChrome: '81.0.4044.92', android: '45.2.2.4930', androidChrome: '81.0.4044.96' },
   esr: { desktop: '68' },
-  ff: { all: '70' },
-  gcr: { desktop: '78.0.3904.97', ios: '78.0.3904.84', android: '78.0.3904.96' },
-  sf: { desktop: '13.0.3', mobile: '13.0.4' },
+  ff: { all: '75' },
+  gcr: { desktop: '81.0.4044.92', ios: '81.0.4044.62', android: '81.0.4044.96' },
+  sf: { desktop: '13.0.4', mobile: '13.0.4' },
 };
 
 let getName = (os: string, browser: string) => {
