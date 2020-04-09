@@ -115,7 +115,11 @@ export class Chameleon {
     if (/0\.12/.test(storedSettings.version)) {
       this.migrateLegacy(storedSettings);
     } else {
-      this.settings = storedSettings;
+      if (storedSettings.options) {
+        this.settings = storedSettings;
+      } else {
+        this.settings = this.defaultSettings;
+      }
     }
 
     this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache);
