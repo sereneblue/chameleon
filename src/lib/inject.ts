@@ -19,9 +19,8 @@ class Injector {
     overwrite: [],
     metadata: {},
   };
-  private spoofInfo: object;
 
-  constructor(settings: any, tempStore: any, seed: number) {
+  constructor(settings: any, tempStore: any, profileCache: any, seed: number) {
     if (!settings.config.enabled) {
       this.enabled = false;
       return;
@@ -29,9 +28,20 @@ class Injector {
 
     this.enabled = true;
     this.notifyId = tempStore.notifyId;
+
+    // profile to be used for injection
+    let p: any = null;
     let wl = util.findWhitelistRule(settings.whitelist.rules, window.location.host, window.location.href);
 
     if (wl === null) {
+      if (tempStore.profile && tempStore.profile != 'none') {
+        p = profileCache[tempStore.profile];
+      } else {
+        if (settings.profile.selected != 'none') {
+          p = profileCache[settings.profile.selected];
+        }
+      }
+
       if (settings.options.limitHistory) this.updateInjectionData(history);
 
       if (settings.options.protectKBFingerprint.enabled) {
@@ -105,6 +115,14 @@ class Injector {
         language.data[0].value = l.nav;
         language.data[1].value = wl.lang;
       }
+
+      if (wl.profile != 'none') {
+        if (wl.profile === 'default' && settings.whitelist.defaultProfile != 'none') {
+          p = profileCache[settings.whitelist.defaultProfile];
+        } else {
+          p = profileCache[wl.profile];
+        }
+      }
     }
 
     if (language.data[0].value != 'code') {
@@ -159,13 +177,11 @@ class Injector {
         let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
 
         injectionProperties.forEach(injProp => {
-          if (injProp.obj == "window") {
+          if (injProp.obj === 'window') {
             window[injProp.prop] = injProp.value;
+          } else if (injProp.obj === 'window.navigator' && injProp.value === null) {
+            delete navigator.__proto__[injProp.prop];
           } else {
-            if (injProp.value == "undef") {
-              injProp.value = undefined;
-            }
-
             Object.defineProperty(injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), injProp.prop, {
               configurable: true,
               value: injProp.value
@@ -187,6 +203,8 @@ class Injector {
               if (f) {
                 f.Date = window.Date;
                 f.Intl.DateTimeFormat = window.Intl.DateTimeFormat;
+                f.screen = window.screen;
+                f.navigator = window.navigator;
               }
               return f;
             }
@@ -206,6 +224,8 @@ class Injector {
               if (f) {
                 f.Date = window.Date;
                 f.Intl.DateTimeFormat = window.Intl.DateTimeFormat;
+                f.screen = window.screen;
+                f.navigator = window.navigator;
               }
               return f;
             }
@@ -339,7 +359,7 @@ class Injector {
 }
 
 // @ts-ignore
-let chameleonInjector = new Injector(settings, tempStore, seed);
+let chameleonInjector = new Injector(settings, tempStore, profileCache, seed);
 
 window.addEventListener('message', function(evt: any) {
   if (evt.data.id === chameleonInjector.notifyId) {
