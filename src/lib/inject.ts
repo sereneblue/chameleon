@@ -5,6 +5,7 @@ import history from './spoof/history';
 import kbFingerprint from './spoof/kbFingerprint';
 import language from './spoof/language';
 import referer from './spoof/referer';
+import screen from './spoof/screen';
 import timezone from './spoof/timezone';
 import winName from './spoof/name';
 import util from './util';
@@ -82,6 +83,27 @@ class Injector {
       if (settings.options.spoofClientRects) {
         this.spoof.metadata['clientRectsSeed'] = seed;
         this.updateInjectionData(clientRects);
+      }
+
+      if (settings.options.screenSize != 'default') {
+        if (settings.options.screenSize == 'profile' && p) {
+          this.spoof.metadata['screen'] = {
+            width: p.screen.width,
+            height: p.screen.height,
+            availHeight: p.screen.availHeight,
+            usingProfileRes: true,
+          };
+        } else {
+          let scr: number[] = settings.options.screenSize.split('x').map(Number);
+
+          this.spoof.metadata['screen'] = {
+            width: scr[0],
+            height: scr[1],
+            usingProfileRes: false,
+          };
+        }
+
+        this.updateInjectionData(screen);
       }
 
       if (settings.options.timeZone != 'default') {

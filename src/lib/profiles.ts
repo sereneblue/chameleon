@@ -17,11 +17,9 @@ export interface BrowserProfile {
     ua: string;
   };
   screen?: {
-    width: number,
-    height: number,
-    clientWidth: number,
-    innerHeight: number,
-    outerHeight: number,
+    width: number;
+    height: number;
+    availHeight: number;
   };
   useragent?: string;
 }
