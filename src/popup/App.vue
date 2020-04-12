@@ -492,6 +492,8 @@
                     <option value="2560x1440">2560x1440</option>
                     <option value="2560x1600">2560x1600</option>
                     <option value="3840x2160">3840x2160</option>
+                    <option value="4096x2304">4096x2304</option>
+                    <option value="5120x2880">5120x2880</option>
                   </select>
                 </label>
               </div>
