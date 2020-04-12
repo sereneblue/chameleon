@@ -735,7 +735,7 @@ export default class App extends Vue {
     if (this.settings.options.screenSize === 'default') {
       screen = this.localizations['popup.home.currentProfile.defaultScreen'];
     } else if (this.settings.options.screenSize === 'profile') {
-      screen = 'Profile';
+      screen = `Profile (${this.localizations['popup.home.fpPanel.screen']})`;
     } else {
       screen = this.settings.options.screenSize;
     }
