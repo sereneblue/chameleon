@@ -1387,7 +1387,7 @@ export class Chameleon {
         [
           'options.screenSize',
           impSettings.options.screenSize,
-          ['default', 'profile', '1024x768', '1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160', '4096x2304', '5120x2880'],
+          ['default', 'profile', '1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160', '4096x2304', '5120x2880'],
         ],
         ['options.timeZone', impSettings.options.timeZone, timezoneIds.concat(['default', 'ip'])],
         ['options.cookiePolicy', impSettings.options.cookiePolicy, ['allow_all', 'allow_visited', 'reject_all', 'reject_third_party', 'reject_trackers']],
