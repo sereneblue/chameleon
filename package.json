@@ -5,7 +5,7 @@
     "test": "node test/zipExtension.js && mocha --timeout 0 test/**/*Test.js"
   },
   "devDependencies": {
-    "archiver": "^3.0.0",
+    "archiver": "^4.0.0",
     "chai": "^4.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
