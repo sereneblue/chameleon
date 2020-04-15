@@ -5,6 +5,7 @@ import history from './spoof/history';
 import kbFingerprint from './spoof/kbFingerprint';
 import language from './spoof/language';
 import media from './spoof/media';
+import navigator from './spoof/navigator';
 import referer from './spoof/referer';
 import screen from './spoof/screen';
 import timezone from './spoof/timezone';
@@ -45,7 +46,7 @@ class Injector {
       }
 
       if (settings.options.blockMediaDevices) this.updateInjectionData(media);
-      
+
       if (settings.options.limitHistory) this.updateInjectionData(history);
 
       if (settings.options.protectKBFingerprint.enabled) {
@@ -154,6 +155,14 @@ class Injector {
     if (language.data[0].value != 'code') {
       this.updateInjectionData(language);
     }
+
+    if (p) {
+      for (let i = 0; i < navigator.data.length; i++) {
+        navigator.data[i].value = p.navigator[navigator.data[i].prop];
+      }
+
+      this.updateInjectionData(navigator);
+    }
   }
 
   public injectIntoPage(): void {
@@ -207,6 +216,40 @@ class Injector {
             window[injProp.prop] = injProp.value;
           } else if (injProp.obj === 'window.navigator' && injProp.value === null) {
             delete navigator.__proto__[injProp.prop];
+          } else if (injProp.obj === 'window.navigator' && injProp.prop == 'mimeTypes') {
+            let mimes = (() => {
+              const mimeArray = []
+              injProp.value.forEach(p => {
+                function FakeMimeType () { return p }
+                const mime = new FakeMimeType()
+                Object.setPrototypeOf(mime, MimeType.prototype);
+                mimeArray.push(mime)
+              })
+              Object.setPrototypeOf(mimeArray, MimeTypeArray.prototype);
+              return mimeArray
+            })();
+
+            Object.defineProperty(window.navigator, 'mimeTypes', {
+              configurable: true,
+              value: mimes
+            });
+          } else if (injProp.obj === 'window.navigator' && injProp.prop == 'plugins') {
+            let plugins = (() => {
+              const pluginArray = []
+              injProp.value.forEach(p => {
+                function FakePlugin () { return p }
+                const plugin = new FakePlugin()
+                Object.setPrototypeOf(plugin, Plugin.prototype);
+                pluginArray.push(plugin)
+              })
+              Object.setPrototypeOf(pluginArray, PluginArray.prototype);
+              return pluginArray
+            })();
+
+            Object.defineProperty(window.navigator, 'plugins', {
+              configurable: true,
+              value: plugins
+            });
           } else {
             Object.defineProperty(injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), injProp.prop, {
               configurable: true,
