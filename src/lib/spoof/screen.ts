@@ -44,5 +44,9 @@ export default {
   Object.defineProperty(window.screen, 'height', {
     value: screenData.height
   });
+
+  Object.defineProperty(window, 'devicePixelRatio', {
+    value: screenData.deviceScaleFactor || 1
+  });
   `,
 };

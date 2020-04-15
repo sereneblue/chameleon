@@ -94,6 +94,7 @@ class Injector {
             width: p.screen.width,
             height: p.screen.height,
             availHeight: p.screen.availHeight,
+            deviceScaleFactor: p.screen.deviceScaleFactor,
             usingProfileRes: true,
           };
         } else {
