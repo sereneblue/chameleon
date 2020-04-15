@@ -7,19 +7,25 @@ export interface BrowserProfile {
     encodingHTTPS: string;
   };
   navigator?: {
-    appVersion: string;
-    buildID: string;
-    hardwareConcurrency: string;
-    oscpu: string;
-    platform: string;
-    productSub: string;
-    vendor: string;
-    ua: string;
+    appMinorVersion: string | null;
+    appVersion: string | null;
+    buildID: string | null;
+    cpuClass: string | null;
+    deviceMemory: number | null;
+    hardwareConcurrency: number | null;
+    mimeTypes: object | null;
+    oscpu: string | null;
+    platform: string | null;
+    plugins: object | null;
+    productSub: string | null;
+    vendor: string | null;
+    vendorSub: string | null;
   };
   screen?: {
     width: number;
     height: number;
     availHeight: number;
+    deviceScaleFactor?: number;
   };
   useragent?: string;
 }
@@ -32,10 +38,13 @@ export interface ProfileListItem {
 const BrowserVersions: any = {
   edg: { desktop: '80.0.361.109', desktopChrome: '81.0.4044.92', android: '45.2.2.4930', androidChrome: '81.0.4044.96' },
   esr: { desktop: '68' },
-  ff: { all: '75' },
+  ff: { desktop: '75', mobile: '76' },
   gcr: { desktop: '81.0.4044.92', ios: '81.0.4044.62', android: '81.0.4044.96' },
   sf: { desktop: '13.0.4', mobile: '13.0.4' },
 };
+
+const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
+const MacResolutions: string[] = ['1920x1080', '2560×1600', '4096x2304', '5120x2880'];
 
 let getName = (os: string, browser: string) => {
   if (browser === 'edg') {
@@ -45,7 +54,11 @@ let getName = (os: string, browser: string) => {
   } else if (browser === 'esr') {
     return `${os} - Firefox ${BrowserVersions.esr.desktop} ESR`;
   } else if (browser === 'ff') {
-    return `${os} - Firefox ${BrowserVersions.ff.all}`;
+    return `${os} - Firefox ${BrowserVersions.ff.desktop}`;
+  } else if (browser === 'ffm') {
+    return `${os} - Firefox ${BrowserVersions.ff.mobile} (Phone)`;
+  } else if (browser === 'fft') {
+    return `${os} - Firefox ${BrowserVersions.ff.mobile} (Tablet)`;
   } else if (browser === 'gcr') {
     return `${os} - Chrome ${BrowserVersions.gcr.desktop.split('.')[0]}`;
   } else if (browser === 'gcrm') {
@@ -70,23 +83,10 @@ export class Generator {
     // edge
     edg: (os): BrowserProfile => {
       let versions: any = BrowserVersions.edg;
-      let platform: string;
+      let platform: string = os.nav.platform;
 
-      switch (os.id) {
-        case 'win1':
-        case 'win2':
-        case 'win3':
-        case 'win4':
-          platform = os.nav.oscpu;
-          break;
-        case 'mac1':
-        case 'mac2':
-        case 'mac3':
-          platform = os.uaPlatform;
-          break;
-        default:
-          break;
-      }
+      let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
+      let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
       let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.chromeVersion} Safari/537.36 Edg/${versions.desktop}`;
 
@@ -97,25 +97,55 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: 8,
+          hardwareConcurrency: 4,
+          mimeTypes: [
+            {
+              type: 'application/pdf',
+              suffixes: 'pdf',
+              description: 'Portable Document Format',
+            },
+            {
+              type: 'text/pdf',
+              suffixes: 'pdf',
+              description: 'Portable Document Format',
+            },
+            {
+              type: 'application/postscript',
+              suffixes: 'ps',
+              description: 'PostScript',
+            },
+          ],
+          oscpu: null,
+          platform,
+          plugins: [
+            { name: 'Microsoft Edge PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', version: null },
+            { name: 'Microsoft Edge PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null },
+            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null },
+          ],
+          productSub: '20030107',
+          vendor: 'Google Inc.',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
       };
     },
     // edge (mobile)
     edgm: (os): BrowserProfile => {
       let versions: any = BrowserVersions.edg;
-      let platform: string;
 
       const device = devices.getDevice('mobile', os.id);
 
-      switch (os.id) {
-        case 'and1':
-        case 'and2':
-        case 'and3':
-        case 'and4':
-          platform = `Linux; ${os.uaPlatform}; ${device.build}`;
-        default:
-          break;
-      }
-
+      let screenRes: number[] = device.viewport.split('x').map(Number);
       let ua: string = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.androidChrome} Safari/537.36 EdgA/${versions.android}`;
 
       return {
@@ -125,12 +155,37 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: device.memory,
+          hardwareConcurrency: device.hw,
+          mimeTypes: [],
+          oscpu: null,
+          platform: 'Linux aarch64',
+          plugins: [],
+          productSub: '20030107',
+          vendor: 'Google Inc.',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1],
+          deviceScaleFactor: device.deviceScaleFactor,
+        },
       };
     },
     // firefox esr
     esr: (os): BrowserProfile => {
       let version: string = BrowserVersions.esr.desktop;
+      let appVersion: string;
       let platform: string;
+
+      let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
+      let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
       switch (os.id) {
         case 'win1':
@@ -138,15 +193,83 @@ export class Generator {
         case 'win3':
         case 'win4':
           platform = os.nav.oscpu;
+          appVersion = '5.0 (Windows)';
           break;
         case 'mac1':
         case 'mac2':
         case 'mac3':
           platform = `Macintosh; ${os.nav.oscpu}`;
+          appVersion = '5.0 (Macintosh)';
           break;
         case 'lin1':
         case 'lin2':
         case 'lin3':
+          platform = os.uaPlatform;
+          appVersion = '5.0 (X11)';
+          break;
+        default:
+          break;
+      }
+
+      let ua = `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/20100101 Firefox/${version}.0`;
+
+      return {
+        accept: {
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
+        },
+        useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion,
+          buildID: '20181001000000',
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: 4,
+          mimeTypes: [],
+          oscpu: os.nav.oscpu,
+          platform: os.nav.platform,
+          plugins: [],
+          productSub: '20100101',
+          vendor: '',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
+      };
+    },
+    // firefox
+    ff: (os): BrowserProfile => {
+      let version: string = BrowserVersions.ff.desktop;
+      let appVersion: string;
+      let platform: string;
+
+      let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
+      let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
+
+      switch (os.id) {
+        case 'win1':
+        case 'win2':
+        case 'win3':
+        case 'win4':
+          appVersion = '5.0 (Windows)';
+          platform = os.nav.oscpu;
+          break;
+        case 'mac1':
+        case 'mac2':
+        case 'mac3':
+          appVersion = '5.0 (Macintosh)';
+          platform = `Macintosh; ${os.nav.oscpu}`;
+          resolutions = [];
+          break;
+        case 'lin1':
+        case 'lin2':
+        case 'lin3':
+          appVersion = '5.0 (X11)';
           platform = os.uaPlatform;
           break;
         default:
@@ -162,41 +285,37 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion,
+          buildID: '20181001000000',
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: 4,
+          mimeTypes: [],
+          oscpu: os.nav.oscpu,
+          platform: os.nav.platform,
+          plugins: [],
+          productSub: '20100101',
+          vendor: '',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
       };
     },
-    // firefox
-    ff: (os): BrowserProfile => {
-      let version: string = BrowserVersions.ff.all;
-      let platform: string;
-      let device: string;
+    // firefox for android
+    ffm: (os): BrowserProfile => {
+      let version: string = BrowserVersions.ff.mobile;
+      let ua: string;
 
-      switch (os.id) {
-        case 'win1':
-        case 'win2':
-        case 'win3':
-        case 'win4':
-          platform = os.nav.oscpu;
-          break;
-        case 'mac1':
-        case 'mac2':
-        case 'mac3':
-          platform = `Macintosh; ${os.nav.oscpu}`;
-          break;
-        case 'lin1':
-        case 'lin2':
-        case 'lin3':
-          platform = os.uaPlatform;
-          break;
-        case 'and1':
-        case 'and2':
-        case 'and3':
-        case 'and4':
-          platform = `${os.name}; Mobile`;
-        default:
-          break;
-      }
+      const device = devices.getDevice('mobile', os.id);
+      let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      let ua = `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/${device ? version + '.0' : '20100101'} Firefox/${version}.0`;
+      ua = `Mozilla/5.0 (${os.uaPlatform}; Mobile; rv:${version}.0) Gecko/${version}.0 Firefox/${version}.0`;
 
       return {
         accept: {
@@ -205,12 +324,73 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion: `5.0 (${os.uaPlatform})`,
+          buildID: '20181001000000',
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: device.hw,
+          mimeTypes: [],
+          oscpu: 'Linux aarch64',
+          platform: 'Linux aarch64',
+          plugins: [],
+          productSub: '20100101',
+          vendor: '',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
+      };
+    },
+    fft: (os): BrowserProfile => {
+      let version: string = BrowserVersions.ff.mobile;
+      let ua: string;
+
+      const device = devices.getDevice('tablet', os.id);
+      let screenRes: number[] = device.viewport.split('x').map(Number);
+
+      ua = `Mozilla/5.0 (${os.uaPlatform}; Tablet; rv:${version}.0) Gecko/${version}.0 Firefox/${version}.0`;
+
+      return {
+        accept: {
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
+        },
+        useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion: `5.0 (${os.uaPlatform})`,
+          buildID: '20181001000000',
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: device.hw,
+          mimeTypes: [],
+          oscpu: 'Linux aarch64',
+          platform: 'Linux aarch64',
+          plugins: [],
+          productSub: '20100101',
+          vendor: '',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
       };
     },
     // google chrome
     gcr: (os): BrowserProfile => {
       let version: string = BrowserVersions.gcr.desktop;
       let platform: string;
+
+      let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
+      let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
       switch (os.id) {
         case 'win1':
@@ -242,93 +422,219 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: 8,
+          hardwareConcurrency: 4,
+          mimeTypes: [
+            {
+              type: 'application/pdf',
+              suffixes: 'pdf',
+              description: '',
+            },
+            {
+              type: 'application/x-google-chrome-pdf',
+              suffixes: 'pdf',
+              description: 'Portable Document Format',
+            },
+            {
+              type: 'application/x-nacl',
+              suffixes: '',
+              description: 'Native Client Executable',
+            },
+            {
+              type: 'application/x-pnacl',
+              suffixes: '',
+              description: 'Portable Native Client Executable',
+            },
+          ],
+          oscpu: null,
+          platform,
+          plugins: [
+            { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', version: null },
+            { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null },
+            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null },
+          ],
+          productSub: '20030107',
+          vendor: 'Google Inc.',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
       };
     },
     // google chrome (mobile)
     gcrm: (os): BrowserProfile => {
       let versions: any = BrowserVersions.gcr;
-      let platform: string;
-      let version: string;
+      let ua: string;
+
+      let accept: any;
+      let navigator: any;
 
       const device = devices.getDevice('mobile', os.id);
+      let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      switch (os.id) {
-        case 'ios1':
-        case 'ios2':
-        case 'ios3':
-          platform = os.uaPlatform;
-          version = versions.ios;
-          break;
-        case 'and1':
-        case 'and2':
-        case 'and3':
-        case 'and4':
-          platform = `Linux; ${os.uaPlatform}; ${device.build}`;
-          version = versions.android;
-        default:
-          break;
-      }
+      if (os.id.includes('ios')) {
+        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/605.1`;
 
-      let ua: string;
-      if (os.id.charAt(0) === 'i') {
-        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${version} Mobile/${device.build} Safari/605.1`;
+        (navigator = {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: 8,
+          mimeTypes: [],
+          oscpu: null,
+          platform: 'iPhone',
+          plugins: [],
+          productSub: '20030107',
+          vendor: 'Apple Computer, Inc.',
+          vendorSub: '',
+        }),
+          (accept = {
+            header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            encodingHTTP: 'gzip, deflate',
+            encodingHTTPS: 'br, gzip, deflate',
+          });
       } else {
-        ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Mobile Safari/537.36`;
-      }
+        ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Mobile Safari/537.36`;
 
-      return {
-        accept: {
+        navigator = {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: device.mem,
+          hardwareConcurrency: device.hw,
+          mimeTypes: [],
+          oscpu: null,
+          platform: 'Linux armv8l',
+          plugins: [],
+          productSub: '20030107',
+          vendor: 'Google Inc.',
+          vendorSub: '',
+        };
+
+        accept = {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
-        },
+        };
+      }
+
+      return {
+        accept,
         useragent: ua,
+        navigator,
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1],
+          deviceScaleFactor: device.deviceScaleFactor,
+        },
       };
     },
     // google chrome (tablet)
     gcrt: (os): BrowserProfile => {
       let versions: any = BrowserVersions.gcr;
-      let platform: string;
-      let version: string;
+      let ua: string;
+
+      let accept: any;
+      let navigator: any;
 
       const device = devices.getDevice('tablet', os.id);
+      let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      switch (os.id) {
-        case 'ios1':
-        case 'ios2':
-        case 'ios3':
-          version = versions.ios;
-          break;
-        case 'and1':
-        case 'and2':
-        case 'and3':
-        case 'and4':
-          version = versions.android;
-        default:
-          break;
-      }
+      if (os.id.includes('ios')) {
+        ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/605.1`;
 
-      let ua: string;
-      if (os.id.charAt(0) === 'i') {
-        ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${version} Mobile/${device.build} Safari/605.1`;
+        (navigator = {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: 8,
+          mimeTypes: [],
+          oscpu: null,
+          platform: 'iPad',
+          plugins: [],
+          productSub: '20030107',
+          vendor: 'Apple Computer, Inc.',
+          vendorSub: '',
+        }),
+          (accept = {
+            header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            encodingHTTP: 'gzip, deflate',
+            encodingHTTPS: 'br, gzip, deflate',
+          });
       } else {
-        ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Safari/537.36`;
+        ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Safari/537.36`;
+
+        navigator = {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: device.mem,
+          hardwareConcurrency: device.hw,
+          mimeTypes: [],
+          oscpu: null,
+          platform: 'Linux armv8l',
+          plugins: [],
+          productSub: '20030107',
+          vendor: 'Google Inc.',
+          vendorSub: '',
+        };
+
+        accept = {
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
+        };
       }
 
       return {
-        accept: {
-          header:
-            os.id.charAt(0) === 'i'
-              ? 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-              : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-          encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: os.id.charAt(0) === 'i' ? 'br, gzip, deflate' : 'gzip, deflate, br',
-        },
+        accept,
         useragent: ua,
+        navigator,
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1],
+          deviceScaleFactor: device.deviceScaleFactor,
+        },
       };
     },
     // internet explorer
     ie: (os): BrowserProfile => {
+      let resolutions = DesktopResolutions.slice(0, 4);
+      let screenRes = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
+
+      let availHeight: number;
+
+      switch (os.id) {
+        case 'win1':
+          availHeight = screenRes[1] - 40;
+          break;
+        case 'win2':
+        case 'win3':
+          availHeight = screenRes[1] - 40;
+          break;
+        case 'win4':
+          availHeight = screenRes[1] - 30;
+          break;
+        default:
+          break;
+      }
+
       return {
         accept: {
           header: 'text/html, application/xhtml+xml, */*',
@@ -336,6 +642,26 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate',
         },
         useragent: `Mozilla/5.0 (${os.nav.oscpu.split(';')[0]}; WOW64; Trident/7.0; rv:11.0) like Gecko`,
+        navigator: {
+          appMinorVersion: '0',
+          appVersion: `5.0 (${os.nav.oscpu.split(';')[0]}; Trident/7.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko`,
+          buildID: null,
+          cpuClass: 'x64',
+          deviceMemory: null,
+          hardwareConcurrency: null,
+          mimeTypes: null,
+          oscpu: null,
+          platform: 'Win32',
+          plugins: null,
+          productSub: null,
+          vendor: '',
+          vendorSub: null,
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight,
+        },
       };
     },
     // safari
@@ -343,6 +669,7 @@ export class Generator {
       let version: string = BrowserVersions.sf.desktop;
 
       let ua = `Mozilla/5.0 (${os.uaPlatform}) AppleWebKit/602.3.12 (KHTML, like Gecko) Version/${version} Safari/602.3.12`;
+      let screenRes = MacResolutions[Math.floor(Math.random() * MacResolutions.length)].split('x').map(Number);
 
       return {
         accept: {
@@ -351,6 +678,42 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: 8,
+          mimeTypes: [
+            {
+              type: 'application/pdf',
+              suffixes: 'pdf',
+              description: 'Portable Document Format',
+            },
+            {
+              type: 'text/pdf',
+              suffixes: 'pdf',
+              description: 'Portable Document Format',
+            },
+            {
+              type: 'application/postscript',
+              suffixes: 'ps',
+              description: 'PostScript',
+            },
+          ],
+          oscpu: null,
+          platform: 'MacIntel',
+          plugins: [{ name: 'WebKit built-in PDF', filename: '', description: '', version: null }],
+          productSub: '20030107',
+          vendor: 'Apple Computer, Inc.',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
       };
     },
     // safari (mobile)
@@ -358,6 +721,7 @@ export class Generator {
       let version: string = BrowserVersions.sf.mobile;
 
       const device = devices.getDevice('mobile', os.id);
+      let screenRes: number[] = device.viewport.split('x').map(Number);
 
       let ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/${device.build} Safari/604.1`;
 
@@ -368,6 +732,27 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: null,
+          mimeTypes: [],
+          oscpu: null,
+          platform: 'iPhone',
+          plugins: [],
+          productSub: '20030107',
+          vendor: 'Apple Computer, Inc.',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1],
+          deviceScaleFactor: device.deviceScaleFactor,
+        },
       };
     },
     // safari (tablet)
@@ -375,6 +760,7 @@ export class Generator {
       let version: string = BrowserVersions.sf.mobile;
 
       const device = devices.getDevice('tablet', os.id);
+      let screenRes: number[] = device.viewport.split('x').map(Number);
 
       let ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/${device.build} Safari/604.1`;
 
@@ -385,6 +771,27 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         useragent: ua,
+        navigator: {
+          appMinorVersion: null,
+          appVersion: ua.split('Mozilla/')[1],
+          buildID: null,
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: null,
+          mimeTypes: [],
+          oscpu: null,
+          platform: 'iPad',
+          plugins: [],
+          productSub: '20030107',
+          vendor: 'Apple Computer, Inc.',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1],
+          deviceScaleFactor: device.deviceScaleFactor,
+        },
       };
     },
   };
@@ -399,6 +806,7 @@ export class Generator {
           oscpu: 'Windows NT 6.1; Win64; x64',
           platform: 'Win32',
         },
+        screenOffset: -40,
         browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
       },
       {
@@ -409,6 +817,7 @@ export class Generator {
           oscpu: 'Windows NT 6.2; Win64; x64',
           platform: 'Win32',
         },
+        screenOffset: -40,
         browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
       },
       {
@@ -419,6 +828,7 @@ export class Generator {
           oscpu: 'Windows NT 6.3; Win64; x64',
           platform: 'Win32',
         },
+        screenOffset: -40,
         browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
       },
       {
@@ -429,6 +839,7 @@ export class Generator {
           oscpu: 'Windows NT 10.0; Win64; x64',
           platform: 'Win32',
         },
+        screenOffset: -30,
         browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
       },
     ],
@@ -443,6 +854,7 @@ export class Generator {
           oscpu: 'Intel Mac OS X 10.13',
           platform: 'MacIntel',
         },
+        screenOffset: -23,
         uaPlatform: 'Macintosh; Intel Mac OS X 10_13_5',
       },
       {
@@ -454,6 +866,7 @@ export class Generator {
           oscpu: 'Intel Mac OS X 10.14',
           platform: 'MacIntel',
         },
+        screenOffset: -23,
         uaPlatform: 'Macintosh; Intel Mac OS X 10_14_4',
       },
       {
@@ -465,6 +878,7 @@ export class Generator {
           oscpu: 'Intel Mac OS X 10.15',
           platform: 'MacIntel',
         },
+        screenOffset: -23,
         uaPlatform: 'Macintosh; Intel Mac OS X 10_15_1',
       },
     ],
@@ -527,25 +941,25 @@ export class Generator {
       {
         id: 'and1',
         name: 'Android 6',
-        browsers: ['edgm', 'ff', 'gcrm', 'gcrt'],
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 6.0.1',
       },
       {
         id: 'and2',
         name: 'Android 7',
-        browsers: ['edgm', 'ff', 'gcrm', 'gcrt'],
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 7.1.2',
       },
       {
         id: 'and3',
         name: 'Android 8',
-        browsers: ['edgm', 'ff', 'gcrm', 'gcrt'],
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 8.1.0',
       },
       {
         id: 'and4',
         name: 'Android 9',
-        browsers: ['edgm', 'ff', 'gcrm', 'gcrt'],
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 9',
       },
     ],
