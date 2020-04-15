@@ -537,32 +537,47 @@
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
-                    id="disableWebRTC"
+                    id="blockMediaDevices"
                     @change="changeSetting($event)"
-                    :checked="settings.options.disableWebRTC"
-                    name="options.disableWebRTC"
+                    :checked="settings.options.blockMediaDevices"
+                    name="options.blockMediaDevices"
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.standard.disableWebRTC'] }}</span>
+                  <span class="ml-1">{{ localizations['popup.options.standard.blockMediaDevices'] }}</span>
                 </label>
               </div>
-              <div v-show="!settings.options.disableWebRTC" class="flex items-center pl-6 mb-2">
-                <label class="w-full">
-                  {{ localizations['popup.options.standard.webRTCPolicy'] }}
-                  <select
-                    id="webRTCPolicy"
-                    @change="changeSetting($event)"
-                    :value="settings.options.webRTCPolicy"
-                    name="options.webRTCPolicy"
-                    class="form-select mt-1 block w-full"
-                  >
-                    <option value="default">{{ localizations['text.default'] }}</option>
-                    <option value="default_public_and_private_interfaces">{{ localizations['popup.options.standard.webRTCPolicy.publicPrivate'] }}</option>
-                    <option value="default_public_interface_only">{{ localizations['popup.options.standard.webRTCPolicy.public'] }}</option>
-                    <option value="disable_non_proxied_udp">{{ localizations['popup.options.standard.webRTCPolicy.nonProxified'] }}</option>
-                  </select>
-                </label>
+              <div v-show="!settings.options.blockMediaDevices">
+                <div class="flex items-center mb-1">
+                  <label class="cursor-pointer">
+                    <input
+                      id="disableWebRTC"
+                      @change="changeSetting($event)"
+                      :checked="settings.options.disableWebRTC"
+                      name="options.disableWebRTC"
+                      type="checkbox"
+                      class="text-primary form-checkbox"
+                    />
+                    <span class="ml-1">{{ localizations['popup.options.standard.disableWebRTC'] }}</span>
+                  </label>
+                </div>
+                <div v-show="!settings.options.disableWebRTC" class="flex items-center pl-6 mb-2">
+                  <label class="w-full">
+                    {{ localizations['popup.options.standard.webRTCPolicy'] }}
+                    <select
+                      id="webRTCPolicy"
+                      @change="changeSetting($event)"
+                      :value="settings.options.webRTCPolicy"
+                      name="options.webRTCPolicy"
+                      class="form-select mt-1 block w-full"
+                    >
+                      <option value="default">{{ localizations['text.default'] }}</option>
+                      <option value="default_public_and_private_interfaces">{{ localizations['popup.options.standard.webRTCPolicy.publicPrivate'] }}</option>
+                      <option value="default_public_interface_only">{{ localizations['popup.options.standard.webRTCPolicy.public'] }}</option>
+                      <option value="disable_non_proxied_udp">{{ localizations['popup.options.standard.webRTCPolicy.nonProxified'] }}</option>
+                    </select>
+                  </label>
+                </div>
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">

@@ -4,6 +4,7 @@ import clientRects from './spoof/clientRects';
 import history from './spoof/history';
 import kbFingerprint from './spoof/kbFingerprint';
 import language from './spoof/language';
+import media from './spoof/media';
 import referer from './spoof/referer';
 import screen from './spoof/screen';
 import timezone from './spoof/timezone';
@@ -43,6 +44,8 @@ class Injector {
         }
       }
 
+      if (settings.options.blockMediaDevices) this.updateInjectionData(media);
+      
       if (settings.options.limitHistory) this.updateInjectionData(history);
 
       if (settings.options.protectKBFingerprint.enabled) {

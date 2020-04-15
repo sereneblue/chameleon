@@ -732,6 +732,7 @@ export class Chameleon {
       'popup.options.injection.screen',
       'popup.options.injection.spoofFontFingerprint',
       'popup.options.standard',
+      'popup.options.standard.blockMediaDevices',
       'popup.options.standard.disableWebRTC',
       'popup.options.standard.firstPartyIsolation',
       'popup.options.standard.resistFingerprinting',
@@ -1375,6 +1376,7 @@ export class Chameleon {
       };
     } else {
       let options = [
+        ['options.blockMediaDevices', impSettings.options.blockMediaDevices, 'boolean'],
         ['options.disableWebRTC', impSettings.options.disableWebRTC, 'boolean'],
         ['options.firstPartyIsolate', impSettings.options.firstPartyIsolate, 'boolean'],
         ['options.limitHistory', impSettings.options.limitHistory, 'boolean'],

@@ -701,6 +701,9 @@
   "popup.options.standard": {
     "message": "标准"
   },
+  "popup.options.standard.blockMediaDevices": {
+    "message": "Block media devices"
+  },
   "popup.options.standard.disableWebRTC": {
     "message": "禁用WebRTC"
   },
