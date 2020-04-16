@@ -303,7 +303,7 @@ export class Generator {
         screen: {
           width: screenRes[0],
           height: screenRes[1],
-          availHeight: screenRes[1] + os.screenOffset,
+          availHeight: screenRes[1] + (os.id === 'lin2' ? 0 : os.screenOffset), // firefox on fedora enables some privacy options
         },
       };
     },
@@ -342,7 +342,8 @@ export class Generator {
         screen: {
           width: screenRes[0],
           height: screenRes[1],
-          availHeight: screenRes[1] + os.screenOffset,
+          availHeight: screenRes[1],
+          deviceScaleFactor: device.deviceScaleFactor,
         },
       };
     },
@@ -380,7 +381,8 @@ export class Generator {
         screen: {
           width: screenRes[0],
           height: screenRes[1],
-          availHeight: screenRes[1] + os.screenOffset,
+          availHeight: screenRes[1],
+          deviceScaleFactor: device.deviceScaleFactor,
         },
       };
     },
@@ -892,6 +894,7 @@ export class Generator {
           oscpu: 'Linux x86_64',
           platform: 'Linux x86_64',
         },
+        screenOffset: -45, // kde + maia panel
         uaPlatform: 'X11; Linux x86_64',
       },
       {
@@ -903,6 +906,7 @@ export class Generator {
           oscpu: 'Linux x86_64',
           platform: 'Linux x86_64',
         },
+        screenOffset: -27, // gnome
         uaPlatform: 'X11; Fedora; Linux x86_64',
       },
       {
@@ -914,6 +918,7 @@ export class Generator {
           oscpu: 'Linux x86_64',
           platform: 'Linux x86_64',
         },
+        screenOffset: -27, // gnome
         uaPlatform: 'X11; Ubuntu; Linux x86_64',
       },
     ],
