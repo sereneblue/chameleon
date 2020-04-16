@@ -122,6 +122,13 @@
         </p>
       </div>
       <div class="mt-4">
+        <h3 class="font-bold">Block media devices</h3>
+        <p>
+          Prevents media devices from being enumerated. If this option is enabled, websites will not be able to 
+          detect if you have a webcam or microphone.
+        </p>
+      </div>
+      <div class="mt-4">
         <h3 class="font-bold">WebRTC Policy</h3>
         <div class="font-semibold my-2 text-sm text-red-600">This option will break some sites!</div>
         <p>You can disable WebRTC completely, or you can change the WebRTC policy to prevent WebRTC from leaking your IP address.</p>
