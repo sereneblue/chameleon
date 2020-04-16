@@ -1,3 +1,31 @@
+<a name="v0.20.0-alpha3"></a>
+
+## [v0.20.0-alpha3](https://github.com/sereneblue/chameleon/compare/v0.20.0-alpha2...v0.20.0-alpha3) (2020-04-15)
+
+### Bug Fixes
+
+- initial settings load
+- disable polymer for Youtube
+- load browser config settings on extension load
+- **import:** add missing interval options for validation
+- **localiation:** update string
+- **localization:** update localization keys in ui
+- **localization:** replace text values on popup with localized version
+
+### Features
+
+- add navigator spoofing
+- add option to block media devices
+- **injection:** add screen size spoofing
+- **localization:** add german localization
+- **localization:** add localization support to popup
+- **localization:** add chinese localization
+- **localization:** add english locale and update notifications to use localization
+- **localization:** add localization support to options page
+- **profiles:** add edge profile for desktop and android
+- **screen spoofing:** add resolutions
+- **settings:** import legacy settings
+
 <a name="v0.20.0-alpha2"></a>
 
 ## [v0.20.0-alpha2](https://github.com/sereneblue/chameleon/compare/v0.20.0-alpha1...v0.20.0-alpha2) (2020-03-01)
