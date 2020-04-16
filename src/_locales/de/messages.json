@@ -683,9 +683,6 @@
   "popup.options.injection.clientRects": {
     "message": "Spoof Client Rects"
   },
-  "popup.options.injection.fontFingerprint": {
-    "message": "Fingerabdruck der Schriftarten verschleiern"
-  },
   "popup.options.injection.protectKBFingerprint": {
     "message": "Tracking über Tastatureingaben verhindern"
   },

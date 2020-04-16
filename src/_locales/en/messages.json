@@ -678,13 +678,10 @@
     "message": "Protect window name"
   },
   "popup.options.injection.audioContext": {
-    "message": "Spoof Audio Context"
+    "message": "Spoof audio context"
   },
   "popup.options.injection.clientRects": {
-    "message": "Spoof Client Rects"
-  },
-  "popup.options.injection.fontFingerprint": {
-    "message": "Spoof font fingerprint"
+    "message": "Spoof client rects"
   },
   "popup.options.injection.protectKBFingerprint": {
     "message": "Protect keyboard fingerprint"

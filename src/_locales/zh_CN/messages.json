@@ -683,9 +683,6 @@
   "popup.options.injection.clientRects": {
     "message": "欺骗客户端矩形"
   },
-  "popup.options.injection.fontFingerprint": {
-    "message": "欺骗字体指纹"
-  },
   "popup.options.injection.protectKBFingerprint": {
     "message": "保护键盘指纹"
   },
