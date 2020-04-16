@@ -1,11 +1,13 @@
 export default {
   type: 'custom',
   data: `
-  Object.defineProperty(navigator.mediaDevices, 'enumerateDevices', {
-    configurable: true,
-    value: async () => {
-      return [];
-    }
-  });
+  if (navigator.mediaDevices) {
+    Object.defineProperty(navigator.mediaDevices, 'enumerateDevices', {
+      configurable: true,
+      value: async () => {
+        return [];
+      }
+    });
+  }
   `,
 };
