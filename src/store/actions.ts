@@ -24,6 +24,7 @@ export const changeSetting = ({ commit }, payload: any) => {
     [
       'headers.spoofAcceptLang.enabled',
       'headers.spoofAcceptLang.value',
+      'options.blockMediaDevices',
       'options.limitHistory',
       'options.protectWinName',
       'options.spoofAudioContext',
