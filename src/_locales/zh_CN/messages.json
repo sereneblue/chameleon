@@ -459,7 +459,7 @@
     "message": "白名单规则编辑器"
   },
   "options.whitelist.headerIPLabel": {
-    "message": "头信息IP(Via和X-Forwarded For)"
+    "message": "头部IP(Via & X-Forwarded-For)"
   },
   "options.whitelist.options.name": {
     "message": "启用保护窗口名称"
@@ -699,7 +699,7 @@
     "message": "标准"
   },
   "popup.options.standard.blockMediaDevices": {
-    "message": "Block media devices"
+    "message": "阻止媒体设备"
   },
   "popup.options.standard.disableWebRTC": {
     "message": "禁用WebRTC"
