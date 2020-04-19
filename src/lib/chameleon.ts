@@ -298,6 +298,10 @@ export class Chameleon {
       }
 
       if (importing) {
+        // can be a string...sometimes??
+        prev.headers.refererXorigin = Number(prev.headers.refererXorigin) || 0;
+        prev.headers.refererTrimming = Number(prev.headers.refererTrimming) || 0;
+
         let options = [
           ['headers.blockEtag', prev.headers.blockEtag, 'boolean'],
           ['headers.enableDNT', prev.headers.enableDNT, 'boolean'],
@@ -435,7 +439,10 @@ export class Chameleon {
 
         wlRule.spoofIP = prev.whitelist.urlList[i].spoofIP;
         wlRule.profile = prev.whitelist.urlList[i].profile === 'default' ? 'default' : mappedProfiles[prev.whitelist.urlList[i].profile];
-        wlRule.lang = languages.find(l => l.value === prev.whitelist.urlList[i].lang).code;
+        
+        let tempLang = languages.find(l => l.value === prev.whitelist.urlList[i].lang);
+        wlRule.lang = tempLang ? tempLang.code : 'en-US';
+
         wlRule.options = {
           name: prev.whitelist.urlList[i].options.winName === true,
           ref: prev.whitelist.urlList[i].options.ref === true,
