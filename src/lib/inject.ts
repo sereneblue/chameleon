@@ -77,7 +77,12 @@ class Injector {
         }
       }
 
-      if (settings.options.protectWinName) this.updateInjectionData(winName);
+      if (settings.options.protectWinName) {
+        // check if google domain
+        if (!/\.google\.com$/.test(window.top.location.host)) {
+          this.updateInjectionData(winName);
+        }
+      }
 
       if (settings.options.spoofAudioContext) {
         this.spoof.metadata['audioContextSeed'] = seed;
