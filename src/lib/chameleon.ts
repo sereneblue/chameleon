@@ -733,7 +733,6 @@ export class Chameleon {
       'popup.options.injection.protectWinName',
       'popup.options.injection.audioContext',
       'popup.options.injection.clientRects',
-      'popup.options.injection.fontFingerprint',
       'popup.options.injection.protectKBFingerprint',
       'popup.options.injection.protectKBFingerprintDelay',
       'popup.options.injection.screen',
