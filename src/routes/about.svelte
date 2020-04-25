@@ -24,16 +24,16 @@
 							that may include some of the following items below: 
 						</p>
 						<ol class="mt-4">
-							<li class="mb-4 border-primary border-l-4 pl-2">
-								<span class="font-semibold">IP (Internet Protocol) Address</span>
+							<li class="mb-4">
+								<span class="font-semibold text-primary">IP (Internet Protocol) Address</span>
 								<div class="mt-1">
 									An IP address is a string of numbers that are like a street address for the Internet. For example, 
 									<strong>74.125.65.91</strong> is an IP address that belongs to Google. A website can use these numbers to
 									get a rough estimate of your geographic location. 
 								</div>
 							</li>
-							<li class="mb-4 border-primary border-l-4 pl-2">
-								<span class="font-semibold">User Agent</span>
+							<li class="mb-4">
+								<span class="font-semibold text-primary">User Agent</span>
 								<div class="mt-1">
 									A user agent is a string of text that lets a website know what device is making a request. For example, 
 									<strong>Mozilla/5.0 (Linux; Android 8.1.0; SM-T580) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36</strong>
@@ -41,15 +41,15 @@
 									tablet running Chrome 74 on Android 8.1. A website can use this to redirect you to a mobile version of their site.
 								</div>
 							</li>
-							<li class="mb-4 border-primary border-l-4 pl-2">
-								<span class="font-semibold">Fonts</span>
+							<li class="mb-4">
+								<span class="font-semibold text-primary">Fonts</span>
 								<div class="mt-1">
 									Windows, macOS, Android, etc are bundled with different fonts. A website can check to see which fonts are installed on your computer.
 									This information can contribute to a fingerprint that may be used to identify devices and people in a shared location.
 								</div>
 							</li>
-							<li class="mb-4 border-primary border-l-4 pl-2">
-								<span class="font-semibold">Screen Resolution</span>
+							<li class="mb-4">
+								<span class="font-semibold text-primary">Screen Resolution</span>
 								<div class="mt-1">
 									Your device/monitor screen data leaks the screen resolution that you're using and if you're using multiple monitors. This information
 									can contribute to a fingerprint that may be used to identify devices and people in a shared location.
