@@ -77,8 +77,8 @@
           </p>
           <br>
           <p>
-            You shouled try to be as specific as you can with the domain pattern. For example, instead of using "google.com", you may
-            only be interested in using a specific profile for Google Docs (docs.google.com). 
+            You should try to be as specific as you can with the domain pattern. For example, instead of using "google.com", you may
+            only want to use a specific profile for Google Docs (docs.google.com). 
           </p>
         </div>
       </div>
