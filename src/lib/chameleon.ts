@@ -1392,6 +1392,7 @@ export class Chameleon {
         ['options.resistFingerprinting', impSettings.options.resistFingerprinting, 'boolean'],
         ['options.spoofAudioContext', impSettings.options.spoofAudioContext, 'boolean'],
         ['options.spoofClientRects', impSettings.options.spoofClientRects, 'boolean'],
+        ['options.spoofFontFingerprint', impSettings.options.spoofFontFingerprint, 'boolean'],
         [
           'options.screenSize',
           impSettings.options.screenSize,
