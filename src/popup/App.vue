@@ -402,6 +402,19 @@
               <div class="flex items-center mt-2 mb-1">
                 <label class="cursor-pointer">
                   <input
+                    id="blockMediaDevices"
+                    @change="changeSetting($event)"
+                    :checked="settings.options.blockMediaDevices"
+                    name="options.blockMediaDevices"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
+                  <span class="ml-1">{{ localizations['popup.options.standard.blockMediaDevices'] }}</span>
+                </label>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input
                     id="limitHistory"
                     @change="changeSetting($event)"
                     :checked="settings.options.limitHistory"
@@ -411,6 +424,32 @@
                   />
                   <span class="ml-1">{{ localizations['popup.options.injection.limitTabHistory'] }}</span>
                 </label>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input
+                    id="protectKBFingerprint"
+                    @change="changeSetting($event)"
+                    :checked="settings.options.protectKBFingerprint.enabled"
+                    name="options.protectKBFingerprint.enabled"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
+                  <span class="ml-1">{{ localizations['popup.options.injection.protectKBFingerprint'] }}</span>
+                </label>
+              </div>
+              <div v-show="settings.options.protectKBFingerprint.enabled" class="flex items-center mb-1 pl-6">
+                <input
+                  id="protectKBFingerprintDelay"
+                  @input="changeSetting($event)"
+                  name="options.protectKBFingerprint.delay"
+                  :value="settings.options.protectKBFingerprint.delay"
+                  type="number"
+                  min="1"
+                  max="1000"
+                  class="block w-2/5 form-input"
+                  :placeholder="localizations['popup.options.injection.protectKBFingerprintDelay']"
+                />
               </div>
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
@@ -454,28 +493,15 @@
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
-                    id="protectKBFingerprint"
+                    id="spoofFontFingerprint"
                     @change="changeSetting($event)"
-                    :checked="settings.options.protectKBFingerprint.enabled"
-                    name="options.protectKBFingerprint.enabled"
+                    :checked="settings.options.spoofFontFingerprint"
+                    name="options.spoofFontFingerprint"
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.injection.protectKBFingerprint'] }}</span>
+                  <span class="ml-1">{{ localizations['popup.options.injection.spoofFontFingerprint'] }}</span>
                 </label>
-              </div>
-              <div v-show="settings.options.protectKBFingerprint.enabled" class="flex items-center mb-1 pl-6">
-                <input
-                  id="protectKBFingerprintDelay"
-                  @input="changeSetting($event)"
-                  name="options.protectKBFingerprint.delay"
-                  :value="settings.options.protectKBFingerprint.delay"
-                  type="number"
-                  min="1"
-                  max="1000"
-                  class="block w-2/5 form-input"
-                  :placeholder="localizations['popup.options.injection.protectKBFingerprintDelay']"
-                />
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
@@ -532,19 +558,6 @@
                     class="text-primary form-checkbox"
                   />
                   <span class="ml-1">{{ localizations['popup.options.standard.resistFingerprinting'] }}</span>
-                </label>
-              </div>
-              <div class="flex items-center mb-1">
-                <label class="cursor-pointer">
-                  <input
-                    id="blockMediaDevices"
-                    @change="changeSetting($event)"
-                    :checked="settings.options.blockMediaDevices"
-                    name="options.blockMediaDevices"
-                    type="checkbox"
-                    class="text-primary form-checkbox"
-                  />
-                  <span class="ml-1">{{ localizations['popup.options.standard.blockMediaDevices'] }}</span>
                 </label>
               </div>
               <div v-show="!settings.options.blockMediaDevices">

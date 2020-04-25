@@ -1,6 +1,7 @@
 import * as lang from '../lib/language';
 import audioContext from './spoof/audioContext';
 import clientRects from './spoof/clientRects';
+import font from './spoof/font';
 import history from './spoof/history';
 import kbFingerprint from './spoof/kbFingerprint';
 import language from './spoof/language';
@@ -92,6 +93,13 @@ class Injector {
       if (settings.options.spoofClientRects) {
         this.spoof.metadata['clientRectsSeed'] = seed;
         this.updateInjectionData(clientRects);
+      }
+
+      if (settings.options.spoofFontFingerprint) {
+        if (p) {
+          this.spoof.metadata['fontFingerprintOS'] = p.osId;
+          this.updateInjectionData(font);
+        }
       }
 
       if (settings.options.screenSize != 'default') {

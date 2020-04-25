@@ -28,6 +28,7 @@ export interface BrowserProfile {
     deviceScaleFactor?: number;
   };
   useragent?: string;
+  osId: string;
 }
 
 export interface ProfileListItem {
@@ -97,6 +98,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -155,6 +157,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -220,6 +223,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion,
@@ -285,6 +289,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion,
@@ -324,6 +329,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion: `5.0 (${os.uaPlatform})`,
@@ -363,6 +369,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion: `5.0 (${os.uaPlatform})`,
@@ -424,6 +431,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -534,6 +542,7 @@ export class Generator {
       return {
         accept,
         useragent: ua,
+        osId: os.id,
         navigator,
         screen: {
           width: screenRes[0],
@@ -606,6 +615,7 @@ export class Generator {
       return {
         accept,
         useragent: ua,
+        osId: os.id,
         navigator,
         screen: {
           width: screenRes[0],
@@ -644,6 +654,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate',
         },
         useragent: `Mozilla/5.0 (${os.nav.oscpu.split(';')[0]}; WOW64; Trident/7.0; rv:11.0) like Gecko`,
+        osId: os.id,
         navigator: {
           appMinorVersion: '0',
           appVersion: `5.0 (${os.nav.oscpu.split(';')[0]}; Trident/7.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko`,
@@ -680,6 +691,7 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -734,6 +746,7 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -773,6 +786,7 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         useragent: ua,
+        osId: os.id,
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
