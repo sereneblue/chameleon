@@ -12,16 +12,30 @@
       <div class="mt-4">
         Random Agent Spoofer has a feature that allows you to toggle about:config options. Unforunately,
         that is no longer possible with WebExtensions. For your convenience, Chameleon contains a 
-        checklist of some preferences that you may want to change.<strong>Please read the options carefully
+        checklist of some preferences that you may want to change. <strong>Please read the options carefully
         before changing anything.</strong> A short summary of each preference can be also found in the checklist. 
       </div>
     </div>
     <div class="mt-2">
-      <h2 class="font-semibold text-3xl border-primary border-b-2 mb-4">Injection</h2>
+      <h2 class="font-semibold text-3xl border-primary border-b-2 my-4">Injection</h2>
+      <div class="mt-4">
+        <h3 class="font-bold">Block media devices</h3>
+        <p>
+          Prevents media devices from being enumerated. If this option is enabled, websites will not be able to 
+          detect if you have a webcam or microphone.
+        </p>
+      </div>
       <div class="mt-4">
         <h3 class="font-bold">Limit tab history</h3>
         <p>
           Spoof tab history number in the window History API.
+        </p>
+      </div>
+      <div class="mt-4">
+        <h3 class="font-bold">Protect keyboard fingerprint</h3>
+        <p>
+          The way you type can be used to fingerprint you. This option adds a small delay between each keystroke you make 
+          to mask your keyboard fingerprint.
         </p>
       </div>
       <div class="mt-4">
@@ -39,7 +53,7 @@
         </p>
       </div>
       <div class="mt-4">
-        <h3 class="font-bold">Spoof Client Rects</h3>
+        <h3 class="font-bold">Spoof client rects</h3>
         <div class="font-semibold my-2 text-sm text-red-600">
           If you're using CanvasBlocker, please make sure that the dom rects option is disabled.
           It can cause issues with some websites.
@@ -50,10 +64,10 @@
         </p>
       </div>
       <div class="mt-4">
-        <h3 class="font-bold">Protect keyboard fingerprint</h3>
+        <h3 class="font-bold">Spoof font fingerprint</h3>
         <p>
-          The way you type can be used to fingerprint you. This option adds a small delay between each keystroke you make 
-          to mask your keyboard fingerprint.
+          Can be used to track you across browsers on the same device. Enabling this options spoofs your font fingerprint when you use a browser profile.
+          More info can be found <a href="https://browserleaks.com/fonts/" target="_blank" rel="noopener noreferrer">here</a>.
         </p>
       </div>
       <div class="mt-4">
@@ -87,7 +101,7 @@
         <p>
           <strong> This option is not perfect. If you really need to consistently spoof
           your timezone use a virtual machine or change your machine's time settings</strong> You should use this option
-          if you're using proxies with an IP in a different timezone.
+          if you're using a proxy with an IP in a different timezone.
         </p>
         <p class="my-2">
           If <strong>IP</strong> is selected, Chameleon will make a request to <a href="https://ipapi.co" target="_blank" rel="noopener noreferrer">https://ipapi.co</a> to get the correct timezone based on
@@ -102,7 +116,7 @@
       </div>
     </div>
     <div class="mt-2">
-      <h2 class="font-semibold text-3xl border-primary border-b-2 mb-4">Standard Options</h2>
+      <h2 class="font-semibold text-3xl border-primary border-b-2 my-4">Standard Options</h2>
       <div class="mt-4">
         <h3 class="font-bold">Enable first party isolation</h3>
         <div class="font-semibold my-2 text-sm text-red-600">This option will break some sites!</div>
@@ -119,13 +133,6 @@
           Resist fingerprinting makes the browser report generic information. It will disable some features
           that can be used to uniquely identify you (WebSpeech, Navigator, local time, etc).
           More info can be found <a href="https://wiki.mozilla.org/Security/Fingerprinting" target="_blank" rel="noopener noreferrer">here</a>.
-        </p>
-      </div>
-      <div class="mt-4">
-        <h3 class="font-bold">Block media devices</h3>
-        <p>
-          Prevents media devices from being enumerated. If this option is enabled, websites will not be able to 
-          detect if you have a webcam or microphone.
         </p>
       </div>
       <div class="mt-4">
@@ -194,7 +201,7 @@
       </div>
     </div>
     <div class="mt-2">
-      <h2 class="font-semibold text-3xl border-primary border-b-2 mb-4">Cookie Options</h2>
+      <h2 class="font-semibold text-3xl border-primary border-b-2 my-4">Cookie Options</h2>
       <div class="mt-4">
         <h3 class="font-bold mb-2">Cookie Policy</h3>
         <table>
