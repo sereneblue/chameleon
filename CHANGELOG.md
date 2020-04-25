@@ -1,3 +1,19 @@
+<a name="v0.20.0-beta"></a>
+
+## [v0.20.0-beta](https://github.com/sereneblue/chameleon/compare/v0.20.0-alpha3...v0.20.0-beta) (2020-04-25)
+
+### Bug Fixes
+
+- **injection:** whitelist google domains for window.name; fixes [#308](https://github.com/sereneblue/chameleon/issues/308)
+- **injection:** check if mediaDevices exists before overwriting
+- **injection:** reload injection script if block media devices option is changed
+- **profiles:** update edge user agent
+- **settings:** add default value for legacy settings import
+
+### Features
+
+- **injection:** add spoof font fingerprint; close [#55](https://github.com/sereneblue/chameleon/issues/55), close [#71](https://github.com/sereneblue/chameleon/issues/71)
+
 <a name="v0.20.0-alpha3"></a>
 
 ## [v0.20.0-alpha3](https://github.com/sereneblue/chameleon/compare/v0.20.0-alpha2...v0.20.0-alpha3) (2020-04-15)
