@@ -37,10 +37,10 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '80.0.361.109', desktopChrome: '81.0.4044.92', android: '45.2.2.4930', androidChrome: '81.0.4044.96' },
+  edg: { desktop: '81.0.416.62', desktopChrome: '81.0.4044.113', android: '45.2.2.4930', androidChrome: '81.0.4044.117' },
   esr: { desktop: '68' },
   ff: { desktop: '75', mobile: '76' },
-  gcr: { desktop: '81.0.4044.92', ios: '81.0.4044.62', android: '81.0.4044.96' },
+  gcr: { desktop: '81.0.4044.122', ios: '81.0.4044.124', android: '81.0.4044.117' },
   sf: { desktop: '13.0.4', mobile: '13.0.4' },
 };
 
@@ -89,7 +89,7 @@ export class Generator {
       let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
       let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
-      let ua: string = `Mozilla/5.0 (${os.nav.oscpu.split(';')[0]}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.desktopChrome} Safari/537.36 Edg/${versions.desktop}`;
+      let ua: string = `Mozilla/5.0 (${os.nav.oscpu}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.desktopChrome} Safari/537.36 Edg/${versions.desktop}`;
 
       return {
         accept: {
