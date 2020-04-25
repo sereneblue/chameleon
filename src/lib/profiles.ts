@@ -88,7 +88,7 @@ export class Generator {
       let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
       let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
-      let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.chromeVersion} Safari/537.36 Edg/${versions.desktop}`;
+      let ua: string = `Mozilla/5.0 (${os.nav.oscpu.split(';')[0]}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.desktopChrome} Safari/537.36 Edg/${versions.desktop}`;
 
       return {
         accept: {
