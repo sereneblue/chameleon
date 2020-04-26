@@ -72,6 +72,13 @@ describe('Test browser headers', () => {
     await driver.findElement(By.id('headersTab')).click();
   });
 
+  test('should enable do not track [inactive]', async () => {
+    await getWithWait(MAIN_URL + '/headers');
+    let headers = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
+
+    expect(headers['dnt']).toBeFalsy();
+  });
+
   test('should enable do not track', async () => {
     await driver.findElement(By.id('enableDNT')).click();
     await defaultExtWait();
@@ -80,17 +87,6 @@ describe('Test browser headers', () => {
     let headers = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
 
     expect(headers['dnt']).toBe('1');
-  });
-
-  test('should enable do not track [disabled]', async () => {
-    await driver.findElement(By.id('homeTab')).click();
-    await driver.findElement(By.id('chameleonEnabled')).click();
-    await defaultExtWait();
-
-    await getWithWait(MAIN_URL + '/headers');
-    let headers = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
-
-    expect(headers['dnt']).toBeFalsy();
   });
 
   test('should prevent etag tracking', async () => {
@@ -130,8 +126,7 @@ describe('Test browser headers', () => {
   });
 
   test('should prevent etag tracking [disabled]', async () => {
-    await driver.findElement(By.id('homeTab')).click();
-    await driver.findElement(By.id('chameleonEnabled')).click();
+    await driver.findElement(By.id('blockEtag')).click();
     await defaultExtWait();
 
     await getWithWait(MAIN_URL);
@@ -176,25 +171,12 @@ describe('Test browser headers', () => {
 
         await getWithWait(MAIN_URL + '/headers');
         let headers = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
+        let navLang = await driver.executeScript('return navigator.language;');
+        let navLanguages = await driver.executeScript('return navigator.languages;');
 
         expect(headers['accept-language']).toBe(lang[i].value.toLowerCase());
-
-        // TODO: need to check navigator langauges
-      });
-
-      test(`should spoof accept-language [${lang[i].name}] [disabled]`, async () => {
-        await driver.findElement(By.id('homeTab')).click();
-        await driver.findElement(By.id('chameleonEnabled')).click();
-        await defaultExtWait();
-
-        await getWithWait(MAIN_URL + '/headers');
-        let headers = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
-
-        if (lang[i].code != 'en-US') {
-          expect(headers['accept-language']).not.toBe(lang[i].value.toLowerCase());
-
-          // TODO: need to check navigator langauges
-        }
+        expect(navLang).toBe(lang[i].code);
+        expect(navLanguages).toEqual(lang[i].nav);
       });
     }
   })();
@@ -268,7 +250,8 @@ describe('Test browser headers', () => {
     headers = await driver.executeScript('return JSON.parse(document.querySelector("pre").innerText.toLowerCase())');
     expect(headers.referer).toBeFalsy();
 
-    // TODO: Look into document.referer
+    let docReferer = await driver.executeScript('return document.referer;');
+    expect(docReferer).toBeFalsy();
   });
 
   test('should disable referer [disabled]', async () => {
