@@ -439,7 +439,7 @@ export class Chameleon {
 
         wlRule.spoofIP = prev.whitelist.urlList[i].spoofIP;
         wlRule.profile = prev.whitelist.urlList[i].profile === 'default' ? 'default' : mappedProfiles[prev.whitelist.urlList[i].profile];
-        
+
         let tempLang = languages.find(l => l.value === prev.whitelist.urlList[i].lang);
         wlRule.lang = tempLang ? tempLang.code : 'en-US';
 

@@ -282,12 +282,27 @@ class Injector {
           contentWindow: {
             get: function() {
               let f = iframeWindow.apply(this);
-              if (f) {
-                f.Date = window.Date;
-                f.Intl.DateTimeFormat = window.Intl.DateTimeFormat;
-                f.screen = window.screen;
-                f.navigator = window.navigator;
-              }
+
+              try {
+                if (f) {
+                  Object.defineProperty(f, 'Date', {
+                    value: window.Date
+                  });
+  
+                  Object.defineProperty(f.Intl, 'DateTimeFormat', {
+                    value: window.Intl.DateTimeFormat
+                  });
+  
+                  Object.defineProperty(f, 'screen', {
+                    value: window.screen
+                  });
+  
+                  Object.defineProperty(f, 'navigator', {
+                    value: window.navigator
+                  });
+                }
+              } catch (e) {}
+              
               return f;
             }
           },
@@ -304,10 +319,23 @@ class Injector {
             get: function() {
               let f = frameWindow.apply(this);
               if (f) {
-                f.Date = window.Date;
-                f.Intl.DateTimeFormat = window.Intl.DateTimeFormat;
-                f.screen = window.screen;
-                f.navigator = window.navigator;
+                try {
+                  Object.defineProperty(f, 'Date', {
+                    value: window.Date
+                  });
+  
+                  Object.defineProperty(f.Intl, 'DateTimeFormat', {
+                    value: window.Intl.DateTimeFormat
+                  });
+  
+                  Object.defineProperty(f, 'screen', {
+                    value: window.screen
+                  });
+  
+                  Object.defineProperty(f, 'navigator', {
+                    value: window.navigator
+                  });
+                } catch (e) {}
               }
               return f;
             }
