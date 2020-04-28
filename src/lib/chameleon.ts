@@ -914,7 +914,10 @@ export class Chameleon {
         */
 
         if (this.intervalTimeout) clearTimeout(this.intervalTimeout);
-        this.intervalTimeout = setTimeout(this.setTimer, interval);
+        let _this = this;
+        this.intervalTimeout = setTimeout(function() {
+          _this.setTimer();
+        }, interval);
       } else {
         alarmInfo['periodInMinutes'] = option;
       }
