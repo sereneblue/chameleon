@@ -289,12 +289,6 @@ export const Checklist: ChecklistItem[] = [
     causeBreak: false,
   },
   {
-    id: 'disableUserMediaEnum',
-    preference: 'media.navigator.enabled',
-    value: 'false',
-    causeBreak: true,
-  },
-  {
     id: 'sessionPrivacyLevel',
     preference: 'browser.sessionstore.privacy_level',
     value: '2',

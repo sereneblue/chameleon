@@ -614,8 +614,6 @@ export class Chameleon {
       'options.checklistItem.disableTelemetryReportDesc',
       'options.checklistItem.disableTelemetryReport2',
       'options.checklistItem.disableTelemetryReport2Desc',
-      'options.checklistItem.disableUserMediaEnum',
-      'options.checklistItem.disableUserMediaEnumDesc',
       'options.checklistItem.sessionPrivacyLevel',
       'options.checklistItem.sessionPrivacyLevelDesc',
       'options.import.couldNotImport',
@@ -799,6 +797,20 @@ export class Chameleon {
         message: `${this.localization['notifications.profileChange']} ` + this.getProfileInUse(),
       });
     }
+  }
+
+  /*
+    Allows Chameleon to listen to native apps; useful for remotely controlling Chameleon
+
+    Enabled only in developer builds
+  */
+  public setupExternalListeners(): void {
+    // if (browser.runtime.getManifest().version_name.includes('-')) {
+    //   let port: any = browser.runtime.connectNative("com.chameleonProxy.app");
+    //   port.onMessage.addListener((message: any) => {
+    //     console.log(message);
+    //   });
+    // }
   }
 
   public setupHeaderListeners(): void {
