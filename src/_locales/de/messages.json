@@ -326,12 +326,6 @@
   "options.checklistItem.disableTelemetryReport2Desc": {
     "message": "Verhindern, dass Telemetrie wieder von selbst aktiviert wird (toolkit.telemetry.enabled wird überschrieben)"
   },
-  "options.checklistItem.disableUserMediaEnum": {
-    "message": "userMediaEnumeration deaktivieren"
-  },
-  "options.checklistItem.disableUserMediaEnumDesc": {
-    "message": "Verhindert das Auslesen der verfügbaren Mediengeräte (Kamera, Mikrofon, etc.) durch Webseiten"
-  },
   "options.checklistItem.sessionPrivacyLevel": {
     "message": "Datenschutz-Level für Sitzung festlegen"
   },
@@ -504,10 +498,10 @@
     "message": "IP-Info abrufen"
   },
   "popup.home.disabled": {
-    "message": "Chamäleon ist deaktiviert"
+    "message": "Chameleon ist deaktiviert"
   },
   "popup.home.enabled": {
-    "message": "Chamäleon ist aktiviert"
+    "message": "Chameleon ist aktiviert"
   },
   "popup.home.fpPanel.audioContext": {
     "message": "Audio-Kontext"

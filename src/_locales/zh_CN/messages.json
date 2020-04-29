@@ -326,12 +326,6 @@
   "options.checklistItem.disableTelemetryReport2Desc": {
     "message": "禁用遥测被启用(覆盖toolkit.telemetry.enabled)"
   },
-  "options.checklistItem.disableUserMediaEnum": {
-    "message": "禁用用户媒体枚举"
-  },
-  "options.checklistItem.disableUserMediaEnumDesc": {
-    "message": "阻止网站列出可用的媒体设备(摄像头、麦克风等)"
-  },
   "options.checklistItem.sessionPrivacyLevel": {
     "message": "设置会话隐私级别"
   },

@@ -326,12 +326,6 @@
   "options.checklistItem.disableTelemetryReport2Desc": {
     "message": "Disable telemetry from being enabled (overrides toolkit.telemetry.enabled)"
   },
-  "options.checklistItem.disableUserMediaEnum": {
-    "message": "Disable user media enumeration"
-  },
-  "options.checklistItem.disableUserMediaEnumDesc": {
-    "message": "Prevents websites from listing available media devices (camera, microphone, etc)"
-  },
   "options.checklistItem.sessionPrivacyLevel": {
     "message": "Set session privacy level"
   },
