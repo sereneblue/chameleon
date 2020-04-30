@@ -800,17 +800,18 @@ export class Chameleon {
   }
 
   /*
-    Allows Chameleon to listen to native apps; useful for remotely controlling Chameleon
+    Allow Chameleon to be controlled by another extension
 
     Enabled only in developer builds
   */
   public setupExternalListeners(): void {
-    // if (browser.runtime.getManifest().version_name.includes('-')) {
-    //   let port: any = browser.runtime.connectNative("com.chameleonProxy.app");
-    //   port.onMessage.addListener((message: any) => {
-    //     console.log(message);
-    //   });
-    // }
+    if (browser.runtime.getManifest().version_name.includes('-')) {
+      browser.runtime.onConnectExternal.addListener(port => {
+        port.onMessage.addListener(request => {
+          browser.runtime.sendMessage(request);
+        });
+      });
+    }
   }
 
   public setupHeaderListeners(): void {

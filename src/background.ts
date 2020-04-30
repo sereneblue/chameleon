@@ -100,6 +100,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
   }
 
   chameleon.changeBrowserSettings();
+  chameleon.setupExternalListeners();
   chameleon.setupHeaderListeners();
   chameleon.setTimer();
 
