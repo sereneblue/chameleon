@@ -13,6 +13,7 @@ module.exports = async () => {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
   });
+  app.use(express.static(path.join(__dirname, '/server')));
   app.get('/', (req, res) => res.render('index'));
   app.get('/headers', (req, res) => res.send(req.headers));
   app.get('/referer', (req, res) => res.render('index'));
