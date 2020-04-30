@@ -808,7 +808,7 @@ export class Chameleon {
     if (browser.runtime.getManifest().version_name.includes('-')) {
       browser.runtime.onConnectExternal.addListener(port => {
         port.onMessage.addListener(request => {
-          browser.runtime.sendMessage(request);
+          browser.runtime.sendMessage(request, null, port.postMessage);
         });
       });
     }

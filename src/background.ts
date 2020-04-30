@@ -30,6 +30,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     chameleon.settings = Object.assign(chameleon.settings, request.data);
     chameleon.timeout = setTimeout(() => {
       chameleon.saveSettings(request.data);
+      sendResponse('done');
     }, 200);
   } else if (request.action === 'contextMenu') {
     chameleon.toggleContextMenu(request.data);
@@ -44,13 +45,16 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     sendResponse(chameleon.localization);
   } else if (request.action === 'reloadInjectionScript') {
     chameleon.buildInjectionScript();
+    sendResponse('done');
   } else if (request.action === 'reloadIPInfo') {
     if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
       chameleon.updateIPInfo(request.data);
+      sendResponse('done');
     }
   } else if (request.action === 'reloadProfile') {
     chameleon.setTimer(request.data);
     chameleon.buildInjectionScript();
+    sendResponse('done');
   } else if (request.action === 'reloadSpoofIP') {
     if (request.data[0].name === 'headers.spoofIP.enabled') {
       chameleon.settings.headers.spoofIP.enabled = request.data[0].value;
@@ -62,6 +66,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     }
 
     chameleon.updateSpoofIP();
+    sendResponse('done');
   } else if (request.action === 'reset') {
     chameleon.reset();
     browser.runtime.reload();
@@ -70,6 +75,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
 
     // reset interval timer and send notification
     chameleon.setTimer();
+    sendResponse('done');
   } else if (request.action === 'validateSettings') {
     sendResponse(chameleon.validateSettings(request.data));
   } else if (request.action === 'fpDetect') {
@@ -82,6 +88,7 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
         .length.toString(),
       tabId,
     });
+    sendResponse('done');
   } else if (request.action === 'getTabFP') {
     browser.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       sendResponse(chameleon.getTabFPDetected(tabs[0].id));
