@@ -87,7 +87,7 @@
     "sass-loader": "^7.1.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "ts-jest": "^24.3.0",
-    "ts-loader": "^6.2.1",
+    "ts-loader": "^7.0.2",
     "typescript": "^3.7.5",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11",
