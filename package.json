@@ -37,7 +37,7 @@
     "psl": "^1.7.0",
     "tailwindcss": "^1.2.0",
     "tailwindcss-toggle": "github:TowelSoftware/tailwindcss-toggle",
-    "uuid": "^3.4.0",
+    "uuid": "^8.0.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.2",
     "vue-feather": "^1.0.0",
