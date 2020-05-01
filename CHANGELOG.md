@@ -1,3 +1,13 @@
+<a name="v0.20.0-rc1"></a>
+
+## [v0.20.0-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.0-beta...v0.20.0-rc1) (2020-04-30)
+
+### Bug Fixes
+
+- **injection:** catch error if iframe is cross origin; [#312](https://github.com/sereneblue/chameleon/issues/312)
+- **profiles:** resolve issue with custom timer; [#312](https://github.com/sereneblue/chameleon/issues/312)
+- **settings:** add font fingerprint to settings validation
+
 <a name="v0.20.0-beta"></a>
 
 ## [v0.20.0-beta](https://github.com/sereneblue/chameleon/compare/v0.20.0-alpha3...v0.20.0-beta) (2020-04-25)
