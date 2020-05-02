@@ -528,18 +528,18 @@ class Injector {
 // @ts-ignore
 let chameleonInjector = new Injector(settings, tempStore, profileCache, seed, isDesktop);
 
-// @ts-ignore
-if (isDesktop) {
-  window.addEventListener('message', function(evt: any) {
-    if (evt.data.id === chameleonInjector.notifyId) {
-      browser.runtime.sendMessage({
-        action: 'fpDetect',
-        data: evt.data.fp,
-      });
-    }
-  });
-}
-
 if (chameleonInjector.enabled) {
   chameleonInjector.injectIntoPage();
+
+  // @ts-ignore
+  if (isDesktop) {
+    window.addEventListener('message', function(evt: any) {
+      if (evt.data.id === chameleonInjector.notifyId) {
+        browser.runtime.sendMessage({
+          action: 'fpDetect',
+          data: evt.data.fp,
+        });
+      }
+    });
+  }
 }
