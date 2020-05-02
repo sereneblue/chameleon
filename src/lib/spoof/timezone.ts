@@ -16,9 +16,11 @@ export default {
   window.Date = function(...args) {
     let tmp = this instanceof Date ? new ORIGINAL_DATE(...args) : new ORIGINAL_DATE();
     let timestamp = tmp.getTime();
+
     if (isNaN(timestamp)) {
-      return "Invalid Date";
+      return tmp;
     }
+    
     let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(window).timezone);
     let offsetIndex = spoofData.zone.untils.findIndex(o => o === null || (timestamp < o) );
     let offsetNum = spoofData.zone.offsets[offsetIndex];
