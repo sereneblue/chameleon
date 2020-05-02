@@ -24,7 +24,7 @@
 
     if (userSolution === solution) {
       try {
-        let res = await fetch(`https://flamboyant-colden-cabaa9.netlify.com/.netlify/functions/app`, {
+        let res = await fetch(`https://flamboyant-colden-cabaa9.netlify.app/.netlify/functions/app`, {
           method: 'POST',
           body: JSON.stringify({
             name: form.get('name'),
