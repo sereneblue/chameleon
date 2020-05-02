@@ -13,22 +13,16 @@ export default {
 
   const supportedLocalesOf = ORIGINAL_INTL.supportedLocalesOf;
 
-  window.Date = function(...args) {
-    let tmp = this instanceof Date ? new ORIGINAL_DATE(...args) : new ORIGINAL_DATE();
-    let timestamp = tmp.getTime();
-
-    if (isNaN(timestamp)) {
-      return tmp;
-    }
-    
+  const modifyDate = (d) => {
+    let timestamp = d.getTime();
     let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(window).timezone);
     let offsetIndex = spoofData.zone.untils.findIndex(o => o === null || (timestamp < o) );
     let offsetNum = spoofData.zone.offsets[offsetIndex];
 
     let offsetStr = \`\${offsetNum < 0 ? '+' : '-' }\${String(Math.abs(offsetNum / 60)).padStart(2, '0')}\${String(offsetNum % 60).padStart(2, '0')}\`;
-    let tzName = ORIGINAL_INTL('en-us', { timeZone: spoofData.zone.name, timeZoneName: 'long'}).format(tmp).split(', ')[1];
+    let tzName = ORIGINAL_INTL('en-us', { timeZone: spoofData.zone.name, timeZoneName: 'long'}).format(d).split(', ')[1];
     
-    spoofData.date = new ORIGINAL_DATE(toLocaleString.apply(tmp, [ spoofData.locale, { timeZone: spoofData.zone.name }]));
+    spoofData.date = new ORIGINAL_DATE(toLocaleString.apply(d, [ spoofData.locale, { timeZone: spoofData.zone.name }]));
     spoofData.zoneInfo = {
       offsetStr,
       offsetNum,
@@ -36,7 +30,20 @@ export default {
       tzName
     };
 
-    tmp[window.CHAMELEON_SPOOF] = spoofData;
+    d[window.CHAMELEON_SPOOF] = spoofData;
+
+    return d;
+  } 
+
+  window.Date = function(...args) {
+    let tmp = this instanceof Date ? new ORIGINAL_DATE(...args) : new ORIGINAL_DATE();
+    let timestamp = tmp.getTime();
+
+    if (isNaN(timestamp)) {
+      return tmp;
+    }
+
+    modifyDate(tmp);
 
     return (this instanceof Date) ? tmp : tmp.toString();
   };
@@ -62,30 +69,45 @@ export default {
     if (isNaN(this.getTime())) {
       return NaN;
     }
+
+    if (!this[window.CHAMELEON_SPOOF]) modifyDate(this);
+
     return getFullYear.apply(this[window.CHAMELEON_SPOOF].date);
   }
   window.Date.prototype.getHours = function(){
     if (isNaN(this.getTime())) {
       return NaN;
     }
+
+    if (!this[window.CHAMELEON_SPOOF]) modifyDate(this);
+
     return getHours.apply(this[window.CHAMELEON_SPOOF].date);
   }
   window.Date.prototype.getMinutes = function() {
     if (isNaN(this.getTime())) {
       return NaN;
     }
+
+    if (!this[window.CHAMELEON_SPOOF]) modifyDate(this);
+
     return getMinutes.apply(this[window.CHAMELEON_SPOOF].date);
   }
   window.Date.prototype.getMonth = function() {
     if (isNaN(this.getTime())) {
       return NaN;
     }
+    
+    if (!this[window.CHAMELEON_SPOOF]) modifyDate(this);
+
     return getMonth.apply(this[window.CHAMELEON_SPOOF].date);
   }
   window.Date.prototype.getTimezoneOffset = function() {
     if (isNaN(this.getTime())) {
       return NaN;
     }
+
+    if (!this[window.CHAMELEON_SPOOF]) modifyDate(this);
+
     return this[window.CHAMELEON_SPOOF].zoneInfo.offsetNum;
   }
   window.Date.prototype.setDate = function(...args) {
