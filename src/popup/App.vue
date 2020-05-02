@@ -909,7 +909,7 @@ export default class App extends Vue {
       }
 
       let localizations = localStorage.getItem('localizations');
-      if (localizations === null || needsUpdate) {
+      if (localizations === null || localizations == '{}' || needsUpdate) {
         this.localizations = await browser.runtime.sendMessage({
           action: 'localize',
         });
