@@ -358,27 +358,30 @@ class Injector {
           }
         });
 
+        // Proxy access to objects for fingerprint panel in popup
         if (${this.isDesktop}) {
-          // Proxy access to objects for fingerprint panel in popup
-          window.AudioContext = new Proxy(window.AudioContext, {  
-            construct: function(target, args) {
-              if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext) {
-                window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext = true;
-                window.top.postMessage({fp: 'audioContext', id: "${this.notifyId}"}, "*");
+          // check if audio context is enabled
+          if (window.AudioContext) {
+            window.AudioContext = new Proxy(window.AudioContext, {  
+              construct: function(target, args) {
+                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext) {
+                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext = true;
+                  window.top.postMessage({fp: 'audioContext', id: "${this.notifyId}"}, "*");
+                }
+                return new target(...args);
               }
-              return new target(...args);
-            }
-          });
+            });
 
-          window.OfflineAudioContext = new Proxy(window.OfflineAudioContext, {  
-            construct: function(target, args) {
-              if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext) {
-                window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext = true;
-                window.top.postMessage({fp: 'audioContext', id: "${this.notifyId}"}, "*");
+            window.OfflineAudioContext = new Proxy(window.OfflineAudioContext, {  
+              construct: function(target, args) {
+                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext) {
+                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext = true;
+                  window.top.postMessage({fp: 'audioContext', id: "${this.notifyId}"}, "*");
+                }
+                return new target(...args);
               }
-              return new target(...args);
-            }
-          });
+            });
+          }
 
           window.WebSocket = new Proxy(window.WebSocket, {  
             construct: function(target, args) {
