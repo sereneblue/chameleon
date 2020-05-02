@@ -208,8 +208,8 @@
     </div>
     <transition name="fade" @after-enter="toggleOpen" @after-leave="toggleOpen">
       <div v-show="showModal" class="h-screen w-full fixed top-0 z-30 bg-dark-modal">
-        <div class="flex flex-col justify-center h-full">
-          <div v-if="modalType === Modal.IP_RULE" class="w-3/4 modal h-128">
+        <div class="flex flex-col justify-center h-screen">
+          <div v-if="modalType === Modal.IP_RULE" class="w-3/4 modal overflow-y-auto" style="max-height: 90vh;">
             <div class="px-6 pt-6 pb-8 text-xl">
               <div class="text-xl font-bold border-primary border-b-2 mb-4">{{ localizations['options.ipRules.editorTitle'] }}</div>
               <div class="w-full">
@@ -256,7 +256,7 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.WL_RULE" class="w-3/4 modal h-128">
+          <div v-else-if="modalType === Modal.WL_RULE" class="w-3/4 modal overflow-y-auto" style="max-height: 90vh;">
             <div class="px-6 pt-6 pb-8 text-xl">
               <div class="text-xl font-bold border-primary border-b-2 mb-4">{{ localizations['options.whitelist.editorTitle'] }}</div>
               <div class="flex-col lg:flex">
@@ -350,7 +350,7 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE" class="w-1/3 modal h-128">
+          <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE" class="w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
               <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.modal.askDelete'] }}</span>
@@ -367,7 +367,7 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 modal h-128">
+          <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
               <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.modal.askDelete'] }}</span>
@@ -384,7 +384,7 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-1/3 modal h-128">
+          <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.checklistItem.' + tmp.checklistItem.id] }}</span>
               <div class="my-4 text-center text-lg">
