@@ -41,8 +41,8 @@
 		<div class="flex w-full items-center justify-between">
 			<div class="w-full lg:max-w-md">
 				<div class="mb-8 text-center lg:text-left leading-tight">
-					<h1 class="font-bold text-6xl animated">Chameleon</h1>
-					<h2 class="text-3xl opacity-50">Spoof your browser profile.</h2>
+					<h1 class="font-bold sm:text-4xl text-6xl animated">Chameleon</h1>
+					<h2 class="sm:text-xl text-3xl opacity-50">Spoof your browser profile.</h2>
 				</div>
 				<div class="w-full flex justify-center lg:justify-start">
 					{#if isNotFirefox}
