@@ -410,7 +410,7 @@ import * as tz from '../lib/tz';
 import util from '../lib/util';
 import webext from '../lib/webext';
 import { Component } from 'vue-property-decorator';
-const uuidv4 = require('uuid/v4');
+import { v4 as uuidv4 } from 'uuid';
 
 enum Modal {
   DEFAULT,

@@ -5,7 +5,7 @@ import { getTimezones } from '../lib/tz';
 import util from './util';
 import webext from './webext';
 import { Interceptor } from './intercept';
-const uuidv4 = require('uuid/v4');
+import { v4 as uuidv4 } from 'uuid';
 
 enum IntervalOption {
   None = 0,
