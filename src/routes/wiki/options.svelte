@@ -136,6 +136,13 @@
         </p>
       </div>
       <div class="mt-4">
+        <h3 class="font-bold">Disable WebRTC</h3>
+        <div class="font-semibold my-2 text-sm text-red-600">This option will break some sites!</div>
+        <p>
+          Disables WebRTC support.
+        </p>
+      </div>
+      <div class="mt-4">
         <h3 class="font-bold">WebRTC Policy</h3>
         <div class="font-semibold my-2 text-sm text-red-600">This option will break some sites!</div>
         <p>You can disable WebRTC completely, or you can change the WebRTC policy to prevent WebRTC from leaking your IP address.</p>
