@@ -899,22 +899,40 @@ export default class App extends Vue {
 
     await this['$store'].dispatch('initialize');
 
-    let version = localStorage.getItem('version');
-    let needsUpdate: boolean = false;
+    if (localStorage != null) {
+      let needsUpdate: boolean = false;
+      let version = localStorage.getItem('version');
 
-    if (version === null || version != this.settings.version) {
-      localStorage.setItem('version', this.settings.version);
-      needsUpdate = true;
-    }
+      if (version === null || version != this.settings.version) {
+        localStorage.setItem('version', this.settings.version);
+        needsUpdate = true;
+      }
 
-    let localizations = localStorage.getItem('localizations');
-    if (localizations === null || needsUpdate) {
+      let localizations = localStorage.getItem('localizations');
+      if (localizations === null || needsUpdate) {
+        this.localizations = await browser.runtime.sendMessage({
+          action: 'localize',
+        });
+        localStorage.setItem('localizations', JSON.stringify(this.localizations));
+      } else {
+        this.localizations = JSON.parse(localizations);
+      }
+
+      let isDesktop = localStorage.getItem('isDesktop');
+      if (isDesktop === null) {
+        let platform = await browser.runtime.getPlatformInfo();
+        this.isDesktop = platform.os != 'android';
+        localStorage.setItem('isDesktop', JSON.stringify(this.isDesktop));
+      } else {
+        this.isDesktop = JSON.parse(isDesktop);
+      }
+    } else {
       this.localizations = await browser.runtime.sendMessage({
         action: 'localize',
       });
-      localStorage.setItem('localizations', JSON.stringify(this.localizations));
-    } else {
-      this.localizations = JSON.parse(localizations);
+
+      let platform = await browser.runtime.getPlatformInfo();
+      this.isDesktop = platform.os != 'android';
     }
 
     this.getCurrentPage();
@@ -937,15 +955,6 @@ export default class App extends Vue {
     this.tmp.intervalMin = this.settings.profile.interval.min;
     this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;
     this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
-
-    let isDesktop = localStorage.getItem('isDesktop');
-    if (isDesktop === null) {
-      let platform = await browser.runtime.getPlatformInfo();
-      this.isDesktop = platform.os != 'android';
-      localStorage.setItem('isDesktop', JSON.stringify(this.isDesktop));
-    } else {
-      this.isDesktop = JSON.parse(isDesktop);
-    }
 
     if (this.isDesktop) {
       let detectedFP = await browser.runtime.sendMessage({
