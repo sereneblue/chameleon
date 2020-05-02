@@ -847,28 +847,6 @@ export class Chameleon {
   }
 
   public setupHeaderListeners(): void {
-    // disable polymer for Youtube
-    browser.webRequest.onBeforeRequest.addListener(
-      details => {
-        if (!details.url.includes('disable_polymer=true')) {
-          let link = new URL(details.url);
-          let params = new URLSearchParams(link.search);
-          params.set('disable_polymer', 'true');
-
-          link.search = params.toString();
-
-          return {
-            redirectUrl: link.toString(),
-          };
-        }
-      },
-      {
-        urls: ['https://*.youtube.com/watch?v=*'],
-        types: ['main_frame'],
-      },
-      ['blocking']
-    );
-
     /* Block websocket connections */
     browser.webRequest.onBeforeRequest.addListener(
       details => {
