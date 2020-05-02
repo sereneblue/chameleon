@@ -165,7 +165,6 @@ export class Chameleon {
       win2: 'win2-gcr',
       win3: 'win3-gcr',
       win4: 'win4-gcr',
-      win5: 'win4-edg',
       win6: 'win1-ff',
       win7: 'win2-ff',
       win8: 'win3-ff',
@@ -350,10 +349,23 @@ export class Chameleon {
       ['win', 'mac', 'linux', 'ios', 'android'].forEach(platform => {
         prev.excluded[platform].filter((isExcluded: boolean, i: number) => {
           if (isExcluded) {
-            excludedProfiles.add(mappedProfiles[`${platform}${i + 1}`]);
+            if (`${platform}${i + 1}` === 'win5') {
+              // exclude all edge profiles
+              excludedProfiles.add('win1-edg');
+              excludedProfiles.add('win2-edg');
+              excludedProfiles.add('win3-edg');
+              excludedProfiles.add('win4-edg');
+            } else {
+              excludedProfiles.add(mappedProfiles[`${platform}${i + 1}`]);
+            }
           }
         });
       });
+
+      // assumes that if all esr versions were excluded then this one should be too
+      if (prev.excluded.win[12] && prev.excluded.win[13] && prev.excluded.win[14]) {
+        excludedProfiles.add('win2-esr');
+      }
 
       let platforms = ['windows', 'macOS', 'linux', 'iOS', 'android'];
       prev.excluded.all.filter((isExcluded: boolean, i: number) => {
