@@ -900,9 +900,24 @@ export default class App extends Vue {
     );
 
     await this['$store'].dispatch('initialize');
-    this.localizations = await browser.runtime.sendMessage({
-      action: 'localize',
-    });
+
+    let version = localStorage.getItem('version');
+    let needsUpdate: boolean = false;
+
+    if (version === null || version != this.settings.version) {
+      localStorage.setItem('version', this.settings.version);
+      needsUpdate = true;
+    }
+
+    let localizations = localStorage.getItem('localizations');
+    if (localizations === null || needsUpdate) {
+      this.localizations = await browser.runtime.sendMessage({
+        action: 'localize',
+      });
+      localStorage.setItem('localizations', JSON.stringify(this.localizations));
+    } else {
+      this.localizations = JSON.parse(localizations);
+    }
 
     this.getCurrentPage();
 
@@ -938,7 +953,6 @@ export default class App extends Vue {
       let detectedFP = await browser.runtime.sendMessage({
         action: 'getTabFP',
       });
-  
       this.fpPanel = detectedFP;
     }
   }
