@@ -114,6 +114,25 @@ export class Chameleon {
   public async init(storedSettings: any): Promise<void> {
     if (/0\.12/.test(storedSettings.version)) {
       this.migrateLegacy(storedSettings);
+
+      // get current modified preferences
+      let cookiePolicy = await browser.privacy.websites.cookieConfig.get({});
+      this.settings.options.cookiePolicy = cookiePolicy.value.behavior;
+
+      let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
+      this.settings.options.firstPartyIsolate = firstPartyIsolate.value;
+
+      let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
+      this.settings.options.resistFingerprinting = resistFingerprinting.value;
+
+      let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
+      this.settings.options.trackingProtectionMode = trackingProtectionMode.value;
+
+      let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
+      this.settings.options.disableWebRTC = !peerConnectionEnabled.value;
+
+      let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
+      this.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
     } else {
       if (storedSettings.options) {
         this.settings = storedSettings;
