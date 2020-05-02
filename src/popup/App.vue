@@ -67,7 +67,7 @@
             </div>
           </div>
         </div>
-        <div v-show="currentPage.domain" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
+        <div v-show="currentPage.domain && isDesktop" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
           <div class="text-center text-sm uppercase mb-2 tracking-wider">{{ localizations['popup.home.onThisPage'] }}</div>
           <div id="detected" class="flex justify-around h-10 mb-2">
             <div class="fp" :class="{ active: fpPanel.audioContext }">
@@ -723,6 +723,7 @@ export default class App extends Vue {
     rangeFrom: false,
     rangeTo: false,
   };
+  public isDesktop: boolean = false;
   public languages: lang.Language[] = lang.getAllLanguages();
   public localizations: any = {};
   public profiles: any = new prof.Generator().getAllProfiles();
@@ -924,11 +925,22 @@ export default class App extends Vue {
     this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;
     this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
 
-    let detectedFP = await browser.runtime.sendMessage({
-      action: 'getTabFP',
-    });
+    let isDesktop = localStorage.getItem('isDesktop');
+    if (isDesktop === null) {
+      let platform = await browser.runtime.getPlatformInfo();
+      this.isDesktop = platform.os != 'android';
+      localStorage.setItem('isDesktop', JSON.stringify(this.isDesktop));
+    } else {
+      this.isDesktop = JSON.parse(isDesktop);
+    }
 
-    this.fpPanel = detectedFP;
+    if (this.isDesktop) {
+      let detectedFP = await browser.runtime.sendMessage({
+        action: 'getTabFP',
+      });
+  
+      this.fpPanel = detectedFP;
+    }
   }
 
   async getCurrentPage() {

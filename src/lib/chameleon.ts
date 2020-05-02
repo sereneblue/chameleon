@@ -81,6 +81,7 @@ export class Chameleon {
             let tempStore = JSON.parse(\`${JSON.stringify(this.tempStore)}\`);
             let profileCache = JSON.parse(\`${JSON.stringify(this.profileCache)}\`);
             let seed = ${Math.random() * 0.00000001};
+            let isDesktop = ${this.platform.os != 'android'};
           `,
         },
         { file: 'inject.js' },

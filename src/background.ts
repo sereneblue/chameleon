@@ -10,17 +10,6 @@ browser.alarms.onAlarm.addListener(() => {
   chameleon.run();
 });
 
-browser.tabs.onUpdated.addListener(
-  (tabId, changeInfo) => {
-    if (changeInfo.status === 'loading' && changeInfo.url) {
-      chameleon.resetTabFP(tabId);
-    }
-  },
-  {
-    urls: ['<all_urls>'],
-  }
-);
-
 browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: any) => {
   if (request.action === 'save') {
     if (chameleon.timeout) {
@@ -118,5 +107,16 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     browser.browserAction.setBadgeBackgroundColor({
       color: 'green',
     });
+
+    browser.tabs.onUpdated.addListener(
+      (tabId, changeInfo) => {
+        if (changeInfo.status === 'loading' && changeInfo.url) {
+          chameleon.resetTabFP(tabId);
+        }
+      },
+      {
+        urls: ['<all_urls>'],
+      }
+    );
   }
 })();
