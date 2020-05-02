@@ -1,3 +1,14 @@
+<a name="v0.20.1-rc"></a>
+
+## [v0.20.1-rc](https://github.com/sereneblue/chameleon/compare/v0.20.0-rc...v0.20.1-rc) (2020-05-02)
+
+### Bug Fixes
+
+- **fp panel:** remove fp panel support for mobile Firefox; [#330](https://github.com/sereneblue/chameleon/issues/330)
+- **settings:** always load current firefox preferences; [#333](https://github.com/sereneblue/chameleon/issues/333)
+- **settings:** preserve firefox preferences on initial import; [#334](https://github.com/sereneblue/chameleon/issues/334)
+- **settings:** import legacy settings, profile issue; [#323](https://github.com/sereneblue/chameleon/issues/323)
+
 <a name="v0.20.0-rc1"></a>
 
 ## [v0.20.0-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.0-beta...v0.20.0-rc1) (2020-04-30)
