@@ -190,13 +190,18 @@
         </div>
         <div>
           <div v-for="c in checklist" :key="c.preference" class="border-primary border-1 p-4 shadow-sm mb-4 rounded fg">
-            <div class="text-md pb-2 mb-4 border-b-2 border-primary flex items-center">
+            <div class="text-base md:text-md pb-2 mb-4 border-b-2 border-primary flex items-center">
               <feather @click="showInfo(c)" class="mr-2 hover:cursor-pointer" type="help-circle"></feather>
               <div>{{ localizations['options.checklistItem.' + c.id] }}</div>
             </div>
-            <div class="flex inline-flex text-xl items-center">
+            <div class="flex flex-col sm:flex-row text-base md:text-xl items-center">
               <span class="break-all">{{ c.preference }}</span>
-              <feather class="mx-2" type="chevrons-right"></feather>
+              <span class="hidden pt-2 sm:block">
+                <feather class="mx-2 self-center" type="chevrons-right"></feather>
+              </span>
+              <span class="block pt-2 sm:hidden">
+                <feather class="mx-2 self-center" type="chevrons-down"></feather>
+              </span>
               <span>
                 <strong>{{ c.value != 'Leave empty' ? c.value : localizations['options.checklist.leaveEmpty'] }}</strong>
               </span>
@@ -209,7 +214,7 @@
     <transition name="fade" @after-enter="toggleOpen" @after-leave="toggleOpen">
       <div v-show="showModal" class="h-screen w-full fixed top-0 z-30 bg-dark-modal">
         <div class="flex flex-col justify-center h-screen">
-          <div v-if="modalType === Modal.IP_RULE" class="w-3/4 modal overflow-y-auto" style="max-height: 90vh;">
+          <div v-if="modalType === Modal.IP_RULE" class="w-4/5 modal overflow-y-auto" style="max-height: 90vh;">
             <div class="px-6 pt-6 pb-8 text-xl">
               <div class="text-xl font-bold border-primary border-b-2 mb-4">{{ localizations['options.ipRules.editorTitle'] }}</div>
               <div class="w-full">
@@ -219,14 +224,14 @@
                   </label>
                   <input v-model="tmp.ipRule.name" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error: errors.ipRuleName }" />
                 </div>
-                <div class="flex items-center mb-4">
-                  <label class="mr-2 w-1/2">
+                <div class="flex flex-col md:flex-row items-center mb-4">
+                  <label class="md:mr-2 mb-4 md:mb-0 w-full md:w-1/2">
                     <span class="text-dark">{{ localizations['text.language'] }}</span>
                     <select v-model="tmp.ipRule.lang" class="form-select mt-1 block w-full">
                       <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
                     </select>
                   </label>
-                  <label class="ml-2 w-1/2">
+                  <label class="md:ml-2 w-full md:w-1/2">
                     <span class="text-dark">{{ localizations['text.timezone'] }}</span>
                     <select v-model="tmp.ipRule.tz" class="form-select mt-1 block w-full">
                       <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
@@ -256,7 +261,7 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.WL_RULE" class="w-3/4 modal overflow-y-auto" style="max-height: 90vh;">
+          <div v-else-if="modalType === Modal.WL_RULE" class="w-4/5 modal overflow-y-auto" style="max-height: 90vh;">
             <div class="px-6 pt-6 pb-8 text-xl">
               <div class="text-xl font-bold border-primary border-b-2 mb-4">{{ localizations['options.whitelist.editorTitle'] }}</div>
               <div class="flex-col lg:flex">
@@ -292,7 +297,7 @@
                     <input v-model="tmp.wlRule.spoofIP" class="block w-full form-input" :class="{ error: errors.wlRuleIP }" />
                   </div>
                   <div class="my-4">
-                    <div class="flex justify-around">
+                    <div class="flex flex-col md:flex-row justify-around">
                       <div>
                         <div class="mb-2">
                           <div class="form-switch inline-block align-middle">
@@ -309,7 +314,7 @@
                           <label class="text-sm">{{ localizations['options.whitelist.options.ws'] }}</label>
                         </div>
                       </div>
-                      <div>
+                      <div class="mt-2 md:mt-0">
                         <div class="mb-2">
                           <div class="form-switch inline-block align-middle">
                             <input v-model="tmp.wlRule.options.name" id="name" type="checkbox" class="form-switch-checkbox" />
@@ -350,7 +355,7 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE" class="w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
+          <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
               <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.modal.askDelete'] }}</span>
@@ -367,7 +372,7 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
+          <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
               <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.modal.askDelete'] }}</span>
@@ -384,7 +389,7 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
+          <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.checklistItem.' + tmp.checklistItem.id] }}</span>
               <div class="my-4 text-center text-lg">
