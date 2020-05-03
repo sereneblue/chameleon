@@ -1,3 +1,22 @@
+<a name="v0.20.2-rc"></a>
+
+## [v0.20.2-rc](https://github.com/sereneblue/chameleon/compare/v0.20.1-rc...v0.20.2-rc) (2020-05-02)
+
+### Bug Fixes
+
+- **fp panel:** check if web audio is enabled before creating proxy; [#332](https://github.com/sereneblue/chameleon/issues/332)
+- **injection:** handle NaN values for Date; [#332](https://github.com/sereneblue/chameleon/issues/332)
+- **injection:** remove Youtube polymer handling; [#336](https://github.com/sereneblue/chameleon/issues/336)
+- **popup:** add condition to check if localization object is empty
+- **popup:** add fallback if localstorage is disabled; [#338](https://github.com/sereneblue/chameleon/issues/338)
+- **settings:** update version validation when importing settings
+- **settings:** add font fingerprint to store
+- **timezone:** improve timezone spoofing; [#325](https://github.com/sereneblue/chameleon/issues/325)
+
+### Features
+
+- **localization:** add french translation
+
 <a name="v0.20.1-rc"></a>
 
 ## [v0.20.1-rc](https://github.com/sereneblue/chameleon/compare/v0.20.0-rc...v0.20.1-rc) (2020-05-02)
