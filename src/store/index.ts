@@ -57,6 +57,7 @@ export default new Vuex.Store({
       screenSize: 'default',
       spoofAudioContext: false,
       spoofClientRects: false,
+      spoofFontFingerprint: false,
       timeZone: 'default',
       trackingProtectionMode: 'always',
       webRTCPolicy: 'default',
