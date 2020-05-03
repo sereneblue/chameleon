@@ -1191,7 +1191,7 @@ export class Chameleon {
     let languageIds: string[] = lang.getAllLanguages().map(l => l.code);
     let timezoneIds: string[] = getTimezones().map(t => t.zone);
 
-    if (impSettings.version > this.settings.version) {
+    if (impSettings.version.split('.', 3).join('.') > this.settings.version.split('.', 3).join('.')) {
       msg = this.localization['options.import.invalid.version'];
 
       return {
