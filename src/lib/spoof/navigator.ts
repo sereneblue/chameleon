@@ -12,6 +12,7 @@ export default {
     { obj: 'window.navigator', prop: 'platform', value: '' },
     { obj: 'window.navigator', prop: 'plugins', value: '' },
     { obj: 'window.navigator', prop: 'productSub', value: '' },
+    { obj: 'window.navigator', prop: 'userAgent', value: '' },
     { obj: 'window.navigator', prop: 'vendor', value: '' },
     { obj: 'window.navigator', prop: 'vendorSub', value: '' },
   ],

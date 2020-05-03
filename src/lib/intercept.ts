@@ -191,7 +191,7 @@ class Interceptor {
         }
       } else if (header === 'user-agent') {
         if (profile) {
-          details.requestHeaders[i].value = profile.useragent;
+          details.requestHeaders[i].value = profile.navigator.userAgent;
         }
       } else if (header === 'accept') {
         if (details.type === 'main_frame' || details.type === 'sub_frame') {
