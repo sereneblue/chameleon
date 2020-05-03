@@ -19,9 +19,8 @@
         <img class="max-w-md" src="panel.png" alt="Chameleon fingerprint panel">
         <p class="text-center mt-2 text-lg">From left to right, Audio Context, Client Rects, Date, Screen, WebSocket.</p>
       </div>
-      Some sites use features that are not supported in Firefox. This results in issues when using a Chrome profile.
-      For example, browsing Youtube with a Chrome user agent normally causes Youtube to break. Chameleon attempts to
-      fix this issue by using a simpler version of Youtube instead.
+      Some sites use features that are not supported in Firefox or use the user agent to detect whether some features
+      are supported or not. For example, Spotify does not work with IE11 profiles.
       <br>
       <br>
       <div class="w-full my-4 flex flex-col items-center">
