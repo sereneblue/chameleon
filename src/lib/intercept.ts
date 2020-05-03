@@ -31,6 +31,8 @@ interface WhitelistResult {
   spoofIP?: string;
 }
 
+const WHITELIST = ['https://www.google.com/recaptcha/api2', 'https://accounts.google.com/', 'https://accounts.youtube.com/'];
+
 class Interceptor {
   private LINK: any;
   private profiles: prof.Generator;
@@ -127,8 +129,16 @@ class Interceptor {
   modifyRequest(details: any): any {
     if (!this.settings.config.enabled) return;
 
-    // don't modify request for recaptcha
-    if ((details.originUrl || details.documentUrl || details.url).startsWith('https://www.google.com/recaptcha/api2')) return;
+    // don't modify request for sites below
+    for (let i = 0; i < WHITELIST.length; i++) {
+      if (
+        (details.originUrl && details.originUrl.startsWith(WHITELIST[i])) ||
+        (details.documentUrl && details.documentUrl.startsWith(WHITELIST[i])) ||
+        (details.url && details.url.startsWith(WHITELIST[i]))
+      ) {
+        return;
+      }
+    }
 
     let wl: WhitelistResult = this.checkWhitelist(details);
 

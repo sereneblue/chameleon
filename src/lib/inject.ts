@@ -214,6 +214,8 @@ class Injector {
     (function(){
         if (
           window.location.href.startsWith("https://www.google.com/recaptcha/api2") || 
+          window.location.href.startsWith("https://accounts.google.com/")          ||
+          window.location.href.startsWith("https://accounts.youtube.com/")         ||
           window.location.href.startsWith("https://disqus.com/embed/comments/")    ||
           window.CHAMELEON_SPOOF
         ) { 
