@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.20.0-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.20.2-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/chameleon/localized.svg)](https://crowdin.com/project/chameleon)
 
@@ -79,5 +79,8 @@ dillbyrne for creating [Random Agent Spoofer](https://github.com/dillbyrne/rando
 ## Special Thanks
 
 - giwhub for the Chinese translation
-- Anonymous for the German translation
+- Kaylier, melegeti for the French translation
+- Anonymous and Wursttorte for the German translation
+- Shitennouji for the Japanese translation
+- 3ibsand and Alexey for the Russian translation
 - David P. (Megver83) for the Spanish translation
