@@ -7,6 +7,7 @@ export default {
 		const COMMON_FONTS_IOS  	 = ['Academy Engraved LET', 'Al Nile', 'American Typewriter', 'Apple Color Emoji', 'Apple SD Gothic Neo', 'Arial', 'Arial Hebrew', 'Arial Rounded MT Bold', 'Avenir', 'Avenir Next', 'Avenir Next Condensed', 'Baskerville', 'Bodoni 72', 'Bodoni 72 Oldstyle', 'Bodoni 72 Smallcaps', 'Bodoni Ornaments', 'Bradley Hand', 'Chalkboard SE', 'Chalkduster', 'Charter', 'Cochin', 'Copperplate', 'Courier', 'Courier New', 'Damascus', 'Devanagari Sangam MN', 'Didot', 'DIN Alternate', 'DIN Condensed', 'Euphemia UCAS', 'Farah', 'Futura', 'Geeza Pro', 'Georgia', 'Gill Sans', 'Helvetica', 'Helvetica Neue', 'Hiragino Maru Gothic ProN', 'Hiragino Mincho ProN', 'Hiragino Sans', 'Hoefler Text', 'Kailasa', 'Kefa', 'Khmer Sangam MN', 'Kohinoor Bangla', 'Kohinoor Devanagari', 'Kohinoor Telugu', 'Lao Sangam MN', 'Malayalam Sangam MN', 'Marker Felt', 'Menlo', 'Mishafi', 'Myanmar Sangam MN', 'Noteworthy', 'Noto Nastaliq Urdu', 'Optima', 'Palatino', 'Papyrus', 'Party LET', 'PingFang HK', 'PingFang SC', 'PingFang TC', 'Rockwell', 'Savoye LET', 'Sinhala Sangam MN', 'Snell Roundhand', 'Symbol', 'Tamil Sangam MN', 'Thonburi', 'Times New Roman', 'Trebuchet MS', 'Verdana', 'Zapf Dingbats', 'Zapfino' ];
 		const COMMON_FONTS_ANDROID = ['Carrois Gothic SC', 'Cutive Mono',  'Cutive Mono', 'Dancing Script', 'Droid Sans', 'Droid Serif', 'Noto Sans', 'Noto Serif', 'Roboto', 'Roboto Condensed'];
 		const DEFAULT_FONT = ['sans serif', 'serif', 'monospace', 'auto'];
+		const WEB_FONTS 	 = ['CoreUI-Icons-Linear-Free', 'CoreUI-Icons-Free', 'iconmonstr-iconic-font', 'icomoon', 'FontAwesome', 'Material Design Icons', 'Material Icons'];
 
 		const FONTS = {
 			'win1': COMMON_FONTS_WINDOWS.concat([
@@ -62,7 +63,7 @@ export default {
 
 		let _setAttribute = Element.prototype.setAttribute;
 		let _appendChild = Element.prototype.appendChild;
-		let selectedFonts = FONTS[CHAMELEON_SPOOF.get(window).fontFingerprintOS].map(f => f.toLowerCase());
+		let selectedFonts = FONTS[CHAMELEON_SPOOF.get(window).fontFingerprintOS].concat(WEB_FONTS).map(f => f.toLowerCase());
 
 		const REGEX_FONT_FAMILY = /font\-family:[^;']*;?/g;
 
