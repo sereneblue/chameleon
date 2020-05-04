@@ -1,14 +1,16 @@
 // helpful functions to handle web extension things
 let enableChameleon = (enabled: boolean): void => {
   browser.runtime.getPlatformInfo().then(plat => {
-    if (enabled === false && plat.os != 'android') {
-      browser.browserAction.setIcon({
-        path: '../icons/icon_disabled.svg',
-      });
-    } else {
-      browser.browserAction.setIcon({
-        path: '../icons/icon.svg',
-      });
+    if (plat.os != 'android') {
+      if (enabled === false) {
+        browser.browserAction.setIcon({
+          path: '../icons/icon_disabled.svg',
+        });
+      } else {
+        browser.browserAction.setIcon({
+          path: '../icons/icon.svg',
+        });
+      }
     }
   });
 };
