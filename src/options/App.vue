@@ -524,9 +524,30 @@ export default class App extends Vue {
     this.version = browser.runtime.getManifest().version_name;
 
     await this['$store'].dispatch('initialize');
-    this.localizations = await browser.runtime.sendMessage({
-      action: 'localize',
-    });
+
+    if (localStorage != null) {
+      let needsUpdate: boolean = false;
+      let version = localStorage.getItem('version');
+
+      if (version === null || version != this.settings.version) {
+        localStorage.setItem('version', this.settings.version);
+        needsUpdate = true;
+      }
+
+      let localizations = localStorage.getItem('localizations');
+      if (localizations === null || localizations == '{}' || needsUpdate) {
+        this.localizations = await browser.runtime.sendMessage({
+          action: 'localize',
+        });
+        localStorage.setItem('localizations', JSON.stringify(this.localizations));
+      } else {
+        this.localizations = JSON.parse(localizations);
+      }
+    } else {
+      this.localizations = await browser.runtime.sendMessage({
+        action: 'localize',
+      });
+    }
 
     let hash = window.location.hash.split('?');
     let queryParams = hash.length > 1 ? hash[1] : '';
