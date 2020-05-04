@@ -67,31 +67,6 @@
             </div>
           </div>
         </div>
-        <div v-show="currentPage.domain && isDesktop" class="absolute bottom-0 py-2 fg" style="width: -moz-available;">
-          <div class="text-center text-sm uppercase mb-2 tracking-wider">{{ localizations['popup.home.onThisPage'] }}</div>
-          <div id="detected" class="flex justify-around h-10 mb-2">
-            <div class="fp" :class="{ active: fpPanel.audioContext }">
-              <feather type="music" size="1.1em"></feather>
-              <div>{{ localizations['popup.home.fpPanel.audioContext'] }}</div>
-            </div>
-            <div class="fp" :class="{ active: fpPanel.clientRects }">
-              <feather type="grid" size="1.1em"></feather>
-              <div>{{ localizations['popup.home.fpPanel.clientRects'] }}</div>
-            </div>
-            <div class="fp" :class="{ active: fpPanel.date }">
-              <feather type="calendar" size="1.1em"></feather>
-              <div>{{ localizations['popup.home.fpPanel.date'] }}</div>
-            </div>
-            <div class="fp" :class="{ active: fpPanel.screen }">
-              <feather type="monitor" size="1.1em"></feather>
-              <div>{{ localizations['popup.home.fpPanel.screen'] }}</div>
-            </div>
-            <div class="fp" :class="{ active: fpPanel.webSocket }">
-              <feather type="activity" size="1.1em"></feather>
-              <div>WebSocket</div>
-            </div>
-          </div>
-        </div>
       </div>
       <div v-show="isSelected('tab', 'profile')" class="m-4 text-md">
         <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['text.profile'] }}</div>
@@ -734,7 +709,6 @@ export default class App extends Vue {
     rangeFrom: false,
     rangeTo: false,
   };
-  public isDesktop: boolean = false;
   public languages: lang.Language[] = lang.getAllLanguages();
   public localizations: any = {};
   public profiles: any = new prof.Generator().getAllProfiles();
@@ -751,13 +725,6 @@ export default class App extends Vue {
       },
       profile: '',
     },
-  };
-  public fpPanel = {
-    audioContext: false,
-    clientRects: false,
-    screen: false,
-    timeZone: false,
-    webSocket: false,
   };
 
   get currentProfile(): any {
@@ -776,7 +743,7 @@ export default class App extends Vue {
     if (this.settings.options.screenSize === 'default') {
       screen = this.localizations['popup.home.currentProfile.defaultScreen'];
     } else if (this.settings.options.screenSize === 'profile') {
-      screen = `Profile (${this.localizations['popup.home.fpPanel.screen']})`;
+      screen = `Profile (${this.localizations['text.screen']})`;
     } else {
       screen = this.settings.options.screenSize;
     }
@@ -930,22 +897,10 @@ export default class App extends Vue {
       } else {
         this.localizations = JSON.parse(localizations);
       }
-
-      let isDesktop = localStorage.getItem('isDesktop');
-      if (isDesktop === null) {
-        let platform = await browser.runtime.getPlatformInfo();
-        this.isDesktop = platform.os != 'android';
-        localStorage.setItem('isDesktop', JSON.stringify(this.isDesktop));
-      } else {
-        this.isDesktop = JSON.parse(isDesktop);
-      }
     } else {
       this.localizations = await browser.runtime.sendMessage({
         action: 'localize',
       });
-
-      let platform = await browser.runtime.getPlatformInfo();
-      this.isDesktop = platform.os != 'android';
     }
 
     this.getCurrentPage();
@@ -968,13 +923,6 @@ export default class App extends Vue {
     this.tmp.intervalMin = this.settings.profile.interval.min;
     this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;
     this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
-
-    if (this.isDesktop) {
-      let detectedFP = await browser.runtime.sendMessage({
-        action: 'getTabFP',
-      });
-      this.fpPanel = detectedFP;
-    }
   }
 
   async getCurrentPage() {

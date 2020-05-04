@@ -17,7 +17,6 @@ const moment = require('moment-timezone');
 
 class Injector {
   public enabled: boolean;
-  public isDesktop: boolean;
   public notifyId: string;
   private spoof = {
     custom: '',
@@ -25,7 +24,7 @@ class Injector {
     metadata: {},
   };
 
-  constructor(settings: any, tempStore: any, profileCache: any, seed: number, isDesktop: boolean) {
+  constructor(settings: any, tempStore: any, profileCache: any, seed: number) {
     if (!settings.config.enabled) {
       this.enabled = false;
       return;
@@ -33,7 +32,6 @@ class Injector {
 
     this.enabled = true;
     this.notifyId = tempStore.notifyId;
-    this.isDesktop = isDesktop;
 
     // profile to be used for injection
     let p: any = null;
@@ -225,15 +223,6 @@ class Injector {
         let CHAMELEON_SPOOF = new WeakMap();
         CHAMELEON_SPOOF.set(window, JSON.parse(\`${JSON.stringify(this.spoof.metadata)}\`));
         window.CHAMELEON_SPOOF = Symbol.for("CHAMELEON_SPOOF");
-        window.CHAMELEON_SPOOF_FP_DETECTED = {
-          fpPanel: {
-            audioContext: false,
-            clientRects: false,
-            date: false,
-            screen: false,
-            webSocket: false
-          }
-        };
 
         let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
 
@@ -326,9 +315,7 @@ class Injector {
                   Object.defineProperty(f.Range.prototype, 'getClientRects', {
                     value: window.Range.prototype.getClientRects
                   });
-                } catch (e) {
-                  console.log(e);
-                }
+                } catch (e) {}
               }
               return f;
             }
@@ -340,164 +327,6 @@ class Injector {
             }
           }
         });
-
-        // Proxy access to objects for fingerprint panel in popup
-        if (${this.isDesktop}) {
-          // check if audio context is enabled
-          if (window.AudioContext) {
-            window.AudioContext = new Proxy(window.AudioContext, {  
-              construct: function(target, args) {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext = true;
-                  window.top.postMessage({fp: 'audioContext', id: "${this.notifyId}"}, "*");
-                }
-                return new target(...args);
-              }
-            });
-
-            window.OfflineAudioContext = new Proxy(window.OfflineAudioContext, {  
-              construct: function(target, args) {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.audioContext = true;
-                  window.top.postMessage({fp: 'audioContext', id: "${this.notifyId}"}, "*");
-                }
-                return new target(...args);
-              }
-            });
-          }
-
-          window.WebSocket = new Proxy(window.WebSocket, {  
-            construct: function(target, args) {
-              if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.webSocket) {
-                window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.webSocket = true;
-                window.top.postMessage({fp: 'webSocket', id: "${this.notifyId}"}, "*");
-              }
-              return new target(...args);
-            }
-          });
-
-          window.Date = new Proxy(window.Date, {  
-            construct: function(target, args) {
-              if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.date) {
-                window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.date = true;
-                window.top.postMessage({fp: 'date', id: "${this.notifyId}"}, "*");
-              }
-              return new target(...args);
-            }
-          });
-
-          ((innerHeight, innerWidth, outerHeight, outerWidth, clientHeight, clientWidth) => {
-            Object.defineProperty(window, 'innerHeight', {
-              configurable: true,
-              get: () => {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen = true;
-                  window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
-                }
-                return innerHeight;
-              }
-            });
-            
-            Object.defineProperty(window, 'innerWidth', {
-              configurable: true,
-              get: () => {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen = true;
-                  window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
-                }
-                return innerWidth;
-              }
-            });
-
-            Object.defineProperty(window, 'outerHeight', {
-              configurable: true,
-              get: () => {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen = true;
-                  window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
-                }
-                return outerHeight;
-              }
-            });
-            
-            Object.defineProperty(window, 'outerWidth', {
-              configurable: true,
-              get: () => {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen = true;
-                  window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
-                }
-                return outerWidth;
-              }
-            });
-
-            Object.defineProperty(window.document.documentElement, 'clientHeight', {
-              configurable: true,
-              get: () => {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen = true;
-                  window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
-                }
-                return clientHeight;
-              }
-            });
-            
-            Object.defineProperty(window.document.documentElement, 'clientWidth', {
-              configurable: true,
-              get: () => {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen = true;
-                  window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
-                }
-                return clientWidth;
-              }
-            });
-
-            window.screen = new Proxy(window.screen, {  
-              get: function(obj, prop) {
-                if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen) {
-                  window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.screen = true;
-                  window.top.postMessage({fp: 'screen', id: "${this.notifyId}"}, "*");
-                }
-                return obj[prop];
-              }
-            });
-          })(window.innerHeight, window.innerWidth, window.outerHeight, window.outerWidth, window.document.documentElement.clientHeight, window.document.documentElement.clientWidth);
-
-          ((getClientRects, getBoundingClientRect, rgetClientRects, rgetBoundingClientRect) => {
-            window.Element.prototype.getClientRects = function(){
-              if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.clientRects) {
-                window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.clientRects = true;
-                window.top.postMessage({fp: 'clientRects', id: "${this.notifyId}"}, "*");
-              }
-              return getClientRects.apply(this);
-            }
-
-            window.Element.prototype.getBoundingClientRect = function(){
-              if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.clientRects) {
-                window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.clientRects = true;
-                window.top.postMessage({fp: 'clientRects', id: "${this.notifyId}"}, "*");
-              }
-              return getBoundingClientRect.apply(this);
-            }
-
-            window.Range.prototype.getClientRects = function(){
-              if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.clientRects) {
-                window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.clientRects = true;
-                window.top.postMessage({fp: 'clientRects', id: "${this.notifyId}"}, "*");
-              }
-              return rgetClientRects.apply(this);
-            }
-
-            window.Range.prototype.getBoundingClientRect = function(){
-              if (!window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.clientRects) {
-                window.CHAMELEON_SPOOF_FP_DETECTED.fpPanel.clientRects = true;
-                window.top.postMessage({fp: 'clientRects', id: "${this.notifyId}"}, "*");
-              }
-              return rgetBoundingClientRect.apply(this);
-            }
-          })(window.Element.prototype.getClientRects, window.Element.prototype.getBoundingClientRect, window.Range.prototype.getClientRects, window.Range.prototype.getBoundingClientRect);
-        }
     })()
     `.replace(/CHAMELEON_SPOOF/g, chameleonObjName);
   }
@@ -512,20 +341,8 @@ class Injector {
 }
 
 // @ts-ignore
-let chameleonInjector = new Injector(settings, tempStore, profileCache, seed, isDesktop);
+let chameleonInjector = new Injector(settings, tempStore, profileCache, seed);
 
 if (chameleonInjector.enabled) {
   chameleonInjector.injectIntoPage();
-
-  // @ts-ignore
-  if (isDesktop) {
-    window.addEventListener('message', function(evt: any) {
-      if (evt.data.id === chameleonInjector.notifyId) {
-        browser.runtime.sendMessage({
-          action: 'fpDetect',
-          data: evt.data.fp,
-        });
-      }
-    });
-  }
 }

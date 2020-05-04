@@ -30,7 +30,6 @@ export class Chameleon {
   private injectionScript: any;
   private intercept: Interceptor;
   private profileCache: any;
-  private tabsFP: any;
   private REGEX_UUID: RegExp;
   public intervalTimeout: any;
   public localization: object;
@@ -57,7 +56,6 @@ export class Chameleon {
     this.intervalTimeout = null;
     this.localization = {};
     this.profileCache = {};
-    this.tabsFP = {};
     this.version = browser.runtime.getManifest().version;
     this.REGEX_UUID = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
   }
@@ -709,10 +707,6 @@ export class Chameleon {
       'popup.home.currentProfile.gettingTimezone',
       'popup.home.disabled',
       'popup.home.enabled',
-      'popup.home.fpPanel.audioContext',
-      'popup.home.fpPanel.clientRects',
-      'popup.home.fpPanel.date',
-      'popup.home.fpPanel.screen',
       'popup.home.notification.disabled',
       'popup.home.notification.enabled',
       'popup.home.onThisPage',
@@ -810,6 +804,7 @@ export class Chameleon {
       'text.profile',
       'text.realProfile',
       'text.save',
+      'text.screen',
       'text.searchRules',
       'text.timezone',
       'text.whitelist',
@@ -884,42 +879,6 @@ export class Chameleon {
       },
       ['blocking', 'responseHeaders']
     );
-  }
-
-  public getTabFPDetected(tabId: number): any {
-    return this.tabsFP[tabId]
-      ? this.tabsFP[tabId]
-      : {
-          audioContext: false,
-          clientRects: false,
-          date: false,
-          screen: false,
-          webSocket: false,
-        };
-  }
-
-  public resetTabFP(tabId: number): void {
-    this.tabsFP[tabId] = {
-      audioContext: false,
-      clientRects: false,
-      date: false,
-      screen: false,
-      webSocket: false,
-    };
-  }
-
-  public setTabFPDetected(tabId: number, fpDetected: string): void {
-    if (!this.tabsFP[tabId]) {
-      this.tabsFP[tabId] = {
-        audioContext: false,
-        clientRects: false,
-        date: false,
-        screen: false,
-        webSocket: false,
-      };
-    }
-
-    this.tabsFP[tabId][fpDetected] = true;
   }
 
   public setTimer(option = null): void {

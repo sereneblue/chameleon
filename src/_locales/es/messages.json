@@ -503,18 +503,6 @@
   "popup.home.enabled": {
     "message": "Chameleon está activado"
   },
-  "popup.home.fpPanel.audioContext": {
-    "message": "Contexto de audio"
-  },
-  "popup.home.fpPanel.clientRects": {
-    "message": "Rects de Cliente"
-  },
-  "popup.home.fpPanel.date": {
-    "message": "Fecha"
-  },
-  "popup.home.fpPanel.screen": {
-    "message": "Pantalla"
-  },
   "popup.home.notification.disabled": {
     "message": "Notificaciones apagadas"
   },
@@ -802,6 +790,9 @@
   },
   "text.save": {
     "message": "Guardar"
+  },
+  "text.screen": {
+    "message": "Pantalla"
   },
   "text.searchRules": {
     "message": "Buscar reglas"
