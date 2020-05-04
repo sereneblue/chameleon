@@ -1,8 +1,8 @@
 export default {
   type: 'custom',
   data: `
-    let _getBoundingClientRect = window.HTMLElement.prototype.getBoundingClientRect;
-		let _getClientRects = window.HTMLElement.prototype.getClientRects;
+    let _getBoundingClientRect = window.Element.prototype.getBoundingClientRect;
+		let _getClientRects = window.Element.prototype.getClientRects;
 		let _rgetBoundingClientRect = window.Range.prototype.getBoundingClientRect;
     let _rgetClientRects = window.Range.prototype.getClientRects;
     

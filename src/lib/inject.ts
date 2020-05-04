@@ -285,9 +285,7 @@ class Injector {
         });
         
         let iframeWindow = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow');
-        let frameWindow = HTMLFrameElement.prototype.__lookupGetter__('contentWindow');
         let iframeDocument = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
-        let frameDocument = HTMLFrameElement.prototype.__lookupGetter__('contentDocument');
 
         ${this.spoof.custom}
 
@@ -295,41 +293,6 @@ class Injector {
           contentWindow: {
             get: function() {
               let f = iframeWindow.apply(this);
-              try {
-                if (f) {
-                  Object.defineProperty(f, 'Date', {
-                    value: window.Date
-                  });
-  
-                  Object.defineProperty(f.Intl, 'DateTimeFormat', {
-                    value: window.Intl.DateTimeFormat
-                  });
-  
-                  Object.defineProperty(f, 'screen', {
-                    value: window.screen
-                  });
-  
-                  Object.defineProperty(f, 'navigator', {
-                    value: window.navigator
-                  });
-                }
-              } catch (e) {}
-              
-              return f;
-            }
-          },
-          contentDocument: {
-            get: function() {
-              let f = iframeDocument.apply(this);
-              return f;
-            }
-          }
-        });
-
-        Object.defineProperties(HTMLFrameElement.prototype, {
-          contentWindow: {
-            get: function() {
-              let f = frameWindow.apply(this);
               if (f) {
                 try {
                   Object.defineProperty(f, 'Date', {
@@ -347,15 +310,33 @@ class Injector {
                   Object.defineProperty(f, 'navigator', {
                     value: window.navigator
                   });
-                } catch (e) {}
+
+                  Object.defineProperty(f.Element.prototype, 'getBoundingClientRect', {
+                    value: window.Element.prototype.getBoundingClientRect
+                  });
+
+                  Object.defineProperty(f.Element.prototype, 'getClientRects', {
+                    value: window.Element.prototype.getClientRects
+                  });
+
+                  Object.defineProperty(f.Range.prototype, 'getBoundingClientRect', {
+                    value: window.Range.prototype.getClientRects
+                  });
+
+                  Object.defineProperty(f.Range.prototype, 'getClientRects', {
+                    value: window.Range.prototype.getClientRects
+                  });
+                } catch (e) {
+                  console.log(e);
+                }
               }
               return f;
             }
           },
           contentDocument: {
             get: function() {
-              let f = frameDocument.apply(this);
-              return f;
+              this.contentWindow;
+              return iframeDocument.apply(this);
             }
           }
         });
