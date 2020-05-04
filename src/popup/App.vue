@@ -620,6 +620,19 @@
             <div v-else-if="isSelected('options', 'cookie')">
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
+                  <input
+                    id="cookiePersistent"
+                    @change="changeSetting($event)"
+                    :checked="settings.options.cookieNotPersistent"
+                    name="options.cookieNotPersistent"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
+                  {{ localizations['popup.options.cookieNotPersistent'] }}
+                </label>
+              </div>
+              <div class="flex items-center mb-2">
+                <label class="w-full mt-2">
                   {{ localizations['popup.options.cookiePolicy'] }}
                   <select
                     id="cookiePolicy"

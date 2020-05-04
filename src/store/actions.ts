@@ -56,6 +56,7 @@ export const changeSetting = ({ commit }, payload: any) => {
   } else if (
     [
       'options.cookiePolicy',
+      'options.cookieNotPersistent',
       'options.disableWebRTC',
       'options.firstPartyIsolate',
       'options.resistFingerprinting',

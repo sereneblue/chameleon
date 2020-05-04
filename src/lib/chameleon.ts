@@ -94,6 +94,7 @@ export class Chameleon {
     browser.privacy.websites.cookieConfig.set({
       value: {
         behavior: this.settings.options.cookiePolicy,
+        nonPersistentCookies: this.settings.options.cookieNotPersistent,
       },
     });
 
@@ -124,8 +125,9 @@ export class Chameleon {
     }
 
     // get current modified preferences
-    let cookiePolicy = await browser.privacy.websites.cookieConfig.get({});
-    this.settings.options.cookiePolicy = cookiePolicy.value.behavior;
+    let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
+    this.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
+    this.settings.options.cookiePolicy = cookieSettings.value.behavior;
 
     let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
     this.settings.options.firstPartyIsolate = firstPartyIsolate.value;
@@ -783,6 +785,7 @@ export class Chameleon {
       'popup.options.standard.webSockets.blockAll',
       'popup.options.standard.webSockets.blockThirdParty',
       'popup.options.cookie',
+      'popup.options.cookieNotPersistent',
       'popup.options.cookiePolicy',
       'popup.options.cookiePolicy.allowVisited',
       'popup.options.cookiePolicy.rejectAll',
@@ -1425,6 +1428,7 @@ export class Chameleon {
           ['default', 'profile', '1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160', '4096x2304', '5120x2880'],
         ],
         ['options.timeZone', impSettings.options.timeZone, timezoneIds.concat(['default', 'ip'])],
+        ['options.cookieNotPersistent', impSettings.options.cookieNotPersistent, 'boolean'],
         ['options.cookiePolicy', impSettings.options.cookiePolicy, ['allow_all', 'allow_visited', 'reject_all', 'reject_third_party', 'reject_trackers']],
         ['options.trackingProtectionMode', impSettings.options.trackingProtectionMode, ['always', 'never', 'private_browsing']],
         [

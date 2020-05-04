@@ -737,6 +737,9 @@
   "popup.options.cookie": {
     "message": "Cookie"
   },
+  "popup.options.cookieNotPersistent": {
+    "message": "Delete cookies and site data after window is closed"
+  },
   "popup.options.cookiePolicy": {
     "message": "Policy"
   },
