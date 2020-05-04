@@ -70,7 +70,7 @@
                 {{ localizations['options.settings.export'] }}
               </div>
             </button>
-            <button @click="resetSettings" class="transparent-btn">
+            <button @click="openResetModal" class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="rotate-ccw" size="1em"></feather>
                 {{ localizations['options.settings.reset'] }}
@@ -372,6 +372,20 @@
               </div>
             </div>
           </div>
+          <div v-else-if="modalType === Modal.CONFIRM_RESET" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
+            <div class="flex flex-col px-6 pt-6 pb-8">
+              <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
+              <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.modal.askReset'] }}</span>
+              <div class="flex justify-center">
+                <button @click="resetSettings" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">
+                  {{ localizations['options.modal.confirmReset'] }}
+                </button>
+                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
+                  {{ localizations['text.cancel'] }}
+                </button>
+              </div>
+            </div>
+          </div>
           <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
@@ -422,6 +436,7 @@ enum Modal {
   IP_RULE,
   WL_RULE,
   CONFIRM_IP_DELETE,
+  CONFIRM_RESET,
   CONFIRM_WL_DELETE,
   CHECKLIST_INFO,
 }
@@ -723,6 +738,11 @@ export default class App extends Vue {
         this.currentTab = 'about';
       }
     }.bind(this);
+  }
+
+  openResetModal(): void {
+    this.showModal = true;
+    this.modalType = Modal.CONFIRM_RESET;
   }
 
   readSettings(evt: Event): void {

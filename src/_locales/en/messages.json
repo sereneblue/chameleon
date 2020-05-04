@@ -419,8 +419,14 @@
   "options.modal.askDelete": {
     "message": "Are you sure you want to delete this rule?"
   },
+  "options.modal.askReset": {
+    "message": "Are you sure you want to reset your settings?"
+  },
   "options.modal.confirmDelete": {
     "message": "Yes, delete it!"
+  },
+  "options.modal.confirmReset": {
+    "message": "Yes, reset my settings!"
   },
   "options.settings": {
     "message": "Settings"
