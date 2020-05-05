@@ -14,11 +14,14 @@
   "notifications.usingIPRule": {
     "message": "Using IP Rule:"
   },
-  "options.about.wiki": {
-    "message": "Wiki"
-  },
   "options.about.issueTracker": {
     "message": "Issue Tracker"
+  },
+  "options.about.knownIssues": {
+    "message": "Known Issues"
+  },
+  "options.about.wiki": {
+    "message": "Wiki"
   },
   "options.about.support": {
     "message": "Support"

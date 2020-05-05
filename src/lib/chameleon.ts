@@ -544,6 +544,7 @@ export class Chameleon {
       'notifications.usingIPRule',
       'options.about.wiki',
       'options.about.issueTracker',
+      'options.about.knownIssues',
       'options.about.support',
       'options.about.sourceCode',
       'options.about.translate',

@@ -52,6 +52,12 @@
                 <a href="https://crowdin.com/project/chameleon">{{ localizations['options.about.translate'] }}</a>
               </div>
             </button>
+            <button class="transparent-btn">
+              <div class="flex items-center">
+                <feather class="mr-2" type="info" size="1em"></feather>
+                <a href="https://sereneblue.github.io/chameleon/wiki/known-issues">{{ localizations['options.about.knownIssues'] }}</a>
+              </div>
+            </button>
           </div>
         </div>
         <div class="mt-4">
