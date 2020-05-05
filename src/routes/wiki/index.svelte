@@ -24,6 +24,10 @@
       <span class="font-semibold text-2xl">IP Rules</span>
       <p class="text-lg mt-1">Learn more about the IP Rules feature</p>
     </a>
+    <a class="mx-0 bg-white shadow hover:text-primary hover:shadow-lg px-6 py-4 rounded mb-3" href="wiki/known-issues">
+      <span class="font-semibold text-2xl">Known Issues</span>
+      <p class="text-lg mt-1">List of sites known to have issues with Chameleon</p>
+    </a>
     <a class="mx-0 bg-white shadow hover:text-primary hover:shadow-lg px-6 py-4 rounded mb-3" href="wiki/options">
       <span class="font-semibold text-2xl">Options</span>
       <p class="text-lg mt-1">Learn more about the features on the Options tab</p>
