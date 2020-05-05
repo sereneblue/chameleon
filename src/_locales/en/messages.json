@@ -14,11 +14,14 @@
   "notifications.usingIPRule": {
     "message": "Using IP Rule:"
   },
-  "options.about.wiki": {
-    "message": "Wiki"
-  },
   "options.about.issueTracker": {
     "message": "Issue Tracker"
+  },
+  "options.about.knownIssues": {
+    "message": "Known Issues"
+  },
+  "options.about.wiki": {
+    "message": "Wiki"
   },
   "options.about.support": {
     "message": "Support"
@@ -419,8 +422,14 @@
   "options.modal.askDelete": {
     "message": "Are you sure you want to delete this rule?"
   },
+  "options.modal.askReset": {
+    "message": "Are you sure you want to reset your settings?"
+  },
   "options.modal.confirmDelete": {
     "message": "Yes, delete it!"
+  },
+  "options.modal.confirmReset": {
+    "message": "Yes, reset my settings!"
   },
   "options.settings": {
     "message": "Settings"
@@ -502,18 +511,6 @@
   },
   "popup.home.enabled": {
     "message": "Chameleon is enabled"
-  },
-  "popup.home.fpPanel.audioContext": {
-    "message": "Audio context"
-  },
-  "popup.home.fpPanel.clientRects": {
-    "message": "Client Rects"
-  },
-  "popup.home.fpPanel.date": {
-    "message": "Date"
-  },
-  "popup.home.fpPanel.screen": {
-    "message": "Screen"
   },
   "popup.home.notification.disabled": {
     "message": "Notifications Off"
@@ -737,6 +734,9 @@
   "popup.options.cookie": {
     "message": "Cookie"
   },
+  "popup.options.cookieNotPersistent": {
+    "message": "Delete cookies and site data after window is closed"
+  },
   "popup.options.cookiePolicy": {
     "message": "Policy"
   },
@@ -802,6 +802,9 @@
   },
   "text.save": {
     "message": "Save"
+  },
+  "text.screen": {
+    "message": "Screen"
   },
   "text.searchRules": {
     "message": "Search rules"

@@ -1,14 +1,16 @@
 // helpful functions to handle web extension things
 let enableChameleon = (enabled: boolean): void => {
   browser.runtime.getPlatformInfo().then(plat => {
-    if (enabled === false && plat.os != 'android') {
-      browser.browserAction.setIcon({
-        path: '../icons/icon_disabled.svg',
-      });
-    } else {
-      browser.browserAction.setIcon({
-        path: '../icons/icon.svg',
-      });
+    if (plat.os != 'android') {
+      if (enabled === false) {
+        browser.browserAction.setIcon({
+          path: '../icons/icon_disabled.svg',
+        });
+      } else {
+        browser.browserAction.setIcon({
+          path: '../icons/icon.svg',
+        });
+      }
     }
   });
 };
@@ -45,12 +47,18 @@ let sendToBackground = (settings: any): void => {
   });
 };
 
-let setBrowserConfig = (setting: string, value: string): void => {
-  if (setting === 'options.cookiePolicy') {
+let setBrowserConfig = async (setting: string, value: string): Promise<void> => {
+  if (setting === 'options.cookiePolicy' || setting === 'options.cookieNotPersistent') {
+    let settings = await browser.privacy.websites.cookieConfig.get({});
+
+    if (setting === 'options.cookiePolicy') {
+      settings.behavior = value;
+    } else {
+      settings.nonPersistentCookies = value;
+    }
+
     browser.privacy.websites.cookieConfig.set({
-      value: {
-        behavior: value,
-      },
+      value: settings,
     });
   } else if (['options.firstPartyIsolate', 'options.resistFingerprinting', 'options.trackingProtectionMode'].includes(setting)) {
     let key: string = setting.split('.')[1];

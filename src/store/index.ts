@@ -43,6 +43,7 @@ export default new Vuex.Store({
       },
     },
     options: {
+      cookieNotPersistent: false,
       cookiePolicy: 'allow_all',
       blockMediaDevices: false,
       disableWebRTC: false,

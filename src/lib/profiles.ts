@@ -18,6 +18,7 @@ export interface BrowserProfile {
     platform: string | null;
     plugins: object | null;
     productSub: string | null;
+    userAgent: string;
     vendor: string | null;
     vendorSub: string | null;
   };
@@ -27,7 +28,6 @@ export interface BrowserProfile {
     availHeight: number;
     deviceScaleFactor?: number;
   };
-  useragent?: string;
   osId: string;
 }
 
@@ -97,7 +97,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -131,6 +130,7 @@ export class Generator {
             { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null },
           ],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Google Inc.',
           vendorSub: '',
         },
@@ -156,7 +156,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -170,6 +169,7 @@ export class Generator {
           platform: 'Linux aarch64',
           plugins: [],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Google Inc.',
           vendorSub: '',
         },
@@ -222,7 +222,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -236,6 +235,7 @@ export class Generator {
           platform: os.nav.platform,
           plugins: [],
           productSub: '20100101',
+          userAgent: ua,
           vendor: '',
           vendorSub: '',
         },
@@ -288,7 +288,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -302,6 +301,7 @@ export class Generator {
           platform: os.nav.platform,
           plugins: [],
           productSub: '20100101',
+          userAgent: ua,
           vendor: '',
           vendorSub: '',
         },
@@ -328,7 +328,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -342,6 +341,7 @@ export class Generator {
           platform: 'Linux aarch64',
           plugins: [],
           productSub: '20100101',
+          userAgent: ua,
           vendor: '',
           vendorSub: '',
         },
@@ -368,7 +368,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -382,6 +381,7 @@ export class Generator {
           platform: 'Linux aarch64',
           plugins: [],
           productSub: '20100101',
+          userAgent: ua,
           vendor: '',
           vendorSub: '',
         },
@@ -430,7 +430,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -469,6 +468,7 @@ export class Generator {
             { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null },
           ],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Google Inc.',
           vendorSub: '',
         },
@@ -505,6 +505,7 @@ export class Generator {
           platform: 'iPhone',
           plugins: [],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Apple Computer, Inc.',
           vendorSub: '',
         }),
@@ -528,6 +529,7 @@ export class Generator {
           platform: 'Linux armv8l',
           plugins: [],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Google Inc.',
           vendorSub: '',
         };
@@ -541,7 +543,6 @@ export class Generator {
 
       return {
         accept,
-        useragent: ua,
         osId: os.id,
         navigator,
         screen: {
@@ -578,6 +579,7 @@ export class Generator {
           platform: 'iPad',
           plugins: [],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Apple Computer, Inc.',
           vendorSub: '',
         }),
@@ -601,6 +603,7 @@ export class Generator {
           platform: 'Linux armv8l',
           plugins: [],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Google Inc.',
           vendorSub: '',
         };
@@ -614,7 +617,6 @@ export class Generator {
 
       return {
         accept,
-        useragent: ua,
         osId: os.id,
         navigator,
         screen: {
@@ -653,7 +655,6 @@ export class Generator {
           encodingHTTP: 'gzip',
           encodingHTTPS: 'gzip, deflate',
         },
-        useragent: `Mozilla/5.0 (${os.nav.oscpu.split(';')[0]}; WOW64; Trident/7.0; rv:11.0) like Gecko`,
         osId: os.id,
         navigator: {
           appMinorVersion: '0',
@@ -667,6 +668,7 @@ export class Generator {
           platform: 'Win32',
           plugins: null,
           productSub: null,
+          userAgent: `Mozilla/5.0 (${os.nav.oscpu.split(';')[0]}; WOW64; Trident/7.0; rv:11.0) like Gecko`,
           vendor: '',
           vendorSub: null,
         },
@@ -690,7 +692,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'br, gzip, deflate',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -720,6 +721,7 @@ export class Generator {
           platform: 'MacIntel',
           plugins: [{ name: 'WebKit built-in PDF', filename: '', description: '', version: null }],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Apple Computer, Inc.',
           vendorSub: '',
         },
@@ -745,7 +747,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'br, gzip, deflate',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -759,6 +760,7 @@ export class Generator {
           platform: 'iPhone',
           plugins: [],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Apple Computer, Inc.',
           vendorSub: '',
         },
@@ -785,7 +787,6 @@ export class Generator {
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'br, gzip, deflate',
         },
-        useragent: ua,
         osId: os.id,
         navigator: {
           appMinorVersion: null,
@@ -799,6 +800,7 @@ export class Generator {
           platform: 'iPad',
           plugins: [],
           productSub: '20030107',
+          userAgent: ua,
           vendor: 'Apple Computer, Inc.',
           vendorSub: '',
         },

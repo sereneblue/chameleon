@@ -67,21 +67,6 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     sendResponse('done');
   } else if (request.action === 'validateSettings') {
     sendResponse(chameleon.validateSettings(request.data));
-  } else if (request.action === 'fpDetect') {
-    let tabId = sender.tab.id;
-
-    chameleon.setTabFPDetected(tabId, request.data);
-    browser.browserAction.setBadgeText({
-      text: Object.values(chameleon.getTabFPDetected(tabId))
-        .filter(detected => detected === true)
-        .length.toString(),
-      tabId,
-    });
-    sendResponse('done');
-  } else if (request.action === 'getTabFP') {
-    browser.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      sendResponse(chameleon.getTabFPDetected(tabs[0].id));
-    });
   }
 
   return true;
@@ -107,16 +92,5 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
     browser.browserAction.setBadgeBackgroundColor({
       color: 'green',
     });
-
-    browser.tabs.onUpdated.addListener(
-      (tabId, changeInfo) => {
-        if (changeInfo.status === 'loading' && changeInfo.url) {
-          chameleon.resetTabFP(tabId);
-        }
-      },
-      {
-        urls: ['<all_urls>'],
-      }
-    );
   }
 })();

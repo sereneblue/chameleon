@@ -503,18 +503,6 @@
   "popup.home.enabled": {
     "message": "Chameleon已启用"
   },
-  "popup.home.fpPanel.audioContext": {
-    "message": "音频上下文"
-  },
-  "popup.home.fpPanel.clientRects": {
-    "message": "客户端矩形"
-  },
-  "popup.home.fpPanel.date": {
-    "message": "日期"
-  },
-  "popup.home.fpPanel.screen": {
-    "message": "屏幕"
-  },
   "popup.home.notification.disabled": {
     "message": "通知关"
   },
@@ -802,6 +790,9 @@
   },
   "text.save": {
     "message": "保存"
+  },
+  "text.screen": {
+    "message": "屏幕"
   },
   "text.searchRules": {
     "message": "搜索规则"

@@ -1,3 +1,51 @@
+<a name="v0.20.3-rc"></a>
+
+## [v0.20.3-rc](https://github.com/sereneblue/chameleon/compare/v0.20.2-rc...v0.20.3-rc) (2020-05-04)
+
+### Bug Fixes
+
+- check if android before toggling Chameleon
+- **font spoofing:** add support for web fonts; [#360](https://github.com/sereneblue/chameleon/issues/360)
+- **injection:** use parent client rect functions in iframes; [#341](https://github.com/sereneblue/chameleon/issues/341)
+- **injection:** overwrite navigator.userAgent if profile is used while RFP is enabled; [#340](https://github.com/sereneblue/chameleon/issues/340)
+- **spoofing:** exempt accounts.google from spoofing; [#339](https://github.com/sereneblue/chameleon/issues/339)
+
+  ### Features
+
+- **cookies:** add option to toggle cookie persistence; [#346](https://github.com/sereneblue/chameleon/issues/346)
+- **options:** add link to known site issues page on wiki
+- **options page:** add confirmation before resetting settings; [#348](https://github.com/sereneblue/chameleon/issues/348)
+
+<a name="v0.20.2-rc"></a>
+
+## [v0.20.2-rc](https://github.com/sereneblue/chameleon/compare/v0.20.1-rc...v0.20.2-rc) (2020-05-02)
+
+### Bug Fixes
+
+- **fp panel:** check if web audio is enabled before creating proxy; [#332](https://github.com/sereneblue/chameleon/issues/332)
+- **injection:** handle NaN values for Date; [#332](https://github.com/sereneblue/chameleon/issues/332)
+- **injection:** remove Youtube polymer handling; [#336](https://github.com/sereneblue/chameleon/issues/336)
+- **popup:** add condition to check if localization object is empty
+- **popup:** add fallback if localstorage is disabled; [#338](https://github.com/sereneblue/chameleon/issues/338)
+- **settings:** update version validation when importing settings
+- **settings:** add font fingerprint to store
+- **timezone:** improve timezone spoofing; [#325](https://github.com/sereneblue/chameleon/issues/325)
+
+### Features
+
+- **localization:** add french translation
+
+<a name="v0.20.1-rc"></a>
+
+## [v0.20.1-rc](https://github.com/sereneblue/chameleon/compare/v0.20.0-rc...v0.20.1-rc) (2020-05-02)
+
+### Bug Fixes
+
+- **fp panel:** remove fp panel support for mobile Firefox; [#330](https://github.com/sereneblue/chameleon/issues/330)
+- **settings:** always load current firefox preferences; [#333](https://github.com/sereneblue/chameleon/issues/333)
+- **settings:** preserve firefox preferences on initial import; [#334](https://github.com/sereneblue/chameleon/issues/334)
+- **settings:** import legacy settings, profile issue; [#323](https://github.com/sereneblue/chameleon/issues/323)
+
 <a name="v0.20.0-rc1"></a>
 
 ## [v0.20.0-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.0-beta...v0.20.0-rc1) (2020-04-30)

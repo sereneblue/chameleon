@@ -30,7 +30,6 @@ export class Chameleon {
   private injectionScript: any;
   private intercept: Interceptor;
   private profileCache: any;
-  private tabsFP: any;
   private REGEX_UUID: RegExp;
   public intervalTimeout: any;
   public localization: object;
@@ -57,7 +56,6 @@ export class Chameleon {
     this.intervalTimeout = null;
     this.localization = {};
     this.profileCache = {};
-    this.tabsFP = {};
     this.version = browser.runtime.getManifest().version;
     this.REGEX_UUID = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
   }
@@ -94,6 +92,7 @@ export class Chameleon {
     browser.privacy.websites.cookieConfig.set({
       value: {
         behavior: this.settings.options.cookiePolicy,
+        nonPersistentCookies: this.settings.options.cookieNotPersistent,
       },
     });
 
@@ -124,8 +123,9 @@ export class Chameleon {
     }
 
     // get current modified preferences
-    let cookiePolicy = await browser.privacy.websites.cookieConfig.get({});
-    this.settings.options.cookiePolicy = cookiePolicy.value.behavior;
+    let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
+    this.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
+    this.settings.options.cookiePolicy = cookieSettings.value.behavior;
 
     let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
     this.settings.options.firstPartyIsolate = firstPartyIsolate.value;
@@ -544,6 +544,7 @@ export class Chameleon {
       'notifications.usingIPRule',
       'options.about.wiki',
       'options.about.issueTracker',
+      'options.about.knownIssues',
       'options.about.support',
       'options.about.sourceCode',
       'options.about.translate',
@@ -677,7 +678,9 @@ export class Chameleon {
       'options.ipRules.textareaLabel',
       'options.ipRules.textareaPlaceholder',
       'options.modal.askDelete',
+      'options.modal.askReset',
       'options.modal.confirmDelete',
+      'options.modal.confirmReset',
       'options.settings',
       'options.settings.import',
       'options.settings.importing',
@@ -705,10 +708,6 @@ export class Chameleon {
       'popup.home.currentProfile.gettingTimezone',
       'popup.home.disabled',
       'popup.home.enabled',
-      'popup.home.fpPanel.audioContext',
-      'popup.home.fpPanel.clientRects',
-      'popup.home.fpPanel.date',
-      'popup.home.fpPanel.screen',
       'popup.home.notification.disabled',
       'popup.home.notification.enabled',
       'popup.home.onThisPage',
@@ -783,6 +782,7 @@ export class Chameleon {
       'popup.options.standard.webSockets.blockAll',
       'popup.options.standard.webSockets.blockThirdParty',
       'popup.options.cookie',
+      'popup.options.cookieNotPersistent',
       'popup.options.cookiePolicy',
       'popup.options.cookiePolicy.allowVisited',
       'popup.options.cookiePolicy.rejectAll',
@@ -805,6 +805,7 @@ export class Chameleon {
       'text.profile',
       'text.realProfile',
       'text.save',
+      'text.screen',
       'text.searchRules',
       'text.timezone',
       'text.whitelist',
@@ -879,42 +880,6 @@ export class Chameleon {
       },
       ['blocking', 'responseHeaders']
     );
-  }
-
-  public getTabFPDetected(tabId: number): any {
-    return this.tabsFP[tabId]
-      ? this.tabsFP[tabId]
-      : {
-          audioContext: false,
-          clientRects: false,
-          date: false,
-          screen: false,
-          webSocket: false,
-        };
-  }
-
-  public resetTabFP(tabId: number): void {
-    this.tabsFP[tabId] = {
-      audioContext: false,
-      clientRects: false,
-      date: false,
-      screen: false,
-      webSocket: false,
-    };
-  }
-
-  public setTabFPDetected(tabId: number, fpDetected: string): void {
-    if (!this.tabsFP[tabId]) {
-      this.tabsFP[tabId] = {
-        audioContext: false,
-        clientRects: false,
-        date: false,
-        screen: false,
-        webSocket: false,
-      };
-    }
-
-    this.tabsFP[tabId][fpDetected] = true;
   }
 
   public setTimer(option = null): void {
@@ -1425,6 +1390,7 @@ export class Chameleon {
           ['default', 'profile', '1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160', '4096x2304', '5120x2880'],
         ],
         ['options.timeZone', impSettings.options.timeZone, timezoneIds.concat(['default', 'ip'])],
+        ['options.cookieNotPersistent', impSettings.options.cookieNotPersistent, 'boolean'],
         ['options.cookiePolicy', impSettings.options.cookiePolicy, ['allow_all', 'allow_visited', 'reject_all', 'reject_third_party', 'reject_trackers']],
         ['options.trackingProtectionMode', impSettings.options.trackingProtectionMode, ['always', 'never', 'private_browsing']],
         [
