@@ -208,39 +208,48 @@
       </div>
     </div>
     <div class="mt-2">
-      <h2 class="font-semibold text-3xl border-primary border-b-2 my-4">Cookie Options</h2>
       <div class="mt-4">
-        <h3 class="font-bold mb-2">Cookie Policy</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Option</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Allow all</td>
-              <td>Allow all cookies</td>
-            </tr>
-            <tr>
-              <td>Block all</td>
-              <td>Block all cookies</td>
-            </tr>
-            <tr>
-              <td>Block 3rd party</td>
-              <td>Block all 3rd party cookies</td>
-            </tr>
-            <tr>
-              <td>Allow 3rd party from visited</td>
-              <td>Allow 3rd party cookies only if the cookie's top-level domain already has at least one cookie</td>
-            </tr>
-            <tr>
-              <td>Reject trackers</td>
-              <td>Reject cookies from trackers</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2 class="font-semibold text-3xl border-primary border-b-2 my-4">Cookie Options</h2>
+        <div>
+          <h3 class="font-bold"> Delete cookies and site data after window is closed </h3>
+          <p>
+            Treat all cookies as session cookies.
+          </p>
+        </div>
+        <div class="mt-4">
+          <h3 class="font-bold mb-2">Cookie Policy</h3>
+          <div class="font-semibold my-2 text-sm text-red-600">This option will break some sites!</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Allow all</td>
+                <td>Allow all cookies</td>
+              </tr>
+              <tr>
+                <td>Block all</td>
+                <td>Block all cookies</td>
+              </tr>
+              <tr>
+                <td>Block 3rd party</td>
+                <td>Block all 3rd party cookies</td>
+              </tr>
+              <tr>
+                <td>Allow 3rd party from visited</td>
+                <td>Allow 3rd party cookies only if the cookie's top-level domain already has at least one cookie</td>
+              </tr>
+              <tr>
+                <td>Reject trackers</td>
+                <td>Reject cookies from trackers</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
