@@ -13,12 +13,7 @@
       If you're having issues with a specific website, you may be able to identify the errors caused
       by Chameleon by opening the Developer Console (CTRL/COMMAND+SHIFT+K). Errors in red can give a clue as to
       what may be causing a site to break. For example, if you see "Date" in
-      the console and you're using timezone spoofing, that may be the cause of the issue. You can also use
-      the fingerprint panel on the Chameleon popup to quickly identify which features are being used on a web page.
-      <div class="w-full my-4 flex flex-col items-center">
-        <img class="max-w-md" src="panel.png" alt="Chameleon fingerprint panel">
-        <p class="text-center mt-2 text-lg">From left to right, Audio Context, Client Rects, Date, Screen, WebSocket.</p>
-      </div>
+      the console and you're using timezone spoofing, that may be the cause of the issue.
       Some sites use features that are not supported in Firefox or use the user agent to detect whether some features
       are supported or not. For example, Spotify does not work with IE11 profiles.
       <br>
