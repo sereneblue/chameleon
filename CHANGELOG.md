@@ -1,3 +1,21 @@
+<a name="v0.20.3-rc"></a>
+
+## [v0.20.3-rc](https://github.com/sereneblue/chameleon/compare/v0.20.2-rc...v0.20.3-rc) (2020-05-04)
+
+### Bug Fixes
+
+- check if android before toggling Chameleon
+- **font spoofing:** add support for web fonts; [#360](https://github.com/sereneblue/chameleon/issues/360)
+- **injection:** use parent client rect functions in iframes; [#341](https://github.com/sereneblue/chameleon/issues/341)
+- **injection:** overwrite navigator.userAgent if profile is used while RFP is enabled; [#340](https://github.com/sereneblue/chameleon/issues/340)
+- **spoofing:** exempt accounts.google from spoofing; [#339](https://github.com/sereneblue/chameleon/issues/339)
+
+  ### Features
+
+- **cookies:** add option to toggle cookie persistence; [#346](https://github.com/sereneblue/chameleon/issues/346)
+- **options:** add link to known site issues page on wiki
+- **options page:** add confirmation before resetting settings; [#348](https://github.com/sereneblue/chameleon/issues/348)
+
 <a name="v0.20.2-rc"></a>
 
 ## [v0.20.2-rc](https://github.com/sereneblue/chameleon/compare/v0.20.1-rc...v0.20.2-rc) (2020-05-02)
