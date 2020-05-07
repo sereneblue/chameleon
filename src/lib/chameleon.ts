@@ -32,7 +32,6 @@ export class Chameleon {
   private profileCache: any;
   private REGEX_UUID: RegExp;
   public intervalTimeout: any;
-  public localization: object;
   public platform: any;
   public tempStore: TemporarySettings;
   public timeout: any;
@@ -54,7 +53,6 @@ export class Chameleon {
     };
     this.injectionScript = null;
     this.intervalTimeout = null;
-    this.localization = {};
     this.profileCache = {};
     this.version = browser.runtime.getManifest().version;
     this.REGEX_UUID = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
@@ -155,7 +153,7 @@ export class Chameleon {
 
   private getProfileInUse(): string {
     if (this.settings.profile.selected === 'none' || this.settings.excluded.includes(this.settings.profile.selected) || this.tempStore.profile === 'none') {
-      return this.localization['text.realProfile'];
+      return browser.i18n.getMessage('text-realProfile');
     } else {
       let profiles: any = new prof.Generator().getAllProfiles();
       for (let k of Object.keys(profiles)) {
@@ -236,7 +234,7 @@ export class Chameleon {
     };
 
     if (!prev.settings && importing) {
-      msg = this.localization['options.import.invalid.settings'];
+      msg = browser.i18n.getMessage('options-import-invalid-settings');
 
       return {
         error: true,
@@ -287,7 +285,7 @@ export class Chameleon {
           s.profile.selected = mappedProfiles[prev.settings.useragent];
         } else {
           if (importing) {
-            msg = this.localization['options.import.invalid.profile'];
+            msg = browser.i18n.getMessage('options-import-invalid-profile');
 
             return {
               error: true,
@@ -299,7 +297,7 @@ export class Chameleon {
     }
 
     if (!prev.headers && importing) {
-      msg = this.localization['options.import.invalid.headers'];
+      msg = browser.i18n.getMessage('options-import-invalid-headers');
 
       return {
         error: true,
@@ -357,7 +355,7 @@ export class Chameleon {
     }
 
     if (!prev.excluded && importing) {
-      msg = this.localization['options.import.invalid.excluded'];
+      msg = browser.i18n.getMessage('options-import-invalid-excluded');
 
       return {
         error: true,
@@ -400,7 +398,7 @@ export class Chameleon {
     }
 
     if (!prev.ipRules && importing) {
-      msg = this.localization['options.import.invalid.ipRules'];
+      msg = browser.i18n.getMessage('options-import-invalid-ipRules');
 
       return {
         error: true,
@@ -425,7 +423,7 @@ export class Chameleon {
     }
 
     if (!prev.whitelist && importing) {
-      msg = this.localization['options.import.invalid.whitelist'];
+      msg = browser.i18n.getMessage('options-import-invalid-whitelist');
 
       return {
         error: true,
@@ -492,7 +490,7 @@ export class Chameleon {
         browser.runtime.reload();
       }, 2500);
 
-      msg = this.localization['options.import.success'];
+      msg = browser.i18n.getMessage('options-import-success');
 
       return {
         error: false,
@@ -535,287 +533,6 @@ export class Chameleon {
     }
   }
 
-  public localize(): void {
-    let keys = [
-      'extDescription',
-      'notifications.profileChange',
-      'notifications.unableToGetIPInfo',
-      'notifications.usingIPInfo',
-      'notifications.usingIPRule',
-      'options.about.wiki',
-      'options.about.issueTracker',
-      'options.about.knownIssues',
-      'options.about.support',
-      'options.about.sourceCode',
-      'options.about.translate',
-      'options.checklist.close',
-      'options.checklist.leaveEmpty',
-      'options.checklist.note1',
-      'options.checklist.note2',
-      'options.checklist.warning',
-      'options.checklistItem.blockActiveMixedContent',
-      'options.checklistItem.blockActiveMixedContentDesc',
-      'options.checklistItem.blockDisplayMixedContent',
-      'options.checklistItem.blockDisplayMixedContentDesc',
-      'options.checklistItem.disableAddonCache',
-      'options.checklistItem.disableAddonCacheDesc',
-      'options.checklistItem.disableAddonUpdates',
-      'options.checklistItem.disableAddonUpdatesDesc',
-      'options.checklistItem.disableBattery',
-      'options.checklistItem.disableBatteryDesc',
-      'options.checklistItem.disableHistory',
-      'options.checklistItem.disableHistoryDesc',
-      'options.checklistItem.disableCacheDisk',
-      'options.checklistItem.disableCacheDiskDesc',
-      'options.checklistItem.disableCacheMem',
-      'options.checklistItem.disableCacheMemDesc',
-      'options.checklistItem.disableClipboardEvt',
-      'options.checklistItem.disableClipboardEvtDesc',
-      'options.checklistItem.disableContextMenuEvt',
-      'options.checklistItem.disableContextMenuEvtDesc',
-      'options.checklistItem.disableMobileSensors',
-      'options.checklistItem.disableMobileSensorsDesc',
-      'options.checklistItem.disableDNSPrefetch',
-      'options.checklistItem.disableDNSPrefetchDesc',
-      'options.checklistItem.disableDOMStorage',
-      'options.checklistItem.disableDOMStorageDesc',
-      'options.checklistItem.disableDRM',
-      'options.checklistItem.disableDRMDesc',
-      'options.checklistItem.disableGeo',
-      'options.checklistItem.disableGeoDesc',
-      'options.checklistItem.disableGeo2',
-      'options.checklistItem.disableGeo2Desc',
-      'options.checklistItem.disableIDN',
-      'options.checklistItem.disableIDNDesc',
-      'options.checklistItem.disableOfflineCache',
-      'options.checklistItem.disableOfflineCacheDesc',
-      'options.checklistItem.disablePDF',
-      'options.checklistItem.disablePDFDesc',
-      'options.checklistItem.disablePocket',
-      'options.checklistItem.disablePocketDesc',
-      'options.checklistItem.disableResTiming',
-      'options.checklistItem.disableResTimingDesc',
-      'options.checklistItem.disableSearchSuggest',
-      'options.checklistItem.disableSearchSuggestDesc',
-      'options.checklistItem.disableSearchUpdates',
-      'options.checklistItem.disableSearchUpdatesDesc',
-      'options.checklistItem.disableSpeculatePreConn',
-      'options.checklistItem.disableSpeculatePreConnDesc',
-      'options.checklistItem.disableSSLFalseStart',
-      'options.checklistItem.disableSSLFalseStartDesc',
-      'options.checklistItem.disableSSLSessId',
-      'options.checklistItem.disableSSLSessIdDesc',
-      'options.checklistItem.disableTLSRTT',
-      'options.checklistItem.disableTLSRTTDesc',
-      'options.checklistItem.disableTRR',
-      'options.checklistItem.disableTRRDesc',
-      'options.checklistItem.disableWebGL',
-      'options.checklistItem.disableWebGLDesc',
-      'options.checklistItem.disableWebBeacons',
-      'options.checklistItem.disableWebBeaconsDesc',
-      'options.checklistItem.clearOfflineApps',
-      'options.checklistItem.clearOfflineAppsDesc',
-      'options.checklistItem.enableSocialTrackingProtect',
-      'options.checklistItem.enableSocialTrackingProtectDesc',
-      'options.checklistItem.limitFonts',
-      'options.checklistItem.limitFontsDesc',
-      'options.checklistItem.limitMaxTabsUndo',
-      'options.checklistItem.limitMaxTabsUndoDesc',
-      'options.checklistItem.useClickToPlay',
-      'options.checklistItem.useClickToPlayDesc',
-      'options.checklistItem.disableDataSubmission',
-      'options.checklistItem.disableDataSubmissionDesc',
-      'options.checklistItem.disableSafeBrowsingDownloadCheck',
-      'options.checklistItem.disableSafeBrowsingDownloadCheckDesc',
-      'options.checklistItem.disableSafeBrowsingDownloadCheck2',
-      'options.checklistItem.disableSafeBrowsingDownloadCheck2Desc',
-      'options.checklistItem.disableSafeBrowsingDownloadCheck3',
-      'options.checklistItem.disableSafeBrowsingDownloadCheck3Desc',
-      'options.checklistItem.disableSafeBrowsingDownloadCheck4',
-      'options.checklistItem.disableSafeBrowsingDownloadCheck4Desc',
-      'options.checklistItem.disableSafeBrowsingMalwareCheck',
-      'options.checklistItem.disableSafeBrowsingMalwareCheckDesc',
-      'options.checklistItem.disableSafeBrowsingPhishingCheck',
-      'options.checklistItem.disableSafeBrowsingPhishingCheckDesc',
-      'options.checklistItem.disableHealthReport',
-      'options.checklistItem.disableHealthReportDesc',
-      'options.checklistItem.disableCrashReport',
-      'options.checklistItem.disableCrashReportDesc',
-      'options.checklistItem.disableTelemetryPing',
-      'options.checklistItem.disableTelemetryPingDesc',
-      'options.checklistItem.disableTelemetryReport',
-      'options.checklistItem.disableTelemetryReportDesc',
-      'options.checklistItem.disableTelemetryReport2',
-      'options.checklistItem.disableTelemetryReport2Desc',
-      'options.checklistItem.sessionPrivacyLevel',
-      'options.checklistItem.sessionPrivacyLevelDesc',
-      'options.import.couldNotImport',
-      'options.import.invalid.config',
-      'options.import.invalid.excluded',
-      'options.import.invalid.excludedProfile',
-      'options.import.invalid.headers',
-      'options.import.invalid.ipRuleId',
-      'options.import.invalid.ipRuleName',
-      'options.import.invalid.ipRuleRange',
-      'options.import.invalid.ipRules',
-      'options.import.invalid.ipRulesDupe',
-      'options.import.invalid.options',
-      'options.import.invalid.profile',
-      'options.import.invalid.setting',
-      'options.import.invalid.settings',
-      'options.import.invalid.spoofIP',
-      'options.import.invalid.version',
-      'options.import.invalid.whitelist',
-      'options.import.invalid.whitelistDupe',
-      'options.import.invalid.whitelistId',
-      'options.import.invalid.whitelistName',
-      'options.import.invalid.whitelistOpt',
-      'options.import.invalid.whitelistSpoofIP',
-      'options.import.success',
-      'options.ipRules.editorTitle',
-      'options.ipRules.ipRule',
-      'options.ipRules.reload',
-      'options.ipRules.textareaLabel',
-      'options.ipRules.textareaPlaceholder',
-      'options.modal.askDelete',
-      'options.modal.askReset',
-      'options.modal.confirmDelete',
-      'options.modal.confirmReset',
-      'options.settings',
-      'options.settings.import',
-      'options.settings.importing',
-      'options.settings.export',
-      'options.settings.reset',
-      'options.tab.about',
-      'options.tab.ipRules',
-      'options.tab.checklist',
-      'options.whitelist.acceptLang',
-      'options.whitelist.editorTitle',
-      'options.whitelist.headerIPLabel',
-      'options.whitelist.options.name',
-      'options.whitelist.options.tz',
-      'options.whitelist.options.ws',
-      'options.whitelist.rule',
-      'options.whitelist.sitesTip',
-      'options.whitelist.textareaLabel',
-      'options.whitelist.textareaPlaceholder',
-      'options.whitelist.urls',
-      'popup.home.change',
-      'popup.home.currentProfile',
-      'popup.home.currentProfile.defaultLanguage',
-      'popup.home.currentProfile.defaultScreen',
-      'popup.home.currentProfile.defaultTimezone',
-      'popup.home.currentProfile.gettingTimezone',
-      'popup.home.disabled',
-      'popup.home.enabled',
-      'popup.home.notification.disabled',
-      'popup.home.notification.enabled',
-      'popup.home.onThisPage',
-      'popup.home.theme.dark',
-      'popup.home.theme.light',
-      'popup.profile.changePeriodically',
-      'popup.profile.devicePhone',
-      'popup.profile.deviceTablet',
-      'popup.profile.interval.no',
-      'popup.profile.interval.custom',
-      'popup.profile.interval.customMax',
-      'popup.profile.interval.customMin',
-      'popup.profile.interval.minute',
-      'popup.profile.interval.5minutes',
-      'popup.profile.interval.10minutes',
-      'popup.profile.interval.20minutes',
-      'popup.profile.interval.30minutes',
-      'popup.profile.interval.40minutes',
-      'popup.profile.interval.50minutes',
-      'popup.profile.interval.hour',
-      'popup.profile.exclude',
-      'popup.profile.randomAndroid',
-      'popup.profile.randomIOS',
-      'popup.profile.randomMacOS',
-      'popup.profile.randomLinux',
-      'popup.profile.randomWindows',
-      'popup.profile.random',
-      'popup.profile.randomDesktopProfile',
-      'popup.profile.randomMobileProfile',
-      'popup.headers',
-      'popup.headers.enableDNT',
-      'popup.headers.preventEtag',
-      'popup.headers.refererWarning',
-      'popup.headers.referer.trimming',
-      'popup.headers.referer.trimming.sendFullURI',
-      'popup.headers.referer.trimming.schemeHostPortPath',
-      'popup.headers.referer.trimming.schemeHostPort',
-      'popup.headers.referer.xorigin',
-      'popup.headers.referer.xorigin.alwaysSend',
-      'popup.headers.referer.xorigin.matchBaseDomain',
-      'popup.headers.referer.xorigin.matchHost',
-      'popup.headers.spoofAcceptLang',
-      'popup.headers.spoofIP',
-      'popup.headers.spoofIP.random',
-      'popup.headers.spoofIP.custom',
-      'popup.headers.spoofIP.rangeFrom',
-      'popup.headers.spoofIP.rangeTo',
-      'popup.options',
-      'popup.options.aboutConfigButton',
-      'popup.options.injection',
-      'popup.options.injection.limitTabHistory',
-      'popup.options.injection.protectWinName',
-      'popup.options.injection.audioContext',
-      'popup.options.injection.clientRects',
-      'popup.options.injection.protectKBFingerprint',
-      'popup.options.injection.protectKBFingerprintDelay',
-      'popup.options.injection.screen',
-      'popup.options.injection.spoofFontFingerprint',
-      'popup.options.standard',
-      'popup.options.standard.blockMediaDevices',
-      'popup.options.standard.disableWebRTC',
-      'popup.options.standard.firstPartyIsolation',
-      'popup.options.standard.resistFingerprinting',
-      'popup.options.standard.trackingProtection',
-      'popup.options.standard.trackingProtection.on',
-      'popup.options.standard.trackingProtection.off',
-      'popup.options.standard.trackingProtection.privateBrowsing',
-      'popup.options.standard.webRTCPolicy',
-      'popup.options.standard.webRTCPolicy.nonProxified',
-      'popup.options.standard.webRTCPolicy.public',
-      'popup.options.standard.webRTCPolicy.publicPrivate',
-      'popup.options.standard.webSockets.blockAll',
-      'popup.options.standard.webSockets.blockThirdParty',
-      'popup.options.cookie',
-      'popup.options.cookieNotPersistent',
-      'popup.options.cookiePolicy',
-      'popup.options.cookiePolicy.allowVisited',
-      'popup.options.cookiePolicy.rejectAll',
-      'popup.options.cookiePolicy.rejectThirdParty',
-      'popup.options.cookiePolicy.rejectTrackers',
-      'popup.whitelist.contextMenu',
-      'popup.whitelist.defaultProfileLabel',
-      'popup.whitelist.enable',
-      'popup.whitelist.isNotWhitelisted',
-      'popup.whitelist.isWhitelisted',
-      'popup.whitelist.open',
-      'text.allowAll',
-      'text.cancel',
-      'text.createNewRule',
-      'text.default',
-      'text.defaultWhitelistProfile',
-      'text.disableReferer',
-      'text.language',
-      'text.name',
-      'text.profile',
-      'text.realProfile',
-      'text.save',
-      'text.screen',
-      'text.searchRules',
-      'text.timezone',
-      'text.whitelist',
-    ];
-
-    for (let k of keys) {
-      this.localization[k] = browser.i18n.getMessage(k);
-    }
-  }
-
   public reset(): void {
     this.saveSettings(this.defaultSettings);
   }
@@ -827,7 +544,7 @@ export class Chameleon {
       browser.notifications.create({
         type: 'basic',
         title: 'Chameleon',
-        message: `${this.localization['notifications.profileChange']} ` + this.getProfileInUse(),
+        message: `${browser.i18n.getMessage('notifications-profileChange')} ` + this.getProfileInUse(),
       });
     }
   }
@@ -954,7 +671,7 @@ export class Chameleon {
               this.tempStore.ipInfo.lang = this.settings.ipRules[i].lang;
               this.tempStore.ipInfo.tz = this.settings.ipRules[i].tz;
 
-              notificationMsg = `${this.localization['notifications.usingIPRule']} ${this.tempStore.ipInfo.tz}, ${lang.getLanguage(this.tempStore.ipInfo.lang).name}`;
+              notificationMsg = `${browser.i18n.getMessage('notifications-usingIPRule')} ${this.tempStore.ipInfo.tz}, ${lang.getLanguage(this.tempStore.ipInfo.lang).name}`;
             }
           }
         }
@@ -964,7 +681,7 @@ export class Chameleon {
             throw 'Couldn\'t find info';
           }
 
-          notificationMsg = `${this.localization['notifications.usingIPInfo']} `;
+          notificationMsg = `${browser.i18n.getMessage('notifications-usingIPInfo')} `;
 
           if (this.settings.options.timeZone === 'ip') {
             this.tempStore.ipInfo.tz = data.timezone;
@@ -1037,7 +754,7 @@ export class Chameleon {
         this.buildInjectionScript();
       }
     } catch (e) {
-      let message: string = this.localization['notifications.unableToGetIPInfo'];
+      let message: string = browser.i18n.getMessage('notifications-unableToGetIPInfo');
 
       browser.notifications.create({
         type: 'basic',
@@ -1096,7 +813,7 @@ export class Chameleon {
 
     return {
       error: true,
-      msg: `${this.localization['options.import.invalid.setting']} ${settingName}`,
+      msg: `${browser.i18n.getMessage('options-import-invalid-setting')} ${settingName}`,
     };
   }
 
@@ -1157,7 +874,7 @@ export class Chameleon {
     let timezoneIds: string[] = getTimezones().map(t => t.zone);
 
     if (impSettings.version.split('.', 3).join('.') > this.settings.version.split('.', 3).join('.')) {
-      msg = this.localization['options.import.invalid.version'];
+      msg = browser.i18n.getMessage('options-import-invalid-version');
 
       return {
         error: true,
@@ -1166,7 +883,7 @@ export class Chameleon {
     }
 
     if (!impSettings.config) {
-      msg = this.localization['options.import.invalid.config'];
+      msg = browser.i18n.getMessage('options-import-invalid-config');
 
       return {
         error: true,
@@ -1195,7 +912,7 @@ export class Chameleon {
     }
 
     if (!impSettings.excluded) {
-      msg = this.localization['options.import.invalid.excluded'];
+      msg = browser.i18n.getMessage('options-import-invalid-excluded');
 
       return {
         error: true,
@@ -1203,7 +920,7 @@ export class Chameleon {
       };
     } else {
       if (!impSettings.excluded.every(p => profileIds.includes(p))) {
-        msg = this.localization['options.import.invalid.excludedProfile'];
+        msg = browser.i18n.getMessage('options-import-invalid-excludedProfile');
 
         return {
           error: true,
@@ -1215,7 +932,7 @@ export class Chameleon {
     }
 
     if (!impSettings.ipRules) {
-      msg = this.localization['options.import.invalid.ipRules'];
+      msg = browser.i18n.getMessage('options-import-invalid-ipRules');
 
       return {
         error: true,
@@ -1228,7 +945,7 @@ export class Chameleon {
       });
 
       if (hasDupes) {
-        msg = this.localization['options.import.invalid.ipRulesDupe'];
+        msg = browser.i18n.getMessage('options-import-invalid-ipRulesDupe');
 
         return {
           error: true,
@@ -1250,7 +967,7 @@ export class Chameleon {
         }
 
         if (impSettings.ipRules[i].name === '') {
-          msg = this.localization['options.import.invalid.ipRuleName'];
+          msg = browser.i18n.getMessage('options-import-invalid-ipRuleName');
 
           return {
             error: true,
@@ -1259,7 +976,7 @@ export class Chameleon {
         }
 
         if (!this.REGEX_UUID.test(impSettings.ipRules[i].id)) {
-          msg = this.localization['options.import.invalid.ipRuleId'];
+          msg = browser.i18n.getMessage('options-import-invalid-ipRuleId');
 
           return {
             error: true,
@@ -1272,7 +989,7 @@ export class Chameleon {
           let ipRange: string[] = impSettings.ipRules[i].ips[j].split('-');
 
           if (ipRange.length > 2 || (ipRange.length === 2 && !util.validateIPRange(ipRange[0], ipRange[1])) || (ipRange.length === 1 && !util.isValidIP(ipRange[0]))) {
-            msg = this.localization['options.import.invalid.ipRuleRange'];
+            msg = browser.i18n.getMessage('options-import-invalid-ipRuleRange');
 
             return {
               error: true,
@@ -1286,7 +1003,7 @@ export class Chameleon {
     }
 
     if (!impSettings.profile) {
-      msg = this.localization['options.import.invalid.profile'];
+      msg = browser.i18n.getMessage('options-import-invalid-profile');
 
       return {
         error: true,
@@ -1316,7 +1033,7 @@ export class Chameleon {
     }
 
     if (!impSettings.headers) {
-      msg = this.localization['options.import.invalid.headers'];
+      msg = browser.i18n.getMessage('options-import-invalid-headers');
 
       return {
         error: true,
@@ -1351,7 +1068,7 @@ export class Chameleon {
 
       if (impSettings.headers.spoofIP.rangeFrom && impSettings.headers.spoofIP.rangeTo) {
         if (!util.validateIPRange(impSettings.headers.spoofIP.rangeFrom, impSettings.headers.spoofIP.rangeTo)) {
-          msg = this.localization['options.import.invalid.spoofIP'];
+          msg = browser.i18n.getMessage('options-import-invalid-spoofIP');
 
           return {
             error: true,
@@ -1365,7 +1082,7 @@ export class Chameleon {
     }
 
     if (!impSettings.options) {
-      msg = this.localization['options.import.invalid.options'];
+      msg = browser.i18n.getMessage('options-import-invalid-options');
 
       return {
         error: true,
@@ -1417,7 +1134,7 @@ export class Chameleon {
     }
 
     if (!impSettings.whitelist) {
-      msg = this.localization['options.import.invalid.whitelist'];
+      msg = browser.i18n.getMessage('options-import-invalid-whitelist');
 
       return {
         error: true,
@@ -1430,7 +1147,7 @@ export class Chameleon {
       });
 
       if (hasDupes) {
-        msg = this.localization['options.import.invalid.whitelistDupe'];
+        msg = browser.i18n.getMessage('options-import-invalid-whitelistDupe');
 
         return {
           error: true,
@@ -1471,7 +1188,7 @@ export class Chameleon {
         }
 
         if (impSettings.whitelist.rules[i].name === '') {
-          msg = this.localization['options.import.invalid.whitelistName'];
+          msg = browser.i18n.getMessage('options-import-invalid-whitelistName');
 
           return {
             error: true,
@@ -1480,7 +1197,7 @@ export class Chameleon {
         }
 
         if (!this.REGEX_UUID.test(impSettings.whitelist.rules[i].id)) {
-          msg = this.localization['options.import.invalid.whitelistId'];
+          msg = browser.i18n.getMessage('options-import-invalid-whitelistId');
 
           return {
             error: true,
@@ -1489,7 +1206,7 @@ export class Chameleon {
         }
 
         if (impSettings.whitelist.rules[i].spoofIP && !util.isValidIP(impSettings.whitelist.rules[i].spoofIP)) {
-          msg = this.localization['options.import.invalid.whitelistSpoofIP'];
+          msg = browser.i18n.getMessage('options-import-invalid-whitelistSpoofIP');
 
           return {
             error: true,
@@ -1510,7 +1227,7 @@ export class Chameleon {
           typeof impSettings.whitelist.rules[i].options.tz != 'boolean' ||
           typeof impSettings.whitelist.rules[i].options.ws != 'boolean'
         ) {
-          msg = this.localization['options.import.invalid.whitelistOpt'];
+          msg = browser.i18n.getMessage('options-import-invalid-whitelistOpt');
 
           return {
             error: true,
@@ -1527,7 +1244,7 @@ export class Chameleon {
       browser.runtime.reload();
     }, 2500);
 
-    msg = this.localization['options.import.success'];
+    msg = browser.i18n.getMessage('options-import-success');
 
     return {
       error: false,

@@ -29,14 +29,14 @@
               <feather v-else type="shield-off" class="text-red-500 hover:text-red-400" size="6em" stroke-width="2" />
             </div>
           </div>
-          <div class="text-2xl">{{ settings.config.enabled ? localizations['popup.home.enabled'] : localizations['popup.home.disabled'] }}</div>
+          <div class="text-2xl">{{ settings.config.enabled ? $t('popup-home-enabled.message') : $t('popup-home-disabled.message') }}</div>
           <div class="text-lg mb-4" id="chameleonVersion">v{{ version }}</div>
           <div class="flex justify-center text-md">
             <div id="toggleTheme" @click="toggleTheme" class="rounded-lg cursor-pointer mr-4 fg">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
                 <feather v-else type="sun" size="1.5em"></feather>
-                <span class="ml-2">{{ darkMode ? localizations['popup.home.theme.dark'] : localizations['popup.home.theme.light'] }}</span>
+                <span class="ml-2">{{ darkMode ? $t('popup-home-theme-dark.message') : $t('popup-home-theme-light.message') }}</span>
               </div>
             </div>
             <div id="notificationsEnabled" @click="toggleNotifications" class="rounded-lg cursor-pointer fg">
@@ -44,14 +44,14 @@
                 <feather v-if="settings.config.notificationsEnabled" type="bell" size="1.5em"></feather>
                 <feather v-else type="bell-off" size="1.5em"></feather>
                 <span class="ml-2">{{
-                  settings.config.notificationsEnabled ? localizations['popup.home.notification.enabled'] : localizations['popup.home.notification.disabled']
+                  settings.config.notificationsEnabled ? $t('popup-home-notification-enabled.message') : $t('popup-home-notification-disabled.message')
                 }}</span>
               </div>
             </div>
           </div>
         </div>
         <div class="text-center px-4 py-8">
-          <div class="text-xs uppercase opacity-75 tracking-widest">{{ localizations['popup.home.currentProfile'] }}</div>
+          <div class="text-xs uppercase opacity-75 tracking-widest" v-t="'popup-home-currentProfile.message'"></div>
           <div id="currentProfile" class="text-md py-2">
             <div>{{ currentProfile.profile }}</div>
             <div>{{ currentProfile.screen }}</div>
@@ -62,40 +62,40 @@
             <div id="changeProfile" @click="changeProfile" class="rounded-lg cursor-pointer fg">
               <div class="flex items-center px-2 py-1">
                 <feather type="refresh-cw" size="1em"></feather>
-                <span class="ml-2">{{ localizations['popup.home.change'] }}</span>
+                <span class="ml-2" v-t="'popup-home-change.message'"></span>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div v-show="isSelected('tab', 'profile')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['text.profile'] }}</div>
+        <div class="text-lg border-primary border-b-2 mb-4" v-t="'text-profile.message'"></div>
         <div class="flex">
           <div class="flex flex-col mr-16">
             <label class="inline-flex items-center mb-2">
               <input id="realProfile" @click="setSelected('profile', 'none')" type="radio" class="form-radio" :checked="isSelected('profile', 'none')" />
-              <span class="ml-2">{{ localizations['text.realProfile'] }}</span>
+              <span class="ml-2" v-t="'text-realProfile.message'"></span>
             </label>
             <label class="inline-flex items-center">
               <input id="randomProfile" @click="setSelected('profile', 'random')" type="radio" class="form-radio" :checked="isSelected('profile', 'random')" />
-              <span class="ml-2">{{ localizations['popup.profile.random'] }}</span>
+              <span class="ml-2" v-t="'popup-profile-random.message'"></span>
             </label>
           </div>
           <div class="flex flex-col">
             <label class="inline-flex items-center mb-2">
               <input id="randomDesktop" @click="setSelected('profile', 'randomDesktop')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomDesktop')" />
-              <span class="ml-2">{{ localizations['popup.profile.randomDesktopProfile'] }}</span>
+              <span class="ml-2" v-t="'popup-profile-randomDesktopProfile.message'"></span>
             </label>
             <label class="inline-flex items-center">
               <input id="randomMobile" @click="setSelected('profile', 'randomMobile')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomMobile')" />
-              <span class="ml-2">{{ localizations['popup.profile.randomMobileProfile'] }}</span>
+              <span class="ml-2" v-t="'popup-profile-randomMobileProfile.message'"></span>
             </label>
           </div>
         </div>
         <div v-show="!/\d|none/.test(settings.profile.selected)">
           <div class="flex items-center mb-2">
             <label class="w-full mt-4">
-              {{ localizations['popup.profile.changePeriodically'] }}
+              <span v-t="'popup-profile-changePeriodically.message'"></span>
               <select
                 id="profileInterval"
                 @change="changeSetting($event)"
@@ -103,22 +103,22 @@
                 name="profile.interval.option"
                 class="form-select mt-1 block w-full"
               >
-                <option value="0">{{ localizations['popup.profile.interval.no'] }}</option>
-                <option value="-1">{{ localizations['popup.profile.interval.custom'] }}</option>
-                <option value="1">{{ localizations['popup.profile.interval.minute'] }}</option>
-                <option value="5">{{ localizations['popup.profile.interval.5minutes'] }}</option>
-                <option value="10">{{ localizations['popup.profile.interval.10minutes'] }}</option>
-                <option value="20">{{ localizations['popup.profile.interval.20minutes'] }}</option>
-                <option value="30">{{ localizations['popup.profile.interval.30minutes'] }}</option>
-                <option value="40">{{ localizations['popup.profile.interval.40minutes'] }}</option>
-                <option value="50">{{ localizations['popup.profile.interval.50minutes'] }}</option>
-                <option value="60">{{ localizations['popup.profile.interval.hour'] }}</option>
+                <option value="0" v-t="'popup-profile-interval-no.message'"></option>
+                <option value="-1" v-t="'popup-profile-interval-custom.message'"></option>
+                <option value="1" v-t="'popup-profile-interval-minute.message'"></option>
+                <option value="5" v-t="'popup-profile-interval-5minutes.message'"></option>
+                <option value="10" v-t="'popup-profile-interval-10minutes.message'"></option>
+                <option value="20" v-t="'popup-profile-interval-20minutes.message'"></option>
+                <option value="30" v-t="'popup-profile-interval-30minutes.message'"></option>
+                <option value="40" v-t="'popup-profile-interval-40minutes.message'"></option>
+                <option value="50" v-t="'popup-profile-interval-50minutes.message'"></option>
+                <option value="60" v-t="'popup-profile-interval-hour.message'"></option>
               </select>
             </label>
           </div>
           <div v-show="settings.profile.interval.option == -1" class="flex justify-around mb-2 w-full">
             <div class="mr-1">
-              <label for="profile.interval.min">{{ localizations['popup.profile.interval.customMin'] }}</label>
+              <label for="profile.interval.min" v-t="'popup-profile-interval-customMin.message'"></label>
               <input
                 id="profileIntervalMin"
                 @input="setProfileInterval($event)"
@@ -131,7 +131,7 @@
               />
             </div>
             <div class="ml-1">
-              <label for="profile.interval.max">{{ localizations['popup.profile.interval.customMax'] }}</label>
+              <label for="profile.interval.max" v-t="'popup-profile-interval-customMax.message'"></label>
               <input
                 id="profileIntervalMax"
                 @input="setProfileInterval($event)"
@@ -174,10 +174,10 @@
                     type="radio"
                     class="form-radio"
                   />
-                  <span class="ml-2">{{ localizations[`popup.profile.random${displayOS}`] }}</span>
+                  <span class="ml-2" v-t="`popup-profile-random${displayOS}.message`"></span>
                 </label>
                 <div class="flex items-center">
-                  {{ localizations['popup.profile.exclude'] }}
+                  <span v-t="'popup-profile-exclude.message'"></span>
                   <input @click="excludeProfile(currentProfileGroup)" :checked="isExcluded(currentProfileGroup)" type="checkbox" class="ml-2 text-primary form-checkbox" />
                 </div>
               </div>
@@ -195,7 +195,7 @@
         </div>
       </div>
       <div v-show="isSelected('tab', 'headers')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['popup.headers'] }}</div>
+        <div class="text-lg border-primary border-b-2 mb-4" v-t="'popup-headers.message'"></div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
@@ -206,7 +206,7 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1">{{ localizations['popup.headers.enableDNT'] }}</span>
+            <span class="ml-1" v-t="'popup-headers-enableDNT.message'"></span>
           </label>
         </div>
         <div class="flex items-center mb-1">
@@ -219,7 +219,7 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1">{{ localizations['popup.headers.preventEtag'] }}</span>
+            <span class="ml-1" v-t="'popup-headers-preventEtag.message'"></span>
           </label>
         </div>
         <div class="flex items-center mb-1">
@@ -232,7 +232,7 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1">{{ localizations['popup.headers.spoofAcceptLang'] }}</span>
+            <span class="ml-1" v-t="'popup-headers-spoofAcceptLang.message'"></span>
           </label>
         </div>
         <div v-show="settings.headers.spoofAcceptLang.enabled" class="flex flex-col mb-1">
@@ -245,7 +245,7 @@
               class="form-select mt-1 w-full"
             >
               <option value="ip">IP</option>
-              <option value="default">{{ localizations['text.default'] }}</option>
+              <option value="default" v-t="'text-default.message'"></option>
               <option v-for="l in languages" :value="l.code" :key="l.code">{{ l.name }}</option>
             </select>
           </label>
@@ -260,19 +260,19 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1">{{ localizations['popup.headers.spoofIP'] }}</span>
+            <span class="ml-1" v-t="'popup-headers-spoofIP.message'"></span>
           </label>
         </div>
         <div v-show="settings.headers.spoofIP.enabled" class="flex flex-col mb-1">
           <label class="ml-6">
             <select id="spoofIPSelect" @change="changeSetting($event)" :value="settings.headers.spoofIP.option" name="headers.spoofIP.option" class="form-select mt-1 w-full">
-              <option value="0">{{ localizations['popup.headers.spoofIP.random'] }}</option>
-              <option value="1">{{ localizations['popup.headers.spoofIP.custom'] }}</option>
+              <option value="0" v-t="'popup-headers-spoofIP-random.message'"></option>
+              <option value="1" v-t="'popup-headers-spoofIP-custom.message'"></option>
             </select>
           </label>
           <div v-show="settings.headers.spoofIP.option == 1" class="flex w-full ml-6 mt-2">
             <div class="mr-1 w-2/5">
-              <label for="headers.spoofIP.rangeFrom">{{ localizations['popup.headers.spoofIP.rangeFrom'] }}</label>
+              <label for="headers.spoofIP.rangeFrom" v-t="'popup-headers-spoofIP-rangeFrom.message'"></label>
               <input
                 id="spoofIPRangeFrom"
                 @input="setIPRange($event)"
@@ -283,7 +283,7 @@
               />
             </div>
             <div class="ml-1 w-2/5">
-              <label for="headers.spoofIP.rangeTo">{{ localizations['popup.headers.spoofIP.rangeTo'] }}</label>
+              <label for="headers.spoofIP.rangeTo" v-t="'popup-headers-spoofIP-rangeTo.message'"></label>
               <input
                 id="spoofIPRangeTo"
                 @input="setIPRange($event)"
@@ -305,14 +305,14 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1">{{ localizations['text.disableReferer'] }}</span>
+            <span class="ml-1" v-t="'text-disableReferer.message'"></span>
           </label>
         </div>
         <div v-show="!settings.headers.referer.disabled">
-          <div class="text-sm mt-2" :class="[darkMode ? 'text-red-400' : 'text-red-800']">{{ localizations['popup.headers.refererWarning'] }}</div>
+          <div class="text-sm mt-2" :class="[darkMode ? 'text-red-400' : 'text-red-800']" v-t="'popup-headers-refererWarning.message'"></div>
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
-              {{ localizations['popup.headers.referer.xorigin'] }}
+              <span v-t="'popup-headers-referer-xorigin.message'"></span>
               <select
                 id="refererXorigin"
                 @change="changeSetting($event)"
@@ -320,15 +320,15 @@
                 name="headers.referer.xorigin"
                 class="form-select mt-1 block w-full"
               >
-                <option value="0">{{ localizations['popup.headers.referer.xorigin.alwaysSend'] }}</option>
-                <option value="1">{{ localizations['popup.headers.referer.xorigin.matchBaseDomain'] }}</option>
-                <option value="2">{{ localizations['popup.headers.referer.xorigin.matchHost'] }}</option>
+                <option value="0" v-t="'popup-headers-referer-xorigin-alwaysSend.message'"></option>
+                <option value="1" v-t="'popup-headers-referer-xorigin-matchBaseDomain.message'"></option>
+                <option value="2" v-t="'popup-headers-referer-xorigin-matchHost.message'"></option>
               </select>
             </label>
           </div>
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
-              {{ localizations['popup.headers.referer.trimming'] }}
+              <span v-t="'popup-headers-referer-trimming.message'"></span>
               <select
                 id="refererTrim"
                 @change="changeSetting($event)"
@@ -336,24 +336,23 @@
                 name="headers.referer.trimming"
                 class="form-select mt-1 block w-full"
               >
-                <option value="0">{{ localizations['popup.headers.referer.trimming.sendFullURI'] }}</option>
-                <option value="1">{{ localizations['popup.headers.referer.trimming.schemeHostPortPath'] }}</option>
-                <option value="2">{{ localizations['popup.headers.referer.trimming.schemeHostPort'] }}</option>
+                <option value="0" v-t="'popup-headers-referer-trimming-sendFullURI.message'"></option>
+                <option value="1" v-t="'popup-headers-referer-trimming-schemeHostPortPath.message'"></option>
+                <option value="2" v-t="'popup-headers-referer-trimming-schemeHostPort.message'"></option>
               </select>
             </label>
           </div>
         </div>
       </div>
       <div v-show="isSelected('tab', 'options')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['popup.options'] }}</div>
+        <div class="text-lg border-primary border-b-2 mb-4" v-t="'popup-options.message'"></div>
         <div class="w-full mb-4">
           <button
             @click="openOptionsPage('checklist')"
             id="aboutConfigChecklist"
             class="w-full bg-transparent font-semibold py-1 px-4 border border-primary hover:bg-primary-soft rounded"
-          >
-            {{ localizations['popup.options.aboutConfigButton'] }}
-          </button>
+            v-t="'popup-options-aboutConfigButton.message'"
+          ></button>
         </div>
         <div>
           <ul class="flex text-center w-full rounded-lg">
@@ -362,15 +361,22 @@
               @click="setSelected('options', 'injection')"
               :class="[isSelected('options', 'injection') ? 'active' : '']"
               class="group fg group-options rounded-l-sm"
-            >
-              {{ localizations['popup.options.injection'] }}
-            </li>
-            <li id="standardTab" @click="setSelected('options', 'standard')" :class="[isSelected('options', 'standard') ? 'active' : '']" class="group fg group-options">
-              {{ localizations['popup.options.standard'] }}
-            </li>
-            <li id="cookieTab" @click="setSelected('options', 'cookie')" :class="[isSelected('options', 'cookie') ? 'active' : '']" class="group fg group-options rounded-r-sm">
-              {{ localizations['popup.options.cookie'] }}
-            </li>
+              v-t="'popup-options-injection.message'"
+            ></li>
+            <li
+              id="standardTab"
+              @click="setSelected('options', 'standard')"
+              :class="[isSelected('options', 'standard') ? 'active' : '']"
+              class="group fg group-options"
+              v-t="'popup-options-standard.message'"
+            ></li>
+            <li
+              id="cookieTab"
+              @click="setSelected('options', 'cookie')"
+              :class="[isSelected('options', 'cookie') ? 'active' : '']"
+              class="group fg group-options rounded-r-sm"
+              v-t="'popup-options-cookie.message'"
+            ></li>
           </ul>
           <div>
             <div v-if="isSelected('options', 'injection')">
@@ -384,7 +390,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.standard.blockMediaDevices'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-standard-blockMediaDevices.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -397,7 +403,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.injection.limitTabHistory'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-injection-limitTabHistory.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -410,7 +416,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.injection.protectKBFingerprint'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-injection-protectKBFingerprint.message'"></span>
                 </label>
               </div>
               <div v-show="settings.options.protectKBFingerprint.enabled" class="flex items-center mb-1 pl-6">
@@ -423,7 +429,7 @@
                   min="1"
                   max="1000"
                   class="block w-2/5 form-input"
-                  :placeholder="localizations['popup.options.injection.protectKBFingerprintDelay']"
+                  :placeholder="$t('popup-options-injection-protectKBFingerprintDelay.message')"
                 />
               </div>
               <div class="flex items-center mb-1">
@@ -436,7 +442,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.injection.protectWinName'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-injection-protectWinName.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -449,7 +455,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.injection.audioContext'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-injection-audioContext.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -462,7 +468,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.injection.clientRects'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-injection-clientRects.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -475,15 +481,15 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.injection.spoofFontFingerprint'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-injection-spoofFontFingerprint.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  {{ localizations['popup.options.injection.screen'] }}
+                  <span v-t="'popup-options-injection-screen.message'"></span>
                   <select id="screenSize" @change="changeSetting($event)" :value="settings.options.screenSize" name="options.screenSize" class="form-select mt-1 block w-full">
-                    <option value="default">{{ localizations['text.default'] }}</option>
-                    <option value="profile">{{ localizations['text.profile'] }}</option>
+                    <option value="default" v-t="'text-default.message'"></option>
+                    <option value="profile" v-t="'text-profile.message'"></option>
                     <option value="1366x768">1366x768</option>
                     <option value="1440x900">1440x900</option>
                     <option value="1600x900">1600x900</option>
@@ -499,9 +505,9 @@
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  {{ localizations['text.timezone'] }}
+                  <span v-t="'text-timezone.message'"></span>
                   <select id="timeZone" @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
-                    <option value="default">{{ localizations['text.default'] }}</option>
+                    <option value="default" v-t="'text-default.message'"></option>
                     <option value="ip">IP</option>
                     <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                   </select>
@@ -519,7 +525,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.standard.firstPartyIsolation'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-standard-firstPartyIsolation.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -532,7 +538,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.standard.resistFingerprinting'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-standard-resistFingerprinting.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -545,12 +551,12 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  <span class="ml-1">{{ localizations['popup.options.standard.disableWebRTC'] }}</span>
+                  <span class="ml-1" v-t="'popup-options-standard-disableWebRTC.message'"></span>
                 </label>
               </div>
               <div v-show="!settings.options.disableWebRTC" class="flex items-center pl-6 mb-2">
                 <label class="w-full">
-                  {{ localizations['popup.options.standard.webRTCPolicy'] }}
+                  <span v-t="'popup-options-standard-webRTCPolicy.message'"></span>
                   <select
                     id="webRTCPolicy"
                     @change="changeSetting($event)"
@@ -558,16 +564,16 @@
                     name="options.webRTCPolicy"
                     class="form-select mt-1 block w-full"
                   >
-                    <option value="default">{{ localizations['text.default'] }}</option>
-                    <option value="default_public_and_private_interfaces">{{ localizations['popup.options.standard.webRTCPolicy.publicPrivate'] }}</option>
-                    <option value="default_public_interface_only">{{ localizations['popup.options.standard.webRTCPolicy.public'] }}</option>
-                    <option value="disable_non_proxied_udp">{{ localizations['popup.options.standard.webRTCPolicy.nonProxified'] }}</option>
+                    <option value="default" v-t="'text-default.message'"></option>
+                    <option value="default_public_and_private_interfaces" v-t="'popup-options-standard-webRTCPolicy-publicPrivate.message'"></option>
+                    <option value="default_public_interface_only" v-t="'popup-options-standard-webRTCPolicy-public.message'"></option>
+                    <option value="disable_non_proxied_udp" v-t="'popup-options-standard-webRTCPolicy-nonProxified.message'"></option>
                   </select>
                 </label>
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  {{ localizations['popup.options.standard.trackingProtection'] }}
+                  <span v-t="'popup-options-standard-trackingProtection.message'"></span>
                   <select
                     id="trackingProtectionMode"
                     @change="changeSetting($event)"
@@ -575,9 +581,9 @@
                     name="options.trackingProtectionMode"
                     class="form-select mt-1 block w-full"
                   >
-                    <option value="always">{{ localizations['popup.options.standard.trackingProtection.on'] }}</option>
-                    <option value="never">{{ localizations['popup.options.standard.trackingProtection.off'] }}</option>
-                    <option value="private_browsing">{{ localizations['popup.options.standard.trackingProtection.privateBrowsing'] }}</option>
+                    <option value="always" v-t="'popup-options-standard-trackingProtection-on.message'"></option>
+                    <option value="never" v-t="'popup-options-standard-trackingProtection-off.message'"></option>
+                    <option value="private_browsing" v-t="'popup-options-standard-trackingProtection-privateBrowsing.message'"></option>
                   </select>
                 </label>
               </div>
@@ -585,9 +591,9 @@
                 <label class="w-full mt-2">
                   Websockets
                   <select id="websockets" @change="changeSetting($event)" :value="settings.options.webSockets" name="options.webSockets" class="form-select mt-1 block w-full">
-                    <option value="allow_all">{{ localizations['text.allowAll'] }}</option>
-                    <option value="block_3rd_party">{{ localizations['popup.options.standard.webSockets.blockThirdParty'] }}</option>
-                    <option value="block_all">{{ localizations['popup.options.standard.webSockets.blockAll'] }}</option>
+                    <option value="allow_all" v-t="'text-allowAll.message'"></option>
+                    <option value="block_3rd_party" v-t="'popup-options-standard-webSockets-blockThirdParty.message'"></option>
+                    <option value="block_all" v-t="'popup-options-standard-webSockets-blockAll.message'"></option>
                   </select>
                 </label>
               </div>
@@ -603,12 +609,12 @@
                     type="checkbox"
                     class="text-primary form-checkbox"
                   />
-                  {{ localizations['popup.options.cookieNotPersistent'] }}
+                  <span v-t="'popup-options-cookieNotPersistent.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
-                  {{ localizations['popup.options.cookiePolicy'] }}
+                  <span v-t="'popup-options-cookiePolicy.message'"></span>
                   <select
                     id="cookiePolicy"
                     @change="changeSetting($event)"
@@ -616,11 +622,11 @@
                     name="options.cookiePolicy"
                     class="form-select mt-1 block w-full"
                   >
-                    <option value="allow_all">{{ localizations['text.allowAll'] }}</option>
-                    <option value="allow_visited">{{ localizations['popup.options.cookiePolicy.allowVisited'] }}</option>
-                    <option value="reject_all">{{ localizations['popup.options.cookiePolicy.rejectAll'] }}</option>
-                    <option value="reject_third_party">{{ localizations['popup.options.cookiePolicy.rejectThirdParty'] }}</option>
-                    <option value="reject_trackers">{{ localizations['popup.options.cookiePolicy.rejectTrackers'] }}</option>
+                    <option value="allow_all" v-t="'text-allowAll.message'"></option>
+                    <option value="allow_visited" v-t="'popup-options-cookiePolicy-allowVisited.message'"></option>
+                    <option value="reject_all" v-t="'popup-options-cookiePolicy-rejectAll.message'"></option>
+                    <option value="reject_third_party" v-t="'popup-options-cookiePolicy-rejectThirdParty.message'"></option>
+                    <option value="reject_trackers" v-t="'popup-options-cookiePolicy-rejectTrackers.message'"></option>
                   </select>
                 </label>
               </div>
@@ -629,7 +635,7 @@
         </div>
       </div>
       <div v-show="isSelected('tab', 'whitelist')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4">{{ localizations['text.whitelist'] }}</div>
+        <div class="text-lg border-primary border-b-2 mb-4" v-t="'text-whitelist.message'"></div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
@@ -640,12 +646,12 @@
               type="checkbox"
               class="text-primary form-checkbox"
             />
-            <span class="ml-1">{{ localizations['popup.whitelist.contextMenu'] }}</span>
+            <span class="ml-1" v-t="'popup-whitelist-contextMenu.message'"></span>
           </label>
         </div>
         <div class="flex items-center mb-2">
           <label class="w-full mt-4">
-            {{ localizations['popup.whitelist.defaultProfileLabel'] }}
+            <span v-t="'popup-whitelist-defaultProfileLabel.message'"></span>
             <select
               id="defaultWhitelistProfile"
               @change="changeSetting($event)"
@@ -653,7 +659,7 @@
               name="whitelist.defaultProfile"
               class="form-select mt-1 block w-full"
             >
-              <option value="none">{{ localizations['text.realProfile'] }}</option>
+              <option value="none" v-t="'text-realProfile.message'"></option>
               <option v-for="p in profileList" :value="p.id" :key="p.id">{{ p.name }}</option>
             </select>
           </label>
@@ -665,15 +671,17 @@
             {{ currentPage.domain }}
           </div>
           <div class="mb-2 text-lg">
-            {{ currentPage.whitelisted ? localizations['popup.whitelist.isWhitelisted'] : localizations['popup.whitelist.isNotWhitelisted'] }}
+            {{ currentPage.whitelisted ? $t('popup-whitelist-isWhitelisted.message') : $t('popup-whitelist-isNotWhitelisted.message') }}
           </div>
           <div v-show="currentPage.whitelisted" class="mb-6 text-lg">
-            <div class="font-semibold">Profile:</div>
+            <div class="font-semibold" v-t="'text-profile.message'"></div>
             {{ getWhitelistProfile(currentPage.rule.profile) }}
           </div>
-          <button @click="openOptionsPage('whitelist')" class="bg-primary font-semibold text-light py-2 px-4 border border-primary hover:bg-primary-soft rounded">
-            {{ localizations['popup.whitelist.open'] }}
-          </button>
+          <button
+            @click="openOptionsPage('whitelist')"
+            class="bg-primary font-semibold text-light py-2 px-4 border border-primary hover:bg-primary-soft rounded"
+            v-t="'popup-whitelist-open.message'"
+          ></button>
         </div>
       </div>
     </div>
@@ -710,7 +718,6 @@ export default class App extends Vue {
     rangeTo: false,
   };
   public languages: lang.Language[] = lang.getAllLanguages();
-  public localizations: any = {};
   public profiles: any = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
@@ -734,22 +741,22 @@ export default class App extends Vue {
     let screen: string;
 
     if (this.settings.profile.selected === 'none' || this.tmp.store.profile === 'none' || this.settings.excluded.includes(this.settings.profile.selected)) {
-      profile = this.localizations['text.realProfile'];
+      profile = this.$t('text-realProfile.message') as string;
     } else {
       let p: any = this.profileList.find(p => p.id === (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tmp.store.profile));
       profile = p ? p.name.replace('-', '/') : '';
     }
 
     if (this.settings.options.screenSize === 'default') {
-      screen = this.localizations['popup.home.currentProfile.defaultScreen'];
+      screen = this.$t('popup-home-currentProfile-defaultScreen.message') as string;
     } else if (this.settings.options.screenSize === 'profile') {
-      screen = `Profile (${this.localizations['text.screen']})`;
+      screen = this.$t('popup-home-currentProfile-screenProfile.message') as string;
     } else {
       screen = this.settings.options.screenSize;
     }
 
     if (this.settings.options.timeZone === 'default') {
-      timezone = this.localizations['popup.home.currentProfile.defaultTimezone'];
+      timezone = this.$t('popup-home-currentProfile-defaultTimezone.message') as string;
     } else if (this.settings.options.timeZone === 'ip') {
       timezone = '(IP) ' + this.tmp.store.ipInfo.tz;
     } else {
@@ -759,19 +766,19 @@ export default class App extends Vue {
     if (this.settings.headers.spoofAcceptLang.enabled) {
       if (this.settings.headers.spoofAcceptLang.value) {
         if (this.settings.headers.spoofAcceptLang.value === 'default') {
-          language = this.localizations['popup.home.currentProfile.defaultLanguage'];
+          language = this.$t('popup-home-currentProfile-defaultLanguage.message') as string;
         } else if (this.settings.headers.spoofAcceptLang.value === 'ip') {
           if (this.tmp.store.ipInfo.lang != '') {
             language = lang.getLanguage(this.tmp.store.ipInfo.lang).name + ' (IP)';
           } else {
-            language = this.localizations['popup.home.currentProfile.gettingTimezone'];
+            language = this.$t('popup-home-currentProfile-gettingTimezone.message') as string;
           }
         } else {
           language = lang.getLanguage(this.settings.headers.spoofAcceptLang.value).name;
         }
       }
     } else {
-      language = this.localizations['popup.home.currentProfile.defaultLanguage'];
+      language = this.$t('popup-home-currentProfile-defaultLanguage.message') as string;
     }
 
     return {
@@ -879,30 +886,6 @@ export default class App extends Vue {
 
     await this['$store'].dispatch('initialize');
 
-    if (localStorage != null) {
-      let needsUpdate: boolean = false;
-      let version = localStorage.getItem('version');
-
-      if (version === null || version != this.settings.version) {
-        localStorage.setItem('version', this.settings.version);
-        needsUpdate = true;
-      }
-
-      let localizations = localStorage.getItem('localizations');
-      if (localizations === null || localizations == '{}' || needsUpdate) {
-        this.localizations = await browser.runtime.sendMessage({
-          action: 'localize',
-        });
-        localStorage.setItem('localizations', JSON.stringify(this.localizations));
-      } else {
-        this.localizations = JSON.parse(localizations);
-      }
-    } else {
-      this.localizations = await browser.runtime.sendMessage({
-        action: 'localize',
-      });
-    }
-
     this.getCurrentPage();
 
     if (!/random|none/.test(this.settings.profile.selected)) {
@@ -947,7 +930,7 @@ export default class App extends Vue {
   getWhitelistProfile(profile: string): string {
     let p = this.profileList.find(p => p.id === profile);
 
-    return p ? p.name : profile === 'default' ? this.localizations['text.defaultWhitelistProfile'] : this.localizations['text.realProfile'];
+    return p ? p.name : profile === 'default' ? this.$t('text-defaultWhitelistProfile.message') : (this.$t('text-realProfile.message') as any);
   }
 
   async excludeProfile(profile: string) {

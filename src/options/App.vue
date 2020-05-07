@@ -3,18 +3,10 @@
     <div class="flex-none fixed w-full z-10">
       <div class="bg-primary flex items-center">
         <img class="h-6 mx-2" :src="iconPath" />
-        <div @click="changeTab('about')" class="options-tab" :class="activeTab('about')">
-          {{ localizations['options.tab.about'] }}
-        </div>
-        <div @click="changeTab('whitelist')" class="options-tab" :class="activeTab('whitelist')">
-          {{ localizations['text.whitelist'] }}
-        </div>
-        <div @click="changeTab('iprules')" class="options-tab" :class="activeTab('iprules')">
-          {{ localizations['options.tab.ipRules'] }}
-        </div>
-        <div @click="changeTab('checklist')" class="options-tab" :class="activeTab('checklist')">
-          {{ localizations['options.tab.checklist'] }}
-        </div>
+        <div @click="changeTab('about')" class="options-tab" :class="activeTab('about')" v-t="'options-tab-about.message'"></div>
+        <div @click="changeTab('whitelist')" class="options-tab" :class="activeTab('whitelist')" v-t="'text-whitelist.message'"></div>
+        <div @click="changeTab('iprules')" class="options-tab" :class="activeTab('iprules')" v-t="'options-tab-ipRules.message'"></div>
+        <div @click="changeTab('checklist')" class="options-tab" :class="activeTab('checklist')" v-t="'options-tab-checklist.message'"></div>
       </div>
     </div>
     <div class="flex-grow px-4 pt-12 z-0">
@@ -25,70 +17,68 @@
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="help-circle" size="1em"></feather>
-                <a href="https://sereneblue.github.io/chameleon/wiki">{{ localizations['options.about.wiki'] }}</a>
+                <a href="https://sereneblue.github.io/chameleon/wiki" v-t="'options-about-wiki.message'"></a>
               </div>
             </button>
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="alert-triangle" size="1em"></feather>
-                <a href="https://github.com/sereneblue/chameleon/issues">{{ localizations['options.about.issueTracker'] }}</a>
+                <a href="https://github.com/sereneblue/chameleon/issues" v-t="'options-about-issueTracker.message'"></a>
               </div>
             </button>
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="message-circle" size="1em"></feather>
-                <a href="https://sereneblue.github.io/chameleon/contact">{{ localizations['options.about.support'] }}</a>
+                <a href="https://sereneblue.github.io/chameleon/contact" v-t="'options-about-support.message'"></a>
               </div>
             </button>
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="github" size="1em"></feather>
-                <a href="https://github.com/sereneblue/chameleon">{{ localizations['options.about.sourceCode'] }}</a>
+                <a href="https://github.com/sereneblue/chameleon" v-t="'options-about-sourceCode.message'"></a>
               </div>
             </button>
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="mic" size="1em"></feather>
-                <a href="https://crowdin.com/project/chameleon">{{ localizations['options.about.translate'] }}</a>
+                <a href="https://crowdin.com/project/chameleon" v-t="'options-about-translate.message'"></a>
               </div>
             </button>
             <button class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="info" size="1em"></feather>
-                <a href="https://sereneblue.github.io/chameleon/wiki/known-issues">{{ localizations['options.about.knownIssues'] }}</a>
+                <a href="https://sereneblue.github.io/chameleon/wiki/known-issues" v-t="'options-about-knownIssues.message'"></a>
               </div>
             </button>
           </div>
         </div>
         <div class="mt-4">
-          <div class="text-3xl mb-4">{{ localizations['options.settings'] }}</div>
+          <div class="text-3xl mb-4" v-t="'options-settings.message'"></div>
           <div class="flex flex-col xl:flex-row">
             <button @click="importSettings" class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="upload" size="1em"></feather>
-                {{ localizations['options.settings.import'] }}
+                <span v-t="'options-settings-import.message'"></span>
               </div>
               <input class="hidden" type="file" ref="chameleonImport" id="chameleonImport" @change="readSettings" />
             </button>
             <button @click="exportSettings" class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="download" size="1em"></feather>
-                {{ localizations['options.settings.export'] }}
+                <span v-t="'options-settings-export.message'"></span>
               </div>
             </button>
             <button @click="openResetModal" class="transparent-btn">
               <div class="flex items-center">
                 <feather class="mr-2" type="rotate-ccw" size="1em"></feather>
-                {{ localizations['options.settings.reset'] }}
+                <span v-t="'options-settings-reset.message'"></span>
               </div>
             </button>
           </div>
           <a id="export"></a>
         </div>
         <div v-show="isImporting" class="mt-4">
-          <div class="">
-            {{ localizations['options.settings.importing'] }}
-          </div>
+          <div v-t="'options-settings-importing.message'"></div>
           <div class="mt-1 font-bold" :class="[importError.error ? 'text-red-500' : 'text-green-500']" v-text="importError.msg"></div>
         </div>
       </div>
@@ -97,7 +87,7 @@
           <button @click="createNewWhitelistRule" class="transparent-btn">
             <div class="flex items-center">
               <feather class="mr-2" type="plus" size="1em"></feather>
-              {{ localizations['text.createNewRule'] }}
+              <span v-t="'text-createNewRule.message'"></span>
             </div>
           </button>
         </div>
@@ -105,15 +95,15 @@
           v-model="query"
           class="bg-gray-300 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 my-4 text-gray-800 leading-tight focus:outline-none focus:bg-white focus:border-primary"
           type="text"
-          :placeholder="localizations['text.searchRules']"
+          :placeholder="$t('text-searchRules.message')"
         />
         <div class="flex flex-wrap pb-12">
           <table id="iprules" class="w-full">
             <thead class="border-b-2">
               <tr class="flex flex-col flex-no wrap md:table-row text-left">
-                <th class="font-bold py-4 w-2/5">{{ localizations['options.whitelist.rule'] }}</th>
-                <th class="font-bold py-4">{{ localizations['text.profile'] }}</th>
-                <th class="font-bold py-4">{{ localizations['options.whitelist.urls'] }}</th>
+                <th class="font-bold py-4 w-2/5" v-t="'options-whitelist-rule.message'"></th>
+                <th class="font-bold py-4" v-t="'text-profile.message'"></th>
+                <th class="font-bold py-4" v-t="'options-whitelist-urls.message'"></th>
               </tr>
             </thead>
             <tbody>
@@ -150,13 +140,13 @@
           <button @click="createNewRule" class="transparent-btn">
             <div class="flex items-center">
               <feather class="mr-2" type="plus" size="1em"></feather>
-              {{ localizations['text.createNewRule'] }}
+              <span v-t="'text-createNewRule.message'"></span>
             </div>
           </button>
           <button @click="reloadIPInfo" class="transparent-btn">
             <div class="flex items-center">
               <feather class="mr-2" type="refresh-cw" size="1em"></feather>
-              {{ localizations['options.ipRules.reload'] }}
+              <span v-t="'options-ipRules-reload.message'"></span>
             </div>
           </button>
         </div>
@@ -164,9 +154,9 @@
           <table id="iprules" class="w-full">
             <thead class="border-b-2">
               <tr class="flex flex-col flex-no wrap md:table-row text-left">
-                <th class="font-bold py-4 w-2/5">{{ localizations['options.ipRules.ipRule'] }}</th>
-                <th class="font-bold py-4">{{ localizations['text.language'] }}</th>
-                <th class="font-bold py-4">{{ localizations['text.timezone'] }}</th>
+                <th class="font-bold py-4 w-2/5" v-t="'options-ipRules-ipRule.message'"></th>
+                <th class="font-bold py-4" v-t="'text-language.message'"></th>
+                <th class="font-bold py-4" v-t="'text-timezone.message'"></th>
               </tr>
             </thead>
             <tbody>
@@ -191,14 +181,14 @@
       </div>
       <div v-show="currentTab === 'checklist'" class="text-2xl flex flex-col">
         <div class="text-xl mb-4">
-          <div class="mb-0">{{ localizations['options.checklist.note1'] }}</div>
-          <div class="mb-2">{{ localizations['options.checklist.note2'] }}</div>
+          <div class="mb-0" v-t="'options-checklist-note1.message'"></div>
+          <div class="mb-2" v-t="'options-checklist-note2.message'"></div>
         </div>
         <div>
           <div v-for="c in checklist" :key="c.preference" class="border-primary border-1 p-4 shadow-sm mb-4 rounded fg">
             <div class="text-base md:text-md pb-2 mb-4 border-b-2 border-primary flex items-center">
               <feather @click="showInfo(c)" class="mr-2 hover:cursor-pointer" type="help-circle"></feather>
-              <div>{{ localizations['options.checklistItem.' + c.id] }}</div>
+              <div>{{ $t(`options-checklistItem-${c.id}.message`) }}</div>
             </div>
             <div class="flex flex-col sm:flex-row text-base md:text-xl items-center">
               <span class="break-all">{{ c.preference }}</span>
@@ -209,10 +199,10 @@
                 <feather class="mx-2 self-center" type="chevrons-down"></feather>
               </span>
               <span>
-                <strong>{{ c.value != 'Leave empty' ? c.value : localizations['options.checklist.leaveEmpty'] }}</strong>
+                <strong>{{ c.value != 'Leave empty' ? c.value : $t('options-checklist-leaveEmpty.message') }}</strong>
               </span>
             </div>
-            <p v-if="c.causeBreak" class="flex items-center text-md mt-4"><feather class="mr-2" type="alert-triangle"></feather>{{ localizations['options.checklist.warning'] }}</p>
+            <p v-if="c.causeBreak" class="flex items-center text-md mt-4" v-t="'options-checklist-warning.message'"><feather class="mr-2" type="alert-triangle"></feather></p>
           </div>
         </div>
       </div>
@@ -222,46 +212,46 @@
         <div class="flex flex-col justify-center h-screen">
           <div v-if="modalType === Modal.IP_RULE" class="w-4/5 modal overflow-y-auto" style="max-height: 90vh;">
             <div class="px-6 pt-6 pb-8 text-xl">
-              <div class="text-xl font-bold border-primary border-b-2 mb-4">{{ localizations['options.ipRules.editorTitle'] }}</div>
+              <div class="text-xl font-bold border-primary border-b-2 mb-4" v-t="'options-ipRules-editorTitle.message'"></div>
               <div class="w-full">
                 <div class="mb-4">
                   <label for="headers.spoofIP.rangeFrom">
-                    <span class="text-dark">{{ localizations['text.name'] }}</span>
+                    <span class="text-dark" v-t="'text-name.message'"></span>
                   </label>
                   <input v-model="tmp.ipRule.name" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error: errors.ipRuleName }" />
                 </div>
                 <div class="flex flex-col md:flex-row items-center mb-4">
                   <label class="md:mr-2 mb-4 md:mb-0 w-full md:w-1/2">
-                    <span class="text-dark">{{ localizations['text.language'] }}</span>
+                    <span class="text-dark" v-t="'text-language.message'"></span>
                     <select v-model="tmp.ipRule.lang" class="form-select mt-1 block w-full">
                       <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
                     </select>
                   </label>
                   <label class="md:ml-2 w-full md:w-1/2">
-                    <span class="text-dark">{{ localizations['text.timezone'] }}</span>
+                    <span class="text-dark" v-t="'text-timezone.message'"></span>
                     <select v-model="tmp.ipRule.tz" class="form-select mt-1 block w-full">
                       <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
                     </select>
                   </label>
                 </div>
                 <div>
-                  <div class="mb-2">{{ localizations['options.ipRules.textareaLabel'] }}</div>
+                  <div class="mb-2" v-t="'options-ipRules-textareaLabel.message'"></div>
                   <textarea
                     v-model="tmp.ipRule.ips"
                     class="form-textarea mt-1 text-xl block w-full"
                     :class="{ error: errors.ipRuleIPs }"
                     rows="10"
-                    :placeholder="localizations['options.ipRules.textareaPlaceholder']"
+                    :placeholder="$t('options-ipRules-textareaPlaceholder.message')"
                   ></textarea>
                 </div>
                 <div class="flex items-center">
                   <div class="flex mt-6 w-full">
-                    <button @click="saveIPRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">
-                      {{ localizations['text.save'] }}
-                    </button>
-                    <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
-                      {{ localizations['text.cancel'] }}
-                    </button>
+                    <button
+                      @click="saveIPRule"
+                      class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded"
+                      v-t="'text-save.message'"
+                    ></button>
+                    <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
                   </div>
                 </div>
               </div>
@@ -269,18 +259,18 @@
           </div>
           <div v-else-if="modalType === Modal.WL_RULE" class="w-4/5 modal overflow-y-auto" style="max-height: 90vh;">
             <div class="px-6 pt-6 pb-8 text-xl">
-              <div class="text-xl font-bold border-primary border-b-2 mb-4">{{ localizations['options.whitelist.editorTitle'] }}</div>
+              <div class="text-xl font-bold border-primary border-b-2 mb-4" v-t="'options-whitelist-editorTitle.message'"></div>
               <div class="flex-col lg:flex">
                 <div class="mb-2 md:mb-0">
                   <div class="mb-2">
                     <label>
-                      <span class="text-dark">{{ localizations['text.name'] }}</span>
+                      <span class="text-dark" v-t="'text-name.message'"></span>
                     </label>
                     <input v-model="tmp.wlRule.name" class="block w-full form-input" :class="{ error: errors.wlRuleName }" />
                   </div>
                   <div class="mb-2">
                     <label>
-                      {{ localizations['options.whitelist.acceptLang'] }}
+                      <span v-t="'options-whitelist-acceptLang.message'"></span>
                       <select v-model="tmp.wlRule.lang" class="form-select mt-1 block w-full">
                         <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
                       </select>
@@ -288,17 +278,17 @@
                   </div>
                   <div class="mb-2">
                     <label>
-                      {{ localizations['text.profile'] }}
+                      <span v-t="'text-profile.message'"></span>
                       <select v-model="tmp.wlRule.profile" class="form-select mt-1 block w-full">
-                        <option value="default">{{ localizations['text.defaultWhitelistProfile'] }}</option>
-                        <option value="none">{{ localizations['text.realProfile'] }}</option>
+                        <option value="default" v-t="'text-defaultWhitelistProfile.message'"></option>
+                        <option value="none" v-t="'text-realProfile.message'"></option>
                         <option v-for="p in profileList" :key="p.id" :value="p.id">{{ p.name }}</option>
                       </select>
                     </label>
                   </div>
                   <div class="mb-2">
                     <label for="headers.spoofIP.rangeFrom">
-                      <span class="text-dark">{{ localizations['options.whitelist.headerIPLabel'] }}</span>
+                      <span class="text-dark" v-t="'options-whitelist-headerIPLabel.message'"></span>
                     </label>
                     <input v-model="tmp.wlRule.spoofIP" class="block w-full form-input" :class="{ error: errors.wlRuleIP }" />
                   </div>
@@ -310,14 +300,14 @@
                             <input v-model="tmp.wlRule.options.ref" id="ref" type="checkbox" class="form-switch-checkbox" />
                             <label class="form-switch-label" for="ref"></label>
                           </div>
-                          <label class="text-sm">{{ localizations['text.disableReferer'] }}</label>
+                          <label class="text-sm" v-t="'text-disableReferer.message'"></label>
                         </div>
                         <div>
                           <div class="form-switch inline-block align-middle">
                             <input v-model="tmp.wlRule.options.ws" id="ws" type="checkbox" class="form-switch-checkbox" />
                             <label class="form-switch-label" for="ws"></label>
                           </div>
-                          <label class="text-sm">{{ localizations['options.whitelist.options.ws'] }}</label>
+                          <label class="text-sm" v-t="'options-whitelist-options-ws.message'"></label>
                         </div>
                       </div>
                       <div class="mt-2 md:mt-0">
@@ -326,21 +316,21 @@
                             <input v-model="tmp.wlRule.options.name" id="name" type="checkbox" class="form-switch-checkbox" />
                             <label class="form-switch-label" for="name"></label>
                           </div>
-                          <label class="text-sm">{{ localizations['options.whitelist.options.name'] }}</label>
+                          <label class="text-sm" v-t="'options-whitelist-options-name.message'"></label>
                         </div>
                         <div>
                           <div class="form-switch inline-block align-middle">
                             <input v-model="tmp.wlRule.options.tz" id="tz" type="checkbox" class="form-switch-checkbox" />
                             <label class="form-switch-label" for="tz"></label>
                           </div>
-                          <label class="text-sm">{{ localizations['options.whitelist.options.tz'] }}</label>
+                          <label class="text-sm" v-t="'options-whitelist-options-tz.message'"></label>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div>{{ localizations['options.whitelist.urls'] }}</div>
-                <div class="text-sm">{{ localizations['options.whitelist.sitesTip'] }}</div>
+                <div v-t="'options-whitelist-urls.message'"></div>
+                <div class="text-sm" v-t="'options-whitelist-sitesTip.message'"></div>
                 <textarea
                   v-model="tmp.wlRule.sites"
                   class="form-textarea mt-1 text-xl block w-full"
@@ -351,12 +341,12 @@
               </div>
               <div class="flex items-center">
                 <div class="flex mt-6 w-full">
-                  <button @click="saveWLRule" class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded">
-                    {{ localizations['text.save'] }}
-                  </button>
-                  <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
-                    {{ localizations['text.cancel'] }}
-                  </button>
+                  <button
+                    @click="saveWLRule"
+                    class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded"
+                    v-t="'text-save.message'"
+                  ></button>
+                  <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
                 </div>
               </div>
             </div>
@@ -364,60 +354,56 @@
           <div v-else-if="modalType === Modal.CONFIRM_IP_DELETE" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
-              <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.modal.askDelete'] }}</span>
+              <span class="my-1 text-xl font-semibold text-center" v-t="'options-modal-askDelete.message'"></span>
               <div class="my-4 text-center text-xl">
                 <span>{{ tmp.ipRule.name }}</span>
               </div>
               <div class="flex justify-center">
-                <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">
-                  {{ localizations['options.modal.confirmDelete'] }}
-                </button>
-                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
-                  {{ localizations['text.cancel'] }}
-                </button>
+                <button
+                  @click="reallyDelete"
+                  class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded"
+                  v-t="'options-modal-confirmDelete.message'"
+                ></button>
+                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
               </div>
             </div>
           </div>
           <div v-else-if="modalType === Modal.CONFIRM_RESET" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
-              <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.modal.askReset'] }}</span>
+              <span class="my-1 text-xl font-semibold text-center" v-t="'options-modal-askReset.message'"></span>
               <div class="flex justify-center">
-                <button @click="resetSettings" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">
-                  {{ localizations['options.modal.confirmReset'] }}
-                </button>
-                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
-                  {{ localizations['text.cancel'] }}
-                </button>
+                <button
+                  @click="resetSettings"
+                  class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded"
+                  v-t="'options-modal-confirmReset.message'"
+                ></button>
+                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
               </div>
             </div>
           </div>
           <div v-else-if="modalType === Modal.CONFIRM_WL_DELETE" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
               <span class="text-center text-red-500 mb-4"><feather stroke-width="1" type="alert-circle" size="8em"></feather></span>
-              <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.modal.askDelete'] }}</span>
+              <span class="my-1 text-xl font-semibold text-center" v-t="'options-modal-askDelete.message'"></span>
               <div class="my-4 text-center text-xl">
                 <span>{{ tmp.wlRule.name }}</span>
               </div>
               <div class="flex justify-center">
-                <button @click="reallyDelete" class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded">
-                  {{ localizations['options.modal.confirmDelete'] }}
-                </button>
-                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
-                  {{ localizations['text.cancel'] }}
-                </button>
+                <button
+                  @click="reallyDelete"
+                  class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded"
+                  v-t="'options-modal-confirmDelete.message'"
+                ></button>
+                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'textcancel.message'"></button>
               </div>
             </div>
           </div>
           <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
             <div class="flex flex-col px-6 pt-6 pb-8">
-              <span class="my-1 text-xl font-semibold text-center">{{ localizations['options.checklistItem.' + tmp.checklistItem.id] }}</span>
-              <div class="my-4 text-center text-lg">
-                {{ localizations['options.checklistItem.' + tmp.checklistItem.id + 'Desc'] }}
-              </div>
-              <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded">
-                {{ localizations['options.checklist.close'] }}
-              </button>
+              <span class="my-1 text-xl font-semibold text-center" v-t="`options-checklistItem-${tmp.checklistItem.id}.message`"></span>
+              <div class="my-4 text-center text-lg" v-t="`options-checklistItem-${tmp.checklistItem.id}Desc.message`"></div>
+              <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'options-checklist-close.message'"></button>
             </div>
           </div>
         </div>
@@ -459,7 +445,6 @@ export default class App extends Vue {
   public ready: boolean = false;
   public showModal: boolean = false;
   public languages: lang.Language[] = lang.getAllLanguages();
-  public localizations: any = {};
   public profiles: prof.ProfileListItem[] = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public errors: any = {
@@ -545,30 +530,6 @@ export default class App extends Vue {
     this.version = browser.runtime.getManifest().version_name;
 
     await this['$store'].dispatch('initialize');
-
-    if (localStorage != null) {
-      let needsUpdate: boolean = false;
-      let version = localStorage.getItem('version');
-
-      if (version === null || version != this.settings.version) {
-        localStorage.setItem('version', this.settings.version);
-        needsUpdate = true;
-      }
-
-      let localizations = localStorage.getItem('localizations');
-      if (localizations === null || localizations == '{}' || needsUpdate) {
-        this.localizations = await browser.runtime.sendMessage({
-          action: 'localize',
-        });
-        localStorage.setItem('localizations', JSON.stringify(this.localizations));
-      } else {
-        this.localizations = JSON.parse(localizations);
-      }
-    } else {
-      this.localizations = await browser.runtime.sendMessage({
-        action: 'localize',
-      });
-    }
 
     let hash = window.location.hash.split('?');
     let queryParams = hash.length > 1 ? hash[1] : '';
@@ -710,9 +671,9 @@ export default class App extends Vue {
 
   getProfile(profile: string): string {
     if (profile === 'default') {
-      return this.localizations['text.defaultWhitelistProfile'];
+      return this.$t('text-defaultWhitelistProfile.message') as string;
     } else if (profile === 'none') {
-      return this.localizations['text.realProfile'];
+      return this.$t('text-realProfile.message') as string;
     }
 
     return this.profileList.find(p => p.id === profile).name;
@@ -764,7 +725,7 @@ export default class App extends Vue {
           data,
         });
       } catch (e) {
-        let msg: string = this.localizations['options.import.couldNotImport'];
+        let msg: string = this.$t('options-import-couldNotImport.message') as string;
 
         this.importError = {
           error: true,
