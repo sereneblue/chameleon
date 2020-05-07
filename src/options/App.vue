@@ -103,7 +103,7 @@
               <tr class="flex flex-col flex-no wrap md:table-row text-left">
                 <th class="font-bold py-4 w-2/5" v-t="'options-whitelist-rule.message'"></th>
                 <th class="font-bold py-4" v-t="'text-profile.message'"></th>
-                <th class="font-bold py-4" v-t="'options-whitelist-urls.message'"></th>
+                <th class="font-bold py-4">URLS</th>
               </tr>
             </thead>
             <tbody>
@@ -218,7 +218,7 @@
                   <label for="headers.spoofIP.rangeFrom">
                     <span class="text-dark" v-t="'text-name.message'"></span>
                   </label>
-                  <input v-model="tmp.ipRule.name" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error: errors.ipRuleName }" />
+                  <input v-model="tmp.ipRule.name" name="headers.spoofIP.rangeFrom" class="block w-full form-input" :class="{ error :  errors.ipRuleName }" />
                 </div>
                 <div class="flex flex-col md:flex-row items-center mb-4">
                   <label class="md:mr-2 mb-4 md:mb-0 w-full md:w-1/2">
@@ -239,7 +239,7 @@
                   <textarea
                     v-model="tmp.ipRule.ips"
                     class="form-textarea mt-1 text-xl block w-full"
-                    :class="{ error: errors.ipRuleIPs }"
+                    :class="{ error :  errors.ipRuleIPs }"
                     rows="10"
                     :placeholder="$t('options-ipRules-textareaPlaceholder.message')"
                   ></textarea>
@@ -266,7 +266,7 @@
                     <label>
                       <span class="text-dark" v-t="'text-name.message'"></span>
                     </label>
-                    <input v-model="tmp.wlRule.name" class="block w-full form-input" :class="{ error: errors.wlRuleName }" />
+                    <input v-model="tmp.wlRule.name" class="block w-full form-input" :class="{ error :  errors.wlRuleName }" />
                   </div>
                   <div class="mb-2">
                     <label>
@@ -290,7 +290,7 @@
                     <label for="headers.spoofIP.rangeFrom">
                       <span class="text-dark" v-t="'options-whitelist-headerIPLabel.message'"></span>
                     </label>
-                    <input v-model="tmp.wlRule.spoofIP" class="block w-full form-input" :class="{ error: errors.wlRuleIP }" />
+                    <input v-model="tmp.wlRule.spoofIP" class="block w-full form-input" :class="{ error :  errors.wlRuleIP }" />
                   </div>
                   <div class="my-4">
                     <div class="flex flex-col md:flex-row justify-around">
@@ -329,12 +329,12 @@
                     </div>
                   </div>
                 </div>
-                <div v-t="'options-whitelist-urls.message'"></div>
+                <div>URLs</div>
                 <div class="text-sm" v-t="'options-whitelist-sitesTip.message'"></div>
                 <textarea
                   v-model="tmp.wlRule.sites"
                   class="form-textarea mt-1 text-xl block w-full"
-                  :class="{ error: errors.wlRuleSites }"
+                  :class="{ error :  errors.wlRuleSites }"
                   rows="7"
                   placeholder="Ex. reddit.com@@r/(webdev|popular|privacy)"
                 ></textarea>
@@ -448,41 +448,41 @@ export default class App extends Vue {
   public profiles: prof.ProfileListItem[] = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public errors: any = {
-    ipRuleName: false,
-    ipRuleIPs: false,
-    wlRuleName: false,
-    wlRuleIP: false,
-    wlRuleSites: false,
+    ipRuleName :  false,
+    ipRuleIPs :  false,
+    wlRuleName :  false,
+    wlRuleIP :  false,
+    wlRuleSites :  false,
   };
   public isImporting: boolean = false;
   public importError: any = {
-    error: false,
-    msg: '',
+    error :  false,
+    msg :  '',
   };
   public version: string = '';
   public tmp: any = {
-    checklistItem: {
-      description: '',
+    checklistItem :  {
+      description :  '',
     },
-    ipRule: {
-      id: '',
-      name: '',
-      lang: '',
-      tz: '',
-      ips: '',
+    ipRule :  {
+      id :  '',
+      name :  '',
+      lang :  '',
+      tz :  '',
+      ips :  '',
     },
-    wlRule: {
-      id: '',
-      name: '',
-      sites: '',
-      lang: '',
-      profile: '',
-      spoofIP: '',
-      options: {
-        name: false,
-        ref: false,
-        tz: false,
-        ws: false,
+    wlRule :  {
+      id :  '',
+      name :  '',
+      sites :  '',
+      lang :  '',
+      profile :  '',
+      spoofIP :  '',
+      options :  {
+        name :  false,
+        ref :  false,
+        tz :  false,
+        ws :  false,
       },
     },
   };
@@ -516,8 +516,8 @@ export default class App extends Vue {
 
   addSite(): void {
     this.tmp.wlRule.sites.push({
-      domain: '',
-      pattern: '',
+      domain :  '',
+      pattern :  '',
     });
   }
 
@@ -623,7 +623,7 @@ export default class App extends Vue {
 
   async exportSettings(): Promise<void> {
     let s: any = await browser.runtime.sendMessage({
-      action: 'getSettings',
+      action :  'getSettings',
     });
 
     let settings: string = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(s, null, 2));
@@ -659,8 +659,8 @@ export default class App extends Vue {
     this.tmp.wlRule.sites.splice(index, 1);
     if (index === 0 && this.tmp.wlRule.sites.length === 0) {
       this.tmp.wlRule.sites.push({
-        domain: '',
-        pattern: '',
+        domain :  '',
+        pattern :  '',
       });
     }
   }
@@ -721,14 +721,14 @@ export default class App extends Vue {
       try {
         let data: object = JSON.parse(e.target.result);
         this.importError = await browser.runtime.sendMessage({
-          action: 'validateSettings',
+          action :  'validateSettings',
           data,
         });
       } catch (e) {
         let msg: string = this.$t('options-import-couldNotImport.message') as string;
 
         this.importError = {
-          error: true,
+          error :  true,
           msg,
         };
       }
@@ -763,14 +763,14 @@ export default class App extends Vue {
 
   reloadIPInfo(): void {
     browser.runtime.sendMessage({
-      action: 'reloadIPInfo',
-      data: true,
+      action :  'reloadIPInfo',
+      data :  true,
     });
   }
 
   async resetSettings(): Promise<void> {
     await browser.runtime.sendMessage({
-      action: 'reset',
+      action :  'reset',
     });
   }
 
@@ -814,9 +814,9 @@ export default class App extends Vue {
 
     if (this.tmp.ipRule.id) {
       let idx: number = this.settings.ipRules.findIndex(r => r.id === this.tmp.ipRule.id);
-      this.settings.ipRules[idx] = Object.assign({}, this.tmp.ipRule, { ips: rules });
+      this.settings.ipRules[idx] = Object.assign({}, this.tmp.ipRule, { ips :  rules });
     } else {
-      this.settings.ipRules.push(Object.assign({}, this.tmp.ipRule, { id: uuidv4(), ips: rules }));
+      this.settings.ipRules.push(Object.assign({}, this.tmp.ipRule, { id :  uuidv4(), ips :  rules }));
     }
 
     webext.sendToBackground(this.settings);
@@ -873,11 +873,11 @@ export default class App extends Vue {
     sites = sites.map(s => {
       return s.length === 2
         ? {
-            domain: s[0],
-            pattern: s[1],
+            domain :  s[0],
+            pattern :  s[1],
           }
         : {
-            domain: s[0],
+            domain :  s[0],
           };
     });
 
@@ -885,13 +885,13 @@ export default class App extends Vue {
       let idx: number = this.settings.whitelist.rules.findIndex(r => r.id === this.tmp.wlRule.id);
       this.settings.whitelist.rules[idx] = Object.assign({}, this.tmp.wlRule, { sites });
     } else {
-      this.settings.whitelist.rules.push(Object.assign({}, this.tmp.wlRule, { id: uuidv4(), sites }));
+      this.settings.whitelist.rules.push(Object.assign({}, this.tmp.wlRule, { id :  uuidv4(), sites }));
     }
 
     webext.sendToBackground(this.settings);
 
     browser.runtime.sendMessage({
-      action: 'reloadInjectionScript',
+      action :  'reloadInjectionScript',
     });
 
     this.showModal = false;

@@ -476,9 +476,6 @@
   "options-whitelist-textareaPlaceholder" :  {
     "message" :  "Une adresse IP/Intervalle IP par ligne"
   },
-  "options-whitelist-urls" :  {
-    "message" :  "URLs"
-  },
   "popup-home-change" :  {
     "message" :  "Changer"
   },

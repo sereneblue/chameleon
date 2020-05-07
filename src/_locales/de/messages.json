@@ -476,9 +476,6 @@
   "options-whitelist-textareaPlaceholder" :  {
     "message" :  "Ein(e) IP(-Bereich) pro Zeile"
   },
-  "options-whitelist-urls" :  {
-    "message" :  "URLs"
-  },
   "popup-home-change" :  {
     "message" :  "ändern"
   },
