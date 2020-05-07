@@ -818,9 +818,9 @@ export class Chameleon {
   }
 
   public toggleContextMenu(enabled: boolean): void {
-    browser.contextMenus.removeAll();
-
     if (enabled && this.platform.os != 'android') {
+      browser.contextMenus.removeAll();
+
       let rules: any = this.settings.whitelist.rules;
 
       browser.contextMenus.create({
