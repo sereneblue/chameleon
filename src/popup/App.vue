@@ -718,6 +718,7 @@ export default class App extends Vue {
     rangeTo: false,
   };
   public languages: lang.Language[] = lang.getAllLanguages();
+  public profileTimeout: any = null;
   public profiles: any = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
@@ -850,10 +851,13 @@ export default class App extends Vue {
   }
 
   async changeProfile(): Promise<void> {
-    browser.runtime.sendMessage({
-      action: 'reloadProfile',
-      data: null,
-    });
+    // prevent multiple clicks
+    clearTimeout(this.profileTimeout);
+    this.profileTimeout = setTimeout(() => {
+      browser.runtime.sendMessage({
+        action: 'reloadProfile'
+      });
+    }, 100);
   }
 
   async changeSetting(evt: any): Promise<void> {
