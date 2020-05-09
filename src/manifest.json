@@ -1,27 +1,27 @@
 {
-  "name": "Chameleon",
-  "description": "__MSG_extDescription__",
-  "author": "sereneblue",
-  "version": "0.20.3.1",
-  "version_name": "0.20.3",
-  "manifest_version": 2,
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}",
-      "strict_min_version": "59.0a1"
+  "name" :  "Chameleon",
+  "description" :  "__MSG_extDescription__",
+  "author" :  "sereneblue",
+  "version" :  "0.20.4.2",
+  "version_name" :  "0.20.4",
+  "manifest_version" :  2,
+  "browser_specific_settings" :  {
+    "gecko" :  {
+      "id" :  "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}",
+      "strict_min_version" :  "59.0a1"
     }
   },
-  "default_locale": "en",
-  "icons": {
-    "48": "icons/icon.svg",
-    "128": "icons/icon.svg"
+  "default_locale" :  "en",
+  "icons" :  {
+    "48" :  "icons/icon.svg",
+    "128" :  "icons/icon.svg"
   },
-  "browser_action": {
-    "default_icon": "icons/icon.svg",
-    "default_popup": "popup/popup.html"
+  "browser_action" :  {
+    "default_icon" :  "icons/icon.svg",
+    "default_popup" :  "popup/popup.html"
   },
-  "background": {
-    "scripts": ["background.js"]
+  "background" :  {
+    "scripts" :  ["background.js"]
   },
-  "permissions": ["<all_urls>", "alarms", "contextMenus", "notifications", "privacy", "storage", "tabs", "webRequest", "webRequestBlocking"]
+  "permissions" :  ["<all_urls>", "alarms", "contextMenus", "notifications", "privacy", "storage", "tabs", "webRequest", "webRequestBlocking"]
 }
