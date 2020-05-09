@@ -920,16 +920,15 @@ export class Chameleon {
         msg,
       };
     } else {
-      if (!impSettings.excluded.every(p => profileIds.includes(p))) {
-        msg = browser.i18n.getMessage('options-import-invalid-excludedProfile');
+      let excludedProfiles = [];
 
-        return {
-          error :  true,
-          msg,
-        };
-      } else {
-        s.excluded = impSettings.excluded;
+      for (let p of impSettings.excluded) {
+        if (profileIds.includes(p)) {
+          excludedProfiles.push(p);
+        }
       }
+
+      s.excluded = excludedProfiles;
     }
 
     if (!impSettings.ipRules) {
