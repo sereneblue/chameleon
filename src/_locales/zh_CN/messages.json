@@ -17,6 +17,9 @@
   "options-about-issueTracker" :  {
     "message" :  "问题跟踪"
   },
+  "options-about-knownIssues" :  {
+    "message" :  "已知问题"
+  },
   "options-about-wiki" :  {
     "message" :  "Wiki"
   },
@@ -419,8 +422,14 @@
   "options-modal-askDelete" :  {
     "message" :  "您确定要删除这条规则吗？"
   },
+  "options-modal-askReset" :  {
+    "message" :  "您确定要重置您的设置？"
+  },
   "options-modal-confirmDelete" :  {
     "message" :  "是的，将其删除！"
+  },
+  "options-modal-confirmReset" :  {
+    "message" :  "是，重置我的设置！"
   },
   "options-settings" :  {
     "message" :  "设置"
@@ -476,9 +485,6 @@
   "options-whitelist-textareaPlaceholder" :  {
     "message" :  "每行一个IP/IP范围"
   },
-  "options-whitelist-urls" :  {
-    "message" :  "网址"
-  },
   "popup-home-change" :  {
     "message" :  "更改"
   },
@@ -496,6 +502,9 @@
   },
   "popup-home-currentProfile-gettingTimezone" :  {
     "message" :  "正在获取IP信息"
+  },
+  "popup-home-currentProfile-screenProfile" :  {
+    "message" :  "屏幕（配置文件）"
   },
   "popup-home-disabled" :  {
     "message" :  "Chameleon已禁用"
@@ -724,6 +733,9 @@
   },
   "popup-options-cookie" :  {
     "message" :  "Cookie选项"
+  },
+  "popup-options-cookieNotPersistent" :  {
+    "message" :  "窗口关闭后删除cookie和站点数据"
   },
   "popup-options-cookiePolicy" :  {
     "message" :  "策略"

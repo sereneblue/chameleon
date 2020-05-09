@@ -17,11 +17,14 @@
   "options-about-issueTracker" :  {
     "message" :  "Suivi des problèmes"
   },
+  "options-about-knownIssues" :  {
+    "message" :  "Problèmes connus"
+  },
   "options-about-wiki" :  {
     "message" :  "Wiki"
   },
   "options-about-support" :  {
-    "message" :  "Support"
+    "message" :  "Assistance technique"
   },
   "options-about-sourceCode" :  {
     "message" :  "Code source"
@@ -419,8 +422,14 @@
   "options-modal-askDelete" :  {
     "message" :  "Êtes-vous sûr de vouloir supprimer cette règle ?"
   },
+  "options-modal-askReset" :  {
+    "message" :  "Êtes-vous sûr de vouloir réinitialiser les paramètres ?"
+  },
   "options-modal-confirmDelete" :  {
     "message" :  "Oui, supprimer!"
+  },
+  "options-modal-confirmReset" :  {
+    "message" :  "Oui, réinitialise les paramètres !"
   },
   "options-settings" :  {
     "message" :  "Paramètres"
@@ -493,6 +502,9 @@
   },
   "popup-home-currentProfile-gettingTimezone" :  {
     "message" :  "Récupération des info IP"
+  },
+  "popup-home-currentProfile-screenProfile" :  {
+    "message" :  "Écran (Profil)"
   },
   "popup-home-disabled" :  {
     "message" :  "Chameleon est désactivé"
@@ -721,6 +733,9 @@
   },
   "popup-options-cookie" :  {
     "message" :  "Cookies"
+  },
+  "popup-options-cookieNotPersistent" :  {
+    "message" :  "Supprimer les cookies et les données du site à la fermeture de la fenêtre"
   },
   "popup-options-cookiePolicy" :  {
     "message" :  "Politique"
