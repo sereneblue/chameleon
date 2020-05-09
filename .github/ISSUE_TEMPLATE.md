@@ -12,7 +12,7 @@ Please use issues for bugs only! Answer the following questions for yourself bef
 
 ## Relevant settings
 
-<!--- What settings are enabled? Feel free to post a snippet of an exported settings file -->
+<!--- Please attach your settings. -->
 
 ## Context (Environment)
 
