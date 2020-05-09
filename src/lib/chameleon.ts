@@ -41,15 +41,15 @@ export class Chameleon {
     this.settings = initSettings;
     this.defaultSettings = initSettings;
     this.tempStore = {
-      ipInfo: {
-        cache: null,
-        lang: '',
-        tz: '',
-        updated: 0,
+      ipInfo :  {
+        cache :  null,
+        lang :  '',
+        tz :  '',
+        updated :  0,
       },
-      notifyId: '',
-      profile: '',
-      spoofIP: '',
+      notifyId :  '',
+      profile :  '',
+      spoofIP :  '',
     };
     this.injectionScript = null;
     this.intervalTimeout = null;
@@ -66,45 +66,45 @@ export class Chameleon {
 
     this.updateProfileCache();
     this.injectionScript = await browser.contentScripts.register({
-      allFrames: true,
-      matchAboutBlank: true,
-      matches: ['http://*/*', 'https://*/*'],
-      excludeMatches: ['http://127.0.0.1/*', 'http://localhost/*'],
-      js: [
+      allFrames :  true,
+      matchAboutBlank :  true,
+      matches :  ['http://*/*', 'https://*/*'],
+      excludeMatches :  ['http://127.0.0.1/*', 'http://localhost/*'],
+      js :  [
         {
-          code: `
+          code :  `
             let settings = JSON.parse(\`${JSON.stringify(this.settings)}\`);
             let tempStore = JSON.parse(\`${JSON.stringify(this.tempStore)}\`);
             let profileCache = JSON.parse(\`${JSON.stringify(this.profileCache)}\`);
             let seed = ${Math.random() * 0.00000001};
           `,
         },
-        { file: 'inject.js' },
+        { file :  'inject.js' },
       ],
-      runAt: 'document_start',
+      runAt :  'document_start',
     });
   }
 
   public async changeBrowserSettings(): Promise<void> {
     browser.privacy.websites.cookieConfig.set({
-      value: {
-        behavior: this.settings.options.cookiePolicy,
-        nonPersistentCookies: this.settings.options.cookieNotPersistent,
+      value :  {
+        behavior :  this.settings.options.cookiePolicy,
+        nonPersistentCookies :  this.settings.options.cookieNotPersistent,
       },
     });
 
     ['firstPartyIsolate', 'resistFingerprinting', 'trackingProtectionMode'].forEach(key => {
       browser.privacy.websites[key].set({
-        value: this.settings.options[key],
+        value :  this.settings.options[key],
       });
     });
 
     browser.privacy.network.peerConnectionEnabled.set({
-      value: !this.settings.options.disableWebRTC,
+      value :  !this.settings.options.disableWebRTC,
     });
 
     browser.privacy.network.webRTCIPHandlingPolicy.set({
-      value: this.settings.options.webRTCPolicy,
+      value :  this.settings.options.webRTCPolicy,
     });
   }
 
@@ -172,71 +172,71 @@ export class Chameleon {
     let profiles = new prof.Generator().getAllProfiles();
     let timezoneIds: string[] = getTimezones().map(t => t.zone);
     let mappedProfiles = {
-      custom: ' none',
-      real: 'none',
-      none: 'none',
-      random: 'random',
-      randomDesktop: 'randomDesktop',
-      randomMobile: 'randomMobile',
-      win1: 'win1-gcr',
-      win2: 'win2-gcr',
-      win3: 'win3-gcr',
-      win4: 'win4-gcr',
-      win6: 'win1-ff',
-      win7: 'win2-ff',
-      win8: 'win3-ff',
-      win9: 'win4-ff',
-      win10: 'win2-ie',
-      win11: 'win1-ie',
-      win12: 'win3-ie',
-      win13: 'win1-esr',
-      win14: 'win3-esr',
-      win15: 'win4-esr',
-      win16: 'win4-ie',
-      mac1: 'mac1-gcr',
-      mac2: 'mac2-gcr',
-      mac3: 'mac1-ff',
-      mac4: 'mac2-ff',
-      mac5: 'mac1-sf',
-      mac6: 'mac2-sf',
-      mac7: 'mac3-sf',
-      mac8: 'mac1-esr',
-      linux1: 'lin1-gcr',
-      linux2: 'lin2-gcr',
-      linux3: 'lin3-gcr',
-      linux4: 'lin1-cr',
-      linux5: 'lin2-cr',
-      linux6: 'lin3-cr',
-      linux7: 'lin1-ff',
-      linux8: 'lin2-ff',
-      linux9: 'lin3-ff',
-      linux10: 'lin1-esr',
-      linux11: 'lin3-esr',
-      ios1: 'ios1-sfm',
-      ios2: 'ios1-sft',
-      ios3: 'ios1-gcrm',
-      ios4: 'ios2-sft',
-      ios5: 'ios2-gcrm',
-      ios6: 'ios2-sfm',
-      ios7: 'ios3-sfm',
-      ios8: 'ios3-sft',
-      ios9: 'ios3-gcrm',
-      android1: 'and4-ff',
-      android2: 'and1-gcrm',
-      android3: 'and1-gcrm',
-      android4: 'and2-gcrm',
-      android5: 'and2-gcrm',
-      android6: 'and3-gcrm',
-      android7: 'and3-gcrm',
-      android8: 'and3-gcrm',
-      android9: 'and4-gcrm',
+      custom :  ' none',
+      real :  'none',
+      none :  'none',
+      random :  'random',
+      randomDesktop :  'randomDesktop',
+      randomMobile :  'randomMobile',
+      win1 :  'win1-gcr',
+      win2 :  'win2-gcr',
+      win3 :  'win3-gcr',
+      win4 :  'win4-gcr',
+      win6 :  'win1-ff',
+      win7 :  'win2-ff',
+      win8 :  'win3-ff',
+      win9 :  'win4-ff',
+      win10 :  'win2-ie',
+      win11 :  'win1-ie',
+      win12 :  'win3-ie',
+      win13 :  'win1-esr',
+      win14 :  'win3-esr',
+      win15 :  'win4-esr',
+      win16 :  'win4-ie',
+      mac1 :  'mac1-gcr',
+      mac2 :  'mac2-gcr',
+      mac3 :  'mac1-ff',
+      mac4 :  'mac2-ff',
+      mac5 :  'mac1-sf',
+      mac6 :  'mac2-sf',
+      mac7 :  'mac3-sf',
+      mac8 :  'mac1-esr',
+      linux1 :  'lin1-gcr',
+      linux2 :  'lin2-gcr',
+      linux3 :  'lin3-gcr',
+      linux4 :  'lin1-cr',
+      linux5 :  'lin2-cr',
+      linux6 :  'lin3-cr',
+      linux7 :  'lin1-ff',
+      linux8 :  'lin2-ff',
+      linux9 :  'lin3-ff',
+      linux10 :  'lin1-esr',
+      linux11 :  'lin3-esr',
+      ios1 :  'ios1-sfm',
+      ios2 :  'ios1-sft',
+      ios3 :  'ios1-gcrm',
+      ios4 :  'ios2-sft',
+      ios5 :  'ios2-gcrm',
+      ios6 :  'ios2-sfm',
+      ios7 :  'ios3-sfm',
+      ios8 :  'ios3-sft',
+      ios9 :  'ios3-gcrm',
+      android1 :  'and4-ff',
+      android2 :  'and1-gcrm',
+      android3 :  'and1-gcrm',
+      android4 :  'and2-gcrm',
+      android5 :  'and2-gcrm',
+      android6 :  'and3-gcrm',
+      android7 :  'and3-gcrm',
+      android8 :  'and3-gcrm',
+      android9 :  'and4-gcrm',
     };
 
     if (!prev.settings && importing) {
       msg = browser.i18n.getMessage('options-import-invalid-settings');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -287,7 +287,7 @@ export class Chameleon {
             msg = browser.i18n.getMessage('options-import-invalid-profile');
 
             return {
-              error: true,
+              error :  true,
               msg,
             };
           }
@@ -299,7 +299,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-headers');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -357,7 +357,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-excluded');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -400,7 +400,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-ipRules');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -425,7 +425,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-whitelist');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -456,7 +456,7 @@ export class Chameleon {
 
         for (let j = 0; j < prev.whitelist.urlList[i].domains.length; j++) {
           let site: any = {
-            domain: prev.whitelist.urlList[i].domains[j].domain,
+            domain :  prev.whitelist.urlList[i].domains[j].domain,
           };
 
           if (prev.whitelist.urlList[i].domains[j].pattern != '') {
@@ -473,10 +473,10 @@ export class Chameleon {
         wlRule.lang = tempLang ? tempLang.code : 'en-US';
 
         wlRule.options = {
-          name: prev.whitelist.urlList[i].options.winName === true,
-          ref: prev.whitelist.urlList[i].options.ref === true,
-          tz: prev.whitelist.urlList[i].options.timezone === true,
-          ws: prev.whitelist.urlList[i].options.websocket === true,
+          name :  prev.whitelist.urlList[i].options.winName === true,
+          ref :  prev.whitelist.urlList[i].options.ref === true,
+          tz :  prev.whitelist.urlList[i].options.timezone === true,
+          ws :  prev.whitelist.urlList[i].options.websocket === true,
         };
 
         s.whitelist.rules.push(wlRule);
@@ -492,7 +492,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-success');
 
       return {
-        error: false,
+        error :  false,
         msg,
       };
     } else {
@@ -541,9 +541,9 @@ export class Chameleon {
 
     if (this.settings.config.notificationsEnabled) {
       browser.notifications.create({
-        type: 'basic',
-        title: 'Chameleon',
-        message: `${browser.i18n.getMessage('notifications-profileChange')} ` + this.getProfileInUse(),
+        type :  'basic',
+        title :  'Chameleon',
+        message :  `${browser.i18n.getMessage('notifications-profileChange')} ` + this.getProfileInUse(),
       });
     }
   }
@@ -557,7 +557,9 @@ export class Chameleon {
     if (browser.runtime.getManifest().version_name.includes('-')) {
       browser.runtime.onConnectExternal.addListener(port => {
         port.onMessage.addListener(request => {
-          browser.runtime.sendMessage(request, null, port.postMessage);
+          browser.runtime.sendMessage(request).then(response => {
+            port.postMessage(response);
+          });
         });
       });
     }
@@ -570,7 +572,7 @@ export class Chameleon {
         return this.intercept.blockWebsocket(details);
       },
       {
-        urls: ['<all_urls>'],
+        urls :  ['<all_urls>'],
       },
       ['blocking']
     );
@@ -581,7 +583,7 @@ export class Chameleon {
         return this.intercept.modifyRequest(details);
       },
       {
-        urls: ['<all_urls>'],
+        urls :  ['<all_urls>'],
       },
       ['blocking', 'requestHeaders']
     );
@@ -592,7 +594,7 @@ export class Chameleon {
         return this.intercept.modifyResponse(details);
       },
       {
-        urls: ['<all_urls>'],
+        urls :  ['<all_urls>'],
       },
       ['blocking', 'responseHeaders']
     );
@@ -601,7 +603,7 @@ export class Chameleon {
   public setTimer(option = null): void {
     browser.alarms.clearAll();
 
-    let alarmInfo = { when: Date.now() + 250 };
+    let alarmInfo = { when :  Date.now() + 250 };
 
     if (option === null) option = this.settings.profile.interval.option;
 
@@ -643,7 +645,7 @@ export class Chameleon {
   }
 
   public async saveSettings(settings: any): Promise<void> {
-    await webext.setSettings({ ...settings, version: this.version });
+    await webext.setSettings({ ...settings, version :  this.version });
   }
 
   public async updateIPInfo(forceCheck: boolean): Promise<void> {
@@ -740,14 +742,14 @@ export class Chameleon {
         }
 
         browser.runtime.sendMessage({
-          action: 'tempStore',
-          data: this.tempStore,
+          action :  'tempStore',
+          data :  this.tempStore,
         });
 
         browser.notifications.create({
-          type: 'basic',
-          title: 'Chameleon',
-          message: notificationMsg,
+          type :  'basic',
+          title :  'Chameleon',
+          message :  notificationMsg,
         });
 
         this.buildInjectionScript();
@@ -756,8 +758,8 @@ export class Chameleon {
       let message: string = browser.i18n.getMessage('notifications-unableToGetIPInfo');
 
       browser.notifications.create({
-        type: 'basic',
-        title: 'Chameleon',
+        type :  'basic',
+        title :  'Chameleon',
         message,
       });
     }
@@ -777,8 +779,8 @@ export class Chameleon {
     }
 
     browser.runtime.sendMessage({
-      action: 'tempStore',
-      data: this.tempStore,
+      action :  'tempStore',
+      data :  this.tempStore,
     });
   }
 
@@ -798,21 +800,21 @@ export class Chameleon {
   private checkValidOption(settingName: string, settingValue: any, possibleValues: any): any {
     if (possibleValues === 'boolean' && typeof settingValue === 'boolean') {
       return {
-        error: false,
+        error :  false,
       };
     } else if (possibleValues === 'number' && typeof settingValue === 'number') {
       return {
-        error: false,
+        error :  false,
       };
     } else if (possibleValues.includes(settingValue)) {
       return {
-        error: false,
+        error :  false,
       };
     }
 
     return {
-      error: true,
-      msg: `${browser.i18n.getMessage('options-import-invalid-setting')} ${settingName}`,
+      error :  true,
+      msg :  `${browser.i18n.getMessage('options-import-invalid-setting')} ${settingName}`,
     };
   }
 
@@ -823,10 +825,10 @@ export class Chameleon {
       let rules: any = this.settings.whitelist.rules;
 
       browser.contextMenus.create({
-        id: 'chameleon-openInWhitelist',
-        title: 'Open in whitelist editor',
-        contexts: ['page'],
-        onclick: function(details) {
+        id :  'chameleon-openInWhitelist',
+        title :  'Open in whitelist editor',
+        contexts :  ['page'],
+        onclick :  function(details) {
           var l = document.createElement('a');
           l.href = details.pageUrl;
 
@@ -835,19 +837,19 @@ export class Chameleon {
 
             if (rule !== null) {
               browser.tabs.create({
-                url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}}`),
+                url :  browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}}`),
               });
               return;
             }
 
             browser.tabs.create({
-              url: browser.runtime.getURL(`/options/options.html#whitelist?site=${l.host}`),
+              url :  browser.runtime.getURL(`/options/options.html#whitelist?site=${l.host}`),
             });
           }
         },
-        icons: {
-          '16': 'icon/icon_16.png',
-          '32': 'icon/icon_32.png',
+        icons :  {
+          '16' :  'icon/icon_16.png',
+          '32' :  'icon/icon_32.png',
         },
       });
     }
@@ -876,7 +878,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-version');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     }
@@ -885,7 +887,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-config');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -914,7 +916,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-excluded');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -922,7 +924,7 @@ export class Chameleon {
         msg = browser.i18n.getMessage('options-import-invalid-excludedProfile');
 
         return {
-          error: true,
+          error :  true,
           msg,
         };
       } else {
@@ -934,7 +936,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-ipRules');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -947,7 +949,7 @@ export class Chameleon {
         msg = browser.i18n.getMessage('options-import-invalid-ipRulesDupe');
 
         return {
-          error: true,
+          error :  true,
           msg,
         };
       }
@@ -969,7 +971,7 @@ export class Chameleon {
           msg = browser.i18n.getMessage('options-import-invalid-ipRuleName');
 
           return {
-            error: true,
+            error :  true,
             msg,
           };
         }
@@ -978,7 +980,7 @@ export class Chameleon {
           msg = browser.i18n.getMessage('options-import-invalid-ipRuleId');
 
           return {
-            error: true,
+            error :  true,
             msg,
           };
         }
@@ -991,7 +993,7 @@ export class Chameleon {
             msg = browser.i18n.getMessage('options-import-invalid-ipRuleRange');
 
             return {
-              error: true,
+              error :  true,
               msg,
             };
           }
@@ -1005,7 +1007,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-profile');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -1035,7 +1037,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-headers');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -1070,7 +1072,7 @@ export class Chameleon {
           msg = browser.i18n.getMessage('options-import-invalid-spoofIP');
 
           return {
-            error: true,
+            error :  true,
             msg,
           };
         } else {
@@ -1084,7 +1086,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-options');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -1136,7 +1138,7 @@ export class Chameleon {
       msg = browser.i18n.getMessage('options-import-invalid-whitelist');
 
       return {
-        error: true,
+        error :  true,
         msg,
       };
     } else {
@@ -1149,7 +1151,7 @@ export class Chameleon {
         msg = browser.i18n.getMessage('options-import-invalid-whitelistDupe');
 
         return {
-          error: true,
+          error :  true,
           msg,
         };
       }
@@ -1190,7 +1192,7 @@ export class Chameleon {
           msg = browser.i18n.getMessage('options-import-invalid-whitelistName');
 
           return {
-            error: true,
+            error :  true,
             msg,
           };
         }
@@ -1199,7 +1201,7 @@ export class Chameleon {
           msg = browser.i18n.getMessage('options-import-invalid-whitelistId');
 
           return {
-            error: true,
+            error :  true,
             msg,
           };
         }
@@ -1208,7 +1210,7 @@ export class Chameleon {
           msg = browser.i18n.getMessage('options-import-invalid-whitelistSpoofIP');
 
           return {
-            error: true,
+            error :  true,
             msg,
           };
         }
@@ -1229,7 +1231,7 @@ export class Chameleon {
           msg = browser.i18n.getMessage('options-import-invalid-whitelistOpt');
 
           return {
-            error: true,
+            error :  true,
             msg,
           };
         }
@@ -1246,7 +1248,7 @@ export class Chameleon {
     msg = browser.i18n.getMessage('options-import-success');
 
     return {
-      error: false,
+      error :  false,
       msg,
     };
   }
