@@ -35,7 +35,7 @@ class Injector {
 
     // profile to be used for injection
     let p: any = null;
-    let wl = util.findWhitelistRule(settings.whitelist.rules, window.location.host, window.location.href);
+    let wl = util.findWhitelistRule(settings.whitelist.rules, window.top.location.host, window.top.location.href);
 
     if (wl === null) {
       if (tempStore.profile && tempStore.profile != 'none') {
