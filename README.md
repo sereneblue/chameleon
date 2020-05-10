@@ -82,5 +82,5 @@ dillbyrne for creating [Random Agent Spoofer](https://github.com/dillbyrne/rando
 - Kaylier, melegeti for the French translation
 - Anonymous and Wursttorte for the German translation
 - Shitennouji for the Japanese translation
-- 3ibsand and Alexey for the Russian translation
+- 3ibsand, Alexey, and fks7cgsk for the Russian translation
 - David P. (Megver83) for the Spanish translation
