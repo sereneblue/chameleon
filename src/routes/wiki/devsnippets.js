@@ -8,31 +8,35 @@ export default {
 // control Chameleon with another extension
 // https://github.com/sereneblue/chameleon/releases
 
-let chameleonPort = browser.runtime.connect("{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}");
-
 // change browser profile to Windows 10 - Firefox
-chameleonPort.postMessage({
-  action: 'updateProfile',
-  data: 'win4-ff',
-});
+await browser.runtime.sendMessage(
+  '{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}',
+  {
+    action: 'updateProfile',
+    data: 'win4-ff',
+  },
+  null
+);
 
 // import settings by using the settings exported by Chameleon
 // let settings = exported settings loaded as an object  
 // saving settings is also how changes are persisted after reloading the extension
-chameleonPort.postMessage({
-  action: 'save',
-  data: settings,
-});
+await browser.runtime.sendMessage(
+  '{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}',
+  {
+    action: 'implicitSave'
+  },
+  null
+);
 
-// Don't forget to call reloadInjectionScrip and/or reload IP info after making the changes above.
-chameleonPort.postMessage({
-  action: 'reloadIPInfo',
-  data: false
-});
-
-chameleonPort.postMessage({
-  action: 'reloadInjectionScript',
-});
+// get current Chameleon settings
+let settings = await browser.runtime.sendMessage(
+  '{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}',
+  {
+    action: 'getSettings'
+  },
+  null
+);
 
 // The logic for how messages are routed is mostly handled in this file
 // https://github.com/sereneblue/chameleon/blob/develop/src/store/actions.ts`
