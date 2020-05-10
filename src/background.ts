@@ -5,12 +5,7 @@ import webext from './lib/webext';
 webext.firstTimeInstall();
 
 let chameleon = new Chameleon(JSON.parse(JSON.stringify(store.state)));
-
-browser.alarms.onAlarm.addListener(() => {
-  chameleon.run();
-});
-
-browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: any) => {
+let messageHandler = (request: any, sender: any, sendResponse: any) => {
   if (request.action === 'save') {
     if (chameleon.timeout) {
       clearTimeout(chameleon.timeout);
@@ -21,14 +16,23 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
       chameleon.saveSettings(request.data);
       sendResponse('done');
     }, 200);
+  } else if (request.action === 'implicitSave') {
+    if (chameleon.timeout) {
+      clearTimeout(chameleon.timeout);
+    }
+
+    chameleon.timeout = setTimeout(() => {
+      chameleon.saveSettings(chameleon.settings);
+      sendResponse('done');
+    }, 200);
   } else if (request.action === 'contextMenu') {
     chameleon.toggleContextMenu(request.data);
   } else if (request.action === 'getSettings') {
     sendResponse(chameleon.settings);
   } else if (request.action === 'init') {
     browser.runtime.sendMessage({
-      action: 'tempStore',
-      data: chameleon.tempStore,
+      action :  'tempStore',
+      data :  chameleon.tempStore,
     });
   } else if (request.action === 'reloadInjectionScript') {
     chameleon.buildInjectionScript();
@@ -68,7 +72,13 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
   }
 
   return true;
+};
+
+browser.alarms.onAlarm.addListener(() => {
+  chameleon.run();
 });
+
+browser.runtime.onMessage.addListener(messageHandler);
 
 (async () => {
   await chameleon.init(await webext.getSettings(null));
@@ -78,16 +88,28 @@ browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: 
   }
 
   chameleon.changeBrowserSettings();
-  chameleon.setupExternalListeners();
   chameleon.setupHeaderListeners();
   chameleon.setTimer();
 
   webext.enableChameleon(chameleon.settings.config.enabled);
   chameleon.toggleContextMenu(chameleon.settings.whitelist.enabledContextMenu);
 
+  /*
+    Allow Chameleon to be controlled by another extension
+
+    Enabled only in developer builds
+  */
+  if (browser.runtime.getManifest().version_name.includes('-')) {
+    browser.runtime.onMessageExternal.addListener((request, sender, sendResponse) => {
+      messageHandler(request, sender, sendResponse);
+
+      return true;
+    });
+  }
+
   if (chameleon.platform.os != 'android') {
     browser.browserAction.setBadgeBackgroundColor({
-      color: 'green',
+      color :  'green',
     });
   }
 })();

@@ -1,3 +1,23 @@
+<a name="v0.20.4-rc1"></a>
+
+## [v0.20.4-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.4-rc...v0.20.4-rc1) (2020-05-09)
+
+### Features
+
+- **profiles:** update browser profiles
+
+<a name="v0.20.4-rc"></a>
+
+## [v0.20.4-rc](https://github.com/sereneblue/chameleon/compare/v0.20.3-rc...v0.20.4-rc) (2020-05-08)
+
+### Bug Fixes
+
+- only call contextmenu if platform is not android
+- listener for external connections
+- **font spoofing:** add support for loaded fonts; [#360](https://github.com/sereneblue/chameleon/issues/360)
+- **popup:** prevent multiple clicks for profile change
+- **profiles:** add viewport to iOS devices; [#347](https://github.com/sereneblue/chameleon/issues/347)
+
 <a name="v0.20.3-rc"></a>
 
 ## [v0.20.3-rc](https://github.com/sereneblue/chameleon/compare/v0.20.2-rc...v0.20.3-rc) (2020-05-04)

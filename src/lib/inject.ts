@@ -12,6 +12,7 @@ import screen from './spoof/screen';
 import timezone from './spoof/timezone';
 import winName from './spoof/name';
 import util from './util';
+import whitelisted from './whitelisted';
 
 const moment = require('moment-timezone');
 
@@ -35,7 +36,7 @@ class Injector {
 
     // profile to be used for injection
     let p: any = null;
-    let wl = util.findWhitelistRule(settings.whitelist.rules, window.location.host, window.location.href);
+    let wl = util.findWhitelistRule(settings.whitelist.rules, window.top.location.host, window.top.location.href);
 
     if (wl === null) {
       if (tempStore.profile && tempStore.profile != 'none') {
@@ -210,123 +211,123 @@ class Injector {
 
     return `
     (function(){
-        if (
-          window.location.href.startsWith("https://www.google.com/recaptcha/api2") || 
-          window.location.href.startsWith("https://accounts.google.com/")          ||
-          window.location.href.startsWith("https://accounts.youtube.com/")         ||
-          window.location.href.startsWith("https://disqus.com/embed/comments/")    ||
-          window.CHAMELEON_SPOOF
-        ) { 
-          return;
+      if (window.CHAMELEON_SPOOF) return;
+
+      let CHAMELEON_SPOOF = new WeakMap();
+      CHAMELEON_SPOOF.set(window, JSON.parse(\`${JSON.stringify(this.spoof.metadata)}\`));
+      window.CHAMELEON_SPOOF = Symbol.for("CHAMELEON_SPOOF");
+
+      let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
+
+      injectionProperties.forEach(injProp => {
+        if (injProp.obj === 'window') {
+          window[injProp.prop] = injProp.value;
+        } else if (injProp.obj === 'window.navigator' && injProp.value === null) {
+          delete navigator.__proto__[injProp.prop];
+        } else if (injProp.obj === 'window.navigator' && injProp.prop == 'mimeTypes') {
+          let mimes = (() => {
+            const mimeArray = []
+            injProp.value.forEach(p => {
+              function FakeMimeType () { return p }
+              const mime = new FakeMimeType()
+              Object.setPrototypeOf(mime, MimeType.prototype);
+              mimeArray.push(mime)
+            })
+            Object.setPrototypeOf(mimeArray, MimeTypeArray.prototype);
+            return mimeArray
+          })();
+
+          Object.defineProperty(window.navigator, 'mimeTypes', {
+            configurable: true,
+            value: mimes
+          });
+        } else if (injProp.obj === 'window.navigator' && injProp.prop == 'plugins') {
+          let plugins = (() => {
+            const pluginArray = []
+            injProp.value.forEach(p => {
+              function FakePlugin () { return p }
+              const plugin = new FakePlugin()
+              Object.setPrototypeOf(plugin, Plugin.prototype);
+              pluginArray.push(plugin)
+            })
+            pluginArray.__proto__.item = function item() {
+              return this[arguments[0]];
+            };
+            pluginArray.__proto__.namedItem = function namedItem() {
+              return this.find(p => p.name === arguments[0]);
+            };
+            pluginArray.__proto__.refresh = function item() {
+              return;
+            };
+            return pluginArray
+          })();
+
+          Object.defineProperty(window.navigator, 'plugins', {
+            configurable: true,
+            value: plugins
+          });
+        } else {
+          Object.defineProperty(injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), injProp.prop, {
+            configurable: true,
+            value: injProp.value
+          });
         }
+      });
+      
+      let iframeWindow = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow');
+      let iframeDocument = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
 
-        let CHAMELEON_SPOOF = new WeakMap();
-        CHAMELEON_SPOOF.set(window, JSON.parse(\`${JSON.stringify(this.spoof.metadata)}\`));
-        window.CHAMELEON_SPOOF = Symbol.for("CHAMELEON_SPOOF");
+      ${this.spoof.custom}
 
-        let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
+      Object.defineProperties(HTMLIFrameElement.prototype, {
+        contentWindow: {
+          get: function() {
+            let f = iframeWindow.apply(this);
+            if (f) {
+              try {
+                Object.defineProperty(f, 'Date', {
+                  value: window.Date
+                });
 
-        injectionProperties.forEach(injProp => {
-          if (injProp.obj === 'window') {
-            window[injProp.prop] = injProp.value;
-          } else if (injProp.obj === 'window.navigator' && injProp.value === null) {
-            delete navigator.__proto__[injProp.prop];
-          } else if (injProp.obj === 'window.navigator' && injProp.prop == 'mimeTypes') {
-            let mimes = (() => {
-              const mimeArray = []
-              injProp.value.forEach(p => {
-                function FakeMimeType () { return p }
-                const mime = new FakeMimeType()
-                Object.setPrototypeOf(mime, MimeType.prototype);
-                mimeArray.push(mime)
-              })
-              Object.setPrototypeOf(mimeArray, MimeTypeArray.prototype);
-              return mimeArray
-            })();
+                Object.defineProperty(f.Intl, 'DateTimeFormat', {
+                  value: window.Intl.DateTimeFormat
+                });
 
-            Object.defineProperty(window.navigator, 'mimeTypes', {
-              configurable: true,
-              value: mimes
-            });
-          } else if (injProp.obj === 'window.navigator' && injProp.prop == 'plugins') {
-            let plugins = (() => {
-              const pluginArray = []
-              injProp.value.forEach(p => {
-                function FakePlugin () { return p }
-                const plugin = new FakePlugin()
-                Object.setPrototypeOf(plugin, Plugin.prototype);
-                pluginArray.push(plugin)
-              })
-              Object.setPrototypeOf(pluginArray, PluginArray.prototype);
-              return pluginArray
-            })();
+                Object.defineProperty(f, 'screen', {
+                  value: window.screen
+                });
 
-            Object.defineProperty(window.navigator, 'plugins', {
-              configurable: true,
-              value: plugins
-            });
-          } else {
-            Object.defineProperty(injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), injProp.prop, {
-              configurable: true,
-              value: injProp.value
-            });
-          }
-        });
-        
-        let iframeWindow = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow');
-        let iframeDocument = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
+                Object.defineProperty(f, 'navigator', {
+                  value: window.navigator
+                });
 
-        ${this.spoof.custom}
+                Object.defineProperty(f.Element.prototype, 'getBoundingClientRect', {
+                  value: window.Element.prototype.getBoundingClientRect
+                });
 
-        Object.defineProperties(HTMLIFrameElement.prototype, {
-          contentWindow: {
-            get: function() {
-              let f = iframeWindow.apply(this);
-              if (f) {
-                try {
-                  Object.defineProperty(f, 'Date', {
-                    value: window.Date
-                  });
-  
-                  Object.defineProperty(f.Intl, 'DateTimeFormat', {
-                    value: window.Intl.DateTimeFormat
-                  });
-  
-                  Object.defineProperty(f, 'screen', {
-                    value: window.screen
-                  });
-  
-                  Object.defineProperty(f, 'navigator', {
-                    value: window.navigator
-                  });
+                Object.defineProperty(f.Element.prototype, 'getClientRects', {
+                  value: window.Element.prototype.getClientRects
+                });
 
-                  Object.defineProperty(f.Element.prototype, 'getBoundingClientRect', {
-                    value: window.Element.prototype.getBoundingClientRect
-                  });
+                Object.defineProperty(f.Range.prototype, 'getBoundingClientRect', {
+                  value: window.Range.prototype.getClientRects
+                });
 
-                  Object.defineProperty(f.Element.prototype, 'getClientRects', {
-                    value: window.Element.prototype.getClientRects
-                  });
-
-                  Object.defineProperty(f.Range.prototype, 'getBoundingClientRect', {
-                    value: window.Range.prototype.getClientRects
-                  });
-
-                  Object.defineProperty(f.Range.prototype, 'getClientRects', {
-                    value: window.Range.prototype.getClientRects
-                  });
-                } catch (e) {}
-              }
-              return f;
+                Object.defineProperty(f.Range.prototype, 'getClientRects', {
+                  value: window.Range.prototype.getClientRects
+                });
+              } catch (e) {}
             }
-          },
-          contentDocument: {
-            get: function() {
-              this.contentWindow;
-              return iframeDocument.apply(this);
-            }
+            return f;
           }
-        });
+        },
+        contentDocument: {
+          get: function() {
+            this.contentWindow;
+            return iframeDocument.apply(this);
+          }
+        }
+      });
     })()
     `.replace(/CHAMELEON_SPOOF/g, chameleonObjName);
   }
@@ -343,6 +344,11 @@ class Injector {
 // @ts-ignore
 let chameleonInjector = new Injector(settings, tempStore, profileCache, seed);
 
-if (chameleonInjector.enabled) {
+if (
+  chameleonInjector.enabled &&
+  whitelisted.findIndex(url => {
+    window.top.location.href.startsWith(url) || window.location.href.startsWith(url);
+  })
+) {
   chameleonInjector.injectIntoPage();
 }
