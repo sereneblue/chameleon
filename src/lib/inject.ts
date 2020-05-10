@@ -250,7 +250,15 @@ class Injector {
               Object.setPrototypeOf(plugin, Plugin.prototype);
               pluginArray.push(plugin)
             })
-            Object.setPrototypeOf(pluginArray, PluginArray.prototype);
+            pluginArray.__proto__.item = function item() {
+              return this[arguments[0]];
+            };
+            pluginArray.__proto__.namedItem = function namedItem() {
+              return this.find(p => p.name === arguments[0]);
+            };
+            pluginArray.__proto__.refresh = function item() {
+              return;
+            };
             return pluginArray
           })();
 
