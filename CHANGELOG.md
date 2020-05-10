@@ -1,3 +1,16 @@
+<a name="v0.20.5-rc"></a>
+
+## [v0.20.5-rc](https://github.com/sereneblue/chameleon/compare/v0.20.4-rc1...v0.20.5-rc) (2020-05-10)
+
+### Bug Fixes
+
+- **injection:** add google drive/docs to whitelist; [#356](https://github.com/sereneblue/chameleon/issues/356)
+- **whitelist:** use top level frame for whitelist match; [#356](https://github.com/sereneblue/chameleon/issues/356)
+
+### Features
+
+- **localization:** add russian localization
+
 <a name="v0.20.4-rc1"></a>
 
 ## [v0.20.4-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.4-rc...v0.20.4-rc1) (2020-05-09)
