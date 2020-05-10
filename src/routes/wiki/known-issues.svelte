@@ -14,9 +14,26 @@
         More details can be found <a href="https://github.com/sereneblue/chameleon/issues/339#issuecomment-623188593" class="text-primary">here</a>.
       </div>
       <div class="mb-4">
+        <h3 class="font-semibold text-lg">https://accounts.youtube.com</h3>
+        Chameleon does not spoof anything when accessing a URL that starts with accounts.youtube.com.
+        More details can be found <a href="https://github.com/sereneblue/chameleon/issues/339#issuecomment-623188593" class="text-primary">here</a>.
+      </div>
+      <div class="mb-4">
+        <h3 class="font-semibold text-lg">https://disqus.com/embed/comments/</h3>
+        Chameleon does not spoof the iframe when accessing embedded Disqus comments.
+      </div>
+      <div class="mb-4">
         <h3 class="font-semibold text-lg">https://www.google.com/recaptcha/api2</h3>
         Recaptcha is already inconvenient with regular Firefox, it becomes almost impossible when
         Chameleon is enabled.
+      </div>
+      <div class="mb-4">
+        <h3 class="font-semibold text-lg">https://docs.google.com/</h3>
+        Timezone spoofing breaks Google Docs. Non-Firefox profiles may also cause issues.
+      </div>
+      <div class="mb-4">
+        <h3 class="font-semibold text-lg">https://drive.google.com/</h3>
+        Timezone spoofing breaks Google Drive. Non-Firefox profiles may also cause issues.
       </div>
     </div>
   </div>
