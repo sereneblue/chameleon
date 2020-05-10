@@ -548,23 +548,6 @@ export class Chameleon {
     }
   }
 
-  /*
-    Allow Chameleon to be controlled by another extension
-
-    Enabled only in developer builds
-  */
-  public setupExternalListeners(): void {
-    if (browser.runtime.getManifest().version_name.includes('-')) {
-      browser.runtime.onConnectExternal.addListener(port => {
-        port.onMessage.addListener(request => {
-          browser.runtime.sendMessage(request).then(response => {
-            port.postMessage(response);
-          });
-        });
-      });
-    }
-  }
-
   public setupHeaderListeners(): void {
     /* Block websocket connections */
     browser.webRequest.onBeforeRequest.addListener(
