@@ -724,10 +724,15 @@ export class Chameleon {
           }
         }
 
-        browser.runtime.sendMessage({
-          action :  'tempStore',
-          data :  this.tempStore,
-        });
+        browser.runtime.sendMessage(
+          {
+            action :  'tempStore',
+            data :  this.tempStore,
+          },
+          response => {
+            if (browser.runtime.lastError) return;
+          }
+        );
 
         browser.notifications.create({
           type :  'basic',
@@ -761,10 +766,15 @@ export class Chameleon {
       this.tempStore.profile = '';
     }
 
-    browser.runtime.sendMessage({
-      action :  'tempStore',
-      data :  this.tempStore,
-    });
+    browser.runtime.sendMessage(
+      {
+        action :  'tempStore',
+        data :  this.tempStore,
+      },
+      response => {
+        if (browser.runtime.lastError) return;
+      }
+    );
   }
 
   public updateSpoofIP(): void {

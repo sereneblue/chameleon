@@ -30,10 +30,16 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
   } else if (request.action === 'getSettings') {
     sendResponse(chameleon.settings);
   } else if (request.action === 'init') {
-    browser.runtime.sendMessage({
-      action :  'tempStore',
-      data :  chameleon.tempStore,
-    });
+    browser.runtime.sendMessage(
+      {
+        action :  'tempStore',
+        data :  chameleon.tempStore,
+      },
+      response => {
+        if (browser.runtime.lastError) return;
+      }
+    );
+    sendResponse('done');
   } else if (request.action === 'reloadInjectionScript') {
     chameleon.buildInjectionScript();
     sendResponse('done');
