@@ -246,20 +246,30 @@ class Injector {
             const pluginArray = []
             injProp.value.forEach(p => {
               function FakePlugin () { return p }
-              const plugin = new FakePlugin()
+              const plugin = new FakePlugin();
               Object.setPrototypeOf(plugin, Plugin.prototype);
               pluginArray.push(plugin)
             })
-            pluginArray.__proto__.item = function item() {
-              return this[arguments[0]];
-            };
-            pluginArray.__proto__.namedItem = function namedItem() {
-              return this.find(p => p.name === arguments[0]);
-            };
-            pluginArray.__proto__.refresh = function item() {
-              return;
-            };
-            return pluginArray
+            Object.defineProperty(pluginArray, 'item', {
+              configurable: false,
+              value: function item() {
+                return this[arguments[0]];
+              }
+            });
+            Object.defineProperty(pluginArray, 'namedItem', {
+              configurable: false,
+              value: function namedItem() {
+                return this.find(p => p.name === arguments[0]);
+              }
+            });
+            Object.defineProperty(pluginArray, 'refresh', {
+              configurable: false,
+              value: function refresh() {
+                return;
+              }
+            });
+
+            return pluginArray;
           })();
 
           Object.defineProperty(window.navigator, 'plugins', {
