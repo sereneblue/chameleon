@@ -1,3 +1,12 @@
+<a name="v0.20.6-rc"></a>
+
+## [v0.20.6-rc](https://github.com/sereneblue/chameleon/compare/v0.20.5-rc...v0.20.6-rc) (2020-05-11)
+
+### Bug Fixes
+
+- update event listener to handle scope; [#301](https://github.com/sereneblue/chameleon/issues/301)
+- **injection:** improve plugin spoofing; [#366](https://github.com/sereneblue/chameleon/issues/366)
+
 <a name="v0.20.5-rc"></a>
 
 ## [v0.20.5-rc](https://github.com/sereneblue/chameleon/compare/v0.20.4-rc1...v0.20.5-rc) (2020-05-10)
