@@ -1004,7 +1004,9 @@ export default class App extends Vue {
   }
 
   resizeProfileList(): void {
+    // @ts-ignore
     let positionX: number = document.querySelector('ul').offsetTop + document.querySelector('ul').offsetHeight + 10;
+    // @ts-ignore
     let totalHeight: number = document.querySelector('.flex-grow.flex-col.w-full.justify-around').offsetHeight;
 
     let newHeight = totalHeight - positionX;
