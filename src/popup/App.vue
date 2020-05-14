@@ -1,37 +1,37 @@
 <template>
   <div class="app h-screen w-screen flex" :class="darkMode ? ['bg-dark'] : ['bg-light']">
-    <div class="text-xs bg-primary flex-none flex-col text-center">
+    <div class="text-sm bg-primary flex-none flex-col text-center">
       <div @click="setSelected('tab', 'main')" id="homeTab" class="tab" :class="activeTab('main')">
-        <feather type="home" size="1.5em"></feather>
+        <feather type="home" size="1.25em"></feather>
       </div>
       <div @click="setSelected('tab', 'profile')" id="profileTab" class="tab" :class="activeTab('profile')">
-        <feather type="globe" size="1.5em"></feather>
+        <feather type="globe" size="1.25em"></feather>
       </div>
       <div @click="setSelected('tab', 'headers')" id="headersTab" class="tab" :class="activeTab('headers')">
-        <feather type="code" size="1.5em"></feather>
+        <feather type="code" size="1.25em"></feather>
       </div>
       <div @click="setSelected('tab', 'options')" id="optionsTab" class="tab" :class="activeTab('options')">
-        <feather type="sliders" size="1.5em"></feather>
+        <feather type="sliders" size="1.25em"></feather>
       </div>
       <div @click="setSelected('tab', 'whitelist')" id="whitelistTab" class="tab" :class="activeTab('whitelist')">
-        <feather type="edit" size="1.5em"></feather>
+        <feather type="edit" size="1.25em"></feather>
       </div>
       <div @click="openOptionsPage('')" id="optionsPage" class="tab hover:bg-primary-soft">
-        <feather type="settings" size="1.5em"></feather>
+        <feather type="settings" size="1.25em"></feather>
       </div>
     </div>
     <div class="flex-grow flex-col w-full justify-around">
       <div v-show="isSelected('tab', 'main')">
-        <div class="text-center mt-12">
-          <div class="my-4 h-24">
-            <div id="chameleonEnabled" class="inline-block cursor-pointer" @click="toggleChameleon">
-              <feather v-if="settings.config.enabled" type="shield" class="text-primary hover:text-primary-soft" size="6em" stroke-width="2" />
-              <feather v-else type="shield-off" class="text-red-500 hover:text-red-400" size="6em" stroke-width="2" />
+        <div class="text-center mt-8">
+          <div class="my-4 h-20">
+            <div id="chameleonEnabled" class="inline-block cursor-pointer mb-1" @click="toggleChameleon">
+              <feather v-if="settings.config.enabled" type="shield" class="text-primary hover:text-primary-soft" size="6em" stroke-width="1" />
+              <feather v-else type="shield-off" class="text-red-500 hover:text-red-400" size="6em" stroke-width="1" />
             </div>
           </div>
-          <div class="text-2xl">{{ settings.config.enabled ? $t('popup-home-enabled.message') : $t('popup-home-disabled.message') }}</div>
-          <div class="text-lg mb-4" id="chameleonVersion">v{{ version }}</div>
-          <div class="flex justify-center text-md">
+          <div class="text-xl">{{ settings.config.enabled ? $t('popup-home-enabled.message') : $t('popup-home-disabled.message') }}</div>
+          <div class="text-base mb-4" id="chameleonVersion">v{{ version }}</div>
+          <div class="flex justify-center text-sm">
             <div id="toggleTheme" @click="toggleTheme" class="rounded-lg cursor-pointer mr-4 fg">
               <div class="flex items-center px-2 py-1">
                 <feather v-if="darkMode" type="moon" size="1.5em"></feather>
@@ -52,13 +52,13 @@
         </div>
         <div class="text-center px-4 py-8">
           <div class="text-xs uppercase opacity-75 tracking-widest" v-t="'popup-home-currentProfile.message'"></div>
-          <div id="currentProfile" class="text-md py-2">
+          <div id="currentProfile" class="text-sm py-2">
             <div>{{ currentProfile.profile }}</div>
             <div>{{ currentProfile.screen }}</div>
             <div>{{ currentProfile.timezone }}</div>
             <div>{{ currentProfile.lang }}</div>
           </div>
-          <div v-show="isRandomProfile" class="flex justify-center text-md">
+          <div v-show="isRandomProfile" class="flex justify-center text-sm">
             <div id="changeProfile" @click="changeProfile" class="rounded-lg cursor-pointer fg">
               <div class="flex items-center px-2 py-1">
                 <feather type="refresh-cw" size="1em"></feather>
@@ -68,8 +68,8 @@
           </div>
         </div>
       </div>
-      <div v-show="isSelected('tab', 'profile')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4" v-t="'text-profile.message'"></div>
+      <div v-show="isSelected('tab', 'profile')" class="m-3 text-mini">
+        <div class="text-base border-primary border-b-2 mb-3" v-t="'text-profile.message'"></div>
         <div class="flex">
           <div class="flex flex-col mr-16">
             <label class="inline-flex items-center mb-2">
@@ -92,16 +92,16 @@
             </label>
           </div>
         </div>
-        <div v-show="!/\d|none/.test(settings.profile.selected)">
-          <div class="flex items-center mb-2">
-            <label class="w-full mt-4">
+        <div class="mb-2" v-show="!/\d|none/.test(settings.profile.selected)">
+          <div class="flex items-center">
+            <label class="w-full mt-2">
               <span v-t="'popup-profile-changePeriodically.message'"></span>
               <select
                 id="profileInterval"
                 @change="changeSetting($event)"
                 :value="settings.profile.interval.option"
                 name="profile.interval.option"
-                class="form-select mt-1 block w-full"
+                class="form-select mt-1 block w-full text-mini"
               >
                 <option value="0" v-t="'popup-profile-interval-no.message'"></option>
                 <option value="-1" v-t="'popup-profile-interval-custom.message'"></option>
@@ -116,7 +116,7 @@
               </select>
             </label>
           </div>
-          <div v-show="settings.profile.interval.option == -1" class="flex justify-around mb-2 w-full">
+          <div v-show="settings.profile.interval.option == -1" class="flex justify-around mt-2 w-full">
             <div class="mr-1">
               <label for="profile.interval.min" v-t="'popup-profile-interval-customMin.message'"></label>
               <input
@@ -127,7 +127,7 @@
                 name="profile.interval.min"
                 type="number"
                 min="1"
-                class="block w-full form-input"
+                class="block w-full form-input text-mini"
               />
             </div>
             <div class="ml-1">
@@ -140,12 +140,12 @@
                 name="profile.interval.max"
                 type="number"
                 min="1"
-                class="block w-full form-input"
+                class="block w-full form-input text-mini"
               />
             </div>
           </div>
         </div>
-        <div class="mt-6">
+        <div>
           <ul class="flex text-center w-full">
             <li id="windowsProfiles" @click="setSelected('os', 'windows')" :class="[isSelected('os', 'windows') ? 'active' : '']" class="group fg rounded-l-sm cursor-pointer">
               Windows
@@ -163,8 +163,8 @@
               Android
             </li>
           </ul>
-          <div v-show="currentProfileGroup" class="mt-2 rounded-sm fg" :class="[settings.profile.interval.option != -1 ? 'h-80' : 'h-64']">
-            <perfect-scrollbar ref="scrollView" class="px-3">
+          <div v-show="currentProfileGroup" class="rounded-sm mt-2 h-1 fg">
+            <perfect-scrollbar ref="scrollView" class="pl-1 pr-3">
               <div class="profile-item fg">
                 <label :class="{ 'opacity-50' :  isExcluded(currentProfileGroup) }" class="flex items-center cursor-pointer">
                   <input
@@ -194,8 +194,8 @@
           </div>
         </div>
       </div>
-      <div v-show="isSelected('tab', 'headers')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4" v-t="'popup-headers.message'"></div>
+      <div v-show="isSelected('tab', 'headers')" class="m-3 text-mini">
+        <div class="text-base border-primary border-b-2 mb-3" v-t="'popup-headers.message'"></div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
@@ -242,7 +242,7 @@
               @change="changeSetting($event)"
               :value="settings.headers.spoofAcceptLang.value"
               name="headers.spoofAcceptLang.value"
-              class="form-select mt-1 w-full"
+              class="form-select mt-1 w-full text-mini"
             >
               <option value="ip">IP</option>
               <option value="default" v-t="'text-default.message'"></option>
@@ -265,7 +265,13 @@
         </div>
         <div v-show="settings.headers.spoofIP.enabled" class="flex flex-col mb-1">
           <label class="ml-6">
-            <select id="spoofIPSelect" @change="changeSetting($event)" :value="settings.headers.spoofIP.option" name="headers.spoofIP.option" class="form-select mt-1 w-full">
+            <select
+              id="spoofIPSelect"
+              @change="changeSetting($event)"
+              :value="settings.headers.spoofIP.option"
+              name="headers.spoofIP.option"
+              class="form-select mt-1 w-full text-mini"
+            >
               <option value="0" v-t="'popup-headers-spoofIP-random.message'"></option>
               <option value="1" v-t="'popup-headers-spoofIP-custom.message'"></option>
             </select>
@@ -278,7 +284,7 @@
                 @input="setIPRange($event)"
                 v-model="tmp.rangeFrom"
                 name="headers.spoofIP.rangeFrom"
-                class="block w-full form-input"
+                class="block w-full form-input text-mini"
                 :class="{ error :  errors.rangeFrom }"
               />
             </div>
@@ -289,7 +295,7 @@
                 @input="setIPRange($event)"
                 v-model="tmp.rangeTo"
                 name="headers.spoofIP.rangeTo"
-                class="block w-full form-input"
+                class="block w-full form-input text-mini"
                 :class="{ error :  errors.rangeTo }"
               />
             </div>
@@ -309,7 +315,7 @@
           </label>
         </div>
         <div v-show="!settings.headers.referer.disabled">
-          <div class="text-sm mt-2" :class="[darkMode ? 'text-red-400' : 'text-red-800']" v-t="'popup-headers-refererWarning.message'"></div>
+          <div class="text-mini mt-2" :class="[darkMode ? 'text-red-400' : 'text-red-800']" v-t="'popup-headers-refererWarning.message'"></div>
           <div class="flex items-center mb-1">
             <label class="w-full mt-2">
               <span v-t="'popup-headers-referer-xorigin.message'"></span>
@@ -318,7 +324,7 @@
                 @change="changeSetting($event)"
                 :value="settings.headers.referer.xorigin"
                 name="headers.referer.xorigin"
-                class="form-select mt-1 block w-full"
+                class="form-select mt-1 block w-full text-mini"
               >
                 <option value="0" v-t="'popup-headers-referer-xorigin-alwaysSend.message'"></option>
                 <option value="1" v-t="'popup-headers-referer-xorigin-matchBaseDomain.message'"></option>
@@ -334,7 +340,7 @@
                 @change="changeSetting($event)"
                 :value="settings.headers.referer.trimming"
                 name="headers.referer.trimming"
-                class="form-select mt-1 block w-full"
+                class="form-select mt-1 block w-full text-mini"
               >
                 <option value="0" v-t="'popup-headers-referer-trimming-sendFullURI.message'"></option>
                 <option value="1" v-t="'popup-headers-referer-trimming-schemeHostPortPath.message'"></option>
@@ -344,16 +350,8 @@
           </div>
         </div>
       </div>
-      <div v-show="isSelected('tab', 'options')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4" v-t="'popup-options.message'"></div>
-        <div class="w-full mb-4">
-          <button
-            @click="openOptionsPage('checklist')"
-            id="aboutConfigChecklist"
-            class="w-full bg-transparent font-semibold py-1 px-4 border border-primary hover:bg-primary-soft rounded"
-            v-t="'popup-options-aboutConfigButton.message'"
-          ></button>
-        </div>
+      <div v-show="isSelected('tab', 'options')" class="m-3 text-mini">
+        <div class="text-base border-primary border-b-2 mb-3" v-t="'popup-options.message'"></div>
         <div>
           <ul class="flex text-center w-full rounded-lg">
             <li
@@ -428,7 +426,7 @@
                   type="number"
                   min="1"
                   max="1000"
-                  class="block w-2/5 form-input"
+                  class="block w-2/5 form-input text-mini"
                   :placeholder="$t('popup-options-injection-protectKBFingerprintDelay.message')"
                 />
               </div>
@@ -487,7 +485,13 @@
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span v-t="'popup-options-injection-screen.message'"></span>
-                  <select id="screenSize" @change="changeSetting($event)" :value="settings.options.screenSize" name="options.screenSize" class="form-select mt-1 block w-full">
+                  <select
+                    id="screenSize"
+                    @change="changeSetting($event)"
+                    :value="settings.options.screenSize"
+                    name="options.screenSize"
+                    class="form-select mt-1 block w-full text-mini"
+                  >
                     <option value="default" v-t="'text-default.message'"></option>
                     <option value="profile" v-t="'text-profile.message'"></option>
                     <option value="1366x768">1366x768</option>
@@ -506,7 +510,7 @@
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span v-t="'text-timezone.message'"></span>
-                  <select id="timeZone" @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full">
+                  <select id="timeZone" @change="changeSetting($event)" :value="settings.options.timeZone" name="options.timeZone" class="form-select mt-1 block w-full text-mini">
                     <option value="default" v-t="'text-default.message'"></option>
                     <option value="ip">IP</option>
                     <option v-for="t in timezones" :key="t.zone" :value="t.zone">({{ t.offset }}) {{ t.zone }}</option>
@@ -562,7 +566,7 @@
                     @change="changeSetting($event)"
                     :value="settings.options.webRTCPolicy"
                     name="options.webRTCPolicy"
-                    class="form-select mt-1 block w-full"
+                    class="form-select mt-1 block w-full text-mini"
                   >
                     <option value="default" v-t="'text-default.message'"></option>
                     <option value="default_public_and_private_interfaces" v-t="'popup-options-standard-webRTCPolicy-publicPrivate.message'"></option>
@@ -579,7 +583,7 @@
                     @change="changeSetting($event)"
                     :value="settings.options.trackingProtectionMode"
                     name="options.trackingProtectionMode"
-                    class="form-select mt-1 block w-full"
+                    class="form-select mt-1 block w-full text-mini"
                   >
                     <option value="always" v-t="'popup-options-standard-trackingProtection-on.message'"></option>
                     <option value="never" v-t="'popup-options-standard-trackingProtection-off.message'"></option>
@@ -590,7 +594,13 @@
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   Websockets
-                  <select id="websockets" @change="changeSetting($event)" :value="settings.options.webSockets" name="options.webSockets" class="form-select mt-1 block w-full">
+                  <select
+                    id="websockets"
+                    @change="changeSetting($event)"
+                    :value="settings.options.webSockets"
+                    name="options.webSockets"
+                    class="form-select mt-1 block w-full text-mini"
+                  >
                     <option value="allow_all" v-t="'text-allowAll.message'"></option>
                     <option value="block_3rd_party" v-t="'popup-options-standard-webSockets-blockThirdParty.message'"></option>
                     <option value="block_all" v-t="'popup-options-standard-webSockets-blockAll.message'"></option>
@@ -620,7 +630,7 @@
                     @change="changeSetting($event)"
                     :value="settings.options.cookiePolicy"
                     name="options.cookiePolicy"
-                    class="form-select mt-1 block w-full"
+                    class="form-select mt-1 block w-full text-mini"
                   >
                     <option value="allow_all" v-t="'text-allowAll.message'"></option>
                     <option value="allow_visited" v-t="'popup-options-cookiePolicy-allowVisited.message'"></option>
@@ -634,8 +644,8 @@
           </div>
         </div>
       </div>
-      <div v-show="isSelected('tab', 'whitelist')" class="m-4 text-md">
-        <div class="text-lg border-primary border-b-2 mb-4" v-t="'text-whitelist.message'"></div>
+      <div v-show="isSelected('tab', 'whitelist')" class="m-3 text-mini">
+        <div class="text-base border-primary border-b-2 mb-3" v-t="'text-whitelist.message'"></div>
         <div class="flex items-center mb-1">
           <label class="cursor-pointer">
             <input
@@ -657,7 +667,7 @@
               @change="changeSetting($event)"
               :value="settings.whitelist.defaultProfile"
               name="whitelist.defaultProfile"
-              class="form-select mt-1 block w-full"
+              class="form-select mt-1 block w-full text-mini"
             >
               <option value="none" v-t="'text-realProfile.message'"></option>
               <option v-for="p in profileList" :value="p.id" :key="p.id">{{ p.name }}</option>
@@ -877,6 +887,12 @@ export default class App extends Vue {
     ]);
 
     webext.sendToBackground(this.settings);
+
+    if (evt.target.name === 'profile.interval.option') {
+      this.$nextTick(() => {
+        this.resizeProfileList();
+      });
+    }
   }
 
   async created() {
@@ -987,6 +1003,15 @@ export default class App extends Vue {
     window.close();
   }
 
+  resizeProfileList(): void {
+    let positionX: number = document.querySelector('ul').offsetTop + document.querySelector('ul').offsetHeight + 10;
+    let totalHeight: number = document.querySelector('.flex-grow.flex-col.w-full.justify-around').offsetHeight;
+
+    let newHeight = totalHeight - positionX;
+
+    (this.$refs.scrollView as any).$el.style.height = `${newHeight - 12}px`;
+  }
+
   async setIPRange(evt: any) {
     let regex = new RegExp(/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/);
     let key: string = evt.target.name.includes('rangeFrom') ? 'rangeFrom' : 'rangeTo';
@@ -1059,6 +1084,7 @@ export default class App extends Vue {
       this.currentOption = value;
     } else if (type === 'os') {
       this.currentProfileGroup = this.currentProfileGroup === value ? '' : value;
+      this.resizeProfileList();
       (this.$refs.scrollView as any).$el.scrollTop = 0;
     } else if (type === 'profile') {
       await this['$store'].dispatch('changeProfile', value);
@@ -1096,10 +1122,10 @@ body {
   margin: 0;
   overflow: hidden;
   padding: 0;
-  min-width: 510px;
-  max-width: 510px;
-  min-height: 600px;
-  max-height: 600px;
+  min-width: 426px;
+  max-width: 426px;
+  min-height: 502px;
+  max-height: 502px;
 }
 
 @media only screen and (min-width: 600px) {
