@@ -1,3 +1,16 @@
+<a name="v0.20.7-rc"></a>
+
+## [v0.20.7-rc](https://github.com/sereneblue/chameleon/compare/v0.20.6-rc...v0.20.7-rc) (2020-05-14)
+
+### Bug Fixes
+
+- **localization:** import russian locale
+- **spoofing:** update timezone spoofing and language handling
+
+### Features
+
+- show current profile in tooltip
+
 <a name="v0.20.6-rc"></a>
 
 ## [v0.20.6-rc](https://github.com/sereneblue/chameleon/compare/v0.20.5-rc...v0.20.6-rc) (2020-05-11)
