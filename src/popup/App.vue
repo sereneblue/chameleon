@@ -145,7 +145,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="mt-2">
           <ul class="flex text-center w-full">
             <li id="windowsProfiles" @click="setSelected('os', 'windows')" :class="[isSelected('os', 'windows') ? 'active' : '']" class="group fg rounded-l-sm cursor-pointer">
               Windows
