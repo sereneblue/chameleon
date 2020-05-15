@@ -10,9 +10,10 @@ export default {
     setUTCSeconds, toDateString, toLocaleString, toLocaleDateString, toLocaleTimeString, toTimeString
   } = ORIGINAL_DATE.prototype;
 
-  const supportedLocalesOf = ORIGINAL_INTL.supportedLocalesOf;
-  const TZ_LONG = new ORIGINAL_DATE().toLocaleDateString(undefined, { timeZoneName: 'long' }).split(', ')[1];
-  const TZ_SHORT = new ORIGINAL_DATE().toLocaleDateString(undefined, { timeZoneName: 'short' }).split(', ')[1];
+  const TZ_LONG_A = new ORIGINAL_DATE(2020, 0, 1).toLocaleDateString(undefined, { timeZoneName: 'long' }).split(', ')[1];
+  const TZ_LONG_B = new ORIGINAL_DATE(2020, 6, 1).toLocaleDateString(undefined, { timeZoneName: 'long' }).split(', ')[1];
+  const TZ_SHORT_A = new ORIGINAL_DATE(2020, 0, 1).toLocaleDateString(undefined, { timeZoneName: 'short' }).split(', ')[1];
+  const TZ_SHORT_B = new ORIGINAL_DATE(2020, 6, 1).toLocaleDateString(undefined, { timeZoneName: 'short' }).split(', ')[1];
 
   const modifyDate = (d) => {
     let timestamp = d.getTime();
@@ -34,7 +35,16 @@ export default {
     d[window.CHAMELEON_SPOOF] = spoofData;
 
     return d;
-  } 
+  }
+
+  const replaceName = (d, name) => {
+    d = d.replace(TZ_LONG_A, name);
+    d = d.replace(TZ_LONG_B, name);
+    d = d.replace(TZ_SHORT_A, name);
+    d = d.replace(TZ_SHORT_B, name);
+
+    return d;
+  }
 
   window.Date = function(...args) {
     let tmp = this instanceof Date ? new ORIGINAL_DATE(...args) : new ORIGINAL_DATE();
@@ -421,10 +431,8 @@ export default {
     }
     
     let tmp = toLocaleString.apply(this[window.CHAMELEON_SPOOF].date, args);
-    tmp = tmp.replace(TZ_LONG, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
-    tmp = tmp.replace(TZ_SHORT, this[window.CHAMELEON_SPOOF].zoneInfo.tzAbbr);
 
-    return tmp;
+    return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
   }
   window.Date.prototype.toLocaleDateString = function(...args) {
     if (isNaN(this.getTime())) {
@@ -432,10 +440,8 @@ export default {
     }
 
     let tmp = toLocaleDateString.apply(this[window.CHAMELEON_SPOOF].date, args);
-    tmp = tmp.replace(TZ_LONG, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
-    tmp = tmp.replace(TZ_SHORT, this[window.CHAMELEON_SPOOF].zoneInfo.tzAbbr);
-
-    return tmp;
+    
+    return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
   }
   window.Date.prototype.toLocaleTimeString = function(...args) {
     if (isNaN(this.getTime())) {
@@ -443,10 +449,8 @@ export default {
     }
 
     let tmp = toLocaleTimeString.apply(this[window.CHAMELEON_SPOOF].date, args);
-    tmp = tmp.replace(TZ_LONG, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
-    tmp = tmp.replace(TZ_SHORT, this[window.CHAMELEON_SPOOF].zoneInfo.tzAbbr);
-
-    return tmp;
+    
+    return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
   }
 `.replace(
     /ORIGINAL_DATE/g,
