@@ -1,4 +1,12 @@
-<a name="v0.20.7-rc"></a>
+<a name="v0.20.7-rc2"></a>
+
+## [v0.20.7-rc2](https://github.com/sereneblue/chameleon/compare/v0.20.7-rc1...v0.20.7-rc2) (2020-05-14)
+
+### Bug Fixes
+
+- **timezone:** add support for standard and dst time for locale string functions
+
+<a name="v0.20.7-rc1"></a>
 
 ## [v0.20.7-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.7-rc...v0.20.7-rc1) (2020-05-14)
 
