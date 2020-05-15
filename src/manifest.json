@@ -2,13 +2,14 @@
   "name" :  "Chameleon",
   "description" :  "__MSG_extDescription__",
   "author" :  "sereneblue",
-  "version" :  "0.20.7.0",
-  "version_name" :  "0.20.7-rc",
+  "version" :  "0.20.7.1",
+  "version_name" :  "0.20.7-rc1",
   "manifest_version" :  2,
   "browser_specific_settings" :  {
     "gecko" :  {
       "id" :  "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}",
-      "strict_min_version" :  "59.0a1"
+      "strict_min_version" :  "59.0a1",
+      "update_url" :  "https://raw.githubusercontent.com/sereneblue/chameleon/develop/.github/workflows/dev/updates.json"
     }
   },
   "default_locale" :  "en",
