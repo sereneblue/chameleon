@@ -67,15 +67,11 @@ class Injector {
           }
 
           let l = lang.getLanguage(spoofedLang);
-          if (language.data[0].value === 'code') {
-            language.data[0].value = spoofedLang;
-            // @ts-ignore
-            language.data[1].value = l.nav;
-          } else {
-            // @ts-ignore
-            language.data[0].value = l.nav;
-            language.data[1].value = spoofedLang;
-          }
+          this.spoof.metadata['language'] = {
+            code :  spoofedLang,
+            nav :  l.nav,
+          };
+          this.updateInjectionData(language);
         }
       }
 
@@ -147,15 +143,12 @@ class Injector {
       if (wl.options.name) this.updateInjectionData(winName);
 
       let l = lang.getLanguage(wl.lang);
-      if (language.data[0].value === 'code') {
-        language.data[0].value = wl.lang;
-        // @ts-ignore
-        language.data[1].value = l.nav;
-      } else {
-        // @ts-ignore
-        language.data[0].value = l.nav;
-        language.data[1].value = wl.lang;
-      }
+
+      this.spoof.metadata['language'] = {
+        code :  wl.lang,
+        nav :  l.nav,
+      };
+      this.updateInjectionData(language);
 
       if (wl.profile != 'none') {
         if (wl.profile === 'default' && settings.whitelist.defaultProfile != 'none') {
@@ -164,10 +157,6 @@ class Injector {
           p = profileCache[wl.profile];
         }
       }
-    }
-
-    if (language.data[0].value != 'code') {
-      this.updateInjectionData(language);
     }
 
     if (p) {
@@ -218,7 +207,8 @@ class Injector {
       window.CHAMELEON_SPOOF = Symbol.for("CHAMELEON_SPOOF");
 
       let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
-
+      var ORIGINAL_INTL = window.Intl.DateTimeFormat;
+      
       injectionProperties.forEach(injProp => {
         if (injProp.obj === 'window') {
           window[injProp.prop] = injProp.value;
@@ -289,6 +279,37 @@ class Injector {
 
       ${this.spoof.custom}
 
+      window.Intl.DateTimeFormat = function(...args) {
+        let locale = navigator.language || "en-US";
+        
+        if (CHAMELEON_SPOOF.has(window)) {
+          if (CHAMELEON_SPOOF.get(window).timezone) {
+            let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(window).timezone);
+
+            if (args.length == 2) {
+              if (!args[1].timeZone) {
+                args[1].timeZone = spoofData.zone.name;
+              }
+            } else if (args.length == 1) {
+              args.push({
+                timeZone: spoofData.zone.name
+              });
+            } else {
+              args = [
+                locale,
+                { timeZone: spoofData.zone.name }
+              ];
+            }
+          } else if (CHAMELEON_SPOOF.get(window).language) {
+            if (args.length == 0) {
+              args.push(locale);
+            }
+          }
+        }
+        
+        return ORIGINAL_INTL.apply(null, args);
+      }
+
       Object.defineProperties(HTMLIFrameElement.prototype, {
         contentWindow: {
           get: function() {
@@ -339,7 +360,15 @@ class Injector {
         }
       });
     })()
-    `.replace(/CHAMELEON_SPOOF/g, chameleonObjName);
+    `
+      .replace(/CHAMELEON_SPOOF/g, chameleonObjName)
+      .replace(
+        /ORIGINAL_INTL/g,
+        String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
+          Math.random()
+            .toString(36)
+            .substring(Math.floor(Math.random() * 5) + 5)
+      );
   }
 
   private updateInjectionData(option: any) {

@@ -1,8 +1,7 @@
 export default {
-  type: 'custom',
-  data: `
+  type :  'custom',
+  data :  `
   var ORIGINAL_DATE = window.Date;
-  var ORIGINAL_INTL = window.Intl.DateTimeFormat;
   
   const {
     getDate, getDay, getFullYear, getHours, getMinutes, getMonth, getTimezoneOffset,
@@ -12,6 +11,8 @@ export default {
   } = ORIGINAL_DATE.prototype;
 
   const supportedLocalesOf = ORIGINAL_INTL.supportedLocalesOf;
+  const TZ_LONG = new ORIGINAL_DATE().toLocaleDateString(undefined, { timeZoneName: 'long' }).split(', ')[1];
+  const TZ_SHORT = new ORIGINAL_DATE().toLocaleDateString(undefined, { timeZoneName: 'short' }).split(', ')[1];
 
   const modifyDate = (d) => {
     let timestamp = d.getTime();
@@ -393,13 +394,6 @@ export default {
     }
     return toDateString.apply(this[window.CHAMELEON_SPOOF].date);
   }
-  window.Date.prototype.toISOString = function() {
-    if (isNaN(this.getTime())) {
-      return "Invalid Date";
-    }
-    return this.getUTCFullYear() + '-' + ('0'+(this.getUTCMonth()+1)).slice(-2) + '-' + ('0'+(this.getUTCDate())).slice(-2) + 'T' + 
-        ('0'+(this.getUTCHours())).slice(-2) + ':' + ('0'+(this.getUTCMinutes())).slice(-2) + ':' + ('0'+(this.getUTCSeconds())).slice(-2) + '.' + String((this.getUTCMilliseconds()/1000).toFixed(3)).slice(2,5) + 'Z';
-  }
   window.Date.prototype.toString = function() {
     if (isNaN(this.getTime())) {
       return "Invalid Date";
@@ -425,59 +419,40 @@ export default {
     if (isNaN(this.getTime())) {
       return "Invalid Date";
     }
-    return toLocaleString.apply(args.length < 2 ? this[window.CHAMELEON_SPOOF].date : this, args);
+    
+    let tmp = toLocaleString.apply(this[window.CHAMELEON_SPOOF].date, args);
+    tmp = tmp.replace(TZ_LONG, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
+    tmp = tmp.replace(TZ_SHORT, this[window.CHAMELEON_SPOOF].zoneInfo.tzAbbr);
+
+    return tmp;
   }
   window.Date.prototype.toLocaleDateString = function(...args) {
     if (isNaN(this.getTime())) {
       return "Invalid Date";
     }
-    return toLocaleDateString.apply(this[window.CHAMELEON_SPOOF].date, args);
+
+    let tmp = toLocaleDateString.apply(this[window.CHAMELEON_SPOOF].date, args);
+    tmp = tmp.replace(TZ_LONG, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
+    tmp = tmp.replace(TZ_SHORT, this[window.CHAMELEON_SPOOF].zoneInfo.tzAbbr);
+
+    return tmp;
   }
   window.Date.prototype.toLocaleTimeString = function(...args) {
     if (isNaN(this.getTime())) {
       return "Invalid Date";
     }
-    return toLocaleTimeString.apply(this[window.CHAMELEON_SPOOF].date, args);
+
+    let tmp = toLocaleTimeString.apply(this[window.CHAMELEON_SPOOF].date, args);
+    tmp = tmp.replace(TZ_LONG, this[window.CHAMELEON_SPOOF].zoneInfo.tzName);
+    tmp = tmp.replace(TZ_SHORT, this[window.CHAMELEON_SPOOF].zoneInfo.tzAbbr);
+
+    return tmp;
   }
-
-  window.Intl.DateTimeFormat = function(...args) {
-    let locale = navigator.language || "en-US";
-    let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(window).timezone);
-
-    if (args.length == 2) {
-      if (!args[1].timeZone) {
-        args[1].timeZone = spoofData.zone.name;
-      }
-      if (!args[1].locale) {
-        args[1].locale = locale;
-      }
-    } else if (args.length == 1) {
-      args.push({
-        timeZone: spoofData.zone.name
-      });
-    } else {
-      args = [
-        locale,
-        { timeZone: spoofData.zone.name }
-      ];
-    }
-
-    return ORIGINAL_INTL.apply(null, args);
-  }
-
-`
-    .replace(
-      /ORIGINAL_DATE/g,
-      String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
-        Math.random()
-          .toString(36)
-          .substring(Math.floor(Math.random() * 5) + 5)
-    )
-    .replace(
-      /ORIGINAL_INTL/g,
-      String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
-        Math.random()
-          .toString(36)
-          .substring(Math.floor(Math.random() * 5) + 5)
-    ),
+`.replace(
+    /ORIGINAL_DATE/g,
+    String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
+      Math.random()
+        .toString(36)
+        .substring(Math.floor(Math.random() * 5) + 5)
+  ),
 };

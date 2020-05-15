@@ -530,6 +530,12 @@ export class Chameleon {
         this.profileCache[this.tempStore.profile] = profGen.getProfile(this.tempStore.profile);
       }
     }
+
+    if (this.platform.os != 'android') {
+      browser.browserAction.setTitle({
+        title :  this.getProfileInUse(),
+      });
+    }
   }
 
   public reset(): void {
