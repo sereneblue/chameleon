@@ -1,5 +1,13 @@
 <a name="v0.20.7-rc"></a>
 
+## [v0.20.7-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.7-rc...v0.20.7-rc1) (2020-05-14)
+
+### Bug Fixes
+
+- add update url
+
+<a name="v0.20.7-rc"></a>
+
 ## [v0.20.7-rc](https://github.com/sereneblue/chameleon/compare/v0.20.6-rc...v0.20.7-rc) (2020-05-14)
 
 ### Bug Fixes
