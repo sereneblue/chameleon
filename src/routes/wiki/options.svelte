@@ -34,8 +34,9 @@
       <div class="mt-4">
         <h3 class="font-bold">Protect keyboard fingerprint</h3>
         <p>
-          The way you type can be used to fingerprint you. This option adds a small delay between each keystroke you make 
-          to mask your keyboard fingerprint.
+          The way you type can be used to fingerprint you. Chameleon adds at least a 30ms delay between each keystroke for input fields. Text areas are
+          not included. Specifying a delay value will increase the randomness between keystrokes. For example, if you set the delay value to 5, Chameleon will
+          use a random time from 30ms to 35ms between each key stroke. This option will cause input fields to appear sluggish.
         </p>
       </div>
       <div class="mt-4">
