@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-- add update url
+- add update url to manifest
 
 <a name="v0.20.7-rc"></a>
 
