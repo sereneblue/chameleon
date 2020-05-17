@@ -1093,6 +1093,12 @@ export default class App extends Vue {
       webext.sendToBackground(this.settings);
     } else if (type === 'tab') {
       this.currentTab = value;
+
+      if (value === 'profile') {
+        this.$nextTick(() => {
+          this.resizeProfileList();
+        });
+      }
     }
   }
 
