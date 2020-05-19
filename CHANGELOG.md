@@ -1,3 +1,12 @@
+<a name="v0.20.8-rc"></a>
+
+## [v0.20.8-rc](https://github.com/sereneblue/chameleon/compare/v0.20.7-rc2...v0.20.8-rc) (2020-05-18)
+
+### Bug Fixes
+
+- **popup:** update profile list in UI
+- **whitelist:** improve whitelist rule matching
+
 <a name="v0.20.7-rc2"></a>
 
 ## [v0.20.7-rc2](https://github.com/sereneblue/chameleon/compare/v0.20.7-rc1...v0.20.7-rc2) (2020-05-14)
