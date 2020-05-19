@@ -97,7 +97,7 @@ class Interceptor {
     /* Get document url of request */
     if (request.type === 'main_frame') {
       url = request.url;
-    } else if (request.frameId === 0) {
+    } else if (request.parentFrameId == -1 || request.type == 'sub_frame') {
       url = request.documentUrl;
     } else {
       let root = request.frameAncestors ? request.frameAncestors.find(f => f.frameId === 0) : '';
@@ -243,15 +243,17 @@ class Interceptor {
       }
     }
 
-    if (wl.active && wl.spoofIP) {
-      details.requestHeaders.push({
-        name :  'Via',
-        value :  '1.1 ' + wl.spoofIP,
-      });
-      details.requestHeaders.push({
-        name :  'X-Forwarded-For',
-        value :  wl.spoofIP,
-      });
+    if (wl.active) {
+      if (wl.spoofIP) {
+        details.requestHeaders.push({
+          name :  'Via',
+          value :  '1.1 ' + wl.spoofIP,
+        });
+        details.requestHeaders.push({
+          name :  'X-Forwarded-For',
+          value :  wl.spoofIP,
+        });
+      }
     } else {
       if (this.settings.headers.spoofIP.enabled) {
         details.requestHeaders.push({

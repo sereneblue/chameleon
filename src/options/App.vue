@@ -395,7 +395,7 @@
                   class="bg-red-500 hover:bg-red-600 font-semibold text-white py-2 px-4 border border-red-500 rounded"
                   v-t="'options-modal-confirmDelete.message'"
                 ></button>
-                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'textcancel.message'"></button>
+                <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
               </div>
             </div>
           </div>
@@ -844,7 +844,10 @@ export default class App extends Vue {
     }
 
     // validate sites patterns
-    let sites = this.tmp.wlRule.sites.split('\n').map(s => s.split('@@'));
+    let sites = this.tmp.wlRule.sites
+      .trim()
+      .split('\n')
+      .map(s => s.split('@@'));
 
     let foundDomains = {};
     for (let i = 0; i < sites.length; i++) {

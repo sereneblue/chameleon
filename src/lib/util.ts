@@ -6,7 +6,9 @@ const cidr = new CIDR();
 let findWhitelistRule = (rules: any, host: string, url: string): any => {
   for (var i = 0; i < rules.length; i++) {
     for (var j = 0; j < rules[i].sites.length; j++) {
-      if (host.includes(rules[i].sites[j].domain)) {
+      let whitelistURL = new URL((rules[i].sites[j].domain.includes('http') ? '' : 'http://') + rules[i].sites[j].domain);
+
+      if (whitelistURL.host.includes(host)) {
         if (rules[i].sites[j].pattern) {
           if (!new RegExp(rules[i].sites[j].pattern).test(url)) {
             return null;
@@ -14,12 +16,12 @@ let findWhitelistRule = (rules: any, host: string, url: string): any => {
         }
 
         return {
-          id: rules[i].id,
-          lang: rules[i].lang,
-          pattern: rules[i].sites[j],
-          profile: rules[i].profile,
-          options: rules[i].options,
-          spoofIP: rules[i].spoofIP,
+          id :  rules[i].id,
+          lang :  rules[i].lang,
+          pattern :  rules[i].sites[j],
+          profile :  rules[i].profile,
+          options :  rules[i].options,
+          spoofIP :  rules[i].spoofIP,
         };
       }
     }
@@ -82,14 +84,14 @@ let parseURL = (url: string): any => {
   let uParsed = psl.parse(u.hostname);
 
   return {
-    base: u.hostname
+    base :  u.hostname
       .split('.')
       .splice(-2)
       .join('.'),
-    domain: uParsed.domain,
-    hostname: u.hostname,
-    origin: u.origin,
-    pathname: u.pathname,
+    domain :  uParsed.domain,
+    hostname :  u.hostname,
+    origin :  u.origin,
+    pathname :  u.pathname,
   };
 };
 
