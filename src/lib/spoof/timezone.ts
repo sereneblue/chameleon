@@ -85,7 +85,7 @@ export default {
     return getDay.call(this[window.CHAMELEON_SPOOF].date);
   }
   window.Date.prototype.getFullYear = function() {
-    if (isNaN(getTime.call(this))) {epochConverterGMTString
+    if (isNaN(getTime.call(this))) {
       return NaN;
     }
 
@@ -132,8 +132,7 @@ export default {
     return nd;
   }
   window.Date.prototype.setFullYear = function(...args) {
-    let timestamp = getTime.call(this);
-    if (isNaN(timestamp)) {
+    if (isNaN(getTime.call(this))) {
       return NaN;
     }
 
@@ -144,8 +143,7 @@ export default {
     return nd;
   }
   window.Date.prototype.setHours = function(...args) {
-    let timestamp = getTime.call(this);
-    if (isNaN(timestamp)) {
+    if (isNaN(getTime.call(this))) {
       return NaN;
     }
     let nd = setHours.apply(this, args);
@@ -155,8 +153,7 @@ export default {
     return nd;
   }
   window.Date.prototype.setMilliseconds = function(...args) {
-    let timestamp = getTime.call(this);
-    if (isNaN(timestamp)) {
+    if (isNaN(getTime.call(this))) {
       return NaN;
     }
     let nd = setMilliseconds.apply(this, args);
@@ -166,8 +163,7 @@ export default {
     return nd;
   }
   window.Date.prototype.setMonth = function(...args) {
-    let timestamp = getTime.call(this);
-    if (isNaN(timestamp)) {
+    if (isNaN(getTime.call(this))) {
       return NaN;
     }
     let nd = setMonth.apply(this, args);
@@ -177,8 +173,7 @@ export default {
     return nd;
   }
   window.Date.prototype.setSeconds = function(...args) {
-    let timestamp = getTime.call(this);
-    if (isNaN(timestamp)) {
+    if (isNaN(getTime.call(this))) {
       return NaN;
     }
     let nd = setSeconds.apply(this, args);
@@ -188,8 +183,7 @@ export default {
     return nd;
   }
   window.Date.prototype.setTime = function(...args) {
-    let timestamp = getTime.call(this);
-    if (isNaN(timestamp)) {
+    if (isNaN(getTime.call(this))) {
       return NaN;
     }
     let nd = setTime.apply(this, args);

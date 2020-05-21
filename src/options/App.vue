@@ -440,6 +440,7 @@ export default class App extends Vue {
   public modalType: Modal = Modal.DEFAULT;
   public checklist: ChecklistItem[] = Checklist;
   public currentTab: string = 'about';
+  public defaultLanguage: string = browser.i18n.getUILanguage();
   public iconPath: string = '';
   public query: string = '';
   public ready: boolean = false;
@@ -552,6 +553,7 @@ export default class App extends Vue {
         if (site) {
           this.createNewWhitelistRule();
           this.tmp.wlRule.sites = site;
+          this.tmp.wlRule.name = site;
         }
       }
     }
@@ -566,9 +568,17 @@ export default class App extends Vue {
   }
 
   createNewRule(): void {
+    let lang: string;
+
+    if (this.languages.findIndex(l => l.code === this.defaultLanguage) > -1) {
+      lang = this.defaultLanguage;
+    } else {
+      lang = 'en-US';
+    }
+
     this.tmp.ipRule.id = '';
     this.tmp.ipRule.name = '';
-    this.tmp.ipRule.lang = this.languages[0].code;
+    this.tmp.ipRule.lang = lang;
     this.tmp.ipRule.tz = this.timezones[0].zone;
     this.tmp.ipRule.ips = '';
 
@@ -577,10 +587,18 @@ export default class App extends Vue {
   }
 
   createNewWhitelistRule(): void {
+    let lang: string;
+
+    if (this.languages.findIndex(l => l.code === this.defaultLanguage) > -1) {
+      lang = this.defaultLanguage;
+    } else {
+      lang = 'en-US';
+    }
+
     this.tmp.wlRule.id = '';
     this.tmp.wlRule.name = '';
     this.tmp.wlRule.sites = '';
-    this.tmp.wlRule.lang = this.languages[0].code;
+    this.tmp.wlRule.lang = lang;
     this.tmp.wlRule.profile = 'default';
     this.tmp.wlRule.spoofIP = '';
     this.tmp.wlRule.options.name = false;
