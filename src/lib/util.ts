@@ -8,7 +8,7 @@ let findWhitelistRule = (rules: any, host: string, url: string): any => {
     for (var j = 0; j < rules[i].sites.length; j++) {
       let whitelistURL = new URL((rules[i].sites[j].domain.includes('http') ? '' : 'http://') + rules[i].sites[j].domain);
 
-      if (host.includes(whitelistURL.host)) {
+      if (host.includes(whitelistURL.host.replace(/^(www\.)/, ''))) {
         if (rules[i].sites[j].pattern) {
           if (!new RegExp(rules[i].sites[j].pattern).test(url)) {
             return null;
