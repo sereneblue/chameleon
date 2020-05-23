@@ -67,12 +67,26 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
   } else if (request.action === 'reset') {
     chameleon.reset();
     browser.runtime.reload();
+  } else if (request.action === 'updateIPRules') {
+    chameleon.settings.ipRules = request.data;
+
+    chameleon.timeout = setTimeout(() => {
+      chameleon.saveSettings(chameleon.settings);
+      sendResponse('done');
+    }, 200);
   } else if (request.action === 'updateProfile') {
     chameleon.settings.profile.selected = request.data;
 
     // reset interval timer and send notification
     chameleon.setTimer();
     sendResponse('done');
+  } else if (request.action === 'updateWhitelist') {
+    chameleon.settings.whitelist = request.data;
+
+    chameleon.timeout = setTimeout(() => {
+      chameleon.saveSettings(chameleon.settings);
+      sendResponse('done');
+    }, 200);
   } else if (request.action === 'validateSettings') {
     sendResponse(chameleon.validateSettings(request.data));
   }

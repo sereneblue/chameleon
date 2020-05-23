@@ -837,7 +837,10 @@ export default class App extends Vue {
       this.settings.ipRules.push(Object.assign({}, this.tmp.ipRule, { id :  uuidv4(), ips :  rules }));
     }
 
-    webext.sendToBackground(this.settings);
+    await browser.runtime.sendMessage({
+      action :  'updateIPRules',
+      data :  this.settings.ipRules,
+    });
 
     this.showModal = false;
   }
@@ -909,9 +912,12 @@ export default class App extends Vue {
       this.settings.whitelist.rules.push(Object.assign({}, this.tmp.wlRule, { id :  uuidv4(), sites }));
     }
 
-    webext.sendToBackground(this.settings);
+    await browser.runtime.sendMessage({
+      action :  'updateWhitelist',
+      data :  this.settings.whitelist,
+    });
 
-    browser.runtime.sendMessage({
+    await browser.runtime.sendMessage({
       action :  'reloadInjectionScript',
     });
 
