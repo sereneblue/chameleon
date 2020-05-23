@@ -1,3 +1,12 @@
+<a name="v0.20.10-rc"></a>
+
+## [v0.20.10-rc](https://github.com/sereneblue/chameleon/compare/v0.20.9-rc...v0.20.10-rc) (2020-05-22)
+
+### Bug Fixes
+
+- **options:** update whitelist to prevent reset changed settings
+- **whitelist:** remove "www." from host
+
 <a name="v0.20.9-rc"></a>
 
 ## [v0.20.9-rc](https://github.com/sereneblue/chameleon/compare/v0.20.8-rc...v0.20.9-rc) (2020-05-21)
