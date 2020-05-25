@@ -1,3 +1,12 @@
+<a name="v0.20.11-rc"></a>
+
+## [v0.20.11-rc](https://github.com/sereneblue/chameleon/compare/v0.20.10-rc...v0.20.11-rc) (2020-05-25)
+
+### Features
+
+- **localization:** add japanese localization
+- **profiles:** update browser profiles
+
 <a name="v0.20.10-rc"></a>
 
 ## [v0.20.10-rc](https://github.com/sereneblue/chameleon/compare/v0.20.9-rc...v0.20.10-rc) (2020-05-22)
