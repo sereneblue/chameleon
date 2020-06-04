@@ -208,7 +208,9 @@ class Injector {
 
       let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
       var ORIGINAL_INTL = window.Intl.DateTimeFormat;
-      
+      var ORIGINAL_INTL_PROTO = window.Intl.DateTimeFormat.prototype;
+      var _supportedLocalesOf = window.Intl.DateTimeFormat.supportedLocalesOf;
+
       injectionProperties.forEach(injProp => {
         if (injProp.obj === 'window') {
           window[injProp.prop] = injProp.value;
@@ -309,7 +311,9 @@ class Injector {
         
         return ORIGINAL_INTL.apply(null, args);
       }
-
+      Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
+      window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
+      
       Object.defineProperties(HTMLIFrameElement.prototype, {
         contentWindow: {
           get: function() {
