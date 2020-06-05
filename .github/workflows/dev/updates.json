@@ -1,11 +1,11 @@
 {
-  "addons" :  {
-    "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}" :  {
-      "updates" :  [
+  "addons": {
+    "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}": {
+      "updates": [
         {
-          "version" :  "0.20.11.0",
-          "browser_specific_settings" :  { "gecko" :  { "strict_min_version" :  "59.0a1" } },
-          "update_link" :  "https://github.com/sereneblue/chameleon/releases/download/v0.20.11-rc/chameleon_v0.20.11-rc.signed.xpi"
+          "version": "0.20.12.0",
+          "browser_specific_settings": { "gecko": { "strict_min_version": "59.0a1" } },
+          "update_link": "https://github.com/sereneblue/chameleon/releases/download/v0.20.12-rc/chameleon_v0.20.12-rc.signed.xpi"
         }
       ]
     }
