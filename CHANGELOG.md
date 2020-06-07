@@ -1,3 +1,11 @@
+<a name="v0.20.13-rc"></a>
+
+## [v0.20.13-rc](https://github.com/sereneblue/chameleon/compare/v0.20.12-rc...v0.20.13-rc) (2020-06-07)
+
+### Bug Fixes
+
+- update migration version matching ([#391](https://github.com/sereneblue/chameleon/issues/391))
+
 <a name="v0.20.12-rc"></a>
 
 ## [v0.20.12-rc](https://github.com/sereneblue/chameleon/compare/v0.20.11-rc...v0.20.12-rc) (2020-06-04)
