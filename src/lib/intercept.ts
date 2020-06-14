@@ -42,8 +42,8 @@ class Interceptor {
 
   constructor(settings: any, tempStore: any, profileCache: any) {
     this.regex = {
-      CLOUDFLARE :  RegExp(/chk_jschl/),
-      HTTPS :  RegExp(/^https:\/\//),
+      CLOUDFLARE: RegExp(/chk_jschl/),
+      HTTPS: RegExp(/^https:\/\//),
     };
 
     this.LINK = document.createElement('a');
@@ -73,18 +73,18 @@ class Interceptor {
 
     if (details.type === 'websocket' || details.url.includes('transport=polling') || isWebSocketRequest) {
       if (wl.active) {
-        return { cancel :  wl.opt.ws };
+        return { cancel: wl.opt.ws };
       }
 
       if (this.settings.options.webSockets === 'block_all') {
-        return { cancel :  true };
+        return { cancel: true };
       } else if (this.settings.options.webSockets === 'block_3rd_party') {
         let frame = util.parseURL(details.documentUrl || details.originUrl);
         let ws = util.parseURL(details.url);
 
         if (!frame.error && !ws.error) {
           if (frame.domain != ws.domain) {
-            return { cancel :  true };
+            return { cancel: true };
           }
         }
       }
@@ -112,17 +112,17 @@ class Interceptor {
 
       if (rule) {
         return {
-          active :  true,
-          lang :  rule.lang,
-          opt :  rule.options,
-          pattern :  rule.pattern,
-          profile :  rule.profile,
-          spoofIP :  rule.spoofIP,
+          active: true,
+          lang: rule.lang,
+          opt: rule.options,
+          pattern: rule.pattern,
+          profile: rule.profile,
+          spoofIP: rule.spoofIP,
         };
       }
     }
 
-    return { active :  false };
+    return { active: false };
   }
 
   modifyRequest(details: any): any {
@@ -235,7 +235,7 @@ class Interceptor {
 
     if (this.settings.headers.enableDNT) {
       if (dntIndex === -1) {
-        details.requestHeaders.push({ name :  'DNT', value :  '1' });
+        details.requestHeaders.push({ name: 'DNT', value: '1' });
       }
     } else {
       if (dntIndex > -1) {
@@ -245,29 +245,43 @@ class Interceptor {
 
     if (wl.active) {
       if (wl.spoofIP) {
-        details.requestHeaders.push({
-          name :  'Via',
-          value :  '1.1 ' + wl.spoofIP,
-        });
-        details.requestHeaders.push({
-          name :  'X-Forwarded-For',
-          value :  wl.spoofIP,
-        });
+        if (
+          // don't spoof header IP for cloudflare pages
+          !details.url.includes('cdn-cgi/challenge-platform/generate/') &&
+          !details.url.includes('__cf_chl_jschl_tk__=') &&
+          !details.url.includes('jschal/js/nocookie/transparent.gif')
+        ) {
+          details.requestHeaders.push({
+            name: 'Via',
+            value: '1.1 ' + wl.spoofIP,
+          });
+          details.requestHeaders.push({
+            name: 'X-Forwarded-For',
+            value: wl.spoofIP,
+          });
+        }
       }
     } else {
       if (this.settings.headers.spoofIP.enabled) {
-        details.requestHeaders.push({
-          name :  'Via',
-          value :  '1.1 ' + this.tempStore.spoofIP,
-        });
-        details.requestHeaders.push({
-          name :  'X-Forwarded-For',
-          value :  this.tempStore.spoofIP,
-        });
+        if (
+          // don't spoof header IP for cloudflare pages
+          !details.url.includes('cdn-cgi/challenge-platform/generate/') &&
+          !details.url.includes('__cf_chl_jschl_tk__=') &&
+          !details.url.includes('jschal/js/nocookie/transparent.gif')
+        ) {
+          details.requestHeaders.push({
+            name: 'Via',
+            value: '1.1 ' + this.tempStore.spoofIP,
+          });
+          details.requestHeaders.push({
+            name: 'X-Forwarded-For',
+            value: this.tempStore.spoofIP,
+          });
+        }
       }
     }
 
-    return { requestHeaders :  details.requestHeaders };
+    return { requestHeaders: details.requestHeaders };
   }
 
   modifyResponse(details: any): any {
@@ -283,7 +297,7 @@ class Interceptor {
       }
     }
 
-    return { responseHeaders :  details.responseHeaders };
+    return { responseHeaders: details.responseHeaders };
   }
 }
 
