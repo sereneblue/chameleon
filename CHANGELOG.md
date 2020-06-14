@@ -1,3 +1,16 @@
+<a name="v0.20.14-rc"></a>
+
+## [v0.20.14-rc](https://github.com/sereneblue/chameleon/compare/v0.20.13-rc...v0.20.14-rc) (2020-06-14)
+
+### Bug Fixes
+
+- **spoof ip headers:** disable spoof IP header spoofing for Cloudflare requests ([#393](https://github.com/sereneblue/chameleon/issues/393))
+
+### Features
+
+- update profiles
+- **language spoofing:** add support for Intl.ListFormat
+
 <a name="v0.20.13-rc"></a>
 
 ## [v0.20.13-rc](https://github.com/sereneblue/chameleon/compare/v0.20.12-rc...v0.20.13-rc) (2020-06-07)
