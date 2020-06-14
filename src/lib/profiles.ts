@@ -37,10 +37,10 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '83.0.478.37', desktopChrome: '83.0.4103.61', android: '45.3.4.4958', androidChrome: '83.0.4103.60' },
+  edg: { win: '83.0.478.45', mac: '83.0.478.37', desktopChrome: '83.0.4103.97', android: '45.3.4.4958', androidChrome: '83.0.4103.60' },
   esr: { desktop: '68' },
-  ff: { desktop: '76', mobile: '76' },
-  gcr: { desktop: '83.0.4103.61', ios: '83.0.4103.63', android: '83.0.4103.60' },
+  ff: { desktop: '77', mobile: '77' },
+  gcr: { desktop: '83.0.4103.97', ios: '83.0.4103.88', android: '83.0.4103.101' },
   sf: { desktop: '13.0.4', mobile: '13.0.4' },
 };
 
@@ -49,9 +49,9 @@ const MacResolutions: string[] = ['1920x1080', '2560×1600', '4096x2304', '5120x
 
 let getName = (os: string, browser: string) => {
   if (browser === 'edg') {
-    return `${os} - Edge ${BrowserVersions.edg.desktop.split('.')[0]}`;
+    return `${os} - Edge ${BrowserVersions.edg.win.split('.')[0]}`;
   } else if (browser === 'edgm') {
-    return `${os} - Edge ${BrowserVersions.edg.desktop.split('.')[0]} (Phone)`;
+    return `${os} - Edge ${BrowserVersions.edg.win.split('.')[0]} (Phone)`;
   } else if (browser === 'esr') {
     return `${os} - Firefox ${BrowserVersions.esr.desktop} ESR`;
   } else if (browser === 'ff') {
@@ -91,7 +91,7 @@ export class Generator {
 
       let ua: string = `Mozilla/5.0 (${os.id.includes('mac') ? os.uaPlatform : os.nav.oscpu}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${
         versions.desktopChrome
-      } Safari/537.36 Edg/${versions.desktop}`;
+      } Safari/537.36 Edg/${os.id.includes('win') ? versions.win : versions.mac}`;
 
       return {
         accept: {
@@ -875,7 +875,7 @@ export class Generator {
           platform: 'MacIntel',
         },
         screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 10_13_5',
+        uaPlatform: 'Macintosh; Intel Mac OS X 10_13_6',
       },
       {
         id: 'mac2',
@@ -887,7 +887,7 @@ export class Generator {
           platform: 'MacIntel',
         },
         screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 10_14_4',
+        uaPlatform: 'Macintosh; Intel Mac OS X 10_14_6',
       },
       {
         id: 'mac3',
@@ -899,7 +899,7 @@ export class Generator {
           platform: 'MacIntel',
         },
         screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 10_15_1',
+        uaPlatform: 'Macintosh; Intel Mac OS X 10_15_5',
       },
     ],
     linux: [
@@ -951,13 +951,13 @@ export class Generator {
         id: 'ios2',
         name: 'iOS 12',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '12_4_3',
+        uaPlatform: '12_4_7',
       },
       {
         id: 'ios3',
         name: 'iOS 13',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '13_2',
+        uaPlatform: '13_5_1',
       },
     ],
     android: [
