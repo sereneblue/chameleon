@@ -309,7 +309,7 @@ class Injector {
           }
         }
         
-        return ORIGINAL_INTL.apply(null, args);
+        return new (Function.prototype.bind.apply(ORIGINAL_INTL, args));
       }
       Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
       window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
