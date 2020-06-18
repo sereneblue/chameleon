@@ -1,3 +1,11 @@
+<a name="v0.20.15-rc"></a>
+
+## [v0.20.15-rc](https://github.com/sereneblue/chameleon/compare/v0.20.14-rc...v0.20.15-rc) (2020-06-17)
+
+### Bug Fixes
+
+- **injection:** update DateTimeFormat call ([#394](https://github.com/sereneblue/chameleon/issues/394))
+
 <a name="v0.20.14-rc"></a>
 
 ## [v0.20.14-rc](https://github.com/sereneblue/chameleon/compare/v0.20.13-rc...v0.20.14-rc) (2020-06-14)
