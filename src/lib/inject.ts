@@ -20,9 +20,9 @@ class Injector {
   public enabled: boolean;
   public notifyId: string;
   private spoof = {
-    custom :  '',
-    overwrite :  [],
-    metadata :  {},
+    custom: '',
+    overwrite: [],
+    metadata: {},
   };
 
   constructor(settings: any, tempStore: any, profileCache: any, seed: number) {
@@ -68,8 +68,8 @@ class Injector {
 
           let l = lang.getLanguage(spoofedLang);
           this.spoof.metadata['language'] = {
-            code :  spoofedLang,
-            nav :  l.nav,
+            code: spoofedLang,
+            nav: l.nav,
           };
           this.updateInjectionData(language);
         }
@@ -102,19 +102,19 @@ class Injector {
       if (settings.options.screenSize != 'default') {
         if (settings.options.screenSize == 'profile' && p) {
           this.spoof.metadata['screen'] = {
-            width :  p.screen.width,
-            height :  p.screen.height,
-            availHeight :  p.screen.availHeight,
-            deviceScaleFactor :  p.screen.deviceScaleFactor,
-            usingProfileRes :  true,
+            width: p.screen.width,
+            height: p.screen.height,
+            availHeight: p.screen.availHeight,
+            deviceScaleFactor: p.screen.deviceScaleFactor,
+            usingProfileRes: true,
           };
         } else {
           let scr: number[] = settings.options.screenSize.split('x').map(Number);
 
           this.spoof.metadata['screen'] = {
-            width :  scr[0],
-            height :  scr[1],
-            usingProfileRes :  false,
+            width: scr[0],
+            height: scr[1],
+            usingProfileRes: false,
           };
         }
 
@@ -129,8 +129,8 @@ class Injector {
         }
 
         this.spoof.metadata['timezone'] = {
-          locale :  'en-US',
-          zone :  moment.tz.zone(tz),
+          locale: 'en-US',
+          zone: moment.tz.zone(tz),
         };
 
         this.updateInjectionData(timezone);
@@ -145,8 +145,8 @@ class Injector {
       let l = lang.getLanguage(wl.lang);
 
       this.spoof.metadata['language'] = {
-        code :  wl.lang,
-        nav :  l.nav,
+        code: wl.lang,
+        nav: l.nav,
       };
       this.updateInjectionData(language);
 
@@ -171,8 +171,8 @@ class Injector {
   public injectIntoPage(): void {
     let code: string = this.finalOutput();
     let scriptEl = Object.assign(document.createElement('script'), {
-      textContent :  code,
-      id :  'chameleon',
+      textContent: code,
+      id: 'chameleon',
     });
 
     document.documentElement.appendChild(scriptEl);
@@ -180,7 +180,7 @@ class Injector {
 
     // try injecting again to bypass cors
     scriptEl = document.createElement('script');
-    scriptEl.src = URL.createObjectURL(new Blob([code], { type :  'text/javascript' }));
+    scriptEl.src = URL.createObjectURL(new Blob([code], { type: 'text/javascript' }));
     (document.head || document.documentElement).appendChild(scriptEl);
     try {
       URL.revokeObjectURL(scriptEl.src);
@@ -309,7 +309,7 @@ class Injector {
           }
         }
         
-        return ORIGINAL_INTL.apply(null, args);
+        return new (Function.prototype.bind.apply(ORIGINAL_INTL, args));
       }
       Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
       window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
