@@ -303,13 +303,13 @@ class Injector {
               ];
             }
           } else if (CHAMELEON_SPOOF.get(window).language) {
-            if (args.length == 0) {
-              args.push(locale);
+            if (args.length == 0 || !args[0]) {
+              args[0] = locale;
             }
           }
         }
         
-        return new (Function.prototype.bind.apply(ORIGINAL_INTL, args));
+        return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
       }
       Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
       window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
