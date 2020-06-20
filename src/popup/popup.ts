@@ -15,7 +15,10 @@ Vue.use(VueI18n);
 
 const i18n = new VueI18n({
   locale: browser.i18n.getUILanguage(),
-  fallbackLocale: 'en',
+  fallbackLocale: {
+    'zh-CN': ['zh_CN'],
+    default: ['en'],
+  },
   messages: localeMessages,
 });
 
