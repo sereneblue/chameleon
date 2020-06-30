@@ -38,10 +38,10 @@ export interface ProfileListItem {
 
 const BrowserVersions: any = {
   edg: { win: '83.0.478.45', mac: '83.0.478.37', desktopChrome: '83.0.4103.97', android: '45.3.4.4958', androidChrome: '83.0.4103.60' },
-  esr: { desktop: '68' },
-  ff: { desktop: '77', mobile: '77' },
-  gcr: { desktop: '83.0.4103.97', ios: '83.0.4103.88', android: '83.0.4103.101' },
-  sf: { desktop: '13.0.4', mobile: '13.0.4' },
+  esr: { desktop: '78' },
+  ff: { desktop: '78', mobile: '79' },
+  gcr: { desktop: '83.0.4103.116', ios: '83.0.4103.88', android: '83.0.4103.106' },
+  sf: { desktop: '13.1.2', mobile: '13.1.2' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -685,7 +685,7 @@ export class Generator {
     sf: (os): BrowserProfile => {
       let version: string = BrowserVersions.sf.desktop;
 
-      let ua = `Mozilla/5.0 (${os.uaPlatform}) AppleWebKit/602.3.12 (KHTML, like Gecko) Version/${version} Safari/602.3.12`;
+      let ua = `Mozilla/5.0 (${os.uaPlatform}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Safari/605.1.15`;
       let screenRes = MacResolutions[Math.floor(Math.random() * MacResolutions.length)].split('x').map(Number);
 
       return {
