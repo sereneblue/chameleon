@@ -30,8 +30,8 @@ export default {
         } else if (!args[0]) {
           args[0] = navigator.language || "en-US";
         }
-  
-        return new ORIGINAL_INTL_LF(args);
+
+        return new (Function.prototype.bind.apply(ORIGINAL_INTL_LF, [null].concat(args)));
       };
     }
   `
