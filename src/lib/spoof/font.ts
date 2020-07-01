@@ -191,6 +191,10 @@ export default {
 			}
 		});
 
+		modifiedAPIs.push([
+			Element.prototype.setAttribute, "setAttribute"
+		]);
+
 		// modify appendChild
 		Object.defineProperty(Element.prototype, 'appendChild', {
 			value: function appendChild(child) {
@@ -199,5 +203,9 @@ export default {
 				return e;
 			}
 		});
+
+		modifiedAPIs.push([
+			Element.prototype.appendChild, "appendChild"
+		]);
   `,
 };

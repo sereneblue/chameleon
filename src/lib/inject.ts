@@ -211,6 +211,8 @@ class Injector {
       var ORIGINAL_INTL_PROTO = window.Intl.DateTimeFormat.prototype;
       var _supportedLocalesOf = window.Intl.DateTimeFormat.supportedLocalesOf;
 
+      let modifiedAPIs = [];
+
       injectionProperties.forEach(injProp => {
         if (injProp.obj === 'window') {
           window[injProp.prop] = injProp.value;
@@ -363,6 +365,20 @@ class Injector {
           }
         }
       });
+
+      for (let m of modifiedAPIs) {
+        Object.defineProperty(m[0], 'toString', {
+          configurable: false,
+          value: function toString() {
+            return \`function \$\{m[1]\}() {\n    [native code]\n}\`;
+          }
+        })
+
+        Object.defineProperty(m[0], 'name', {
+          configurable: false,
+          value: m[1]
+        })
+      }
     })()
     `
       .replace(/CHAMELEON_SPOOF/g, chameleonObjName)

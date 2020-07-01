@@ -13,26 +13,34 @@ export default {
       value: CHAMELEON_SPOOF.get(window).language.nav
     });
 
-    window.Intl.PluralRules = function(...args) {
-      if (args.length == 0) {
-        args.push(navigator.language || "en-US");
+    window.Intl.PluralRules = function() {
+      if (arguments.length == 0) {
+        arguments[0] = navigator.language || "en-US";
       }
 
-      return new ORIGINAL_INTL_PR(args);
+      return new ORIGINAL_INTL_PR(arguments);
     };
+
+    modifiedAPIs.push([
+      window.Intl.PluralRules, "PluralRules"
+    ]);
 
     if (window.Intl.ListFormat) {
       var ORIGINAL_INTL_LF = window.Intl.ListFormat;
 
-      window.Intl.ListFormat = function(...args) {
-        if (args.length == 0) {
-          args.push(navigator.language || "en-US");
-        } else if (!args[0]) {
-          args[0] = navigator.language || "en-US";
+      window.Intl.ListFormat = function() {
+        if (arguments.length == 0) {
+          arguments[0] = navigator.language || "en-US";
+        } else if (!arguments[0]) {
+          arguments[0] = navigator.language || "en-US";
         }
 
-        return new (Function.prototype.bind.apply(ORIGINAL_INTL_LF, [null].concat(args)));
+        return new (Function.prototype.bind.apply(ORIGINAL_INTL_LF, arguments));
       };
+
+      modifiedAPIs.push([
+        window.Intl.ListFormat, "ListFormat"
+      ]);
     }
   `
     .replace(

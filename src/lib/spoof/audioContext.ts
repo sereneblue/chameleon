@@ -35,6 +35,10 @@ export default {
 				return tmp;
 			}
 
+			modifiedAPIs.push([
+				window.AudioBuffer.prototype.getChannelData, "getChannelData"
+			]);
+
 			window.AudioBuffer.prototype.copyFromChannel = function(...args) {
 				c = this.getChannelData(args[1]);
 
@@ -46,13 +50,9 @@ export default {
 
 				_copyFromChannel.apply(this, args);
 			}
-			
-			// window.AnalyserNode.prototype.getFloatFrequencyData = function(...args) {
-			// 	const result = _getFloatFrequencyData.apply(this, args);
-			// 	for (var i = 0; i < args[0].length; i += 50) {
-			// 		args[0][i] = args[0][i] + CHAMELEON_SPOOF.get(window).audioContextSeed;
-			// 	}
-			// 	return result;
-			// }
+
+			modifiedAPIs.push([
+				window.AudioBuffer.prototype.copyFromChannel, "copyFromChannel"
+			]);
 	}`,
 };
