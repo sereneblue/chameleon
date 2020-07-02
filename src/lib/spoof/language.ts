@@ -14,11 +14,13 @@ export default {
     });
 
     window.Intl.PluralRules = function() {
-      if (arguments.length == 0) {
-        arguments[0] = navigator.language || "en-US";
+      let args = [...arguments];
+
+      if (arguments.length == 0 || !arguments[0]) {
+        args[0] = navigator.language || "en-US";
       }
 
-      return new ORIGINAL_INTL_PR(arguments);
+      return new (Function.prototype.bind.apply(ORIGINAL_INTL_PR, [null, ...args]));
     };
 
     modifiedAPIs.push([
@@ -29,13 +31,13 @@ export default {
       var ORIGINAL_INTL_LF = window.Intl.ListFormat;
 
       window.Intl.ListFormat = function() {
-        if (arguments.length == 0) {
-          arguments[0] = navigator.language || "en-US";
-        } else if (!arguments[0]) {
-          arguments[0] = navigator.language || "en-US";
+        let args = [...arguments];
+
+        if (arguments.length == 0 || !arguments[0]) {
+          args[0] = navigator.language || "en-US";
         }
 
-        return new (Function.prototype.bind.apply(ORIGINAL_INTL_LF, arguments));
+        return new (Function.prototype.bind.apply(ORIGINAL_INTL_LF, [null, ...args]));
       };
 
       modifiedAPIs.push([
