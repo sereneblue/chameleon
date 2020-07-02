@@ -119,7 +119,8 @@
             </label>
             <label class="block my-2">
               <span class="text-gray-700">Email</span>
-              <input name="email" class="form-input mt-1 block w-full" type="email" autocomplete="off" required>
+              <div class="text-red-600 text-sm">If you would like to receive a reply, please use a valid email address.</div>
+              <input name="email" class="form-input mt-1 block w-full" type="email" autocomplete="off">
             </label>
             <label class="block">
               <span class="text-gray-700">Message</span>
