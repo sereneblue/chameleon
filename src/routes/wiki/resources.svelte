@@ -6,13 +6,21 @@
   <div class="mb-4">
     Listed below are some resources that can help improve your privacy.
   </div>
-  <div>
-    <div class="flex items-center mb-4">
+  <div class="flex items-center mb-4">
+    <div>
       <div>
         <p>
           <a href="https://blog.lopp.net/modest-privacy-protection-proposal/" class="font-semibold text-2xl">A Modest Privacy Protection Proposal</a>
         </p>
         How to reclaim your privacy in the surveillance age.
+      </div>
+    </div>
+    <div class="flex items-center mb-4">
+      <div>
+        <p>
+          <a href="https://inteltechniques.com/book7a.html" class="font-semibold text-2xl">Extreme Privacy: What It Takes to Disappear (2nd Ed.)</a>
+        </p>
+        A definitive privacy manual.
       </div>
     </div>
     <div class="flex items-center mb-4">
