@@ -1,3 +1,11 @@
+<a name="v0.20.17-rc1"></a>
+
+## [v0.20.17-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.17-rc...v0.20.17-rc1) (2020-07-01)
+
+### Bug Fixes
+
+- **langauge spoofing:** fix PluralRules/ListFormat function calls
+
 <a name="v0.20.17-rc"></a>
 
 ## [v0.20.17-rc](https://github.com/sereneblue/chameleon/compare/v0.20.16-rc...v0.20.17-rc) (2020-07-01)
