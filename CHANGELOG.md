@@ -1,3 +1,16 @@
+<a name="v0.20.17-rc"></a>
+
+## [v0.20.17-rc](https://github.com/sereneblue/chameleon/compare/v0.20.16-rc...v0.20.17-rc) (2020-07-01)
+
+### Bug Fixes
+
+- **language spoofing:** update ListFormat call
+
+### Features
+
+- implement toString for spoofed functions
+- update profiles
+
 <a name="v0.20.16-rc"></a>
 
 ## [v0.20.16-rc](https://github.com/sereneblue/chameleon/compare/v0.20.15-rc...v0.20.16-rc) (2020-06-20)
