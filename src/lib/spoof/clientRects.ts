@@ -21,6 +21,10 @@ export default {
 			return c;
 		}
 
+		modifiedAPIs.push([
+			window.Element.prototype.getBoundingClientRect, "getBoundingClientRect"
+		]);
+
 		window.Element.prototype.getClientRects = function() {
 			let a = _getClientRects.apply(this);
 			let b = this.getBoundingClientRect();
@@ -31,6 +35,10 @@ export default {
 
 			return a;
 		}
+
+		modifiedAPIs.push([
+			window.Element.prototype.getClientRects, "getClientRects"
+		]);
 
 		window.Range.prototype.getBoundingClientRect = function() {
 			let r = _rgetBoundingClientRect.apply(this);
@@ -43,6 +51,10 @@ export default {
 			return r;
 		}
 
+		modifiedAPIs.push([
+			window.Range.prototype.getBoundingClientRect, "getBoundingClientRect"
+		]);
+
 		window.Range.prototype.getClientRects = function() {
 			let a = _rgetClientRects.apply(this);
 			let b = this.getBoundingClientRect();
@@ -53,5 +65,9 @@ export default {
 
 			return a;
 		}
+
+		modifiedAPIs.push([
+			window.Range.prototype.getClientRects, "getClientRects"
+		]);
   `,
 };

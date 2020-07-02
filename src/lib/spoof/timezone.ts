@@ -1,6 +1,6 @@
 export default {
-  type :  'custom',
-  data :  `
+  type: 'custom',
+  data: `
   var ORIGINAL_DATE = window.Date;
   
   const {
@@ -54,8 +54,10 @@ export default {
     return d;
   }
 
-  window.Date = function(...args) {
-    let tmp = new ORIGINAL_DATE(...args);
+  window.Date = function() {
+    'use strict';
+
+    let tmp = new ORIGINAL_DATE(...arguments);
     let timestamp = getTime.call(tmp);
 
     if (isNaN(timestamp)) {
@@ -66,6 +68,11 @@ export default {
     
     return (this instanceof Date) ? tmp : tmp.toString();
   };
+
+  Object.defineProperty(window.Date, 'length', {
+    configurable: false,
+    value: 7
+  })
   
   window.Date.prototype = ORIGINAL_DATE.prototype;
   window.Date.UTC = ORIGINAL_DATE.UTC;
@@ -121,72 +128,72 @@ export default {
 
     return this[window.CHAMELEON_SPOOF].zoneInfo_offsetNum;
   }
-  window.Date.prototype.setDate = function(...args) {
+  window.Date.prototype.setDate = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
-    let nd = setDate.apply(this, args);
+    let nd = setDate.apply(this, arguments);
 
     modifyDate(this);
     
     return nd;
   }
-  window.Date.prototype.setFullYear = function(...args) {
+  window.Date.prototype.setFullYear = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
 
-    let nd = setFullYear.apply(this, args);
+    let nd = setFullYear.apply(this, arguments);
 
     modifyDate(this);
 
     return nd;
   }
-  window.Date.prototype.setHours = function(...args) {
+  window.Date.prototype.setHours = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
-    let nd = setHours.apply(this, args);
+    let nd = setHours.apply(this, arguments);
 
     modifyDate(this);
 
     return nd;
   }
-  window.Date.prototype.setMilliseconds = function(...args) {
+  window.Date.prototype.setMilliseconds = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
-    let nd = setMilliseconds.apply(this, args);
+    let nd = setMilliseconds.apply(this, arguments);
 
     modifyDate(this);
 
     return nd;
   }
-  window.Date.prototype.setMonth = function(...args) {
+  window.Date.prototype.setMonth = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
-    let nd = setMonth.apply(this, args);
+    let nd = setMonth.apply(this, arguments);
 
     modifyDate(this);
 
     return nd;
   }
-  window.Date.prototype.setSeconds = function(...args) {
+  window.Date.prototype.setSeconds = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
-    let nd = setSeconds.apply(this, args);
+    let nd = setSeconds.apply(this, arguments);
 
     modifyDate(this);
 
     return nd;
   }
-  window.Date.prototype.setTime = function(...args) {
+  window.Date.prototype.setTime = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
-    let nd = setTime.apply(this, args);
+    let nd = setTime.apply(this, arguments);
 
     modifyDate(this);
 
@@ -219,33 +226,58 @@ export default {
     }
     return this.toISOString();
   }
-  window.Date.prototype.toLocaleString = function(...args) {
+  window.Date.prototype.toLocaleString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
     
-    let tmp = toLocaleString.apply(this[window.CHAMELEON_SPOOF].date, args);
+    let tmp = toLocaleString.apply(this[window.CHAMELEON_SPOOF].date, arguments);
 
     return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo_tzName);
   }
-  window.Date.prototype.toLocaleDateString = function(...args) {
+  window.Date.prototype.toLocaleDateString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
 
-    let tmp = toLocaleDateString.apply(this[window.CHAMELEON_SPOOF].date, args);
+    let tmp = toLocaleDateString.apply(this[window.CHAMELEON_SPOOF].date, arguments);
     
     return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo_tzName);
   }
-  window.Date.prototype.toLocaleTimeString = function(...args) {
+  window.Date.prototype.toLocaleTimeString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
 
-    let tmp = toLocaleTimeString.apply(this[window.CHAMELEON_SPOOF].date, args);
+    let tmp = toLocaleTimeString.apply(this[window.CHAMELEON_SPOOF].date, arguments);
     
     return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo_tzName);
   }
+
+  modifiedAPIs = modifiedAPIs.concat([
+    [window.Date, "Date"],
+    [window.Date.prototype.getDate, "getDate"],
+    [window.Date.prototype.getDay,  "getDay"],
+    [window.Date.prototype.getFullYear, "getFullYear"],
+    [window.Date.prototype.getHours, "getHours"],
+    [window.Date.prototype.getMinutes, "getMinutes"],
+    [window.Date.prototype.getMonth, "getMonth"],
+    [window.Date.prototype.getTimezoneOffset, "getTimezoneOffset"],
+    [window.Date.prototype.setDate, "setDate"],
+    [window.Date.prototype.setFullYear, "setFullYear"],
+    [window.Date.prototype.setHours, "setHours"],
+    [window.Date.prototype.setMilliseconds, "setMilliseconds"],
+    [window.Date.prototype.setMonth, "setMonth"],
+    [window.Date.prototype.setSeconds, "setSeconds"],
+    [window.Date.prototype.setTime, "setTime"],
+    [window.Date.prototype.toDateString, "toDateString"],
+    [window.Date.prototype.toString, "toString"],
+    [window.Date.prototype.toTimeString, "toTimeString"],
+    [window.Date.prototype.toJSON, "toJSON"],
+    [window.Date.prototype.toLocaleString, "toLocaleString"],
+    [window.Date.prototype.toLocaleDateString, "toLocaleDateString"],
+    [window.Date.prototype.toLocaleTimeString, "toLocaleTimeString"],
+  ]);
 `.replace(
     /ORIGINAL_DATE/g,
     String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
