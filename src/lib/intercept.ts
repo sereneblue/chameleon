@@ -133,7 +133,8 @@ class Interceptor {
       if (
         (details.originUrl && details.originUrl.startsWith(whitelisted[i])) ||
         (details.documentUrl && details.documentUrl.startsWith(whitelisted[i])) ||
-        (details.url && details.url.startsWith(whitelisted[i]))
+        (details.url && details.url.startsWith(whitelisted[i])) ||
+        !util.isInternalIP(details.url)
       ) {
         return;
       }

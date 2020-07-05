@@ -406,8 +406,9 @@ let chameleonInjector = new Injector(settings, tempStore, profileCache, seed);
 if (
   chameleonInjector.enabled &&
   whitelisted.findIndex(url => {
-    window.top.location.href.startsWith(url) || window.location.href.startsWith(url);
-  })
+    return window.top.location.href.startsWith(url) || window.location.href.startsWith(url);
+  }) == -1 &&
+  !util.isInternalIP(window.top.location.hostname)
 ) {
   chameleonInjector.injectIntoPage();
 }

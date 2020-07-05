@@ -16,12 +16,12 @@ let findWhitelistRule = (rules: any, host: string, url: string): any => {
         }
 
         return {
-          id :  rules[i].id,
-          lang :  rules[i].lang,
-          pattern :  rules[i].sites[j],
-          profile :  rules[i].profile,
-          options :  rules[i].options,
-          spoofIP :  rules[i].spoofIP,
+          id: rules[i].id,
+          lang: rules[i].lang,
+          pattern: rules[i].sites[j],
+          profile: rules[i].profile,
+          options: rules[i].options,
+          spoofIP: rules[i].spoofIP,
         };
       }
     }
@@ -73,6 +73,15 @@ let ipToString = (ip: number): string => {
   return (ip >>> 24) + '.' + ((ip >> 16) & 255) + '.' + ((ip >> 8) & 255) + '.' + (ip & 255);
 };
 
+let isInternalIP = (host: string): boolean => {
+  return (
+    /^localhost$|^127(?:\.[0-9]+){0,2}\.[0-9]+$|^(?:0*\:)*?:?0*1$/.test(host) ||
+    /(^192\.168\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])$)|(^172\.([1][6-9]|[2][0-9]|[3][0-1])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])$)|(^10\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])\.([0-9]|[0-9][0-9]|[0-2][0-5][0-5])$)/.test(
+      host
+    )
+  );
+};
+
 let isValidIP = (ip: string): boolean => {
   return /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
     ip
@@ -84,14 +93,14 @@ let parseURL = (url: string): any => {
   let uParsed = psl.parse(u.hostname);
 
   return {
-    base :  u.hostname
+    base: u.hostname
       .split('.')
       .splice(-2)
       .join('.'),
-    domain :  uParsed.domain,
-    hostname :  u.hostname,
-    origin :  u.origin,
-    pathname :  u.pathname,
+    domain: uParsed.domain,
+    hostname: u.hostname,
+    origin: u.origin,
+    pathname: u.pathname,
   };
 };
 
@@ -106,6 +115,7 @@ export default {
   ipInRange,
   ipToInt,
   ipToString,
+  isInternalIP,
   isValidIP,
   parseURL,
   validateIPRange,
