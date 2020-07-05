@@ -1,12 +1,12 @@
 {
   "extDescription" :  {
-    "message" :  "Falsifier le profil de votre navigateur. Comprends quelques options d'amélioration de la protection de la vie privée."
+    "message" :  "Falsifiez le profil de votre navigateur. Inclus également quelques options d'amélioration de la confidentialité."
   },
   "notifications-profileChange" :  {
     "message" :  "Profil modifié :"
   },
   "notifications-unableToGetIPInfo" :  {
-    "message" :  "Impossible d'obtenir les infos IP"
+    "message" :  "Impossible d'obtenir des informations IP"
   },
   "notifications-usingIPInfo" :  {
     "message" :  "Utiliser l'info IP :"
@@ -42,7 +42,7 @@
     "message" :  "Note : Pour afficher une liste des préférences modifiées, visitez : about:support#prefs-tbody"
   },
   "options-checklist-note2" :  {
-    "message" :  "Créer l'option si elle n'existe pas."
+    "message" :  "Créez l'option si celle-ci n'existe pas."
   },
   "options-checklist-warning" :  {
     "message" :  "Peut empêcher certains sites de fonctionner."
@@ -99,13 +99,13 @@
     "message" :  "Désactiver les événements du presse-papier"
   },
   "options-checklistItem-disableClipboardEvtDesc" :  {
-    "message" :  "Empêche les sites Web de détecter lorsqu'un utilisateur copie, colle ou coupe des données d'une page Web et ce qui a été sélectionné"
+    "message" :  "Empêche les sites Web de détecter lorsqu'un utilisateur coupe, copie, colle ou sélectionne des données d'une page Web"
   },
   "options-checklistItem-disableContextMenuEvt" :  {
-    "message" :  "Désactiver les événements du menu de contenu"
+    "message" :  "Désactiver les événements du menu contextuel"
   },
   "options-checklistItem-disableContextMenuEvtDesc" :  {
-    "message" :  "Désactive le contrôle du site sur le menu contextuel du clic droit. Maj + Clic droit pour remplacer"
+    "message" :  "Désactive le contrôle du site Web sur le menu contextuel du clic droit. Effectuez la combinaison Maj + clic droit pour outrepasser cette option"
   },
   "options-checklistItem-disableMobileSensors" :  {
     "message" :  "Désactiver les capteurs de l'appareil"
@@ -171,7 +171,7 @@
     "message" :  "Désactiver l'API de minutage des ressources"
   },
   "options-checklistItem-disableResTimingDesc" :  {
-    "message" :  "Le minutage des ressources est une API du navigateur pour collecter des informations de minutage sur les ressources d'une page. L'historique, les informations sur le réseau local et éventuellement la localisation peuvent fuiter"
+    "message" :  "La synchronisation des ressources est une API de navigateur qui permet de collecter des informations sur la synchronisation des ressources d'une page. Cela peut inclure l'historique des fuites, des informations sur le réseau local et éventuellement la localisation"
   },
   "options-checklistItem-disableSearchSuggest" :  {
     "message" :  "Désactiver les suggestions de recherche"
@@ -195,7 +195,7 @@
     "message" :  "Désactiver le faux démarrage SSL"
   },
   "options-checklistItem-disableSSLFalseStartDesc" :  {
-    "message" :  "Empêche le client d'envoyer des données avant de terminer la poignée de main de démarrage de session"
+    "message" :  "Empêche le client d'envoyer des données avant d'avoir terminé l'établissement d'une liaison pour démarrer la session"
   },
   "options-checklistItem-disableSSLSessId" :  {
     "message" :  "Désactiver les identifiants de session SSL"
@@ -207,7 +207,7 @@
     "message" :  "Désactiver TLS 0-RTT"
   },
   "options-checklistItem-disableTLSRTTDesc" :  {
-    "message" :  "La reprise à zero du Round Trip Time (Zero Round Trip Time Resumption ou 0-RTT) est une nouveauté de TLS 1.3 qui permet à un client et à un serveur de négocier une connexion avec moins d'étapes, permettant aux sites web https de se charger plus rapidement. Il y a deux problèmes à cela. Tout d'abord, vous perdez la confidentialité persistante (consistant à générer une nouvelle clé pour chaque session et jeter la clé lorsque la session est terminée). Deuxièmement, 0-RTT nécessite une implémentation spéciale afin d'éviter les attaques par rejeux, ce que certains développeurs web ne corrigerons pas. - Crédits https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
+    "message" :  "Zero Round Trip Time Resumption (0-RTT) est une nouvelle fonctionnalité de TLS 1.3 qui permet à un client et à un serveur de négocier une connexion en moins d'étapes, ce qui permet aux sites Web HTTPS de se charger plus rapidement. Cependant, cela pose deux problèmes. Premièrement, vous perdez le secret de transmission (en générant une nouvelle clé pour chaque session et en la supprimant à la fin de la session). Deuxièmement, 0-RTT nécessite une implémentation spéciale afin d'empêcher les attaques par rejeu, contre lesquelles certains développeurs Web ne parviendront certainement pas à se protéger. - Crédits : https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
   },
   "options-checklistItem-disableTRR" :  {
     "message" :  "Désactiver TTR (Trusted Recursive Resolver)"

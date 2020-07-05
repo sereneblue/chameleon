@@ -102,7 +102,7 @@
     "message" :  "Prevents websites from detecting when a user copies, pastes, or cuts data from a web page and what was selected"
   },
   "options-checklistItem-disableContextMenuEvt" :  {
-    "message" :  "Disable Content Menu Events"
+    "message" :  "Disable Context Menu Events"
   },
   "options-checklistItem-disableContextMenuEvtDesc" :  {
     "message" :  "Disables website control over right click context menu. Shift + Right Click to override"

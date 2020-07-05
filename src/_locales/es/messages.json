@@ -17,6 +17,9 @@
   "options-about-issueTracker" :  {
     "message" :  "Incidencias"
   },
+  "options-about-knownIssues" :  {
+    "message" :  "Known Issues"
+  },
   "options-about-wiki" :  {
     "message" :  "Wiki"
   },
@@ -99,7 +102,7 @@
     "message" :  "Evita que los sitios web detecten cuando un usuario copia, pegua o corta datos de una página web y lo que fue seleccionado"
   },
   "options-checklistItem-disableContextMenuEvt" :  {
-    "message" :  "Desactivar Eventos de Menú de Contenido"
+    "message" :  "Desactivar Eventos de Menú de Contextual"
   },
   "options-checklistItem-disableContextMenuEvtDesc" :  {
     "message" :  "Deshabilita el control del sitio web sobre el menú contextual del clic derecho. Mayús + Clic derecho para reemplazar"
@@ -419,8 +422,14 @@
   "options-modal-askDelete" :  {
     "message" :  "¿Está seguro que desea eliminar esta regla?"
   },
+  "options-modal-askReset" :  {
+    "message" :  "Are you sure you want to reset your settings?"
+  },
   "options-modal-confirmDelete" :  {
     "message" :  "Sí ¡bórrala!"
+  },
+  "options-modal-confirmReset" :  {
+    "message" :  "Yes, reset my settings!"
   },
   "options-settings" :  {
     "message" :  "Configuraciones"
@@ -493,6 +502,9 @@
   },
   "popup-home-currentProfile-gettingTimezone" :  {
     "message" :  "Obteniendo información de IP"
+  },
+  "popup-home-currentProfile-screenProfile" :  {
+    "message" :  "Screen (Profile)"
   },
   "popup-home-disabled" :  {
     "message" :  "Chameleon está desactivado"
@@ -721,6 +733,9 @@
   },
   "popup-options-cookie" :  {
     "message" :  "Cookie"
+  },
+  "popup-options-cookieNotPersistent" :  {
+    "message" :  "Delete cookies and site data after window is closed"
   },
   "popup-options-cookiePolicy" :  {
     "message" :  "Política"
