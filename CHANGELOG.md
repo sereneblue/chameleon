@@ -1,3 +1,15 @@
+<a name="v0.20.18-rc"></a>
+
+## [v0.20.18-rc](https://github.com/sereneblue/chameleon/compare/v0.20.17-rc1...v0.20.18-rc) (2020-07-05)
+
+### Bug Fixes
+
+- **font spoofing:** enable font spoofing for real profile ([#409](https://github.com/sereneblue/chameleon/issues/409))
+- **injection:** window.open leak
+- **injection:** exclude matching some private IP ranges and fix bug with whitelisted domains
+- **intercept:** update request handling to check if request originates from internal IP
+- **util:** update whitelist rule matching
+
 <a name="v0.20.17-rc1"></a>
 
 ## [v0.20.17-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.17-rc...v0.20.17-rc1) (2020-07-01)
