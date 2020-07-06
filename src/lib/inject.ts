@@ -249,6 +249,7 @@ class Injector {
       var ORIGINAL_INTL = window.Intl.DateTimeFormat;
       var ORIGINAL_INTL_PROTO = window.Intl.DateTimeFormat.prototype;
       var _supportedLocalesOf = window.Intl.DateTimeFormat.supportedLocalesOf;
+      var _open = window.open;
 
       let modifiedAPIs = [];
 
@@ -352,6 +353,9 @@ class Injector {
         
         return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
       }
+      modifiedAPIs.push([
+        window.Intl.DateTimeFormat, "DateTimeFormat"
+      ]);
       Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
       window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
       
@@ -405,6 +409,47 @@ class Injector {
         }
       });
 
+      window.open = function(){
+        let w = _open.apply(this, arguments);
+
+        Object.defineProperty(w, 'Date', {
+          value: window.Date
+        });
+
+        Object.defineProperty(w.Intl, 'DateTimeFormat', {
+          value: window.Intl.DateTimeFormat
+        });
+
+        Object.defineProperty(w, 'screen', {
+          value: window.screen
+        });
+
+        Object.defineProperty(w, 'navigator', {
+          value: window.navigator
+        });
+
+        Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
+          value: window.Element.prototype.getBoundingClientRect
+        });
+
+        Object.defineProperty(w.Element.prototype, 'getClientRects', {
+          value: window.Element.prototype.getClientRects
+        });
+
+        Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
+          value: window.Range.prototype.getClientRects
+        });
+
+        Object.defineProperty(w.Range.prototype, 'getClientRects', {
+          value: window.Range.prototype.getClientRects
+        });
+
+        return w;
+      }
+      modifiedAPIs.push([
+        window.open, "open"
+      ]);
+  
       for (let m of modifiedAPIs) {
         Object.defineProperty(m[0], 'toString', {
           configurable: false,
