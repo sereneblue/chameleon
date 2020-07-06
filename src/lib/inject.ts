@@ -95,8 +95,47 @@ class Injector {
       if (settings.options.spoofFontFingerprint) {
         if (p) {
           this.spoof.metadata['fontFingerprintOS'] = p.osId;
-          this.updateInjectionData(font);
+        } else {
+          // get real profile
+          let profileId: string = '';
+
+          if (window.navigator.userAgent.includes('Windows NT 6.1')) {
+            profileId = 'win1';
+          } else if (window.navigator.userAgent.includes('Windows NT 6.2')) {
+            profileId = 'win2';
+          } else if (window.navigator.userAgent.includes('Windows NT 6.3')) {
+            profileId = 'win3';
+          } else if (window.navigator.userAgent.includes('Windows NT 10.0')) {
+            profileId = 'win4';
+          } else if (window.navigator.userAgent.includes('Mac OS X 10_15')) {
+            profileId = 'mac3';
+          } else if (window.navigator.userAgent.includes('Mac OS X 10_14')) {
+            profileId = 'mac2';
+          } else if (window.navigator.userAgent.includes('Mac OS X 10_')) {
+            // fallback for 10.13 and older
+            profileId = 'mac1';
+          } else if (window.navigator.userAgent.includes('Android 6') || window.navigator.userAgent.includes('Android 5')) {
+            profileId = 'and1';
+          } else if (window.navigator.userAgent.includes('Android 7')) {
+            profileId = 'and2';
+          } else if (window.navigator.userAgent.includes('Android 8')) {
+            profileId = 'and3';
+          } else if (window.navigator.userAgent.includes('Android 9') || window.navigator.userAgent.includes('Android 10')) {
+            profileId = 'and4';
+          } else if (window.navigator.userAgent.includes('Ubuntu')) {
+            profileId = 'lin3';
+          } else if (window.navigator.userAgent.includes('Fedora')) {
+            profileId = 'lin2';
+          } else if (window.navigator.userAgent.includes('Linux')) {
+            profileId = 'lin1';
+          }
+
+          if (profileId) {
+            this.spoof.metadata['fontFingerprintOS'] = profileId;
+          }
         }
+
+        this.updateInjectionData(font);
       }
 
       if (settings.options.screenSize != 'default') {
@@ -210,6 +249,7 @@ class Injector {
       var ORIGINAL_INTL = window.Intl.DateTimeFormat;
       var ORIGINAL_INTL_PROTO = window.Intl.DateTimeFormat.prototype;
       var _supportedLocalesOf = window.Intl.DateTimeFormat.supportedLocalesOf;
+      var _open = window.open;
 
       let modifiedAPIs = [];
 
@@ -313,6 +353,9 @@ class Injector {
         
         return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
       }
+      modifiedAPIs.push([
+        window.Intl.DateTimeFormat, "DateTimeFormat"
+      ]);
       Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
       window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
       
@@ -366,6 +409,47 @@ class Injector {
         }
       });
 
+      window.open = function(){
+        let w = _open.apply(this, arguments);
+
+        Object.defineProperty(w, 'Date', {
+          value: window.Date
+        });
+
+        Object.defineProperty(w.Intl, 'DateTimeFormat', {
+          value: window.Intl.DateTimeFormat
+        });
+
+        Object.defineProperty(w, 'screen', {
+          value: window.screen
+        });
+
+        Object.defineProperty(w, 'navigator', {
+          value: window.navigator
+        });
+
+        Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
+          value: window.Element.prototype.getBoundingClientRect
+        });
+
+        Object.defineProperty(w.Element.prototype, 'getClientRects', {
+          value: window.Element.prototype.getClientRects
+        });
+
+        Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
+          value: window.Range.prototype.getClientRects
+        });
+
+        Object.defineProperty(w.Range.prototype, 'getClientRects', {
+          value: window.Range.prototype.getClientRects
+        });
+
+        return w;
+      }
+      modifiedAPIs.push([
+        window.open, "open"
+      ]);
+  
       for (let m of modifiedAPIs) {
         Object.defineProperty(m[0], 'toString', {
           configurable: false,
@@ -406,8 +490,9 @@ let chameleonInjector = new Injector(settings, tempStore, profileCache, seed);
 if (
   chameleonInjector.enabled &&
   whitelisted.findIndex(url => {
-    window.top.location.href.startsWith(url) || window.location.href.startsWith(url);
-  })
+    return window.top.location.href.startsWith(url) || window.location.href.startsWith(url);
+  }) == -1 &&
+  !util.isInternalIP(window.top.location.hostname)
 ) {
   chameleonInjector.injectIntoPage();
 }

@@ -139,6 +139,9 @@ class Interceptor {
       }
     }
 
+    this.LINK.href = details.documentUrl || details.url;
+    if (util.isInternalIP(this.LINK.hostname)) return;
+
     let wl: WhitelistResult = this.checkWhitelist(details);
 
     // used to send different accept headers for https requests

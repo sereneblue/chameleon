@@ -69,7 +69,6 @@ export class Chameleon {
       allFrames: true,
       matchAboutBlank: true,
       matches: ['http://*/*', 'https://*/*'],
-      excludeMatches: ['http://127.0.0.1/*', 'http://localhost/*'],
       js: [
         {
           code: `
