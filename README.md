@@ -79,7 +79,7 @@ dillbyrne for creating [Random Agent Spoofer](https://github.com/dillbyrne/rando
 ## Special Thanks
 
 - giwhub for the Chinese translation
-- Kaylier, melegeti for the French translation
+- Kaylier, melegeti, and Tux 528 for the French translation
 - Anonymous and Wursttorte for the German translation
 - Shitennouji for the Japanese translation
 - 3ibsand, Alexey, and fks7cgsk for the Russian translation
