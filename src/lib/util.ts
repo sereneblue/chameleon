@@ -9,7 +9,7 @@ let findWhitelistRule = (rules: any, host: string, url: string): any => {
       let whitelistURL = new URL((rules[i].sites[j].domain.includes('http') ? '' : 'http://') + rules[i].sites[j].domain);
 
       if (host.includes(whitelistURL.host.replace(/^(www\.)/, ''))) {
-        if (rules[i].sites[j].pattern && new RegExp(rules[i].sites[j].pattern).test(url)) {
+        if (!rules[i].sites[j].pattern || (rules[i].sites[j].pattern && new RegExp(rules[i].sites[j].pattern).test(url))) {
           return {
             id: rules[i].id,
             lang: rules[i].lang,
