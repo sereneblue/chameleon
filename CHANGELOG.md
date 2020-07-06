@@ -1,3 +1,11 @@
+<a name="v0.20.19-rc"></a>
+
+## [v0.20.19-rc](https://github.com/sereneblue/chameleon/compare/v0.20.18-rc...v0.20.19-rc) (2020-07-06)
+
+### Bug Fixes
+
+- **whitelist:** update findWhitelistRule function
+
 <a name="v0.20.18-rc"></a>
 
 ## [v0.20.18-rc](https://github.com/sereneblue/chameleon/compare/v0.20.17-rc1...v0.20.18-rc) (2020-07-05)
