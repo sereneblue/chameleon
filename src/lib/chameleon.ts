@@ -177,6 +177,11 @@ export class Chameleon {
       random: 'random',
       randomDesktop: 'randomDesktop',
       randomMobile: 'randomMobile',
+      random_win: 'windows',
+      random_mac: 'macOS',
+      random_linux: 'linux',
+      random_ios: 'iOS',
+      random_android: 'android',
       win1: 'win1-gcr',
       win2: 'win2-gcr',
       win3: 'win3-gcr',
@@ -1009,7 +1014,7 @@ export class Chameleon {
       };
     } else {
       let options = [
-        ['profile.selected', impSettings.profile.selected, profileIds.concat(['none', 'random', 'randomDesktop', 'randomMobile'])],
+        ['profile.selected', impSettings.profile.selected, profileIds.concat(['none', 'random', 'randomDesktop', 'randomMobile', 'windows', 'macOS', 'linux', 'iOS', 'android'])],
         ['profile.interval.option', impSettings.profile.interval.option, [0, -1, 1, 5, 10, 20, 30, 40, 50, 60]],
         ['profile.interval.min', impSettings.profile.interval.min, 'number'],
         ['profile.interval.max', impSettings.profile.interval.max, 'number'],
