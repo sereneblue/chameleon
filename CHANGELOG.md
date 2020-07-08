@@ -1,3 +1,11 @@
+<a name="v0.20.20-rc"></a>
+
+## [v0.20.20-rc](https://github.com/sereneblue/chameleon/compare/v0.20.19-rc...v0.20.20-rc) (2020-07-07)
+
+### Bug Fixes
+
+- **settings:** add missing browser profiles for validation ([#413](https://github.com/sereneblue/chameleon/issues/413))
+
 <a name="v0.20.19-rc"></a>
 
 ## [v0.20.19-rc](https://github.com/sereneblue/chameleon/compare/v0.20.18-rc...v0.20.19-rc) (2020-07-06)
