@@ -1,818 +1,818 @@
 {
-  "extDescription" :  {
-    "message" :  "Falsifiez le profil de votre navigateur. Inclus également quelques options d'amélioration de la confidentialité."
+  "extDescription": {
+    "message": "Falsifiez le profil de votre navigateur. Inclus également quelques options d'amélioration de la confidentialité."
   },
-  "notifications-profileChange" :  {
-    "message" :  "Profil modifié :"
+  "notifications-profileChange": {
+    "message": "Profil modifié :"
   },
-  "notifications-unableToGetIPInfo" :  {
-    "message" :  "Impossible d'obtenir des informations IP"
+  "notifications-unableToGetIPInfo": {
+    "message": "Impossible d'obtenir des informations IP"
   },
-  "notifications-usingIPInfo" :  {
-    "message" :  "Utiliser l'info IP :"
+  "notifications-usingIPInfo": {
+    "message": "Utiliser l'info IP :"
   },
-  "notifications-usingIPRule" :  {
-    "message" :  "Utiliser la règle IP :"
+  "notifications-usingIPRule": {
+    "message": "Utiliser la règle IP :"
   },
-  "options-about-issueTracker" :  {
-    "message" :  "Suivi des problèmes"
+  "options-about-issueTracker": {
+    "message": "Suivi des problèmes"
   },
-  "options-about-knownIssues" :  {
-    "message" :  "Problèmes connus"
+  "options-about-knownIssues": {
+    "message": "Problèmes connus"
   },
-  "options-about-wiki" :  {
-    "message" :  "Wiki"
+  "options-about-wiki": {
+    "message": "Wiki"
   },
-  "options-about-support" :  {
-    "message" :  "Assistance technique"
+  "options-about-support": {
+    "message": "Support"
   },
-  "options-about-sourceCode" :  {
-    "message" :  "Code source"
+  "options-about-sourceCode": {
+    "message": "Code source"
   },
-  "options-about-translate" :  {
-    "message" :  "Aider à traduire"
+  "options-about-translate": {
+    "message": "Aider à traduire"
   },
-  "options-checklist-close" :  {
-    "message" :  "Fermer"
+  "options-checklist-close": {
+    "message": "Fermer"
   },
-  "options-checklist-leaveEmpty" :  {
-    "message" :  "Laisser vide"
+  "options-checklist-leaveEmpty": {
+    "message": "Laisser vide"
   },
-  "options-checklist-note1" :  {
-    "message" :  "Note : Pour afficher une liste des préférences modifiées, visitez : about:support#prefs-tbody"
+  "options-checklist-note1": {
+    "message": "Note : Pour afficher une liste des préférences modifiées, visitez : about:support#prefs-tbody"
   },
-  "options-checklist-note2" :  {
-    "message" :  "Créez l'option si celle-ci n'existe pas."
+  "options-checklist-note2": {
+    "message": "Créez l'option si celle-ci n'existe pas."
   },
-  "options-checklist-warning" :  {
-    "message" :  "Peut empêcher certains sites de fonctionner."
+  "options-checklist-warning": {
+    "message": "Peut empêcher certains sites de fonctionner."
   },
-  "options-checklistItem-blockActiveMixedContent" :  {
-    "message" :  "Bloquer le contenu mixte actif"
+  "options-checklistItem-blockActiveMixedContent": {
+    "message": "Bloquer le contenu mixte actif"
   },
-  "options-checklistItem-blockActiveMixedContentDesc" :  {
-    "message" :  "Empêche le chargement du contenu mixte non HTTPS actif (scripts, iframes, CSS, AJAX/fetch requests) sur une page HTTPS"
+  "options-checklistItem-blockActiveMixedContentDesc": {
+    "message": "Empêche le chargement du contenu mixte non HTTPS actif (scripts, iframes, CSS, AJAX/fetch requests) sur une page HTTPS"
   },
-  "options-checklistItem-blockDisplayMixedContent" :  {
-    "message" :  "Bloquer l'affichage de contenu mixte"
+  "options-checklistItem-blockDisplayMixedContent": {
+    "message": "Bloquer l'affichage de contenu mixte"
   },
-  "options-checklistItem-blockDisplayMixedContentDesc" :  {
-    "message" :  "Empêche le chargement du contenu mixte passif non-HTTPS (images, audio, vidéo) sur une page HTTPS"
+  "options-checklistItem-blockDisplayMixedContentDesc": {
+    "message": "Empêche le chargement du contenu mixte passif non-HTTPS (images, audio, vidéo) sur une page HTTPS"
   },
-  "options-checklistItem-disableAddonCache" :  {
-    "message" :  "Désactiver le cache d'extensions"
+  "options-checklistItem-disableAddonCache": {
+    "message": "Désactiver le cache d'extensions"
   },
-  "options-checklistItem-disableAddonCacheDesc" :  {
-    "message" :  "Empêche la mise à jour des métadonnées des extensions"
+  "options-checklistItem-disableAddonCacheDesc": {
+    "message": "Empêche la mise à jour des métadonnées des extensions"
   },
-  "options-checklistItem-disableAddonUpdates" :  {
-    "message" :  "Désactiver les mises à jour d'extensions"
+  "options-checklistItem-disableAddonUpdates": {
+    "message": "Désactiver les mises à jour d'extensions"
   },
-  "options-checklistItem-disableAddonUpdatesDesc" :  {
-    "message" :  "Empêche la vérification des mises à jour des extensions"
+  "options-checklistItem-disableAddonUpdatesDesc": {
+    "message": "Empêche la vérification des mises à jour des extensions"
   },
-  "options-checklistItem-disableBattery" :  {
-    "message" :  "Désactiver l'API Batterie"
+  "options-checklistItem-disableBattery": {
+    "message": "Désactiver l'API Batterie"
   },
-  "options-checklistItem-disableBatteryDesc" :  {
-    "message" :  "Désactiver l'API de la batterie. Peut être utilisé pour suivre les utilisateurs"
+  "options-checklistItem-disableBatteryDesc": {
+    "message": "Désactiver l'API de la batterie. Peut être utilisé pour suivre les utilisateurs"
   },
-  "options-checklistItem-disableHistory" :  {
-    "message" :  "Désactiver l'historique de navigation et de téléchargement"
+  "options-checklistItem-disableHistory": {
+    "message": "Désactiver l'historique de navigation et de téléchargement"
   },
-  "options-checklistItem-disableHistoryDesc" :  {
-    "message" :  "Désactiver l'historique de navigation et de téléchargement"
+  "options-checklistItem-disableHistoryDesc": {
+    "message": "Désactiver l'historique de navigation et de téléchargement"
   },
-  "options-checklistItem-disableCacheDisk" :  {
-    "message" :  "Désactiver le cache (disque)"
+  "options-checklistItem-disableCacheDisk": {
+    "message": "Désactiver le cache (disque)"
   },
-  "options-checklistItem-disableCacheDiskDesc" :  {
-    "message" :  "Empêcher la mise en cache des données sur le disque"
+  "options-checklistItem-disableCacheDiskDesc": {
+    "message": "Empêcher la mise en cache des données sur le disque"
   },
-  "options-checklistItem-disableCacheMem" :  {
-    "message" :  "Désactiver le cache (mémoire)"
+  "options-checklistItem-disableCacheMem": {
+    "message": "Désactiver le cache (mémoire)"
   },
-  "options-checklistItem-disableCacheMemDesc" :  {
-    "message" :  "Empêcher la mise en cache des données en mémoire"
+  "options-checklistItem-disableCacheMemDesc": {
+    "message": "Empêcher la mise en cache des données en mémoire"
   },
-  "options-checklistItem-disableClipboardEvt" :  {
-    "message" :  "Désactiver les événements du presse-papier"
+  "options-checklistItem-disableClipboardEvt": {
+    "message": "Désactiver les événements du presse-papier"
   },
-  "options-checklistItem-disableClipboardEvtDesc" :  {
-    "message" :  "Empêche les sites Web de détecter lorsqu'un utilisateur coupe, copie, colle ou sélectionne des données d'une page Web"
+  "options-checklistItem-disableClipboardEvtDesc": {
+    "message": "Empêche les sites Web de détecter lorsqu'un utilisateur coupe, copie, colle ou sélectionne des données d'une page Web"
   },
-  "options-checklistItem-disableContextMenuEvt" :  {
-    "message" :  "Désactiver les événements du menu contextuel"
+  "options-checklistItem-disableContextMenuEvt": {
+    "message": "Désactiver les événements du menu contextuel"
   },
-  "options-checklistItem-disableContextMenuEvtDesc" :  {
-    "message" :  "Désactive le contrôle du site Web sur le menu contextuel du clic droit. Effectuez la combinaison Maj + clic droit pour outrepasser cette option"
+  "options-checklistItem-disableContextMenuEvtDesc": {
+    "message": "Désactive le contrôle du site Web sur le menu contextuel du clic droit. Effectuez la combinaison Maj + clic droit pour outrepasser cette option"
   },
-  "options-checklistItem-disableMobileSensors" :  {
-    "message" :  "Désactiver les capteurs de l'appareil"
+  "options-checklistItem-disableMobileSensors": {
+    "message": "Désactiver les capteurs de l'appareil"
   },
-  "options-checklistItem-disableMobileSensorsDesc" :  {
-    "message" :  "Désactiver les capteurs des appareils (empêche les sites qui ont besoin d'accéder aux capteurs de fonctionner)"
+  "options-checklistItem-disableMobileSensorsDesc": {
+    "message": "Désactiver les capteurs des appareils (empêche les sites qui ont besoin d'accéder aux capteurs de fonctionner)"
   },
-  "options-checklistItem-disableDNSPrefetch" :  {
-    "message" :  "Désactiver le préchargement DNS"
+  "options-checklistItem-disableDNSPrefetch": {
+    "message": "Désactiver le préchargement DNS"
   },
-  "options-checklistItem-disableDNSPrefetchDesc" :  {
-    "message" :  "Empêcher Firefox d'exécuter de façon proactive la résolution DNS sur les liens que l'utilisateur peut choisir de suivre, ainsi que les URLs pour les éléments référencés par les éléments d'une page Web."
+  "options-checklistItem-disableDNSPrefetchDesc": {
+    "message": "Empêcher Firefox d'exécuter de façon proactive la résolution DNS sur les liens que l'utilisateur peut choisir de suivre, ainsi que les URLs pour les éléments référencés par les éléments d'une page Web."
   },
-  "options-checklistItem-disableDOMStorage" :  {
-    "message" :  "Désactiver le stockage DOM"
+  "options-checklistItem-disableDOMStorage": {
+    "message": "Désactiver le stockage DOM"
   },
-  "options-checklistItem-disableDOMStorageDesc" :  {
-    "message" :  "Empêcher les sites de stocker des données (stockage de session et stockage local)"
+  "options-checklistItem-disableDOMStorageDesc": {
+    "message": "Empêcher les sites de stocker des données (stockage de session et stockage local)"
   },
-  "options-checklistItem-disableDRM" :  {
-    "message" :  "Désactiver les DRM"
+  "options-checklistItem-disableDRM": {
+    "message": "Désactiver les DRM"
   },
-  "options-checklistItem-disableDRMDesc" :  {
-    "message" :  "Désactive les DRM. Empêche certains sites comme Spotify ou Netflix de fonctionner"
+  "options-checklistItem-disableDRMDesc": {
+    "message": "Désactive les DRM. Empêche certains sites comme Spotify ou Netflix de fonctionner"
   },
-  "options-checklistItem-disableGeo" :  {
-    "message" :  "Désactiver la géolocalisation"
+  "options-checklistItem-disableGeo": {
+    "message": "Désactiver la géolocalisation"
   },
-  "options-checklistItem-disableGeoDesc" :  {
-    "message" :  "Désactive la fonction de géolocalisation. Empêche les sites qui ont besoin d'accéder à la localisation de fonctionner"
+  "options-checklistItem-disableGeoDesc": {
+    "message": "Désactive la fonction de géolocalisation. Empêche les sites qui ont besoin d'accéder à la localisation de fonctionner"
   },
-  "options-checklistItem-disableGeo2" :  {
-    "message" :  "Désactiver la géolocalisation 2"
+  "options-checklistItem-disableGeo2": {
+    "message": "Désactiver la géolocalisation 2"
   },
-  "options-checklistItem-disableGeo2Desc" :  {
-    "message" :  "Supprimer le fournisseur de géolocalisation de Firefox"
+  "options-checklistItem-disableGeo2Desc": {
+    "message": "Supprimer le fournisseur de géolocalisation de Firefox"
   },
-  "options-checklistItem-disableIDN" :  {
-    "message" :  "Désactiver le support IDN"
+  "options-checklistItem-disableIDN": {
+    "message": "Désactiver le support IDN"
   },
-  "options-checklistItem-disableIDNDesc" :  {
-    "message" :  "Toujours afficher la version punycode brute des noms de domaine internationalisés. Risque d'hameçonnage ; par exemple http://www.арplе.com/ est affiché comme http://xn--80ak6aa92e.com"
+  "options-checklistItem-disableIDNDesc": {
+    "message": "Toujours afficher la version punycode brute des noms de domaine internationalisés. Risque d'hameçonnage ; par exemple http://www.арplе.com/ est affiché comme http://xn--80ak6aa92e.com"
   },
-  "options-checklistItem-disableOfflineCache" :  {
-    "message" :  "Désactiver le cache hors ligne"
+  "options-checklistItem-disableOfflineCache": {
+    "message": "Désactiver le cache hors ligne"
   },
-  "options-checklistItem-disableOfflineCacheDesc" :  {
-    "message" :  "Empêche les données du site Web d'être mises en cache pour une utilisation hors ligne"
+  "options-checklistItem-disableOfflineCacheDesc": {
+    "message": "Empêche les données du site Web d'être mises en cache pour une utilisation hors ligne"
   },
-  "options-checklistItem-disablePDF" :  {
-    "message" :  "Désactiver PDF.js"
+  "options-checklistItem-disablePDF": {
+    "message": "Désactiver PDF.js"
   },
-  "options-checklistItem-disablePDFDesc" :  {
-    "message" :  "Empêcher le chargement du PDF dans le navigateur"
+  "options-checklistItem-disablePDFDesc": {
+    "message": "Empêcher le chargement du PDF dans le navigateur"
   },
-  "options-checklistItem-disablePocket" :  {
-    "message" :  "Désactiver Pocket"
+  "options-checklistItem-disablePocket": {
+    "message": "Désactiver Pocket"
   },
-  "options-checklistItem-disablePocketDesc" :  {
-    "message" :  "Fonctionnalité potentiellement non désirée"
+  "options-checklistItem-disablePocketDesc": {
+    "message": "Fonctionnalité potentiellement non désirée"
   },
-  "options-checklistItem-disableResTiming" :  {
-    "message" :  "Désactiver l'API de minutage des ressources"
+  "options-checklistItem-disableResTiming": {
+    "message": "Désactiver l'API de minutage des ressources"
   },
-  "options-checklistItem-disableResTimingDesc" :  {
-    "message" :  "La synchronisation des ressources est une API de navigateur qui permet de collecter des informations sur la synchronisation des ressources d'une page. Cela peut inclure l'historique des fuites, des informations sur le réseau local et éventuellement la localisation"
+  "options-checklistItem-disableResTimingDesc": {
+    "message": "La synchronisation des ressources est une API de navigateur qui permet de collecter des informations sur la synchronisation des ressources d'une page. Cela peut inclure l'historique des fuites, des informations sur le réseau local et éventuellement la localisation"
   },
-  "options-checklistItem-disableSearchSuggest" :  {
-    "message" :  "Désactiver les suggestions de recherche"
+  "options-checklistItem-disableSearchSuggest": {
+    "message": "Désactiver les suggestions de recherche"
   },
-  "options-checklistItem-disableSearchSuggestDesc" :  {
-    "message" :  "Empêche les suggestions de recherche"
+  "options-checklistItem-disableSearchSuggestDesc": {
+    "message": "Empêche les suggestions de recherche"
   },
-  "options-checklistItem-disableSearchUpdates" :  {
-    "message" :  "Désactiver les mises à jour des moteurs de recherche"
+  "options-checklistItem-disableSearchUpdates": {
+    "message": "Désactiver les mises à jour des moteurs de recherche"
   },
-  "options-checklistItem-disableSearchUpdatesDesc" :  {
-    "message" :  "Empêcher Firefox de mettre à jour les moteurs de recherche"
+  "options-checklistItem-disableSearchUpdatesDesc": {
+    "message": "Empêcher Firefox de mettre à jour les moteurs de recherche"
   },
-  "options-checklistItem-disableSpeculatePreConn" :  {
-    "message" :  "Désactiver les pré-connexions spéculatives"
+  "options-checklistItem-disableSpeculatePreConn": {
+    "message": "Désactiver les pré-connexions spéculatives"
   },
-  "options-checklistItem-disableSpeculatePreConnDesc" :  {
-    "message" :  "Empêche Firefox de récupérer de manière anticipée des ressources lors du survol ou d'une interaction avec un élément"
+  "options-checklistItem-disableSpeculatePreConnDesc": {
+    "message": "Empêche Firefox de récupérer de manière anticipée des ressources lors du survol ou d'une interaction avec un élément"
   },
-  "options-checklistItem-disableSSLFalseStart" :  {
-    "message" :  "Désactiver le faux démarrage SSL"
+  "options-checklistItem-disableSSLFalseStart": {
+    "message": "Désactiver le faux démarrage SSL"
   },
-  "options-checklistItem-disableSSLFalseStartDesc" :  {
-    "message" :  "Empêche le client d'envoyer des données avant d'avoir terminé l'établissement d'une liaison pour démarrer la session"
+  "options-checklistItem-disableSSLFalseStartDesc": {
+    "message": "Empêche le client d'envoyer des données avant d'avoir terminé l'établissement d'une liaison pour démarrer la session"
   },
-  "options-checklistItem-disableSSLSessId" :  {
-    "message" :  "Désactiver les identifiants de session SSL"
+  "options-checklistItem-disableSSLSessId": {
+    "message": "Désactiver les identifiants de session SSL"
   },
-  "options-checklistItem-disableSSLSessIdDesc" :  {
-    "message" :  "Empêche le traçage avec la reprise de session TLS"
+  "options-checklistItem-disableSSLSessIdDesc": {
+    "message": "Empêche le traçage avec la reprise de session TLS"
   },
-  "options-checklistItem-disableTLSRTT" :  {
-    "message" :  "Désactiver TLS 0-RTT"
+  "options-checklistItem-disableTLSRTT": {
+    "message": "Désactiver TLS 0-RTT"
   },
-  "options-checklistItem-disableTLSRTTDesc" :  {
-    "message" :  "Zero Round Trip Time Resumption (0-RTT) est une nouvelle fonctionnalité de TLS 1.3 qui permet à un client et à un serveur de négocier une connexion en moins d'étapes, ce qui permet aux sites Web HTTPS de se charger plus rapidement. Cependant, cela pose deux problèmes. Premièrement, vous perdez le secret de transmission (en générant une nouvelle clé pour chaque session et en la supprimant à la fin de la session). Deuxièmement, 0-RTT nécessite une implémentation spéciale afin d'empêcher les attaques par rejeu, contre lesquelles certains développeurs Web ne parviendront certainement pas à se protéger. - Crédits : https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
+  "options-checklistItem-disableTLSRTTDesc": {
+    "message": "Zero Round Trip Time Resumption (0-RTT) est une nouvelle fonctionnalité de TLS 1.3 qui permet à un client et à un serveur de négocier une connexion en moins d'étapes, ce qui permet aux sites Web HTTPS de se charger plus rapidement. Cependant, cela pose deux problèmes. Premièrement, vous perdez le secret de transmission (en générant une nouvelle clé pour chaque session et en la supprimant à la fin de la session). Deuxièmement, 0-RTT nécessite une implémentation spéciale afin d'empêcher les attaques par rejeu, contre lesquelles certains développeurs Web ne parviendront certainement pas à se protéger. - Crédits : https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
   },
-  "options-checklistItem-disableTRR" :  {
-    "message" :  "Désactiver TTR (Trusted Recursive Resolver)"
+  "options-checklistItem-disableTRR": {
+    "message": "Désactiver TTR (Trusted Recursive Resolver)"
   },
-  "options-checklistItem-disableTRRDesc" :  {
-    "message" :  "DNS-over-HTTPS contourne les hôtes et utilise Cloudflare/Google. Les paramètres DNS devraient plutôt être gérés par l'utilisateur"
+  "options-checklistItem-disableTRRDesc": {
+    "message": "DNS-over-HTTPS contourne les hôtes et utilise Cloudflare/Google. Les paramètres DNS devraient plutôt être gérés par l'utilisateur"
   },
-  "options-checklistItem-disableWebGL" :  {
-    "message" :  "Désactiver WebGL"
+  "options-checklistItem-disableWebGL": {
+    "message": "Désactiver WebGL"
   },
-  "options-checklistItem-disableWebGLDesc" :  {
-    "message" :  "Désactive WebGL (provoquera des problèmes avec les jeux web)"
+  "options-checklistItem-disableWebGLDesc": {
+    "message": "Désactive WebGL (provoquera des problèmes avec les jeux web)"
   },
-  "options-checklistItem-disableWebBeacons" :  {
-    "message" :  "Désactiver les balises Web"
+  "options-checklistItem-disableWebBeacons": {
+    "message": "Désactiver les balises Web"
   },
-  "options-checklistItem-disableWebBeaconsDesc" :  {
-    "message" :  "Désactive les balises Web"
+  "options-checklistItem-disableWebBeaconsDesc": {
+    "message": "Désactive les balises Web"
   },
-  "options-checklistItem-clearOfflineApps" :  {
-    "message" :  "Activer l'effacement des applications hors ligne lors de l'arrêt"
+  "options-checklistItem-clearOfflineApps": {
+    "message": "Activer l'effacement des applications hors ligne lors de l'arrêt"
   },
-  "options-checklistItem-clearOfflineAppsDesc" :  {
-    "message" :  "Efface les données hors ligne du site Web lors de l'arrêt"
+  "options-checklistItem-clearOfflineAppsDesc": {
+    "message": "Efface les données hors ligne du site Web lors de l'arrêt"
   },
-  "options-checklistItem-enableSocialTrackingProtect" :  {
-    "message" :  "Activer la protection contre le pistage social"
+  "options-checklistItem-enableSocialTrackingProtect": {
+    "message": "Activer la protection contre le pistage social"
   },
-  "options-checklistItem-enableSocialTrackingProtectDesc" :  {
-    "message" :  "Active la protection contre le pistage social"
+  "options-checklistItem-enableSocialTrackingProtectDesc": {
+    "message": "Active la protection contre le pistage social"
   },
-  "options-checklistItem-limitFonts" :  {
-    "message" :  "Limiter les polices détectables"
+  "options-checklistItem-limitFonts": {
+    "message": "Limiter les polices détectables"
   },
-  "options-checklistItem-limitFontsDesc" :  {
-    "message" :  "Réduit le caractère identifiable des polices installées. Peut causer des problèmes avec les icônes"
+  "options-checklistItem-limitFontsDesc": {
+    "message": "Réduit le caractère identifiable des polices installées. Peut causer des problèmes avec les icônes"
   },
-  "options-checklistItem-limitMaxTabsUndo" :  {
-    "message" :  "Limite l'historique des onglets"
+  "options-checklistItem-limitMaxTabsUndo": {
+    "message": "Limite l'historique des onglets"
   },
-  "options-checklistItem-limitMaxTabsUndoDesc" :  {
-    "message" :  "Les onglets fermés sont stockés temporairement dans Menu -> Historique -> Onglets récemment fermés même si Firefox est configuré pour ne pas mémoriser l'historique"
+  "options-checklistItem-limitMaxTabsUndoDesc": {
+    "message": "Les onglets fermés sont stockés temporairement dans Menu -> Historique -> Onglets récemment fermés même si Firefox est configuré pour ne pas mémoriser l'historique"
   },
-  "options-checklistItem-useClickToPlay" :  {
-    "message" :  "Utiliser un clic pour lancer les plugins"
+  "options-checklistItem-useClickToPlay": {
+    "message": "Utiliser un clic pour lancer les plugins"
   },
-  "options-checklistItem-useClickToPlayDesc" :  {
-    "message" :  "Empêche les plugins de se lancer automatiquement lors du chargement d'une page"
+  "options-checklistItem-useClickToPlayDesc": {
+    "message": "Empêche les plugins de se lancer automatiquement lors du chargement d'une page"
   },
-  "options-checklistItem-disableDataSubmission" :  {
-    "message" :  "Désactiver la soumission des données"
+  "options-checklistItem-disableDataSubmission": {
+    "message": "Désactiver la soumission des données"
   },
-  "options-checklistItem-disableDataSubmissionDesc" :  {
-    "message" :  "Désactive l'envoi de données à Mozilla"
+  "options-checklistItem-disableDataSubmissionDesc": {
+    "message": "Désactive l'envoi de données à Mozilla"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck" :  {
-    "message" :  "Désactiver la vérification des téléchargements de la navigation privée"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck": {
+    "message": "Désactiver la vérification des téléchargements de la navigation privée"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheckDesc" :  {
-    "message" :  "Désactive la vérification de sécurité des téléchargements"
+  "options-checklistItem-disableSafeBrowsingDownloadCheckDesc": {
+    "message": "Désactive la vérification de sécurité des téléchargements"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck2" :  {
-    "message" :  "Désactiver la vérification des téléchargements de la navigation privée 2"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck2": {
+    "message": "Désactiver la vérification des téléchargements de la navigation privée 2"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc" :  {
-    "message" :  "Désactive la vérification de sécurité des téléchargements potentiellement non désirés"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc": {
+    "message": "Désactive la vérification de sécurité des téléchargements potentiellement non désirés"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck3" :  {
-    "message" :  "Désactiver la vérification des téléchargements de la navigation privée 3"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck3": {
+    "message": "Désactiver la vérification des téléchargements de la navigation privée 3"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc" :  {
-    "message" :  "Désactive la vérification de sécurité des téléchargements peu courants"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc": {
+    "message": "Désactive la vérification de sécurité des téléchargements peu courants"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck4" :  {
-    "message" :  "Désactiver la vérification des téléchargements de la navigation privée 4"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck4": {
+    "message": "Désactiver la vérification des téléchargements de la navigation privée 4"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc" :  {
-    "message" :  "Désactive la vérification des binaires hors des listes locales de Google"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc": {
+    "message": "Désactive la vérification des binaires hors des listes locales de Google"
   },
-  "options-checklistItem-disableSafeBrowsingMalwareCheck" :  {
-    "message" :  "Désactiver la vérification des logiciels malveillants de la navigation privée"
+  "options-checklistItem-disableSafeBrowsingMalwareCheck": {
+    "message": "Désactiver la vérification des logiciels malveillants de la navigation privée"
   },
-  "options-checklistItem-disableSafeBrowsingMalwareCheckDesc" :  {
-    "message" :  "Empêche la recherche dans la liste des logiciels malveillants de Google"
+  "options-checklistItem-disableSafeBrowsingMalwareCheckDesc": {
+    "message": "Empêche la recherche dans la liste des logiciels malveillants de Google"
   },
-  "options-checklistItem-disableSafeBrowsingPhishingCheck" :  {
-    "message" :  "Désactiver la vérification des hameçonnages de la navigation privée"
+  "options-checklistItem-disableSafeBrowsingPhishingCheck": {
+    "message": "Désactiver la vérification des hameçonnages de la navigation privée"
   },
-  "options-checklistItem-disableSafeBrowsingPhishingCheckDesc" :  {
-    "message" :  "Empêche la recherche dans la liste des hameçonnages de Google"
+  "options-checklistItem-disableSafeBrowsingPhishingCheckDesc": {
+    "message": "Empêche la recherche dans la liste des hameçonnages de Google"
   },
-  "options-checklistItem-disableHealthReport" :  {
-    "message" :  "Désactiver les envois de rapports de santé"
+  "options-checklistItem-disableHealthReport": {
+    "message": "Désactiver les envois de rapports de santé"
   },
-  "options-checklistItem-disableHealthReportDesc" :  {
-    "message" :  "Désactiver l'envoi des rapports de santé à Mozilla"
+  "options-checklistItem-disableHealthReportDesc": {
+    "message": "Désactiver l'envoi des rapports de santé à Mozilla"
   },
-  "options-checklistItem-disableCrashReport" :  {
-    "message" :  "Désactiver le rapport de plantage"
+  "options-checklistItem-disableCrashReport": {
+    "message": "Désactiver le rapport de plantage"
   },
-  "options-checklistItem-disableCrashReportDesc" :  {
-    "message" :  "Désactiver l'envoi des rapports de plantage à Mozilla"
+  "options-checklistItem-disableCrashReportDesc": {
+    "message": "Désactiver l'envoi des rapports de plantage à Mozilla"
   },
-  "options-checklistItem-disableTelemetryPing" :  {
-    "message" :  "Désactiver les pings de télémétrie"
+  "options-checklistItem-disableTelemetryPing": {
+    "message": "Désactiver les pings de télémétrie"
   },
-  "options-checklistItem-disableTelemetryPingDesc" :  {
-    "message" :  "Le serveur de télémétrie utilisé si la télémétrie est activée"
+  "options-checklistItem-disableTelemetryPingDesc": {
+    "message": "Le serveur de télémétrie utilisé si la télémétrie est activée"
   },
-  "options-checklistItem-disableTelemetryReport" :  {
-    "message" :  "Désactiver le rapport de télémétrie"
+  "options-checklistItem-disableTelemetryReport": {
+    "message": "Désactiver le rapport de télémétrie"
   },
-  "options-checklistItem-disableTelemetryReportDesc" :  {
-    "message" :  "Désactive la télémétrie"
+  "options-checklistItem-disableTelemetryReportDesc": {
+    "message": "Désactive la télémétrie"
   },
-  "options-checklistItem-disableTelemetryReport2" :  {
-    "message" :  "Désactiver le rapport de télémétrie 2"
+  "options-checklistItem-disableTelemetryReport2": {
+    "message": "Désactiver le rapport de télémétrie 2"
   },
-  "options-checklistItem-disableTelemetryReport2Desc" :  {
-    "message" :  "Empêche la télémétrie d'être activée (remplace toolkit.telemetry.enabled)"
+  "options-checklistItem-disableTelemetryReport2Desc": {
+    "message": "Empêche la télémétrie d'être activée (remplace toolkit.telemetry.enabled)"
   },
-  "options-checklistItem-sessionPrivacyLevel" :  {
-    "message" :  "Définir le niveau de confidentialité de la session"
+  "options-checklistItem-sessionPrivacyLevel": {
+    "message": "Définir le niveau de confidentialité de la session"
   },
-  "options-checklistItem-sessionPrivacyLevelDesc" :  {
-    "message" :  "Définir le niveau de confidentialité de la session à 2 : empêche Firefox de stocker le contenu des formulaires, des positions de la barre de défilement, des cookies et des données POST pour la restauration d'une session"
+  "options-checklistItem-sessionPrivacyLevelDesc": {
+    "message": "Définir le niveau de confidentialité de la session à 2 : empêche Firefox de stocker le contenu des formulaires, des positions de la barre de défilement, des cookies et des données POST pour la restauration d'une session"
   },
-  "options-import-couldNotImport" :  {
-    "message" :  "Impossible d'importer le fichier"
+  "options-import-couldNotImport": {
+    "message": "Impossible d'importer le fichier"
   },
-  "options-import-invalid-config" :  {
-    "message" :  "Paramètres invalides : configuration manquante"
+  "options-import-invalid-config": {
+    "message": "Paramètres invalides : configuration manquante"
   },
-  "options-import-invalid-excluded" :  {
-    "message" :  "Paramètres invalides : sites exclus manquants"
+  "options-import-invalid-excluded": {
+    "message": "Paramètres invalides : sites exclus manquants"
   },
-  "options-import-invalid-excludedProfile" :  {
-    "message" :  "Paramètres invalides : site exclu a un profile invalide"
+  "options-import-invalid-excludedProfile": {
+    "message": "Paramètres invalides : site exclu a un profile invalide"
   },
-  "options-import-invalid-headers" :  {
-    "message" :  "Paramètres invalides: en-têtes manquants"
+  "options-import-invalid-headers": {
+    "message": "Paramètres invalides: en-têtes manquants"
   },
-  "options-import-invalid-ipRuleId" :  {
-    "message" :  "Paramètres invalides: id de règle IP invalide"
+  "options-import-invalid-ipRuleId": {
+    "message": "Paramètres invalides: id de règle IP invalide"
   },
-  "options-import-invalid-ipRuleName" :  {
-    "message" :  "Paramètres invalides: nom de règle IP manquant"
+  "options-import-invalid-ipRuleName": {
+    "message": "Paramètres invalides: nom de règle IP manquant"
   },
-  "options-import-invalid-ipRuleRange" :  {
-    "message" :  "Paramètres invalides: intervalle IP de règles IP invalide"
+  "options-import-invalid-ipRuleRange": {
+    "message": "Paramètres invalides: intervalle IP de règles IP invalide"
   },
-  "options-import-invalid-ipRules" :  {
-    "message" :  "Paramètres invalides : règles IP manquantes"
+  "options-import-invalid-ipRules": {
+    "message": "Paramètres invalides : règles IP manquantes"
   },
-  "options-import-invalid-ipRulesDupe" :  {
-    "message" :  "Paramètres invalides : doublon de règle IP"
+  "options-import-invalid-ipRulesDupe": {
+    "message": "Paramètres invalides : doublon de règle IP"
   },
-  "options-import-invalid-options" :  {
-    "message" :  "Paramètres invalides : options manquantes"
+  "options-import-invalid-options": {
+    "message": "Paramètres invalides : options manquantes"
   },
-  "options-import-invalid-profile" :  {
-    "message" :  "Paramètres invalides : profil manquant"
+  "options-import-invalid-profile": {
+    "message": "Paramètres invalides : profil manquant"
   },
-  "options-import-invalid-setting" :  {
-    "message" :  "Valeur de paramètre invalide :"
+  "options-import-invalid-setting": {
+    "message": "Valeur de paramètre invalide :"
   },
-  "options-import-invalid-settings" :  {
-    "message" :  "Paramètres invalides : paramètres manquants"
+  "options-import-invalid-settings": {
+    "message": "Paramètres invalides : paramètres manquants"
   },
-  "options-import-invalid-spoofIP" :  {
-    "message" :  "Paramètres invalides: intervalle IP de la falsification d'entête invalide"
+  "options-import-invalid-spoofIP": {
+    "message": "Paramètres invalides: intervalle IP de la falsification d'entête invalide"
   },
-  "options-import-invalid-version" :  {
-    "message" :  "Paramètres invalides : la version n'est pas acceptée"
+  "options-import-invalid-version": {
+    "message": "Paramètres invalides : la version n'est pas acceptée"
   },
-  "options-import-invalid-whitelist" :  {
-    "message" :  "Paramètres invalides : liste blanche manquante"
+  "options-import-invalid-whitelist": {
+    "message": "Paramètres invalides : liste blanche manquante"
   },
-  "options-import-invalid-whitelistDupe" :  {
-    "message" :  "Paramètres invalides : id de la règle de la liste blanche en double trouvé"
+  "options-import-invalid-whitelistDupe": {
+    "message": "Paramètres invalides : id de la règle de la liste blanche en double trouvé"
   },
-  "options-import-invalid-whitelistId" :  {
-    "message" :  "Paramètres invalides : id de la règle de la liste blanche invalide"
+  "options-import-invalid-whitelistId": {
+    "message": "Paramètres invalides : id de la règle de la liste blanche invalide"
   },
-  "options-import-invalid-whitelistName" :  {
-    "message" :  "Paramètres invalides : nom de la règle de la liste blanche manquant"
+  "options-import-invalid-whitelistName": {
+    "message": "Paramètres invalides : nom de la règle de la liste blanche manquant"
   },
-  "options-import-invalid-whitelistOpt" :  {
-    "message" :  "Paramètres invalides : options de la règle de la liste blanche invalides"
+  "options-import-invalid-whitelistOpt": {
+    "message": "Paramètres invalides : options de la règle de la liste blanche invalides"
   },
-  "options-import-invalid-whitelistSpoofIP" :  {
-    "message" :  "Paramètres invalides : fausse IP de la règle de la liste blanche invalide"
+  "options-import-invalid-whitelistSpoofIP": {
+    "message": "Paramètres invalides : fausse IP de la règle de la liste blanche invalide"
   },
-  "options-import-success" :  {
-    "message" :  "Réglages importés avec succès. Rechargement de l'extension..."
+  "options-import-success": {
+    "message": "Réglages importés avec succès. Rechargement de l'extension..."
   },
-  "options-ipRules-editorTitle" :  {
-    "message" :  "Éditeur de règle IP"
+  "options-ipRules-editorTitle": {
+    "message": "Éditeur de règle IP"
   },
-  "options-ipRules-ipRule" :  {
-    "message" :  "Règle IP"
+  "options-ipRules-ipRule": {
+    "message": "Règle IP"
   },
-  "options-ipRules-reload" :  {
-    "message" :  "Recharger les info IP"
+  "options-ipRules-reload": {
+    "message": "Recharger les info IP"
   },
-  "options-ipRules-textareaLabel" :  {
-    "message" :  "Intervalles IP / Adresses"
+  "options-ipRules-textareaLabel": {
+    "message": "Intervalles IP / Adresses"
   },
-  "options-ipRules-textareaPlaceholder" :  {
-    "message" :  "Une adresse IP/Intervalle IP par ligne"
+  "options-ipRules-textareaPlaceholder": {
+    "message": "Une adresse IP/Intervalle IP par ligne"
   },
-  "options-modal-askDelete" :  {
-    "message" :  "Êtes-vous sûr de vouloir supprimer cette règle ?"
+  "options-modal-askDelete": {
+    "message": "Êtes-vous sûr de vouloir supprimer cette règle ?"
   },
-  "options-modal-askReset" :  {
-    "message" :  "Êtes-vous sûr de vouloir réinitialiser les paramètres ?"
+  "options-modal-askReset": {
+    "message": "Êtes-vous sûr de vouloir réinitialiser les paramètres ?"
   },
-  "options-modal-confirmDelete" :  {
-    "message" :  "Oui, supprimer!"
+  "options-modal-confirmDelete": {
+    "message": "Oui, supprimer!"
   },
-  "options-modal-confirmReset" :  {
-    "message" :  "Oui, réinitialise les paramètres !"
+  "options-modal-confirmReset": {
+    "message": "Oui, réinitialise les paramètres !"
   },
-  "options-settings" :  {
-    "message" :  "Paramètres"
+  "options-settings": {
+    "message": "Paramètres"
   },
-  "options-settings-import" :  {
-    "message" :  "Importer"
+  "options-settings-import": {
+    "message": "Importer"
   },
-  "options-settings-importing" :  {
-    "message" :  "Importer les paramètres"
+  "options-settings-importing": {
+    "message": "Importer les paramètres"
   },
-  "options-settings-export" :  {
-    "message" :  "Exporter"
+  "options-settings-export": {
+    "message": "Exporter"
   },
-  "options-settings-reset" :  {
-    "message" :  "Valeurs par défaut"
+  "options-settings-reset": {
+    "message": "Valeurs par défaut"
   },
-  "options-tab-about" :  {
-    "message" :  "À propos"
+  "options-tab-about": {
+    "message": "À propos"
   },
-  "options-tab-ipRules" :  {
-    "message" :  "Règles IP"
+  "options-tab-ipRules": {
+    "message": "Règles IP"
   },
-  "options-tab-checklist" :  {
-    "message" :  "Check-list"
+  "options-tab-checklist": {
+    "message": "Check-list"
   },
-  "options-whitelist-acceptLang" :  {
-    "message" :  "Langue acceptée"
+  "options-whitelist-acceptLang": {
+    "message": "Langue acceptée"
   },
-  "options-whitelist-editorTitle" :  {
-    "message" :  "Éditeur de règles de liste blanche"
+  "options-whitelist-editorTitle": {
+    "message": "Éditeur de règles de liste blanche"
   },
-  "options-whitelist-headerIPLabel" :  {
-    "message" :  "En-tête IP (Via & X-Forwarded For)"
+  "options-whitelist-headerIPLabel": {
+    "message": "En-tête IP (Via & X-Forwarded For)"
   },
-  "options-whitelist-options-name" :  {
-    "message" :  "Activer la protection du nom des fenêtres"
+  "options-whitelist-options-name": {
+    "message": "Activer la protection du nom des fenêtres"
   },
-  "options-whitelist-options-tz" :  {
-    "message" :  "Activer la falsification du fuseau horaire"
+  "options-whitelist-options-tz": {
+    "message": "Activer la falsification du fuseau horaire"
   },
-  "options-whitelist-options-ws" :  {
-    "message" :  "Désactiver \"WebSocket\""
+  "options-whitelist-options-ws": {
+    "message": "Désactiver \"WebSocket\""
   },
-  "options-whitelist-rule" :  {
-    "message" :  "Règle de liste blanche"
+  "options-whitelist-rule": {
+    "message": "Règle de liste blanche"
   },
-  "options-whitelist-sitesTip" :  {
-    "message" :  "Une règle par ligne: domaine@@[motif regex optionnel]"
+  "options-whitelist-sitesTip": {
+    "message": "Une règle par ligne: domaine@@[motif regex optionnel]"
   },
-  "options-whitelist-textareaLabel" :  {
-    "message" :  "Intervalles IP / Adresses"
+  "options-whitelist-textareaLabel": {
+    "message": "Intervalles IP / Adresses"
   },
-  "options-whitelist-textareaPlaceholder" :  {
-    "message" :  "Une adresse IP/Intervalle IP par ligne"
+  "options-whitelist-textareaPlaceholder": {
+    "message": "Une adresse IP/Intervalle IP par ligne"
   },
-  "popup-home-change" :  {
-    "message" :  "Changer"
+  "popup-home-change": {
+    "message": "Changer"
   },
-  "popup-home-currentProfile" :  {
-    "message" :  "Profil actuel"
+  "popup-home-currentProfile": {
+    "message": "Profil actuel"
   },
-  "popup-home-currentProfile-defaultLanguage" :  {
-    "message" :  "Langue par défaut"
+  "popup-home-currentProfile-defaultLanguage": {
+    "message": "Langue par défaut"
   },
-  "popup-home-currentProfile-defaultScreen" :  {
-    "message" :  "Écran par défaut"
+  "popup-home-currentProfile-defaultScreen": {
+    "message": "Écran par défaut"
   },
-  "popup-home-currentProfile-defaultTimezone" :  {
-    "message" :  "Fuseau horaire par défaut"
+  "popup-home-currentProfile-defaultTimezone": {
+    "message": "Fuseau horaire par défaut"
   },
-  "popup-home-currentProfile-gettingTimezone" :  {
-    "message" :  "Récupération des info IP"
+  "popup-home-currentProfile-gettingTimezone": {
+    "message": "Récupération des info IP"
   },
-  "popup-home-currentProfile-screenProfile" :  {
-    "message" :  "Écran (Profil)"
+  "popup-home-currentProfile-screenProfile": {
+    "message": "Écran (Profil)"
   },
-  "popup-home-disabled" :  {
-    "message" :  "Chameleon est désactivé"
+  "popup-home-disabled": {
+    "message": "Chameleon est désactivé"
   },
-  "popup-home-enabled" :  {
-    "message" :  "Chameleon est activé"
+  "popup-home-enabled": {
+    "message": "Chameleon est activé"
   },
-  "popup-home-notification-disabled" :  {
-    "message" :  "Notifications Off"
+  "popup-home-notification-disabled": {
+    "message": "Notifications Off"
   },
-  "popup-home-notification-enabled" :  {
-    "message" :  "Notifications On"
+  "popup-home-notification-enabled": {
+    "message": "Notifications On"
   },
-  "popup-home-onThisPage" :  {
-    "message" :  "sur cette page"
+  "popup-home-onThisPage": {
+    "message": "sur cette page"
   },
-  "popup-home-theme-dark" :  {
-    "message" :  "Sombre"
+  "popup-home-theme-dark": {
+    "message": "Sombre"
   },
-  "popup-home-theme-light" :  {
-    "message" :  "Clair"
+  "popup-home-theme-light": {
+    "message": "Clair"
   },
-  "popup-profile-changePeriodically" :  {
-    "message" :  "Changer périodiquement"
+  "popup-profile-changePeriodically": {
+    "message": "Changer périodiquement"
   },
-  "popup-profile-devicePhone" :  {
-    "message" :  "Téléphone"
+  "popup-profile-devicePhone": {
+    "message": "Téléphone"
   },
-  "popup-profile-deviceTablet" :  {
-    "message" :  "Tablette"
+  "popup-profile-deviceTablet": {
+    "message": "Tablette"
   },
-  "popup-profile-interval-no" :  {
-    "message" :  "Non"
+  "popup-profile-interval-no": {
+    "message": "Non"
   },
-  "popup-profile-interval-custom" :  {
-    "message" :  "Intervalle personnalisé"
+  "popup-profile-interval-custom": {
+    "message": "Intervalle personnalisé"
   },
-  "popup-profile-interval-customMax" :  {
-    "message" :  "Max (minutes)"
+  "popup-profile-interval-customMax": {
+    "message": "Max (minutes)"
   },
-  "popup-profile-interval-customMin" :  {
-    "message" :  "Min (minutes)"
+  "popup-profile-interval-customMin": {
+    "message": "Min (minutes)"
   },
-  "popup-profile-interval-minute" :  {
-    "message" :  "Toutes les minutes"
+  "popup-profile-interval-minute": {
+    "message": "Toutes les minutes"
   },
-  "popup-profile-interval-5minutes" :  {
-    "message" :  "Toutes les 5 minutes"
+  "popup-profile-interval-5minutes": {
+    "message": "Toutes les 5 minutes"
   },
-  "popup-profile-interval-10minutes" :  {
-    "message" :  "Toutes les 10 minutes"
+  "popup-profile-interval-10minutes": {
+    "message": "Toutes les 10 minutes"
   },
-  "popup-profile-interval-20minutes" :  {
-    "message" :  "Toutes les 20 minutes"
+  "popup-profile-interval-20minutes": {
+    "message": "Toutes les 20 minutes"
   },
-  "popup-profile-interval-30minutes" :  {
-    "message" :  "Toutes les 30 minutes"
+  "popup-profile-interval-30minutes": {
+    "message": "Toutes les 30 minutes"
   },
-  "popup-profile-interval-40minutes" :  {
-    "message" :  "Toutes les 40 minutes"
+  "popup-profile-interval-40minutes": {
+    "message": "Toutes les 40 minutes"
   },
-  "popup-profile-interval-50minutes" :  {
-    "message" :  "Toutes les 50 minutes"
+  "popup-profile-interval-50minutes": {
+    "message": "Toutes les 50 minutes"
   },
-  "popup-profile-interval-hour" :  {
-    "message" :  "Toutes les heures"
+  "popup-profile-interval-hour": {
+    "message": "Toutes les heures"
   },
-  "popup-profile-exclude" :  {
-    "message" :  "Exclure"
+  "popup-profile-exclude": {
+    "message": "Exclure"
   },
-  "popup-profile-randomAndroid" :  {
-    "message" :  "Navigateurs Android aléatoires"
+  "popup-profile-randomAndroid": {
+    "message": "Navigateurs Android aléatoires"
   },
-  "popup-profile-randomIOS" :  {
-    "message" :  "Navigateurs iOS aléatoires"
+  "popup-profile-randomIOS": {
+    "message": "Navigateurs iOS aléatoires"
   },
-  "popup-profile-randomMacOS" :  {
-    "message" :  "Navigateurs macOS aléatoires"
+  "popup-profile-randomMacOS": {
+    "message": "Navigateurs macOS aléatoires"
   },
-  "popup-profile-randomLinux" :  {
-    "message" :  "Navigateurs Linux aléatoires"
+  "popup-profile-randomLinux": {
+    "message": "Navigateurs Linux aléatoires"
   },
-  "popup-profile-randomWindows" :  {
-    "message" :  "Navigateurs Windows aléatoires"
+  "popup-profile-randomWindows": {
+    "message": "Navigateurs Windows aléatoires"
   },
-  "popup-profile-random" :  {
-    "message" :  "Aléatoire"
+  "popup-profile-random": {
+    "message": "Aléatoire"
   },
-  "popup-profile-randomDesktopProfile" :  {
-    "message" :  "Profil aléatoire (PC)"
+  "popup-profile-randomDesktopProfile": {
+    "message": "Profil aléatoire (PC)"
   },
-  "popup-profile-randomMobileProfile" :  {
-    "message" :  "Profil aléatoire (Mobile)"
+  "popup-profile-randomMobileProfile": {
+    "message": "Profil aléatoire (Mobile)"
   },
-  "popup-headers" :  {
-    "message" :  "En-têtes"
+  "popup-headers": {
+    "message": "En-têtes"
   },
-  "popup-headers-enableDNT" :  {
-    "message" :  "Activer DNT (Ne pas suivre)"
+  "popup-headers-enableDNT": {
+    "message": "Activer DNT (Ne pas suivre)"
   },
-  "popup-headers-preventEtag" :  {
-    "message" :  "Empêcher le pistage ETag"
+  "popup-headers-preventEtag": {
+    "message": "Empêcher le pistage ETag"
   },
-  "popup-headers-refererWarning" :  {
-    "message" :  "Ne modifiez pas les paramètres des options ci-dessous dans about:config."
+  "popup-headers-refererWarning": {
+    "message": "Ne modifiez pas les paramètres des options ci-dessous dans about:config."
   },
-  "popup-headers-referer-trimming" :  {
-    "message" :  "Politique de découpage du référant"
+  "popup-headers-referer-trimming": {
+    "message": "Politique de découpage du référant"
   },
-  "popup-headers-referer-trimming-sendFullURI" :  {
-    "message" :  "Envoyer l'URI complète (par défaut)"
+  "popup-headers-referer-trimming-sendFullURI": {
+    "message": "Envoyer l'URI complète (par défaut)"
   },
-  "popup-headers-referer-trimming-schemeHostPortPath" :  {
-    "message" :  "Schéma, hôte, port + chemin"
+  "popup-headers-referer-trimming-schemeHostPortPath": {
+    "message": "Schéma, hôte, port + chemin"
   },
-  "popup-headers-referer-trimming-schemeHostPort" :  {
-    "message" :  "Schéma, hôte + port"
+  "popup-headers-referer-trimming-schemeHostPort": {
+    "message": "Schéma, hôte + port"
   },
-  "popup-headers-referer-xorigin" :  {
-    "message" :  "Politique de d'origine croisée du référant"
+  "popup-headers-referer-xorigin": {
+    "message": "Politique de d'origine croisée du référant"
   },
-  "popup-headers-referer-xorigin-alwaysSend" :  {
-    "message" :  "Toujours envoyer (par défaut)"
+  "popup-headers-referer-xorigin-alwaysSend": {
+    "message": "Toujours envoyer (par défaut)"
   },
-  "popup-headers-referer-xorigin-matchBaseDomain" :  {
-    "message" :  "Corresponds au domaine de base"
+  "popup-headers-referer-xorigin-matchBaseDomain": {
+    "message": "Corresponds au domaine de base"
   },
-  "popup-headers-referer-xorigin-matchHost" :  {
-    "message" :  "Corresponds à l'hôte"
+  "popup-headers-referer-xorigin-matchHost": {
+    "message": "Corresponds à l'hôte"
   },
-  "popup-headers-spoofAcceptLang" :  {
-    "message" :  "Falsifier \"Accept-Language\""
+  "popup-headers-spoofAcceptLang": {
+    "message": "Falsifier \"Accept-Language\""
   },
-  "popup-headers-spoofIP" :  {
-    "message" :  "En-tête IP (Via & X-Forwarded For)"
+  "popup-headers-spoofIP": {
+    "message": "En-tête IP (Via & X-Forwarded For)"
   },
-  "popup-headers-spoofIP-random" :  {
-    "message" :  "IP aléatoire"
+  "popup-headers-spoofIP-random": {
+    "message": "IP aléatoire"
   },
-  "popup-headers-spoofIP-custom" :  {
-    "message" :  "IP personnalisée"
+  "popup-headers-spoofIP-custom": {
+    "message": "IP personnalisée"
   },
-  "popup-headers-spoofIP-rangeFrom" :  {
-    "message" :  "De"
+  "popup-headers-spoofIP-rangeFrom": {
+    "message": "De"
   },
-  "popup-headers-spoofIP-rangeTo" :  {
-    "message" :  "À"
+  "popup-headers-spoofIP-rangeTo": {
+    "message": "À"
   },
-  "popup-options" :  {
-    "message" :  "Options"
+  "popup-options": {
+    "message": "Options"
   },
-  "popup-options-aboutConfigButton" :  {
-    "message" :  "Ouvrir la check-list pour about:config"
+  "popup-options-aboutConfigButton": {
+    "message": "Ouvrir la check-list pour about:config"
   },
-  "popup-options-injection" :  {
-    "message" :  "Injection"
+  "popup-options-injection": {
+    "message": "Injection"
   },
-  "popup-options-injection-limitTabHistory" :  {
-    "message" :  "Limiter l'historique des onglets"
+  "popup-options-injection-limitTabHistory": {
+    "message": "Limiter l'historique des onglets"
   },
-  "popup-options-injection-protectWinName" :  {
-    "message" :  "Protéger le nom des fenêtres"
+  "popup-options-injection-protectWinName": {
+    "message": "Protéger le nom des fenêtres"
   },
-  "popup-options-injection-audioContext" :  {
-    "message" :  "Falsifier le contexte audio"
+  "popup-options-injection-audioContext": {
+    "message": "Falsifier le contexte audio"
   },
-  "popup-options-injection-clientRects" :  {
-    "message" :  "Falsifier les rects de clients"
+  "popup-options-injection-clientRects": {
+    "message": "Falsifier les rects de clients"
   },
-  "popup-options-injection-protectKBFingerprint" :  {
-    "message" :  "Protéger l'empreinte clavier"
+  "popup-options-injection-protectKBFingerprint": {
+    "message": "Protéger l'empreinte clavier"
   },
-  "popup-options-injection-protectKBFingerprintDelay" :  {
-    "message" :  "Délai (ms)"
+  "popup-options-injection-protectKBFingerprintDelay": {
+    "message": "Délai (ms)"
   },
-  "popup-options-injection-screen" :  {
-    "message" :  "Taille de l'Écran"
+  "popup-options-injection-screen": {
+    "message": "Taille de l'Écran"
   },
-  "popup-options-injection-spoofFontFingerprint" :  {
-    "message" :  "Falsifier l'empreinte des polices"
+  "popup-options-injection-spoofFontFingerprint": {
+    "message": "Falsifier l'empreinte des polices"
   },
-  "popup-options-standard" :  {
-    "message" :  "Standard"
+  "popup-options-standard": {
+    "message": "Standard"
   },
-  "popup-options-standard-blockMediaDevices" :  {
-    "message" :  "Bloquer les périphériques multimédias"
+  "popup-options-standard-blockMediaDevices": {
+    "message": "Bloquer les périphériques multimédias"
   },
-  "popup-options-standard-disableWebRTC" :  {
-    "message" :  "Désactiver WebRTC"
+  "popup-options-standard-disableWebRTC": {
+    "message": "Désactiver WebRTC"
   },
-  "popup-options-standard-firstPartyIsolation" :  {
-    "message" :  "Activer l'isolement de domaine"
+  "popup-options-standard-firstPartyIsolation": {
+    "message": "Activer l'isolement de domaine"
   },
-  "popup-options-standard-resistFingerprinting" :  {
-    "message" :  "Résister à la prise d'empreintes numériques"
+  "popup-options-standard-resistFingerprinting": {
+    "message": "Résister à la prise d'empreintes numériques"
   },
-  "popup-options-standard-trackingProtection" :  {
-    "message" :  "Mode de protection contre le pistage"
+  "popup-options-standard-trackingProtection": {
+    "message": "Mode de protection contre le pistage"
   },
-  "popup-options-standard-trackingProtection-on" :  {
-    "message" :  "Activé"
+  "popup-options-standard-trackingProtection-on": {
+    "message": "Activé"
   },
-  "popup-options-standard-trackingProtection-off" :  {
-    "message" :  "Désactivé"
+  "popup-options-standard-trackingProtection-off": {
+    "message": "Désactivé"
   },
-  "popup-options-standard-trackingProtection-privateBrowsing" :  {
-    "message" :  "Activé dans la navigation privée"
+  "popup-options-standard-trackingProtection-privateBrowsing": {
+    "message": "Activé dans la navigation privée"
   },
-  "popup-options-standard-webRTCPolicy" :  {
-    "message" :  "Politique WebRTC"
+  "popup-options-standard-webRTCPolicy": {
+    "message": "Politique WebRTC"
   },
-  "popup-options-standard-webRTCPolicy-nonProxified" :  {
-    "message" :  "Désactiver UDP hors proxy"
+  "popup-options-standard-webRTCPolicy-nonProxified": {
+    "message": "Désactiver UDP hors proxy"
   },
-  "popup-options-standard-webRTCPolicy-public" :  {
-    "message" :  "Utiliser uniquement l'interface publique (meilleur)"
+  "popup-options-standard-webRTCPolicy-public": {
+    "message": "Utiliser uniquement l'interface publique (meilleur)"
   },
-  "popup-options-standard-webRTCPolicy-publicPrivate" :  {
-    "message" :  "Utilisation de l'interface publique et privée"
+  "popup-options-standard-webRTCPolicy-publicPrivate": {
+    "message": "Utilisation de l'interface publique et privée"
   },
-  "popup-options-standard-webSockets-blockAll" :  {
-    "message" :  "Tout bloquer"
+  "popup-options-standard-webSockets-blockAll": {
+    "message": "Tout bloquer"
   },
-  "popup-options-standard-webSockets-blockThirdParty" :  {
-    "message" :  "Bloquer les tiers"
+  "popup-options-standard-webSockets-blockThirdParty": {
+    "message": "Bloquer les tiers"
   },
-  "popup-options-cookie" :  {
-    "message" :  "Cookies"
+  "popup-options-cookie": {
+    "message": "Cookies"
   },
-  "popup-options-cookieNotPersistent" :  {
-    "message" :  "Supprimer les cookies et les données du site à la fermeture de la fenêtre"
+  "popup-options-cookieNotPersistent": {
+    "message": "Supprimer les cookies et les données du site à la fermeture de la fenêtre"
   },
-  "popup-options-cookiePolicy" :  {
-    "message" :  "Politique"
+  "popup-options-cookiePolicy": {
+    "message": "Politique"
   },
-  "popup-options-cookiePolicy-allowVisited" :  {
-    "message" :  "Autoriser les sites visités"
+  "popup-options-cookiePolicy-allowVisited": {
+    "message": "Autoriser les sites visités"
   },
-  "popup-options-cookiePolicy-rejectAll" :  {
-    "message" :  "Tout rejeter"
+  "popup-options-cookiePolicy-rejectAll": {
+    "message": "Tout rejeter"
   },
-  "popup-options-cookiePolicy-rejectThirdParty" :  {
-    "message" :  "Rejeter les tiers"
+  "popup-options-cookiePolicy-rejectThirdParty": {
+    "message": "Rejeter les tiers"
   },
-  "popup-options-cookiePolicy-rejectTrackers" :  {
-    "message" :  "Rejeter les traqueurs"
+  "popup-options-cookiePolicy-rejectTrackers": {
+    "message": "Rejeter les traqueurs"
   },
-  "popup-whitelist-contextMenu" :  {
-    "message" :  "Ajouter un menu contextuel pour ouvrir le domaine de l'onglet actuel dans la liste blanche"
+  "popup-whitelist-contextMenu": {
+    "message": "Ajouter un menu contextuel pour ouvrir le domaine de l'onglet actuel dans la liste blanche"
   },
-  "popup-whitelist-defaultProfileLabel" :  {
-    "message" :  "Profil par défaut"
+  "popup-whitelist-defaultProfileLabel": {
+    "message": "Profil par défaut"
   },
-  "popup-whitelist-enable" :  {
-    "message" :  "Activer la liste blanche"
+  "popup-whitelist-enable": {
+    "message": "Activer la liste blanche"
   },
-  "popup-whitelist-isNotWhitelisted" :  {
-    "message" :  "n'est pas en liste blanche"
+  "popup-whitelist-isNotWhitelisted": {
+    "message": "n'est pas en liste blanche"
   },
-  "popup-whitelist-isWhitelisted" :  {
-    "message" :  "est dans la liste blanche"
+  "popup-whitelist-isWhitelisted": {
+    "message": "est dans la liste blanche"
   },
-  "popup-whitelist-open" :  {
-    "message" :  "Ouvrir dans la liste blanche"
+  "popup-whitelist-open": {
+    "message": "Ouvrir dans la liste blanche"
   },
-  "text-allowAll" :  {
-    "message" :  "Autoriser tous"
+  "text-allowAll": {
+    "message": "Autoriser tous"
   },
-  "text-cancel" :  {
-    "message" :  "Annuler"
+  "text-cancel": {
+    "message": "Annuler"
   },
-  "text-createNewRule" :  {
-    "message" :  "Créer une nouvelle règle"
+  "text-createNewRule": {
+    "message": "Créer une nouvelle règle"
   },
-  "text-default" :  {
-    "message" :  "Défaut"
+  "text-default": {
+    "message": "Défaut"
   },
-  "text-defaultWhitelistProfile" :  {
-    "message" :  "Profil par défaut de la liste blanche"
+  "text-defaultWhitelistProfile": {
+    "message": "Profil par défaut de la liste blanche"
   },
-  "text-disableReferer" :  {
-    "message" :  "Désactiver le référant"
+  "text-disableReferer": {
+    "message": "Désactiver le référant"
   },
-  "text-language" :  {
-    "message" :  "Langue"
+  "text-language": {
+    "message": "Langue"
   },
-  "text-name" :  {
-    "message" :  "Nom"
+  "text-name": {
+    "message": "Nom"
   },
-  "text-profile" :  {
-    "message" :  "Profil"
+  "text-profile": {
+    "message": "Profil"
   },
-  "text-realProfile" :  {
-    "message" :  "Profil Réel"
+  "text-realProfile": {
+    "message": "Profil Réel"
   },
-  "text-save" :  {
-    "message" :  "Sauvegarder"
+  "text-save": {
+    "message": "Sauvegarder"
   },
-  "text-screen" :  {
-    "message" :  "Écran"
+  "text-screen": {
+    "message": "Écran"
   },
-  "text-searchRules" :  {
-    "message" :  "Rechercher parmi les règles"
+  "text-searchRules": {
+    "message": "Rechercher parmi les règles"
   },
-  "text-timezone" :  {
-    "message" :  "Fuseau horaire"
+  "text-timezone": {
+    "message": "Fuseau horaire"
   },
-  "text-whitelist" :  {
-    "message" :  "Liste blanche"
+  "text-whitelist": {
+    "message": "Liste blanche"
   }
 }
