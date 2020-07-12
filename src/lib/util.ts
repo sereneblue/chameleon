@@ -2,6 +2,26 @@ const psl = require('psl');
 const CIDR = require('cidr-js');
 
 const cidr = new CIDR();
+const LINK = document.createElement('a');
+
+let determineRequestType = (source: string, destination: string): string => {
+  if (!source) return 'none';
+
+  LINK.href = source;
+  let s = psl.parse(LINK.hostname);
+  LINK.href = destination;
+  let d = psl.parse(LINK.hostname);
+
+  if (s.domain != d.domain) {
+    return 'cross-site';
+  } else {
+    if (s.subdomain === d.subdomain) {
+      return 'same-origin';
+    }
+
+    return 'same-site';
+  }
+};
 
 let findWhitelistRule = (rules: any, host: string, url: string): any => {
   for (var i = 0; i < rules.length; i++) {
@@ -105,6 +125,7 @@ let validateIPRange = (from: string, to: string): boolean => {
 };
 
 export default {
+  determineRequestType,
   findWhitelistRule,
   generateIP,
   getIPRange,
