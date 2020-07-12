@@ -146,7 +146,6 @@ class Interceptor {
 
     // used to send different accept headers for https requests
     let isSecure: boolean = this.regex.HTTPS.test(details.url);
-
     let dntIndex: number = -1;
 
     let profile: prof.BrowserProfile;
@@ -164,6 +163,8 @@ class Interceptor {
         profile = this.profileCache[profileUsed];
       }
     }
+
+    let isChromeBased: boolean = profile ? profile.navigator.userAgent.includes('Chrome') : false;
 
     for (let i = 0; i < details.requestHeaders.length; i++) {
       let header: string = details.requestHeaders[i].name.toLowerCase();
@@ -281,6 +282,83 @@ class Interceptor {
             value: this.tempStore.spoofIP,
           });
         }
+      }
+    }
+
+    if (isSecure && isChromeBased) {
+      // https://www.w3.org/TR/fetch-metadata/#sec-fetch-dest-header
+      // implementation below is missing some destinations (mostly worker related)
+      let secDest = 'empty';
+
+      if (details.type == 'main_frame') {
+        secDest = 'document';
+      } else if (details.type == 'sub_frame') {
+        secDest = 'iframe';
+      } else if (details.type == 'font') {
+        secDest = 'font';
+      } else if (details.type == 'imageset' || details.type == 'image') {
+        secDest = 'image';
+      } else if (details.type == 'media') {
+        let h = details.requestHeaders.find(r => r.name.toLowerCase() == 'accept');
+        if (h.value.charAt(0) == 'a') {
+          secDest = 'audio';
+        } else if (h.value.charAt(0) == 'v') {
+          secDest = 'video';
+        } else if (details.url.includes('.vtt')) {
+          secDest = 'track';
+        }
+      } else if (details.type == 'xslt') {
+        secDest = 'xslt';
+      } else if (details.type == 'web_manifest') {
+        secDest = 'manifest';
+      } else if (details.type == 'csp_report') {
+        secDest = 'report';
+      } else if (details.type == 'object') {
+        secDest = 'object'; // object is used for both <object> and <embed>
+      } else if (details.type == 'stylesheet') {
+        secDest = 'style';
+      } else if (details.type == 'script') {
+        secDest = 'script';
+      }
+
+      details.requestHeaders.push({
+        name: 'sec-fetch-dest',
+        value: secDest,
+      });
+
+      // https://w3c.github.io/webappsec-fetch-metadata/#sec-fetch-site-header
+      // not quite accurate when determining whether a request from a user action
+      let secSite = util.determineRequestType(details.type == 'main_frame' ? details.documentUrl : details.originUrl, details.url);
+      details.requestHeaders.push({
+        name: 'sec-fetch-site',
+        value: secSite,
+      });
+
+      // https://w3c.github.io/webappsec-fetch-metadata/#sec-fetch-mode-header
+      // naive implementation
+      let secMode = 'no-cors';
+      let hasOriginHeader = details.requestHeaders.findIndex(r => r.name.toLowerCase() == 'origin') > -1;
+      if (details.type == 'websocket') {
+        secMode = 'websocket';
+      } else if (details.type == 'main_frame' || details.type == 'sub_frame') {
+        secMode = 'navigate';
+      } else if (hasOriginHeader) {
+        secMode = 'cors';
+      }
+
+      details.requestHeaders.push({
+        name: 'sec-fetch-mode',
+        value: secMode,
+      });
+
+      // this is a guesstimate
+      // can't determine if this is a user request from this method
+      // iframe navigation won't be included with this request
+      if (details.type === 'main_frame') {
+        details.requestHeaders.push({
+          name: 'sec-fetch-user',
+          value: '?1',
+        });
       }
     }
 
