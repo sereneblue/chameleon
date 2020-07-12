@@ -1,3 +1,23 @@
+<a name="v0.20.21-rc1"></a>
+
+## [v0.20.21-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.21-rc...v0.20.21-rc1) (2020-07-12)
+
+### Bug Fixes
+
+- update version name
+
+<a name="v0.20.21-rc"></a>
+
+## [v0.20.21-rc](https://github.com/sereneblue/chameleon/compare/v0.20.20-rc...v0.20.21-rc) (2020-07-12)
+
+### Bug Fixes
+
+- **settings:** remove legacy settings and convert string to number
+
+### Features
+
+- **intercept:** add partial support for additional headers ([#377](https://github.com/sereneblue/chameleon/issues/377))
+
 <a name="v0.20.20-rc"></a>
 
 ## [v0.20.20-rc](https://github.com/sereneblue/chameleon/compare/v0.20.19-rc...v0.20.20-rc) (2020-07-07)
