@@ -107,6 +107,16 @@ export class Chameleon {
     });
   }
 
+  public cleanSettings(): void {
+    if (typeof this.settings.options.protectKBFingerprint.delay === 'string') {
+      this.settings.options.protectKBFingerprint.delay = Number(this.settings.options.protectKBFingerprint.delay);
+    }
+
+    if (this.settings.settings) {
+      delete this.settings.settings;
+    }
+  }
+
   public async init(storedSettings: any): Promise<void> {
     if (/^0\.12/.test(storedSettings.version)) {
       this.migrateLegacy(storedSettings);
@@ -117,6 +127,8 @@ export class Chameleon {
         this.settings = this.defaultSettings;
       }
     }
+
+    this.cleanSettings();
 
     // get current modified preferences
     let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
