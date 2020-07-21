@@ -10,7 +10,7 @@
         <p>Chameleon doesn't collect any information from users.</p>
         <p class="mt-4">
           If you are using a specific feature (language or timezone spoofing), a request may be made to ipapi.co.
-          This functionality is only enabled when the user specfies "IP" for those features. ipapi's privacy policy can be found <a href="https://ipapi.co/privacy/">here</a>.  
+          This functionality is only enabled when the user specfies "IP" for those features. ipapi's privacy policy can be found <a href="https://ipapi.co/privacy/" target="_blank" rel="noopener noreferrer">here</a>.  
         </p>
 			</div>
 		</div>
