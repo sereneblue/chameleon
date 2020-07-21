@@ -25,6 +25,7 @@
 			<li class:active="{ segment === "about" }"><a aria-current='{segment === "about" ? "page" : undefined}' href='about'>About</a></li>
 			<li class:active="{ segment === "wiki" }"><a aria-current='{segment === "wiki" ? "page" : undefined}' href='wiki'>Wiki</a></li>
 			<li class:active="{ segment === "contact" }"><a aria-current='{segment === "contact" ? "page" : undefined}' href='contact'>Contact</a></li>
+			<li class:active="{ segment === "privacy" }"><a aria-current='{segment === "privacy" ? "page" : undefined}' href='privacy'>Privacy Policy</a></li>
 		</div>
 	</ul>
 </nav>
