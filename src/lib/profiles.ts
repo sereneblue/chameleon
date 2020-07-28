@@ -39,8 +39,8 @@ export interface ProfileListItem {
 const BrowserVersions: any = {
   edg: { win: '84.0.522.44', mac: '84.0.522.44', desktopChrome: '84.0.4147.89', android: '45.6.2.5042', androidChrome: '84.0.4147.89' },
   esr: { desktop: '78' },
-  ff: { desktop: '78', mobile: '79' },
-  gcr: { desktop: '84.0.4147.89', ios: '83.0.4147.71', android: '84.0.4147.89' },
+  ff: { desktop: '79', mobile: '80' },
+  gcr: { desktop: '84.0.4147.105', ios: '83.0.4147.71', android: '84.0.4147.105' },
   sf: { desktop: '13.1.2', mobile: '13.1.2' },
 };
 
