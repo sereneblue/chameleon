@@ -1124,6 +1124,10 @@ export default class App extends Vue {
 </script>
 
 <style type="text/css">
+html {
+  font-size: 16px;
+}
+
 body {
   background-color: white;
   border: 0;
