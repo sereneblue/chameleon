@@ -29,7 +29,6 @@ jobs:
         env:
           WEB_EXT_API_KEY: ${{ secrets.WEBEXT_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.WEBEXT_API_SECRET }}
-          WEB_EXT_ID: '{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}'
       - name: Generate variables
         id: chameleon
         run: |
