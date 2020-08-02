@@ -123,7 +123,7 @@
                 id="profileIntervalMin"
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMin"
-                :class="{ error :  errors.intervalMin }"
+                :class="{ error: errors.intervalMin }"
                 name="profile.interval.min"
                 type="number"
                 min="1"
@@ -136,7 +136,7 @@
                 id="profileIntervalMax"
                 @input="setProfileInterval($event)"
                 v-model="tmp.intervalMax"
-                :class="{ error :  errors.intervalMax }"
+                :class="{ error: errors.intervalMax }"
                 name="profile.interval.max"
                 type="number"
                 min="1"
@@ -166,7 +166,7 @@
           <div v-show="currentProfileGroup" class="rounded-sm mt-2 h-1 fg">
             <perfect-scrollbar ref="scrollView" class="pl-1 pr-3">
               <div class="profile-item fg">
-                <label :class="{ 'opacity-50' :  isExcluded(currentProfileGroup) }" class="flex items-center cursor-pointer">
+                <label :class="{ 'opacity-50': isExcluded(currentProfileGroup) }" class="flex items-center cursor-pointer">
                   <input
                     @click="setSelected('profile', currentProfileGroup)"
                     :disabled="isExcluded(currentProfileGroup)"
@@ -182,7 +182,7 @@
                 </div>
               </div>
               <div v-for="p in profileListing" :key="p.id" class="profile-item fg">
-                <label class="flex items-center cursor-pointer" :class="{ 'opacity-50' :  p.excluded }">
+                <label class="flex items-center cursor-pointer" :class="{ 'opacity-50': p.excluded }">
                   <input :id="p.id" @click="setSelected('profile', p.id)" :disabled="p.excluded" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
                   <span class="ml-2">{{ p.name }}</span>
                 </label>
@@ -285,7 +285,7 @@
                 v-model="tmp.rangeFrom"
                 name="headers.spoofIP.rangeFrom"
                 class="block w-full form-input text-mini"
-                :class="{ error :  errors.rangeFrom }"
+                :class="{ error: errors.rangeFrom }"
               />
             </div>
             <div class="ml-1 w-2/5">
@@ -296,7 +296,7 @@
                 v-model="tmp.rangeTo"
                 name="headers.spoofIP.rangeTo"
                 class="block w-full form-input text-mini"
-                :class="{ error :  errors.rangeTo }"
+                :class="{ error: errors.rangeTo }"
               />
             </div>
           </div>
@@ -389,6 +389,19 @@
                     class="text-primary form-checkbox"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-blockMediaDevices.message'"></span>
+                </label>
+              </div>
+              <div class="flex items-center mb-1" v-if="!settings.options.blockMediaDevices">
+                <label class="cursor-pointer">
+                  <input
+                    id="spoofMediaDevices"
+                    @change="changeSetting($event)"
+                    :checked="settings.options.spoofMediaDevices"
+                    name="options.spoofMediaDevices"
+                    type="checkbox"
+                    class="text-primary form-checkbox"
+                  />
+                  <span class="ml-1" v-t="'popup-options-standard-spoofMediaDevices.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-1">
@@ -713,35 +726,35 @@ export default class App extends Vue {
   public currentProfileGroup: string = '';
   public currentOption: string = 'injection';
   public currentPage = {
-    domain :  '',
-    whitelisted :  false,
-    rule :  {
-      id :  '',
-      idx :  0,
-      profile :  '',
+    domain: '',
+    whitelisted: false,
+    rule: {
+      id: '',
+      idx: 0,
+      profile: '',
     },
   };
   public errors = {
-    intervalMax :  false,
-    intervalMin :  false,
-    rangeFrom :  false,
-    rangeTo :  false,
+    intervalMax: false,
+    intervalMin: false,
+    rangeFrom: false,
+    rangeTo: false,
   };
   public languages: lang.Language[] = lang.getAllLanguages();
   public profileTimeout: any = null;
   public profiles: any = new prof.Generator().getAllProfiles();
   public timezones: tz.Timezone[] = tz.getTimezones();
   public tmp = {
-    intervalMax :  '',
-    intervalMin :  '',
-    rangeFrom :  '',
-    rangeTo :  '',
-    store :  {
-      ipInfo :  {
-        lang :  '',
-        tz :  '',
+    intervalMax: '',
+    intervalMin: '',
+    rangeFrom: '',
+    rangeTo: '',
+    store: {
+      ipInfo: {
+        lang: '',
+        tz: '',
       },
-      profile :  '',
+      profile: '',
     },
   };
 
@@ -796,7 +809,7 @@ export default class App extends Vue {
       profile,
       screen,
       timezone,
-      lang :  language,
+      lang: language,
     };
   }
 
@@ -865,7 +878,7 @@ export default class App extends Vue {
     clearTimeout(this.profileTimeout);
     this.profileTimeout = setTimeout(() => {
       browser.runtime.sendMessage({
-        action :  'reloadProfile',
+        action: 'reloadProfile',
       });
     }, 100);
   }
@@ -881,8 +894,8 @@ export default class App extends Vue {
 
     await this['$store'].dispatch('changeSetting', [
       {
-        name :  evt.target.name,
-        value :  v,
+        name: evt.target.name,
+        value: v,
       },
     ]);
 
@@ -929,7 +942,7 @@ export default class App extends Vue {
   }
 
   async getCurrentPage() {
-    const currentTab = await browser.tabs.query({ active :  true, currentWindow :  true });
+    const currentTab = await browser.tabs.query({ active: true, currentWindow: true });
 
     let l = document.createElement('a');
     l.href = currentTab[0].url;
@@ -998,7 +1011,7 @@ export default class App extends Vue {
     }
 
     browser.tabs.create({
-      url :  browser.runtime.getURL(`/options/options.html#${tab}`),
+      url: browser.runtime.getURL(`/options/options.html#${tab}`),
     });
     window.close();
   }
@@ -1037,12 +1050,12 @@ export default class App extends Vue {
 
     await this['$store'].dispatch('changeSetting', [
       {
-        name :  'headers.spoofIP.rangeFrom',
-        value :  this.tmp.rangeFrom,
+        name: 'headers.spoofIP.rangeFrom',
+        value: this.tmp.rangeFrom,
       },
       {
-        name :  'headers.spoofIP.rangeTo',
-        value :  this.tmp.rangeTo,
+        name: 'headers.spoofIP.rangeTo',
+        value: this.tmp.rangeTo,
       },
     ]);
 
@@ -1069,12 +1082,12 @@ export default class App extends Vue {
 
     await this['$store'].dispatch('changeSetting', [
       {
-        name :  'profile.interval.min',
-        value :  this.tmp.intervalMin,
+        name: 'profile.interval.min',
+        value: this.tmp.intervalMin,
       },
       {
-        name :  'profile.interval.max',
-        value :  this.tmp.intervalMax,
+        name: 'profile.interval.max',
+        value: this.tmp.intervalMax,
       },
     ]);
 
@@ -1107,7 +1120,7 @@ export default class App extends Vue {
     webext.sendToBackground(this.settings);
 
     browser.runtime.sendMessage({
-      action :  'reloadInjectionScript',
+      action: 'reloadInjectionScript',
     });
   }
 
@@ -1124,6 +1137,10 @@ export default class App extends Vue {
 </script>
 
 <style type="text/css">
+html {
+  font-size: 16px;
+}
+
 body {
   background-color: white;
   border: 0;

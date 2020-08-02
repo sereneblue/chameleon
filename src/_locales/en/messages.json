@@ -701,6 +701,9 @@
   "popup-options-standard-resistFingerprinting": {
     "message": "Enable resist fingerprinting"
   },
+  "popup-options-standard-spoofMediaDevices": {
+    "message": "Spoof media devices"
+  },
   "popup-options-standard-trackingProtection": {
     "message": "Tracking protection mode"
   },
