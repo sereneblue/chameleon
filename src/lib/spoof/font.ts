@@ -62,7 +62,7 @@ export default {
 
 		let _setAttribute = Element.prototype.setAttribute;
 		let _appendChild = Element.prototype.appendChild;
-		let selectedFonts = FONTS[CHAMELEON_SPOOF.get(window).fontFingerprintOS].map(f => f.toLowerCase());
+		let selectedFonts = FONTS[CHAMELEON_SPOOF.get(window).profileOS].map(f => f.toLowerCase());
 
 		const REGEX_FONT_FAMILY = /font\-family:[^;']*;?/g;
 

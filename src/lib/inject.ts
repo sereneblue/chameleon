@@ -6,6 +6,7 @@ import history from './spoof/history';
 import kbFingerprint from './spoof/kbFingerprint';
 import language from './spoof/language';
 import media from './spoof/media';
+import mediaSpoof from './spoof/mediaSpoof';
 import navigator from './spoof/navigator';
 import referer from './spoof/referer';
 import screen from './spoof/screen';
@@ -47,7 +48,53 @@ class Injector {
         }
       }
 
-      if (settings.options.blockMediaDevices) this.updateInjectionData(media);
+      if (p) {
+        this.spoof.metadata['profileOS'] = p.osId;
+      } else {
+        // get real profile
+        let profileId: string = '';
+
+        if (window.navigator.userAgent.includes('Windows NT 6.1')) {
+          profileId = 'win1';
+        } else if (window.navigator.userAgent.includes('Windows NT 6.2')) {
+          profileId = 'win2';
+        } else if (window.navigator.userAgent.includes('Windows NT 6.3')) {
+          profileId = 'win3';
+        } else if (window.navigator.userAgent.includes('Windows NT 10.0')) {
+          profileId = 'win4';
+        } else if (window.navigator.userAgent.includes('Mac OS X 10_15')) {
+          profileId = 'mac3';
+        } else if (window.navigator.userAgent.includes('Mac OS X 10_14')) {
+          profileId = 'mac2';
+        } else if (window.navigator.userAgent.includes('Mac OS X 10_')) {
+          // fallback for 10.13 and older
+          profileId = 'mac1';
+        } else if (window.navigator.userAgent.includes('Android 6') || window.navigator.userAgent.includes('Android 5')) {
+          profileId = 'and1';
+        } else if (window.navigator.userAgent.includes('Android 7')) {
+          profileId = 'and2';
+        } else if (window.navigator.userAgent.includes('Android 8')) {
+          profileId = 'and3';
+        } else if (window.navigator.userAgent.includes('Android 9') || window.navigator.userAgent.includes('Android 10')) {
+          profileId = 'and4';
+        } else if (window.navigator.userAgent.includes('Ubuntu')) {
+          profileId = 'lin3';
+        } else if (window.navigator.userAgent.includes('Fedora')) {
+          profileId = 'lin2';
+        } else if (window.navigator.userAgent.includes('Linux')) {
+          profileId = 'lin1';
+        }
+
+        this.spoof.metadata['profileOS'] = profileId;
+      }
+
+      if (settings.options.blockMediaDevices) {
+        this.updateInjectionData(media);
+      } else {
+        if (settings.options.spoofMediaDevices) {
+          this.updateInjectionData(mediaSpoof);
+        }
+      }
 
       if (settings.options.limitHistory) this.updateInjectionData(history);
 
@@ -93,48 +140,6 @@ class Injector {
       }
 
       if (settings.options.spoofFontFingerprint) {
-        if (p) {
-          this.spoof.metadata['fontFingerprintOS'] = p.osId;
-        } else {
-          // get real profile
-          let profileId: string = '';
-
-          if (window.navigator.userAgent.includes('Windows NT 6.1')) {
-            profileId = 'win1';
-          } else if (window.navigator.userAgent.includes('Windows NT 6.2')) {
-            profileId = 'win2';
-          } else if (window.navigator.userAgent.includes('Windows NT 6.3')) {
-            profileId = 'win3';
-          } else if (window.navigator.userAgent.includes('Windows NT 10.0')) {
-            profileId = 'win4';
-          } else if (window.navigator.userAgent.includes('Mac OS X 10_15')) {
-            profileId = 'mac3';
-          } else if (window.navigator.userAgent.includes('Mac OS X 10_14')) {
-            profileId = 'mac2';
-          } else if (window.navigator.userAgent.includes('Mac OS X 10_')) {
-            // fallback for 10.13 and older
-            profileId = 'mac1';
-          } else if (window.navigator.userAgent.includes('Android 6') || window.navigator.userAgent.includes('Android 5')) {
-            profileId = 'and1';
-          } else if (window.navigator.userAgent.includes('Android 7')) {
-            profileId = 'and2';
-          } else if (window.navigator.userAgent.includes('Android 8')) {
-            profileId = 'and3';
-          } else if (window.navigator.userAgent.includes('Android 9') || window.navigator.userAgent.includes('Android 10')) {
-            profileId = 'and4';
-          } else if (window.navigator.userAgent.includes('Ubuntu')) {
-            profileId = 'lin3';
-          } else if (window.navigator.userAgent.includes('Fedora')) {
-            profileId = 'lin2';
-          } else if (window.navigator.userAgent.includes('Linux')) {
-            profileId = 'lin1';
-          }
-
-          if (profileId) {
-            this.spoof.metadata['fontFingerprintOS'] = profileId;
-          }
-        }
-
         this.updateInjectionData(font);
       }
 

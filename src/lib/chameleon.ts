@@ -1104,6 +1104,11 @@ export class Chameleon {
         msg,
       };
     } else {
+      // check if mediadevices exists (v0.20.22+)
+      if (!('spoofMediaDevices' in impSettings.options)) {
+        impSettings.options.spoofMediaDevices = false;
+      }
+
       let options = [
         ['options.blockMediaDevices', impSettings.options.blockMediaDevices, 'boolean'],
         ['options.disableWebRTC', impSettings.options.disableWebRTC, 'boolean'],
@@ -1116,6 +1121,7 @@ export class Chameleon {
         ['options.spoofAudioContext', impSettings.options.spoofAudioContext, 'boolean'],
         ['options.spoofClientRects', impSettings.options.spoofClientRects, 'boolean'],
         ['options.spoofFontFingerprint', impSettings.options.spoofFontFingerprint, 'boolean'],
+        ['options.spoofMediaDevices', impSettings.options.spoofMediaDevices, 'boolean'],
         [
           'options.screenSize',
           impSettings.options.screenSize,
