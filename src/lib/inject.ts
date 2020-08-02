@@ -327,146 +327,148 @@ class Injector {
       let iframeDocument = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
 
       ${this.spoof.custom}
-
-      window.Intl.DateTimeFormat = function(...args) {
-        let locale = navigator.language || "en-US";
-        
-        if (CHAMELEON_SPOOF.has(window)) {
-          if (CHAMELEON_SPOOF.get(window).timezone) {
-            let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(window).timezone);
-
-            if (args.length == 2) {
-              if (!args[1].timeZone) {
-                args[1].timeZone = spoofData.zone.name;
-              }
-            } else if (args.length == 1) {
-              args.push({
-                timeZone: spoofData.zone.name
-              });
-            } else {
-              args = [
-                locale,
-                { timeZone: spoofData.zone.name }
-              ];
-            }
-          } else if (CHAMELEON_SPOOF.get(window).language) {
-            if (args.length == 0 || !args[0]) {
-              args[0] = locale;
-            }
-          }
-        }
-        
-        return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
-      }
-      modifiedAPIs.push([
-        window.Intl.DateTimeFormat, "DateTimeFormat"
-      ]);
-      Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
-      window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
       
-      Object.defineProperties(HTMLIFrameElement.prototype, {
-        contentWindow: {
-          get: function() {
-            let f = iframeWindow.apply(this);
-            if (f) {
-              try {
-                Object.defineProperty(f, 'Date', {
-                  value: window.Date
-                });
-
-                Object.defineProperty(f.Intl, 'DateTimeFormat', {
-                  value: window.Intl.DateTimeFormat
-                });
-
-                Object.defineProperty(f, 'screen', {
-                  value: window.screen
-                });
-
-                Object.defineProperty(f, 'navigator', {
-                  value: window.navigator
-                });
-
-                Object.defineProperty(f.Element.prototype, 'getBoundingClientRect', {
-                  value: window.Element.prototype.getBoundingClientRect
-                });
-
-                Object.defineProperty(f.Element.prototype, 'getClientRects', {
-                  value: window.Element.prototype.getClientRects
-                });
-
-                Object.defineProperty(f.Range.prototype, 'getBoundingClientRect', {
-                  value: window.Range.prototype.getClientRects
-                });
-
-                Object.defineProperty(f.Range.prototype, 'getClientRects', {
-                  value: window.Range.prototype.getClientRects
-                });
-              } catch (e) {}
-            }
-            return f;
-          }
-        },
-        contentDocument: {
-          get: function() {
-            this.contentWindow;
-            return iframeDocument.apply(this);
-          }
-        }
-      });
-
-      window.open = function(){
-        let w = _open.apply(this, arguments);
-
-        Object.defineProperty(w, 'Date', {
-          value: window.Date
-        });
-
-        Object.defineProperty(w.Intl, 'DateTimeFormat', {
-          value: window.Intl.DateTimeFormat
-        });
-
-        Object.defineProperty(w, 'screen', {
-          value: window.screen
-        });
-
-        Object.defineProperty(w, 'navigator', {
-          value: window.navigator
-        });
-
-        Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
-          value: window.Element.prototype.getBoundingClientRect
-        });
-
-        Object.defineProperty(w.Element.prototype, 'getClientRects', {
-          value: window.Element.prototype.getClientRects
-        });
-
-        Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
-          value: window.Range.prototype.getClientRects
-        });
-
-        Object.defineProperty(w.Range.prototype, 'getClientRects', {
-          value: window.Range.prototype.getClientRects
-        });
-
-        return w;
-      }
-      modifiedAPIs.push([
-        window.open, "open"
-      ]);
+      if (injectionProperties.length > 0 || ${this.spoof.custom != ''}) {
+        window.Intl.DateTimeFormat = function(...args) {
+          let locale = navigator.language || "en-US";
+          
+          if (CHAMELEON_SPOOF.has(window)) {
+            if (CHAMELEON_SPOOF.get(window).timezone) {
+              let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(window).timezone);
   
-      for (let m of modifiedAPIs) {
-        Object.defineProperty(m[0], 'toString', {
-          configurable: false,
-          value: function toString() {
-            return \`function \$\{m[1]\}() {\n    [native code]\n}\`;
+              if (args.length == 2) {
+                if (!args[1].timeZone) {
+                  args[1].timeZone = spoofData.zone.name;
+                }
+              } else if (args.length == 1) {
+                args.push({
+                  timeZone: spoofData.zone.name
+                });
+              } else {
+                args = [
+                  locale,
+                  { timeZone: spoofData.zone.name }
+                ];
+              }
+            } else if (CHAMELEON_SPOOF.get(window).language) {
+              if (args.length == 0 || !args[0]) {
+                args[0] = locale;
+              }
+            }
           }
-        })
-
-        Object.defineProperty(m[0], 'name', {
-          configurable: false,
-          value: m[1]
-        })
+          
+          return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
+        }
+        modifiedAPIs.push([
+          window.Intl.DateTimeFormat, "DateTimeFormat"
+        ]);
+        Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
+        window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
+        
+        Object.defineProperties(HTMLIFrameElement.prototype, {
+          contentWindow: {
+            get: function() {
+              let f = iframeWindow.apply(this);
+              if (f) {
+                try {
+                  Object.defineProperty(f, 'Date', {
+                    value: window.Date
+                  });
+  
+                  Object.defineProperty(f.Intl, 'DateTimeFormat', {
+                    value: window.Intl.DateTimeFormat
+                  });
+  
+                  Object.defineProperty(f, 'screen', {
+                    value: window.screen
+                  });
+  
+                  Object.defineProperty(f, 'navigator', {
+                    value: window.navigator
+                  });
+  
+                  Object.defineProperty(f.Element.prototype, 'getBoundingClientRect', {
+                    value: window.Element.prototype.getBoundingClientRect
+                  });
+  
+                  Object.defineProperty(f.Element.prototype, 'getClientRects', {
+                    value: window.Element.prototype.getClientRects
+                  });
+  
+                  Object.defineProperty(f.Range.prototype, 'getBoundingClientRect', {
+                    value: window.Range.prototype.getClientRects
+                  });
+  
+                  Object.defineProperty(f.Range.prototype, 'getClientRects', {
+                    value: window.Range.prototype.getClientRects
+                  });
+                } catch (e) {}
+              }
+              return f;
+            }
+          },
+          contentDocument: {
+            get: function() {
+              this.contentWindow;
+              return iframeDocument.apply(this);
+            }
+          }
+        });
+  
+        window.open = function(){
+          let w = _open.apply(this, arguments);
+  
+          Object.defineProperty(w, 'Date', {
+            value: window.Date
+          });
+  
+          Object.defineProperty(w.Intl, 'DateTimeFormat', {
+            value: window.Intl.DateTimeFormat
+          });
+  
+          Object.defineProperty(w, 'screen', {
+            value: window.screen
+          });
+  
+          Object.defineProperty(w, 'navigator', {
+            value: window.navigator
+          });
+  
+          Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
+            value: window.Element.prototype.getBoundingClientRect
+          });
+  
+          Object.defineProperty(w.Element.prototype, 'getClientRects', {
+            value: window.Element.prototype.getClientRects
+          });
+  
+          Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
+            value: window.Range.prototype.getClientRects
+          });
+  
+          Object.defineProperty(w.Range.prototype, 'getClientRects', {
+            value: window.Range.prototype.getClientRects
+          });
+  
+          return w;
+        }
+        modifiedAPIs.push([
+          window.open, "open"
+        ]);
+    
+        for (let m of modifiedAPIs) {
+          Object.defineProperty(m[0], 'toString', {
+            configurable: false,
+            value: function toString() {
+              return \`function \$\{m[1]\}() {\n    [native code]\n}\`;
+            }
+          })
+  
+          Object.defineProperty(m[0], 'name', {
+            configurable: false,
+            value: m[1]
+          })
+        }
       }
     })()
     `
