@@ -26,6 +26,14 @@
         </p>
       </div>
       <div class="mt-4">
+        <h3 class="font-bold">Spoof media devices</h3>
+        <p>
+          Spoof media devices. This option will replace the label of your media devices. For example, if you're 
+          using a Mac profile, your webcam label will be spoofed to "FaceTime HD Camera (Built-in)". This will
+          not change the Firefox UI popup. You can test this feature <a href="https://webrtc.github.io/samples/src/content/devices/input-output/" target="_blank" rel="noopener noreferrer">here</a>. 
+        </p>
+      </div>
+      <div class="mt-4">
         <h3 class="font-bold">Limit tab history</h3>
         <p>
           Spoof tab history number in the window History API.
