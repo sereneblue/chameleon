@@ -1,3 +1,13 @@
+<a name="v0.20.22-rc"></a>
+
+## [v0.20.22-rc](https://github.com/sereneblue/chameleon/compare/v0.20.21-rc1...v0.20.22-rc) (2020-08-01)
+
+### Features
+
+- add spoof media devices ([#370](https://github.com/sereneblue/chameleon/issues/370))
+- update profiles
+- update profiles
+
 <a name="v0.20.21-rc1"></a>
 
 ## [v0.20.21-rc1](https://github.com/sereneblue/chameleon/compare/v0.20.21-rc...v0.20.21-rc1) (2020-07-12)
