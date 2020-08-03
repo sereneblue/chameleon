@@ -39,6 +39,7 @@ export interface ProfileListItem {
 const BrowserVersions: any = {
   edg: { win: '84.0.522.44', mac: '84.0.522.44', desktopChrome: '84.0.4147.89', android: '45.6.2.5042', androidChrome: '84.0.4147.89' },
   esr: { desktop: '78' },
+  esr2: { desktop: '68' },
   ff: { desktop: '79', mobile: '80' },
   gcr: { desktop: '84.0.4147.105', ios: '83.0.4147.71', android: '84.0.4147.105' },
   sf: { desktop: '13.1.2', mobile: '13.1.2' },
@@ -54,6 +55,8 @@ let getName = (os: string, browser: string) => {
     return `${os} - Edge ${BrowserVersions.edg.win.split('.')[0]} (Phone)`;
   } else if (browser === 'esr') {
     return `${os} - Firefox ${BrowserVersions.esr.desktop} ESR`;
+  } else if (browser === 'esr2') {
+    return `${os} - Firefox ${BrowserVersions.esr2.desktop} ESR`;
   } else if (browser === 'ff') {
     return `${os} - Firefox ${BrowserVersions.ff.desktop}`;
   } else if (browser === 'ffm') {
@@ -827,7 +830,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
       },
       {
         id: 'win2',
@@ -838,7 +841,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
       },
       {
         id: 'win3',
@@ -849,7 +852,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
       },
       {
         id: 'win4',
@@ -860,7 +863,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -30,
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
       },
     ],
     macOS: [
@@ -868,7 +871,7 @@ export class Generator {
       {
         id: 'mac1',
         name: 'macOS 10.13',
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'sf'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
           oscpu: 'Intel Mac OS X 10.13',
@@ -880,7 +883,7 @@ export class Generator {
       {
         id: 'mac2',
         name: 'macOS 10.14',
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'sf'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
           oscpu: 'Intel Mac OS X 10.14',
@@ -892,7 +895,7 @@ export class Generator {
       {
         id: 'mac3',
         name: 'macOS 10.15',
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'sf'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
           oscpu: 'Intel Mac OS X 10.15',
@@ -906,7 +909,7 @@ export class Generator {
       {
         id: 'lin1',
         name: 'Linux',
-        browsers: ['esr', 'ff', 'gcr'],
+        browsers: ['esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
@@ -918,7 +921,7 @@ export class Generator {
       {
         id: 'lin2',
         name: 'Fedora Linux',
-        browsers: ['esr', 'ff', 'gcr'],
+        browsers: ['esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
@@ -930,7 +933,7 @@ export class Generator {
       {
         id: 'lin3',
         name: 'Ubuntu Linux',
-        browsers: ['esr', 'ff', 'gcr'],
+        browsers: ['esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
