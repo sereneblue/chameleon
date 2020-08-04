@@ -1,3 +1,11 @@
+<a name="v0.20.24-rc"></a>
+
+## [v0.20.24-rc](https://github.com/sereneblue/chameleon/compare/v0.20.23-rc...v0.20.24-rc) (2020-08-03)
+
+### Features
+
+- add previous firefox esr
+
 <a name="v0.20.23-rc"></a>
 
 ## [v0.20.23-rc](https://github.com/sereneblue/chameleon/compare/v0.20.22-rc...v0.20.23-rc) (2020-08-02)
