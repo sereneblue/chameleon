@@ -39,6 +39,7 @@ export interface ProfileListItem {
 const BrowserVersions: any = {
   edg: { win: '84.0.522.44', mac: '84.0.522.44', desktopChrome: '84.0.4147.89', android: '45.6.2.5042', androidChrome: '84.0.4147.89' },
   esr: { desktop: '78' },
+  esr2: { desktop: '68' },
   ff: { desktop: '79', mobile: '80' },
   gcr: { desktop: '84.0.4147.105', ios: '83.0.4147.71', android: '84.0.4147.105' },
   sf: { desktop: '13.1.2', mobile: '13.1.2' },
@@ -54,6 +55,8 @@ let getName = (os: string, browser: string) => {
     return `${os} - Edge ${BrowserVersions.edg.win.split('.')[0]} (Phone)`;
   } else if (browser === 'esr') {
     return `${os} - Firefox ${BrowserVersions.esr.desktop} ESR`;
+  } else if (browser === 'esr2') {
+    return `${os} - Firefox ${BrowserVersions.esr2.desktop} ESR`;
   } else if (browser === 'ff') {
     return `${os} - Firefox ${BrowserVersions.ff.desktop}`;
   } else if (browser === 'ffm') {
@@ -186,6 +189,71 @@ export class Generator {
     // firefox esr
     esr: (os): BrowserProfile => {
       let version: string = BrowserVersions.esr.desktop;
+      let appVersion: string;
+      let platform: string;
+
+      let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
+      let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
+
+      switch (os.id) {
+        case 'win1':
+        case 'win2':
+        case 'win3':
+        case 'win4':
+          platform = os.nav.oscpu;
+          appVersion = '5.0 (Windows)';
+          break;
+        case 'mac1':
+        case 'mac2':
+        case 'mac3':
+          platform = `Macintosh; ${os.nav.oscpu}`;
+          appVersion = '5.0 (Macintosh)';
+          break;
+        case 'lin1':
+        case 'lin2':
+        case 'lin3':
+          platform = os.uaPlatform;
+          appVersion = '5.0 (X11)';
+          break;
+        default:
+          break;
+      }
+
+      let ua = `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/20100101 Firefox/${version}.0`;
+
+      return {
+        accept: {
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
+        },
+        osId: os.id,
+        navigator: {
+          appMinorVersion: null,
+          appVersion,
+          buildID: '20181001000000',
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: 4,
+          mimeTypes: [],
+          oscpu: os.nav.oscpu,
+          platform: os.nav.platform,
+          plugins: [],
+          productSub: '20100101',
+          userAgent: ua,
+          vendor: '',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
+      };
+    },
+    // firefox esr (previous version)
+    esr2: (os): BrowserProfile => {
+      let version: string = BrowserVersions.esr2.desktop;
       let appVersion: string;
       let platform: string;
 
@@ -827,7 +895,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
       },
       {
         id: 'win2',
@@ -838,7 +906,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
       },
       {
         id: 'win3',
@@ -849,7 +917,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
       },
       {
         id: 'win4',
@@ -860,7 +928,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -30,
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
       },
     ],
     macOS: [
@@ -868,7 +936,7 @@ export class Generator {
       {
         id: 'mac1',
         name: 'macOS 10.13',
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'sf'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
           oscpu: 'Intel Mac OS X 10.13',
@@ -880,7 +948,7 @@ export class Generator {
       {
         id: 'mac2',
         name: 'macOS 10.14',
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'sf'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
           oscpu: 'Intel Mac OS X 10.14',
@@ -892,7 +960,7 @@ export class Generator {
       {
         id: 'mac3',
         name: 'macOS 10.15',
-        browsers: ['edg', 'esr', 'ff', 'gcr', 'sf'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
           oscpu: 'Intel Mac OS X 10.15',
@@ -906,7 +974,7 @@ export class Generator {
       {
         id: 'lin1',
         name: 'Linux',
-        browsers: ['esr', 'ff', 'gcr'],
+        browsers: ['esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
@@ -918,7 +986,7 @@ export class Generator {
       {
         id: 'lin2',
         name: 'Fedora Linux',
-        browsers: ['esr', 'ff', 'gcr'],
+        browsers: ['esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
@@ -930,7 +998,7 @@ export class Generator {
       {
         id: 'lin3',
         name: 'Ubuntu Linux',
-        browsers: ['esr', 'ff', 'gcr'],
+        browsers: ['esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
