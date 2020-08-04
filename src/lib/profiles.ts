@@ -251,6 +251,71 @@ export class Generator {
         },
       };
     },
+    // firefox esr (previous version)
+    esr2: (os): BrowserProfile => {
+      let version: string = BrowserVersions.esr2.desktop;
+      let appVersion: string;
+      let platform: string;
+
+      let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
+      let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
+
+      switch (os.id) {
+        case 'win1':
+        case 'win2':
+        case 'win3':
+        case 'win4':
+          platform = os.nav.oscpu;
+          appVersion = '5.0 (Windows)';
+          break;
+        case 'mac1':
+        case 'mac2':
+        case 'mac3':
+          platform = `Macintosh; ${os.nav.oscpu}`;
+          appVersion = '5.0 (Macintosh)';
+          break;
+        case 'lin1':
+        case 'lin2':
+        case 'lin3':
+          platform = os.uaPlatform;
+          appVersion = '5.0 (X11)';
+          break;
+        default:
+          break;
+      }
+
+      let ua = `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/20100101 Firefox/${version}.0`;
+
+      return {
+        accept: {
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
+        },
+        osId: os.id,
+        navigator: {
+          appMinorVersion: null,
+          appVersion,
+          buildID: '20181001000000',
+          cpuClass: null,
+          deviceMemory: null,
+          hardwareConcurrency: 4,
+          mimeTypes: [],
+          oscpu: os.nav.oscpu,
+          platform: os.nav.platform,
+          plugins: [],
+          productSub: '20100101',
+          userAgent: ua,
+          vendor: '',
+          vendorSub: '',
+        },
+        screen: {
+          width: screenRes[0],
+          height: screenRes[1],
+          availHeight: screenRes[1] + os.screenOffset,
+        },
+      };
+    },
     // firefox
     ff: (os): BrowserProfile => {
       let version: string = BrowserVersions.ff.desktop;
