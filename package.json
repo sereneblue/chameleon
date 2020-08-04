@@ -1,6 +1,10 @@
 {
   "name": "chameleon-ext",
+<<<<<<< HEAD
   "version": "0.20.24",
+=======
+  "version": "0.20.23",
+>>>>>>> develop
   "description": "Spoof your browser profile. Includes a few privacy enhancing options.",
   "author": "sereneblue",
   "license": "GPLv3",

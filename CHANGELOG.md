@@ -1,3 +1,11 @@
+<a name="v0.20.23-rc"></a>
+
+## [v0.20.23-rc](https://github.com/sereneblue/chameleon/compare/v0.20.22-rc...v0.20.23-rc) (2020-08-02)
+
+### Bug Fixes
+
+- update chinese localization support for options page ([#432](https://github.com/sereneblue/chameleon/issues/432))
+
 <a name="v0.20.22-rc"></a>
 
 ## [v0.20.22-rc](https://github.com/sereneblue/chameleon/compare/v0.20.21-rc1...v0.20.22-rc) (2020-08-01)
