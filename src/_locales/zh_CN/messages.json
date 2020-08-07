@@ -701,6 +701,9 @@
   "popup-options-standard-resistFingerprinting" :  {
     "message" :  "抵制指纹识别"
   },
+  "popup-options-standard-spoofMediaDevices" :  {
+    "message" :  "欺骗媒体设备"
+  },
   "popup-options-standard-trackingProtection" :  {
     "message" :  "跟踪保护模式"
   },
