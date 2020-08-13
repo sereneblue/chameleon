@@ -935,6 +935,25 @@ export default class App extends Vue {
       }
     }
 
+    let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
+    this.settings.options.cookiePolicy = cookieSettings.value.behavior;
+    this.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
+
+    let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
+    this.settings.options.firstPartyIsolate = firstPartyIsolate.value;
+
+    let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
+    this.settings.options.resistFingerprinting = resistFingerprinting.value;
+
+    let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
+    this.settings.options.trackingProtectionMode = trackingProtectionMode.value;
+
+    let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
+    this.settings.options.disableWebRTC = !peerConnectionEnabled.value;
+
+    let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
+    this.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
+
     this.tmp.intervalMax = this.settings.profile.interval.max;
     this.tmp.intervalMin = this.settings.profile.interval.min;
     this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;

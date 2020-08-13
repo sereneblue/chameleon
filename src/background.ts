@@ -28,12 +28,33 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
   } else if (request.action === 'contextMenu') {
     chameleon.toggleContextMenu(request.data);
   } else if (request.action === 'getSettings') {
-    sendResponse(chameleon.settings);
+    (async () => {
+      let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
+      chameleon.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
+      chameleon.settings.options.cookiePolicy = cookieSettings.value.behavior;
+
+      let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
+      chameleon.settings.options.firstPartyIsolate = firstPartyIsolate.value;
+
+      let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
+      chameleon.settings.options.resistFingerprinting = resistFingerprinting.value;
+
+      let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
+      chameleon.settings.options.trackingProtectionMode = trackingProtectionMode.value;
+
+      let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
+      chameleon.settings.options.disableWebRTC = !peerConnectionEnabled.value;
+
+      let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
+      chameleon.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
+
+      sendResponse(chameleon.settings);
+    })();
   } else if (request.action === 'init') {
     browser.runtime.sendMessage(
       {
-        action :  'tempStore',
-        data :  chameleon.tempStore,
+        action: 'tempStore',
+        data: chameleon.tempStore,
       },
       response => {
         if (browser.runtime.lastError) return;
@@ -129,7 +150,7 @@ browser.runtime.onMessage.addListener(messageHandler);
 
   if (chameleon.platform.os != 'android') {
     browser.browserAction.setBadgeBackgroundColor({
-      color :  'green',
+      color: 'green',
     });
   }
 })();
