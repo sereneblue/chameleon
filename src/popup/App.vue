@@ -73,21 +73,33 @@
         <div class="flex">
           <div class="flex flex-col mr-16">
             <label class="inline-flex items-center mb-2">
-              <input id="realProfile" @click="setSelected('profile', 'none')" type="radio" class="form-radio" :checked="isSelected('profile', 'none')" />
+              <input id="realProfile" @click="setSelected('profile', 'none')" type="radio" class="form-radio cursor-pointer" :checked="isSelected('profile', 'none')" />
               <span class="ml-2" v-t="'text-realProfile.message'"></span>
             </label>
             <label class="inline-flex items-center">
-              <input id="randomProfile" @click="setSelected('profile', 'random')" type="radio" class="form-radio" :checked="isSelected('profile', 'random')" />
+              <input id="randomProfile" @click="setSelected('profile', 'random')" type="radio" class="form-radio cursor-pointer" :checked="isSelected('profile', 'random')" />
               <span class="ml-2" v-t="'popup-profile-random.message'"></span>
             </label>
           </div>
           <div class="flex flex-col">
             <label class="inline-flex items-center mb-2">
-              <input id="randomDesktop" @click="setSelected('profile', 'randomDesktop')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomDesktop')" />
+              <input
+                id="randomDesktop"
+                @click="setSelected('profile', 'randomDesktop')"
+                type="radio"
+                class="form-radio cursor-pointer"
+                :checked="isSelected('profile', 'randomDesktop')"
+              />
               <span class="ml-2" v-t="'popup-profile-randomDesktopProfile.message'"></span>
             </label>
             <label class="inline-flex items-center">
-              <input id="randomMobile" @click="setSelected('profile', 'randomMobile')" type="radio" class="form-radio" :checked="isSelected('profile', 'randomMobile')" />
+              <input
+                id="randomMobile"
+                @click="setSelected('profile', 'randomMobile')"
+                type="radio"
+                class="form-radio cursor-pointer"
+                :checked="isSelected('profile', 'randomMobile')"
+              />
               <span class="ml-2" v-t="'popup-profile-randomMobileProfile.message'"></span>
             </label>
           </div>
@@ -172,7 +184,7 @@
                     :disabled="isExcluded(currentProfileGroup)"
                     :checked="isSelected('profile', currentProfileGroup)"
                     type="radio"
-                    class="form-radio"
+                    class="form-radio cursor-pointer"
                   />
                   <span class="ml-2" v-t="`popup-profile-random${displayOS}.message`"></span>
                 </label>
@@ -183,11 +195,18 @@
               </div>
               <div v-for="p in profileListing" :key="p.id" class="profile-item fg">
                 <label class="flex items-center cursor-pointer" :class="{ 'opacity-50': p.excluded }">
-                  <input :id="p.id" @click="setSelected('profile', p.id)" :disabled="p.excluded" :checked="isSelected('profile', p.id)" type="radio" class="form-radio" />
+                  <input
+                    :id="p.id"
+                    @click="setSelected('profile', p.id)"
+                    :disabled="p.excluded"
+                    :checked="isSelected('profile', p.id)"
+                    type="radio"
+                    class="form-radio cursor-pointer"
+                  />
                   <span class="ml-2">{{ p.name }}</span>
                 </label>
                 <div class="flex items-center">
-                  <input @click="excludeProfile(p.id)" :checked="p.excluded" type="checkbox" class="ml-2 text-primary form-checkbox" />
+                  <input @click="excludeProfile(p.id)" :checked="p.excluded" type="checkbox" class="ml-2 text-primary form-checkbox cursor-pointer" />
                 </div>
               </div>
             </perfect-scrollbar>
@@ -204,7 +223,7 @@
               :checked="settings.headers.enableDNT"
               name="headers.enableDNT"
               type="checkbox"
-              class="text-primary form-checkbox"
+              class="text-primary form-checkbox cursor-pointer"
             />
             <span class="ml-1" v-t="'popup-headers-enableDNT.message'"></span>
           </label>
@@ -217,7 +236,7 @@
               :checked="settings.headers.blockEtag"
               name="headers.blockEtag"
               type="checkbox"
-              class="text-primary form-checkbox"
+              class="text-primary form-checkbox cursor-pointer"
             />
             <span class="ml-1" v-t="'popup-headers-preventEtag.message'"></span>
           </label>
@@ -230,7 +249,7 @@
               :checked="settings.headers.spoofAcceptLang.enabled"
               name="headers.spoofAcceptLang.enabled"
               type="checkbox"
-              class="text-primary form-checkbox"
+              class="text-primary form-checkbox cursor-pointer"
             />
             <span class="ml-1" v-t="'popup-headers-spoofAcceptLang.message'"></span>
           </label>
@@ -258,7 +277,7 @@
               :checked="settings.headers.spoofIP.enabled"
               name="headers.spoofIP.enabled"
               type="checkbox"
-              class="text-primary form-checkbox"
+              class="text-primary form-checkbox cursor-pointer"
             />
             <span class="ml-1" v-t="'popup-headers-spoofIP.message'"></span>
           </label>
@@ -309,7 +328,7 @@
               :checked="settings.headers.referer.disabled"
               name="headers.referer.disabled"
               type="checkbox"
-              class="text-primary form-checkbox"
+              class="text-primary form-checkbox cursor-pointer"
             />
             <span class="ml-1" v-t="'text-disableReferer.message'"></span>
           </label>
@@ -386,7 +405,7 @@
                     :checked="settings.options.blockMediaDevices"
                     name="options.blockMediaDevices"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-blockMediaDevices.message'"></span>
                 </label>
@@ -399,7 +418,7 @@
                     :checked="settings.options.spoofMediaDevices"
                     name="options.spoofMediaDevices"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-spoofMediaDevices.message'"></span>
                 </label>
@@ -412,7 +431,7 @@
                     :checked="settings.options.limitHistory"
                     name="options.limitHistory"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-injection-limitTabHistory.message'"></span>
                 </label>
@@ -425,7 +444,7 @@
                     :checked="settings.options.protectKBFingerprint.enabled"
                     name="options.protectKBFingerprint.enabled"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-injection-protectKBFingerprint.message'"></span>
                 </label>
@@ -451,7 +470,7 @@
                     :checked="settings.options.protectWinName"
                     name="options.protectWinName"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-injection-protectWinName.message'"></span>
                 </label>
@@ -464,7 +483,7 @@
                     :checked="settings.options.spoofAudioContext"
                     name="options.spoofAudioContext"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-injection-audioContext.message'"></span>
                 </label>
@@ -477,7 +496,7 @@
                     :checked="settings.options.spoofClientRects"
                     name="options.spoofClientRects"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-injection-clientRects.message'"></span>
                 </label>
@@ -490,7 +509,7 @@
                     :checked="settings.options.spoofFontFingerprint"
                     name="options.spoofFontFingerprint"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-injection-spoofFontFingerprint.message'"></span>
                 </label>
@@ -540,7 +559,7 @@
                     :checked="settings.options.firstPartyIsolate"
                     name="options.firstPartyIsolate"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-firstPartyIsolation.message'"></span>
                 </label>
@@ -553,7 +572,7 @@
                     :checked="settings.options.resistFingerprinting"
                     name="options.resistFingerprinting"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-resistFingerprinting.message'"></span>
                 </label>
@@ -566,7 +585,7 @@
                     :checked="settings.options.disableWebRTC"
                     name="options.disableWebRTC"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-disableWebRTC.message'"></span>
                 </label>
@@ -630,7 +649,7 @@
                     :checked="settings.options.cookieNotPersistent"
                     name="options.cookieNotPersistent"
                     type="checkbox"
-                    class="text-primary form-checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
                   />
                   <span v-t="'popup-options-cookieNotPersistent.message'"></span>
                 </label>
@@ -667,7 +686,7 @@
               :checked="settings.whitelist.enabledContextMenu"
               name="whitelist.enabledContextMenu"
               type="checkbox"
-              class="text-primary form-checkbox"
+              class="text-primary form-checkbox cursor-pointer"
             />
             <span class="ml-1" v-t="'popup-whitelist-contextMenu.message'"></span>
           </label>
