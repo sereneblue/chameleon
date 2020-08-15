@@ -357,27 +357,27 @@
             <li
               id="injectionTab"
               @click="setSelected('options', 'injection')"
-              :class="[isSelected('options', 'injection') ? 'active' : '']"
+              :class="{ active: isSelected('options', 'injection') }"
               class="group fg group-options rounded-l-sm"
               v-t="'popup-options-injection.message'"
             ></li>
             <li
               id="standardTab"
               @click="setSelected('options', 'standard')"
-              :class="[isSelected('options', 'standard') ? 'active' : '']"
+              :class="{ active: isSelected('options', 'standard') }"
               class="group fg group-options"
               v-t="'popup-options-standard.message'"
             ></li>
             <li
               id="cookieTab"
               @click="setSelected('options', 'cookie')"
-              :class="[isSelected('options', 'cookie') ? 'active' : '']"
+              :class="{ active: isSelected('options', 'cookie') }"
               class="group fg group-options rounded-r-sm"
               v-t="'popup-options-cookie.message'"
             ></li>
           </ul>
           <div>
-            <div v-if="isSelected('options', 'injection')">
+            <div v-show="isSelected('options', 'injection')">
               <div class="flex items-center mt-2 mb-1">
                 <label class="cursor-pointer">
                   <input
@@ -531,7 +531,7 @@
                 </label>
               </div>
             </div>
-            <div v-else-if="isSelected('options', 'standard')">
+            <div v-show="isSelected('options', 'standard')">
               <div class="flex items-center mt-2 mb-1">
                 <label class="cursor-pointer">
                   <input
@@ -621,7 +621,7 @@
                 </label>
               </div>
             </div>
-            <div v-else-if="isSelected('options', 'cookie')">
+            <div v-show="isSelected('options', 'cookie')">
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <input
