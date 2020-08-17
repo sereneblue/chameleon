@@ -85,24 +85,24 @@ export class Chameleon {
   }
 
   public async changeBrowserSettings(): Promise<void> {
-    browser.privacy.websites.cookieConfig.set({
+    await browser.privacy.websites.cookieConfig.set({
       value: {
         behavior: this.settings.options.cookiePolicy,
         nonPersistentCookies: this.settings.options.cookieNotPersistent,
       },
     });
 
-    ['firstPartyIsolate', 'resistFingerprinting', 'trackingProtectionMode'].forEach(key => {
-      browser.privacy.websites[key].set({
+    ['firstPartyIsolate', 'resistFingerprinting', 'trackingProtectionMode'].forEach(async key => {
+      await browser.privacy.websites[key].set({
         value: this.settings.options[key],
       });
     });
 
-    browser.privacy.network.peerConnectionEnabled.set({
+    await browser.privacy.network.peerConnectionEnabled.set({
       value: !this.settings.options.disableWebRTC,
     });
 
-    browser.privacy.network.webRTCIPHandlingPolicy.set({
+    await browser.privacy.network.webRTCIPHandlingPolicy.set({
       value: this.settings.options.webRTCPolicy,
     });
   }
@@ -130,25 +130,27 @@ export class Chameleon {
 
     this.cleanSettings();
 
-    // get current modified preferences
-    let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
-    this.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
-    this.settings.options.cookiePolicy = cookieSettings.value.behavior;
+    if (!!browser.privacy) {
+      // get current modified preferences
+      let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
+      this.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
+      this.settings.options.cookiePolicy = cookieSettings.value.behavior;
 
-    let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
-    this.settings.options.firstPartyIsolate = firstPartyIsolate.value;
+      let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
+      this.settings.options.firstPartyIsolate = firstPartyIsolate.value;
 
-    let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
-    this.settings.options.resistFingerprinting = resistFingerprinting.value;
+      let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
+      this.settings.options.resistFingerprinting = resistFingerprinting.value;
 
-    let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
-    this.settings.options.trackingProtectionMode = trackingProtectionMode.value;
+      let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
+      this.settings.options.trackingProtectionMode = trackingProtectionMode.value;
 
-    let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
-    this.settings.options.disableWebRTC = !peerConnectionEnabled.value;
+      let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
+      this.settings.options.disableWebRTC = !peerConnectionEnabled.value;
 
-    let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
-    this.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
+      let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
+      this.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
+    }
 
     this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache);
     this.platform = await browser.runtime.getPlatformInfo();
@@ -906,10 +908,15 @@ export class Chameleon {
         msg,
       };
     } else {
+      if (!('hasPrivacyPermission' in impSettings.config)) {
+        impSettings.config.hasPrivacyPermission = true;
+      }
+
       let options = [
         ['config.enabled', impSettings.config.enabled, 'boolean'],
         ['config.notificationsEnabled', impSettings.config.notificationsEnabled, 'boolean'],
         ['config.theme', impSettings.config.theme, ['light', 'dark']],
+        ['config.hasPrivacyPermission', impSettings.config.hasPrivacyPermission == undefined ? !!browser.privacy : impSettings.config.hasPrivacyPermission, 'boolean'],
       ];
 
       for (let i = 0; i < options.length; i++) {
@@ -1260,8 +1267,21 @@ export class Chameleon {
       s.whitelist = impSettings.whitelist;
     }
 
+    if (!s.config.hasPrivacyPermission) {
+      // need user input to grant permission
+      browser.permissions.remove({
+        permissions: ['privacy'],
+      });
+    }
+
     setTimeout(async () => {
-      await this.saveSettings(s);
+      this.settings = s;
+      await this.saveSettings(this.settings);
+
+      if (this.settings.config.hasPrivacyPermission) {
+        await this.changeBrowserSettings();
+      }
+
       browser.runtime.reload();
     }, 2500);
 
