@@ -76,6 +76,16 @@
             </button>
           </div>
           <a id="export"></a>
+          <div class="text-xl mb-4" v-t="'options-settings-permissions.message'"></div>
+          <div class="flex flex-col xl:flex-row">
+            <button @click="togglePrivacyPermission" class="transparent-btn">
+              <div class="flex items-center">
+                <feather class="mr-2" type="key" size="1em"></feather>
+                <span v-if="hasPrivacyPermission" v-t="'options-settings-permissions-remove.message'"></span>
+                <span v-else v-t="'options-settings-permissions-request.message'"></span>
+              </div>
+            </button>
+          </div>
         </div>
         <div v-show="isImporting" class="mt-4">
           <div v-t="'options-settings-importing.message'"></div>
@@ -460,6 +470,7 @@ export default class App extends Vue {
     error: false,
     msg: '',
   };
+  public hasPrivacyPermission: boolean = !!browser.privacy;
   public version: string = '';
   public tmp: any = {
     checklistItem: {
@@ -744,7 +755,6 @@ export default class App extends Vue {
         });
       } catch (e) {
         let msg: string = this.$t('options-import-couldNotImport.message') as string;
-
         this.importError = {
           error: true,
           msg,
@@ -928,6 +938,26 @@ export default class App extends Vue {
     this.tmp.checklistItem = checklistItem;
     this.modalType = Modal.CHECKLIST_INFO;
     this.showModal = true;
+  }
+
+  async togglePrivacyPermission(): Promise<void> {
+    let success: boolean;
+
+    if (this.hasPrivacyPermission) {
+      success = await browser.permissions.remove({
+        permissions: ['privacy'],
+      });
+
+      this.hasPrivacyPermission = !success;
+    } else {
+      this.hasPrivacyPermission = await browser.permissions.request({
+        permissions: ['privacy'],
+      });
+    }
+
+    setTimeout(() => {
+      browser.runtime.reload();
+    }, 1000);
   }
 
   toggleOpen(): void {

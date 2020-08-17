@@ -551,7 +551,13 @@
               </div>
             </div>
             <div v-show="isSelected('options', 'standard')">
-              <div class="flex items-center mt-2 mb-1">
+              <button
+                v-if="!hasPrivacyPermission"
+                v-t="'popup-options-grantPermissions.message'"
+                @click="openOptionsPage('about')"
+                class="w-full bg-transparent font-semibold py-1 px-4 mt-2 border border-primary hover:bg-primary-soft rounded"
+              ></button>
+              <div class="flex items-center mt-2 mb-1" :class="{ 'opacity-50': !hasPrivacyPermission }">
                 <label class="cursor-pointer">
                   <input
                     @change="changeSetting($event)"
@@ -560,11 +566,12 @@
                     name="options.firstPartyIsolate"
                     type="checkbox"
                     class="text-primary form-checkbox cursor-pointer"
+                    :disabled="!hasPrivacyPermission"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-firstPartyIsolation.message'"></span>
                 </label>
               </div>
-              <div class="flex items-center mb-1">
+              <div class="flex items-center mb-1" :class="{ 'opacity-50': !hasPrivacyPermission }">
                 <label class="cursor-pointer">
                   <input
                     id="resistFingerprinting"
@@ -573,11 +580,12 @@
                     name="options.resistFingerprinting"
                     type="checkbox"
                     class="text-primary form-checkbox cursor-pointer"
+                    :disabled="!hasPrivacyPermission"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-resistFingerprinting.message'"></span>
                 </label>
               </div>
-              <div class="flex items-center mb-1">
+              <div class="flex items-center mb-1" :class="{ 'opacity-50': !hasPrivacyPermission }">
                 <label class="cursor-pointer">
                   <input
                     id="disableWebRTC"
@@ -586,11 +594,12 @@
                     name="options.disableWebRTC"
                     type="checkbox"
                     class="text-primary form-checkbox cursor-pointer"
+                    :disabled="!hasPrivacyPermission"
                   />
                   <span class="ml-1" v-t="'popup-options-standard-disableWebRTC.message'"></span>
                 </label>
               </div>
-              <div v-show="!settings.options.disableWebRTC" class="flex items-center pl-6 mb-2">
+              <div v-show="!settings.options.disableWebRTC" class="flex items-center pl-6 mb-2" :class="{ 'opacity-50': !hasPrivacyPermission }">
                 <label class="w-full">
                   <span v-t="'popup-options-standard-webRTCPolicy.message'"></span>
                   <select
@@ -599,6 +608,7 @@
                     :value="settings.options.webRTCPolicy"
                     name="options.webRTCPolicy"
                     class="form-select mt-1 block w-full text-mini"
+                    :disabled="!hasPrivacyPermission"
                   >
                     <option value="default" v-t="'text-default.message'"></option>
                     <option value="default_public_and_private_interfaces" v-t="'popup-options-standard-webRTCPolicy-publicPrivate.message'"></option>
@@ -607,7 +617,7 @@
                   </select>
                 </label>
               </div>
-              <div class="flex items-center mb-2">
+              <div class="flex items-center mb-2" :class="{ 'opacity-50': !hasPrivacyPermission }">
                 <label class="w-full mt-2">
                   <span v-t="'popup-options-standard-trackingProtection.message'"></span>
                   <select
@@ -616,6 +626,7 @@
                     :value="settings.options.trackingProtectionMode"
                     name="options.trackingProtectionMode"
                     class="form-select mt-1 block w-full text-mini"
+                    :disabled="!hasPrivacyPermission"
                   >
                     <option value="always" v-t="'popup-options-standard-trackingProtection-on.message'"></option>
                     <option value="never" v-t="'popup-options-standard-trackingProtection-off.message'"></option>
@@ -641,7 +652,13 @@
               </div>
             </div>
             <div v-show="isSelected('options', 'cookie')">
-              <div class="flex items-center mb-2">
+              <button
+                v-if="!hasPrivacyPermission"
+                v-t="'popup-options-grantPermissions.message'"
+                @click="openOptionsPage('about')"
+                class="w-full bg-transparent font-semibold py-1 px-4 mt-2 border border-primary hover:bg-primary-soft rounded"
+              ></button>
+              <div class="flex items-center mb-2" :class="{ 'opacity-50': !hasPrivacyPermission }">
                 <label class="w-full mt-2">
                   <input
                     id="cookiePersistent"
@@ -650,11 +667,12 @@
                     name="options.cookieNotPersistent"
                     type="checkbox"
                     class="text-primary form-checkbox cursor-pointer"
+                    :disabled="!hasPrivacyPermission"
                   />
                   <span v-t="'popup-options-cookieNotPersistent.message'"></span>
                 </label>
               </div>
-              <div class="flex items-center mb-2">
+              <div class="flex items-center mb-2" :class="{ 'opacity-50': !hasPrivacyPermission }">
                 <label class="w-full mt-2">
                   <span v-t="'popup-options-cookiePolicy.message'"></span>
                   <select
@@ -663,6 +681,7 @@
                     :value="settings.options.cookiePolicy"
                     name="options.cookiePolicy"
                     class="form-select mt-1 block w-full text-mini"
+                    :disabled="!hasPrivacyPermission"
                   >
                     <option value="allow_all" v-t="'text-allowAll.message'"></option>
                     <option value="allow_visited" v-t="'popup-options-cookiePolicy-allowVisited.message'"></option>
@@ -759,6 +778,7 @@ export default class App extends Vue {
     rangeFrom: false,
     rangeTo: false,
   };
+  public hasPrivacyPermission: boolean = !!browser.privacy;
   public languages: lang.Language[] = lang.getAllLanguages();
   public profileTimeout: any = null;
   public profiles: any = new prof.Generator().getAllProfiles();
@@ -954,24 +974,26 @@ export default class App extends Vue {
       }
     }
 
-    let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
-    this.settings.options.cookiePolicy = cookieSettings.value.behavior;
-    this.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
+    if (!!browser.privacy) {
+      let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
+      this.settings.options.cookiePolicy = cookieSettings.value.behavior;
+      this.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
 
-    let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
-    this.settings.options.firstPartyIsolate = firstPartyIsolate.value;
+      let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
+      this.settings.options.firstPartyIsolate = firstPartyIsolate.value;
 
-    let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
-    this.settings.options.resistFingerprinting = resistFingerprinting.value;
+      let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
+      this.settings.options.resistFingerprinting = resistFingerprinting.value;
 
-    let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
-    this.settings.options.trackingProtectionMode = trackingProtectionMode.value;
+      let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
+      this.settings.options.trackingProtectionMode = trackingProtectionMode.value;
 
-    let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
-    this.settings.options.disableWebRTC = !peerConnectionEnabled.value;
+      let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
+      this.settings.options.disableWebRTC = !peerConnectionEnabled.value;
 
-    let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
-    this.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
+      let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
+      this.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
+    }
 
     this.tmp.intervalMax = this.settings.profile.interval.max;
     this.tmp.intervalMin = this.settings.profile.interval.min;

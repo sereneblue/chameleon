@@ -29,26 +29,31 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
     chameleon.toggleContextMenu(request.data);
   } else if (request.action === 'getSettings') {
     (async () => {
-      let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
-      chameleon.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
-      chameleon.settings.options.cookiePolicy = cookieSettings.value.behavior;
+      if (!!browser.privacy) {
+        let cookieSettings = await browser.privacy.websites.cookieConfig.get({});
+        chameleon.settings.options.cookieNotPersistent = cookieSettings.value.nonPersistentCookies;
+        chameleon.settings.options.cookiePolicy = cookieSettings.value.behavior;
 
-      let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
-      chameleon.settings.options.firstPartyIsolate = firstPartyIsolate.value;
+        let firstPartyIsolate = await browser.privacy.websites.firstPartyIsolate.get({});
+        chameleon.settings.options.firstPartyIsolate = firstPartyIsolate.value;
 
-      let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
-      chameleon.settings.options.resistFingerprinting = resistFingerprinting.value;
+        let resistFingerprinting = await browser.privacy.websites.resistFingerprinting.get({});
+        chameleon.settings.options.resistFingerprinting = resistFingerprinting.value;
 
-      let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
-      chameleon.settings.options.trackingProtectionMode = trackingProtectionMode.value;
+        let trackingProtectionMode = await browser.privacy.websites.trackingProtectionMode.get({});
+        chameleon.settings.options.trackingProtectionMode = trackingProtectionMode.value;
 
-      let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
-      chameleon.settings.options.disableWebRTC = !peerConnectionEnabled.value;
+        let peerConnectionEnabled = await browser.privacy.network.peerConnectionEnabled.get({});
+        chameleon.settings.options.disableWebRTC = !peerConnectionEnabled.value;
 
-      let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
-      chameleon.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
+        let webRTCIPHandlingPolicy = await browser.privacy.network.webRTCIPHandlingPolicy.get({});
+        chameleon.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
+      }
 
-      sendResponse(chameleon.settings);
+      let settings = Object.assign({}, chameleon.settings);
+      settings.config.hasPrivacyPermission = !!browser.privacy;
+
+      sendResponse(settings);
     })();
   } else if (request.action === 'init') {
     browser.runtime.sendMessage(
@@ -109,7 +114,10 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
       sendResponse('done');
     }, 200);
   } else if (request.action === 'validateSettings') {
-    sendResponse(chameleon.validateSettings(request.data));
+    (async () => {
+      let res = await chameleon.validateSettings(request.data);
+      sendResponse(res);
+    })();
   }
 
   return true;
@@ -128,7 +136,10 @@ browser.runtime.onMessage.addListener(messageHandler);
     await chameleon.updateIPInfo(false);
   }
 
-  chameleon.changeBrowserSettings();
+  if (!!browser.privacy) {
+    await chameleon.changeBrowserSettings();
+  }
+
   chameleon.setupHeaderListeners();
   chameleon.setTimer();
 
