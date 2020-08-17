@@ -1,3 +1,16 @@
+<a name="v0.21.0-rc"></a>
+
+## [v0.21.0-rc](https://github.com/sereneblue/chameleon/compare/v0.20.24-rc...v0.21.0-rc) (2020-08-16)
+
+### Bug Fixes
+
+- update handling of firefox preferences ([#434](https://github.com/sereneblue/chameleon/issues/434), [#427](https://github.com/sereneblue/chameleon/issues/427))
+- **popup:** use v-show to hide tab content ([#427](https://github.com/sereneblue/chameleon/issues/427), [#442](https://github.com/sereneblue/chameleon/issues/442))
+
+### Features
+
+- add option to remove privacy permission
+
 <a name="v0.20.24-rc"></a>
 
 ## [v0.20.24-rc](https://github.com/sereneblue/chameleon/compare/v0.20.23-rc...v0.20.24-rc) (2020-08-03)
