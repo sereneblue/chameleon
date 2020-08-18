@@ -909,7 +909,7 @@ export class Chameleon {
       };
     } else {
       if (!('hasPrivacyPermission' in impSettings.config)) {
-        impSettings.config.hasPrivacyPermission = true;
+        impSettings.config.hasPrivacyPermission = !!browser.privacy;
       }
 
       let options = [
