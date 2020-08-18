@@ -16,7 +16,7 @@
 					</p>
 				</div>
 				<div id="q2" class="mb-8 leading-tight">
-					<h2 class="font-bold text-2xl mb-4">What is a browser fingeprint?</h2>
+					<h2 class="font-bold text-2xl mb-4">What is a browser fingerprint?</h2>
 					<div class="text-xl mb-4 leading-relaxed md:w-4/5">
 						<p>
 							Every time you visit a page on the Internet, your web browser reveals several pieces of information to the website you're visiting.
