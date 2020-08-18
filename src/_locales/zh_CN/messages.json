@@ -1,821 +1,830 @@
 {
-  "extDescription" :  {
-    "message" :  "欺骗您的浏览器配置文件。包括一些隐私增强选项。"
+  "extDescription": {
+    "message": "欺骗您的浏览器配置文件。包括一些隐私增强选项。"
   },
-  "notifications-profileChange" :  {
-    "message" :  "配置文件已更改："
+  "notifications-profileChange": {
+    "message": "配置文件已更改："
   },
-  "notifications-unableToGetIPInfo" :  {
-    "message" :  "无法获取IP信息"
+  "notifications-unableToGetIPInfo": {
+    "message": "无法获取IP信息"
   },
-  "notifications-usingIPInfo" :  {
-    "message" :  "使用IP信息："
+  "notifications-usingIPInfo": {
+    "message": "使用IP信息："
   },
-  "notifications-usingIPRule" :  {
-    "message" :  "使用IP规则："
+  "notifications-usingIPRule": {
+    "message": "使用IP规则："
   },
-  "options-about-issueTracker" :  {
-    "message" :  "问题跟踪"
+  "options-about-issueTracker": {
+    "message": "问题跟踪"
   },
-  "options-about-knownIssues" :  {
-    "message" :  "已知问题"
+  "options-about-knownIssues": {
+    "message": "已知问题"
   },
-  "options-about-wiki" :  {
-    "message" :  "Wiki"
+  "options-about-wiki": {
+    "message": "Wiki"
   },
-  "options-about-support" :  {
-    "message" :  "支持"
+  "options-about-support": {
+    "message": "支持"
   },
-  "options-about-sourceCode" :  {
-    "message" :  "源码"
+  "options-about-sourceCode": {
+    "message": "源码"
   },
-  "options-about-translate" :  {
-    "message" :  "帮助翻译"
+  "options-about-translate": {
+    "message": "帮助翻译"
   },
-  "options-checklist-close" :  {
-    "message" :  "关闭"
+  "options-checklist-close": {
+    "message": "关闭"
   },
-  "options-checklist-leaveEmpty" :  {
-    "message" :  "留空"
+  "options-checklist-leaveEmpty": {
+    "message": "留空"
   },
-  "options-checklist-note1" :  {
-    "message" :  "注意：若要查看已更改的首选项列表，请访问：about:support#prefs-tbody"
+  "options-checklist-note1": {
+    "message": "注意：若要查看已更改的首选项列表，请访问：about:support#prefs-tbody"
   },
-  "options-checklist-note2" :  {
-    "message" :  "不存在时创建选项。"
+  "options-checklist-note2": {
+    "message": "不存在时创建选项。"
   },
-  "options-checklist-warning" :  {
-    "message" :  "可能会破坏网站。"
+  "options-checklist-warning": {
+    "message": "可能会破坏网站。"
   },
-  "options-checklistItem-blockActiveMixedContent" :  {
-    "message" :  "阻止主动混合内容"
+  "options-checklistItem-blockActiveMixedContent": {
+    "message": "阻止主动混合内容"
   },
-  "options-checklistItem-blockActiveMixedContentDesc" :  {
-    "message" :  "阻止在HTTPS页面加载非HTTPS的主动混合内容(脚本、iframes、CSS、AJAX/提取请求)"
+  "options-checklistItem-blockActiveMixedContentDesc": {
+    "message": "阻止在HTTPS页面加载非HTTPS的主动混合内容(脚本、iframes、CSS、AJAX/提取请求)"
   },
-  "options-checklistItem-blockDisplayMixedContent" :  {
-    "message" :  "阻止显示混合内容"
+  "options-checklistItem-blockDisplayMixedContent": {
+    "message": "阻止显示混合内容"
   },
-  "options-checklistItem-blockDisplayMixedContentDesc" :  {
-    "message" :  "阻止在HTTPS页面加载非HTTPS被动混合内容(图像、音频、视频)"
+  "options-checklistItem-blockDisplayMixedContentDesc": {
+    "message": "阻止在HTTPS页面加载非HTTPS被动混合内容(图像、音频、视频)"
   },
-  "options-checklistItem-disableAddonCache" :  {
-    "message" :  "禁用附加组件缓存"
+  "options-checklistItem-disableAddonCache": {
+    "message": "禁用附加组件缓存"
   },
-  "options-checklistItem-disableAddonCacheDesc" :  {
-    "message" :  "阻止更新附加组件元数据"
+  "options-checklistItem-disableAddonCacheDesc": {
+    "message": "阻止更新附加组件元数据"
   },
-  "options-checklistItem-disableAddonUpdates" :  {
-    "message" :  "禁用附加组件更新"
+  "options-checklistItem-disableAddonUpdates": {
+    "message": "禁用附加组件更新"
   },
-  "options-checklistItem-disableAddonUpdatesDesc" :  {
-    "message" :  "阻止检查附加组件更新"
+  "options-checklistItem-disableAddonUpdatesDesc": {
+    "message": "阻止检查附加组件更新"
   },
-  "options-checklistItem-disableBattery" :  {
-    "message" :  "禁用电池API"
+  "options-checklistItem-disableBattery": {
+    "message": "禁用电池API"
   },
-  "options-checklistItem-disableBatteryDesc" :  {
-    "message" :  "禁用电池 API。可用于跟踪用户"
+  "options-checklistItem-disableBatteryDesc": {
+    "message": "禁用电池 API。可用于跟踪用户"
   },
-  "options-checklistItem-disableHistory" :  {
-    "message" :  "禁用浏览和下载历史"
+  "options-checklistItem-disableHistory": {
+    "message": "禁用浏览和下载历史"
   },
-  "options-checklistItem-disableHistoryDesc" :  {
-    "message" :  "禁用浏览和下载历史"
+  "options-checklistItem-disableHistoryDesc": {
+    "message": "禁用浏览和下载历史"
   },
-  "options-checklistItem-disableCacheDisk" :  {
-    "message" :  "禁用缓存(磁盘)"
+  "options-checklistItem-disableCacheDisk": {
+    "message": "禁用缓存(磁盘)"
   },
-  "options-checklistItem-disableCacheDiskDesc" :  {
-    "message" :  "阻止在磁盘上缓存数据"
+  "options-checklistItem-disableCacheDiskDesc": {
+    "message": "阻止在磁盘上缓存数据"
   },
-  "options-checklistItem-disableCacheMem" :  {
-    "message" :  "禁用缓存(内存)"
+  "options-checklistItem-disableCacheMem": {
+    "message": "禁用缓存(内存)"
   },
-  "options-checklistItem-disableCacheMemDesc" :  {
-    "message" :  "阻止在内存中缓存数据"
+  "options-checklistItem-disableCacheMemDesc": {
+    "message": "阻止在内存中缓存数据"
   },
-  "options-checklistItem-disableClipboardEvt" :  {
-    "message" :  "禁用剪贴板事件"
+  "options-checklistItem-disableClipboardEvt": {
+    "message": "禁用剪贴板事件"
   },
-  "options-checklistItem-disableClipboardEvtDesc" :  {
-    "message" :  "阻止网站检测用户从网页复制、粘贴，或剪贴的数据以及所选内容"
+  "options-checklistItem-disableClipboardEvtDesc": {
+    "message": "阻止网站检测用户从网页复制、粘贴，或剪贴的数据以及所选内容"
   },
-  "options-checklistItem-disableContextMenuEvt" :  {
-    "message" :  "禁用右键菜单事件"
+  "options-checklistItem-disableContextMenuEvt": {
+    "message": "禁用右键菜单事件"
   },
-  "options-checklistItem-disableContextMenuEvtDesc" :  {
-    "message" :  "禁用网站对右键点击上下文菜单的控制。Shift + 右键点击可覆盖"
+  "options-checklistItem-disableContextMenuEvtDesc": {
+    "message": "禁用网站对右键点击上下文菜单的控制。Shift + 右键点击可覆盖"
   },
-  "options-checklistItem-disableMobileSensors" :  {
-    "message" :  "禁用设备传感器"
+  "options-checklistItem-disableMobileSensors": {
+    "message": "禁用设备传感器"
   },
-  "options-checklistItem-disableMobileSensorsDesc" :  {
-    "message" :  "禁用设备传感器(会破坏需要访问传感器的站点)"
+  "options-checklistItem-disableMobileSensorsDesc": {
+    "message": "禁用设备传感器(会破坏需要访问传感器的站点)"
   },
-  "options-checklistItem-disableDNSPrefetch" :  {
-    "message" :  "禁用DNS预读取"
+  "options-checklistItem-disableDNSPrefetch": {
+    "message": "禁用DNS预读取"
   },
-  "options-checklistItem-disableDNSPrefetchDesc" :  {
-    "message" :  "阻止Firefox在用户可能选择关注的链接和网页上被元素所引用的项目的网址主动执行DNS解析。"
+  "options-checklistItem-disableDNSPrefetchDesc": {
+    "message": "阻止Firefox在用户可能选择关注的链接和网页上被元素所引用的项目的网址主动执行DNS解析。"
   },
-  "options-checklistItem-disableDOMStorage" :  {
-    "message" :  "禁用DOM存储"
+  "options-checklistItem-disableDOMStorage": {
+    "message": "禁用DOM存储"
   },
-  "options-checklistItem-disableDOMStorageDesc" :  {
-    "message" :  "阻止站点储存数据(会话存储和本地存储)"
+  "options-checklistItem-disableDOMStorageDesc": {
+    "message": "阻止站点储存数据(会话存储和本地存储)"
   },
-  "options-checklistItem-disableDRM" :  {
-    "message" :  "禁用DRM"
+  "options-checklistItem-disableDRM": {
+    "message": "禁用DRM"
   },
-  "options-checklistItem-disableDRMDesc" :  {
-    "message" :  "禁用 DRM。会导致Spotify和Netflix等网站出现问题"
+  "options-checklistItem-disableDRMDesc": {
+    "message": "禁用 DRM。会导致Spotify和Netflix等网站出现问题"
   },
-  "options-checklistItem-disableGeo" :  {
-    "message" :  "禁用地理位置"
+  "options-checklistItem-disableGeo": {
+    "message": "禁用地理位置"
   },
-  "options-checklistItem-disableGeoDesc" :  {
-    "message" :  "禁用地理位置功能。这会破坏请求位置的网站"
+  "options-checklistItem-disableGeoDesc": {
+    "message": "禁用地理位置功能。这会破坏请求位置的网站"
   },
-  "options-checklistItem-disableGeo2" :  {
-    "message" :  "禁用地理位置2"
+  "options-checklistItem-disableGeo2": {
+    "message": "禁用地理位置2"
   },
-  "options-checklistItem-disableGeo2Desc" :  {
-    "message" :  "移除Firefox的地理位置提供商"
+  "options-checklistItem-disableGeo2Desc": {
+    "message": "移除Firefox的地理位置提供商"
   },
-  "options-checklistItem-disableIDN" :  {
-    "message" :  "禁用IDN支持"
+  "options-checklistItem-disableIDN": {
+    "message": "禁用IDN支持"
   },
-  "options-checklistItem-disableIDNDesc" :  {
-    "message" :  "始终显示国际化域名的原始punycode版本。网络钓鱼风险；如http://www.аррӏе.com/显示为http://xn--80ak6aa92e.com"
+  "options-checklistItem-disableIDNDesc": {
+    "message": "始终显示国际化域名的原始punycode版本。网络钓鱼风险；如http://www.аррӏе.com/显示为http://xn--80ak6aa92e.com"
   },
-  "options-checklistItem-disableOfflineCache" :  {
-    "message" :  "禁用脱机缓存"
+  "options-checklistItem-disableOfflineCache": {
+    "message": "禁用脱机缓存"
   },
-  "options-checklistItem-disableOfflineCacheDesc" :  {
-    "message" :  "阻止可用于脱机使用的网站数据被缓存"
+  "options-checklistItem-disableOfflineCacheDesc": {
+    "message": "阻止可用于脱机使用的网站数据被缓存"
   },
-  "options-checklistItem-disablePDF" :  {
-    "message" :  "禁用PDF.js"
+  "options-checklistItem-disablePDF": {
+    "message": "禁用PDF.js"
   },
-  "options-checklistItem-disablePDFDesc" :  {
-    "message" :  "阻止在浏览器中加载PDF"
+  "options-checklistItem-disablePDFDesc": {
+    "message": "阻止在浏览器中加载PDF"
   },
-  "options-checklistItem-disablePocket" :  {
-    "message" :  "禁用Pocket"
+  "options-checklistItem-disablePocket": {
+    "message": "禁用Pocket"
   },
-  "options-checklistItem-disablePocketDesc" :  {
-    "message" :  "潜在不受欢迎的功能"
+  "options-checklistItem-disablePocketDesc": {
+    "message": "潜在不受欢迎的功能"
   },
-  "options-checklistItem-disableResTiming" :  {
-    "message" :  "禁用Resource Timing API"
+  "options-checklistItem-disableResTiming": {
+    "message": "禁用Resource Timing API"
   },
-  "options-checklistItem-disableResTimingDesc" :  {
-    "message" :  "Resource Timing是一个浏览器API，用于收集页面上资源的定时信息。可能会泄露历史记录、本地网络信息以及可能的地理位置"
+  "options-checklistItem-disableResTimingDesc": {
+    "message": "Resource Timing是一个浏览器API，用于收集页面上资源的定时信息。可能会泄露历史记录、本地网络信息以及可能的地理位置"
   },
-  "options-checklistItem-disableSearchSuggest" :  {
-    "message" :  "禁用搜索建议"
+  "options-checklistItem-disableSearchSuggest": {
+    "message": "禁用搜索建议"
   },
-  "options-checklistItem-disableSearchSuggestDesc" :  {
-    "message" :  "阻止搜索建议"
+  "options-checklistItem-disableSearchSuggestDesc": {
+    "message": "阻止搜索建议"
   },
-  "options-checklistItem-disableSearchUpdates" :  {
-    "message" :  "禁用搜索更新"
+  "options-checklistItem-disableSearchUpdates": {
+    "message": "禁用搜索更新"
   },
-  "options-checklistItem-disableSearchUpdatesDesc" :  {
-    "message" :  "阻止Firefox更新搜索引擎"
+  "options-checklistItem-disableSearchUpdatesDesc": {
+    "message": "阻止Firefox更新搜索引擎"
   },
-  "options-checklistItem-disableSpeculatePreConn" :  {
-    "message" :  "禁用投机性预连接"
+  "options-checklistItem-disableSpeculatePreConn": {
+    "message": "禁用投机性预连接"
   },
-  "options-checklistItem-disableSpeculatePreConnDesc" :  {
-    "message" :  "当某个元素被绑定或交互时，阻止Firefox主动获取资源"
+  "options-checklistItem-disableSpeculatePreConnDesc": {
+    "message": "当某个元素被绑定或交互时，阻止Firefox主动获取资源"
   },
-  "options-checklistItem-disableSSLFalseStart" :  {
-    "message" :  "禁用SSL False Start"
+  "options-checklistItem-disableSSLFalseStart": {
+    "message": "禁用SSL False Start"
   },
-  "options-checklistItem-disableSSLFalseStartDesc" :  {
-    "message" :  "阻止客户端在完成握手包启动会话之前发送数据"
+  "options-checklistItem-disableSSLFalseStartDesc": {
+    "message": "阻止客户端在完成握手包启动会话之前发送数据"
   },
-  "options-checklistItem-disableSSLSessId" :  {
-    "message" :  "禁用SSL会话标识符"
+  "options-checklistItem-disableSSLSessId": {
+    "message": "禁用SSL会话标识符"
   },
-  "options-checklistItem-disableSSLSessIdDesc" :  {
-    "message" :  "阻止使用TLS会话恢复进行跟踪"
+  "options-checklistItem-disableSSLSessIdDesc": {
+    "message": "阻止使用TLS会话恢复进行跟踪"
   },
-  "options-checklistItem-disableTLSRTT" :  {
-    "message" :  "禁用TLS 0-RTT"
+  "options-checklistItem-disableTLSRTT": {
+    "message": "禁用TLS 0-RTT"
   },
-  "options-checklistItem-disableTLSRTTDesc" :  {
-    "message" :  "零往返时延恢复(0-RTT) 是在TLS 1.3中的一个新功能，其允许客户端和服务器通过更少步骤协商连接，允许https网站更快加载。这里有两个问题。第一：为了做到这一点，您会失去前向保密(每次会话生成一个新的密钥，并在会话结束时丢弃密钥)。第二，0-RTT需要特殊的实现才能防止重放攻击，某些网络开发者肯定无法保护。- 感谢 https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
+  "options-checklistItem-disableTLSRTTDesc": {
+    "message": "零往返时延恢复(0-RTT) 是在TLS 1.3中的一个新功能，其允许客户端和服务器通过更少步骤协商连接，允许https网站更快加载。这里有两个问题。第一：为了做到这一点，您会失去前向保密(每次会话生成一个新的密钥，并在会话结束时丢弃密钥)。第二，0-RTT需要特殊的实现才能防止重放攻击，某些网络开发者肯定无法保护。- 感谢 https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
   },
-  "options-checklistItem-disableTRR" :  {
-    "message" :  "禁用TTR(Trusted Recursive Resolver)"
+  "options-checklistItem-disableTRR": {
+    "message": "禁用TTR(Trusted Recursive Resolver)"
   },
-  "options-checklistItem-disableTRRDesc" :  {
-    "message" :  "DNS-over-HTTPS绕过主机并使用Cloudflare/Google。DNS设置应该由用户管理"
+  "options-checklistItem-disableTRRDesc": {
+    "message": "DNS-over-HTTPS绕过主机并使用Cloudflare/Google。DNS设置应该由用户管理"
   },
-  "options-checklistItem-disableWebGL" :  {
-    "message" :  "禁用WebGL"
+  "options-checklistItem-disableWebGL": {
+    "message": "禁用WebGL"
   },
-  "options-checklistItem-disableWebGLDesc" :  {
-    "message" :  "禁用WebGL(会导致网络游戏出现问题)"
+  "options-checklistItem-disableWebGLDesc": {
+    "message": "禁用WebGL(会导致网络游戏出现问题)"
   },
-  "options-checklistItem-disableWebBeacons" :  {
-    "message" :  "禁用网络信标"
+  "options-checklistItem-disableWebBeacons": {
+    "message": "禁用网络信标"
   },
-  "options-checklistItem-disableWebBeaconsDesc" :  {
-    "message" :  "禁用网络信标"
+  "options-checklistItem-disableWebBeaconsDesc": {
+    "message": "禁用网络信标"
   },
-  "options-checklistItem-clearOfflineApps" :  {
-    "message" :  "启用关闭时清除脱机应用"
+  "options-checklistItem-clearOfflineApps": {
+    "message": "启用关闭时清除脱机应用"
   },
-  "options-checklistItem-clearOfflineAppsDesc" :  {
-    "message" :  "关闭时清除脱机网站数据"
+  "options-checklistItem-clearOfflineAppsDesc": {
+    "message": "关闭时清除脱机网站数据"
   },
-  "options-checklistItem-enableSocialTrackingProtect" :  {
-    "message" :  "启用社交跟踪保护"
+  "options-checklistItem-enableSocialTrackingProtect": {
+    "message": "启用社交跟踪保护"
   },
-  "options-checklistItem-enableSocialTrackingProtectDesc" :  {
-    "message" :  "启用社交跟踪保护"
+  "options-checklistItem-enableSocialTrackingProtectDesc": {
+    "message": "启用社交跟踪保护"
   },
-  "options-checklistItem-limitFonts" :  {
-    "message" :  "限制可检测的字体"
+  "options-checklistItem-limitFonts": {
+    "message": "限制可检测的字体"
   },
-  "options-checklistItem-limitFontsDesc" :  {
-    "message" :  "降低已安装字体的独特性。可能会导致字体图标出现问题"
+  "options-checklistItem-limitFontsDesc": {
+    "message": "降低已安装字体的独特性。可能会导致字体图标出现问题"
   },
-  "options-checklistItem-limitMaxTabsUndo" :  {
-    "message" :  "取消最大标签页数限制"
+  "options-checklistItem-limitMaxTabsUndo": {
+    "message": "取消最大标签页数限制"
   },
-  "options-checklistItem-limitMaxTabsUndoDesc" :  {
-    "message" :  "无论Firefox是否设置为不记住历史记录，关闭的标签页都临时储存在菜单->历史->最近关闭的标签页"
+  "options-checklistItem-limitMaxTabsUndoDesc": {
+    "message": "无论Firefox是否设置为不记住历史记录，关闭的标签页都临时储存在菜单->历史->最近关闭的标签页"
   },
-  "options-checklistItem-useClickToPlay" :  {
-    "message" :  "使用点击运行插件"
+  "options-checklistItem-useClickToPlay": {
+    "message": "使用点击运行插件"
   },
-  "options-checklistItem-useClickToPlayDesc" :  {
-    "message" :  "阻止插件在页面加载时自动运行"
+  "options-checklistItem-useClickToPlayDesc": {
+    "message": "阻止插件在页面加载时自动运行"
   },
-  "options-checklistItem-disableDataSubmission" :  {
-    "message" :  "禁用数据提交"
+  "options-checklistItem-disableDataSubmission": {
+    "message": "禁用数据提交"
   },
-  "options-checklistItem-disableDataSubmissionDesc" :  {
-    "message" :  "禁用数据提交到Mozilla"
+  "options-checklistItem-disableDataSubmissionDesc": {
+    "message": "禁用数据提交到Mozilla"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck" :  {
-    "message" :  "禁用安全浏览下载检查"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck": {
+    "message": "禁用安全浏览下载检查"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheckDesc" :  {
-    "message" :  "禁用对下载的文件进行安全检查"
+  "options-checklistItem-disableSafeBrowsingDownloadCheckDesc": {
+    "message": "禁用对下载的文件进行安全检查"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck2" :  {
-    "message" :  "禁用安全浏览下载检查2"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck2": {
+    "message": "禁用安全浏览下载检查2"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc" :  {
-    "message" :  "禁用对可能不受欢迎的下载文件进行安全检查"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc": {
+    "message": "禁用对可能不受欢迎的下载文件进行安全检查"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck3" :  {
-    "message" :  "禁用安全浏览下载检查3"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck3": {
+    "message": "禁用安全浏览下载检查3"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc" :  {
-    "message" :  "禁用对不常见的下载文件进行安全检查"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc": {
+    "message": "禁用对不常见的下载文件进行安全检查"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck4" :  {
-    "message" :  "禁用安全浏览下载检查4"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck4": {
+    "message": "禁用安全浏览下载检查4"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc" :  {
-    "message" :  "禁用检查不在Google本地列表中的二进制文件"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc": {
+    "message": "禁用检查不在Google本地列表中的二进制文件"
   },
-  "options-checklistItem-disableSafeBrowsingMalwareCheck" :  {
-    "message" :  "禁用安全浏览恶意软件检查"
+  "options-checklistItem-disableSafeBrowsingMalwareCheck": {
+    "message": "禁用安全浏览恶意软件检查"
   },
-  "options-checklistItem-disableSafeBrowsingMalwareCheckDesc" :  {
-    "message" :  "阻止向Google查询安全浏览恶意软件列表"
+  "options-checklistItem-disableSafeBrowsingMalwareCheckDesc": {
+    "message": "阻止向Google查询安全浏览恶意软件列表"
   },
-  "options-checklistItem-disableSafeBrowsingPhishingCheck" :  {
-    "message" :  "禁用安全浏览网络钓鱼检查"
+  "options-checklistItem-disableSafeBrowsingPhishingCheck": {
+    "message": "禁用安全浏览网络钓鱼检查"
   },
-  "options-checklistItem-disableSafeBrowsingPhishingCheckDesc" :  {
-    "message" :  "阻止向Google查询安全浏览网络钓鱼列表"
+  "options-checklistItem-disableSafeBrowsingPhishingCheckDesc": {
+    "message": "阻止向Google查询安全浏览网络钓鱼列表"
   },
-  "options-checklistItem-disableHealthReport" :  {
-    "message" :  "禁用健康报告上传"
+  "options-checklistItem-disableHealthReport": {
+    "message": "禁用健康报告上传"
   },
-  "options-checklistItem-disableHealthReportDesc" :  {
-    "message" :  "禁用向Mozilla发送健康报告"
+  "options-checklistItem-disableHealthReportDesc": {
+    "message": "禁用向Mozilla发送健康报告"
   },
-  "options-checklistItem-disableCrashReport" :  {
-    "message" :  "禁用崩溃报告"
+  "options-checklistItem-disableCrashReport": {
+    "message": "禁用崩溃报告"
   },
-  "options-checklistItem-disableCrashReportDesc" :  {
-    "message" :  "禁用向Mozilla发送崩溃报告"
+  "options-checklistItem-disableCrashReportDesc": {
+    "message": "禁用向Mozilla发送崩溃报告"
   },
-  "options-checklistItem-disableTelemetryPing" :  {
-    "message" :  "禁用遥测ping"
+  "options-checklistItem-disableTelemetryPing": {
+    "message": "禁用遥测ping"
   },
-  "options-checklistItem-disableTelemetryPingDesc" :  {
-    "message" :  "启用遥测时使用的遥测服务器"
+  "options-checklistItem-disableTelemetryPingDesc": {
+    "message": "启用遥测时使用的遥测服务器"
   },
-  "options-checklistItem-disableTelemetryReport" :  {
-    "message" :  "禁用遥测报告"
+  "options-checklistItem-disableTelemetryReport": {
+    "message": "禁用遥测报告"
   },
-  "options-checklistItem-disableTelemetryReportDesc" :  {
-    "message" :  "禁用遥测"
+  "options-checklistItem-disableTelemetryReportDesc": {
+    "message": "禁用遥测"
   },
-  "options-checklistItem-disableTelemetryReport2" :  {
-    "message" :  "禁用遥测报告2"
+  "options-checklistItem-disableTelemetryReport2": {
+    "message": "禁用遥测报告2"
   },
-  "options-checklistItem-disableTelemetryReport2Desc" :  {
-    "message" :  "禁用遥测被启用(覆盖toolkit.telemetry.enabled)"
+  "options-checklistItem-disableTelemetryReport2Desc": {
+    "message": "禁用遥测被启用(覆盖toolkit.telemetry.enabled)"
   },
-  "options-checklistItem-sessionPrivacyLevel" :  {
-    "message" :  "设置会话隐私级别"
+  "options-checklistItem-sessionPrivacyLevel": {
+    "message": "设置会话隐私级别"
   },
-  "options-checklistItem-sessionPrivacyLevelDesc" :  {
-    "message" :  "将会话隐私级别设置为2阻止Firefox储存用于恢复会话的表单内容、滚动条位置、cookie和POST数据"
+  "options-checklistItem-sessionPrivacyLevelDesc": {
+    "message": "将会话隐私级别设置为2阻止Firefox储存用于恢复会话的表单内容、滚动条位置、cookie和POST数据"
   },
-  "options-import-couldNotImport" :  {
-    "message" :  "无法导入文件"
+  "options-import-couldNotImport": {
+    "message": "无法导入文件"
   },
-  "options-import-invalid-config" :  {
-    "message" :  "设置无效：缺少配置"
+  "options-import-invalid-config": {
+    "message": "设置无效：缺少配置"
   },
-  "options-import-invalid-excluded" :  {
-    "message" :  "设置无效：缺少排除项"
+  "options-import-invalid-excluded": {
+    "message": "设置无效：缺少排除项"
   },
-  "options-import-invalid-excludedProfile" :  {
-    "message" :  "无效设置：排除项包含无效的配置文件"
+  "options-import-invalid-excludedProfile": {
+    "message": "无效设置：排除项包含无效的配置文件"
   },
-  "options-import-invalid-headers" :  {
-    "message" :  "设置无效：缺少头"
+  "options-import-invalid-headers": {
+    "message": "设置无效：缺少头"
   },
-  "options-import-invalid-ipRuleId" :  {
-    "message" :  "设置无效：IP规则id无效"
+  "options-import-invalid-ipRuleId": {
+    "message": "设置无效：IP规则id无效"
   },
-  "options-import-invalid-ipRuleName" :  {
-    "message" :  "设置无效：缺少IP规则名称"
+  "options-import-invalid-ipRuleName": {
+    "message": "设置无效：缺少IP规则名称"
   },
-  "options-import-invalid-ipRuleRange" :  {
-    "message" :  "设置无效：IP规则范围无效"
+  "options-import-invalid-ipRuleRange": {
+    "message": "设置无效：IP规则范围无效"
   },
-  "options-import-invalid-ipRules" :  {
-    "message" :  "设置无效：缺少IP规则"
+  "options-import-invalid-ipRules": {
+    "message": "设置无效：缺少IP规则"
   },
-  "options-import-invalid-ipRulesDupe" :  {
-    "message" :  "设置无效：发现重复的IP规则id"
+  "options-import-invalid-ipRulesDupe": {
+    "message": "设置无效：发现重复的IP规则id"
   },
-  "options-import-invalid-options" :  {
-    "message" :  "设置无效：缺少选项"
+  "options-import-invalid-options": {
+    "message": "设置无效：缺少选项"
   },
-  "options-import-invalid-profile" :  {
-    "message" :  "设置无效：缺少配置设置"
+  "options-import-invalid-profile": {
+    "message": "设置无效：缺少配置设置"
   },
-  "options-import-invalid-setting" :  {
-    "message" :  "设置值无效："
+  "options-import-invalid-setting": {
+    "message": "设置值无效："
   },
-  "options-import-invalid-settings" :  {
-    "message" :  "设置无效：缺少设置"
+  "options-import-invalid-settings": {
+    "message": "设置无效：缺少设置"
   },
-  "options-import-invalid-spoofIP" :  {
-    "message" :  "设置无效：欺骗头部IP范围无效"
+  "options-import-invalid-spoofIP": {
+    "message": "设置无效：欺骗头部IP范围无效"
   },
-  "options-import-invalid-version" :  {
-    "message" :  "设置无效：版本不被接受"
+  "options-import-invalid-version": {
+    "message": "设置无效：版本不被接受"
   },
-  "options-import-invalid-whitelist" :  {
-    "message" :  "设置无效：缺少白名单"
+  "options-import-invalid-whitelist": {
+    "message": "设置无效：缺少白名单"
   },
-  "options-import-invalid-whitelistDupe" :  {
-    "message" :  "设置无效：发现重复的白名单规则id"
+  "options-import-invalid-whitelistDupe": {
+    "message": "设置无效：发现重复的白名单规则id"
   },
-  "options-import-invalid-whitelistId" :  {
-    "message" :  "设置无效：白名单规则id无效"
+  "options-import-invalid-whitelistId": {
+    "message": "设置无效：白名单规则id无效"
   },
-  "options-import-invalid-whitelistName" :  {
-    "message" :  "设置无效：缺少白名单规则名称"
+  "options-import-invalid-whitelistName": {
+    "message": "设置无效：缺少白名单规则名称"
   },
-  "options-import-invalid-whitelistOpt" :  {
-    "message" :  "设置无效：白名单规则选项无效"
+  "options-import-invalid-whitelistOpt": {
+    "message": "设置无效：白名单规则选项无效"
   },
-  "options-import-invalid-whitelistSpoofIP" :  {
-    "message" :  "设置无效：白名单规则的欺骗IP无效"
+  "options-import-invalid-whitelistSpoofIP": {
+    "message": "设置无效：白名单规则的欺骗IP无效"
   },
-  "options-import-success" :  {
-    "message" :  "导入设置成功。正在重新加载扩展..."
+  "options-import-success": {
+    "message": "导入设置成功。正在重新加载扩展..."
   },
-  "options-ipRules-editorTitle" :  {
-    "message" :  "IP规则编辑器"
+  "options-ipRules-editorTitle": {
+    "message": "IP规则编辑器"
   },
-  "options-ipRules-ipRule" :  {
-    "message" :  "IP规则"
+  "options-ipRules-ipRule": {
+    "message": "IP规则"
   },
-  "options-ipRules-reload" :  {
-    "message" :  "重新加载IP信息"
+  "options-ipRules-reload": {
+    "message": "重新加载IP信息"
   },
-  "options-ipRules-textareaLabel" :  {
-    "message" :  "IP范围/地址"
+  "options-ipRules-textareaLabel": {
+    "message": "IP范围/地址"
   },
-  "options-ipRules-textareaPlaceholder" :  {
-    "message" :  "每行一个IP/IP范围"
+  "options-ipRules-textareaPlaceholder": {
+    "message": "每行一个IP/IP范围"
   },
-  "options-modal-askDelete" :  {
-    "message" :  "您确定要删除这条规则吗？"
+  "options-modal-askDelete": {
+    "message": "您确定要删除这条规则吗？"
   },
-  "options-modal-askReset" :  {
-    "message" :  "您确定要重置您的设置？"
+  "options-modal-askReset": {
+    "message": "您确定要重置您的设置？"
   },
-  "options-modal-confirmDelete" :  {
-    "message" :  "是的，将其删除！"
+  "options-modal-confirmDelete": {
+    "message": "是的，将其删除！"
   },
-  "options-modal-confirmReset" :  {
-    "message" :  "是，重置我的设置！"
+  "options-modal-confirmReset": {
+    "message": "是，重置我的设置！"
   },
-  "options-settings" :  {
-    "message" :  "设置"
+  "options-settings": {
+    "message": "设置"
   },
-  "options-settings-import" :  {
-    "message" :  "导入"
+  "options-settings-import": {
+    "message": "导入"
   },
-  "options-settings-importing" :  {
-    "message" :  "正在导入设置"
+  "options-settings-importing": {
+    "message": "正在导入设置"
   },
-  "options-settings-export" :  {
-    "message" :  "导出"
+  "options-settings-export": {
+    "message": "导出"
   },
-  "options-settings-reset" :  {
-    "message" :  "重置为默认"
+  "options-settings-reset": {
+    "message": "重置为默认"
   },
-  "options-tab-about" :  {
-    "message" :  "关于"
+  "options-settings-permissions": {
+    "message": "Chameleon可以控制一些Firefox首选项，如抵制指纹识别或启用跟踪保护。这可能会和其他扩展有冲突。您可以通过移除隐私权限退出Chameleon对这些首选项的控制。请注意，移除此权限将会重置这些首选项。如果不存在您可以请求此权限。"
   },
-  "options-tab-ipRules" :  {
-    "message" :  "IP规则"
+  "options-settings-permissions-request": {
+    "message": "请求隐私权限"
   },
-  "options-tab-checklist" :  {
-    "message" :  "清单"
+  "options-settings-permissions-remove": {
+    "message": "移除隐私权限"
   },
-  "options-whitelist-acceptLang" :  {
-    "message" :  "Accept-Language"
+  "options-tab-about": {
+    "message": "关于"
   },
-  "options-whitelist-editorTitle" :  {
-    "message" :  "白名单规则编辑器"
+  "options-tab-ipRules": {
+    "message": "IP规则"
   },
-  "options-whitelist-headerIPLabel" :  {
-    "message" :  "头部IP(Via & X-Forwarded-For)"
+  "options-tab-checklist": {
+    "message": "清单"
   },
-  "options-whitelist-options-name" :  {
-    "message" :  "启用保护窗口名称"
+  "options-whitelist-acceptLang": {
+    "message": "Accept-Language"
   },
-  "options-whitelist-options-tz" :  {
-    "message" :  "启用时区欺骗"
+  "options-whitelist-editorTitle": {
+    "message": "白名单规则编辑器"
   },
-  "options-whitelist-options-ws" :  {
-    "message" :  "禁用WebSocket"
+  "options-whitelist-headerIPLabel": {
+    "message": "头部IP(Via & X-Forwarded-For)"
   },
-  "options-whitelist-rule" :  {
-    "message" :  "白名单规则"
+  "options-whitelist-options-name": {
+    "message": "启用保护窗口名称"
   },
-  "options-whitelist-sitesTip" :  {
-    "message" :  "每行一条规则：域名@@[可选正则表达式]"
+  "options-whitelist-options-tz": {
+    "message": "启用时区欺骗"
   },
-  "options-whitelist-textareaLabel" :  {
-    "message" :  "IP范围/地址"
+  "options-whitelist-options-ws": {
+    "message": "禁用WebSocket"
   },
-  "options-whitelist-textareaPlaceholder" :  {
-    "message" :  "每行一个IP/IP范围"
+  "options-whitelist-rule": {
+    "message": "白名单规则"
   },
-  "popup-home-change" :  {
-    "message" :  "更改"
+  "options-whitelist-sitesTip": {
+    "message": "每行一条规则：域名@@[可选正则表达式]"
   },
-  "popup-home-currentProfile" :  {
-    "message" :  "当前配置文件"
+  "options-whitelist-textareaLabel": {
+    "message": "IP范围/地址"
   },
-  "popup-home-currentProfile-defaultLanguage" :  {
-    "message" :  "默认语言"
+  "options-whitelist-textareaPlaceholder": {
+    "message": "每行一个IP/IP范围"
   },
-  "popup-home-currentProfile-defaultScreen" :  {
-    "message" :  "默认屏幕"
+  "popup-home-change": {
+    "message": "更改"
   },
-  "popup-home-currentProfile-defaultTimezone" :  {
-    "message" :  "默认时区"
+  "popup-home-currentProfile": {
+    "message": "当前配置文件"
   },
-  "popup-home-currentProfile-gettingTimezone" :  {
-    "message" :  "正在获取IP信息"
+  "popup-home-currentProfile-defaultLanguage": {
+    "message": "默认语言"
   },
-  "popup-home-currentProfile-screenProfile" :  {
-    "message" :  "屏幕（配置文件）"
+  "popup-home-currentProfile-defaultScreen": {
+    "message": "默认屏幕"
   },
-  "popup-home-disabled" :  {
-    "message" :  "Chameleon已禁用"
+  "popup-home-currentProfile-defaultTimezone": {
+    "message": "默认时区"
   },
-  "popup-home-enabled" :  {
-    "message" :  "Chameleon已启用"
+  "popup-home-currentProfile-gettingTimezone": {
+    "message": "正在获取IP信息"
   },
-  "popup-home-notification-disabled" :  {
-    "message" :  "通知关"
+  "popup-home-currentProfile-screenProfile": {
+    "message": "屏幕（配置文件）"
   },
-  "popup-home-notification-enabled" :  {
-    "message" :  "通知开"
+  "popup-home-disabled": {
+    "message": "Chameleon已禁用"
   },
-  "popup-home-onThisPage" :  {
-    "message" :  "在本页面"
+  "popup-home-enabled": {
+    "message": "Chameleon已启用"
   },
-  "popup-home-theme-dark" :  {
-    "message" :  "深色"
+  "popup-home-notification-disabled": {
+    "message": "通知关"
   },
-  "popup-home-theme-light" :  {
-    "message" :  "浅色"
+  "popup-home-notification-enabled": {
+    "message": "通知开"
   },
-  "popup-profile-changePeriodically" :  {
-    "message" :  "定期更改"
+  "popup-home-onThisPage": {
+    "message": "在本页面"
   },
-  "popup-profile-devicePhone" :  {
-    "message" :  "手机"
+  "popup-home-theme-dark": {
+    "message": "深色"
   },
-  "popup-profile-deviceTablet" :  {
-    "message" :  "平板"
+  "popup-home-theme-light": {
+    "message": "浅色"
   },
-  "popup-profile-interval-no" :  {
-    "message" :  "否"
+  "popup-profile-changePeriodically": {
+    "message": "定期更改"
   },
-  "popup-profile-interval-custom" :  {
-    "message" :  "自定义间隔"
+  "popup-profile-devicePhone": {
+    "message": "手机"
   },
-  "popup-profile-interval-customMax" :  {
-    "message" :  "最大值(分钟)："
+  "popup-profile-deviceTablet": {
+    "message": "平板"
   },
-  "popup-profile-interval-customMin" :  {
-    "message" :  "最小值(分钟)："
+  "popup-profile-interval-no": {
+    "message": "否"
   },
-  "popup-profile-interval-minute" :  {
-    "message" :  "每分钟"
+  "popup-profile-interval-custom": {
+    "message": "自定义间隔"
   },
-  "popup-profile-interval-5minutes" :  {
-    "message" :  "每5分钟"
+  "popup-profile-interval-customMax": {
+    "message": "最大值(分钟)："
   },
-  "popup-profile-interval-10minutes" :  {
-    "message" :  "每10分钟"
+  "popup-profile-interval-customMin": {
+    "message": "最小值(分钟)："
   },
-  "popup-profile-interval-20minutes" :  {
-    "message" :  "每20分钟"
+  "popup-profile-interval-minute": {
+    "message": "每分钟"
   },
-  "popup-profile-interval-30minutes" :  {
-    "message" :  "每30分钟"
+  "popup-profile-interval-5minutes": {
+    "message": "每5分钟"
   },
-  "popup-profile-interval-40minutes" :  {
-    "message" :  "每40分钟"
+  "popup-profile-interval-10minutes": {
+    "message": "每10分钟"
   },
-  "popup-profile-interval-50minutes" :  {
-    "message" :  "每50分钟"
+  "popup-profile-interval-20minutes": {
+    "message": "每20分钟"
   },
-  "popup-profile-interval-hour" :  {
-    "message" :  "每小时"
+  "popup-profile-interval-30minutes": {
+    "message": "每30分钟"
   },
-  "popup-profile-exclude" :  {
-    "message" :  "排除"
+  "popup-profile-interval-40minutes": {
+    "message": "每40分钟"
   },
-  "popup-profile-randomAndroid" :  {
-    "message" :  "随机Android浏览器"
+  "popup-profile-interval-50minutes": {
+    "message": "每50分钟"
   },
-  "popup-profile-randomIOS" :  {
-    "message" :  "随机的iOS浏览器"
+  "popup-profile-interval-hour": {
+    "message": "每小时"
   },
-  "popup-profile-randomMacOS" :  {
-    "message" :  "随机macOS浏览器"
+  "popup-profile-exclude": {
+    "message": "排除"
   },
-  "popup-profile-randomLinux" :  {
-    "message" :  "随机Linux浏览器"
+  "popup-profile-randomAndroid": {
+    "message": "随机Android浏览器"
   },
-  "popup-profile-randomWindows" :  {
-    "message" :  "随机Windows浏览器"
+  "popup-profile-randomIOS": {
+    "message": "随机的iOS浏览器"
   },
-  "popup-profile-random" :  {
-    "message" :  "随机"
+  "popup-profile-randomMacOS": {
+    "message": "随机macOS浏览器"
   },
-  "popup-profile-randomDesktopProfile" :  {
-    "message" :  "随机配置文件(桌面)"
+  "popup-profile-randomLinux": {
+    "message": "随机Linux浏览器"
   },
-  "popup-profile-randomMobileProfile" :  {
-    "message" :  "随机配置文件(移动)"
+  "popup-profile-randomWindows": {
+    "message": "随机Windows浏览器"
   },
-  "popup-headers" :  {
-    "message" :  "头信息"
+  "popup-profile-random": {
+    "message": "随机"
   },
-  "popup-headers-enableDNT" :  {
-    "message" :  "启用DNT(Do Not Track)"
+  "popup-profile-randomDesktopProfile": {
+    "message": "随机配置文件(桌面)"
   },
-  "popup-headers-preventEtag" :  {
-    "message" :  "阻止Etag跟踪"
+  "popup-profile-randomMobileProfile": {
+    "message": "随机配置文件(移动)"
   },
-  "popup-headers-refererWarning" :  {
-    "message" :  "请勿修改以下选项的about:config设置。"
+  "popup-headers": {
+    "message": "头信息"
   },
-  "popup-headers-referer-trimming" :  {
-    "message" :  "Referer微调政策"
+  "popup-headers-enableDNT": {
+    "message": "启用DNT(Do Not Track)"
   },
-  "popup-headers-referer-trimming-sendFullURI" :  {
-    "message" :  "发送完整URI(默认)"
+  "popup-headers-preventEtag": {
+    "message": "阻止Etag跟踪"
   },
-  "popup-headers-referer-trimming-schemeHostPortPath" :  {
-    "message" :  "方案、主机、端口+路径"
+  "popup-headers-refererWarning": {
+    "message": "请勿修改以下选项的about:config设置。"
   },
-  "popup-headers-referer-trimming-schemeHostPort" :  {
-    "message" :  "方案、主机+端口"
+  "popup-headers-referer-trimming": {
+    "message": "Referer微调政策"
   },
-  "popup-headers-referer-xorigin" :  {
-    "message" :  "Referer X Origin策略"
+  "popup-headers-referer-trimming-sendFullURI": {
+    "message": "发送完整URI(默认)"
   },
-  "popup-headers-referer-xorigin-alwaysSend" :  {
-    "message" :  "总是发送(默认)"
+  "popup-headers-referer-trimming-schemeHostPortPath": {
+    "message": "方案、主机、端口+路径"
   },
-  "popup-headers-referer-xorigin-matchBaseDomain" :  {
-    "message" :  "匹配基本域名"
+  "popup-headers-referer-trimming-schemeHostPort": {
+    "message": "方案、主机+端口"
   },
-  "popup-headers-referer-xorigin-matchHost" :  {
-    "message" :  "匹配主机"
+  "popup-headers-referer-xorigin": {
+    "message": "Referer X Origin策略"
   },
-  "popup-headers-spoofAcceptLang" :  {
-    "message" :  "欺骗Accept-Language"
+  "popup-headers-referer-xorigin-alwaysSend": {
+    "message": "总是发送(默认)"
   },
-  "popup-headers-spoofIP" :  {
-    "message" :  "欺骗X-Forwarded-For/Via IP"
+  "popup-headers-referer-xorigin-matchBaseDomain": {
+    "message": "匹配基本域名"
   },
-  "popup-headers-spoofIP-random" :  {
-    "message" :  "随机IP"
+  "popup-headers-referer-xorigin-matchHost": {
+    "message": "匹配主机"
   },
-  "popup-headers-spoofIP-custom" :  {
-    "message" :  "自定义IP"
+  "popup-headers-spoofAcceptLang": {
+    "message": "欺骗Accept-Language"
   },
-  "popup-headers-spoofIP-rangeFrom" :  {
-    "message" :  "来源范围"
+  "popup-headers-spoofIP": {
+    "message": "欺骗X-Forwarded-For/Via IP"
   },
-  "popup-headers-spoofIP-rangeTo" :  {
-    "message" :  "目标范围"
+  "popup-headers-spoofIP-random": {
+    "message": "随机IP"
   },
-  "popup-options" :  {
-    "message" :  "选项"
+  "popup-headers-spoofIP-custom": {
+    "message": "自定义IP"
   },
-  "popup-options-aboutConfigButton" :  {
-    "message" :  "打开about:config清单"
+  "popup-headers-spoofIP-rangeFrom": {
+    "message": "来源范围"
   },
-  "popup-options-injection" :  {
-    "message" :  "注入"
+  "popup-headers-spoofIP-rangeTo": {
+    "message": "目标范围"
   },
-  "popup-options-injection-limitTabHistory" :  {
-    "message" :  "限制标签页历史"
+  "popup-options": {
+    "message": "选项"
   },
-  "popup-options-injection-protectWinName" :  {
-    "message" :  "保护窗口名称"
+  "popup-options-grantPermissions": {
+    "message": "授予修改设置的权限"
   },
-  "popup-options-injection-audioContext" :  {
-    "message" :  "欺骗音频上下文"
+  "popup-options-injection": {
+    "message": "注入"
   },
-  "popup-options-injection-clientRects" :  {
-    "message" :  "欺骗客户端矩形"
+  "popup-options-injection-limitTabHistory": {
+    "message": "限制标签页历史"
   },
-  "popup-options-injection-protectKBFingerprint" :  {
-    "message" :  "保护键盘指纹"
+  "popup-options-injection-protectWinName": {
+    "message": "保护窗口名称"
   },
-  "popup-options-injection-protectKBFingerprintDelay" :  {
-    "message" :  "延迟(毫秒)"
+  "popup-options-injection-audioContext": {
+    "message": "欺骗音频上下文"
   },
-  "popup-options-injection-screen" :  {
-    "message" :  "屏幕大小"
+  "popup-options-injection-clientRects": {
+    "message": "欺骗客户端矩形"
   },
-  "popup-options-injection-spoofFontFingerprint" :  {
-    "message" :  "欺骗字体指纹"
+  "popup-options-injection-protectKBFingerprint": {
+    "message": "保护键盘指纹"
   },
-  "popup-options-standard" :  {
-    "message" :  "标准"
+  "popup-options-injection-protectKBFingerprintDelay": {
+    "message": "延迟(毫秒)"
   },
-  "popup-options-standard-blockMediaDevices" :  {
-    "message" :  "阻止媒体设备"
+  "popup-options-injection-screen": {
+    "message": "屏幕大小"
   },
-  "popup-options-standard-disableWebRTC" :  {
-    "message" :  "禁用WebRTC"
+  "popup-options-injection-spoofFontFingerprint": {
+    "message": "欺骗字体指纹"
   },
-  "popup-options-standard-firstPartyIsolation" :  {
-    "message" :  "启用第一方隔离"
+  "popup-options-standard": {
+    "message": "标准"
   },
-  "popup-options-standard-resistFingerprinting" :  {
-    "message" :  "抵制指纹识别"
+  "popup-options-standard-blockMediaDevices": {
+    "message": "阻止媒体设备"
   },
-  "popup-options-standard-spoofMediaDevices" :  {
-    "message" :  "欺骗媒体设备"
+  "popup-options-standard-disableWebRTC": {
+    "message": "禁用WebRTC"
   },
-  "popup-options-standard-trackingProtection" :  {
-    "message" :  "跟踪保护模式"
+  "popup-options-standard-firstPartyIsolation": {
+    "message": "启用第一方隔离"
   },
-  "popup-options-standard-trackingProtection-on" :  {
-    "message" :  "开"
+  "popup-options-standard-resistFingerprinting": {
+    "message": "抵制指纹识别"
   },
-  "popup-options-standard-trackingProtection-off" :  {
-    "message" :  "关"
+  "popup-options-standard-spoofMediaDevices": {
+    "message": "欺骗媒体设备"
   },
-  "popup-options-standard-trackingProtection-privateBrowsing" :  {
-    "message" :  "在隐私浏览中启用"
+  "popup-options-standard-trackingProtection": {
+    "message": "跟踪保护模式"
   },
-  "popup-options-standard-webRTCPolicy" :  {
-    "message" :  "WebRTC策略"
+  "popup-options-standard-trackingProtection-on": {
+    "message": "开"
   },
-  "popup-options-standard-webRTCPolicy-nonProxified" :  {
-    "message" :  "禁用非代理的UDP"
+  "popup-options-standard-trackingProtection-off": {
+    "message": "关"
   },
-  "popup-options-standard-webRTCPolicy-public" :  {
-    "message" :  "仅使用公共接口(最佳)"
+  "popup-options-standard-trackingProtection-privateBrowsing": {
+    "message": "在隐私浏览中启用"
   },
-  "popup-options-standard-webRTCPolicy-publicPrivate" :  {
-    "message" :  "使用公共和私有接口"
+  "popup-options-standard-webRTCPolicy": {
+    "message": "WebRTC策略"
   },
-  "popup-options-standard-webSockets-blockAll" :  {
-    "message" :  "全部阻止"
+  "popup-options-standard-webRTCPolicy-nonProxified": {
+    "message": "禁用非代理的UDP"
   },
-  "popup-options-standard-webSockets-blockThirdParty" :  {
-    "message" :  "阻止第三方"
+  "popup-options-standard-webRTCPolicy-public": {
+    "message": "仅使用公共接口(最佳)"
   },
-  "popup-options-cookie" :  {
-    "message" :  "Cookie选项"
+  "popup-options-standard-webRTCPolicy-publicPrivate": {
+    "message": "使用公共和私有接口"
   },
-  "popup-options-cookieNotPersistent" :  {
-    "message" :  "窗口关闭后删除cookie和站点数据"
+  "popup-options-standard-webSockets-blockAll": {
+    "message": "全部阻止"
   },
-  "popup-options-cookiePolicy" :  {
-    "message" :  "策略"
+  "popup-options-standard-webSockets-blockThirdParty": {
+    "message": "阻止第三方"
   },
-  "popup-options-cookiePolicy-allowVisited" :  {
-    "message" :  "允许访问过的第三方"
+  "popup-options-cookie": {
+    "message": "Cookie选项"
   },
-  "popup-options-cookiePolicy-rejectAll" :  {
-    "message" :  "全部阻止"
+  "popup-options-cookieNotPersistent": {
+    "message": "窗口关闭后删除cookie和站点数据"
   },
-  "popup-options-cookiePolicy-rejectThirdParty" :  {
-    "message" :  "阻止第三方"
+  "popup-options-cookiePolicy": {
+    "message": "策略"
   },
-  "popup-options-cookiePolicy-rejectTrackers" :  {
-    "message" :  "拒绝跟踪器"
+  "popup-options-cookiePolicy-allowVisited": {
+    "message": "允许访问过的第三方"
   },
-  "popup-whitelist-contextMenu" :  {
-    "message" :  "添加右键菜单条目到当前打开标签页白名单中的域名"
+  "popup-options-cookiePolicy-rejectAll": {
+    "message": "全部阻止"
   },
-  "popup-whitelist-defaultProfileLabel" :  {
-    "message" :  "默认配置文件"
+  "popup-options-cookiePolicy-rejectThirdParty": {
+    "message": "阻止第三方"
   },
-  "popup-whitelist-enable" :  {
-    "message" :  "启用白名单"
+  "popup-options-cookiePolicy-rejectTrackers": {
+    "message": "拒绝跟踪器"
   },
-  "popup-whitelist-isNotWhitelisted" :  {
-    "message" :  "未加入白名单"
+  "popup-whitelist-contextMenu": {
+    "message": "添加右键菜单条目到当前打开标签页白名单中的域名"
   },
-  "popup-whitelist-isWhitelisted" :  {
-    "message" :  "已加入白名单"
+  "popup-whitelist-defaultProfileLabel": {
+    "message": "默认配置文件"
   },
-  "popup-whitelist-open" :  {
-    "message" :  "在白名单中打开"
+  "popup-whitelist-enable": {
+    "message": "启用白名单"
   },
-  "text-allowAll" :  {
-    "message" :  "全部允许"
+  "popup-whitelist-isNotWhitelisted": {
+    "message": "未加入白名单"
   },
-  "text-cancel" :  {
-    "message" :  "取消"
+  "popup-whitelist-isWhitelisted": {
+    "message": "已加入白名单"
   },
-  "text-createNewRule" :  {
-    "message" :  "创建新规则"
+  "popup-whitelist-open": {
+    "message": "在白名单中打开"
   },
-  "text-default" :  {
-    "message" :  "默认"
+  "text-allowAll": {
+    "message": "全部允许"
   },
-  "text-defaultWhitelistProfile" :  {
-    "message" :  "默认白名单配置文件"
+  "text-cancel": {
+    "message": "取消"
   },
-  "text-disableReferer" :  {
-    "message" :  "禁用Referer"
+  "text-createNewRule": {
+    "message": "创建新规则"
   },
-  "text-language" :  {
-    "message" :  "语言"
+  "text-default": {
+    "message": "默认"
   },
-  "text-name" :  {
-    "message" :  "名称"
+  "text-defaultWhitelistProfile": {
+    "message": "默认白名单配置文件"
   },
-  "text-profile" :  {
-    "message" :  "配置文件"
+  "text-disableReferer": {
+    "message": "禁用Referer"
   },
-  "text-realProfile" :  {
-    "message" :  "真实配置文件"
+  "text-language": {
+    "message": "语言"
   },
-  "text-save" :  {
-    "message" :  "保存"
+  "text-name": {
+    "message": "名称"
   },
-  "text-screen" :  {
-    "message" :  "屏幕"
+  "text-profile": {
+    "message": "配置文件"
   },
-  "text-searchRules" :  {
-    "message" :  "搜索规则"
+  "text-realProfile": {
+    "message": "真实配置文件"
   },
-  "text-timezone" :  {
-    "message" :  "时区"
+  "text-save": {
+    "message": "保存"
   },
-  "text-whitelist" :  {
-    "message" :  "已加入白名单"
+  "text-screen": {
+    "message": "屏幕"
+  },
+  "text-searchRules": {
+    "message": "搜索规则"
+  },
+  "text-timezone": {
+    "message": "时区"
+  },
+  "text-whitelist": {
+    "message": "已加入白名单"
   }
 }
