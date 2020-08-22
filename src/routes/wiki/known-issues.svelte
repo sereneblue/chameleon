@@ -43,6 +43,10 @@
     </h4>
     <div class="text-base">
       <div class="mb-4">
+        <h3 class="font-semibold text-lg">https://drive.google.com</h3>
+        Blocking third party cookies prevents videos from playing properly.
+      </div>
+      <div class="mb-4">
         <h3 class="font-semibold text-lg">https://open.spotify.com</h3>
         Some profiles do not work with Spotify (IE11).
       </div>
