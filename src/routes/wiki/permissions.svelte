@@ -20,7 +20,7 @@
       Used to display notification when profile has been updated
     </div>
     <div class="mb-4">
-      <h3 class="font-semibold text-xl">Privacy</h3>
+      <h3 class="font-semibold text-xl">Privacy (optional in v0.21.0+)</h3>
       Used to control privacy settings like first party isolation and resist fingerprinting
     </div>
     <div class="mb-4">

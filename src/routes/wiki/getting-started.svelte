@@ -71,6 +71,10 @@
           The dashboard can be accessed by clicking the gear icon on the Chameleon popup. You can export, import,
           and reset your settings here. It also provides quick access to helpful resources for the Chameleon community. 
         </p>
+        <p class="py-2">
+          v0.21.0 allows users to request the privacy permission to toggle certain options. Click "Request privacy permissions",
+          and then grant Chameleon the privacy permission.
+        </p>
       </div>
     </div>
   </div>
