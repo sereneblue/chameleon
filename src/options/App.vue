@@ -76,15 +76,17 @@
             </button>
           </div>
           <a id="export"></a>
-          <div class="text-xl mb-4" v-t="'options-settings-permissions.message'"></div>
-          <div class="flex flex-col xl:flex-row">
-            <button @click="togglePrivacyPermission" class="transparent-btn">
-              <div class="flex items-center">
-                <feather class="mr-2" type="key" size="1em"></feather>
-                <span v-if="hasPrivacyPermission" v-t="'options-settings-permissions-remove.message'"></span>
-                <span v-else v-t="'options-settings-permissions-request.message'"></span>
-              </div>
-            </button>
+          <div v-if="platform != 'android'">
+            <div class="text-xl mb-4" v-t="'options-settings-permissions.message'"></div>
+            <div class="flex flex-col xl:flex-row">
+              <button @click="togglePrivacyPermission" class="transparent-btn">
+                <div class="flex items-center">
+                  <feather class="mr-2" type="key" size="1em"></feather>
+                  <span v-if="hasPrivacyPermission" v-t="'options-settings-permissions-remove.message'"></span>
+                  <span v-else v-t="'options-settings-permissions-request.message'"></span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
         <div v-show="isImporting" class="mt-4">
@@ -453,6 +455,7 @@ export default class App extends Vue {
   public defaultLanguage: string = browser.i18n.getUILanguage();
   public iconPath: string = '';
   public query: string = '';
+  public platform: string = '';
   public ready: boolean = false;
   public showModal: boolean = false;
   public languages: lang.Language[] = lang.getAllLanguages();
@@ -540,6 +543,7 @@ export default class App extends Vue {
   async created(): Promise<void> {
     this.iconPath = browser.runtime.getURL('icons/icon.svg');
     this.version = browser.runtime.getManifest().version_name;
+    this.platform = (await browser.runtime.getPlatformInfo()).os;
 
     await this['$store'].dispatch('initialize');
 
