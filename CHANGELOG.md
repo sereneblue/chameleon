@@ -1,3 +1,16 @@
+<a name="v0.21.1-rc"></a>
+
+## [v0.21.1-rc](https://github.com/sereneblue/chameleon/compare/v0.21.0-rc...v0.21.1-rc) (2020-08-26)
+
+### Bug Fixes
+
+- **import settings:** get current privacy permission status
+
+### Features
+
+- update profiles
+- update profiles
+
 <a name="v0.21.0-rc"></a>
 
 ## [v0.21.0-rc](https://github.com/sereneblue/chameleon/compare/v0.20.24-rc...v0.21.0-rc) (2020-08-16)
