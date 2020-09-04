@@ -701,6 +701,9 @@
   "popup-options-standard-blockMediaDevices": {
     "message": "Block media devices"
   },
+  "popup-options-standard-blockCSSExfil": {
+    "message": "Block CSS Exfil"
+  },
   "popup-options-standard-disableWebRTC": {
     "message": "Disable WebRTC"
   },
