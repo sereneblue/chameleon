@@ -1116,6 +1116,10 @@ export class Chameleon {
         impSettings.options.spoofMediaDevices = false;
       }
 
+      if (!('blockCSSExfil' in impSettings.options)) {
+        impSettings.options.blockCSSExfil = false;
+      }
+
       let options = [
         ['options.blockMediaDevices', impSettings.options.blockMediaDevices, 'boolean'],
         ['options.disableWebRTC', impSettings.options.disableWebRTC, 'boolean'],
@@ -1129,6 +1133,7 @@ export class Chameleon {
         ['options.spoofClientRects', impSettings.options.spoofClientRects, 'boolean'],
         ['options.spoofFontFingerprint', impSettings.options.spoofFontFingerprint, 'boolean'],
         ['options.spoofMediaDevices', impSettings.options.spoofMediaDevices, 'boolean'],
+        ['options.blockCSSExfil', impSettings.options.blockCSSExfil, 'boolean'],
         [
           'options.screenSize',
           impSettings.options.screenSize,
