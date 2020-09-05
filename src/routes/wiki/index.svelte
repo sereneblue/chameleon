@@ -4,6 +4,10 @@
 
 <div class="mb-8 w-full leading-snug">
   <div class="flex flex-col justify-around">
+    <a class="mx-0 hover:text-primary hover:shadow-lg bg-white shadow px-6 py-4 rounded mb-3" href="wiki/android">
+      <span class="font-semibold text-2xl">Android</span>
+      <p class="text-lg mt-1">Chameleon on Android devices</p>
+    </a>
     <a class="mx-0 hover:text-primary hover:shadow-lg bg-white shadow px-6 py-4 rounded mb-3" href="wiki/debug">
       <span class="font-semibold text-2xl">Debug</span>
       <p class="text-lg mt-1">How to debug issues with sites while using Chameleon</p>
