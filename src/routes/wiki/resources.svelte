@@ -6,8 +6,8 @@
   <div class="mb-4">
     Listed below are some resources that can help improve your privacy.
   </div>
-  <div class="flex items-center mb-4">
-    <div>
+  <div>
+    <div class="flex items-center mb-4">
       <div>
         <p>
           <a href="https://blog.lopp.net/modest-privacy-protection-proposal/" class="font-semibold text-2xl">A Modest Privacy Protection Proposal</a>
