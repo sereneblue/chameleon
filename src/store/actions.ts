@@ -25,6 +25,8 @@ export const changeSetting = ({ commit }, payload: any) => {
       'headers.spoofAcceptLang.enabled',
       'headers.spoofAcceptLang.value',
       'options.blockMediaDevices',
+      'options.spoofMediaDevices',
+      'options.blockCSSExfil',
       'options.limitHistory',
       'options.protectKBFingerprint.enabled',
       'options.protectKBFingerprint.delay',

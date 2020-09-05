@@ -88,6 +88,17 @@
               </button>
             </div>
           </div>
+          <div v-else>
+            <div class="text-xl mb-4" v-t="'options-settings-permissions-android.message'"></div>
+            <div class="flex flex-col xl:flex-row">
+              <button class="transparent-btn">
+                <div class="flex items-center">
+                  <feather class="mr-2" type="info" size="1em"></feather>
+                  <a href="https://sereneblue.github.io/chameleon/wiki/android" v-t="'options-settings-permissions-android-wiki.message'"></a>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
         <div v-show="isImporting" class="mt-4">
           <div v-t="'options-settings-importing.message'"></div>

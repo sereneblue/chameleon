@@ -196,13 +196,11 @@ export default {
 		]);
 
 		// modify appendChild
-		Object.defineProperty(Element.prototype, 'appendChild', {
-			value: function appendChild(child) {
-				let e = _appendChild.call(this, child);
-				if (child.nodeName === 'LINK') CHAMELEON_SPOOF_f();
-				return e;
-			}
-		});
+		Element.prototype.appendChild = function appendChild(child) {
+			let e = _appendChild.call(this, child);
+			if (child.nodeName === 'LINK') CHAMELEON_SPOOF_f();
+			return e;
+		};
 
 		modifiedAPIs.push([
 			Element.prototype.appendChild, "appendChild"

@@ -426,6 +426,19 @@
               <div class="flex items-center mb-1">
                 <label class="cursor-pointer">
                   <input
+                    id="blockCSSExfil"
+                    @change="changeSetting($event)"
+                    :checked="settings.options.blockCSSExfil"
+                    name="options.blockCSSExfil"
+                    type="checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
+                  />
+                  <span class="ml-1" v-t="'popup-options-standard-blockCSSExfil.message'"></span>
+                </label>
+              </div>
+              <div class="flex items-center mb-1">
+                <label class="cursor-pointer">
+                  <input
                     id="limitHistory"
                     @change="changeSetting($event)"
                     :checked="settings.options.limitHistory"

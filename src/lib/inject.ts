@@ -1,6 +1,7 @@
 import * as lang from '../lib/language';
 import audioContext from './spoof/audioContext';
 import clientRects from './spoof/clientRects';
+import cssExfil from './spoof/cssExfil';
 import font from './spoof/font';
 import history from './spoof/history';
 import kbFingerprint from './spoof/kbFingerprint';
@@ -94,6 +95,10 @@ class Injector {
         if (settings.options.spoofMediaDevices) {
           this.updateInjectionData(mediaSpoof);
         }
+      }
+
+      if (settings.options.blockCSSExfil) {
+        this.updateInjectionData(cssExfil);
       }
 
       if (settings.options.limitHistory) this.updateInjectionData(history);
@@ -253,7 +258,11 @@ class Injector {
       let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
       var ORIGINAL_INTL = window.Intl.DateTimeFormat;
       var ORIGINAL_INTL_PROTO = window.Intl.DateTimeFormat.prototype;
-      var _supportedLocalesOf = window.Intl.DateTimeFormat.supportedLocalesOf;
+      var _supportedLocalesOfDTF = window.Intl.DateTimeFormat.supportedLocalesOf;
+      var _supportedLocalesOfRTF = window.Intl.RelativeTimeFormat.supportedLocalesOf;
+      var _supportedLocalesOfNF = window.Intl.NumberFormat.supportedLocalesOf;
+      var _supportedLocalesOfC = window.Intl.Collator.supportedLocalesOf;
+
       var _open = window.open;
 
       let modifiedAPIs = [];
@@ -363,8 +372,11 @@ class Injector {
           window.Intl.DateTimeFormat, "DateTimeFormat"
         ]);
         Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
-        window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOf;
-        
+        window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOfDTF;
+        window.Intl.RelativeTimeFormat.supportedLocalesOf = _supportedLocalesOfRTF;
+        window.Intl.NumberFormat.supportedLocalesOf = _supportedLocalesOfNF;
+        window.Intl.Collator.supportedLocalesOf = _supportedLocalesOfC;
+
         Object.defineProperties(HTMLIFrameElement.prototype, {
           contentWindow: {
             get: function() {
@@ -485,8 +497,10 @@ class Injector {
   private updateInjectionData(option: any) {
     if (option.type === 'overwrite') {
       this.spoof.overwrite = this.spoof.overwrite.concat(option.data);
+    } else if (option.type === 'custom') {
+      this.spoof.custom += '(() => {' + option.data + '})();';
     } else {
-      this.spoof.custom += option.data;
+      option.data();
     }
   }
 }
