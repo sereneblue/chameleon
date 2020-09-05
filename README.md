@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.21.1-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.21.2-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/chameleon/localized.svg)](https://crowdin.com/project/chameleon)
 
@@ -74,7 +74,8 @@ Don't know where to start? Check out the [wiki](https://sereneblue.github.io/cha
 
 ## Credits
 
-dillbyrne for creating [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer)
+[dillbyrne](https://github.com/dillbyrne) for creating [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer)
+[Mike Gualtieri](https://github.com/mlgualtieri) for the [CSS Exfil](https://github.com/mlgualtieri/CSS-Exfil-Protection) code.
 
 ## Special Thanks
 
