@@ -40,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.chameleon.outputs.VERSION }}
-          release_name: Chameleon Android ${{ steps.chameleon.outputs.VERSION }}
+          release_name: Chameleon for Android ${{ steps.chameleon.outputs.VERSION }}
           draft: false
           prerelease: false
       - name: Upload release
