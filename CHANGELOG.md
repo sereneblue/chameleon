@@ -1,3 +1,11 @@
+<a name="v0.21.2-rc1"></a>
+
+## [v0.21.2-rc1](https://github.com/sereneblue/chameleon/compare/v0.21.2-rc...v0.21.2-rc1) (2020-09-05)
+
+### Bug Fixes
+
+- **import settings:** add validation for css exfil setting
+
 <a name="v0.21.1-rc"></a>
 
 ## [v0.21.1-rc](https://github.com/sereneblue/chameleon/compare/v0.21.0-rc...v0.21.1-rc) (2020-08-26)
