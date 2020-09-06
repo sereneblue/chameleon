@@ -1,0 +1,55 @@
+name: Chameleon Android Build
+
+on:
+  push:
+    tags:
+      - v**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Build extension
+        run: |
+          npm install
+          npm install --global web-ext
+          python3 ./.github/workflows/android/update_manifest.py
+          npm run build
+      - name: Sign extension
+        run: |
+          web-ext sign -s ./dist --channel unlisted
+          mv ./web-ext-artifacts/$(ls web-ext-artifacts) ./web-ext-artifacts/chameleon_$(git describe --tags).signed.xpi
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.WEBEXT_API_KEY }}
+          WEB_EXT_API_SECRET: ${{ secrets.WEBEXT_API_SECRET }}
+      - name: Generate variables
+        id: chameleon
+        run: |
+          echo ::set-output name=VERSION::$(git describe --tags)
+          echo ::set-output name=FILENAME::chameleon_$(git describe --tags).signed.xpi
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.chameleon.outputs.VERSION }}
+          release_name: Chameleon Android ${{ steps.chameleon.outputs.VERSION }}
+          draft: false
+          prerelease: false
+      - name: Upload release
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./web-ext-artifacts/${{ steps.chameleon.outputs.FILENAME }}
+          asset_name: ${{ steps.chameleon.outputs.FILENAME }}
+          asset_content_type: application/x-xpinstall
