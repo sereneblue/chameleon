@@ -78,7 +78,7 @@
     "express-ws": "^4.0.0",
     "file-loader": "^1.1.11",
     "geckodriver": "^1.19.1",
-    "husky": "^2.4.0",
+    "husky": "^4.3.0",
     "jest": "^26.0.1",
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.13.1",
