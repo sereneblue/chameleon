@@ -4,10 +4,6 @@
 
 <div class="mb-8 w-full leading-snug">
   <div class="flex flex-col justify-around">
-    <a class="mx-0 hover:text-primary hover:shadow-lg bg-white shadow px-6 py-4 rounded mb-3" href="wiki/android">
-      <span class="font-semibold text-2xl">Android</span>
-      <p class="text-lg mt-1">Chameleon on Android devices</p>
-    </a>
     <a class="mx-0 hover:text-primary hover:shadow-lg bg-white shadow px-6 py-4 rounded mb-3" href="wiki/debug">
       <span class="font-semibold text-2xl">Debug</span>
       <p class="text-lg mt-1">How to debug issues with sites while using Chameleon</p>
@@ -31,6 +27,10 @@
     <a class="mx-0 bg-white shadow hover:text-primary hover:shadow-lg px-6 py-4 rounded mb-3" href="wiki/known-issues">
       <span class="font-semibold text-2xl">Known Issues</span>
       <p class="text-lg mt-1">List of sites known to have issues with Chameleon</p>
+    </a>
+    <a class="mx-0 hover:text-primary hover:shadow-lg bg-white shadow px-6 py-4 rounded mb-3" href="wiki/legacy">
+      <span class="font-semibold text-2xl">Legacy build</span>
+      <p class="text-lg mt-1">Chameleon for pre-Firefox 75 users</p>
     </a>
     <a class="mx-0 bg-white shadow hover:text-primary hover:shadow-lg px-6 py-4 rounded mb-3" href="wiki/options">
       <span class="font-semibold text-2xl">Options</span>
