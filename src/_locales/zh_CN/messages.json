@@ -449,11 +449,11 @@
   "options-settings-permissions": {
     "message": "Chameleon可以控制一些Firefox首选项，如抵制指纹识别或启用跟踪保护。这可能会和其他扩展有冲突。您可以通过移除隐私权限退出Chameleon对这些首选项的控制。请注意，移除此权限将会重置这些首选项。如果不存在您可以请求此权限。"
   },
-  "options-settings-permissions-android": {
-    "message": "您需要安装Chameleon的专用版本来启用隐私权限。这是因为支持跨平台扩展的权限有些复杂的问题。更多详细信息可以在下方链接的wiki的Android页面找到。"
+  "options-settings-permissions-legacy": {
+    "message": "您需要安装Chameleon的专用版本以启用隐私权限。这是因为支持跨平台/新版的扩展的权限有些复杂的问题。更多详细信息可在下方链接的wiki找到。"
   },
-  "options-settings-permissions-android-wiki": {
-    "message": "在wiki打开Android页面"
+  "options-settings-permissions-legacy-wiki": {
+    "message": "更多信息请查看wiki"
   },
   "options-settings-permissions-request": {
     "message": "请求隐私权限"
