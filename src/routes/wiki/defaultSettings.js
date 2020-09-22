@@ -3,7 +3,8 @@ export default {
     "config": {
       "enabled": true,
       "notificationsEnabled": false,
-      "theme": "light"
+      "theme": "light",
+      "hasPrivacyPermission": true
     },
     "excluded": [],
     "headers": {
@@ -27,8 +28,10 @@ export default {
     },
     "ipRules": [],
     "options": {
+      "cookieNotPersistent": false,
       "cookiePolicy": "reject_third_party",
-      "blockMediaDevices": true,
+      "blockMediaDevices": false,
+      "blockCSSExfil": true,
       "disableWebRTC": false,
       "firstPartyIsolate": true,
       "limitHistory": true,
@@ -42,6 +45,7 @@ export default {
       "spoofAudioContext": true,
       "spoofClientRects": true,
       "spoofFontFingerprint": false,
+      "spoofMediaDevices": false,
       "timeZone": "default",
       "trackingProtectionMode": "always",
       "webRTCPolicy": "default_public_interface_only",
@@ -55,7 +59,7 @@ export default {
         "max": 1
       }
     },
-    "version": "0.20.0.5",
+    "version": "0.21.2.2",
     "whitelist": {
       "enabledContextMenu": true,
       "defaultProfile": "none",
@@ -66,7 +70,8 @@ export default {
     "config": {
       "enabled": true,
       "notificationsEnabled": false,
-      "theme": "light"
+      "theme": "light",
+      "hasPrivacyPermission": true
     },
     "excluded": [],
     "headers": {
@@ -90,8 +95,10 @@ export default {
     },
     "ipRules": [],
     "options": {
+      "cookieNotPersistent": false,
       "cookiePolicy": "reject_trackers",
       "blockMediaDevices": false,
+      "blockCSSExfil": false,
       "disableWebRTC": false,
       "firstPartyIsolate": true,
       "limitHistory": true,
@@ -105,6 +112,7 @@ export default {
       "spoofAudioContext": false,
       "spoofClientRects": false,
       "spoofFontFingerprint": false,
+      "spoofMediaDevices": false,
       "timeZone": "default",
       "trackingProtectionMode": "always",
       "webRTCPolicy": "default_public_interface_only",
@@ -118,7 +126,7 @@ export default {
         "max": 1
       }
     },
-    "version": "0.20.0.5",
+    "version": "0.21.2.2",
     "whitelist": {
       "enabledContextMenu": true,
       "defaultProfile": "none",
