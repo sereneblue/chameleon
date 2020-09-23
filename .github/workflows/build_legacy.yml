@@ -1,4 +1,4 @@
-name: Chameleon Android Build
+name: Chameleon Legacy Build
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         run: |
           npm install
           npm install --global web-ext
-          python3 ./.github/workflows/android/update_manifest.py
+          python3 ./.github/workflows/legacy/update_manifest.py
           npm run build
       - name: Sign extension
         run: |
@@ -40,7 +40,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.chameleon.outputs.VERSION }}
-          release_name: Chameleon for Android ${{ steps.chameleon.outputs.VERSION }}
+          release_name: Chameleon Legacy Build ${{ steps.chameleon.outputs.VERSION }}
+          body: 'This version of Chameleon is for users using an older version Firefox 75 and would like to have Chameleon control their privacy settings. More info can be found [here](https://sereneblue.github.io/chameleon/wiki/legacy).'
           draft: false
           prerelease: false
       - name: Upload release
