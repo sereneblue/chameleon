@@ -26,7 +26,7 @@ let firstTimeInstall = (): void => {
   browser.runtime.onInstalled.addListener((details: any) => {
     if (!details.temporary && details.reason === 'install') {
       browser.tabs.create({
-        url: 'https://sereneblue.github.io/chameleon',
+        url: 'https://sereneblue.github.io/chameleon/?newinstall',
       });
     }
   });

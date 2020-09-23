@@ -76,7 +76,7 @@
             </button>
           </div>
           <a id="export"></a>
-          <div v-if="platform != 'android'">
+          <div v-if="platform != 'android' && !isLegacyVersion">
             <div class="text-xl mb-4" v-t="'options-settings-permissions.message'"></div>
             <div class="flex flex-col xl:flex-row">
               <button @click="togglePrivacyPermission" class="transparent-btn">
@@ -89,12 +89,12 @@
             </div>
           </div>
           <div v-else>
-            <div class="text-xl mb-4" v-t="'options-settings-permissions-android.message'"></div>
+            <div class="text-xl mb-4" v-t="'options-settings-permissions-legacy.message'"></div>
             <div class="flex flex-col xl:flex-row">
               <button class="transparent-btn">
                 <div class="flex items-center">
                   <feather class="mr-2" type="info" size="1em"></feather>
-                  <a href="https://sereneblue.github.io/chameleon/wiki/android" v-t="'options-settings-permissions-android-wiki.message'"></a>
+                  <a href="https://sereneblue.github.io/chameleon/wiki/legacy" v-t="'options-settings-permissions-legacy-wiki.message'"></a>
                 </div>
               </button>
             </div>
@@ -480,6 +480,7 @@ export default class App extends Vue {
     wlRuleSites: false,
   };
   public isImporting: boolean = false;
+  private isLegacyVersion: boolean;
   public importError: any = {
     error: false,
     msg: '',
@@ -555,6 +556,7 @@ export default class App extends Vue {
     this.iconPath = browser.runtime.getURL('icons/icon.svg');
     this.version = browser.runtime.getManifest().version_name;
     this.platform = (await browser.runtime.getPlatformInfo()).os;
+    this.isLegacyVersion = (await browser.runtime.getBrowserInfo()).version < '75.';
 
     await this['$store'].dispatch('initialize');
 
