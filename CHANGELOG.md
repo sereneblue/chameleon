@@ -1,3 +1,17 @@
+<a name="v0.21.3-rc"></a>
+
+## [v0.21.3](https://github.com/sereneblue/chameleon/compare/v0.21.2...v0.21.3) (2020-09-22)
+
+### Bug Fixes
+
+- add param to new install url to hide install button on wiki ([#460](https://github.com/sereneblue/chameleon/issues/460))
+- **import settings:** add validation for css exfil setting
+- **options:** show message for pre-FF75 users ([#460](https://github.com/sereneblue/chameleon/issues/460))
+
+### Features
+
+- update profiles
+
 <a name="v0.21.2-rc1"></a>
 
 ## [v0.21.2-rc1](https://github.com/sereneblue/chameleon/compare/v0.21.2-rc...v0.21.2-rc1) (2020-09-05)
