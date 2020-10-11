@@ -1,818 +1,839 @@
 {
-  "extDescription" :  {
-    "message" :  "ブラウザのプロファイルを偽装します。いくつかのプライバシー強化オプションを含みます。"
+  "extDescription": {
+    "message": "ブラウザのプロファイルを偽装します。いくつかのプライバシー強化オプションを含みます。"
   },
-  "notifications-profileChange" :  {
-    "message" :  "プロフィ―ルが変更されました。"
+  "notifications-profileChange": {
+    "message": "プロフィ―ルが変更されました。"
   },
-  "notifications-unableToGetIPInfo" :  {
-    "message" :  "IP 情報を取得できません"
+  "notifications-unableToGetIPInfo": {
+    "message": "IP 情報を取得できません"
   },
-  "notifications-usingIPInfo" :  {
-    "message" :  "IP 情報を使用して:"
+  "notifications-usingIPInfo": {
+    "message": "IP 情報を使用して:"
   },
-  "notifications-usingIPRule" :  {
-    "message" :  "IP ルールを使用して:"
+  "notifications-usingIPRule": {
+    "message": "IP ルールを使用して:"
   },
-  "options-about-issueTracker" :  {
-    "message" :  "Issue Tracker（課題管理）"
+  "options-about-issueTracker": {
+    "message": "Issue Tracker（課題管理）"
   },
-  "options-about-knownIssues" :  {
-    "message" :  "既知の課題"
+  "options-about-knownIssues": {
+    "message": "既知の課題"
   },
-  "options-about-wiki" :  {
-    "message" :  "Wiki"
+  "options-about-wiki": {
+    "message": "Wiki"
   },
-  "options-about-support" :  {
-    "message" :  "サポート"
+  "options-about-support": {
+    "message": "サポート"
   },
-  "options-about-sourceCode" :  {
-    "message" :  "ソースコード"
+  "options-about-sourceCode": {
+    "message": "ソースコード"
   },
-  "options-about-translate" :  {
-    "message" :  "翻訳を手伝う"
+  "options-about-translate": {
+    "message": "翻訳を手伝う"
   },
-  "options-checklist-close" :  {
-    "message" :  "閉じる"
+  "options-checklist-close": {
+    "message": "閉じる"
   },
-  "options-checklist-leaveEmpty" :  {
-    "message" :  "空っぽにする"
+  "options-checklist-leaveEmpty": {
+    "message": "空っぽにする"
   },
-  "options-checklist-note1" :  {
-    "message" :  "注意: 変更された環境設定の一覧を見るには、次を参照してください: about:support#prefs-tbody"
+  "options-checklist-note1": {
+    "message": "注意: 変更された環境設定の一覧を見るには、次を参照してください: about:support#prefs-tbody"
   },
-  "options-checklist-note2" :  {
-    "message" :  "存在しない場合は、オプションを作成"
+  "options-checklist-note2": {
+    "message": "存在しない場合は、オプションを作成"
   },
-  "options-checklist-warning" :  {
-    "message" :  "ウェブページに問題が発生する可能性があります。"
+  "options-checklist-warning": {
+    "message": "ウェブページに問題が発生する可能性があります。"
   },
-  "options-checklistItem-blockActiveMixedContent" :  {
-    "message" :  "アクティブな混合コンテンツをブロックする"
+  "options-checklistItem-blockActiveMixedContent": {
+    "message": "アクティブな混合コンテンツをブロックする"
   },
-  "options-checklistItem-blockActiveMixedContentDesc" :  {
-    "message" :  "HTTPS ではないアクティブな混合コンテンツ（スクリプト、iframe、CSS、AJAX/fetch リクエスト）が HTTPS ページに読み込まれないようにブロックします。"
+  "options-checklistItem-blockActiveMixedContentDesc": {
+    "message": "HTTPS ではないアクティブな混合コンテンツ（スクリプト、iframe、CSS、AJAX/fetch リクエスト）が HTTPS ページに読み込まれないようにブロックします。"
   },
-  "options-checklistItem-blockDisplayMixedContent" :  {
-    "message" :  "混合コンテンツの表示をブロックする"
+  "options-checklistItem-blockDisplayMixedContent": {
+    "message": "混合コンテンツの表示をブロックする"
   },
-  "options-checklistItem-blockDisplayMixedContentDesc" :  {
-    "message" :  "HTTPS ページ上で、非 HTTPS パッシブな混合コンテンツ（画像、音声、動画）が読み込まれないようにブロックします。"
+  "options-checklistItem-blockDisplayMixedContentDesc": {
+    "message": "HTTPS ページ上で、非 HTTPS パッシブな混合コンテンツ（画像、音声、動画）が読み込まれないようにブロックします。"
   },
-  "options-checklistItem-disableAddonCache" :  {
-    "message" :  "アドオンキャッシュを無効にする"
+  "options-checklistItem-disableAddonCache": {
+    "message": "アドオンキャッシュを無効にする"
   },
-  "options-checklistItem-disableAddonCacheDesc" :  {
-    "message" :  "アドオンのメタデータの更新を防止する"
+  "options-checklistItem-disableAddonCacheDesc": {
+    "message": "アドオンのメタデータの更新を防止する"
   },
-  "options-checklistItem-disableAddonUpdates" :  {
-    "message" :  "アドオンの更新を無効にする"
+  "options-checklistItem-disableAddonUpdates": {
+    "message": "アドオンの更新を無効にする"
   },
-  "options-checklistItem-disableAddonUpdatesDesc" :  {
-    "message" :  "アドオンの更新をチェックしない"
+  "options-checklistItem-disableAddonUpdatesDesc": {
+    "message": "アドオンの更新をチェックしない"
   },
-  "options-checklistItem-disableBattery" :  {
-    "message" :  "バッテリー API を無効にする"
+  "options-checklistItem-disableBattery": {
+    "message": "バッテリー API を無効にする"
   },
-  "options-checklistItem-disableBatteryDesc" :  {
-    "message" :  "（ユーザーを追跡するために使用される）バッテリーAPIを無効にします。\n"
+  "options-checklistItem-disableBatteryDesc": {
+    "message": "（ユーザーを追跡するために使用される）バッテリーAPIを無効にします。\n"
   },
-  "options-checklistItem-disableHistory" :  {
-    "message" :  "ブラウジングとダウンロードの履歴を無効にする"
+  "options-checklistItem-disableHistory": {
+    "message": "ブラウジングとダウンロードの履歴を無効にする"
   },
-  "options-checklistItem-disableHistoryDesc" :  {
-    "message" :  "ブラウジングとダウンロードの履歴を無効にする"
+  "options-checklistItem-disableHistoryDesc": {
+    "message": "ブラウジングとダウンロードの履歴を無効にする"
   },
-  "options-checklistItem-disableCacheDisk" :  {
-    "message" :  "キャッシュを無効にする（ディスク）"
+  "options-checklistItem-disableCacheDisk": {
+    "message": "キャッシュを無効にする（ディスク）"
   },
-  "options-checklistItem-disableCacheDiskDesc" :  {
-    "message" :  "ディスク上のデータのキャッシュを防止する"
+  "options-checklistItem-disableCacheDiskDesc": {
+    "message": "ディスク上のデータのキャッシュを防止する"
   },
-  "options-checklistItem-disableCacheMem" :  {
-    "message" :  "キャッシュを無効にする（メモリ）"
+  "options-checklistItem-disableCacheMem": {
+    "message": "キャッシュを無効にする（メモリ）"
   },
-  "options-checklistItem-disableCacheMemDesc" :  {
-    "message" :  "メモリ内のデータをキャッシュしないようにする"
+  "options-checklistItem-disableCacheMemDesc": {
+    "message": "メモリ内のデータをキャッシュしないようにする"
   },
-  "options-checklistItem-disableClipboardEvt" :  {
-    "message" :  "クリップボードの履歴を無効にする"
+  "options-checklistItem-disableClipboardEvt": {
+    "message": "クリップボードの履歴を無効にする"
   },
-  "options-checklistItem-disableClipboardEvtDesc" :  {
-    "message" :  "ユーザーがウェブページからデータをコピー、ペースト、カットしたときに、何が選択されたかをウェブサイトが検出できないようにします。"
+  "options-checklistItem-disableClipboardEvtDesc": {
+    "message": "ユーザーがウェブページからデータをコピー、ペースト、カットしたときに、何が選択されたかをウェブサイトが検出できないようにします。"
   },
-  "options-checklistItem-disableContextMenuEvt" :  {
-    "message" :  "コンテキスト（右クリック）メニューの履歴を無効にする"
+  "options-checklistItem-disableContextMenuEvt": {
+    "message": "コンテキスト（右クリック）メニューの履歴を無効にする"
   },
-  "options-checklistItem-disableContextMenuEvtDesc" :  {
-    "message" :  "右クリックのコンテキストメニューでのウェブサイトの制御を無効にします。shift + 右クリックでオーバーライド"
+  "options-checklistItem-disableContextMenuEvtDesc": {
+    "message": "右クリックのコンテキストメニューでのウェブサイトの制御を無効にします。shift + 右クリックでオーバーライド"
   },
-  "options-checklistItem-disableMobileSensors" :  {
-    "message" :  "デバイスセンサーを無効にする"
+  "options-checklistItem-disableMobileSensors": {
+    "message": "デバイスセンサーを無効にする"
   },
-  "options-checklistItem-disableMobileSensorsDesc" :  {
-    "message" :  "デバイスセンサーを無効にする（センサーへのアクセスを必要とするサイトとの接続が中断される）"
+  "options-checklistItem-disableMobileSensorsDesc": {
+    "message": "デバイスセンサーを無効にする（センサーへのアクセスを必要とするサイトとの接続が中断される）"
   },
-  "options-checklistItem-disableDNSPrefetch" :  {
-    "message" :  "DNS プリフェッチを無効にする"
+  "options-checklistItem-disableDNSPrefetch": {
+    "message": "DNS プリフェッチを無効にする"
   },
-  "options-checklistItem-disableDNSPrefetchDesc" :  {
-    "message" :  "Web ページの要素によって参照される項目の URL と同様に、ユーザーがフォローすることを選択したリンクに対して、Firefox が DNS 解決を積極的に実行しないようにします。"
+  "options-checklistItem-disableDNSPrefetchDesc": {
+    "message": "Web ページの要素によって参照される項目の URL と同様に、ユーザーがフォローすることを選択したリンクに対して、Firefox が DNS 解決を積極的に実行しないようにします。"
   },
-  "options-checklistItem-disableDOMStorage" :  {
-    "message" :  "DOM ストレージを無効にする"
+  "options-checklistItem-disableDOMStorage": {
+    "message": "DOM ストレージを無効にする"
   },
-  "options-checklistItem-disableDOMStorageDesc" :  {
-    "message" :  "サイトが（セッションストレージとローカルストレージに）データを保存しないようにする"
+  "options-checklistItem-disableDOMStorageDesc": {
+    "message": "サイトが（セッションストレージとローカルストレージに）データを保存しないようにする"
   },
-  "options-checklistItem-disableDRM" :  {
-    "message" :  "DRM（デジタル著作権管理）を無効にする"
+  "options-checklistItem-disableDRM": {
+    "message": "DRM（デジタル著作権管理）を無効にする"
   },
-  "options-checklistItem-disableDRMDesc" :  {
-    "message" :  "DRMを無効にします。Spotify や Netflix のようなサイトで問題が発生します。"
+  "options-checklistItem-disableDRMDesc": {
+    "message": "DRMを無効にします。Spotify や Netflix のようなサイトで問題が発生します。"
   },
-  "options-checklistItem-disableGeo" :  {
-    "message" :  "位置情報を無効にする"
+  "options-checklistItem-disableGeo": {
+    "message": "位置情報を無効にする"
   },
-  "options-checklistItem-disableGeoDesc" :  {
-    "message" :  "ジオロケーション機能を無効にします。これはあなたの位置情報を要求するサイトとの接続が中断されます"
+  "options-checklistItem-disableGeoDesc": {
+    "message": "ジオロケーション機能を無効にします。これはあなたの位置情報を要求するサイトとの接続が中断されます"
   },
-  "options-checklistItem-disableGeo2" :  {
-    "message" :  "位置情報 2 を無効にする"
+  "options-checklistItem-disableGeo2": {
+    "message": "位置情報 2 を無効にする"
   },
-  "options-checklistItem-disableGeo2Desc" :  {
-    "message" :  "Firefox のジオロケーション情報を取得するプロバイダを削除する"
+  "options-checklistItem-disableGeo2Desc": {
+    "message": "Firefox のジオロケーション情報を取得するプロバイダを削除する"
   },
-  "options-checklistItem-disableIDN" :  {
-    "message" :  "IDN サポートを無効にする"
+  "options-checklistItem-disableIDN": {
+    "message": "IDN サポートを無効にする"
   },
-  "options-checklistItem-disableIDNDesc" :  {
-    "message" :  "国際化されたドメイン名の生の punycode バージョンを常に表示します。フィッシングの危険性; 例えば、http://www.аррӏе.com/ は、 http://xn--80ak6aa92e.com と表示されます。"
+  "options-checklistItem-disableIDNDesc": {
+    "message": "国際化されたドメイン名の生の punycode バージョンを常に表示します。フィッシングの危険性; 例えば、http://www.аррӏе.com/ は、 http://xn--80ak6aa92e.com と表示されます。"
   },
-  "options-checklistItem-disableOfflineCache" :  {
-    "message" :  "オフラインキャッシュを無効にする"
+  "options-checklistItem-disableOfflineCache": {
+    "message": "オフラインキャッシュを無効にする"
   },
-  "options-checklistItem-disableOfflineCacheDesc" :  {
-    "message" :  "オフライン用途として、Web サイトのデータがキャッシュされないようにする"
+  "options-checklistItem-disableOfflineCacheDesc": {
+    "message": "オフライン用途として、Web サイトのデータがキャッシュされないようにする"
   },
-  "options-checklistItem-disablePDF" :  {
-    "message" :  "PDF.js を無効にする"
+  "options-checklistItem-disablePDF": {
+    "message": "PDF.js を無効にする"
   },
-  "options-checklistItem-disablePDFDesc" :  {
-    "message" :  "ブラウザ内での PDF の読み込みを防止"
+  "options-checklistItem-disablePDFDesc": {
+    "message": "ブラウザ内での PDF の読み込みを防止"
   },
-  "options-checklistItem-disablePocket" :  {
-    "message" :  "Pocket 機能を無効にする"
+  "options-checklistItem-disablePocket": {
+    "message": "Pocket 機能を無効にする"
   },
-  "options-checklistItem-disablePocketDesc" :  {
-    "message" :  "潜在的に不要な機能"
+  "options-checklistItem-disablePocketDesc": {
+    "message": "潜在的に不要な機能"
   },
-  "options-checklistItem-disableResTiming" :  {
-    "message" :  "Resource Timing API（リソース読み込みのタイムスタンプ）を無効にする"
+  "options-checklistItem-disableResTiming": {
+    "message": "Resource Timing API（リソース読み込みのタイムスタンプ）を無効にする"
   },
-  "options-checklistItem-disableResTimingDesc" :  {
-    "message" :  "Resource Timing は、ページ上のリソースのタイミング情報を収集するためのブラウザ API です。履歴、ローカルネットワーク情報、場合によっては位置情報などが漏洩する可能性があります。"
+  "options-checklistItem-disableResTimingDesc": {
+    "message": "Resource Timing は、ページ上のリソースのタイミング情報を収集するためのブラウザ API です。履歴、ローカルネットワーク情報、場合によっては位置情報などが漏洩する可能性があります。"
   },
-  "options-checklistItem-disableSearchSuggest" :  {
-    "message" :  "検索候補を無効にする"
+  "options-checklistItem-disableSearchSuggest": {
+    "message": "検索候補を無効にする"
   },
-  "options-checklistItem-disableSearchSuggestDesc" :  {
-    "message" :  "検索候補を防止"
+  "options-checklistItem-disableSearchSuggestDesc": {
+    "message": "検索候補を防止"
   },
-  "options-checklistItem-disableSearchUpdates" :  {
-    "message" :  "検索の更新を無効にする"
+  "options-checklistItem-disableSearchUpdates": {
+    "message": "検索の更新を無効にする"
   },
-  "options-checklistItem-disableSearchUpdatesDesc" :  {
-    "message" :  "Firefox が検索エンジンを更新しないようにする"
+  "options-checklistItem-disableSearchUpdatesDesc": {
+    "message": "Firefox が検索エンジンを更新しないようにする"
   },
-  "options-checklistItem-disableSpeculatePreConn" :  {
-    "message" :  "投機的な事前接続を無効にする"
+  "options-checklistItem-disableSpeculatePreConn": {
+    "message": "投機的な事前接続を無効にする"
   },
-  "options-checklistItem-disableSpeculatePreConnDesc" :  {
-    "message" :  "要素がホバリングされたときやインタラクト（対話）されたときに、Firefox が積極的にリソースを取得しないようにする"
+  "options-checklistItem-disableSpeculatePreConnDesc": {
+    "message": "要素がホバリングされたときやインタラクト（対話）されたときに、Firefox が積極的にリソースを取得しないようにする"
   },
-  "options-checklistItem-disableSSLFalseStart" :  {
-    "message" :  "SSL False Start を無効にする"
+  "options-checklistItem-disableSSLFalseStart": {
+    "message": "SSL False Start を無効にする"
   },
-  "options-checklistItem-disableSSLFalseStartDesc" :  {
-    "message" :  "セッションを開始するためのハンドシェイクが完了する前にクライアントがデータを送信しないようにする"
+  "options-checklistItem-disableSSLFalseStartDesc": {
+    "message": "セッションを開始するためのハンドシェイクが完了する前にクライアントがデータを送信しないようにする"
   },
-  "options-checklistItem-disableSSLSessId" :  {
-    "message" :  "SSL セッション識別子を無効にする"
+  "options-checklistItem-disableSSLSessId": {
+    "message": "SSL セッション識別子を無効にする"
   },
-  "options-checklistItem-disableSSLSessIdDesc" :  {
-    "message" :  "TLS セッションの再開でのトラッキングを防止"
+  "options-checklistItem-disableSSLSessIdDesc": {
+    "message": "TLS セッションの再開でのトラッキングを防止"
   },
-  "options-checklistItem-disableTLSRTT" :  {
-    "message" :  "TLS 0-RTT を無効にする"
+  "options-checklistItem-disableTLSRTT": {
+    "message": "TLS 0-RTT を無効にする"
   },
-  "options-checklistItem-disableTLSRTTDesc" :  {
-    "message" :  "ゼロラウンドトリップタイム（0-RTT）再開は、TLS 1.3 の新機能で、クライアントとサーバが少ないステップで接続の交渉を行うことができ、https のウェブサイトをより迅速に読み込むことができるようになります。これには二つの問題があります。第一に、これを行うためには、フォワードシークレットを失う（セッションごとに新しい鍵を生成し、セッションが終了したら鍵を捨てる）ことです。第二に、0-RTT はリプレイ攻撃を防ぐために特別な実装を必要とします。- クレジット https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
+  "options-checklistItem-disableTLSRTTDesc": {
+    "message": "ゼロラウンドトリップタイム（0-RTT）再開は、TLS 1.3 の新機能で、クライアントとサーバが少ないステップで接続の交渉を行うことができ、https のウェブサイトをより迅速に読み込むことができるようになります。これには二つの問題があります。第一に、これを行うためには、フォワードシークレットを失う（セッションごとに新しい鍵を生成し、セッションが終了したら鍵を捨てる）ことです。第二に、0-RTT はリプレイ攻撃を防ぐために特別な実装を必要とします。- クレジット https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
   },
-  "options-checklistItem-disableTRR" :  {
-    "message" :  "TTR (Trusted Recursive Resolver) を無効にする"
+  "options-checklistItem-disableTRR": {
+    "message": "TTR (Trusted Recursive Resolver) を無効にする"
   },
-  "options-checklistItem-disableTRRDesc" :  {
-    "message" :  "DNS-over-HTTPS はホストをバイパスして Cloudflare/Google を使用します。DNS の設定は、代わりにユーザが管理する必要があります。"
+  "options-checklistItem-disableTRRDesc": {
+    "message": "DNS-over-HTTPS はホストをバイパスして Cloudflare/Google を使用します。DNS の設定は、代わりにユーザが管理する必要があります。"
   },
-  "options-checklistItem-disableWebGL" :  {
-    "message" :  "WebGL を無効にする"
+  "options-checklistItem-disableWebGL": {
+    "message": "WebGL を無効にする"
   },
-  "options-checklistItem-disableWebGLDesc" :  {
-    "message" :  "WebGL を無効にする (Web ゲームで問題が発生します)"
+  "options-checklistItem-disableWebGLDesc": {
+    "message": "WebGL を無効にする (Web ゲームで問題が発生します)"
   },
-  "options-checklistItem-disableWebBeacons" :  {
-    "message" :  "Web ビーコンを無効にする"
+  "options-checklistItem-disableWebBeacons": {
+    "message": "Web ビーコンを無効にする"
   },
-  "options-checklistItem-disableWebBeaconsDesc" :  {
-    "message" :  "Web ビーコンを無効にする"
+  "options-checklistItem-disableWebBeaconsDesc": {
+    "message": "Web ビーコンを無効にする"
   },
-  "options-checklistItem-clearOfflineApps" :  {
-    "message" :  "シャットダウン時にオフラインアプリのクリアを有効にする"
+  "options-checklistItem-clearOfflineApps": {
+    "message": "シャットダウン時にオフラインアプリのクリアを有効にする"
   },
-  "options-checklistItem-clearOfflineAppsDesc" :  {
-    "message" :  "シャットダウン時にオフラインのウェブサイトデータをクリアする"
+  "options-checklistItem-clearOfflineAppsDesc": {
+    "message": "シャットダウン時にオフラインのウェブサイトデータをクリアする"
   },
-  "options-checklistItem-enableSocialTrackingProtect" :  {
-    "message" :  "ソーシャルトラッキング保護を有効にする"
+  "options-checklistItem-enableSocialTrackingProtect": {
+    "message": "ソーシャルトラッキング保護を有効にする"
   },
-  "options-checklistItem-enableSocialTrackingProtectDesc" :  {
-    "message" :  "ソーシャルトラッキング保護を有効にする"
+  "options-checklistItem-enableSocialTrackingProtectDesc": {
+    "message": "ソーシャルトラッキング保護を有効にする"
   },
-  "options-checklistItem-limitFonts" :  {
-    "message" :  "検出可能なフォントを制限する"
+  "options-checklistItem-limitFonts": {
+    "message": "検出可能なフォントを制限する"
   },
-  "options-checklistItem-limitFontsDesc" :  {
-    "message" :  "インストールされているフォントのユニークさ（一意性）を軽減します。フォントアイコンの問題が発生する可能性があります。"
+  "options-checklistItem-limitFontsDesc": {
+    "message": "インストールされているフォントのユニークさ（一意性）を軽減します。フォントアイコンの問題が発生する可能性があります。"
   },
-  "options-checklistItem-limitMaxTabsUndo" :  {
-    "message" :  "タブの最大制限を元に戻す"
+  "options-checklistItem-limitMaxTabsUndo": {
+    "message": "タブの最大制限を元に戻す"
   },
-  "options-checklistItem-limitMaxTabsUndoDesc" :  {
-    "message" :  "Firefox の設定で「履歴を一切記憶させない」にしている場合であっても、\nメニュー ＞ 履歴 ＞ 最近閉じたタブに、閉じたタブの履歴は一時的に保存されます。"
+  "options-checklistItem-limitMaxTabsUndoDesc": {
+    "message": "Firefox の設定で「履歴を一切記憶させない」にしている場合であっても、\nメニュー ＞ 履歴 ＞ 最近閉じたタブに、閉じたタブの履歴は一時的に保存されます。"
   },
-  "options-checklistItem-useClickToPlay" :  {
-    "message" :  "クリックしてプラグインを再生する"
+  "options-checklistItem-useClickToPlay": {
+    "message": "クリックしてプラグインを再生する"
   },
-  "options-checklistItem-useClickToPlayDesc" :  {
-    "message" :  "ページの読み込み時にプラグインが自動的に実行されないようにする"
+  "options-checklistItem-useClickToPlayDesc": {
+    "message": "ページの読み込み時にプラグインが自動的に実行されないようにする"
   },
-  "options-checklistItem-disableDataSubmission" :  {
-    "message" :  "データ送信を無効にする"
+  "options-checklistItem-disableDataSubmission": {
+    "message": "データ送信を無効にする"
   },
-  "options-checklistItem-disableDataSubmissionDesc" :  {
-    "message" :  "Mozilla へのデータ送信を無効化する"
+  "options-checklistItem-disableDataSubmissionDesc": {
+    "message": "Mozilla へのデータ送信を無効化する"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck" :  {
-    "message" :  "セーフブラウジングのダウンロードチェックを無効にする"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck": {
+    "message": "セーフブラウジングのダウンロードチェックを無効にする"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheckDesc" :  {
-    "message" :  "ダウンロードしたファイルの安全性チェックを無効化する"
+  "options-checklistItem-disableSafeBrowsingDownloadCheckDesc": {
+    "message": "ダウンロードしたファイルの安全性チェックを無効化する"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck2" :  {
-    "message" :  "セーフブラウジングのダウンロードチェック 2 を無効にする"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck2": {
+    "message": "セーフブラウジングのダウンロードチェック 2 を無効にする"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc" :  {
-    "message" :  "不要なダウンロードファイルの潜在的な安全性チェックを無効にする"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc": {
+    "message": "不要なダウンロードファイルの潜在的な安全性チェックを無効にする"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck3" :  {
-    "message" :  "セーフブラウジングのダウンロードチェック 3 を無効にする"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck3": {
+    "message": "セーフブラウジングのダウンロードチェック 3 を無効にする"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc" :  {
-    "message" :  "まれなダウンロードファイルの安全性チェックを無効にする"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc": {
+    "message": "まれなダウンロードファイルの安全性チェックを無効にする"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck4" :  {
-    "message" :  "セーフブラウジングのダウンロードチェック 4 を無効にする"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck4": {
+    "message": "セーフブラウジングのダウンロードチェック 4 を無効にする"
   },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc" :  {
-    "message" :  "Google のローカルリストで、バイナリをチェックしないようにする"
+  "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc": {
+    "message": "Google のローカルリストで、バイナリをチェックしないようにする"
   },
-  "options-checklistItem-disableSafeBrowsingMalwareCheck" :  {
-    "message" :  "セーフブラウジングのマルウェアチェックを無効にする"
+  "options-checklistItem-disableSafeBrowsingMalwareCheck": {
+    "message": "セーフブラウジングのマルウェアチェックを無効にする"
   },
-  "options-checklistItem-disableSafeBrowsingMalwareCheckDesc" :  {
-    "message" :  "セーフブラウジングで、Google のマルウェアリストへの問い合わせを防止する"
+  "options-checklistItem-disableSafeBrowsingMalwareCheckDesc": {
+    "message": "セーフブラウジングで、Google のマルウェアリストへの問い合わせを防止する"
   },
-  "options-checklistItem-disableSafeBrowsingPhishingCheck" :  {
-    "message" :  "セーフブラウジングのフィッシングチェックを無効にする"
+  "options-checklistItem-disableSafeBrowsingPhishingCheck": {
+    "message": "セーフブラウジングのフィッシングチェックを無効にする"
   },
-  "options-checklistItem-disableSafeBrowsingPhishingCheckDesc" :  {
-    "message" :  "セーフブラウジングで、Google のフィッシングリストへの問い合わせを防止する"
+  "options-checklistItem-disableSafeBrowsingPhishingCheckDesc": {
+    "message": "セーフブラウジングで、Google のフィッシングリストへの問い合わせを防止する"
   },
-  "options-checklistItem-disableHealthReport" :  {
-    "message" :  "ヘルスレポートのアップロードを無効にする"
+  "options-checklistItem-disableHealthReport": {
+    "message": "ヘルスレポートのアップロードを無効にする"
   },
-  "options-checklistItem-disableHealthReportDesc" :  {
-    "message" :  "Mozilla へのヘルスレポートの送信を無効にする"
+  "options-checklistItem-disableHealthReportDesc": {
+    "message": "Mozilla へのヘルスレポートの送信を無効にする"
   },
-  "options-checklistItem-disableCrashReport" :  {
-    "message" :  "クラッシュレポートを無効にする"
+  "options-checklistItem-disableCrashReport": {
+    "message": "クラッシュレポートを無効にする"
   },
-  "options-checklistItem-disableCrashReportDesc" :  {
-    "message" :  "Mozilla へのクラッシュレポートの送信を無効にする"
+  "options-checklistItem-disableCrashReportDesc": {
+    "message": "Mozilla へのクラッシュレポートの送信を無効にする"
   },
-  "options-checklistItem-disableTelemetryPing" :  {
-    "message" :  "ping テレメトリを無効にする"
+  "options-checklistItem-disableTelemetryPing": {
+    "message": "ping テレメトリを無効にする"
   },
-  "options-checklistItem-disableTelemetryPingDesc" :  {
-    "message" :  "テレメトリ（遠隔測定）が有効な場合に使用されるテレメトリサーバー"
+  "options-checklistItem-disableTelemetryPingDesc": {
+    "message": "テレメトリ（遠隔測定）が有効な場合に使用されるテレメトリサーバー"
   },
-  "options-checklistItem-disableTelemetryReport" :  {
-    "message" :  "テレメトリレポートを無効にする"
+  "options-checklistItem-disableTelemetryReport": {
+    "message": "テレメトリレポートを無効にする"
   },
-  "options-checklistItem-disableTelemetryReportDesc" :  {
-    "message" :  "テレメトリ（遠隔測定）を無効にする"
+  "options-checklistItem-disableTelemetryReportDesc": {
+    "message": "テレメトリ（遠隔測定）を無効にする"
   },
-  "options-checklistItem-disableTelemetryReport2" :  {
-    "message" :  "テレメトリレポート 2 を無効にする"
+  "options-checklistItem-disableTelemetryReport2": {
+    "message": "テレメトリレポート 2 を無効にする"
   },
-  "options-checklistItem-disableTelemetryReport2Desc" :  {
-    "message" :  "テレメトリを有効にしないようにします（toolkit.telemetry.enabled をオーバーライド）"
+  "options-checklistItem-disableTelemetryReport2Desc": {
+    "message": "テレメトリを有効にしないようにします（toolkit.telemetry.enabled をオーバーライド）"
   },
-  "options-checklistItem-sessionPrivacyLevel" :  {
-    "message" :  "セッションのプライバシーレベルを設定する"
+  "options-checklistItem-sessionPrivacyLevel": {
+    "message": "セッションのプライバシーレベルを設定する"
   },
-  "options-checklistItem-sessionPrivacyLevelDesc" :  {
-    "message" :  "セッションプライバシーレベルを 2 に設定すると、Firefox が「フォームの内容、スクロールバーの位置、Cookie、およびセッションを復元するための POST データ」を保存しないようになります。"
+  "options-checklistItem-sessionPrivacyLevelDesc": {
+    "message": "セッションプライバシーレベルを 2 に設定すると、Firefox が「フォームの内容、スクロールバーの位置、Cookie、およびセッションを復元するための POST データ」を保存しないようになります。"
   },
-  "options-import-couldNotImport" :  {
-    "message" :  "ファイルをインポートできませんでした。"
+  "options-import-couldNotImport": {
+    "message": "ファイルをインポートできませんでした。"
   },
-  "options-import-invalid-config" :  {
-    "message" :  "不正な環境設定：設定構成の欠落"
+  "options-import-invalid-config": {
+    "message": "不正な環境設定：設定構成の欠落"
   },
-  "options-import-invalid-excluded" :  {
-    "message" :  "不正な環境設定：除外されたものが欠落"
+  "options-import-invalid-excluded": {
+    "message": "不正な環境設定：除外されたものが欠落"
   },
-  "options-import-invalid-excludedProfile" :  {
-    "message" :  "不正な環境設定：除外されたプロファイルが欠落"
+  "options-import-invalid-excludedProfile": {
+    "message": "不正な環境設定：除外されたプロファイルが欠落"
   },
-  "options-import-invalid-headers" :  {
-    "message" :  "不正な環境設定：ヘッダの欠落"
+  "options-import-invalid-headers": {
+    "message": "不正な環境設定：ヘッダの欠落"
   },
-  "options-import-invalid-ipRuleId" :  {
-    "message" :  "不正な環境設定：無効な IP ルールの ID"
+  "options-import-invalid-ipRuleId": {
+    "message": "不正な環境設定：無効な IP ルールの ID"
   },
-  "options-import-invalid-ipRuleName" :  {
-    "message" :  "不正な環境設定：IP ルール名が欠落"
+  "options-import-invalid-ipRuleName": {
+    "message": "不正な環境設定：IP ルール名が欠落"
   },
-  "options-import-invalid-ipRuleRange" :  {
-    "message" :  "不正な環境設定：無効な IP ルールの範囲"
+  "options-import-invalid-ipRuleRange": {
+    "message": "不正な環境設定：無効な IP ルールの範囲"
   },
-  "options-import-invalid-ipRules" :  {
-    "message" :  "不正な環境設定：IP ルールの欠落"
+  "options-import-invalid-ipRules": {
+    "message": "不正な環境設定：IP ルールの欠落"
   },
-  "options-import-invalid-ipRulesDupe" :  {
-    "message" :  "不正な設定：IP ルール ID の重複が見つかりました"
+  "options-import-invalid-ipRulesDupe": {
+    "message": "不正な設定：IP ルール ID の重複が見つかりました"
   },
-  "options-import-invalid-options" :  {
-    "message" :  "不正な設定：オプションの欠落"
+  "options-import-invalid-options": {
+    "message": "不正な設定：オプションの欠落"
   },
-  "options-import-invalid-profile" :  {
-    "message" :  "不正な設定：プロファイルの欠落"
+  "options-import-invalid-profile": {
+    "message": "不正な設定：プロファイルの欠落"
   },
-  "options-import-invalid-setting" :  {
-    "message" :  "不正な設定値："
+  "options-import-invalid-setting": {
+    "message": "不正な設定値："
   },
-  "options-import-invalid-settings" :  {
-    "message" :  "不正な環境設定：環境設定が欠落"
+  "options-import-invalid-settings": {
+    "message": "不正な環境設定：環境設定が欠落"
   },
-  "options-import-invalid-spoofIP" :  {
-    "message" :  "不正な設定：偽装したヘッダの IP 範囲に誤りがあります"
+  "options-import-invalid-spoofIP": {
+    "message": "不正な設定：偽装したヘッダの IP 範囲に誤りがあります"
   },
-  "options-import-invalid-version" :  {
-    "message" :  "不正な設定：バージョンが受け付けられません"
+  "options-import-invalid-version": {
+    "message": "不正な設定：バージョンが受け付けられません"
   },
-  "options-import-invalid-whitelist" :  {
-    "message" :  "不正な設定：ホワイトリストの欠落"
+  "options-import-invalid-whitelist": {
+    "message": "不正な設定：ホワイトリストの欠落"
   },
-  "options-import-invalid-whitelistDupe" :  {
-    "message" :  "不正な設定：重複するホワイトリストのルール ID が見つかりました"
+  "options-import-invalid-whitelistDupe": {
+    "message": "不正な設定：重複するホワイトリストのルール ID が見つかりました"
   },
-  "options-import-invalid-whitelistId" :  {
-    "message" :  "不正な設定：無効なホワイトリストのルール ID"
+  "options-import-invalid-whitelistId": {
+    "message": "不正な設定：無効なホワイトリストのルール ID"
   },
-  "options-import-invalid-whitelistName" :  {
-    "message" :  "不正な設定：ホワイトリストルール名の欠落"
+  "options-import-invalid-whitelistName": {
+    "message": "不正な設定：ホワイトリストルール名の欠落"
   },
-  "options-import-invalid-whitelistOpt" :  {
-    "message" :  "不正な設定：ホワイトリストルールのオプションが不正です"
+  "options-import-invalid-whitelistOpt": {
+    "message": "不正な設定：ホワイトリストルールのオプションが不正です"
   },
-  "options-import-invalid-whitelistSpoofIP" :  {
-    "message" :  "不正な設定：ホワイトリストルールの偽装 IP が不正です"
+  "options-import-invalid-whitelistSpoofIP": {
+    "message": "不正な設定：ホワイトリストルールの偽装 IP が不正です"
   },
-  "options-import-success" :  {
-    "message" :  "環境設定を正常にインポートしました。拡張機能の再読み込み中..."
+  "options-import-success": {
+    "message": "環境設定を正常にインポートしました。拡張機能の再読み込み中..."
   },
-  "options-ipRules-editorTitle" :  {
-    "message" :  "IP ルールエディタ"
+  "options-ipRules-editorTitle": {
+    "message": "IP ルールエディタ"
   },
-  "options-ipRules-ipRule" :  {
-    "message" :  "IP ルール"
+  "options-ipRules-ipRule": {
+    "message": "IP ルール"
   },
-  "options-ipRules-reload" :  {
-    "message" :  "IP 情報の再読み込み"
+  "options-ipRules-reload": {
+    "message": "IP 情報の再読み込み"
   },
-  "options-ipRules-textareaLabel" :  {
-    "message" :  "IP 範囲 / アドレス"
+  "options-ipRules-textareaLabel": {
+    "message": "IP 範囲 / アドレス"
   },
-  "options-ipRules-textareaPlaceholder" :  {
-    "message" :  "1回線あたり、1つの IP/IP 範囲"
+  "options-ipRules-textareaPlaceholder": {
+    "message": "1回線あたり、1つの IP/IP 範囲"
   },
-  "options-modal-askDelete" :  {
-    "message" :  "このルールを削除してよろしいですか？"
+  "options-modal-askDelete": {
+    "message": "このルールを削除してよろしいですか？"
   },
-  "options-modal-askReset" :  {
-    "message" :  "環境設定をリセットしても大丈夫ですか？"
+  "options-modal-askReset": {
+    "message": "環境設定をリセットしても大丈夫ですか？"
   },
-  "options-modal-confirmDelete" :  {
-    "message" :  "はい、削除して下さい！"
+  "options-modal-confirmDelete": {
+    "message": "はい、削除して下さい！"
   },
-  "options-modal-confirmReset" :  {
-    "message" :  "はい、私の環境設定をリセットして下さい！"
+  "options-modal-confirmReset": {
+    "message": "はい、私の環境設定をリセットして下さい！"
   },
-  "options-settings" :  {
-    "message" :  "環境設定"
+  "options-settings": {
+    "message": "環境設定"
   },
-  "options-settings-import" :  {
-    "message" :  "インポート"
+  "options-settings-import": {
+    "message": "インポート"
   },
-  "options-settings-importing" :  {
-    "message" :  "環境設定をインポートする"
+  "options-settings-importing": {
+    "message": "環境設定をインポートする"
   },
-  "options-settings-export" :  {
-    "message" :  "エクスポート"
+  "options-settings-export": {
+    "message": "エクスポート"
   },
-  "options-settings-reset" :  {
-    "message" :  "Default（既定値）にリセット"
+  "options-settings-reset": {
+    "message": "Default（既定値）にリセット"
   },
-  "options-tab-about" :  {
-    "message" :  "概要"
+  "options-settings-permissions": {
+    "message": "Chameleon は、指紋の耐性や追跡保護の有効化など、Firefox の設定の一部を制御できます。これは別の拡張機能と競合する可能性があります。プライバシー許可を削除することで、これらの設定を制御するカメレオンをオプトアウトできます。この権限を削除すると、これらの設定がリセットされることに注意してください。この許可が存在しない場合は、この許可をリクエストできます。"
   },
-  "options-tab-ipRules" :  {
-    "message" :  "IP ルール"
+  "options-settings-permissions-legacy": {
+    "message": "プライバシー許可を有効にするには、Chameleon の特別なバージョンをインストールする必要があります。これは、クロスプラットフォーム/この拡張機能の新しいバージョンでサポートされている権限の複雑さによるものです。詳細については、以下にリンクされている wiki を参照してください。"
   },
-  "options-tab-checklist" :  {
-    "message" :  "チェックリスト"
+  "options-settings-permissions-legacy-wiki": {
+    "message": "wiki に詳細情報"
   },
-  "options-whitelist-acceptLang" :  {
-    "message" :  "受け入れ言語"
+  "options-settings-permissions-request": {
+    "message": "プライバシー許可をリクエストする"
   },
-  "options-whitelist-editorTitle" :  {
-    "message" :  "ホワイトリストのルールエディタ"
+  "options-settings-permissions-remove": {
+    "message": "プライバシー許可を削除する"
   },
-  "options-whitelist-headerIPLabel" :  {
-    "message" :  "IP ヘッダ (Via や X-Forwarded のための)"
+  "options-tab-about": {
+    "message": "概要"
   },
-  "options-whitelist-options-name" :  {
-    "message" :  "window.name 保護を有効にする"
+  "options-tab-ipRules": {
+    "message": "IP ルール"
   },
-  "options-whitelist-options-tz" :  {
-    "message" :  "タイムゾーンのスプーフィング（偽装化）を有効にします。"
+  "options-tab-checklist": {
+    "message": "チェックリスト"
   },
-  "options-whitelist-options-ws" :  {
-    "message" :  "WebSocket を無効にする"
+  "options-whitelist-acceptLang": {
+    "message": "受け入れ言語"
   },
-  "options-whitelist-rule" :  {
-    "message" :  "ホワイトリストのルール"
+  "options-whitelist-editorTitle": {
+    "message": "ホワイトリストのルールエディタ"
   },
-  "options-whitelist-sitesTip" :  {
-    "message" :  "1行に、1つのルール：ドメイン@@[任意の正規表現パターン]"
+  "options-whitelist-headerIPLabel": {
+    "message": "IP ヘッダ (Via や X-Forwarded のための)"
   },
-  "options-whitelist-textareaLabel" :  {
-    "message" :  "IP 範囲 / アドレス"
+  "options-whitelist-options-name": {
+    "message": "window.name 保護を有効にする"
   },
-  "options-whitelist-textareaPlaceholder" :  {
-    "message" :  "1回線あたり、1つの IP/IP 範囲"
+  "options-whitelist-options-tz": {
+    "message": "タイムゾーンのスプーフィング（偽装化）を有効にします。"
   },
-  "popup-home-change" :  {
-    "message" :  "変更"
+  "options-whitelist-options-ws": {
+    "message": "WebSocket を無効にする"
   },
-  "popup-home-currentProfile" :  {
-    "message" :  "現在のプロファイル"
+  "options-whitelist-rule": {
+    "message": "ホワイトリストのルール"
   },
-  "popup-home-currentProfile-defaultLanguage" :  {
-    "message" :  "既定の言語"
+  "options-whitelist-sitesTip": {
+    "message": "1行に、1つのルール：ドメイン@@[任意の正規表現パターン]"
   },
-  "popup-home-currentProfile-defaultScreen" :  {
-    "message" :  "既定の画面"
+  "options-whitelist-textareaLabel": {
+    "message": "IP 範囲 / アドレス"
   },
-  "popup-home-currentProfile-defaultTimezone" :  {
-    "message" :  "既定のタイムゾーン"
+  "options-whitelist-textareaPlaceholder": {
+    "message": "1回線あたり、1つの IP/IP 範囲"
   },
-  "popup-home-currentProfile-gettingTimezone" :  {
-    "message" :  "IP 情報を取得する"
+  "popup-home-change": {
+    "message": "変更"
   },
-  "popup-home-currentProfile-screenProfile" :  {
-    "message" :  "画面 (プロファイル)"
+  "popup-home-currentProfile": {
+    "message": "現在のプロファイル"
   },
-  "popup-home-disabled" :  {
-    "message" :  "カメレオンは無効化状態です"
+  "popup-home-currentProfile-defaultLanguage": {
+    "message": "既定の言語"
   },
-  "popup-home-enabled" :  {
-    "message" :  "カメレオンは有効化されている"
+  "popup-home-currentProfile-defaultScreen": {
+    "message": "既定の画面"
   },
-  "popup-home-notification-disabled" :  {
-    "message" :  "通知オフ"
+  "popup-home-currentProfile-defaultTimezone": {
+    "message": "既定のタイムゾーン"
   },
-  "popup-home-notification-enabled" :  {
-    "message" :  "通知オン"
+  "popup-home-currentProfile-gettingTimezone": {
+    "message": "IP 情報を取得する"
   },
-  "popup-home-onThisPage" :  {
-    "message" :  "このページでは"
+  "popup-home-currentProfile-screenProfile": {
+    "message": "画面 (プロファイル)"
   },
-  "popup-home-theme-dark" :  {
-    "message" :  "ダーク（黒基調）"
+  "popup-home-disabled": {
+    "message": "カメレオンは無効化状態です"
   },
-  "popup-home-theme-light" :  {
-    "message" :  "ライト（白基調）"
+  "popup-home-enabled": {
+    "message": "カメレオンは有効化されている"
   },
-  "popup-profile-changePeriodically" :  {
-    "message" :  "定期的に変更する"
+  "popup-home-notification-disabled": {
+    "message": "通知オフ"
   },
-  "popup-profile-devicePhone" :  {
-    "message" :  "電話"
+  "popup-home-notification-enabled": {
+    "message": "通知オン"
   },
-  "popup-profile-deviceTablet" :  {
-    "message" :  "タブレット端末"
+  "popup-home-onThisPage": {
+    "message": "このページでは"
   },
-  "popup-profile-interval-no" :  {
-    "message" :  "不可"
+  "popup-home-theme-dark": {
+    "message": "ダーク（黒基調）"
   },
-  "popup-profile-interval-custom" :  {
-    "message" :  "カスタム間隔"
+  "popup-home-theme-light": {
+    "message": "ライト（白基調）"
   },
-  "popup-profile-interval-customMax" :  {
-    "message" :  "最大 (分)"
+  "popup-profile-changePeriodically": {
+    "message": "定期的に変更する"
   },
-  "popup-profile-interval-customMin" :  {
-    "message" :  "最小 (分)"
+  "popup-profile-devicePhone": {
+    "message": "電話"
   },
-  "popup-profile-interval-minute" :  {
-    "message" :  "1 分ごと"
+  "popup-profile-deviceTablet": {
+    "message": "タブレット端末"
   },
-  "popup-profile-interval-5minutes" :  {
-    "message" :  "5 分ごと"
+  "popup-profile-interval-no": {
+    "message": "不可"
   },
-  "popup-profile-interval-10minutes" :  {
-    "message" :  "10 分ごと"
+  "popup-profile-interval-custom": {
+    "message": "カスタム間隔"
   },
-  "popup-profile-interval-20minutes" :  {
-    "message" :  "20 分ごと"
+  "popup-profile-interval-customMax": {
+    "message": "最大 (分)"
   },
-  "popup-profile-interval-30minutes" :  {
-    "message" :  "30 分ごと"
+  "popup-profile-interval-customMin": {
+    "message": "最小 (分)"
   },
-  "popup-profile-interval-40minutes" :  {
-    "message" :  "40 分ごと"
+  "popup-profile-interval-minute": {
+    "message": "1 分ごと"
   },
-  "popup-profile-interval-50minutes" :  {
-    "message" :  "50 分ごと"
+  "popup-profile-interval-5minutes": {
+    "message": "5 分ごと"
   },
-  "popup-profile-interval-hour" :  {
-    "message" :  "1 時間ごと"
+  "popup-profile-interval-10minutes": {
+    "message": "10 分ごと"
   },
-  "popup-profile-exclude" :  {
-    "message" :  "除外"
+  "popup-profile-interval-20minutes": {
+    "message": "20 分ごと"
   },
-  "popup-profile-randomAndroid" :  {
-    "message" :  "ランダムな Android Browsers"
+  "popup-profile-interval-30minutes": {
+    "message": "30 分ごと"
   },
-  "popup-profile-randomIOS" :  {
-    "message" :  "ランダムな iOS Browsers"
+  "popup-profile-interval-40minutes": {
+    "message": "40 分ごと"
   },
-  "popup-profile-randomMacOS" :  {
-    "message" :  "ランダムな macOS Browsers"
+  "popup-profile-interval-50minutes": {
+    "message": "50 分ごと"
   },
-  "popup-profile-randomLinux" :  {
-    "message" :  "ランダムな Linux Browsers"
+  "popup-profile-interval-hour": {
+    "message": "1 時間ごと"
   },
-  "popup-profile-randomWindows" :  {
-    "message" :  "ランダムな Windows Browsers"
+  "popup-profile-exclude": {
+    "message": "除外"
   },
-  "popup-profile-random" :  {
-    "message" :  "ランダム"
+  "popup-profile-randomAndroid": {
+    "message": "ランダムな Android Browsers"
   },
-  "popup-profile-randomDesktopProfile" :  {
-    "message" :  "ランダムなプロファイル (Desktop)"
+  "popup-profile-randomIOS": {
+    "message": "ランダムな iOS Browsers"
   },
-  "popup-profile-randomMobileProfile" :  {
-    "message" :  "ランダムなプロファイル (Mobile)"
+  "popup-profile-randomMacOS": {
+    "message": "ランダムな macOS Browsers"
   },
-  "popup-headers" :  {
-    "message" :  "ヘッダー"
+  "popup-profile-randomLinux": {
+    "message": "ランダムな Linux Browsers"
   },
-  "popup-headers-enableDNT" :  {
-    "message" :  "DNT (Do Not Track) を有効にする"
+  "popup-profile-randomWindows": {
+    "message": "ランダムな Windows Browsers"
   },
-  "popup-headers-preventEtag" :  {
-    "message" :  "Etag トラッキングを防止する"
+  "popup-profile-random": {
+    "message": "ランダム"
   },
-  "popup-headers-refererWarning" :  {
-    "message" :  "以下のオプションの about:config 設定を変更しないでください。"
+  "popup-profile-randomDesktopProfile": {
+    "message": "ランダムなプロファイル (Desktop)"
   },
-  "popup-headers-referer-trimming" :  {
-    "message" :  "Trimming Policy のリファラー"
+  "popup-profile-randomMobileProfile": {
+    "message": "ランダムなプロファイル (Mobile)"
   },
-  "popup-headers-referer-trimming-sendFullURI" :  {
-    "message" :  "完全な URI を送信する (規定)"
+  "popup-headers": {
+    "message": "ヘッダー"
   },
-  "popup-headers-referer-trimming-schemeHostPortPath" :  {
-    "message" :  "host, port + path のスキーム"
+  "popup-headers-enableDNT": {
+    "message": "DNT (Do Not Track) を有効にする"
   },
-  "popup-headers-referer-trimming-schemeHostPort" :  {
-    "message" :  "host + port のスキーム"
+  "popup-headers-preventEtag": {
+    "message": "Etag トラッキングを防止する"
   },
-  "popup-headers-referer-xorigin" :  {
-    "message" :  "X Origin Policy のリファラー"
+  "popup-headers-refererWarning": {
+    "message": "以下のオプションの about:config 設定を変更しないでください。"
   },
-  "popup-headers-referer-xorigin-alwaysSend" :  {
-    "message" :  "常に送る (規定)"
+  "popup-headers-referer-trimming": {
+    "message": "Trimming Policy のリファラー"
   },
-  "popup-headers-referer-xorigin-matchBaseDomain" :  {
-    "message" :  "基本ドメインと一致"
+  "popup-headers-referer-trimming-sendFullURI": {
+    "message": "完全な URI を送信する (規定)"
   },
-  "popup-headers-referer-xorigin-matchHost" :  {
-    "message" :  "host と一致"
+  "popup-headers-referer-trimming-schemeHostPortPath": {
+    "message": "host, port + path のスキーム"
   },
-  "popup-headers-spoofAcceptLang" :  {
-    "message" :  "Accept-Language を偽装する"
+  "popup-headers-referer-trimming-schemeHostPort": {
+    "message": "host + port のスキーム"
   },
-  "popup-headers-spoofIP" :  {
-    "message" :  "X-Forwarded-For/Via IP を偽装する"
+  "popup-headers-referer-xorigin": {
+    "message": "X Origin Policy のリファラー"
   },
-  "popup-headers-spoofIP-random" :  {
-    "message" :  "ランダムな IP"
+  "popup-headers-referer-xorigin-alwaysSend": {
+    "message": "常に送る (規定)"
   },
-  "popup-headers-spoofIP-custom" :  {
-    "message" :  "カスタム IP"
+  "popup-headers-referer-xorigin-matchBaseDomain": {
+    "message": "基本ドメインと一致"
   },
-  "popup-headers-spoofIP-rangeFrom" :  {
-    "message" :  "範囲の始点"
+  "popup-headers-referer-xorigin-matchHost": {
+    "message": "host と一致"
   },
-  "popup-headers-spoofIP-rangeTo" :  {
-    "message" :  "範囲の終点"
+  "popup-headers-spoofAcceptLang": {
+    "message": "Accept-Language を偽装する"
   },
-  "popup-options" :  {
-    "message" :  "オプション"
+  "popup-headers-spoofIP": {
+    "message": "X-Forwarded-For/Via IP を偽装する"
   },
-  "popup-options-aboutConfigButton" :  {
-    "message" :  "about:config のチェックリストを開く"
+  "popup-headers-spoofIP-random": {
+    "message": "ランダムな IP"
   },
-  "popup-options-injection" :  {
-    "message" :  "インジェクション"
+  "popup-headers-spoofIP-custom": {
+    "message": "カスタム IP"
   },
-  "popup-options-injection-limitTabHistory" :  {
-    "message" :  "タブ履歴を制限する"
+  "popup-headers-spoofIP-rangeFrom": {
+    "message": "範囲の始点"
   },
-  "popup-options-injection-protectWinName" :  {
-    "message" :  "関数 window.name（ウィンドウ名）を保護する"
+  "popup-headers-spoofIP-rangeTo": {
+    "message": "範囲の終点"
   },
-  "popup-options-injection-audioContext" :  {
-    "message" :  "音声コンテキストを偽装する"
+  "popup-options": {
+    "message": "オプション"
   },
-  "popup-options-injection-clientRects" :  {
-    "message" :  "Client Rects を偽装する"
+  "popup-options-grantPermissions": {
+    "message": "設定を変更する権限を付与する"
   },
-  "popup-options-injection-protectKBFingerprint" :  {
-    "message" :  "キーボードの指紋を保護する"
+  "popup-options-injection": {
+    "message": "インジェクション"
   },
-  "popup-options-injection-protectKBFingerprintDelay" :  {
-    "message" :  "遅延 (ミリ秒)"
+  "popup-options-injection-limitTabHistory": {
+    "message": "タブ履歴を制限する"
   },
-  "popup-options-injection-screen" :  {
-    "message" :  "画面サイズ"
+  "popup-options-injection-protectWinName": {
+    "message": "関数 window.name（ウィンドウ名）を保護する"
   },
-  "popup-options-injection-spoofFontFingerprint" :  {
-    "message" :  "フォントの指紋を偽装する"
+  "popup-options-injection-audioContext": {
+    "message": "音声コンテキストを偽装する"
   },
-  "popup-options-standard" :  {
-    "message" :  "標準"
+  "popup-options-injection-clientRects": {
+    "message": "Client Rects を偽装する"
   },
-  "popup-options-standard-blockMediaDevices" :  {
-    "message" :  "メディアデバイスをブロックする"
+  "popup-options-injection-protectKBFingerprint": {
+    "message": "キーボードの指紋を保護する"
   },
-  "popup-options-standard-disableWebRTC" :  {
-    "message" :  "WebRTC を無効にする"
+  "popup-options-injection-protectKBFingerprintDelay": {
+    "message": "遅延 (ミリ秒)"
   },
-  "popup-options-standard-firstPartyIsolation" :  {
-    "message" :  "ファーストパーティ分離を有効にする"
+  "popup-options-injection-screen": {
+    "message": "画面サイズ"
   },
-  "popup-options-standard-resistFingerprinting" :  {
-    "message" :  "指紋採取を拒む機能を有効にします。"
+  "popup-options-injection-spoofFontFingerprint": {
+    "message": "フォントの指紋を偽装する"
   },
-  "popup-options-standard-trackingProtection" :  {
-    "message" :  "トラッキング保護モード"
+  "popup-options-standard": {
+    "message": "標準"
   },
-  "popup-options-standard-trackingProtection-on" :  {
-    "message" :  "On"
+  "popup-options-standard-blockMediaDevices": {
+    "message": "メディアデバイスをブロックする"
   },
-  "popup-options-standard-trackingProtection-off" :  {
-    "message" :  "Off"
+  "popup-options-standard-blockCSSExfil": {
+    "message": "CSS Exfil をブロックする"
   },
-  "popup-options-standard-trackingProtection-privateBrowsing" :  {
-    "message" :  "プライベートブラウジングで有効"
+  "popup-options-standard-disableWebRTC": {
+    "message": "WebRTC を無効にする"
   },
-  "popup-options-standard-webRTCPolicy" :  {
-    "message" :  "WebRTC ポリシー"
+  "popup-options-standard-firstPartyIsolation": {
+    "message": "ファーストパーティ分離を有効にする"
   },
-  "popup-options-standard-webRTCPolicy-nonProxified" :  {
-    "message" :  "プロキシされていない UDP を無効にする"
+  "popup-options-standard-resistFingerprinting": {
+    "message": "指紋採取を拒む機能を有効にします。"
   },
-  "popup-options-standard-webRTCPolicy-public" :  {
-    "message" :  "パブリックインターフェースのみを使用する (最善)"
+  "popup-options-standard-spoofMediaDevices": {
+    "message": "メディアデバイスを偽装する"
   },
-  "popup-options-standard-webRTCPolicy-publicPrivate" :  {
-    "message" :  "パブリックおよびプライベートインターフェイスを使用する"
+  "popup-options-standard-trackingProtection": {
+    "message": "トラッキング保護モード"
   },
-  "popup-options-standard-webSockets-blockAll" :  {
-    "message" :  "全てブロック"
+  "popup-options-standard-trackingProtection-on": {
+    "message": "On"
   },
-  "popup-options-standard-webSockets-blockThirdParty" :  {
-    "message" :  "第三者をブロック"
+  "popup-options-standard-trackingProtection-off": {
+    "message": "Off"
   },
-  "popup-options-cookie" :  {
-    "message" :  "クッキー"
+  "popup-options-standard-trackingProtection-privateBrowsing": {
+    "message": "プライベートブラウジングで有効"
   },
-  "popup-options-cookieNotPersistent" :  {
-    "message" :  "ウィンドウを閉じた後、クッキーとサイトデータを削除する"
+  "popup-options-standard-webRTCPolicy": {
+    "message": "WebRTC ポリシー"
   },
-  "popup-options-cookiePolicy" :  {
-    "message" :  "ポリシー"
+  "popup-options-standard-webRTCPolicy-nonProxified": {
+    "message": "プロキシされていない UDP を無効にする"
   },
-  "popup-options-cookiePolicy-allowVisited" :  {
-    "message" :  "訪問を許可する"
+  "popup-options-standard-webRTCPolicy-public": {
+    "message": "パブリックインターフェースのみを使用する (最善)"
   },
-  "popup-options-cookiePolicy-rejectAll" :  {
-    "message" :  "すべてを拒絶する"
+  "popup-options-standard-webRTCPolicy-publicPrivate": {
+    "message": "パブリックおよびプライベートインターフェイスを使用する"
   },
-  "popup-options-cookiePolicy-rejectThirdParty" :  {
-    "message" :  "第三者を拒絶する"
+  "popup-options-standard-webSockets-blockAll": {
+    "message": "全てブロック"
   },
-  "popup-options-cookiePolicy-rejectTrackers" :  {
-    "message" :  "トラッカーを拒絶する"
+  "popup-options-standard-webSockets-blockThirdParty": {
+    "message": "第三者をブロック"
   },
-  "popup-whitelist-contextMenu" :  {
-    "message" :  "ホワイトリストで現在のタブドメインを開くためのコンテキストメニュー項目を追加する"
+  "popup-options-cookie": {
+    "message": "クッキー"
   },
-  "popup-whitelist-defaultProfileLabel" :  {
-    "message" :  "既定のプロファイル"
+  "popup-options-cookieNotPersistent": {
+    "message": "ウィンドウを閉じた後、クッキーとサイトデータを削除する"
   },
-  "popup-whitelist-enable" :  {
-    "message" :  "ホワイトリストの有効化"
+  "popup-options-cookiePolicy": {
+    "message": "ポリシー"
   },
-  "popup-whitelist-isNotWhitelisted" :  {
-    "message" :  "ホワイトリストに登録されていません"
+  "popup-options-cookiePolicy-allowVisited": {
+    "message": "訪問を許可する"
   },
-  "popup-whitelist-isWhitelisted" :  {
-    "message" :  "ホワイトリストに登録済み"
+  "popup-options-cookiePolicy-rejectAll": {
+    "message": "すべてを拒絶する"
   },
-  "popup-whitelist-open" :  {
-    "message" :  "ホワイトリストで開く"
+  "popup-options-cookiePolicy-rejectThirdParty": {
+    "message": "第三者を拒絶する"
   },
-  "text-allowAll" :  {
-    "message" :  "すべて許可する"
+  "popup-options-cookiePolicy-rejectTrackers": {
+    "message": "トラッカーを拒絶する"
   },
-  "text-cancel" :  {
-    "message" :  "取消"
+  "popup-whitelist-contextMenu": {
+    "message": "ホワイトリストで現在のタブドメインを開くためのコンテキストメニュー項目を追加する"
   },
-  "text-createNewRule" :  {
-    "message" :  "新しいルールを作成する"
+  "popup-whitelist-defaultProfileLabel": {
+    "message": "既定のプロファイル"
   },
-  "text-default" :  {
-    "message" :  "Default（規定）"
+  "popup-whitelist-enable": {
+    "message": "ホワイトリストの有効化"
   },
-  "text-defaultWhitelistProfile" :  {
-    "message" :  "デフォルトのホワイトリストプロファイル"
+  "popup-whitelist-isNotWhitelisted": {
+    "message": "ホワイトリストに登録されていません"
   },
-  "text-disableReferer" :  {
-    "message" :  "リファラーを無効にする"
+  "popup-whitelist-isWhitelisted": {
+    "message": "ホワイトリストに登録済み"
   },
-  "text-language" :  {
-    "message" :  "言語"
+  "popup-whitelist-open": {
+    "message": "ホワイトリストで開く"
   },
-  "text-name" :  {
-    "message" :  "名称"
+  "text-allowAll": {
+    "message": "すべて許可する"
   },
-  "text-profile" :  {
-    "message" :  "プロファイル"
+  "text-cancel": {
+    "message": "取消"
   },
-  "text-realProfile" :  {
-    "message" :  "真正プロファイル"
+  "text-createNewRule": {
+    "message": "新しいルールを作成する"
   },
-  "text-save" :  {
-    "message" :  "保存する"
+  "text-default": {
+    "message": "Default（規定）"
   },
-  "text-screen" :  {
-    "message" :  "画面"
+  "text-defaultWhitelistProfile": {
+    "message": "デフォルトのホワイトリストプロファイル"
   },
-  "text-searchRules" :  {
-    "message" :  "検索ルール"
+  "text-disableReferer": {
+    "message": "リファラーを無効にする"
   },
-  "text-timezone" :  {
-    "message" :  "タイムゾーン"
+  "text-language": {
+    "message": "言語"
   },
-  "text-whitelist" :  {
-    "message" :  "ホワイトリスト"
+  "text-name": {
+    "message": "名称"
+  },
+  "text-profile": {
+    "message": "プロファイル"
+  },
+  "text-realProfile": {
+    "message": "真正プロファイル"
+  },
+  "text-save": {
+    "message": "保存する"
+  },
+  "text-screen": {
+    "message": "画面"
+  },
+  "text-searchRules": {
+    "message": "検索ルール"
+  },
+  "text-timezone": {
+    "message": "タイムゾーン"
+  },
+  "text-whitelist": {
+    "message": "ホワイトリスト"
   }
 }

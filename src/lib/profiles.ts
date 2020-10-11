@@ -37,18 +37,20 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '85.0.564.51', mac: '85.0.564.51', desktopChrome: '85.0.4183.121', android: '45.7.4.5059', androidChrome: '85.0.4183.120' },
+  edg: { win: '86.0.622.38', mac: '86.0.622.38', desktopChrome: '86.0.4240.75', android: '45.8.4.5074', androidChrome: '86.0.4240.75' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
   ff: { desktop: '81', mobile: '81' },
-  gcr: { desktop: '85.0.4183.121', ios: '85.0.4183.92', android: '85.0.4183.120' },
-  sf: { desktop: '13.1.2', mobile: '13.1.2' },
+  gcr: { desktop: '86.0.4240.75', ios: '86.0.4240.77', android: '86.0.4240.75' },
+  sf: { desktop: '13.1.2', ios1: '11.0', ios2: '12.1.2', ios3: '13.1' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
 const MacResolutions: string[] = ['1920x1080', '2560×1600', '4096x2304', '5120x2880'];
 
 let getName = (os: string, browser: string) => {
+  let osId: string;
+
   if (browser === 'edg') {
     return `${os} - Edge ${BrowserVersions.edg.win.split('.')[0]}`;
   } else if (browser === 'edgm') {
@@ -76,9 +78,35 @@ let getName = (os: string, browser: string) => {
   } else if (browser === 'sf') {
     return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
   } else if (browser === 'sfm') {
-    return `${os} - Safari ${BrowserVersions.sf.mobile.split('.')[0]} (iPhone)`;
+    switch (os) {
+      case 'iOS 11':
+        osId = 'ios1';
+        break;
+      case 'iOS 12':
+        osId = 'ios2';
+        break;
+      case 'iOS 13':
+        osId = 'ios3';
+        break;
+      default:
+        break;
+    }
+    return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]} (iPhone)`;
   } else if (browser === 'sft') {
-    return `${os} - Safari ${BrowserVersions.sf.mobile.split('.')[0]} (iPad)`;
+    switch (os) {
+      case 'iOS 11':
+        osId = 'ios1';
+        break;
+      case 'iOS 12':
+        osId = 'ios2';
+        break;
+      case 'iOS 13':
+        osId = 'ios3';
+        break;
+      default:
+        break;
+    }
+    return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]} (iPad)`;
   }
 };
 
@@ -804,7 +832,7 @@ export class Generator {
     },
     // safari (mobile)
     sfm: (os): BrowserProfile => {
-      let version: string = BrowserVersions.sf.mobile;
+      let version: string = BrowserVersions.sf[os.id];
 
       const device = devices.getDevice('mobile', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
@@ -844,7 +872,7 @@ export class Generator {
     },
     // safari (tablet)
     sft: (os): BrowserProfile => {
-      let version: string = BrowserVersions.sf.mobile;
+      let version: string = BrowserVersions.sf[os.id];
 
       const device = devices.getDevice('tablet', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
