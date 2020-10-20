@@ -579,9 +579,14 @@ export default class App extends Vue {
         this.editWLRule(id);
       } else {
         if (site) {
-          this.createNewWhitelistRule();
-          this.tmp.wlRule.sites = site;
-          this.tmp.wlRule.name = site;
+          let rule = util.findWhitelistRule(this.settings.whitelist.rules, site, site);
+          if (rule !== null) {
+            this.editWLRule(rule.id);
+          } else {
+            this.createNewWhitelistRule();
+            this.tmp.wlRule.sites = site;
+            this.tmp.wlRule.name = site;
+          }
         }
       }
     }
