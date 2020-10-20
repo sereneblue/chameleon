@@ -270,11 +270,11 @@
                 <div class="flex items-center">
                   <div class="flex mt-6 w-full">
                     <button
-                      @click="saveIPRule"
+                      @click.once="saveIPRule"
                       class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded"
                       v-t="'text-save.message'"
                     ></button>
-                    <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
+                    <button @click.once="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
                   </div>
                 </div>
               </div>
@@ -365,11 +365,11 @@
               <div class="flex items-center">
                 <div class="flex mt-6 w-full">
                   <button
-                    @click="saveWLRule"
+                    @click.once="saveWLRule"
                     class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded"
                     v-t="'text-save.message'"
                   ></button>
-                  <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
+                  <button @click.once="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'text-cancel.message'"></button>
                 </div>
               </div>
             </div>
@@ -480,7 +480,7 @@ export default class App extends Vue {
     wlRuleSites: false,
   };
   public isImporting: boolean = false;
-  private isLegacyVersion: boolean;
+  private isLegacyVersion: boolean = false;
   public importError: any = {
     error: false,
     msg: '',
