@@ -1,3 +1,17 @@
+<a name="v0.21.5-rc"></a>
+
+## [v0.21.5-rc](https://github.com/sereneblue/chameleon/compare/v0.21.4...v0.21.5-rc) (2020-10-20)
+
+### Bug Fixes
+
+- **options:** use existing rule if reload page with site paremeter
+- **options:** prevent double submission for rules
+- **whitelist:** update id used in context menu event
+
+### Features
+
+- update profiles
+
 <a name="v0.21.4-rc"></a>
 
 ## [v0.21.4-rc](https://github.com/sereneblue/chameleon/compare/v0.21.3...v0.21.4-rc) (2020-10-11)
