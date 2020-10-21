@@ -854,7 +854,7 @@ export class Chameleon {
 
             if (rule !== null) {
               browser.tabs.create({
-                url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}}`),
+                url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}`),
               });
               return;
             }
