@@ -261,6 +261,7 @@ class Injector {
       var _supportedLocalesOfDTF = window.Intl.DateTimeFormat.supportedLocalesOf;
       var _supportedLocalesOfRTF = window.Intl.RelativeTimeFormat.supportedLocalesOf;
       var _supportedLocalesOfNF = window.Intl.NumberFormat.supportedLocalesOf;
+      var _supportedLocalesOfPR = window.Intl.PluralRules.supportedLocalesOf;
       var _supportedLocalesOfC = window.Intl.Collator.supportedLocalesOf;
 
       var _open = window.open;
@@ -375,6 +376,7 @@ class Injector {
         window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOfDTF;
         window.Intl.RelativeTimeFormat.supportedLocalesOf = _supportedLocalesOfRTF;
         window.Intl.NumberFormat.supportedLocalesOf = _supportedLocalesOfNF;
+        window.Intl.PluralRules.supportedLocalesOf = _supportedLocalesOfPR;
         window.Intl.Collator.supportedLocalesOf = _supportedLocalesOfC;
 
         Object.defineProperties(HTMLIFrameElement.prototype, {

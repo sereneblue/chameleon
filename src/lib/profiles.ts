@@ -37,11 +37,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '86.0.622.43', mac: '86.0.622.43', desktopChrome: '86.0.4240.75', android: '45.9.4.5079', androidChrome: '86.0.4240.99' },
+  edg: { win: '86.0.622.56', mac: '86.0.622.56', desktopChrome: '86.0.4240.111', android: '45.9.4.5083', androidChrome: '86.0.4240.114' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
-  ff: { desktop: '82', mobile: '81' },
-  gcr: { desktop: '86.0.4240.75', ios: '86.0.4240.93', android: '86.0.4240.99' },
+  ff: { desktop: '82', mobile: '82' },
+  gcr: { desktop: '86.0.4240.111', ios: '86.0.4240.93', android: '86.0.4240.114' },
   sf: { desktop: '13.1.2', ios1: '11.0', ios2: '12.1.2', ios3: '13.1' },
 };
 
@@ -514,13 +514,17 @@ export class Generator {
           platform = os.uaPlatform;
           break;
         case 'lin3':
-          platform = 'X11; Linux x86_64';
+          platform = 'Linux x86_64';
           break;
         default:
           break;
       }
 
       let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Safari/537.36`;
+
+      if (os.id === 'lin1' || os.id == 'lin2') {
+        platform = 'Linux x86_64';
+      }
 
       return {
         accept: {
@@ -1033,7 +1037,7 @@ export class Generator {
           platform: 'Linux x86_64',
         },
         screenOffset: -27, // gnome
-        uaPlatform: 'X11; Ubuntu; Linux x86_64',
+        uaPlatform: 'X11; Linux x86_64',
       },
     ],
     iOS: [

@@ -2,6 +2,7 @@ const psl = require('psl');
 const CIDR = require('cidr-js');
 
 const cidr = new CIDR();
+const REGEX_HTTP = new RegExp('^https?:', 'i');
 const LINK = document.createElement('a');
 
 let determineRequestType = (source: string, destination: string): string => {
@@ -26,7 +27,7 @@ let determineRequestType = (source: string, destination: string): string => {
 let findWhitelistRule = (rules: any, host: string, url: string): any => {
   for (var i = 0; i < rules.length; i++) {
     for (var j = 0; j < rules[i].sites.length; j++) {
-      let whitelistURL = new URL((rules[i].sites[j].domain.includes('http') ? '' : 'http://') + rules[i].sites[j].domain);
+      let whitelistURL = new URL((REGEX_HTTP.test(rules[i].sites[j].domain) ? '' : 'http://') + rules[i].sites[j].domain);
 
       if (host.includes(whitelistURL.host.replace(/^(www\.)/, ''))) {
         if (!rules[i].sites[j].pattern || (rules[i].sites[j].pattern && new RegExp(rules[i].sites[j].pattern).test(url))) {
