@@ -514,13 +514,17 @@ export class Generator {
           platform = os.uaPlatform;
           break;
         case 'lin3':
-          platform = 'X11; Linux x86_64';
+          platform = 'Linux x86_64';
           break;
         default:
           break;
       }
 
       let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Safari/537.36`;
+
+      if (os.id === 'lin1' || os.id == 'lin2') {
+        platform = 'Linux x86_64';
+      }
 
       return {
         accept: {
@@ -1033,7 +1037,7 @@ export class Generator {
           platform: 'Linux x86_64',
         },
         screenOffset: -27, // gnome
-        uaPlatform: 'X11; Ubuntu; Linux x86_64',
+        uaPlatform: 'X11; Linux x86_64',
       },
     ],
     iOS: [
