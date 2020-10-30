@@ -1,3 +1,17 @@
+<a name="v0.21.6-rc"></a>
+
+## [v0.21.6-rc](https://github.com/sereneblue/chameleon/compare/v0.21.5...v0.21.6-rc) (2020-10-29)
+
+### Bug Fixes
+
+- **injection:** add supportedLocalesOf support for Intl.PluralRules ([#472](https://github.com/sereneblue/chameleon/issues/472))
+- **profiles:** update linux profiles
+- **util:** improve whitelist rule handling
+
+### Features
+
+- update profiles
+
 <a name="v0.21.5-rc"></a>
 
 ## [v0.21.5-rc](https://github.com/sereneblue/chameleon/compare/v0.21.4...v0.21.5-rc) (2020-10-20)
