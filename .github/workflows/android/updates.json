@@ -3,9 +3,9 @@
     "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}": {
       "updates": [
         {
-          "version": "0.21.6.2",
+          "version": "0.21.7.2",
           "browser_specific_settings": { "gecko": { "strict_min_version": "59.0a1" } },
-          "update_link": "https://github.com/sereneblue/chameleon/releases/download/v0.21.6/chameleon_v0.21.6.signed.xpi"
+          "update_link": "https://github.com/sereneblue/chameleon/releases/download/v0.21.7/chameleon_v0.21.7.signed.xpi"
         }
       ]
     }
