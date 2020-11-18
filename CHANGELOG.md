@@ -56,6 +56,19 @@
 
 - **import settings:** add validation for css exfil setting
 
+<a name="v0.21.2-rc"></a>
+
+## [v0.21.2-rc](https://github.com/sereneblue/chameleon/compare/v0.21.1-rc...v0.21.2-rc) (2020-09-04)
+
+### Bug Fixes
+
+- **font spoofing:** fix appendChild ([#449](https://github.com/sereneblue/chameleon/issues/449))
+- **language spoofing:** update language spoofing to add support for Intl APIs
+
+### Features
+
+- add css exfil protection ([#161](https://github.com/sereneblue/chameleon/issues/161))
+
 <a name="v0.21.1-rc"></a>
 
 ## [v0.21.1-rc](https://github.com/sereneblue/chameleon/compare/v0.21.0-rc...v0.21.1-rc) (2020-08-26)
@@ -66,7 +79,6 @@
 
 ### Features
 
-- update profiles
 - update profiles
 
 <a name="v0.21.0-rc"></a>

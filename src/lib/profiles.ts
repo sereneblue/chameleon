@@ -40,8 +40,8 @@ const BrowserVersions: any = {
   edg: { win: '86.0.622.56', mac: '86.0.622.56', desktopChrome: '86.0.4240.111', android: '45.9.4.5083', androidChrome: '86.0.4240.114' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
-  ff: { desktop: '82', mobile: '82' },
-  gcr: { desktop: '86.0.4240.111', ios: '86.0.4240.93', android: '86.0.4240.114' },
+  ff: { desktop: '83', mobile: '83' },
+  gcr: { desktop: '87.0.4280.66', ios: '86.0.4240.93', android: '86.0.4240.198' },
   sf: { desktop: '13.1.2', ios1: '11.0', ios2: '12.1.2', ios3: '13.1' },
 };
 
