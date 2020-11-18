@@ -1,5 +1,4 @@
-<a name="v0.21.7-rc"></a>  
-
+<a name="v0.21.7-rc"></a>
 
 ## [v0.21.7-rc](https://github.com/sereneblue/chameleon/compare/v0.21.6...v0.21.7-rc) (2020-11-17)
 
