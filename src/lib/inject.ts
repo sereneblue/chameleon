@@ -320,7 +320,7 @@ class Injector {
 
             return pluginArray;
           })();
-
+          
           Object.defineProperty(window.navigator, 'plugins', {
             configurable: true,
             value: plugins
@@ -332,6 +332,46 @@ class Injector {
           });
         }
       });
+
+      // More Plugin handling
+      if (navigator.plugins.length) {
+        let mimeTypes = Array.from(navigator.mimeTypes);
+
+        for (let i = 0; i < navigator.mimeTypes.length; i++) {
+          Object.defineProperty(navigator.mimeTypes[i], 'enabledPlugin', {
+            configurable: true,
+            value: navigator.plugins.find(p => p._types.includes(navigator.mimeTypes[i].type))
+          });
+
+          Object.defineProperty(navigator.mimeTypes, navigator.mimeTypes[i].type, {
+            configurable: true,
+            value: navigator.mimeTypes[i]
+          });
+        }
+
+        for (let i = 0; i < navigator.plugins.length; i++) {
+          for (let j = 0; j < navigator.plugins[i]._types.length; j++) {
+            let m = mimeTypes.find(m => m.type === navigator.plugins[i]._types[j]);
+
+            Object.defineProperty(navigator.plugins[i], j, {
+              configurable: true,
+              value: m
+            });
+
+            Object.defineProperty(navigator.plugins[i], navigator.plugins[i]._types[j], {
+              configurable: true,
+              value: m
+            });
+          }
+
+          Object.defineProperty(navigator.plugins[i], 'length', {
+              configurable: true,
+              value: navigator.plugins[i]._types.length
+            });
+
+          delete navigator.plugins[i]._types;
+        }
+      }
       
       let iframeWindow = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow');
       let iframeDocument = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
