@@ -37,11 +37,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '87.0.664.47', mac: '87.0.664.47', desktopChrome: '87.0.4280.66', android: '45.10.4.5088', androidChrome: '87.0.4280.66' },
+  edg: { win: '87.0.664.57', mac: '87.0.664.57', desktopChrome: '87.0.4280.88', android: '45.11.2.5116', androidChrome: '87.0.4280.101' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
   ff: { desktop: '83', mobile: '83' },
-  gcr: { desktop: '87.0.4280.66', ios: '87.0.4280.77', android: '87.0.4280.66' },
+  gcr: { desktop: '87.0.4280.88', ios: '87.0.4280.77', android: '87.0.4280.101' },
   sf: { desktop: '13.1.2', ios1: '11.0', ios2: '12.1.2', ios3: '13.1' },
 };
 
@@ -147,9 +147,15 @@ export class Generator {
           oscpu: null,
           platform,
           plugins: [
-            { name: 'Microsoft Edge PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', _types: ['application/x-google-chrome-pdf'] },
-            { name: 'Microsoft Edge PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', _types: ['application/pdf'] },
-            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', _types: ['application/x-nacl', 'application/x-pnacl'] },
+            {
+              name: 'Microsoft Edge PDF Plugin',
+              filename: 'internal-pdf-viewer',
+              description: 'Portable Document Format',
+              version: null,
+              _types: ['application/x-google-chrome-pdf'],
+            },
+            { name: 'Microsoft Edge PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, _types: ['application/pdf'] },
+            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null, _types: ['application/x-nacl', 'application/x-pnacl'] },
           ],
           productSub: '20030107',
           userAgent: ua,
@@ -538,9 +544,9 @@ export class Generator {
           oscpu: null,
           platform,
           plugins: [
-            { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', _types: ['application/x-google-chrome-pdf'] },
-            { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', _types: ['application/pdf'] },
-            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', _types: ['application/x-nacl', 'application/x-pnacl'] },
+            { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', version: null, _types: ['application/x-google-chrome-pdf'] },
+            { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, _types: ['application/pdf'] },
+            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null, _types: ['application/x-nacl', 'application/x-pnacl'] },
           ],
           productSub: '20030107',
           userAgent: ua,
@@ -789,6 +795,7 @@ export class Generator {
               name: 'Shockwave Flash',
               filename: 'Flash Player.plugin',
               description: 'Shockwave Flash 32.0 r0',
+              version: null,
               _types: ['application/x-shockwave-flash', 'application/futuresplash'],
             },
             { name: 'WebKit built-in PDF', filename: '', description: '', _types: ['application/pdf', 'text/pdf', 'application/postscript'] },
