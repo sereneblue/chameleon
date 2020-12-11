@@ -1,7 +1,12 @@
 export default {
   type: 'custom',
   data: `
-  var ORIGINAL_DATE = window.Date;
+  if (new Date()[spoofContext.CHAMELEON_SPOOF]) {
+    spoofContext.Date = Date;
+    return;
+  }
+
+  let ORIGINAL_DATE = spoofContext.Date;
   
   const {
     getDate, getDay, getFullYear, getHours, getMinutes, getMonth, getTime, getTimezoneOffset,
@@ -13,9 +18,9 @@ export default {
   const TZ_LONG_B = new ORIGINAL_DATE(2020, 6, 1).toLocaleDateString(undefined, { timeZoneName: 'long' }).split(', ')[1];
   const TZ_SHORT_A = new ORIGINAL_DATE(2020, 0, 1).toLocaleDateString(undefined, { timeZoneName: 'short' }).split(', ')[1];
   const TZ_SHORT_B = new ORIGINAL_DATE(2020, 6, 1).toLocaleDateString(undefined, { timeZoneName: 'short' }).split(', ')[1];
-  const TZ_INTL = ORIGINAL_INTL('en-us', { timeZone: CHAMELEON_SPOOF.get(window).timezone.zone.name, timeZoneName: 'long'});
+  const TZ_INTL = ORIGINAL_INTL('en-us', { timeZone: CHAMELEON_SPOOF.get(spoofContext).timezone.zone.name, timeZoneName: 'long'});
   const TZ_LOCALE_STRING = ORIGINAL_INTL('en-us', {
-    timeZone: CHAMELEON_SPOOF.get(window).timezone.zone.name,
+    timeZone: CHAMELEON_SPOOF.get(spoofContext).timezone.zone.name,
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
@@ -27,7 +32,7 @@ export default {
 
   const modifyDate = (d) => {
     let timestamp = getTime.call(d);
-    let spoofData = CHAMELEON_SPOOF.get(window).timezone;
+    let spoofData = CHAMELEON_SPOOF.get(spoofContext).timezone;
     let offsetIndex = spoofData.zone.untils.findIndex(o => o === null || (timestamp < o) );
     let offsetNum = spoofData.zone.offsets[offsetIndex];
 
@@ -36,7 +41,7 @@ export default {
 
     let tmp = new ORIGINAL_DATE(TZ_LOCALE_STRING.format(d));
 
-    d[window.CHAMELEON_SPOOF] = {
+    d[spoofContext.CHAMELEON_SPOOF] = {
       date: tmp,
       zoneInfo_offsetNum: offsetNum,
       zoneInfo_offsetStr: offsetStr,
@@ -54,7 +59,7 @@ export default {
     return d;
   }
 
-  window.Date = function() {
+  spoofContext.Date = function() {
     'use strict';
 
     let tmp = new ORIGINAL_DATE(...arguments);
@@ -69,66 +74,66 @@ export default {
     return (this instanceof Date) ? tmp : tmp.toString();
   };
 
-  Object.defineProperty(window.Date, 'length', {
+  Object.defineProperty(spoofContext.Date, 'length', {
     configurable: false,
     value: 7
   })
   
-  window.Date.prototype = ORIGINAL_DATE.prototype;
-  window.Date.UTC = ORIGINAL_DATE.UTC;
-  window.Date.now = ORIGINAL_DATE.now;
-  window.Date.parse = ORIGINAL_DATE.parse;
+  spoofContext.Date.prototype = ORIGINAL_DATE.prototype;
+  spoofContext.Date.UTC = ORIGINAL_DATE.UTC;
+  spoofContext.Date.now = ORIGINAL_DATE.now;
+  spoofContext.Date.parse = ORIGINAL_DATE.parse;
 
-  window.Date.prototype.getDate = function() {
+  spoofContext.Date.prototype.getDate = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
-    return getDate.call(this[window.CHAMELEON_SPOOF].date);
+    return getDate.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
-  window.Date.prototype.getDay = function() {
+  spoofContext.Date.prototype.getDay = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
-    return getDay.call(this[window.CHAMELEON_SPOOF].date);
+    return getDay.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
-  window.Date.prototype.getFullYear = function() {
-    if (isNaN(getTime.call(this))) {
-      return NaN;
-    }
-
-    return getFullYear.call(this[window.CHAMELEON_SPOOF].date);
-  }
-  window.Date.prototype.getHours = function(){
+  spoofContext.Date.prototype.getFullYear = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
 
-    return getHours.call(this[window.CHAMELEON_SPOOF].date);
+    return getFullYear.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
-  window.Date.prototype.getMinutes = function() {
+  spoofContext.Date.prototype.getHours = function(){
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
 
-    return getMinutes.call(this[window.CHAMELEON_SPOOF].date);
+    return getHours.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
-  window.Date.prototype.getMonth = function() {
+  spoofContext.Date.prototype.getMinutes = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
 
-    return getMonth.call(this[window.CHAMELEON_SPOOF].date);
+    return getMinutes.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
-  window.Date.prototype.getTimezoneOffset = function() {
+  spoofContext.Date.prototype.getMonth = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
 
-    if (!this[window.CHAMELEON_SPOOF]) modifyDate(this);
-
-    return this[window.CHAMELEON_SPOOF].zoneInfo_offsetNum;
+    return getMonth.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
-  window.Date.prototype.setDate = function() {
+  spoofContext.Date.prototype.getTimezoneOffset = function() {
+    if (isNaN(getTime.call(this))) {
+      return NaN;
+    }
+
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
+
+    return this[spoofContext.CHAMELEON_SPOOF].zoneInfo_offsetNum;
+  }
+  spoofContext.Date.prototype.setDate = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
@@ -138,7 +143,7 @@ export default {
     
     return nd;
   }
-  window.Date.prototype.setFullYear = function() {
+  spoofContext.Date.prototype.setFullYear = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
@@ -149,7 +154,7 @@ export default {
 
     return nd;
   }
-  window.Date.prototype.setHours = function() {
+  spoofContext.Date.prototype.setHours = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
@@ -159,7 +164,7 @@ export default {
 
     return nd;
   }
-  window.Date.prototype.setMilliseconds = function() {
+  spoofContext.Date.prototype.setMilliseconds = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
@@ -169,7 +174,7 @@ export default {
 
     return nd;
   }
-  window.Date.prototype.setMonth = function() {
+  spoofContext.Date.prototype.setMonth = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
@@ -179,7 +184,7 @@ export default {
 
     return nd;
   }
-  window.Date.prototype.setSeconds = function() {
+  spoofContext.Date.prototype.setSeconds = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
@@ -189,7 +194,7 @@ export default {
 
     return nd;
   }
-  window.Date.prototype.setTime = function() {
+  spoofContext.Date.prototype.setTime = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
@@ -199,84 +204,84 @@ export default {
 
     return nd;
   }
-  window.Date.prototype.toDateString = function() {
+  spoofContext.Date.prototype.toDateString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
-    return toDateString.apply(this[window.CHAMELEON_SPOOF].date);
+    return toDateString.apply(this[spoofContext.CHAMELEON_SPOOF].date);
   }
-  window.Date.prototype.toString = function() {
+  spoofContext.Date.prototype.toString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
     return this.toDateString() + ' ' + this.toTimeString();
   }
-  window.Date.prototype.toTimeString = function() {
+  spoofContext.Date.prototype.toTimeString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
 
-    let parts = toTimeString.apply(this[window.CHAMELEON_SPOOF].date).split(' ', 1);
-    parts = parts.concat(['GMT' + this[window.CHAMELEON_SPOOF].zoneInfo_offsetStr, \`(\${this[window.CHAMELEON_SPOOF].zoneInfo_tzName})\`]);
+    let parts = toTimeString.apply(this[spoofContext.CHAMELEON_SPOOF].date).split(' ', 1);
+    parts = parts.concat(['GMT' + this[spoofContext.CHAMELEON_SPOOF].zoneInfo_offsetStr, \`(\${this[spoofContext.CHAMELEON_SPOOF].zoneInfo_tzName})\`]);
     return parts.join(' ');
   }
-  window.Date.prototype.toJSON = function() {
+  spoofContext.Date.prototype.toJSON = function() {
     if (isNaN(getTime.call(this))) {
       return null;
     }
     return this.toISOString();
   }
-  window.Date.prototype.toLocaleString = function() {
+  spoofContext.Date.prototype.toLocaleString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
     
-    let tmp = toLocaleString.apply(this[window.CHAMELEON_SPOOF].date, arguments);
+    let tmp = toLocaleString.apply(this[spoofContext.CHAMELEON_SPOOF].date, arguments);
 
-    return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo_tzName);
+    return replaceName(tmp, this[spoofContext.CHAMELEON_SPOOF].zoneInfo_tzName);
   }
-  window.Date.prototype.toLocaleDateString = function() {
+  spoofContext.Date.prototype.toLocaleDateString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
 
-    let tmp = toLocaleDateString.apply(this[window.CHAMELEON_SPOOF].date, arguments);
+    let tmp = toLocaleDateString.apply(this[spoofContext.CHAMELEON_SPOOF].date, arguments);
     
-    return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo_tzName);
+    return replaceName(tmp, this[spoofContext.CHAMELEON_SPOOF].zoneInfo_tzName);
   }
-  window.Date.prototype.toLocaleTimeString = function() {
+  spoofContext.Date.prototype.toLocaleTimeString = function() {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
 
-    let tmp = toLocaleTimeString.apply(this[window.CHAMELEON_SPOOF].date, arguments);
+    let tmp = toLocaleTimeString.apply(this[spoofContext.CHAMELEON_SPOOF].date, arguments);
     
-    return replaceName(tmp, this[window.CHAMELEON_SPOOF].zoneInfo_tzName);
+    return replaceName(tmp, this[spoofContext.CHAMELEON_SPOOF].zoneInfo_tzName);
   }
 
   modifiedAPIs = modifiedAPIs.concat([
-    [window.Date, "Date"],
-    [window.Date.prototype.getDate, "getDate"],
-    [window.Date.prototype.getDay,  "getDay"],
-    [window.Date.prototype.getFullYear, "getFullYear"],
-    [window.Date.prototype.getHours, "getHours"],
-    [window.Date.prototype.getMinutes, "getMinutes"],
-    [window.Date.prototype.getMonth, "getMonth"],
-    [window.Date.prototype.getTimezoneOffset, "getTimezoneOffset"],
-    [window.Date.prototype.setDate, "setDate"],
-    [window.Date.prototype.setFullYear, "setFullYear"],
-    [window.Date.prototype.setHours, "setHours"],
-    [window.Date.prototype.setMilliseconds, "setMilliseconds"],
-    [window.Date.prototype.setMonth, "setMonth"],
-    [window.Date.prototype.setSeconds, "setSeconds"],
-    [window.Date.prototype.setTime, "setTime"],
-    [window.Date.prototype.toDateString, "toDateString"],
-    [window.Date.prototype.toString, "toString"],
-    [window.Date.prototype.toTimeString, "toTimeString"],
-    [window.Date.prototype.toJSON, "toJSON"],
-    [window.Date.prototype.toLocaleString, "toLocaleString"],
-    [window.Date.prototype.toLocaleDateString, "toLocaleDateString"],
-    [window.Date.prototype.toLocaleTimeString, "toLocaleTimeString"],
+    [spoofContext.Date, "Date"],
+    [spoofContext.Date.prototype.getDate, "getDate"],
+    [spoofContext.Date.prototype.getDay,  "getDay"],
+    [spoofContext.Date.prototype.getFullYear, "getFullYear"],
+    [spoofContext.Date.prototype.getHours, "getHours"],
+    [spoofContext.Date.prototype.getMinutes, "getMinutes"],
+    [spoofContext.Date.prototype.getMonth, "getMonth"],
+    [spoofContext.Date.prototype.getTimezoneOffset, "getTimezoneOffset"],
+    [spoofContext.Date.prototype.setDate, "setDate"],
+    [spoofContext.Date.prototype.setFullYear, "setFullYear"],
+    [spoofContext.Date.prototype.setHours, "setHours"],
+    [spoofContext.Date.prototype.setMilliseconds, "setMilliseconds"],
+    [spoofContext.Date.prototype.setMonth, "setMonth"],
+    [spoofContext.Date.prototype.setSeconds, "setSeconds"],
+    [spoofContext.Date.prototype.setTime, "setTime"],
+    [spoofContext.Date.prototype.toDateString, "toDateString"],
+    [spoofContext.Date.prototype.toString, "toString"],
+    [spoofContext.Date.prototype.toTimeString, "toTimeString"],
+    [spoofContext.Date.prototype.toJSON, "toJSON"],
+    [spoofContext.Date.prototype.toLocaleString, "toLocaleString"],
+    [spoofContext.Date.prototype.toLocaleDateString, "toLocaleDateString"],
+    [spoofContext.Date.prototype.toLocaleTimeString, "toLocaleTimeString"],
   ]);
 `.replace(
     /ORIGINAL_DATE/g,

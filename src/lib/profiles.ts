@@ -37,11 +37,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '86.0.622.56', mac: '86.0.622.56', desktopChrome: '86.0.4240.111', android: '45.9.4.5083', androidChrome: '86.0.4240.114' },
+  edg: { win: '87.0.664.57', mac: '87.0.664.57', desktopChrome: '87.0.4280.88', android: '45.11.2.5116', androidChrome: '87.0.4280.101' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
   ff: { desktop: '83', mobile: '83' },
-  gcr: { desktop: '87.0.4280.66', ios: '86.0.4240.93', android: '86.0.4240.198' },
+  gcr: { desktop: '87.0.4280.88', ios: '87.0.4280.77', android: '87.0.4280.101' },
   sf: { desktop: '13.1.2', ios1: '11.0', ios2: '12.1.2', ios3: '13.1' },
 };
 
@@ -139,28 +139,23 @@ export class Generator {
           deviceMemory: 8,
           hardwareConcurrency: 4,
           mimeTypes: [
-            {
-              type: 'application/pdf',
-              suffixes: 'pdf',
-              description: 'Portable Document Format',
-            },
-            {
-              type: 'text/pdf',
-              suffixes: 'pdf',
-              description: 'Portable Document Format',
-            },
-            {
-              type: 'application/postscript',
-              suffixes: 'ps',
-              description: 'PostScript',
-            },
+            { type: 'application/pdf', suffixes: 'pdf', description: '' },
+            { type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format' },
+            { type: 'application/x-nacl', suffixes: '', description: 'Native Client Executable' },
+            { type: 'application/x-pnacl', suffixes: '', description: 'Portable Native Client Executable' },
           ],
           oscpu: null,
           platform,
           plugins: [
-            { name: 'Microsoft Edge PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', version: null },
-            { name: 'Microsoft Edge PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null },
-            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null },
+            {
+              name: 'Microsoft Edge PDF Plugin',
+              filename: 'internal-pdf-viewer',
+              description: 'Portable Document Format',
+              version: null,
+              _types: ['application/x-google-chrome-pdf'],
+            },
+            { name: 'Microsoft Edge PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, _types: ['application/pdf'] },
+            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null, _types: ['application/x-nacl', 'application/x-pnacl'] },
           ],
           productSub: '20030107',
           userAgent: ua,
@@ -541,33 +536,17 @@ export class Generator {
           deviceMemory: 8,
           hardwareConcurrency: 4,
           mimeTypes: [
-            {
-              type: 'application/pdf',
-              suffixes: 'pdf',
-              description: '',
-            },
-            {
-              type: 'application/x-google-chrome-pdf',
-              suffixes: 'pdf',
-              description: 'Portable Document Format',
-            },
-            {
-              type: 'application/x-nacl',
-              suffixes: '',
-              description: 'Native Client Executable',
-            },
-            {
-              type: 'application/x-pnacl',
-              suffixes: '',
-              description: 'Portable Native Client Executable',
-            },
+            { type: 'application/pdf', suffixes: 'pdf', description: '' },
+            { type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format' },
+            { type: 'application/x-nacl', suffixes: '', description: 'Native Client Executable' },
+            { type: 'application/x-pnacl', suffixes: '', description: 'Portable Native Client Executable' },
           ],
           oscpu: null,
           platform,
           plugins: [
-            { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', version: null },
-            { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null },
-            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null },
+            { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', version: null, _types: ['application/x-google-chrome-pdf'] },
+            { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, _types: ['application/pdf'] },
+            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null, _types: ['application/x-nacl', 'application/x-pnacl'] },
           ],
           productSub: '20030107',
           userAgent: ua,
@@ -803,25 +782,24 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: 8,
           mimeTypes: [
-            {
-              type: 'application/pdf',
-              suffixes: 'pdf',
-              description: 'Portable Document Format',
-            },
-            {
-              type: 'text/pdf',
-              suffixes: 'pdf',
-              description: 'Portable Document Format',
-            },
-            {
-              type: 'application/postscript',
-              suffixes: 'ps',
-              description: 'PostScript',
-            },
+            { type: 'application/x-shockwave-flash', suffixes: 'swf', description: 'Shockwave Flash' },
+            { type: 'application/futuresplash', suffixes: 'spl', description: 'FutureSplash Player' },
+            { type: 'application/pdf', suffixes: 'pdf', description: 'Portable Document Format' },
+            { type: 'text/pdf', suffixes: 'pdf', description: 'Portable Document Format' },
+            { type: 'application/postscript', suffixes: 'ps', description: 'PostScript' },
           ],
           oscpu: null,
           platform: 'MacIntel',
-          plugins: [{ name: 'WebKit built-in PDF', filename: '', description: '', version: null }],
+          plugins: [
+            {
+              name: 'Shockwave Flash',
+              filename: 'Flash Player.plugin',
+              description: 'Shockwave Flash 32.0 r0',
+              version: null,
+              _types: ['application/x-shockwave-flash', 'application/futuresplash'],
+            },
+            { name: 'WebKit built-in PDF', filename: '', description: '', _types: ['application/pdf', 'text/pdf', 'application/postscript'] },
+          ],
           productSub: '20030107',
           userAgent: ua,
           vendor: 'Apple Computer, Inc.',

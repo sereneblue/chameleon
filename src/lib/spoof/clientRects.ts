@@ -1,16 +1,16 @@
 export default {
   type: 'custom',
   data: `
-    let _getBoundingClientRect = window.Element.prototype.getBoundingClientRect;
-		let _getClientRects = window.Element.prototype.getClientRects;
-		let _rgetBoundingClientRect = window.Range.prototype.getBoundingClientRect;
-    let _rgetClientRects = window.Range.prototype.getClientRects;
+    let _getBoundingClientRect = spoofContext.Element.prototype.getBoundingClientRect;
+		let _getClientRects = spoofContext.Element.prototype.getClientRects;
+		let _rgetBoundingClientRect = spoofContext.Range.prototype.getBoundingClientRect;
+    let _rgetClientRects = spoofContext.Range.prototype.getClientRects;
     
 		let _fuzzer = (val) => {
-			return Number.isInteger(val) ? val : val + CHAMELEON_SPOOF.get(window).clientRectsSeed;
+			return Number.isInteger(val) ? val : val + CHAMELEON_SPOOF.get(spoofContext).clientRectsSeed;
 		};
 
-		window.Element.prototype.getBoundingClientRect = function() {
+		spoofContext.Element.prototype.getBoundingClientRect = function() {
 			let c = _getBoundingClientRect.apply(this);
 
 			c.x = c.left = _fuzzer(c.x);
@@ -22,10 +22,10 @@ export default {
 		}
 
 		modifiedAPIs.push([
-			window.Element.prototype.getBoundingClientRect, "getBoundingClientRect"
+			spoofContext.Element.prototype.getBoundingClientRect, "getBoundingClientRect"
 		]);
 
-		window.Element.prototype.getClientRects = function() {
+		spoofContext.Element.prototype.getClientRects = function() {
 			let a = _getClientRects.apply(this);
 			let b = this.getBoundingClientRect();
 			
@@ -37,10 +37,10 @@ export default {
 		}
 
 		modifiedAPIs.push([
-			window.Element.prototype.getClientRects, "getClientRects"
+			spoofContext.Element.prototype.getClientRects, "getClientRects"
 		]);
 
-		window.Range.prototype.getBoundingClientRect = function() {
+		spoofContext.Range.prototype.getBoundingClientRect = function() {
 			let r = _rgetBoundingClientRect.apply(this);
 
 			r.x = r.left = _fuzzer(r.x);
@@ -52,10 +52,10 @@ export default {
 		}
 
 		modifiedAPIs.push([
-			window.Range.prototype.getBoundingClientRect, "getBoundingClientRect"
+			spoofContext.Range.prototype.getBoundingClientRect, "getBoundingClientRect"
 		]);
 
-		window.Range.prototype.getClientRects = function() {
+		spoofContext.Range.prototype.getClientRects = function() {
 			let a = _rgetClientRects.apply(this);
 			let b = this.getBoundingClientRect();
 			
@@ -67,7 +67,7 @@ export default {
 		}
 
 		modifiedAPIs.push([
-			window.Range.prototype.getClientRects, "getClientRects"
+			spoofContext.Range.prototype.getClientRects, "getClientRects"
 		]);
   `,
 };

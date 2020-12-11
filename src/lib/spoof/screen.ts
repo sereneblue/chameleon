@@ -1,52 +1,52 @@
 export default {
   type: 'custom',
   data: `
-  let screenData = CHAMELEON_SPOOF.get(window).screen;
+  let screenData = CHAMELEON_SPOOF.get(spoofContext).screen;
 
   if (screenData.usingProfileRes === false) {
-    screenData.availHeight = screenData.height - (screen.height - screen.availHeight);
+    screenData.availHeight = screenData.height - (spoofContext.screen.height - spoofContext.screen.availHeight);
   }
 
   ['top', 'left', 'availTop', 'availLeft'].forEach((k) => {
-    Object.defineProperty(window.screen, k, {
-      value: 0
+    Object.defineProperty(spoofContext.Screen.prototype, k, {
+      get: (() => 0).bind(null)
     });
   });
 
   ['colorDepth', 'pixelDepth'].forEach((k) => {
-    Object.defineProperty(window.screen, k, {
-      value: 24
+    Object.defineProperty(spoofContext.Screen.prototype, k, {
+      get: (() => 24).bind(null)
     });
   });
 
   ['availWidth', 'width'].forEach((k) => {
-    Object.defineProperty(window.screen, k, {
-      value: screenData.width
+    Object.defineProperty(spoofContext.Screen.prototype, k, {
+      get: (() => screenData.width).bind(null)
     });
   });
 
   ['innerWidth', 'outerWidth'].forEach((k) => {
-    Object.defineProperty(window, k, {
-      value: screenData.width
+    Object.defineProperty(spoofContext, k, {
+      get: (() => screenData.width).bind(null)
     });
   });
 
   ['innerHeight', 'outerHeight'].forEach((k) => {
-    Object.defineProperty(window, k, {
-      value: screenData.height
+    Object.defineProperty(spoofContext, k, {
+      get: (() => screenData.height).bind(null)
     });
   });
 
-  Object.defineProperty(window.screen, 'availHeight', {
-    value: screenData.availHeight
+  Object.defineProperty(spoofContext.Screen.prototype, 'availHeight', {
+    get: (() => screenData.availHeight).bind(null)
   });
 
-  Object.defineProperty(window.screen, 'height', {
-    value: screenData.height
+  Object.defineProperty(spoofContext.Screen.prototype, 'height', {
+    get: (() => screenData.height).bind(null)
   });
 
-  Object.defineProperty(window, 'devicePixelRatio', {
-    value: screenData.deviceScaleFactor || 1
+  Object.defineProperty(spoofContext, 'devicePixelRatio', {
+    get: (() => screenData.deviceScaleFactor || 1).bind(null)
   });
   `,
 };

@@ -2,7 +2,7 @@ export default {
   type: 'custom',
   data: `
     let handler = (e) => {
-      let delay = CHAMELEON_SPOOF.get(window).kbDelay; 
+      let delay = CHAMELEON_SPOOF.get(spoofContext).kbDelay; 
       if (e.target && e.target.nodeName == 'INPUT') {
         if (Math.floor(Math.random() * 2)) {
           let endTime = Date.now() + (30 + Math.floor(Math.random() * (delay || 30) ));
@@ -11,7 +11,7 @@ export default {
       }
     }
 
-    document.addEventListener('keypress', handler);
-    document.addEventListener('keyup', handler);
-    document.addEventListener('keydown', handler);`,
+    spoofContext.document.addEventListener('keypress', handler);
+    spoofContext.document.addEventListener('keyup', handler);
+    spoofContext.document.addEventListener('keydown', handler);`,
 };

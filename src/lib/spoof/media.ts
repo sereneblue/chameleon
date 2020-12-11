@@ -1,8 +1,8 @@
 export default {
   type: 'custom',
   data: `
-  if (navigator.mediaDevices) {
-    Object.defineProperty(navigator.mediaDevices, 'enumerateDevices', {
+  if (spoofContext.navigator.mediaDevices) {
+    Object.defineProperty(spoofContext.navigator.mediaDevices, 'enumerateDevices', {
       configurable: true,
       value: async () => {
         return [];
@@ -10,10 +10,10 @@ export default {
     });
 
     modifiedAPIs.push([
-      navigator.mediaDevices.enumerateDevices, "enumerateDevices"
+      spoofContext.navigator.mediaDevices.enumerateDevices, "enumerateDevices"
     ]);
 
-    Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+    Object.defineProperty(spoofContext.navigator.mediaDevices, 'getUserMedia', {
       configurable: true,
       value: async () => {
         return [];
@@ -21,7 +21,7 @@ export default {
     });
 
     modifiedAPIs.push([
-      navigator.mediaDevices.getUserMedia, "getUserMedia"
+      spoofContext.navigator.mediaDevices.getUserMedia, "getUserMedia"
     ]);
   }
   `,

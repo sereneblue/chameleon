@@ -1,101 +1,101 @@
 export default {
   type: 'custom',
   data: `
-    var ORIGINAL_INTL_PR = window.Intl.PluralRules;
+    var ORIGINAL_INTL_PR = spoofContext.Intl.PluralRules;
 
-    Object.defineProperty(window.navigator, 'language', {
+    Object.defineProperty(spoofContext.navigator, 'language', {
       configurable: true,
-      value: CHAMELEON_SPOOF.get(window).language.code
+      value: CHAMELEON_SPOOF.get(spoofContext).language.code
     });
 
-    Object.defineProperty(window.navigator, 'languages', {
+    Object.defineProperty(spoofContext.navigator, 'languages', {
       configurable: true,
-      value: CHAMELEON_SPOOF.get(window).language.nav
+      value: CHAMELEON_SPOOF.get(spoofContext).language.nav
     });
 
-    window.Intl.PluralRules = function PluralRules() {
+    spoofContext.Intl.PluralRules = function PluralRules() {
       let args = [...arguments];
 
       if (arguments.length == 0 || !arguments[0]) {
-        args[0] = navigator.language || "en-US";
+        args[0] = spoofContext.navigator.language || "en-US";
       }
 
       return new (Function.prototype.bind.apply(ORIGINAL_INTL_PR, [null, ...args]));
     };
 
     modifiedAPIs.push([
-      window.Intl.PluralRules, "PluralRules"
+      spoofContext.Intl.PluralRules, "PluralRules"
     ]);
 
-    if (window.Intl.ListFormat) {
-      var ORIGINAL_INTL_LF = window.Intl.ListFormat;
+    if (spoofContext.Intl.ListFormat) {
+      var ORIGINAL_INTL_LF = spoofContext.Intl.ListFormat;
 
-      window.Intl.ListFormat = function ListFormat() {
+      spoofContext.Intl.ListFormat = function ListFormat() {
         let args = [...arguments];
 
         if (arguments.length == 0 || !arguments[0]) {
-          args[0] = navigator.language || "en-US";
+          args[0] = spoofContext.navigator.language || "en-US";
         }
 
         return new (Function.prototype.bind.apply(ORIGINAL_INTL_LF, [null, ...args]));
       };
 
       modifiedAPIs.push([
-        window.Intl.ListFormat, "ListFormat"
+        spoofContext.Intl.ListFormat, "ListFormat"
       ]);
     }
 
-    if (window.Intl.RelativeTimeFormat) {
-      var ORIGINAL_INTL_RTF = window.Intl.RelativeTimeFormat;
+    if (spoofContext.Intl.RelativeTimeFormat) {
+      var ORIGINAL_INTL_RTF = spoofContext.Intl.RelativeTimeFormat;
 
-      window.Intl.RelativeTimeFormat = function RelativeTimeFormat() {
+      spoofContext.Intl.RelativeTimeFormat = function RelativeTimeFormat() {
         let args = [...arguments];
 
         if (arguments.length == 0 || !arguments[0]) {
-          args[0] = navigator.language || "en-US";
+          args[0] = spoofContext.navigator.language || "en-US";
         }
 
         return new (Function.prototype.bind.apply(ORIGINAL_INTL_RTF, [null, ...args]));
       };
 
       modifiedAPIs.push([
-        window.Intl.RelativeTimeFormat, "RelativeTimeFormat"
+        spoofContext.Intl.RelativeTimeFormat, "RelativeTimeFormat"
       ]);
     }
 
-    if (window.Intl.NumberFormat) {
-      var ORIGINAL_INTL_NF = window.Intl.NumberFormat;
+    if (spoofContext.Intl.NumberFormat) {
+      var ORIGINAL_INTL_NF = spoofContext.Intl.NumberFormat;
 
-      window.Intl.NumberFormat = function NumberFormat() {
+      spoofContext.Intl.NumberFormat = function NumberFormat() {
         let args = [...arguments];
 
         if (arguments.length == 0 || !arguments[0]) {
-          args[0] = navigator.language || "en-US";
+          args[0] = spoofContext.navigator.language || "en-US";
         }
 
         return new (Function.prototype.bind.apply(ORIGINAL_INTL_NF, [null, ...args]));
       };
 
       modifiedAPIs.push([
-        window.Intl.NumberFormat, "NumberFormat"
+        spoofContext.Intl.NumberFormat, "NumberFormat"
       ]);
     }
 
-    if (window.Intl.Collator) {
-      var ORIGINAL_INTL_C = window.Intl.Collator;
+    if (spoofContext.Intl.Collator) {
+      var ORIGINAL_INTL_C = spoofContext.Intl.Collator;
 
-      window.Intl.Collator = function Collator() {
+      spoofContext.Intl.Collator = function Collator() {
         let args = [...arguments];
 
         if (arguments.length == 0 || !arguments[0]) {
-          args[0] = navigator.language || "en-US";
+          args[0] = spoofContext.navigator.language || "en-US";
         }
 
         return new (Function.prototype.bind.apply(ORIGINAL_INTL_C, [null, ...args]));
       };
 
       modifiedAPIs.push([
-        window.Intl.Collator, "Collator"
+        spoofContext.Intl.Collator, "Collator"
       ]);
     }
   `
