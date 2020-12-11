@@ -1,3 +1,11 @@
+<a name="v0.21.9-rc1"></a>
+
+## [v0.21.9-rc1](https://github.com/sereneblue/chameleon/compare/v0.21.9-rc...v0.21.9-rc1) (2020-12-11)
+
+### Bug Fixes
+
+- **injection:** update injection handling
+
 <a name="v0.21.9-rc"></a>
 
 ## [v0.21.9-rc](https://github.com/sereneblue/chameleon/compare/v0.21.8...v0.21.9-rc) (2020-12-11)
