@@ -1,3 +1,18 @@
+<a name="v0.21.8-rc"></a>
+
+## [v0.21.8-rc](https://github.com/sereneblue/chameleon/compare/v0.21.7...v0.21.8-rc) (2020-12-10)
+
+### Bug Fixes
+
+- **injection:** update window spoofing
+- **injection:** update screen spoofing handling
+- **injection:** update iframe support
+- **profiles:** update plugin spoofing
+
+### Features
+
+- update profiles
+
 <a name="v0.21.7-rc"></a>
 
 ## [v0.21.7-rc](https://github.com/sereneblue/chameleon/compare/v0.21.6...v0.21.7-rc) (2020-11-17)
