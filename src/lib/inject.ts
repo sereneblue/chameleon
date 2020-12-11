@@ -364,59 +364,59 @@ class Injector {
   
             return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
           }
+
+          modifiedAPIs.push([
+            spoofContext.Intl.DateTimeFormat, "DateTimeFormat"
+          ]);
+
+          Object.setPrototypeOf(spoofContext.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
+          spoofContext.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOfDTF;
+          spoofContext.Intl.RelativeTimeFormat.supportedLocalesOf = _supportedLocalesOfRTF;
+          spoofContext.Intl.NumberFormat.supportedLocalesOf = _supportedLocalesOfNF;
+          spoofContext.Intl.PluralRules.supportedLocalesOf = _supportedLocalesOfPR;
+          spoofContext.Intl.Collator.supportedLocalesOf = _supportedLocalesOfC;
+
+          spoofContext.open = function(){
+            let w = _open.apply(this, Array.from(arguments));
+    
+            Object.defineProperty(w, 'Date', {
+              value: spoofContext.Date
+            });
+    
+            Object.defineProperty(w.Intl, 'DateTimeFormat', {
+              value: spoofContext.Intl.DateTimeFormat
+            });
+    
+            Object.defineProperty(w, 'screen', {
+              value: spoofContext.screen
+            });
+    
+            Object.defineProperty(w, 'navigator', {
+              value: spoofContext.navigator
+            });
+    
+            Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
+              value: spoofContext.Element.prototype.getBoundingClientRect
+            });
+    
+            Object.defineProperty(w.Element.prototype, 'getClientRects', {
+              value: spoofContext.Element.prototype.getClientRects
+            });
+    
+            Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
+              value: spoofContext.Range.prototype.getClientRects
+            });
+    
+            Object.defineProperty(w.Range.prototype, 'getClientRects', {
+              value: spoofContext.Range.prototype.getClientRects
+            });
+    
+            return w;
+          }
+          modifiedAPIs.push([
+            spoofContext.open, "open"
+          ]);
         }
-
-        modifiedAPIs.push([
-          spoofContext.Intl.DateTimeFormat, "DateTimeFormat"
-        ]);
-
-        Object.setPrototypeOf(spoofContext.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
-        spoofContext.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOfDTF;
-        spoofContext.Intl.RelativeTimeFormat.supportedLocalesOf = _supportedLocalesOfRTF;
-        spoofContext.Intl.NumberFormat.supportedLocalesOf = _supportedLocalesOfNF;
-        spoofContext.Intl.PluralRules.supportedLocalesOf = _supportedLocalesOfPR;
-        spoofContext.Intl.Collator.supportedLocalesOf = _supportedLocalesOfC;
-
-        spoofContext.open = function(){
-          let w = _open.apply(this, Array.from(arguments));
-  
-          Object.defineProperty(w, 'Date', {
-            value: spoofContext.Date
-          });
-  
-          Object.defineProperty(w.Intl, 'DateTimeFormat', {
-            value: spoofContext.Intl.DateTimeFormat
-          });
-  
-          Object.defineProperty(w, 'screen', {
-            value: spoofContext.screen
-          });
-  
-          Object.defineProperty(w, 'navigator', {
-            value: spoofContext.navigator
-          });
-  
-          Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
-            value: spoofContext.Element.prototype.getBoundingClientRect
-          });
-  
-          Object.defineProperty(w.Element.prototype, 'getClientRects', {
-            value: spoofContext.Element.prototype.getClientRects
-          });
-  
-          Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
-            value: spoofContext.Range.prototype.getClientRects
-          });
-  
-          Object.defineProperty(w.Range.prototype, 'getClientRects', {
-            value: spoofContext.Range.prototype.getClientRects
-          });
-  
-          return w;
-        }
-        modifiedAPIs.push([
-          spoofContext.open, "open"
-        ]);
 
         (
           (spoofContext, inject, fn) => {
@@ -426,19 +426,19 @@ class Injector {
               spoofContext.Node.prototype[method] = function() {
                 let e = _original.apply(this, arguments);
 
-                if (e.tagName === "IFRAME") {
+                if (e && e.tagName === "IFRAME") {
                   try {
                     inject(e.contentWindow);                    
-                  } catch (e) {};
+                  } catch (err) {};
                 } else {
                   for (let i = 0; i < spoofContext.length; i++) {
                     try {
                       inject(spoofContext[i]);                    
-                    } catch (e) {};
+                    } catch (err) {};
                   }
                 }
 
-                if (e.nodeName === 'LINK' && fn.CHAMELEON_SPOOF_f) CHAMELEON_SPOOF_f();
+                if (e && e.nodeName === 'LINK' && fn.CHAMELEON_SPOOF_f) CHAMELEON_SPOOF_f();
 
                 return e;
               }
@@ -451,15 +451,15 @@ class Injector {
               spoofContext.Element.prototype[method] = function() {
                 let e = _original.apply(this, Array.from(arguments));
 
-                if (e.tagName === "IFRAME") {
+                if (e && e.tagName === "IFRAME") {
                   try {
                     inject(e.contentWindow);                    
-                  } catch (e) {};
+                  } catch (err) {};
                 } else {
                   for (let i = 0; i < spoofContext.length; i++) {
                     try {
                       inject(spoofContext[i]);                    
-                    } catch (e) {};
+                    } catch (err) {};
                   }
                 } 
 
@@ -477,7 +477,7 @@ class Injector {
                   for (let i = 0; i < spoofContext.length; i++) {
                     try {
                       inject(spoofContext[i]);                    
-                    } catch (e) {};
+                    } catch (err) {};
                   }
 
                   if (fn.modifyNodeFont) {
