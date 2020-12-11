@@ -1,3 +1,12 @@
+<a name="v0.21.9-rc"></a>
+
+## [v0.21.9-rc](https://github.com/sereneblue/chameleon/compare/v0.21.8...v0.21.9-rc) (2020-12-11)
+
+### Bug Fixes
+
+- **injection:** catch cross-origin related errors ([#474](https://github.com/sereneblue/chameleon/issues/474), [#476](https://github.com/sereneblue/chameleon/issues/476))
+- **settings:** type conversion for settings
+
 <a name="v0.21.8-rc"></a>
 
 ## [v0.21.8-rc](https://github.com/sereneblue/chameleon/compare/v0.21.7...v0.21.8-rc) (2020-12-10)
