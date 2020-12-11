@@ -249,267 +249,253 @@ class Injector {
 
     return `
     (function(){
-      if (window.CHAMELEON_SPOOF) return;
+      const inject = (spoofContext) => {
+        if (spoofContext.CHAMELEON_SPOOF) return;
 
-      let CHAMELEON_SPOOF = new WeakMap();
-      CHAMELEON_SPOOF.set(window, JSON.parse(\`${JSON.stringify(this.spoof.metadata)}\`));
-      window.CHAMELEON_SPOOF = Symbol.for("CHAMELEON_SPOOF");
+        spoofContext.CHAMELEON_SPOOF = Symbol.for("CHAMELEON_SPOOF");
 
-      let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
-      var ORIGINAL_INTL = window.Intl.DateTimeFormat;
-      var ORIGINAL_INTL_PROTO = window.Intl.DateTimeFormat.prototype;
-      var _supportedLocalesOfDTF = window.Intl.DateTimeFormat.supportedLocalesOf;
-      var _supportedLocalesOfRTF = window.Intl.RelativeTimeFormat.supportedLocalesOf;
-      var _supportedLocalesOfNF = window.Intl.NumberFormat.supportedLocalesOf;
-      var _supportedLocalesOfPR = window.Intl.PluralRules.supportedLocalesOf;
-      var _supportedLocalesOfC = window.Intl.Collator.supportedLocalesOf;
+        let CHAMELEON_SPOOF = new WeakMap();
+        CHAMELEON_SPOOF.set(spoofContext, JSON.parse(\`${JSON.stringify(this.spoof.metadata)}\`));
+        
+        let ORIGINAL_INTL = spoofContext.Intl.DateTimeFormat;
+        let ORIGINAL_INTL_PROTO = spoofContext.Intl.DateTimeFormat.prototype;
+        let _supportedLocalesOfDTF = spoofContext.Intl.DateTimeFormat.supportedLocalesOf;
+        let _supportedLocalesOfRTF = spoofContext.Intl.RelativeTimeFormat.supportedLocalesOf;
+        let _supportedLocalesOfNF = spoofContext.Intl.NumberFormat.supportedLocalesOf;
+        let _supportedLocalesOfPR = spoofContext.Intl.PluralRules.supportedLocalesOf;
+        let _supportedLocalesOfC = spoofContext.Intl.Collator.supportedLocalesOf;
+        let _open = spoofContext.open;
 
-      var _open = window.open;
-
-      let modifiedAPIs = [];
-
-      injectionProperties.forEach(injProp => {
-        if (injProp.obj === 'window') {
-          window[injProp.prop] = injProp.value;
-        } else if (injProp.obj === 'window.navigator' && injProp.value === null) {
-          delete navigator.__proto__[injProp.prop];
-        } else if (injProp.obj === 'window.navigator' && injProp.prop == 'mimeTypes') {
-          let mimes = (() => {
-            const mimeArray = []
-            injProp.value.forEach(p => {
-              function FakeMimeType () { return p }
-              const mime = new FakeMimeType()
-              Object.setPrototypeOf(mime, MimeType.prototype);
-              mimeArray.push(mime)
-            })
-            Object.setPrototypeOf(mimeArray, MimeTypeArray.prototype);
-            return mimeArray
-          })();
-
-          Object.defineProperty(window.navigator, 'mimeTypes', {
-            configurable: true,
-            value: mimes
-          });
-        } else if (injProp.obj === 'window.navigator' && injProp.prop == 'plugins') {
-          let plugins = (() => {
-            const pluginArray = []
-            injProp.value.forEach(p => {
-              function FakePlugin () { return p }
-              const plugin = new FakePlugin();
-              Object.setPrototypeOf(plugin, Plugin.prototype);
-              pluginArray.push(plugin)
-            })
-            Object.defineProperty(pluginArray, 'item', {
-              configurable: false,
-              value: function item() {
-                return this[arguments[0]];
-              }
-            });
-            Object.defineProperty(pluginArray, 'namedItem', {
-              configurable: false,
-              value: function namedItem() {
-                return this.find(p => p.name === arguments[0]);
-              }
-            });
-            Object.defineProperty(pluginArray, 'refresh', {
-              configurable: false,
-              value: function refresh() {
-                return;
-              }
-            });
-
-            return pluginArray;
-          })();
-          
-          Object.defineProperty(window.navigator, 'plugins', {
-            configurable: true,
-            value: plugins
-          });
-        } else {
-          Object.defineProperty(injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, window), injProp.prop, {
-            configurable: true,
-            value: injProp.value
-          });
-        }
-      });
-
-      // More Plugin handling
-      if (navigator.plugins.length) {
-        let mimeTypes = Array.from(navigator.mimeTypes);
-
-        for (let i = 0; i < navigator.mimeTypes.length; i++) {
-          Object.defineProperty(navigator.mimeTypes[i], 'enabledPlugin', {
-            configurable: true,
-            value: navigator.plugins.find(p => p._types.includes(navigator.mimeTypes[i].type))
-          });
-
-          Object.defineProperty(navigator.mimeTypes, navigator.mimeTypes[i].type, {
-            configurable: true,
-            value: navigator.mimeTypes[i]
-          });
-        }
-
-        for (let i = 0; i < navigator.plugins.length; i++) {
-          for (let j = 0; j < navigator.plugins[i]._types.length; j++) {
-            let m = mimeTypes.find(m => m.type === navigator.plugins[i]._types[j]);
-
-            Object.defineProperty(navigator.plugins[i], j, {
+        let modifiedAPIs = [];
+        let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
+        
+        injectionProperties.forEach(injProp => {
+          if (injProp.obj === 'window') {
+            spoofContext[injProp.prop] = injProp.value;
+          } else if (injProp.obj === 'window.navigator' && injProp.value === null) {
+            delete spoofContext.navigator.__proto__[injProp.prop];
+          } else if (injProp.obj === 'window.navigator' && injProp.prop == 'mimeTypes') {
+            let mimes = (() => {
+              const mimeArray = []
+              injProp.value.forEach(p => {
+                function FakeMimeType () { return p }
+                const mime = new FakeMimeType()
+                Object.setPrototypeOf(mime, MimeType.prototype);
+                mimeArray.push(mime)
+              })
+              Object.setPrototypeOf(mimeArray, MimeTypeArray.prototype);
+              return mimeArray
+            })();
+            Object.defineProperty(spoofContext.navigator, 'mimeTypes', {
               configurable: true,
-              value: m
+              value: mimes
             });
-
-            Object.defineProperty(navigator.plugins[i], navigator.plugins[i]._types[j], {
-              configurable: true,
-              value: m
-            });
-          }
-
-          Object.defineProperty(navigator.plugins[i], 'length', {
-              configurable: true,
-              value: navigator.plugins[i]._types.length
-            });
-
-          delete navigator.plugins[i]._types;
-        }
-      }
-      
-      let iframeWindow = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow');
-      let iframeDocument = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
-
-      ${this.spoof.custom}
-      
-      if (injectionProperties.length > 0 || ${this.spoof.custom != ''}) {
-        window.Intl.DateTimeFormat = function(...args) {
-          let locale = navigator.language || "en-US";
-          
-          if (CHAMELEON_SPOOF.has(window)) {
-            if (CHAMELEON_SPOOF.get(window).timezone) {
-              let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(window).timezone);
-  
-              if (args.length == 2) {
-                if (!args[1].timeZone) {
-                  args[1].timeZone = spoofData.zone.name;
+          } else if (injProp.obj === 'window.navigator' && injProp.prop == 'plugins') {
+            let plugins = (() => {
+              const pluginArray = []
+              injProp.value.forEach(p => {
+                function FakePlugin () { return p }
+                const plugin = new FakePlugin();
+                Object.setPrototypeOf(plugin, Plugin.prototype);
+                pluginArray.push(plugin)
+              })
+              Object.defineProperty(pluginArray, 'item', {
+                configurable: false,
+                value: function item() {
+                  return this[arguments[0]];
                 }
-              } else if (args.length == 1) {
-                args.push({
-                  timeZone: spoofData.zone.name
-                });
-              } else {
-                args = [
-                  locale,
-                  { timeZone: spoofData.zone.name }
-                ];
-              }
-            } else if (CHAMELEON_SPOOF.get(window).language) {
-              if (args.length == 0 || !args[0]) {
-                args[0] = locale;
-              }
-            }
-          }
-          
-          return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
-        }
-        modifiedAPIs.push([
-          window.Intl.DateTimeFormat, "DateTimeFormat"
-        ]);
-        Object.setPrototypeOf(window.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
-        window.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOfDTF;
-        window.Intl.RelativeTimeFormat.supportedLocalesOf = _supportedLocalesOfRTF;
-        window.Intl.NumberFormat.supportedLocalesOf = _supportedLocalesOfNF;
-        window.Intl.PluralRules.supportedLocalesOf = _supportedLocalesOfPR;
-        window.Intl.Collator.supportedLocalesOf = _supportedLocalesOfC;
-
-        Object.defineProperties(HTMLIFrameElement.prototype, {
-          contentWindow: {
-            get: function() {
-              let f = iframeWindow.apply(this);
-              if (f) {
-                try {
-                  Object.defineProperty(f, 'Date', {
-                    value: window.Date
-                  });
-  
-                  Object.defineProperty(f.Intl, 'DateTimeFormat', {
-                    value: window.Intl.DateTimeFormat
-                  });
-  
-                  Object.defineProperty(f, 'screen', {
-                    value: window.screen
-                  });
-  
-                  Object.defineProperty(f, 'navigator', {
-                    value: window.navigator
-                  });
-  
-                  Object.defineProperty(f.Element.prototype, 'getBoundingClientRect', {
-                    value: window.Element.prototype.getBoundingClientRect
-                  });
-  
-                  Object.defineProperty(f.Element.prototype, 'getClientRects', {
-                    value: window.Element.prototype.getClientRects
-                  });
-  
-                  Object.defineProperty(f.Range.prototype, 'getBoundingClientRect', {
-                    value: window.Range.prototype.getClientRects
-                  });
-  
-                  Object.defineProperty(f.Range.prototype, 'getClientRects', {
-                    value: window.Range.prototype.getClientRects
-                  });
-                } catch (e) {}
-              }
-              return f;
-            }
-          },
-          contentDocument: {
-            get: function() {
-              this.contentWindow;
-              return iframeDocument.apply(this);
-            }
+              });
+              Object.defineProperty(pluginArray, 'namedItem', {
+                configurable: false,
+                value: function namedItem() {
+                  return this.find(p => p.name === arguments[0]);
+                }
+              });
+              Object.defineProperty(pluginArray, 'refresh', {
+                configurable: false,
+                value: function refresh() {
+                  return;
+                }
+              });
+              return pluginArray;
+            })();
+            Object.defineProperty(spoofContext.navigator, 'plugins', {
+              configurable: true,
+              value: plugins
+            });
+          } else {
+            Object.defineProperty(injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, spoofContext), injProp.prop, {
+              configurable: true,
+              value: injProp.value
+            });
           }
         });
+
+        ${this.spoof.custom}
+
+        if (injectionProperties.length > 0 || ${this.spoof.custom != ''}) {
+          spoofContext.Intl.DateTimeFormat = function(...args) {
+            let locale = spoofContext.navigator.language || "en-US";
+            
+            if (CHAMELEON_SPOOF.has(spoofContext)) {
+              if (CHAMELEON_SPOOF.get(spoofContext).timezone) {
+                let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(spoofContext).timezone);
+    
+                if (args.length == 2) {
+                  if (!args[1].timeZone) {
+                    args[1].timeZone = spoofData.zone.name;
+                  }
+                } else if (args.length == 1) {
+                  args.push({
+                    timeZone: spoofData.zone.name
+                  });
+                } else {
+                  args = [
+                    locale,
+                    { timeZone: spoofData.zone.name }
+                  ];
+                }
+              } else if (CHAMELEON_SPOOF.get(spoofContext).language) {
+                if (args.length == 0 || !args[0]) {
+                  args[0] = locale;
+                }
+              }
+            }
   
-        window.open = function(){
-          let w = _open.apply(this, arguments);
+            return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
+          }
+        }
+
+        modifiedAPIs.push([
+          spoofContext.Intl.DateTimeFormat, "DateTimeFormat"
+        ]);
+
+        Object.setPrototypeOf(spoofContext.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
+        spoofContext.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOfDTF;
+        spoofContext.Intl.RelativeTimeFormat.supportedLocalesOf = _supportedLocalesOfRTF;
+        spoofContext.Intl.NumberFormat.supportedLocalesOf = _supportedLocalesOfNF;
+        spoofContext.Intl.PluralRules.supportedLocalesOf = _supportedLocalesOfPR;
+        spoofContext.Intl.Collator.supportedLocalesOf = _supportedLocalesOfC;
+
+        spoofContext.open = function(){
+          let w = _open.apply(this, Array.from(arguments));
   
           Object.defineProperty(w, 'Date', {
-            value: window.Date
+            value: spoofContext.Date
           });
   
           Object.defineProperty(w.Intl, 'DateTimeFormat', {
-            value: window.Intl.DateTimeFormat
+            value: spoofContext.Intl.DateTimeFormat
           });
   
           Object.defineProperty(w, 'screen', {
-            value: window.screen
+            value: spoofContext.screen
           });
   
           Object.defineProperty(w, 'navigator', {
-            value: window.navigator
+            value: spoofContext.navigator
           });
   
           Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
-            value: window.Element.prototype.getBoundingClientRect
+            value: spoofContext.Element.prototype.getBoundingClientRect
           });
   
           Object.defineProperty(w.Element.prototype, 'getClientRects', {
-            value: window.Element.prototype.getClientRects
+            value: spoofContext.Element.prototype.getClientRects
           });
   
           Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
-            value: window.Range.prototype.getClientRects
+            value: spoofContext.Range.prototype.getClientRects
           });
   
           Object.defineProperty(w.Range.prototype, 'getClientRects', {
-            value: window.Range.prototype.getClientRects
+            value: spoofContext.Range.prototype.getClientRects
           });
   
           return w;
         }
         modifiedAPIs.push([
-          window.open, "open"
+          spoofContext.open, "open"
         ]);
-    
+
+        (
+          (spoofContext, inject, fn) => {
+            ["appendChild", "insertBefore", "replaceChild"].forEach(method => {
+              const _original = spoofContext.Node.prototype[method];
+
+              spoofContext.Node.prototype[method] = function() {
+                let e = _original.apply(this, arguments);
+
+                if (e.tagName === "IFRAME") {
+                  inject(e.contentWindow);
+                } else {
+                  for (let i = 0; i < spoofContext.length; i++) {
+                    inject(spoofContext[i]);
+                  }
+                }
+
+                if (e.nodeName === 'LINK' && fn.CHAMELEON_SPOOF_f) CHAMELEON_SPOOF_f();
+
+                return e;
+              }
+            });
+
+            ["append", "insertAdjacentElement", "insertAdjacentHTML", 
+              "insertAdjacentText", "prepend", "replaceWith"].forEach(method => {
+              const _original = spoofContext.Element.prototype[method];
+
+              spoofContext.Element.prototype[method] = function() {
+                let e = _original.apply(this, Array.from(arguments));
+
+                if (e.tagName === "IFRAME") {
+                  inject(e.contentWindow);
+                } else {
+                  for (let i = 0; i < spoofContext.length; i++) {
+                    inject(spoofContext[i]);
+                  }
+                } 
+
+                return e;
+              }
+            });
+
+            ['innerHTML', 'outerHTML'].forEach(p => {
+              let obj = Object.getOwnPropertyDescriptor(spoofContext.Element.prototype, p);
+
+              Object.defineProperty(spoofContext.Element.prototype, p, {
+                set(html) {
+                  obj.set.call(this, html);
+
+                  for (let i = 0; i < spoofContext.length; i++) {
+                    inject(spoofContext[i]);
+                  }
+
+                  if (fn.modifyNodeFont) {
+                    modifyNodeFont(this.parentNode);
+                  }
+                }
+              });
+            });
+          }
+        )(spoofContext, inject, {
+          modifyNodeFont: typeof modifyNodeFont !== 'undefined' ? modifyNodeFont : null,
+          CHAMELEON_SPOOF_f: typeof CHAMELEON_SPOOF_f !== 'undefined' ? CHAMELEON_SPOOF_f : null
+        });
+
+        modifiedAPIs.push([
+          [ spoofContext.Element.innerHTML, "innerHTML" ],
+          [ spoofContext.Element.outerHTML, "outerHTML" ],
+          [ spoofContext.Node.appendChild, "appendChild" ],
+          [ spoofContext.Node.insertBefore, "insertBefore" ],
+          [ spoofContext.Node.replaceChild, "replaceChild" ],
+          [ spoofContext.Element.append, "append" ],
+          [ spoofContext.Element.insertAdjacentElement, "insertAdjacentElement" ],
+          [ spoofContext.Element.insertAdjacentHTML, "insertAdjacentHTML" ],
+          [ spoofContext.Element.insertAdjacentText, "insertAdjacentText" ],
+          [ spoofContext.Element.prepend, "prepend" ],
+          [ spoofContext.Element.replaceWith, "replaceWith" ]
+        ]);
+
         for (let m of modifiedAPIs) {
           Object.defineProperty(m[0], 'toString', {
             configurable: false,
@@ -523,7 +509,9 @@ class Injector {
             value: m[1]
           })
         }
-      }
+      };
+
+      inject(window);
     })()
     `
       .replace(/CHAMELEON_SPOOF/g, chameleonObjName)

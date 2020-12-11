@@ -1,51 +1,51 @@
 export default {
   type: 'custom',
   data: `
-  let screenData = CHAMELEON_SPOOF.get(window).screen;
+  let screenData = CHAMELEON_SPOOF.get(spoofContext).screen;
 
   if (screenData.usingProfileRes === false) {
-    screenData.availHeight = screenData.height - (screen.height - screen.availHeight);
+    screenData.availHeight = screenData.height - (spoofContext.screen.height - spoofContext.screen.availHeight);
   }
 
   ['top', 'left', 'availTop', 'availLeft'].forEach((k) => {
-    Object.defineProperty(window.screen, k, {
+    Object.defineProperty(spoofContext.screen, k, {
       value: 0
     });
   });
 
   ['colorDepth', 'pixelDepth'].forEach((k) => {
-    Object.defineProperty(window.screen, k, {
+    Object.defineProperty(spoofContext.screen, k, {
       value: 24
     });
   });
 
   ['availWidth', 'width'].forEach((k) => {
-    Object.defineProperty(window.screen, k, {
+    Object.defineProperty(spoofContext.screen, k, {
       value: screenData.width
     });
   });
 
   ['innerWidth', 'outerWidth'].forEach((k) => {
-    Object.defineProperty(window, k, {
+    Object.defineProperty(spoofContext, k, {
       value: screenData.width
     });
   });
 
   ['innerHeight', 'outerHeight'].forEach((k) => {
-    Object.defineProperty(window, k, {
+    Object.defineProperty(spoofContext, k, {
       value: screenData.height
     });
   });
 
-  Object.defineProperty(window.screen, 'availHeight', {
+  Object.defineProperty(spoofContext.screen, 'availHeight', {
     value: screenData.availHeight
   });
 
-  Object.defineProperty(window.screen, 'height', {
+  Object.defineProperty(spoofContext.screen, 'height', {
     value: screenData.height
   });
 
-  Object.defineProperty(window, 'devicePixelRatio', {
+  Object.defineProperty(spoofContext, 'devicePixelRatio', {
     value: screenData.deviceScaleFactor || 1
   });
   `,

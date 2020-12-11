@@ -42,24 +42,24 @@ export default {
     }]
   };
 
-  let platform = Object.keys(MEDIA_DEVICES).find(os => CHAMELEON_SPOOF.get(window).profileOS.includes(os));
+  let platform = Object.keys(MEDIA_DEVICES).find(os => CHAMELEON_SPOOF.get(spoofContext).profileOS.includes(os));
   let mediaDevices  = MEDIA_DEVICES[platform];
   let isMobile = platform === 'ios' || platform === 'and';
   let deviceIndex = 0;
 
-  if (navigator.mediaDevices) {
-    _enumerateDevices = navigator.mediaDevices.enumerateDevices.bind(navigator.mediaDevices);
+  if (spoofContext.navigator.mediaDevices) {
+    _enumerateDevices = spoofContext.navigator.mediaDevices.enumerateDevices.bind(spoofContext.navigator.mediaDevices);
 
     if (isMobile) {
       if (platform == 'ios') {
-        if (navigator.userAgent.includes('iPad')) {
+        if (spoofContext.navigator.userAgent.includes('iPad')) {
           deviceIndex = 1;
         }
       } else {
         deviceIndex = Math.random() > 0.5 ? 0 : 1;
       }
     }
-    Object.defineProperty(navigator.mediaDevices, 'enumerateDevices', {
+    Object.defineProperty(spoofContext.navigator.mediaDevices, 'enumerateDevices', {
       configurable: true,
       value: async () => {
         let devices = await _enumerateDevices();
@@ -143,7 +143,7 @@ export default {
     });
 
     modifiedAPIs.push([
-      navigator.mediaDevices.enumerateDevices, "enumerateDevices"
+      spoofContext.navigator.mediaDevices.enumerateDevices, "enumerateDevices"
     ]);
   }
   `,
