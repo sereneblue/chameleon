@@ -20,7 +20,6 @@ const moment = require('moment-timezone');
 
 class Injector {
   public enabled: boolean;
-  public notifyId: string;
   private spoof = {
     custom: '',
     overwrite: [],
@@ -34,7 +33,6 @@ class Injector {
     }
 
     this.enabled = true;
-    this.notifyId = tempStore.notifyId;
 
     // profile to be used for injection
     let p: any = null;
