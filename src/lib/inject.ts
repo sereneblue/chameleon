@@ -269,7 +269,9 @@ class Injector {
         
         injectionProperties.forEach(injProp => {
           if (injProp.obj === 'window') {
-            spoofContext[injProp.prop] = injProp.value;
+            Object.defineProperty(spoofContext, injProp.prop, {
+              get: (() => injProp.value).bind(null)
+            });
           } else if (injProp.obj === 'window.navigator' && injProp.value === null) {
             delete spoofContext.navigator.__proto__[injProp.prop];
           } else if (injProp.obj === 'window.navigator' && injProp.prop == 'mimeTypes') {
