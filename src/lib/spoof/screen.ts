@@ -8,45 +8,45 @@ export default {
   }
 
   ['top', 'left', 'availTop', 'availLeft'].forEach((k) => {
-    Object.defineProperty(spoofContext.screen, k, {
-      value: 0
+    Object.defineProperty(spoofContext.Screen.prototype, k, {
+      get: (() => 0).bind(null)
     });
   });
 
   ['colorDepth', 'pixelDepth'].forEach((k) => {
-    Object.defineProperty(spoofContext.screen, k, {
-      value: 24
+    Object.defineProperty(spoofContext.Screen.prototype, k, {
+      get: (() => 24).bind(null)
     });
   });
 
   ['availWidth', 'width'].forEach((k) => {
-    Object.defineProperty(spoofContext.screen, k, {
-      value: screenData.width
+    Object.defineProperty(spoofContext.Screen.prototype, k, {
+      get: (() => screenData.width).bind(null)
     });
   });
 
   ['innerWidth', 'outerWidth'].forEach((k) => {
     Object.defineProperty(spoofContext, k, {
-      value: screenData.width
+      get: (() => screenData.width).bind(null)
     });
   });
 
   ['innerHeight', 'outerHeight'].forEach((k) => {
     Object.defineProperty(spoofContext, k, {
-      value: screenData.height
+      get: (() => screenData.height).bind(null)
     });
   });
 
-  Object.defineProperty(spoofContext.screen, 'availHeight', {
-    value: screenData.availHeight
+  Object.defineProperty(spoofContext.Screen.prototype, 'availHeight', {
+    get: (() => screenData.availHeight).bind(null)
   });
 
-  Object.defineProperty(spoofContext.screen, 'height', {
-    value: screenData.height
+  Object.defineProperty(spoofContext.Screen.prototype, 'height', {
+    get: (() => screenData.height).bind(null)
   });
 
   Object.defineProperty(spoofContext, 'devicePixelRatio', {
-    value: screenData.deviceScaleFactor || 1
+    get: (() => screenData.deviceScaleFactor || 1).bind(null)
   });
   `,
 };
