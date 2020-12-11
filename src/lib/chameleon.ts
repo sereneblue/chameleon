@@ -112,6 +112,14 @@ export class Chameleon {
       this.settings.options.protectKBFingerprint.delay = Number(this.settings.options.protectKBFingerprint.delay);
     }
 
+    if (typeof this.settings.headers.referer.xorigin === 'string') {
+      this.settings.headers.referer.xorigin = Number(this.settings.headers.referer.xorigin);
+    }
+
+    if (typeof this.settings.headers.referer.trimming === 'string') {
+      this.settings.headers.referer.trimming = Number(this.settings.headers.referer.trimming);
+    }
+
     if (this.settings.settings) {
       delete this.settings.settings;
     }
