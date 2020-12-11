@@ -427,10 +427,14 @@ class Injector {
                 let e = _original.apply(this, arguments);
 
                 if (e.tagName === "IFRAME") {
-                  inject(e.contentWindow);
+                  try {
+                    inject(e.contentWindow);                    
+                  } catch (e) {};
                 } else {
                   for (let i = 0; i < spoofContext.length; i++) {
-                    inject(spoofContext[i]);
+                    try {
+                      inject(spoofContext[i]);                    
+                    } catch (e) {};
                   }
                 }
 
@@ -448,10 +452,14 @@ class Injector {
                 let e = _original.apply(this, Array.from(arguments));
 
                 if (e.tagName === "IFRAME") {
-                  inject(e.contentWindow);
+                  try {
+                    inject(e.contentWindow);                    
+                  } catch (e) {};
                 } else {
                   for (let i = 0; i < spoofContext.length; i++) {
-                    inject(spoofContext[i]);
+                    try {
+                      inject(spoofContext[i]);                    
+                    } catch (e) {};
                   }
                 } 
 
@@ -467,7 +475,9 @@ class Injector {
                   obj.set.call(this, html);
 
                   for (let i = 0; i < spoofContext.length; i++) {
-                    inject(spoofContext[i]);
+                    try {
+                      inject(spoofContext[i]);                    
+                    } catch (e) {};
                   }
 
                   if (fn.modifyNodeFont) {
