@@ -76,6 +76,10 @@ export class Chameleon {
             let tempStore = JSON.parse(\`${JSON.stringify(this.tempStore)}\`);
             let profileCache = JSON.parse(\`${JSON.stringify(this.profileCache)}\`);
             let seed = ${Math.random() * 0.00000001};
+            let randObjName = '${String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
+              Math.random()
+                .toString(36)
+                .substring(Math.floor(Math.random() * 5) + 5)}';
           `,
         },
         { file: 'inject.js' },
