@@ -20,19 +20,21 @@ const moment = require('moment-timezone');
 
 class Injector {
   public enabled: boolean;
+  private randObjName: string;
   private spoof = {
     custom: '',
     overwrite: [],
     metadata: {},
   };
 
-  constructor(settings: any, tempStore: any, profileCache: any, seed: number) {
+  constructor(settings: any, tempStore: any, profileCache: any, seed: number, randObjName: string) {
     if (!settings.config.enabled) {
       this.enabled = false;
       return;
     }
 
     this.enabled = true;
+    this.randObjName = randObjName;
 
     // profile to be used for injection
     let p: any = null;
@@ -238,19 +240,12 @@ class Injector {
   public finalOutput(): string {
     if (!this.enabled) return '';
 
-    // generate unique variable name
-    let chameleonObjName =
-      String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
-      Math.random()
-        .toString(36)
-        .substring(Math.floor(Math.random() * 5) + 5);
-
     return `
     (function(){
       const inject = (spoofContext) => {
         if (spoofContext.CHAMELEON_SPOOF) return;
 
-        spoofContext.CHAMELEON_SPOOF = Symbol.for("CHAMELEON_SPOOF");
+        spoofContext.CHAMELEON_SPOOF = "CHAMELEON_SPOOF";
 
         let CHAMELEON_SPOOF = new WeakMap();
         CHAMELEON_SPOOF.set(spoofContext, JSON.parse(\`${JSON.stringify(this.spoof.metadata)}\`));
@@ -524,7 +519,7 @@ class Injector {
       inject(window);
     })()
     `
-      .replace(/CHAMELEON_SPOOF/g, chameleonObjName)
+      .replace(/CHAMELEON_SPOOF/g, this.randObjName)
       .replace(
         /ORIGINAL_INTL/g,
         String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
@@ -546,7 +541,7 @@ class Injector {
 }
 
 // @ts-ignore
-let chameleonInjector = new Injector(settings, tempStore, profileCache, seed);
+let chameleonInjector = new Injector(settings, tempStore, profileCache, seed, randObjName);
 
 if (
   chameleonInjector.enabled &&
