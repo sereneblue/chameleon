@@ -1,3 +1,15 @@
+<a name="v0.21.10-rc"></a>
+
+## [v0.21.10-rc](https://github.com/sereneblue/chameleon/compare/v0.21.9...v0.21.10-rc) (2020-12-12)
+
+### Bug Fixes
+
+- **injection:** update injection to prevent errors for cross-origin iframes ([#476](https://github.com/sereneblue/chameleon/issues/476))
+
+### Features
+
+- **localization:** update russian localization
+
 <a name="v0.21.9-rc1"></a>
 
 ## [v0.21.9-rc1](https://github.com/sereneblue/chameleon/compare/v0.21.9-rc...v0.21.9-rc1) (2020-12-11)
