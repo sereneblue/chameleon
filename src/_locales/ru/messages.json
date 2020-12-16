@@ -720,7 +720,7 @@
     "message": "Препятствовать сбору отпечатков"
   },
   "popup-options-standard-spoofMediaDevices": {
-    "message": "Блокировать медиа устройства"
+    "message": "Подделка медиа устройства"
   },
   "popup-options-standard-trackingProtection": {
     "message": "Режим защиты от отслеживания"
