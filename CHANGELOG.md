@@ -1,3 +1,13 @@
+<a name="v0.21.12-rc"></a>
+
+## [v0.21.12-rc](https://github.com/sereneblue/chameleon/compare/v0.21.11...v0.21.12-rc) (2020-12-15)
+
+### Features
+
+- update profiles
+- **localization:** add polish localization
+- **localization:** update russian localization
+
 <a name="v0.21.11-rc"></a>
 
 ## [v0.21.11-rc](https://github.com/sereneblue/chameleon/compare/v0.21.10...v0.21.11-rc) (2020-12-13)
