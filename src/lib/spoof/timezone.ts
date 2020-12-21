@@ -88,18 +88,26 @@ export default {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
+
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
+
     return getDate.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
   spoofContext.Date.prototype.getDay = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
+
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
+
     return getDay.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
   spoofContext.Date.prototype.getFullYear = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
+
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
 
     return getFullYear.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
@@ -108,6 +116,8 @@ export default {
       return NaN;
     }
 
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
+
     return getHours.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
   spoofContext.Date.prototype.getMinutes = function() {
@@ -115,12 +125,16 @@ export default {
       return NaN;
     }
 
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
+
     return getMinutes.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
   spoofContext.Date.prototype.getMonth = function() {
     if (isNaN(getTime.call(this))) {
       return NaN;
     }
+
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
 
     return getMonth.call(this[spoofContext.CHAMELEON_SPOOF].date);
   }
@@ -235,6 +249,9 @@ export default {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
+
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
+
     return toDateString.apply(this[spoofContext.CHAMELEON_SPOOF].date);
   }
   spoofContext.Date.prototype.toString = function() {    
@@ -248,6 +265,8 @@ export default {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
+
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
 
     let parts = toTimeString.apply(this[spoofContext.CHAMELEON_SPOOF].date).split(' ', 1);
 
@@ -275,6 +294,8 @@ export default {
       return "Invalid Date";
     }
     
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
+
     let tmp = toLocaleString.apply(this[spoofContext.CHAMELEON_SPOOF].date, arguments);
 
     return replaceName(tmp, this[spoofContext.CHAMELEON_SPOOF].zoneInfo_tzName);
@@ -284,6 +305,8 @@ export default {
       return "Invalid Date";
     }
 
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
+
     let tmp = toLocaleDateString.apply(this[spoofContext.CHAMELEON_SPOOF].date, arguments);
     
     return replaceName(tmp, this[spoofContext.CHAMELEON_SPOOF].zoneInfo_tzName);
@@ -292,6 +315,8 @@ export default {
     if (isNaN(getTime.call(this))) {
       return "Invalid Date";
     }
+
+    if (!this[spoofContext.CHAMELEON_SPOOF]) modifyDate(this);
 
     let tmp = toLocaleTimeString.apply(this[spoofContext.CHAMELEON_SPOOF].date, arguments);
     
