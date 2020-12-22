@@ -1,3 +1,11 @@
+<a name="v0.21.13-rc"></a>
+
+## [v0.21.13-rc](https://github.com/sereneblue/chameleon/compare/v0.21.12...v0.21.13-rc) (2020-12-21)
+
+### Bug Fixes
+
+- **injection:** check if date was spoofed before spoofing timezone ([#480](https://github.com/sereneblue/chameleon/issues/480))
+
 <a name="v0.21.12-rc"></a>
 
 ## [v0.21.12-rc](https://github.com/sereneblue/chameleon/compare/v0.21.11...v0.21.12-rc) (2020-12-15)
