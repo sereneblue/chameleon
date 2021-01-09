@@ -7,7 +7,7 @@
     Listed below are some resources that can help improve your privacy.
   </div>
   <div>
-    <div class="flex items-center mb-4">
+    <div class="mb-4">
       <div>
         <p>
           <a href="https://blog.lopp.net/modest-privacy-protection-proposal/" class="font-semibold text-2xl">A Modest Privacy Protection Proposal</a>
@@ -15,7 +15,7 @@
         How to reclaim your privacy in the surveillance age.
       </div>
     </div>
-    <div class="flex items-center mb-4">
+    <div class="mb-4">
       <div>
         <p>
           <a href="https://inteltechniques.com/book7a.html" class="font-semibold text-2xl">Extreme Privacy: What It Takes to Disappear (2nd Ed.)</a>
@@ -23,7 +23,7 @@
         A definitive privacy manual.
       </div>
     </div>
-    <div class="flex items-center mb-4">
+    <div class="mb-4">
       <div>
         <p>
           <a href="https://www.reddit.com/r/privacy/wiki/index" class="font-semibold text-2xl">/r/Privacy Wiki</a>
@@ -31,7 +31,7 @@
         Why is privacy important?
       </div>
     </div>
-    <div class="flex items-center mb-4">
+    <div class="mb-4">
       <div>
         <p>
           <a href="https://github.com/segofensiva/OSfooler-ng" class="font-semibold text-2xl">OSfooler-NG</a>
@@ -39,7 +39,7 @@
         Spoof your OS TCP/IP fingerprint
       </div>
     </div>
-    <div class="flex items-center mb-4">
+    <div class="mb-4">
       <div>
         <p>
           <a href="https://prism-break.org/en/" class="font-semibold text-2xl">PrismBreak</a>
@@ -47,7 +47,7 @@
         Privacy-oriented alternatives to common software.
       </div>
     </div>
-    <div class="flex items-center mb-4">
+    <div class="mb-4">
       <div>
         <p>
           <a href="https://www.privacytools.io/" class="font-semibold text-2xl">PrivacyTools</a>
@@ -55,7 +55,7 @@
         Privacy-oriented tools and software.
       </div>
     </div>
-    <div class="flex items-center mb-4">
+    <div class="mb-4">
       <div>
         <p>
           <a href="https://thatoneprivacysite.net/" class="font-semibold text-2xl">ThatOnePrivacyGuy</a> 

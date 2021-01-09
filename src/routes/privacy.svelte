@@ -2,7 +2,7 @@
 	<title>Privacy Policy | Chameleon</title>
 </svelte:head>
 
-<div class="flex bg-light w-full px-2 lg:	px-0 justify-center">
+<div class="flex bg-light w-full h-full px-2 lg:px-0 justify-center">
 	<div class="flex lg:max-w-5xl mt-8 md:mt-8 w-full">
 		<div class="flex flex-col w-full">
 			<h2 class="font-bold text-5xl mb-5 text-center">Privacy Policy</h2>
