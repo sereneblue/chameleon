@@ -1,3 +1,15 @@
+<a name="v0.21.14-rc"></a>
+
+## [v0.21.14-rc](https://github.com/sereneblue/chameleon/compare/v0.21.13...v0.21.14-rc) (2021-01-12)
+
+### Bug Fixes
+
+- **injection:** update media devices spoofing
+
+### Features
+
+- update profiles
+
 <a name="v0.21.13-rc"></a>
 
 ## [v0.21.13-rc](https://github.com/sereneblue/chameleon/compare/v0.21.12...v0.21.13-rc) (2020-12-21)
