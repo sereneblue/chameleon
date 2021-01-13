@@ -5,7 +5,7 @@ export default {
     Object.defineProperty(spoofContext.navigator.mediaDevices, 'enumerateDevices', {
       configurable: true,
       value: async () => {
-        return [];
+        return Promise.resolve([]);
       }
     });
 
@@ -16,7 +16,7 @@ export default {
     Object.defineProperty(spoofContext.navigator.mediaDevices, 'getUserMedia', {
       configurable: true,
       value: async () => {
-        return [];
+        return Promise.resolve([]);
       }
     });
 
