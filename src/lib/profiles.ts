@@ -37,12 +37,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '87.0.664.57', mac: '87.0.664.57', desktopChrome: '87.0.4280.88', android: '45.11.2.5116', androidChrome: '87.0.4280.101' },
+  edg: { win: '87.0.664.75', mac: '87.0.664.75', desktopChrome: '87.0.4280.141', android: '45.12.4.5121', androidChrome: '87.0.4280.141' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
   ff: { desktop: '84', mobile: '84' },
-  gcr: { desktop: '87.0.4280.88', ios: '87.0.4280.77', android: '87.0.4280.101' },
-  sf: { desktop: '13.1.2', ios1: '11.0', ios2: '12.1.2', ios3: '13.1' },
+  gcr: { desktop: '87.0.4280.141', ios: '87.0.4280.77', android: '87.0.4280.141' },
+  sf: { desktop: '14.0.2', ios1: '12.1.2', ios2: '13.1', ios3: '14.0' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -79,13 +79,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
   } else if (browser === 'sfm') {
     switch (os) {
-      case 'iOS 11':
+      case 'iOS 12':
         osId = 'ios1';
         break;
-      case 'iOS 12':
+      case 'iOS 13':
         osId = 'ios2';
         break;
-      case 'iOS 13':
+      case 'iOS 14':
         osId = 'ios3';
         break;
       default:
@@ -94,13 +94,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]} (iPhone)`;
   } else if (browser === 'sft') {
     switch (os) {
-      case 'iOS 11':
+      case 'iOS 12':
         osId = 'ios1';
         break;
-      case 'iOS 12':
+      case 'iOS 13':
         osId = 'ios2';
         break;
-      case 'iOS 13':
+      case 'iOS 14':
         osId = 'ios3';
         break;
       default:
@@ -523,7 +523,7 @@ export class Generator {
 
       return {
         accept: {
-          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
@@ -572,7 +572,7 @@ export class Generator {
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
       if (os.id.includes('ios')) {
-        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/605.1`;
+        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/604.1`;
 
         (navigator = {
           appMinorVersion: null,
@@ -646,7 +646,7 @@ export class Generator {
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
       if (os.id.includes('ios')) {
-        ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/605.1`;
+        ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/604.1`;
 
         (navigator = {
           appMinorVersion: null,
@@ -945,7 +945,7 @@ export class Generator {
       //  Use last 3 versions of macOS
       {
         id: 'mac1',
-        name: 'macOS 10.13',
+        name: 'macOS 10.14',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
@@ -957,7 +957,7 @@ export class Generator {
       },
       {
         id: 'mac2',
-        name: 'macOS 10.14',
+        name: 'macOS 10.15',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
@@ -969,15 +969,15 @@ export class Generator {
       },
       {
         id: 'mac3',
-        name: 'macOS 10.15',
+        name: 'macOS 11',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
-          oscpu: 'Intel Mac OS X 10.15',
+          oscpu: 'Intel Mac OS X 11.1',
           platform: 'MacIntel',
         },
         screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 10_15_5',
+        uaPlatform: 'Macintosh; Intel Mac OS X 11_1',
       },
     ],
     linux: [
@@ -1021,21 +1021,21 @@ export class Generator {
     iOS: [
       {
         id: 'ios1',
-        name: 'iOS 11',
-        browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '11_4_1',
-      },
-      {
-        id: 'ios2',
         name: 'iOS 12',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
         uaPlatform: '12_4_7',
       },
       {
-        id: 'ios3',
+        id: 'ios2',
         name: 'iOS 13',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '13_5_1',
+        uaPlatform: '13_7',
+      },
+      {
+        id: 'ios3',
+        name: 'iOS 14',
+        browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
+        uaPlatform: '14_3',
       },
     ],
     android: [
