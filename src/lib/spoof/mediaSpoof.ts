@@ -61,7 +61,7 @@ export default {
     }
     Object.defineProperty(spoofContext.navigator.mediaDevices, 'enumerateDevices', {
       configurable: true,
-      value: async () => {
+      value: () => new Promise(async resolve => {
         let devices = await _enumerateDevices();
         let known = {};
 
@@ -69,7 +69,7 @@ export default {
         let audioCount = 0;
 
         if (devices.length && devices[0].label == '') {
-          return devices;
+          return resolve(devices);
         }
 
         for (let i = 0; i < devices.length; i++) {
@@ -138,7 +138,7 @@ export default {
           }
         };
 
-        return devices;
+        return resolve(devices);
       }
     });
 
