@@ -139,7 +139,7 @@ export default {
         };
 
         return resolve(devices);
-      }
+      })
     });
 
     modifiedAPIs.push([
