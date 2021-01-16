@@ -1,3 +1,11 @@
+<a name="v0.21.16-rc"></a>
+
+## [v0.21.16-rc](https://github.com/sereneblue/chameleon/compare/v0.21.15...v0.21.16-rc) (2021-01-16)
+
+### Bug Fixes
+
+- **injection:** syntax error that broke previous version
+
 <a name="v0.21.15-rc"></a>
 
 ## [v0.21.15-rc](https://github.com/sereneblue/chameleon/compare/v0.21.14...v0.21.15-rc) (2021-01-15)
