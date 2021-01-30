@@ -63,12 +63,12 @@ class Injector {
           profileId = 'win3';
         } else if (window.navigator.userAgent.includes('Windows NT 10.0')) {
           profileId = 'win4';
-        } else if (window.navigator.userAgent.includes('Mac OS X 10_15')) {
+        } else if (window.navigator.userAgent.includes('Mac OS X 11_')) {
           profileId = 'mac3';
-        } else if (window.navigator.userAgent.includes('Mac OS X 10_14')) {
+        } else if (window.navigator.userAgent.includes('Mac OS X 10_15')) {
           profileId = 'mac2';
         } else if (window.navigator.userAgent.includes('Mac OS X 10_')) {
-          // fallback for 10.13 and older
+          // fallback for 10.14 and older
           profileId = 'mac1';
         } else if (window.navigator.userAgent.includes('Android 6') || window.navigator.userAgent.includes('Android 5')) {
           profileId = 'and1';
