@@ -258,6 +258,11 @@ class Injector {
         let _supportedLocalesOfPR = spoofContext.Intl.PluralRules.supportedLocalesOf;
         let _supportedLocalesOfC = spoofContext.Intl.Collator.supportedLocalesOf;
         let _open = spoofContext.open;
+        let _enumerateDevices;
+
+        if (spoofContext.navigator.mediaDevices && spoofContext === spoofContext.parent) {
+          _enumerateDevices = spoofContext.navigator.mediaDevices.enumerateDevices.bind(spoofContext.navigator.mediaDevices);
+        }
 
         let modifiedAPIs = [];
         let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
