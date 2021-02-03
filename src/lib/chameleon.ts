@@ -673,7 +673,7 @@ export class Chameleon {
 
       // cache results for 1m
       if (forceCheck || this.tempStore.ipInfo.updated + 60000 < new Date().getTime()) {
-        let res = await fetch('https://ipapi.co/json');
+        let res = await fetch('https://chameleon-ext.netlify.app/.netlify/functions/geoip');
         this.tempStore.ipInfo.cache = await res.json();
         this.tempStore.ipInfo.updated = new Date().getTime();
       }
@@ -711,12 +711,12 @@ export class Chameleon {
           if (this.settings.headers.spoofAcceptLang.value === 'ip') {
             let ipLang: string = data.languages.split(',')[0];
             let allLanguages: lang.Language[] = lang.getAllLanguages();
-            let foundLang: lang.Language = lang.getLanguage('en-US'); // use english as default
+            let foundLang: lang.Language;
 
             if (ipLang !== 'en' && ipLang !== 'en-US') {
               foundLang = allLanguages.find(l => l.nav.includes(ipLang));
 
-              if (foundLang !== null) {
+              if (foundLang) {
                 this.tempStore.ipInfo.lang = foundLang.code;
               } else {
                 let languageIndexes = [];
@@ -752,6 +752,11 @@ export class Chameleon {
 
                   foundLang = allLanguages[languageIndexes[0][1]];
                   this.tempStore.ipInfo.lang = foundLang.code;
+                }
+
+                if (!foundLang) {
+                  // use english as default language if no match is found
+                  foundLang = lang.getLanguage('en-US');
                 }
               }
 

@@ -63,12 +63,12 @@ class Injector {
           profileId = 'win3';
         } else if (window.navigator.userAgent.includes('Windows NT 10.0')) {
           profileId = 'win4';
-        } else if (window.navigator.userAgent.includes('Mac OS X 10_15')) {
+        } else if (window.navigator.userAgent.includes('Mac OS X 11_')) {
           profileId = 'mac3';
-        } else if (window.navigator.userAgent.includes('Mac OS X 10_14')) {
+        } else if (window.navigator.userAgent.includes('Mac OS X 10_15')) {
           profileId = 'mac2';
         } else if (window.navigator.userAgent.includes('Mac OS X 10_')) {
-          // fallback for 10.13 and older
+          // fallback for 10.14 and older
           profileId = 'mac1';
         } else if (window.navigator.userAgent.includes('Android 6') || window.navigator.userAgent.includes('Android 5')) {
           profileId = 'and1';
@@ -258,6 +258,11 @@ class Injector {
         let _supportedLocalesOfPR = spoofContext.Intl.PluralRules.supportedLocalesOf;
         let _supportedLocalesOfC = spoofContext.Intl.Collator.supportedLocalesOf;
         let _open = spoofContext.open;
+        let _enumerateDevices;
+
+        if (spoofContext.navigator.mediaDevices && spoofContext === spoofContext.parent) {
+          _enumerateDevices = spoofContext.navigator.mediaDevices.enumerateDevices.bind(spoofContext.navigator.mediaDevices);
+        }
 
         let modifiedAPIs = [];
         let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
