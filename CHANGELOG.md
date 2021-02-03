@@ -1,3 +1,14 @@
+<a name="v0.21.18-rc"></a>
+
+## [v0.21.18-rc](https://github.com/sereneblue/chameleon/compare/v0.21.17...v0.21.18-rc) (2021-01-31)
+
+### Bug Fixes
+
+- use english as default language if no match is found
+- switch IP timezone/language provider ([#484](https://github.com/sereneblue/chameleon/issues/484))
+- **injection:** prevent recursion for enumerateDevices ([#487](https://github.com/sereneblue/chameleon/issues/487))
+- **injection:** update real browser profile detection
+
 <a name="v0.21.17-rc"></a>
 
 ## [v0.21.17-rc](https://github.com/sereneblue/chameleon/compare/v0.21.16...v0.21.17-rc) (2021-01-27)
