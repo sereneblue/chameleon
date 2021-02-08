@@ -1,3 +1,15 @@
+<a name="v0.21.19-rc"></a>
+
+## [v0.21.19-rc](https://github.com/sereneblue/chameleon/compare/v0.21.18...v0.21.19-rc) (2021-02-07)
+
+### Bug Fixes
+
+- use original dateformat prototype ([#489](https://github.com/sereneblue/chameleon/issues/489))
+
+### Features
+
+- switch geoip host from netlify
+
 <a name="v0.21.18-rc"></a>
 
 ## [v0.21.18-rc](https://github.com/sereneblue/chameleon/compare/v0.21.17...v0.21.18-rc) (2021-01-31)
