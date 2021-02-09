@@ -673,7 +673,7 @@ export class Chameleon {
 
       // cache results for 1m
       if (forceCheck || this.tempStore.ipInfo.updated + 60000 < new Date().getTime()) {
-        let res = await fetch('https://chameleon-ext.netlify.app/.netlify/functions/geoip');
+        let res = await fetch('https://geoip-lookup.vercel.app/api/geoip');
         this.tempStore.ipInfo.cache = await res.json();
         this.tempStore.ipInfo.updated = new Date().getTime();
       }

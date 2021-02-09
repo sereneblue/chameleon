@@ -369,7 +369,7 @@ class Injector {
             spoofContext.Intl.DateTimeFormat, "DateTimeFormat"
           ]);
 
-          Object.setPrototypeOf(spoofContext.Intl.DateTimeFormat, ORIGINAL_INTL_PROTO);
+          spoofContext.Intl.DateTimeFormat.prototype = ORIGINAL_INTL_PROTO;
           spoofContext.Intl.DateTimeFormat.supportedLocalesOf = _supportedLocalesOfDTF;
           spoofContext.Intl.RelativeTimeFormat.supportedLocalesOf = _supportedLocalesOfRTF;
           spoofContext.Intl.NumberFormat.supportedLocalesOf = _supportedLocalesOfNF;
