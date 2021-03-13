@@ -562,9 +562,13 @@ export class Chameleon {
     }
 
     if (this.platform.os != 'android') {
-      browser.browserAction.setTitle({
-        title: this.getProfileInUse(),
-      });
+      let title: string = this.getProfileInUse();
+
+      if (title) {
+        browser.browserAction.setTitle({
+          title,
+        });
+      }
     }
   }
 
