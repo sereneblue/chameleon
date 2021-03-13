@@ -1,3 +1,16 @@
+<a name="v0.21.21-rc"></a>
+
+## [v0.21.21-rc](https://github.com/sereneblue/chameleon/compare/v0.21.20...v0.21.21-rc) (2021-03-12)
+
+### Bug Fixes
+
+- update browser action for title
+- **language:** update language matching ([#492](https://github.com/sereneblue/chameleon/issues/492))
+
+### Features
+
+- update profiles
+
 <a name="v0.21.20-rc"></a>
 
 ## [v0.21.20-rc](https://github.com/sereneblue/chameleon/compare/v0.21.19...v0.21.20-rc) (2021-02-23)
