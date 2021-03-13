@@ -727,11 +727,10 @@ export class Chameleon {
                 let ipLangPrimary = ipLang.split('-')[0];
                 if (ipLangPrimary !== 'en') {
                   for (let i = 0; i < allLanguages.length; i++) {
-                    let idx = allLanguages.findIndex(l => l.nav.includes(ipLangPrimary));
+                    let idx: number = allLanguages[i].nav.findIndex(l => l.includes(ipLangPrimary));
 
                     if (idx > -1) {
                       languageIndexes.push([
-                        idx > -1,
                         i, // language index
                         idx, // index of found primary ip lang
                       ]);
@@ -741,16 +740,16 @@ export class Chameleon {
 
                 if (languageIndexes.length > 0) {
                   languageIndexes.sort((a: any, b: any): number => {
-                    if (a[2] > b[2]) {
+                    if (a[1] > b[1]) {
                       return 1;
                     }
-                    if (a[2] < b[2]) {
+                    if (a[1] < b[1]) {
                       return -1;
                     }
                     return 0;
                   });
 
-                  foundLang = allLanguages[languageIndexes[0][1]];
+                  foundLang = allLanguages[languageIndexes[0][0]];
                   this.tempStore.ipInfo.lang = foundLang.code;
                 }
 
