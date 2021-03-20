@@ -39,7 +39,7 @@ export const changeSetting = ({ commit }, payload: any) => {
     ].includes(payload[0].name)
   ) {
     window.setTimeout(async () => {
-      if (['headers.spoofAcceptLang.value', 'options.timeZone'].includes(payload[0].name) && payload[0].value === 'ip') {
+      if (payload[0].name === 'headers.spoofAcceptLang.enabled' || (['headers.spoofAcceptLang.value', 'options.timeZone'].includes(payload[0].name) && payload[0].value === 'ip')) {
         await browser.runtime.sendMessage({
           action: 'reloadIPInfo',
           data: false,
