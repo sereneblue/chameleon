@@ -29,6 +29,7 @@ export interface BrowserProfile {
     deviceScaleFactor?: number;
   };
   osId: string;
+  browser: string;
 }
 
 export interface ProfileListItem {
@@ -37,11 +38,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '89.0.774.50', mac: '89.0.774.48', desktopChrome: '89.0.4389.90', android: '46.1.2.5140', androidChrome: '89.0.4389.86' },
+  edg: { win: '89.0.774.63', mac: '89.0.774.63', desktopChrome: '89.0.4389.90', android: '46.1.2.5140', androidChrome: '89.0.4389.86' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
-  ff: { desktop: '86', mobile: '86' },
-  gcr: { desktop: '89.0.4389.90', ios: '87.0.4280.77', android: '89.0.4389.86' },
+  ff: { desktop: '87', mobile: '86' },
+  gcr: { desktop: '89.0.4389.90', ios: '87.0.4280.77', android: '89.0.4389.105' },
   sf: { desktop: '14.0.3', ios1: '12.1.2', ios2: '13.1', ios3: '14.0' },
 };
 
@@ -131,6 +132,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
+        browser: 'edge',
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -185,6 +187,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
+        browser: 'edge',
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -251,6 +254,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
+        browser: 'firefox',
         navigator: {
           appMinorVersion: null,
           appVersion,
@@ -316,6 +320,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
+        browser: 'firefox',
         navigator: {
           appMinorVersion: null,
           appVersion,
@@ -382,6 +387,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
+        browser: 'firefox',
         navigator: {
           appMinorVersion: null,
           appVersion,
@@ -422,6 +428,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
+        browser: 'firefox',
         navigator: {
           appMinorVersion: null,
           appVersion: `5.0 (${os.uaPlatform})`,
@@ -462,6 +469,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
+        browser: 'firefox',
         navigator: {
           appMinorVersion: null,
           appVersion: `5.0 (${os.uaPlatform})`,
@@ -528,6 +536,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
+        browser: 'chrome',
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -625,6 +634,7 @@ export class Generator {
       return {
         accept,
         osId: os.id,
+        browser: 'chrome',
         navigator,
         screen: {
           width: screenRes[0],
@@ -699,6 +709,7 @@ export class Generator {
       return {
         accept,
         osId: os.id,
+        browser: 'chrome',
         navigator,
         screen: {
           width: screenRes[0],
@@ -737,6 +748,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate',
         },
         osId: os.id,
+        browser: 'ie',
         navigator: {
           appMinorVersion: '0',
           appVersion: `5.0 (${os.nav.oscpu.split(';')[0]}; Trident/7.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko`,
@@ -774,6 +786,7 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         osId: os.id,
+        browser: 'safari',
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -828,6 +841,7 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         osId: os.id,
+        browser: 'safari',
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
@@ -868,6 +882,7 @@ export class Generator {
           encodingHTTPS: 'br, gzip, deflate',
         },
         osId: os.id,
+        browser: 'safari',
         navigator: {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
