@@ -1,3 +1,16 @@
+<a name="v0.21.22-rc"></a>
+
+## [v0.21.22-rc](https://github.com/sereneblue/chameleon/compare/v0.21.21...v0.21.22-rc) (2021-03-28)
+
+### Bug Fixes
+
+- update IP spoofing
+
+### Features
+
+- improve browser profile spoofing ([#494](https://github.com/sereneblue/chameleon/issues/494))
+- update profiles
+
 <a name="v0.21.21-rc"></a>
 
 ## [v0.21.21-rc](https://github.com/sereneblue/chameleon/compare/v0.21.20...v0.21.21-rc) (2021-03-12)
