@@ -9,6 +9,7 @@ import language from './spoof/language';
 import media from './spoof/media';
 import mediaSpoof from './spoof/mediaSpoof';
 import navigator from './spoof/navigator';
+import quirks from './spoof/quirks';
 import referer from './spoof/referer';
 import screen from './spoof/screen';
 import timezone from './spoof/timezone';
@@ -51,6 +52,7 @@ class Injector {
 
       if (p) {
         this.spoof.metadata['profileOS'] = p.osId;
+        this.spoof.metadata['browser'] = p.browser;
       } else {
         // get real profile
         let profileId: string = '';
@@ -87,6 +89,7 @@ class Injector {
         }
 
         this.spoof.metadata['profileOS'] = profileId;
+        this.spoof.metadata['browser'] = 'firefox';
       }
 
       if (settings.options.blockMediaDevices) {
@@ -214,6 +217,7 @@ class Injector {
       }
 
       this.updateInjectionData(navigator);
+      this.updateInjectionData(quirks);
     }
   }
 
