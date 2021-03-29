@@ -8,7 +8,8 @@
 
 ### Features
 
-- improve browser profile spoofing ([#494](https://github.com/sereneblue/chameleon/issues/494)- update profiles
+- improve browser profile spoofing ([#494](https://github.com/sereneblue/chameleon/issues/494)
+- update profiles
 
 <a name="v0.21.21-rc"></a>
 
