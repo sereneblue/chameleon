@@ -760,11 +760,15 @@ export class Chameleon {
                 if (!foundLang) {
                   // use english as default language if no match is found
                   foundLang = lang.getLanguage('en-US');
+                  this.tempStore.ipInfo.lang = foundLang.code;
                 }
               }
-
-              notificationMsg = `${notificationMsg} ${foundLang.name}`;
+            } else {
+              foundLang = lang.getLanguage('en-US');
+              this.tempStore.ipInfo.lang = foundLang.code;
             }
+
+            notificationMsg = `${notificationMsg} ${foundLang.name}`;
           }
         }
 

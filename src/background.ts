@@ -70,7 +70,7 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
     chameleon.buildInjectionScript();
     sendResponse('done');
   } else if (request.action === 'reloadIPInfo') {
-    if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
+    if (chameleon.settings.options.timeZone === 'ip' || (chameleon.settings.headers.spoofAcceptLang.value === 'ip' && chameleon.settings.headers.spoofAcceptLang.enabled)) {
       chameleon.updateIPInfo(request.data);
       sendResponse('done');
     }
@@ -132,7 +132,7 @@ browser.runtime.onMessage.addListener(messageHandler);
 (async () => {
   await chameleon.init(await webext.getSettings(null));
 
-  if (chameleon.settings.options.timeZone === 'ip' || chameleon.settings.headers.spoofAcceptLang.value === 'ip') {
+  if (chameleon.settings.options.timeZone === 'ip' || (chameleon.settings.headers.spoofAcceptLang.value === 'ip' && chameleon.settings.headers.spoofAcceptLang.enabled)) {
     await chameleon.updateIPInfo(false);
   }
 
