@@ -782,22 +782,26 @@ export class Chameleon {
           }
         );
 
-        browser.notifications.create({
-          type: 'basic',
-          title: 'Chameleon',
-          message: notificationMsg,
-        });
+        if (this.settings.config.notificationsEnabled) {
+          browser.notifications.create({
+            type: 'basic',
+            title: 'Chameleon',
+            message: notificationMsg,
+          });
+        }
 
         this.buildInjectionScript();
       }
     } catch (e) {
       let message: string = browser.i18n.getMessage('notifications-unableToGetIPInfo');
 
-      browser.notifications.create({
-        type: 'basic',
-        title: 'Chameleon',
-        message,
-      });
+      if (this.settings.config.notificationsEnabled) {
+        browser.notifications.create({
+          type: 'basic',
+          title: 'Chameleon',
+          message,
+        });
+      }
     }
   }
 
