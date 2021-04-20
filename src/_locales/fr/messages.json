@@ -39,7 +39,7 @@
     "message": "Laissez cette option vide"
   },
   "options-checklist-note1": {
-    "message": "Note : Pour consulter la liste des préférences modifiées, visitez cette adresse : about:support#prefs-tbody"
+    "message": "Note : Pour consulter la liste des préférences modifiées, consultez cette page : about:support#prefs-tbody"
   },
   "options-checklist-note2": {
     "message": "Créez l'option si celle-ci n'existe pas."
@@ -51,67 +51,67 @@
     "message": "Bloquer le contenu mixte actif"
   },
   "options-checklistItem-blockActiveMixedContentDesc": {
-    "message": "Empêche le chargement de contenus mixtes actifs non HTTPS (scripts, iframes, CSS, requêtes AJAX/fetch) sur une page HTTPS"
+    "message": "Empêche le chargement de contenus mixtes actifs non HTTPS (scripts, iframes, CSS, requêtes AJAX/fetch) sur une page HTTPS."
   },
   "options-checklistItem-blockDisplayMixedContent": {
     "message": "Bloquer l'affichage de contenu mixte"
   },
   "options-checklistItem-blockDisplayMixedContentDesc": {
-    "message": "Empêche le chargement de contenus mixtes passifs non HTTPS (images, audio, vidéo) sur une page HTTPS"
+    "message": "Empêche le chargement de contenus mixtes passifs non HTTPS (images, audio, vidéo) sur une page HTTPS."
   },
   "options-checklistItem-disableAddonCache": {
     "message": "Désactiver le cache des extensions"
   },
   "options-checklistItem-disableAddonCacheDesc": {
-    "message": "Empêche la mise à jour des métadonnées des extensions"
+    "message": "Empêche la mise à jour des métadonnées des extensions."
   },
   "options-checklistItem-disableAddonUpdates": {
     "message": "Désactiver les mises à jour des extensions"
   },
   "options-checklistItem-disableAddonUpdatesDesc": {
-    "message": "Empêche la vérification des mises à jour des extensions"
+    "message": "Empêche la vérification des mises à jour des extensions."
   },
   "options-checklistItem-disableBattery": {
     "message": "Désactiver l'API Batterie"
   },
   "options-checklistItem-disableBatteryDesc": {
-    "message": "Désactive l'API Batterie. Celle-ci peut être utilisée pour pister les utilisateurs"
+    "message": "Désactive l'API Batterie. Celle-ci peut être utilisée pour pister les utilisateurs."
   },
   "options-checklistItem-disableHistory": {
     "message": "Désactiver l'historique de navigation et des téléchargements"
   },
   "options-checklistItem-disableHistoryDesc": {
-    "message": "Désactive l'historique de la navigation et des téléchargements"
+    "message": "Désactive l'historique de la navigation et des téléchargements."
   },
   "options-checklistItem-disableCacheDisk": {
     "message": "Désactiver le cache (disque)"
   },
   "options-checklistItem-disableCacheDiskDesc": {
-    "message": "Empêcher la mise en cache des données sur le disque"
+    "message": "Empêche la mise en cache des données sur le disque."
   },
   "options-checklistItem-disableCacheMem": {
     "message": "Désactiver le cache (mémoire)"
   },
   "options-checklistItem-disableCacheMemDesc": {
-    "message": "Empêche la mise en cache des données dans la mémoire"
+    "message": "Empêche la mise en cache des données dans la mémoire."
   },
   "options-checklistItem-disableClipboardEvt": {
     "message": "Désactiver les événements du presse-papier"
   },
   "options-checklistItem-disableClipboardEvtDesc": {
-    "message": "Empêche les sites Web de détecter lorsqu'un utilisateur coupe, copie, colle ou sélectionne des données d'une page Web"
+    "message": "Empêche les sites Web de détecter lorsqu'un utilisateur coupe, copie, colle ou sélectionne des données d'une page Web."
   },
   "options-checklistItem-disableContextMenuEvt": {
     "message": "Désactiver les événements du menu contextuel"
   },
   "options-checklistItem-disableContextMenuEvtDesc": {
-    "message": "Désactive le contrôle du site Web sur le menu contextuel du clic droit. Effectuez la combinaison Maj + clic droit pour outrepasser cette option"
+    "message": "Désactive le contrôle du site Web sur le menu contextuel. Effectuez la combinaison Maj + clic droit pour outrepasser cette option."
   },
   "options-checklistItem-disableMobileSensors": {
     "message": "Désactiver les capteurs des appareils"
   },
   "options-checklistItem-disableMobileSensorsDesc": {
-    "message": "Désactiver les capteurs des appareils (cela empêchera les sites qui ont besoin d'accéder aux capteurs de fonctionner)"
+    "message": "Désactive les capteurs des appareils. Cela empêchera les sites qui ont besoin d'accéder aux capteurs de fonctionner."
   },
   "options-checklistItem-disableDNSPrefetch": {
     "message": "Désactiver le préchargement DNS"
@@ -123,43 +123,43 @@
     "message": "Désactiver le stockage DOM"
   },
   "options-checklistItem-disableDOMStorageDesc": {
-    "message": "Empêche les sites de stocker des données (stockage de session et stockage local)"
+    "message": "Empêche les sites de stocker des données (stockage de session et stockage local)."
   },
   "options-checklistItem-disableDRM": {
-    "message": "Désactiver les DRM"
+    "message": "Désactiver la gestion des droits numériques"
   },
   "options-checklistItem-disableDRMDesc": {
-    "message": "Désactive les DRM. Cela empêchera certains sites de fonctionner, comme Spotify ou Netflix, par exemple"
+    "message": "Désactive la gestion des droits numériques. Cela empêchera certains sites de fonctionner, comme Spotify ou Netflix, par exemple."
   },
   "options-checklistItem-disableGeo": {
     "message": "Désactiver la géolocalisation"
   },
   "options-checklistItem-disableGeoDesc": {
-    "message": "Désactive la fonction de géolocalisation. Cela empêchera les sites qui requièrent votre localisation de fonctionner"
+    "message": "Désactive la fonction de géolocalisation. Cela empêchera les sites qui requièrent votre localisation de fonctionner."
   },
   "options-checklistItem-disableGeo2": {
     "message": "Désactiver la géolocalisation (2)"
   },
   "options-checklistItem-disableGeo2Desc": {
-    "message": "Supprime le fournisseur de géolocalisation de Firefox"
+    "message": "Supprime le fournisseur de géolocalisation de Firefox."
   },
   "options-checklistItem-disableIDN": {
-    "message": "Désactiver le support IDN"
+    "message": "Désactiver la prise en charge des noms de domaine internationalisés"
   },
   "options-checklistItem-disableIDNDesc": {
-    "message": "Affiche toujours la version punycode brute des noms de domaine internationalisés. Risque d'hameçonnage ; par exemple, l'adresse http://www.арplе.com apparaît comme http://xn--80ak6aa92e.com"
+    "message": "Affiche toujours la version punycode brute des noms de domaine internationalisés. Cela réduit massivement les risques d'hameçonnage ; par exemple, l'adresse http://www.аррӏе.com/ sera affichée comme ceci : http://xn--80ak6aa92e.com"
   },
   "options-checklistItem-disableOfflineCache": {
     "message": "Désactiver le cache hors ligne"
   },
   "options-checklistItem-disableOfflineCacheDesc": {
-    "message": "Empêche la mise en cache des données d'un site Web pour une utilisation hors ligne"
+    "message": "Empêche la mise en cache des données d'un site Web pour une utilisation hors ligne."
   },
   "options-checklistItem-disablePDF": {
     "message": "Désactiver PDF.js"
   },
   "options-checklistItem-disablePDFDesc": {
-    "message": "Empêche le chargement de fichiers PDF dans le navigateur"
+    "message": "Empêche le chargement de fichiers PDF dans le navigateur."
   },
   "options-checklistItem-disablePocket": {
     "message": "Désactiver Pocket"
@@ -168,175 +168,175 @@
     "message": "Fonctionnalité potentiellement indésirable"
   },
   "options-checklistItem-disableResTiming": {
-    "message": "Désactiver l'API de minutage des ressources"
+    "message": "Désactiver l'API de synchronisation des ressources"
   },
   "options-checklistItem-disableResTimingDesc": {
-    "message": "La synchronisation des ressources est une API de navigateur qui permet de collecter des informations sur la synchronisation des ressources d'une page. Cela peut inclure l'historique des fuites, des informations sur le réseau local et éventuellement la localisation"
+    "message": "La synchronisation des ressources est une API de navigateur qui permet de collecter des informations sur la synchronisation des ressources d'une page. Cela peut inclure l'historique des fuites, des informations sur le réseau local et éventuellement la localisation."
   },
   "options-checklistItem-disableSearchSuggest": {
     "message": "Désactiver les suggestions de recherche"
   },
   "options-checklistItem-disableSearchSuggestDesc": {
-    "message": "Empêche l'affichage des suggestions de recherche"
+    "message": "Empêche l'affichage des suggestions de recherche."
   },
   "options-checklistItem-disableSearchUpdates": {
     "message": "Désactiver les mises à jour des moteurs de recherche"
   },
   "options-checklistItem-disableSearchUpdatesDesc": {
-    "message": "Empêche Firefox de mettre à jour les moteurs de recherche"
+    "message": "Empêche Firefox de mettre à jour les moteurs de recherche."
   },
   "options-checklistItem-disableSpeculatePreConn": {
     "message": "Désactiver les pré-connexions spéculatives"
   },
   "options-checklistItem-disableSpeculatePreConnDesc": {
-    "message": "Empêche Firefox de récupérer de manière anticipée des ressources lors du survol ou d'une interaction avec un élément"
+    "message": "Empêche Firefox de récupérer des ressources de manière anticipée lorsqu'un élément est survolé ou fait l'objet d'une interaction."
   },
   "options-checklistItem-disableSSLFalseStart": {
     "message": "Désactiver le faux démarrage SSL"
   },
   "options-checklistItem-disableSSLFalseStartDesc": {
-    "message": "Empêche le client d'envoyer des données avant d'avoir terminé l'établissement d'une liaison pour démarrer la session"
+    "message": "Empêche le client d'envoyer des données avant d'avoir terminé l'établissement d'une liaison pour démarrer la session."
   },
   "options-checklistItem-disableSSLSessId": {
     "message": "Désactiver les identifiants de session SSL"
   },
   "options-checklistItem-disableSSLSessIdDesc": {
-    "message": "Empêche le pistage de l'utilisateur avec la reprise de session TLS"
+    "message": "Empêche le pistage de l'utilisateur avec la reprise de session TLS."
   },
   "options-checklistItem-disableTLSRTT": {
     "message": "Désactiver TLS 0-RTT"
   },
   "options-checklistItem-disableTLSRTTDesc": {
-    "message": "Zero Round Trip Time Resumption (0-RTT) est une nouvelle fonctionnalité de TLS 1.3 qui permet à un client et à un serveur de négocier une connexion en moins d'étapes, ce qui permet aux sites Web HTTPS de se charger plus rapidement. Cependant, cela pose deux problèmes. Premièrement, vous perdez le secret de transmission (en générant une nouvelle clé pour chaque session et en la supprimant à la fin de la session). Deuxièmement, 0-RTT nécessite une implémentation spéciale afin d'empêcher les attaques par rejeu, contre lesquelles certains développeurs Web ne parviendront certainement pas à se protéger. - Crédits : https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
+    "message": "Zero Round Trip Time Resumption (0-RTT) est une nouvelle fonctionnalité de TLS 1.3 qui permet à un client et à un serveur de négocier une connexion en moins d'étapes, ce qui permet aux sites Web HTTPS de se charger plus rapidement.\nCependant, cela pose deux problèmes. Premièrement, vous perdez le secret de transmission (en générant une nouvelle clé pour chaque session et en la supprimant à la fin de la session). Deuxièmement, 0-RTT nécessite une implémentation spéciale afin d'empêcher les attaques par rejeu, contre lesquelles certains développeurs Web ne parviendront certainement pas à se protéger.\nCrédits : https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
   },
   "options-checklistItem-disableTRR": {
     "message": "Désactiver TTR (Trusted Recursive Resolver)"
   },
   "options-checklistItem-disableTRRDesc": {
-    "message": "Le DNS via HTTPS contourne les hôtes et utilise Cloudflare ou Google. Cependant, les paramètres DNS devraient plutôt être gérés par l'utilisateur"
+    "message": "DNS-over-HTTPS contourne le fichier hosts et utilise Cloudflare ou Google. Cependant, les paramètres DNS devraient plutôt être gérés par l'utilisateur"
   },
   "options-checklistItem-disableWebGL": {
     "message": "Désactiver WebGL"
   },
   "options-checklistItem-disableWebGLDesc": {
-    "message": "Désactive WebGL (cela entraînera des problèmes avec les jeux Web)"
+    "message": "Désactive WebGL. Cela entraînera des problèmes avec les jeux Web."
   },
   "options-checklistItem-disableWebBeacons": {
-    "message": "Désactiver les balises Web"
+    "message": "Désactiver les pixels espions"
   },
   "options-checklistItem-disableWebBeaconsDesc": {
-    "message": "Désactive les balises Web"
+    "message": "Désactive les pixels espions."
   },
   "options-checklistItem-clearOfflineApps": {
     "message": "Activer l'effacement des applications hors ligne à la fermeture"
   },
   "options-checklistItem-clearOfflineAppsDesc": {
-    "message": "Efface les données hors ligne des sites Web à la fermeture"
+    "message": "Efface les données hors ligne des sites Web à la fermeture du navigateur."
   },
   "options-checklistItem-enableSocialTrackingProtect": {
     "message": "Activer la protection contre le pistage des réseaux sociaux"
   },
   "options-checklistItem-enableSocialTrackingProtectDesc": {
-    "message": "Active la protection contre le pistage des réseaux sociaux"
+    "message": "Active la protection contre le pistage des réseaux sociaux."
   },
   "options-checklistItem-limitFonts": {
     "message": "Limiter les polices détectables"
   },
   "options-checklistItem-limitFontsDesc": {
-    "message": "Réduit l'unicité des polices installées. Cela peut causer des problèmes avec les icônes des polices"
+    "message": "Réduit le caractère unique des polices installées. Cela peut causer des problèmes d'affichage des symboles."
   },
   "options-checklistItem-limitMaxTabsUndo": {
     "message": "Limiter le nombre maximal d'onglets à annuler"
   },
   "options-checklistItem-limitMaxTabsUndoDesc": {
-    "message": "Les onglets fermés sont stockés temporairement dans Menu -> Historique -> Onglets récemment fermés, même si Firefox est configuré pour ne pas conserver l'historique"
+    "message": "Les onglets fermés sont temporairement sauvegardés dans Menu -> Historique -> Onglets récemment fermés, même si Firefox est configuré pour ne pas conserver l'historique."
   },
   "options-checklistItem-useClickToPlay": {
-    "message": "Utiliser un clic pour lancer les plugins"
+    "message": "Utiliser les plugins Click-to-Play"
   },
   "options-checklistItem-useClickToPlayDesc": {
-    "message": "Empêche les plugins de se lancer automatiquement lors du chargement d'une page"
+    "message": "Empêche l'exécution automatique des plugins lors du chargement d'une page."
   },
   "options-checklistItem-disableDataSubmission": {
     "message": "Désactiver l'envoi de données"
   },
   "options-checklistItem-disableDataSubmissionDesc": {
-    "message": "Désactive l'envoi de données à Mozilla"
+    "message": "Désactive l'envoi de données à Mozilla."
   },
   "options-checklistItem-disableSafeBrowsingDownloadCheck": {
     "message": "Désactiver la vérification de sécurité des téléchargements"
   },
   "options-checklistItem-disableSafeBrowsingDownloadCheckDesc": {
-    "message": "Désactive la vérification de sécurité pour les fichiers téléchargés"
+    "message": "Désactive la vérification de sécurité pour les fichiers téléchargés."
   },
   "options-checklistItem-disableSafeBrowsingDownloadCheck2": {
     "message": "Désactiver la vérification de sécurité des téléchargements (2)"
   },
   "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc": {
-    "message": "Désactive la vérification de sécurité pour les fichiers téléchargés potentiellement indésirables"
+    "message": "Désactive la vérification de sécurité pour les fichiers téléchargés potentiellement indésirables."
   },
   "options-checklistItem-disableSafeBrowsingDownloadCheck3": {
     "message": "Désactiver la vérification de sécurité des téléchargements (3)"
   },
   "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc": {
-    "message": "Désactive la vérification de sécurité pour les fichiers rarement téléchargés"
+    "message": "Désactive la vérification de sécurité pour les fichiers rarement téléchargés."
   },
   "options-checklistItem-disableSafeBrowsingDownloadCheck4": {
     "message": "Désactiver la vérification de sécurité des téléchargements (4)"
   },
   "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc": {
-    "message": "Désactive la vérification des binaires ne figurant pas dans les listes locales de Google"
+    "message": "Désactive la vérification des binaires ne figurant pas dans les listes locales de Google."
   },
   "options-checklistItem-disableSafeBrowsingMalwareCheck": {
-    "message": "Désactiver la vérification de sécurité des logiciels malveillants"
+    "message": "Désactiver la vérification de sécurité concernant les logiciels malveillants"
   },
   "options-checklistItem-disableSafeBrowsingMalwareCheckDesc": {
-    "message": "Empêche la consultation de la liste des logiciels malveillants de Google"
+    "message": "Empêche la consultation de la liste des logiciels malveillants de Google."
   },
   "options-checklistItem-disableSafeBrowsingPhishingCheck": {
     "message": "Désactiver la vérification de sécurité concernant l'hameçonnage"
   },
   "options-checklistItem-disableSafeBrowsingPhishingCheckDesc": {
-    "message": "Empêche la consultation de la liste d'hameçonnage de Google"
+    "message": "Empêche la consultation de la liste d'hameçonnage de Google."
   },
   "options-checklistItem-disableHealthReport": {
-    "message": "Désactiver les envois de rapports de santé"
+    "message": "Désactiver l'envoi des rapports de santé"
   },
   "options-checklistItem-disableHealthReportDesc": {
-    "message": "Désactiver l'envoi des rapports de santé à Mozilla"
+    "message": "Désactive l'envoi des rapports de santé à Mozilla."
   },
   "options-checklistItem-disableCrashReport": {
     "message": "Désactiver les rapports de plantage"
   },
   "options-checklistItem-disableCrashReportDesc": {
-    "message": "Désactiver l'envoi des rapports de plantage à Mozilla"
+    "message": "Désactive l'envoi des rapports de plantage à Mozilla."
   },
   "options-checklistItem-disableTelemetryPing": {
-    "message": "Désactiver les pings de télémétrie"
+    "message": "Désactiver les demandes de télémétrie"
   },
   "options-checklistItem-disableTelemetryPingDesc": {
-    "message": "Le serveur de télémétrie utilisé si la télémétrie est activée"
+    "message": "Serveur de télémétrie utilisé (si la télémétrie est activée)"
   },
   "options-checklistItem-disableTelemetryReport": {
     "message": "Désactiver le rapport de télémétrie"
   },
   "options-checklistItem-disableTelemetryReportDesc": {
-    "message": "Désactive la télémétrie"
+    "message": "Désactive la télémétrie."
   },
   "options-checklistItem-disableTelemetryReport2": {
     "message": "Désactiver le rapport de télémétrie (2)"
   },
   "options-checklistItem-disableTelemetryReport2Desc": {
-    "message": "Empêche l'activation de la télémétrie (remplace l'option toolkit.telemetry.enabled)"
+    "message": "Empêche l'activation de la télémétrie (remplace l'option \"toolkit.telemetry.enabled\")."
   },
   "options-checklistItem-sessionPrivacyLevel": {
     "message": "Définir le niveau de confidentialité de la session"
   },
   "options-checklistItem-sessionPrivacyLevelDesc": {
-    "message": "Définit le niveau de confidentialité de la session au niveau 2. Ce niveau empêche Firefox de stocker le contenu des formulaires, des positions de la barre de défilement, des cookies et des données POST pour la restauration d'une session"
+    "message": "Définit le niveau de confidentialité de la session au niveau 2. Ce niveau empêche Firefox de conserver le contenu des formulaires, les positions de la barre de défilement, les cookies et les données POST pour restaurer une session."
   },
   "options-import-couldNotImport": {
-    "message": "Impossible d'importer le fichier"
+    "message": "Le fichier n'a pas pu être importé"
   },
   "options-import-invalid-config": {
     "message": "Paramètres invalides : configuration manquante"
@@ -351,7 +351,7 @@
     "message": "Paramètres invalides : en-têtes manquants"
   },
   "options-import-invalid-ipRuleId": {
-    "message": "Paramètres invalides : Identifiant de règle IP invalide"
+    "message": "Paramètres invalides : identifiant de règle IP invalide"
   },
   "options-import-invalid-ipRuleName": {
     "message": "Paramètres invalides : nom de règle IP manquant"
@@ -363,7 +363,7 @@
     "message": "Paramètres invalides : règles IP manquantes"
   },
   "options-import-invalid-ipRulesDupe": {
-    "message": "Paramètres invalides : doublon d'identifiant de règle IP trouvé"
+    "message": "Paramètres invalides : une règle IP a été trouvée en double"
   },
   "options-import-invalid-options": {
     "message": "Paramètres invalides : options manquantes"
@@ -381,13 +381,13 @@
     "message": "Paramètres invalides : la plage d'adresses IP de l'en-tête de falsification est invalide"
   },
   "options-import-invalid-version": {
-    "message": "Paramètres invalides : la version n'est pas acceptée"
+    "message": "Paramètres invalides : la version n'est pas prise en charge"
   },
   "options-import-invalid-whitelist": {
     "message": "Paramètres invalides : liste blanche manquante"
   },
   "options-import-invalid-whitelistDupe": {
-    "message": "Paramètres invalides : doublon de l'identifiant de règle de la liste blanche trouvé"
+    "message": "Paramètres invalides : une règle de liste blanche a été trouvée en double"
   },
   "options-import-invalid-whitelistId": {
     "message": "Paramètres invalides : identifiant de règle de la liste blanche invalide"
@@ -399,7 +399,7 @@
     "message": "Paramètres invalides : options de règle de la liste blanche invalides"
   },
   "options-import-invalid-whitelistSpoofIP": {
-    "message": "Paramètres invalides : adresse IP de falsification de règle de la liste blanche invalide"
+    "message": "Paramètres invalides : adresse IP de falsification pour la règle de liste blanche invalide"
   },
   "options-import-success": {
     "message": "Réglages importés avec succès. Rechargement de l'extension..."
@@ -411,10 +411,10 @@
     "message": "Règle IP"
   },
   "options-ipRules-reload": {
-    "message": "Recharger les informations IP"
+    "message": "Actualiser les informations IP"
   },
   "options-ipRules-textareaLabel": {
-    "message": "Plages d'adresses IP / Adresses IP"
+    "message": "Plages / Adresses IP"
   },
   "options-ipRules-textareaPlaceholder": {
     "message": "Une adresse IP/plage d'adresses IP par ligne"
@@ -447,7 +447,7 @@
     "message": "Réinitialiser les paramètres par défaut"
   },
   "options-settings-permissions": {
-    "message": "Chameleon peut contrôler certaines de vos préférences Firefox, comme résister au fingerprinting ou activer la protection contre le pistage. Cela peut entrer en conflit avec une autre extension.\nCependant, vous pouvez refuser que Chameleon contrôle ces préférences en supprimant l'autorisation de confidentialité. Veuillez noter que la suppression de cette autorisation réinitialisera les préférences. Vous pouvez demander cette permission si celle-ci n'est pas présente."
+    "message": "Chameleon peut contrôler certaines de vos préférences Firefox, comme résister au fingerprinting ou activer la protection contre le pistage. Cela peut causer des problèmes avec d'autres extensions.\nCependant, vous pouvez refuser que Chameleon contrôle ces préférences en supprimant l'autorisation \"Lire et modifier les paramètres de confidentialité\". Dans ce cas, les paramètres correspondants seront automatiquement réinitialisés. À l'inverse, vous pouvez activer cette autorisation si celle-ci est actuellement désactivée."
   },
   "options-settings-permissions-legacy": {
     "message": "Vous devrez installer une version spécifique de Chameleon pour activer les autorisations de confidentialité. Cela est dû à certaines complications avec les autorisations prises en charge pour une plateforme croisée ou une nouvelle version de cette extension. Vous trouverez plus de détails sur le wiki ci-dessous."
@@ -456,10 +456,10 @@
     "message": "Plus d'informations sur le wiki"
   },
   "options-settings-permissions-request": {
-    "message": "Demander des autorisations de confidentialité"
+    "message": "Activer l'autorisation \"Lire et modifier les paramètres de confidentialité\""
   },
   "options-settings-permissions-remove": {
-    "message": "Supprimer les autorisations de confidentialité"
+    "message": "Désactiver l'autorisation \"Lire et modifier les paramètres de confidentialité\""
   },
   "options-tab-about": {
     "message": "À propos"
@@ -468,7 +468,7 @@
     "message": "Règles IP"
   },
   "options-tab-checklist": {
-    "message": "Liste de vérification"
+    "message": "Liste de contrôle"
   },
   "options-whitelist-acceptLang": {
     "message": "Accept-Language"
@@ -480,7 +480,7 @@
     "message": "En-tête IP (Via & X-Forwarded For)"
   },
   "options-whitelist-options-name": {
-    "message": "Activer la protection du nom des fenêtres"
+    "message": "Activer la protection du nom de la fenêtre"
   },
   "options-whitelist-options-tz": {
     "message": "Activer la falsification du fuseau horaire"
@@ -492,13 +492,13 @@
     "message": "Règle de liste blanche"
   },
   "options-whitelist-sitesTip": {
-    "message": "Une règle par ligne : domaine @@ [modèle facultatif d'expression régulière]"
+    "message": "Une règle par ligne : domaine@@[modèle facultatif d'expression régulière]"
   },
   "options-whitelist-textareaLabel": {
-    "message": "Plages d'adresses IP / Adresses IP"
+    "message": "Plages / Adresses IP"
   },
   "options-whitelist-textareaPlaceholder": {
-    "message": "Une adresse IP/plage d'adresses IP par ligne"
+    "message": "Une adresse ou plage IP par ligne"
   },
   "popup-home-change": {
     "message": "Modifier"
@@ -621,10 +621,10 @@
     "message": "Activer l'en-tête DNT (Ne pas suivre)"
   },
   "popup-headers-preventEtag": {
-    "message": "Empêcher le pistage ETag"
+    "message": "Empêcher le pistage par l'Etag"
   },
   "popup-headers-refererWarning": {
-    "message": "Ne modifiez pas les paramètres des options ci-dessous dans about:config."
+    "message": "Ne modifiez PAS les paramètres des options ci-dessous dans about:config."
   },
   "popup-headers-referer-trimming": {
     "message": "Politique de réduction du référent"
@@ -639,7 +639,7 @@
     "message": "Schéma, hôte + port"
   },
   "popup-headers-referer-xorigin": {
-    "message": "Politique d'origine croisée du référant"
+    "message": "Politique d'origine croisée du référent"
   },
   "popup-headers-referer-xorigin-alwaysSend": {
     "message": "Toujours envoyer (par défaut)"
@@ -690,10 +690,10 @@
     "message": "Falsifier \"Client Rects\""
   },
   "popup-options-injection-protectKBFingerprint": {
-    "message": "Protéger l'empreinte digitale du clavier"
+    "message": "Empêcher le suivi par frappe au clavier"
   },
   "popup-options-injection-protectKBFingerprintDelay": {
-    "message": "Délai (ms)"
+    "message": "Délai (millisecondes)"
   },
   "popup-options-injection-screen": {
     "message": "Taille de l'écran"
@@ -720,7 +720,7 @@
     "message": "Activer la protection contre le fingerprinting"
   },
   "popup-options-standard-spoofMediaDevices": {
-    "message": "Falsifier les périphériques multimédia"
+    "message": "Falsifier les périphériques multimédias"
   },
   "popup-options-standard-trackingProtection": {
     "message": "Mode de protection contre le pistage"
@@ -738,7 +738,7 @@
     "message": "Politique WebRTC"
   },
   "popup-options-standard-webRTCPolicy-nonProxified": {
-    "message": "Désactiver UDP hors proxy"
+    "message": "Désactiver \"Non-proxified UDP\""
   },
   "popup-options-standard-webRTCPolicy-public": {
     "message": "Utiliser uniquement l'interface publique (recommandé)"
@@ -753,7 +753,7 @@
     "message": "Bloquer les tiers"
   },
   "popup-options-cookie": {
-    "message": "Cookie"
+    "message": "Cookies"
   },
   "popup-options-cookieNotPersistent": {
     "message": "Supprimer les cookies et les données de site après la fermeture de la fenêtre"
@@ -774,7 +774,7 @@
     "message": "Rejeter les traqueurs"
   },
   "popup-whitelist-contextMenu": {
-    "message": "Ajouter un menu contextuel pour ouvrir le domaine de l'onglet actuel dans la liste blanche"
+    "message": "Ajouter un élément de menu contextuel pour ouvrir le domaine de l'onglet actuel dans la liste blanche"
   },
   "popup-whitelist-defaultProfileLabel": {
     "message": "Profil par défaut"
@@ -801,7 +801,7 @@
     "message": "Créer une nouvelle règle"
   },
   "text-default": {
-    "message": "Défaut"
+    "message": "Par défaut"
   },
   "text-defaultWhitelistProfile": {
     "message": "Profil par défaut de la liste blanche"

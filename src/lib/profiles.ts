@@ -38,11 +38,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '89.0.774.63', mac: '89.0.774.63', desktopChrome: '89.0.4389.90', android: '46.1.2.5140', androidChrome: '89.0.4389.86' },
+  edg: { win: '90.0.818.41', mac: '90.0.818.39', desktopChrome: '90.0.4430.72', android: '46.3.4.5155', androidChrome: '90.0.4430.66' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
-  ff: { desktop: '87', mobile: '86' },
-  gcr: { desktop: '89.0.4389.90', ios: '87.0.4280.77', android: '89.0.4389.105' },
+  ff: { desktop: '88', mobile: '86' },
+  gcr: { desktop: '90.0.4430.72', ios: '87.0.4280.163', android: '90.0.4430.66' },
   sf: { desktop: '14.0.3', ios1: '12.1.2', ios2: '13.1', ios3: '14.0' },
 };
 
