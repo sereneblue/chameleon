@@ -1,3 +1,17 @@
+<a name="v0.21.23-rc"></a>
+
+## [v0.21.23](https://github.com/sereneblue/chameleon/compare/v0.21.22...v0.21.23-rc) (2021-04-19)
+
+### Bug Fixes
+
+- respect user's notification settings ([#495](https://github.com/sereneblue/chameleon/issues/495))
+
+### Features
+
+- update profiles
+- **localization:** add turkish localization
+- **localization:** update french localization
+
 <a name="v0.21.22-rc"></a>
 
 ## [v0.21.22-rc](https://github.com/sereneblue/chameleon/compare/v0.21.21...v0.21.22-rc) (2021-03-28)
