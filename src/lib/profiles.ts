@@ -1073,27 +1073,27 @@ export class Generator {
     android: [
       {
         id: 'and1',
-        name: 'Android 6',
-        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
-        uaPlatform: 'Android 6.0.1',
-      },
-      {
-        id: 'and2',
-        name: 'Android 7',
-        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
-        uaPlatform: 'Android 7.1.2',
-      },
-      {
-        id: 'and3',
         name: 'Android 8',
         browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 8.1.0',
       },
       {
-        id: 'and4',
+        id: 'and2',
         name: 'Android 9',
         browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 9',
+      },
+      {
+        id: 'and3',
+        name: 'Android 10',
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 10',
+      },
+      {
+        id: 'and4',
+        name: 'Android 11',
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 11',
       },
     ],
   };
