@@ -48,7 +48,7 @@ const BrowserVersions: any = {
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
-const MacResolutions: string[] = ['1920x1080', '2560×1600', '4096x2304', '5120x2880'];
+const MacResolutions: string[] = ['1920x1080', '2560x1600', '4096x2304', '5120x2880'];
 
 let getName = (os: string, browser: string) => {
   let osId: string;
