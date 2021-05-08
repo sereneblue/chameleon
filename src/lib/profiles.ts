@@ -13,6 +13,7 @@ export interface BrowserProfile {
     cpuClass: string | null;
     deviceMemory: number | null;
     hardwareConcurrency: number | null;
+    maxTouchPoints: number;
     mimeTypes: object | null;
     oscpu: string | null;
     platform: string | null;
@@ -146,6 +147,7 @@ export class Generator {
             { type: 'application/x-nacl', suffixes: '', description: 'Native Client Executable' },
             { type: 'application/x-pnacl', suffixes: '', description: 'Portable Native Client Executable' },
           ],
+          maxTouchPoints: 0,
           oscpu: null,
           platform,
           plugins: [
@@ -196,6 +198,7 @@ export class Generator {
           deviceMemory: device.memory,
           hardwareConcurrency: device.hw,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: null,
           platform: 'Linux aarch64',
           plugins: [],
@@ -263,6 +266,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: 4,
           mimeTypes: [],
+          maxTouchPoints: 0,
           oscpu: os.nav.oscpu,
           platform: os.nav.platform,
           plugins: [],
@@ -329,6 +333,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: 4,
           mimeTypes: [],
+          maxTouchPoints: 0,
           oscpu: os.nav.oscpu,
           platform: os.nav.platform,
           plugins: [],
@@ -396,6 +401,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: 4,
           mimeTypes: [],
+          maxTouchPoints: 0,
           oscpu: os.nav.oscpu,
           platform: os.nav.platform,
           plugins: [],
@@ -437,6 +443,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: device.hw,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: 'Linux aarch64',
           platform: 'Linux aarch64',
           plugins: [],
@@ -478,6 +485,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: device.hw,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: 'Linux aarch64',
           platform: 'Linux aarch64',
           plugins: [],
@@ -550,6 +558,7 @@ export class Generator {
             { type: 'application/x-nacl', suffixes: '', description: 'Native Client Executable' },
             { type: 'application/x-pnacl', suffixes: '', description: 'Portable Native Client Executable' },
           ],
+          maxTouchPoints: 0,
           oscpu: null,
           platform,
           plugins: [
@@ -591,6 +600,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: 8,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: null,
           platform: 'iPhone',
           plugins: [],
@@ -658,7 +668,7 @@ export class Generator {
       if (os.id.includes('ios')) {
         ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/604.1`;
 
-        (navigator = {
+        navigator = {
           appMinorVersion: null,
           appVersion: ua.split('Mozilla/')[1],
           buildID: null,
@@ -666,6 +676,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: 8,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: null,
           platform: 'iPad',
           plugins: [],
@@ -673,12 +684,13 @@ export class Generator {
           userAgent: ua,
           vendor: 'Apple Computer, Inc.',
           vendorSub: '',
-        }),
-          (accept = {
-            header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            encodingHTTP: 'gzip, deflate',
-            encodingHTTPS: 'br, gzip, deflate',
-          });
+        };
+
+        accept = {
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          encodingHTTP: 'gzip, deflate',
+          encodingHTTPS: 'br, gzip, deflate',
+        };
       } else {
         ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Safari/537.36`;
 
@@ -690,6 +702,7 @@ export class Generator {
           deviceMemory: device.mem,
           hardwareConcurrency: device.hw,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: null,
           platform: 'Linux armv8l',
           plugins: [],
@@ -757,6 +770,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: null,
           mimeTypes: null,
+          maxTouchPoints: 0,
           oscpu: null,
           platform: 'Win32',
           plugins: null,
@@ -801,6 +815,7 @@ export class Generator {
             { type: 'text/pdf', suffixes: 'pdf', description: 'Portable Document Format' },
             { type: 'application/postscript', suffixes: 'ps', description: 'PostScript' },
           ],
+          maxTouchPoints: 0,
           oscpu: null,
           platform: 'MacIntel',
           plugins: [
@@ -850,6 +865,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: null,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: null,
           platform: 'iPhone',
           plugins: [],
@@ -891,6 +907,7 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency: null,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: null,
           platform: 'iPad',
           plugins: [],
@@ -1056,27 +1073,27 @@ export class Generator {
     android: [
       {
         id: 'and1',
-        name: 'Android 6',
-        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
-        uaPlatform: 'Android 6.0.1',
-      },
-      {
-        id: 'and2',
-        name: 'Android 7',
-        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
-        uaPlatform: 'Android 7.1.2',
-      },
-      {
-        id: 'and3',
         name: 'Android 8',
         browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 8.1.0',
       },
       {
-        id: 'and4',
+        id: 'and2',
         name: 'Android 9',
         browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 9',
+      },
+      {
+        id: 'and3',
+        name: 'Android 10',
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 10',
+      },
+      {
+        id: 'and4',
+        name: 'Android 11',
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 11',
       },
     ],
   };
