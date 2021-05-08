@@ -1,3 +1,16 @@
+<a name="v0.21.25-rc"></a>
+
+## [v0.21.25-rc](https://github.com/sereneblue/chameleon/compare/v0.21.24...v0.21.25-rc) (2021-05-08)
+
+### Bug Fixes
+
+- **injection:** fix maxTouchPoints spoofing
+- **profiles:** update mac screen resolution
+
+### Features
+
+- update profiles
+
 <a name="v0.21.24-rc"></a>
 
 ## [v0.21.24-rc](https://github.com/sereneblue/chameleon/compare/v0.21.23...v0.21.24-rc) (2021-05-04)
