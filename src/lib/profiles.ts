@@ -39,12 +39,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '90.0.818.41', mac: '90.0.818.39', desktopChrome: '90.0.4430.72', android: '46.3.4.5155', androidChrome: '90.0.4430.66' },
+  edg: { win: '90.0.818.51', mac: '90.0.818.51', desktopChrome: '90.0.4430.93', android: '46.3.4.5155', androidChrome: '90.0.4430.91' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
-  ff: { desktop: '88', mobile: '86' },
-  gcr: { desktop: '90.0.4430.72', ios: '87.0.4280.163', android: '90.0.4430.66' },
-  sf: { desktop: '14.0.3', ios1: '12.1.2', ios2: '13.1', ios3: '14.0' },
+  ff: { desktop: '88', mobile: '88' },
+  gcr: { desktop: '90.0.4430.93', ios: '87.0.4280.163', android: '90.0.4430.91' },
+  sf: { desktop: '14.1', ios1: '12.1.2', ios2: '13.1', ios3: '14.0' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -590,7 +590,7 @@ export class Generator {
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
       if (os.id.includes('ios')) {
-        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/604.1`;
+        ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/15E148 Safari/604.1`;
 
         (navigator = {
           appMinorVersion: null,
@@ -666,7 +666,7 @@ export class Generator {
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
       if (os.id.includes('ios')) {
-        ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/${device.build} Safari/604.1`;
+        ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${versions.ios} Mobile/15E148 Safari/604.1`;
 
         navigator = {
           appMinorVersion: null,
@@ -847,7 +847,7 @@ export class Generator {
       const device = devices.getDevice('mobile', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      let ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/${device.build} Safari/604.1`;
+      let ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/15E148 Safari/604.1`;
 
       return {
         accept: {
@@ -889,7 +889,7 @@ export class Generator {
       const device = devices.getDevice('tablet', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      let ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/${device.build} Safari/604.1`;
+      let ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/15E148 Safari/604.1`;
 
       return {
         accept: {
