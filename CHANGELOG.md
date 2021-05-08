@@ -1,6 +1,15 @@
+<a name="v0.21.24-rc"></a>
+
+## [v0.21.24-rc](https://github.com/sereneblue/chameleon/compare/v0.21.23...v0.21.24-rc) (2021-05-04)
+
+### Features
+
+- add Android 10 & 11 devices
+- spoof navigator max touch points
+
 <a name="v0.21.23-rc"></a>
 
-## [v0.21.23](https://github.com/sereneblue/chameleon/compare/v0.21.22...v0.21.23-rc) (2021-04-19)
+## [v0.21.23-rc](https://github.com/sereneblue/chameleon/compare/v0.21.22...v0.21.23-rc) (2021-04-19)
 
 ### Bug Fixes
 
