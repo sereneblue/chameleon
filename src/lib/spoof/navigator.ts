@@ -7,6 +7,7 @@ export default {
     { obj: 'window.navigator', prop: 'cpuClass', value: '' },
     { obj: 'window.navigator', prop: 'deviceMemory', value: '' },
     { obj: 'window.navigator', prop: 'hardwareConcurrency', value: '' },
+    { obj: 'window.navigator', prop: 'maxTouchPoints', value: '' },
     { obj: 'window.navigator', prop: 'mimeTypes', value: '' },
     { obj: 'window.navigator', prop: 'oscpu', value: '' },
     { obj: 'window.navigator', prop: 'platform', value: '' },
