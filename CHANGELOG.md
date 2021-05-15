@@ -1,3 +1,15 @@
+<a name="v0.21.26-rc"></a>
+
+## [v0.21.26-rc](https://github.com/sereneblue/chameleon/compare/v0.21.25...v0.21.26-rc) (2021-05-15)
+
+### Bug Fixes
+
+- **profiles:** update profiles, fix issue with Chrome profiles ([#501](https://github.com/sereneblue/chameleon/issues/501))
+
+### Pull Requests
+
+- Merge pull request [#502](https://github.com/sereneblue/chameleon/issues/502) from infinitewarp/typo
+
 <a name="v0.21.25-rc"></a>
 
 ## [v0.21.25-rc](https://github.com/sereneblue/chameleon/compare/v0.21.24...v0.21.25-rc) (2021-05-08)
