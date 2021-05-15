@@ -447,7 +447,7 @@
     "message": "Reset to Default"
   },
   "options-settings-permissions": {
-    "message": "Chameleon can control some of your Firefox preferences such as resist fingerprinting or enabling tracking protection. This may conflict wih another extension. You can opt-out of Chameleon controlling these preferences by removing the privacy permission. Please note that removing this permission will reset these preferences. You can request this permission if it's not present."
+    "message": "Chameleon can control some of your Firefox preferences such as resist fingerprinting or enabling tracking protection. This may conflict with another extension. You can opt-out of Chameleon controlling these preferences by removing the privacy permission. Please note that removing this permission will reset these preferences. You can request this permission if it's not present."
   },
   "options-settings-permissions-legacy": {
     "message": "You will need to install a special version of Chameleon to enable the privacy permissions. This is due to some complications with the supported permissions for a cross platform/new version of this extension. More details can be found on the wiki linked below."
