@@ -387,7 +387,7 @@ export class Generator {
 
       return {
         accept: {
-          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
@@ -533,10 +533,6 @@ export class Generator {
 
       let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Safari/537.36`;
 
-      if (os.id === 'lin1' || os.id == 'lin2') {
-        platform = 'Linux x86_64';
-      }
-
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -560,7 +556,7 @@ export class Generator {
           ],
           maxTouchPoints: 0,
           oscpu: null,
-          platform,
+          platform: os.nav.platform,
           plugins: [
             { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', version: null, _types: ['application/x-google-chrome-pdf'] },
             { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, _types: ['application/pdf'] },
