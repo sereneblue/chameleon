@@ -621,6 +621,7 @@ export class Generator {
           deviceMemory: device.mem,
           hardwareConcurrency: device.hw,
           mimeTypes: [],
+          maxTouchPoints: 5,
           oscpu: null,
           platform: 'Linux armv8l',
           plugins: [],
