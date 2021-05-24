@@ -328,10 +328,14 @@ class Injector {
               value: plugins
             });
           } else {
-            Object.defineProperty(injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, spoofContext), injProp.prop, {
-              configurable: true,
-              value: injProp.value
-            });
+            let tmpObj = injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, spoofContext);
+
+            if (tmpObj[injProp.prop] != injProp.value) {
+              Object.defineProperty(tmpObj, injProp.prop, {
+                configurable: true,
+                value: injProp.value
+              });
+            }
           }
         });
 
