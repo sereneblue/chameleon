@@ -50,6 +50,9 @@ const BrowserVersions: any = {
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
 const MacResolutions: string[] = ['1920x1080', '2560x1600', '4096x2304', '5120x2880'];
 
+// operating systems to randomize harware for
+const randomHW: string[] = ['win1', 'win2', 'win3', 'win4', 'lin1', 'lin2', 'lin3'];
+
 let getName = (os: string, browser: string) => {
   let osId: string;
 
@@ -126,6 +129,8 @@ export class Generator {
         versions.desktopChrome
       } Safari/537.36 Edg/${os.id.includes('win') ? versions.win : versions.mac}`;
 
+      let hardwareConcurrency: number = randomHW.includes(os.id) ? (Math.random() > 0.5 ? 4 : 2) : 4;
+
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -139,8 +144,8 @@ export class Generator {
           appVersion: ua.split('Mozilla/')[1],
           buildID: null,
           cpuClass: null,
-          deviceMemory: 8,
-          hardwareConcurrency: 4,
+          deviceMemory: Math.random() > 0.5 ? 4 : 8,
+          hardwareConcurrency,
           mimeTypes: [
             { type: 'application/pdf', suffixes: 'pdf', description: '' },
             { type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format' },
@@ -224,6 +229,8 @@ export class Generator {
       let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
       let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
+      let hardwareConcurrency: number = randomHW.includes(os.id) ? (Math.random() > 0.5 ? 4 : 2) : 4;
+
       switch (os.id) {
         case 'win1':
         case 'win2':
@@ -264,7 +271,7 @@ export class Generator {
           buildID: '20181001000000',
           cpuClass: null,
           deviceMemory: null,
-          hardwareConcurrency: 4,
+          hardwareConcurrency,
           mimeTypes: [],
           maxTouchPoints: 0,
           oscpu: os.nav.oscpu,
@@ -291,6 +298,8 @@ export class Generator {
       let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
       let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
+      let hardwareConcurrency: number = randomHW.includes(os.id) ? (Math.random() > 0.5 ? 4 : 2) : 4;
+
       switch (os.id) {
         case 'win1':
         case 'win2':
@@ -331,7 +340,7 @@ export class Generator {
           buildID: '20181001000000',
           cpuClass: null,
           deviceMemory: null,
-          hardwareConcurrency: 4,
+          hardwareConcurrency,
           mimeTypes: [],
           maxTouchPoints: 0,
           oscpu: os.nav.oscpu,
@@ -357,6 +366,8 @@ export class Generator {
 
       let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
       let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
+
+      let hardwareConcurrency: number = randomHW.includes(os.id) ? (Math.random() > 0.5 ? 4 : 2) : 4;
 
       switch (os.id) {
         case 'win1':
@@ -399,7 +410,7 @@ export class Generator {
           buildID: '20181001000000',
           cpuClass: null,
           deviceMemory: null,
-          hardwareConcurrency: 4,
+          hardwareConcurrency,
           mimeTypes: [],
           maxTouchPoints: 0,
           oscpu: os.nav.oscpu,
@@ -533,6 +544,8 @@ export class Generator {
 
       let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${version} Safari/537.36`;
 
+      let hardwareConcurrency: number = randomHW.includes(os.id) ? (Math.random() > 0.5 ? 4 : 2) : 4;
+
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -546,8 +559,8 @@ export class Generator {
           appVersion: ua.split('Mozilla/')[1],
           buildID: null,
           cpuClass: null,
-          deviceMemory: 8,
-          hardwareConcurrency: 4,
+          deviceMemory: Math.random() > 0.5 ? 4 : 8,
+          hardwareConcurrency,
           mimeTypes: [
             { type: 'application/pdf', suffixes: 'pdf', description: '' },
             { type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format' },
@@ -790,6 +803,8 @@ export class Generator {
       let ua = `Mozilla/5.0 (${os.uaPlatform}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Safari/605.1.15`;
       let screenRes = MacResolutions[Math.floor(Math.random() * MacResolutions.length)].split('x').map(Number);
 
+      let hardwareConcurrency: number = Math.random() > 0.5 ? 4 : 8;
+
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -804,7 +819,7 @@ export class Generator {
           buildID: null,
           cpuClass: null,
           deviceMemory: null,
-          hardwareConcurrency: 8,
+          hardwareConcurrency,
           mimeTypes: [
             { type: 'application/x-shockwave-flash', suffixes: 'swf', description: 'Shockwave Flash' },
             { type: 'application/futuresplash', suffixes: 'spl', description: 'FutureSplash Player' },
