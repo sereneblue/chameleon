@@ -1,3 +1,13 @@
+<a name="v0.21.27-rc"></a>
+
+## [v0.21.27-rc](https://github.com/sereneblue/chameleon/compare/v0.21.26...v0.21.27-rc) (2021-05-23)
+
+### Bug Fixes
+
+- **injection:** don't spoof property if not changed ([#501](https://github.com/sereneblue/chameleon/issues/501))
+- **profiles:** randomize hardwareConcurrency and device memory ([#501](https://github.com/sereneblue/chameleon/issues/501))
+- **profiles:** spoof maxTouchPoints on Android/Chrome profiles
+
 <a name="v0.21.26-rc"></a>
 
 ## [v0.21.26-rc](https://github.com/sereneblue/chameleon/compare/v0.21.25...v0.21.26-rc) (2021-05-15)
