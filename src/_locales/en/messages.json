@@ -791,6 +791,15 @@
   "popup-whitelist-open": {
     "message": "Open in whitelist"
   },
+  "text-addToRule": {
+    "message": "Add to rule: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
   "text-allowAll": {
     "message": "Allow all"
   },
@@ -820,6 +829,15 @@
   },
   "text-realProfile": {
     "message": "Real Profile"
+  },
+  "text-removeFromRule": {
+    "message": "Remove from rule: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "Save"

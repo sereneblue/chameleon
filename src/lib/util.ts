@@ -33,6 +33,8 @@ let findWhitelistRule = (rules: any, host: string, url: string): any => {
         if (!rules[i].sites[j].pattern || (rules[i].sites[j].pattern && new RegExp(rules[i].sites[j].pattern).test(url))) {
           return {
             id: rules[i].id,
+            siteIndex: j,
+            name: rules[i].name,
             lang: rules[i].lang,
             pattern: rules[i].sites[j],
             profile: rules[i].profile,

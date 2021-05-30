@@ -35,6 +35,7 @@ export class Chameleon {
   public platform: any;
   public tempStore: TemporarySettings;
   public timeout: any;
+  public updateContextMenu: Function;
   public version: string;
 
   constructor(initSettings: any) {
@@ -56,6 +57,80 @@ export class Chameleon {
     this.profileCache = {};
     this.version = browser.runtime.getManifest().version;
     this.REGEX_UUID = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+
+    this.updateContextMenu = (info, tab) => {
+      browser.contextMenus.removeAll();
+
+      // remove menu ids
+      for (let i = 0; i < this.settings.whitelist.rules.length; i++) {
+        browser.contextMenus.remove('chameleon-rule-' + this.settings.whitelist.rules[i].id);
+      }
+
+      // check if site already in whitelist
+      let l = document.createElement('a');
+      l.href = info.pageUrl;
+
+      let rule = util.findWhitelistRule(this.settings.whitelist.rules, l.host, info.pageUrl);
+
+      if (rule) {
+        browser.contextMenus.create({
+          id: 'chameleon-rule-' + rule.id,
+          title: browser.i18n.getMessage('text-removeFromRule', rule.name),
+          contexts: ['page'],
+          onclick: details => {
+            let l = document.createElement('a');
+            l.href = details.pageUrl;
+
+            if (['http:', 'https:'].includes(l.protocol)) {
+              const ruleIndex = this.settings.whitelist.rules.findIndex(r => r.id === rule.id);
+
+              if (ruleIndex > -1) {
+                this.settings.whitelist.rules[ruleIndex].sites.splice(rule.siteIndex, 1);
+                this.saveSettings(this.settings);
+              }
+            }
+          },
+        });
+      } else {
+        // create new rule
+        browser.contextMenus.create({
+          id: 'chameleon-openInWhitelist',
+          title: browser.i18n.getMessage('text-createNewRule'),
+          contexts: ['page'],
+          onclick: function(details) {
+            var l = document.createElement('a');
+            l.href = details.pageUrl;
+
+            if (['http:', 'https:'].includes(l.protocol)) {
+              browser.tabs.create({
+                url: browser.runtime.getURL(`/options/options.html#whitelist?site=${l.host}`),
+              });
+            }
+          },
+        });
+
+        for (let i = 0; i < this.settings.whitelist.rules.length; i++) {
+          browser.contextMenus.create({
+            id: 'chameleon-rule-' + this.settings.whitelist.rules[i].id,
+            title: browser.i18n.getMessage('text-addToRule', this.settings.whitelist.rules[i].name),
+            contexts: ['page'],
+            onclick: details => {
+              let l = document.createElement('a');
+              l.href = details.pageUrl;
+
+              if (['http:', 'https:'].includes(l.protocol)) {
+                this.settings.whitelist.rules[i].sites.push({
+                  domain: l.host,
+                });
+                this.saveSettings(this.settings);
+              }
+            },
+          });
+        }
+      }
+
+      browser.contextMenus.refresh();
+    };
   }
 
   public async buildInjectionScript() {
@@ -865,38 +940,10 @@ export class Chameleon {
 
   public toggleContextMenu(enabled: boolean): void {
     if (enabled && this.platform.os != 'android') {
+      browser.contextMenus.onShown.addListener(this.updateContextMenu);
+    } else if (this.platform.os != 'android' && !enabled) {
       browser.contextMenus.removeAll();
-
-      let rules: any = this.settings.whitelist.rules;
-
-      browser.contextMenus.create({
-        id: 'chameleon-openInWhitelist',
-        title: 'Open in whitelist editor',
-        contexts: ['page'],
-        onclick: function(details) {
-          var l = document.createElement('a');
-          l.href = details.pageUrl;
-
-          if (['http:', 'https:'].includes(l.protocol)) {
-            let rule = util.findWhitelistRule(rules, l.host, l.href);
-
-            if (rule !== null) {
-              browser.tabs.create({
-                url: browser.runtime.getURL(`/options/options.html#whitelist?id=${rule.id}`),
-              });
-              return;
-            }
-
-            browser.tabs.create({
-              url: browser.runtime.getURL(`/options/options.html#whitelist?site=${l.host}`),
-            });
-          }
-        },
-        icons: {
-          '16': 'icon/icon_16.png',
-          '32': 'icon/icon_32.png',
-        },
-      });
+      browser.contextMenus.onShown.removeListener(this.updateContextMenu);
     }
   }
 
