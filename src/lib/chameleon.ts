@@ -87,6 +87,7 @@ export class Chameleon {
               if (ruleIndex > -1) {
                 this.settings.whitelist.rules[ruleIndex].sites.splice(rule.siteIndex, 1);
                 this.saveSettings(this.settings);
+                this.buildInjectionScript();
               }
             }
           },
@@ -123,6 +124,7 @@ export class Chameleon {
                   domain: l.host,
                 });
                 this.saveSettings(this.settings);
+                this.buildInjectionScript();
               }
             },
           });
