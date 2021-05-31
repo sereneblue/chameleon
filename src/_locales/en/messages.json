@@ -479,6 +479,18 @@
   "options-whitelist-headerIPLabel": {
     "message": "Header IP (Via & X-Forwarded-For)"
   },
+  "options-whitelist-options-audioContext": {
+    "message": "Enable spoof audio context"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Enable spoof client rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Block CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Block media devices"
+  },
   "options-whitelist-options-name": {
     "message": "Enable protect window name"
   },
@@ -791,6 +803,15 @@
   "popup-whitelist-open": {
     "message": "Open in whitelist"
   },
+  "text-addToRule": {
+    "message": "Add to rule: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
   "text-allowAll": {
     "message": "Allow all"
   },
@@ -820,6 +841,15 @@
   },
   "text-realProfile": {
     "message": "Real Profile"
+  },
+  "text-removeFromRule": {
+    "message": "Remove from rule: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "Save"
