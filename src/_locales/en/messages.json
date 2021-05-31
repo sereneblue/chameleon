@@ -479,6 +479,18 @@
   "options-whitelist-headerIPLabel": {
     "message": "Header IP (Via & X-Forwarded-For)"
   },
+  "options-whitelist-options-audioContext": {
+    "message": "Enable spoof audio context"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Enable spoof client rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Block CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Block media devices"
+  },
   "options-whitelist-options-name": {
     "message": "Enable protect window name"
   },

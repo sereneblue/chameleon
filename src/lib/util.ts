@@ -5,6 +5,18 @@ const cidr = new CIDR();
 const REGEX_HTTP = new RegExp('^https?:', 'i');
 const LINK = document.createElement('a');
 
+let deepMerge = (target: object, source: object) => {
+  Object.entries(source).forEach(([key, value]) => {
+    if (value && typeof value === 'object') {
+      deepMerge((target[key] = target[key] || {}), value);
+      return;
+    }
+    target[key] = value;
+  });
+
+  return target;
+};
+
 let determineRequestType = (source: string, destination: string): string => {
   if (!source) return 'none';
 
@@ -128,6 +140,7 @@ let validateIPRange = (from: string, to: string): boolean => {
 };
 
 export default {
+  deepMerge,
   determineRequestType,
   findWhitelistRule,
   generateIP,

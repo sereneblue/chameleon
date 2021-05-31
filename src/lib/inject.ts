@@ -194,6 +194,19 @@ class Injector {
     } else {
       if (wl.options.name) this.updateInjectionData(winName);
 
+      if (wl.options.audioContext) {
+        this.spoof.metadata['audioContextSeed'] = seed;
+        this.updateInjectionData(audioContext);
+      }
+
+      if (wl.options.clientRects) {
+        this.spoof.metadata['clientRectsSeed'] = seed;
+        this.updateInjectionData(clientRects);
+      }
+
+      if (wl.options.cssExfil) this.updateInjectionData(cssExfil);
+      if (wl.options.mediaDevices) this.updateInjectionData(media);
+
       let l = lang.getLanguage(wl.lang);
 
       this.spoof.metadata['language'] = {

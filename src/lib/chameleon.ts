@@ -204,6 +204,17 @@ export class Chameleon {
     if (this.settings.settings) {
       delete this.settings.settings;
     }
+
+    // updated whitelist options introduced in v0.22
+    let newOptions = ['audioContext', 'clientRects', 'cssExfil', 'mediaDevices'];
+
+    for (let i = 0; i < this.settings.whitelist.rules.length; i++) {
+      for (let j = 0; j < newOptions.length; j++) {
+        if (!(newOptions[j] in this.settings.whitelist.rules[i].options)) {
+          this.settings.whitelist.rules[i].options[newOptions[j]] = false;
+        }
+      }
+    }
   }
 
   public async init(storedSettings: any): Promise<void> {
@@ -1324,25 +1335,56 @@ export class Chameleon {
           };
         }
 
-        // validate whitelist options
-        let keys = Object.keys(impSettings.whitelist.rules[i].options);
-        if (
-          keys.length !== 4 ||
-          !keys.includes('name') ||
-          !keys.includes('ref') ||
-          !keys.includes('tz') ||
-          !keys.includes('ws') ||
-          typeof impSettings.whitelist.rules[i].options.name != 'boolean' ||
-          typeof impSettings.whitelist.rules[i].options.ref != 'boolean' ||
-          typeof impSettings.whitelist.rules[i].options.tz != 'boolean' ||
-          typeof impSettings.whitelist.rules[i].options.ws != 'boolean'
-        ) {
-          msg = browser.i18n.getMessage('options-import-invalid-whitelistOpt');
+        if (impSettings.version < '0.22') {
+          // validate whitelist options
+          let keys = Object.keys(impSettings.whitelist.rules[i].options);
+          if (
+            keys.length !== 4 ||
+            !keys.includes('name') ||
+            !keys.includes('ref') ||
+            !keys.includes('tz') ||
+            !keys.includes('ws') ||
+            typeof impSettings.whitelist.rules[i].options.name != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.ref != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.tz != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.ws != 'boolean'
+          ) {
+            msg = browser.i18n.getMessage('options-import-invalid-whitelistOpt');
 
-          return {
-            error: true,
-            msg,
-          };
+            return {
+              error: true,
+              msg,
+            };
+          }
+        } else {
+          // validate whitelist options
+          let keys = Object.keys(impSettings.whitelist.rules[i].options);
+          if (
+            keys.length !== 8 ||
+            !keys.includes('audioContext') ||
+            !keys.includes('clientRects') ||
+            !keys.includes('cssExfil') ||
+            !keys.includes('mediaDevices') ||
+            !keys.includes('name') ||
+            !keys.includes('ref') ||
+            !keys.includes('tz') ||
+            !keys.includes('ws') ||
+            typeof impSettings.whitelist.rules[i].options.audioContext != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.clientRects != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.cssExfil != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.mediaDevices != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.name != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.ref != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.tz != 'boolean' ||
+            typeof impSettings.whitelist.rules[i].options.ws != 'boolean'
+          ) {
+            msg = browser.i18n.getMessage('options-import-invalid-whitelistOpt');
+
+            return {
+              error: true,
+              msg,
+            };
+          }
         }
       }
 

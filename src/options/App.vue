@@ -316,38 +316,62 @@
                     <input v-model="tmp.wlRule.spoofIP" class="block w-full form-input" :class="{ error: errors.wlRuleIP }" />
                   </div>
                   <div class="my-4">
-                    <div class="flex flex-col md:flex-row justify-around">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-y-2 grid-flow-row auto-rows-max">
                       <div>
-                        <div class="mb-2">
-                          <div class="form-switch inline-block align-middle">
-                            <input v-model="tmp.wlRule.options.ref" id="ref" type="checkbox" class="form-switch-checkbox" />
-                            <label class="form-switch-label" for="ref"></label>
-                          </div>
-                          <label class="text-sm" v-t="'text-disableReferer.message'"></label>
+                        <div class="form-switch inline-block align-middle">
+                          <input v-model="tmp.wlRule.options.ref" id="ref" type="checkbox" class="form-switch-checkbox" />
+                          <label class="form-switch-label" for="ref"></label>
                         </div>
-                        <div>
-                          <div class="form-switch inline-block align-middle">
-                            <input v-model="tmp.wlRule.options.ws" id="ws" type="checkbox" class="form-switch-checkbox" />
-                            <label class="form-switch-label" for="ws"></label>
-                          </div>
-                          <label class="text-sm" v-t="'options-whitelist-options-ws.message'"></label>
-                        </div>
+                        <label class="text-sm" v-t="'text-disableReferer.message'"></label>
                       </div>
-                      <div class="mt-2 md:mt-0">
-                        <div class="mb-2">
-                          <div class="form-switch inline-block align-middle">
-                            <input v-model="tmp.wlRule.options.name" id="name" type="checkbox" class="form-switch-checkbox" />
-                            <label class="form-switch-label" for="name"></label>
-                          </div>
-                          <label class="text-sm" v-t="'options-whitelist-options-name.message'"></label>
+                      <div>
+                        <div class="form-switch inline-block align-middle">
+                          <input v-model="tmp.wlRule.options.ws" id="ws" type="checkbox" class="form-switch-checkbox" />
+                          <label class="form-switch-label" for="ws"></label>
                         </div>
-                        <div>
-                          <div class="form-switch inline-block align-middle">
-                            <input v-model="tmp.wlRule.options.tz" id="tz" type="checkbox" class="form-switch-checkbox" />
-                            <label class="form-switch-label" for="tz"></label>
-                          </div>
-                          <label class="text-sm" v-t="'options-whitelist-options-tz.message'"></label>
+                        <label class="text-sm" v-t="'options-whitelist-options-ws.message'"></label>
+                      </div>
+                      <div>
+                        <div class="form-switch inline-block align-middle">
+                          <input v-model="tmp.wlRule.options.name" id="name" type="checkbox" class="form-switch-checkbox" />
+                          <label class="form-switch-label" for="name"></label>
                         </div>
+                        <label class="text-sm" v-t="'options-whitelist-options-name.message'"></label>
+                      </div>
+                      <div>
+                        <div class="form-switch inline-block align-middle">
+                          <input v-model="tmp.wlRule.options.tz" id="tz" type="checkbox" class="form-switch-checkbox" />
+                          <label class="form-switch-label" for="tz"></label>
+                        </div>
+                        <label class="text-sm" v-t="'options-whitelist-options-tz.message'"></label>
+                      </div>
+                      <div>
+                        <div class="form-switch inline-block align-middle">
+                          <input v-model="tmp.wlRule.options.mediaDevices" id="mediaDevices" type="checkbox" class="form-switch-checkbox" />
+                          <label class="form-switch-label" for="mediaDevices"></label>
+                        </div>
+                        <label class="text-sm" v-t="'options-whitelist-options-mediaDevices.message'"></label>
+                      </div>
+                      <div>
+                        <div class="form-switch inline-block align-middle">
+                          <input v-model="tmp.wlRule.options.cssExfil" id="cssExfil" type="checkbox" class="form-switch-checkbox" />
+                          <label class="form-switch-label" for="cssExfil"></label>
+                        </div>
+                        <label class="text-sm" v-t="'options-whitelist-options-cssExfil.message'"></label>
+                      </div>
+                      <div>
+                        <div class="form-switch inline-block align-middle">
+                          <input v-model="tmp.wlRule.options.audioContext" id="audioContext" type="checkbox" class="form-switch-checkbox" />
+                          <label class="form-switch-label" for="audioContext"></label>
+                        </div>
+                        <label class="text-sm" v-t="'options-whitelist-options-audioContext.message'"></label>
+                      </div>
+                      <div>
+                        <div class="form-switch inline-block align-middle">
+                          <input v-model="tmp.wlRule.options.clientRects" id="clientRects" type="checkbox" class="form-switch-checkbox" />
+                          <label class="form-switch-label" for="clientRects"></label>
+                        </div>
+                        <label class="text-sm" v-t="'options-whitelist-options-clientRects.message'"></label>
                       </div>
                     </div>
                   </div>
@@ -506,6 +530,10 @@ export default class App extends Vue {
       profile: '',
       spoofIP: '',
       options: {
+        audioContext: false,
+        clientRects: false,
+        cssExfil: false,
+        mediaDevices: false,
         name: false,
         ref: false,
         tz: false,
@@ -634,6 +662,10 @@ export default class App extends Vue {
     this.tmp.wlRule.lang = lang;
     this.tmp.wlRule.profile = 'default';
     this.tmp.wlRule.spoofIP = '';
+    this.tmp.wlRule.options.audioContext = false;
+    this.tmp.wlRule.options.clientRects = false;
+    this.tmp.wlRule.options.cssExfil = false;
+    this.tmp.wlRule.options.mediaDevices = false;
     this.tmp.wlRule.options.name = false;
     this.tmp.wlRule.options.ref = false;
     this.tmp.wlRule.options.tz = false;
@@ -664,7 +696,28 @@ export default class App extends Vue {
 
   editWLRule(id: string): void {
     let rule: any = this.settings.whitelist.rules.find(r => r.id === id);
-    this.tmp.wlRule = Object.assign({}, rule);
+
+    this.tmp.wlRule = [
+      {
+        id: '',
+        name: '',
+        sites: '',
+        lang,
+        profile: 'default',
+        spoofIP: '',
+        options: {
+          audioContext: false,
+          clientRects: false,
+          cssExfil: false,
+          mediaDevices: false,
+          name: false,
+          ref: false,
+          tz: false,
+          ws: false,
+        },
+      },
+      rule,
+    ].reduce(util.deepMerge, {});
 
     this.tmp.wlRule.sites = rule.sites.map(r => Object.values(r).join('@@')).join('\n');
 
