@@ -1,3 +1,17 @@
+<a name="v0.22.0-rc"></a>
+
+## [v0.22.0-rc](https://github.com/sereneblue/chameleon/compare/v0.21.27...v0.22.0-rc) (2021-05-31)
+
+### Bug Fixes
+
+- **whitelist:** reload injection script when whitelist changed
+
+### Features
+
+- update profiles
+- **whitelist:** add injection options
+- **whitelist:** update context menu to quickly add/remove sites ([#505](https://github.com/sereneblue/chameleon/issues/505))
+
 <a name="v0.21.27-rc"></a>
 
 ## [v0.21.27-rc](https://github.com/sereneblue/chameleon/compare/v0.21.26...v0.21.27-rc) (2021-05-23)
