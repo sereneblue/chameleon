@@ -1,3 +1,11 @@
+<a name="v0.22.1-rc"></a>
+
+## [v0.22.1-rc](https://github.com/sereneblue/chameleon/compare/v0.22.0...v0.22.1-rc) (2021-06-06)
+
+### Bug Fixes
+
+- update IP info handling ([#506](https://github.com/sereneblue/chameleon/issues/506))
+
 <a name="v0.22.0-rc"></a>
 
 ## [v0.22.0-rc](https://github.com/sereneblue/chameleon/compare/v0.21.27...v0.22.0-rc) (2021-05-31)
