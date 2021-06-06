@@ -853,7 +853,7 @@ export class Chameleon {
               }
             } else {
               foundLang = lang.getLanguage('en-US');
-              this.tempStore.ipInfo.lang = foundLang.code;
+              this.tempStore.ipInfo.lang = foundLang.nav[0];
             }
 
             notificationMsg = `${notificationMsg} ${foundLang.name}`;
