@@ -447,7 +447,7 @@
     "message": "Przywróć domyślne"
   },
   "options-settings-permissions": {
-    "message": "Chameleon może kontrolować niektóre z Twoich ustawień Firefoksa takie jak odpieranie fingerprintingu lub włączanie ochrony przed śledzeniem. Może to kolidować z innym rozszerzeniem. Możesz odstąpić od kontrolowania tych preferencji przez usunięcie uprawnień do ustawień prywatności. Pamiętaj, że usunięcie tego uprawnienia zresetuje te preferencje. Możesz poprosić o to uprawnienie jeśli nie zostało udzielone."
+    "message": "Chameleon może kontrolować niektóre ustawienia Firefoxa, takie jak zapobieganie fingerprintingu lub włączenie ochrony przed śledzeniem. Może to powodować konflikty z innym rozszerzeniem. Możesz zrezygnować z kontrolowania tych preferencji przez Chameleon, usuwając uprawnienie prywatności. Należy pamiętać, że usunięcie tego uprawnienia spowoduje zresetowanie tych preferencji. Możesz poprosić o to uprawnienie, jeśli nie jest ono przyznane."
   },
   "options-settings-permissions-legacy": {
     "message": "Musisz zainstalować specjalną wersję Chameleon, aby włączyć uprawnienia do ustawień prywatności. Jest to spowodowane pewnymi komplikacjami z obsługiwanymi uprawnieniami dla międzyplatformowej/nowej wersji tego rozszerzenia. Więcej szczegółów można znaleźć na wiki podłączonej poniżej."
@@ -478,6 +478,18 @@
   },
   "options-whitelist-headerIPLabel": {
     "message": "Nagłówek IP (Via & X-Forwarded-For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Włącz podrabianie audio context"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Włącz podrabianie client rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Zablokuj CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Blokuj urządzenia multimedialne"
   },
   "options-whitelist-options-name": {
     "message": "Włącz ochronę nazwy okna"
@@ -791,6 +803,15 @@
   "popup-whitelist-open": {
     "message": "Otwórz na białej liście"
   },
+  "text-addToRule": {
+    "message": "Dodaj do reguły: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
   "text-allowAll": {
     "message": "Zezwól wszystkim"
   },
@@ -820,6 +841,15 @@
   },
   "text-realProfile": {
     "message": "Profil rzeczywisty"
+  },
+  "text-removeFromRule": {
+    "message": "Usuń z reguły: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "Zapisz"
