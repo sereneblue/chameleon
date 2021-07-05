@@ -39,12 +39,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '91.0.864.37', mac: '91.0.864.37', desktopChrome: '91.0.4472.77', android: '46.3.4.5155', androidChrome: '91.0.4472.77' },
+  edg: { win: '91.0.864.59', mac: '91.0.864.59', desktopChrome: '91.0.4472.124', android: '46.3.4.5155', androidChrome: '91.0.4472.120' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
   ff: { desktop: '89', mobile: '89' },
-  gcr: { desktop: '91.0.4472.77', ios: '90.0.4430.216', android: '91.0.4472.77' },
-  sf: { desktop: '14.1', ios1: '12.1.2', ios2: '13.1', ios3: '14.0' },
+  gcr: { desktop: '91.0.4472.124', ios: '91.0.4472.80', android: '91.0.4472.120' },
+  sf: { desktop: '14.1.1', ios1: '12.1.2', ios2: '13.1', ios3: '14.1.1' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -149,8 +149,6 @@ export class Generator {
           mimeTypes: [
             { type: 'application/pdf', suffixes: 'pdf', description: '' },
             { type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format' },
-            { type: 'application/x-nacl', suffixes: '', description: 'Native Client Executable' },
-            { type: 'application/x-pnacl', suffixes: '', description: 'Portable Native Client Executable' },
           ],
           maxTouchPoints: 0,
           oscpu: null,
@@ -161,10 +159,9 @@ export class Generator {
               filename: 'internal-pdf-viewer',
               description: 'Portable Document Format',
               version: null,
-              _types: ['application/x-google-chrome-pdf'],
+              __mimeTypes: ['application/x-google-chrome-pdf'],
             },
-            { name: 'Microsoft Edge PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, _types: ['application/pdf'] },
-            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null, _types: ['application/x-nacl', 'application/x-pnacl'] },
+            { name: 'Microsoft Edge PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, __mimeTypes: ['application/pdf'] },
           ],
           productSub: '20030107',
           userAgent: ua,
@@ -564,16 +561,19 @@ export class Generator {
           mimeTypes: [
             { type: 'application/pdf', suffixes: 'pdf', description: '' },
             { type: 'application/x-google-chrome-pdf', suffixes: 'pdf', description: 'Portable Document Format' },
-            { type: 'application/x-nacl', suffixes: '', description: 'Native Client Executable' },
-            { type: 'application/x-pnacl', suffixes: '', description: 'Portable Native Client Executable' },
           ],
           maxTouchPoints: 0,
           oscpu: null,
           platform: os.nav.platform,
           plugins: [
-            { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format', version: null, _types: ['application/x-google-chrome-pdf'] },
-            { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, _types: ['application/pdf'] },
-            { name: 'Native Client', filename: 'internal-nacl-plugin', description: '', version: null, _types: ['application/x-nacl', 'application/x-pnacl'] },
+            {
+              name: 'Chrome PDF Plugin',
+              filename: 'internal-pdf-viewer',
+              description: 'Portable Document Format',
+              version: null,
+              __mimeTypes: ['application/x-google-chrome-pdf'],
+            },
+            { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '', version: null, __mimeTypes: ['application/pdf'] },
           ],
           productSub: '20030107',
           userAgent: ua,
@@ -821,8 +821,6 @@ export class Generator {
           deviceMemory: null,
           hardwareConcurrency,
           mimeTypes: [
-            { type: 'application/x-shockwave-flash', suffixes: 'swf', description: 'Shockwave Flash' },
-            { type: 'application/futuresplash', suffixes: 'spl', description: 'FutureSplash Player' },
             { type: 'application/pdf', suffixes: 'pdf', description: 'Portable Document Format' },
             { type: 'text/pdf', suffixes: 'pdf', description: 'Portable Document Format' },
             { type: 'application/postscript', suffixes: 'ps', description: 'PostScript' },
@@ -830,16 +828,7 @@ export class Generator {
           maxTouchPoints: 0,
           oscpu: null,
           platform: 'MacIntel',
-          plugins: [
-            {
-              name: 'Shockwave Flash',
-              filename: 'Flash Player.plugin',
-              description: 'Shockwave Flash 32.0 r0',
-              version: null,
-              _types: ['application/x-shockwave-flash', 'application/futuresplash'],
-            },
-            { name: 'WebKit built-in PDF', filename: '', description: '', _types: ['application/pdf', 'text/pdf', 'application/postscript'] },
-          ],
+          plugins: [{ name: 'WebKit built-in PDF', filename: '', description: '', __mimeTypes: ['application/pdf', 'text/pdf', 'application/postscript'] }],
           productSub: '20030107',
           userAgent: ua,
           vendor: 'Apple Computer, Inc.',
