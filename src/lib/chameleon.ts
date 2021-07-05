@@ -848,7 +848,7 @@ export class Chameleon {
                 if (!foundLang) {
                   // use english as default language if no match is found
                   foundLang = lang.getLanguage('en-US');
-                  this.tempStore.ipInfo.lang = foundLang.code;
+                  this.tempStore.ipInfo.lang = foundLang.nav[0];
                 }
               }
             } else {
