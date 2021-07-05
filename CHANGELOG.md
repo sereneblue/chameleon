@@ -1,3 +1,17 @@
+<a name="v0.22.2-rc"></a>
+
+## [v0.22.2-rc](https://github.com/sereneblue/chameleon/compare/v0.22.1...v0.22.2-rc) (2021-07-05)
+
+### Bug Fixes
+
+- update IP info language matching ([#512](https://github.com/sereneblue/chameleon/issues/512))
+
+### Features
+
+- update profiles
+- **localization:** update polish localization
+- **profiles:** remove unused plugins
+
 <a name="v0.22.1-rc"></a>
 
 ## [v0.22.1-rc](https://github.com/sereneblue/chameleon/compare/v0.22.0...v0.22.1-rc) (2021-06-06)
