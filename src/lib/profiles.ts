@@ -35,6 +35,7 @@ export interface BrowserProfile {
 
 export interface ProfileListItem {
   id: string;
+  badge: string;
   name: string;
 }
 
@@ -52,6 +53,22 @@ const MacResolutions: string[] = ['1920x1080', '2560x1600', '4096x2304', '5120x2
 
 // operating systems to randomize harware for
 const randomHW: string[] = ['win1', 'win2', 'win3', 'win4', 'lin1', 'lin2', 'lin3'];
+
+let getBadge = (browser: string): string => {
+  if (browser === 'edg' || browser === 'edgm') {
+    return 'EDG';
+  } else if (browser === 'esr' || browser === 'esr2') {
+    return 'ESR';
+  } else if (browser === 'ff' || browser === 'ffm' || browser === 'fft') {
+    return 'FF';
+  } else if (browser === 'gcr' || browser === 'gcrm' || browser === 'gcrt') {
+    return 'GC';
+  } else if (browser === 'ie') {
+    return 'IE';
+  } else if (browser === 'sf' || browser === 'sft' || browser === 'sfm') {
+    return 'SAF';
+  }
+};
 
 let getName = (os: string, browser: string) => {
   let osId: string;
@@ -1123,6 +1140,7 @@ export class Generator {
         let id = `${target[i].id}-${target[i].browsers[j]}`;
         profiles.push({
           id,
+          badge: getBadge(target[i].browsers[j]),
           name: getName(target[i].name, target[i].browsers[j]),
         });
       }

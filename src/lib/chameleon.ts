@@ -263,15 +263,21 @@ export class Chameleon {
         .substring(Math.floor(Math.random() * 5) + 5);
   }
 
-  private getProfileInUse(): string {
+  private getProfileInUse(): { badge: string; text: string } {
     if (this.settings.profile.selected === 'none' || this.settings.excluded.includes(this.settings.profile.selected) || this.tempStore.profile === 'none') {
-      return browser.i18n.getMessage('text-realProfile');
+      return {
+        badge: '',
+        text: browser.i18n.getMessage('text-realProfile'),
+      };
     } else {
       let profiles: any = new prof.Generator().getAllProfiles();
       for (let k of Object.keys(profiles)) {
         let found = profiles[k].find(p => p.id == (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tempStore.profile));
         if (found != null) {
-          return found.name;
+          return {
+            badge: found.badge,
+            text: found.name,
+          };
         }
       }
     }
@@ -650,11 +656,15 @@ export class Chameleon {
     }
 
     if (this.platform.os != 'android') {
-      let title: string = this.getProfileInUse();
+      let used: { badge: string; text: string } = this.getProfileInUse();
 
-      if (title) {
+      if (used.text) {
+        browser.browserAction.setBadgeText({
+          text: used.badge,
+        });
+
         browser.browserAction.setTitle({
-          title,
+          title: used.text,
         });
       }
     }
@@ -671,7 +681,7 @@ export class Chameleon {
       browser.notifications.create({
         type: 'basic',
         title: 'Chameleon',
-        message: `${browser.i18n.getMessage('notifications-profileChange')} ` + this.getProfileInUse(),
+        message: `${browser.i18n.getMessage('notifications-profileChange')} ` + this.getProfileInUse().text,
       });
     }
   }
