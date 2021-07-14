@@ -75,6 +75,7 @@ Don't know where to start? Check out the [wiki](https://sereneblue.github.io/cha
 ## Credits
 
 [dillbyrne](https://github.com/dillbyrne) for creating [Random Agent Spoofer](https://github.com/dillbyrne/random-agent-spoofer)
+
 [Mike Gualtieri](https://github.com/mlgualtieri) for the [CSS Exfil](https://github.com/mlgualtieri/CSS-Exfil-Protection) code.
 
 ## Special Thanks
@@ -85,5 +86,5 @@ Don't know where to start? Check out the [wiki](https://sereneblue.github.io/cha
 - Shitennouji for the Japanese translation
 - gnu-ewm for the Polish translation
 - 3ibsand, Alexey, fks7cgsk, and Hit Legends for the Russian translation
-- David P. (Megver83) for the Spanish translation
+- David P. (Megver83) and reii for the Spanish translation
 - xlabx for the Turkish translation
