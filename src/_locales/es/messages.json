@@ -446,6 +446,21 @@
   "options-settings-reset": {
     "message": "Restablecer valores predeterminados"
   },
+  "options-settings-permissions": {
+    "message": "Chameleon can control some of your Firefox preferences such as resist fingerprinting or enabling tracking protection. This may conflict with another extension. You can opt-out of Chameleon controlling these preferences by removing the privacy permission. Please note that removing this permission will reset these preferences. You can request this permission if it's not present."
+  },
+  "options-settings-permissions-legacy": {
+    "message": "You will need to install a special version of Chameleon to enable the privacy permissions. This is due to some complications with the supported permissions for a cross platform/new version of this extension. More details can be found on the wiki linked below."
+  },
+  "options-settings-permissions-legacy-wiki": {
+    "message": "More info on wiki"
+  },
+  "options-settings-permissions-request": {
+    "message": "Request privacy permissions"
+  },
+  "options-settings-permissions-remove": {
+    "message": "Remove privacy permissions"
+  },
   "options-tab-about": {
     "message": "Acerca de"
   },
@@ -463,6 +478,18 @@
   },
   "options-whitelist-headerIPLabel": {
     "message": "IP de encabezado (Via & X-Forwarded-For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Enable spoof audio context"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Enable spoof client rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Block CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Block media devices"
   },
   "options-whitelist-options-name": {
     "message": "Activar protección de nombre de la ventana"
@@ -656,8 +683,8 @@
   "popup-options": {
     "message": "Opciones"
   },
-  "popup-options-aboutConfigButton": {
-    "message": "Abrir lista about:config"
+  "popup-options-grantPermissions": {
+    "message": "Grant permission to modify settings"
   },
   "popup-options-injection": {
     "message": "Inyección"
@@ -692,6 +719,9 @@
   "popup-options-standard-blockMediaDevices": {
     "message": "Bloquear dispositivos multimedia"
   },
+  "popup-options-standard-blockCSSExfil": {
+    "message": "Block CSS Exfil"
+  },
   "popup-options-standard-disableWebRTC": {
     "message": "Desactivar WebRTC"
   },
@@ -700,6 +730,9 @@
   },
   "popup-options-standard-resistFingerprinting": {
     "message": "Habilitar resistencia a la huella digital"
+  },
+  "popup-options-standard-spoofMediaDevices": {
+    "message": "Spoof media devices"
   },
   "popup-options-standard-trackingProtection": {
     "message": "Modo de protección de seguimiento"
@@ -770,6 +803,15 @@
   "popup-whitelist-open": {
     "message": "Abrir en la lista blanca"
   },
+  "text-addToRule": {
+    "message": "Add to rule: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
   "text-allowAll": {
     "message": "Permitir todo"
   },
@@ -799,6 +841,15 @@
   },
   "text-realProfile": {
     "message": "Perfil real"
+  },
+  "text-removeFromRule": {
+    "message": "Remove from rule: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "Guardar"
