@@ -39,8 +39,9 @@ class Interceptor {
   private settings: any;
   private tempStore: any;
   private regex: any;
+  private olderThanNinety: boolean;
 
-  constructor(settings: any, tempStore: any, profileCache: any) {
+  constructor(settings: any, tempStore: any, profileCache: any, olderThanNinety: boolean) {
     this.regex = {
       CLOUDFLARE: RegExp(/chk_jschl/),
       HTTPS: RegExp(/^https:\/\//),
@@ -51,6 +52,7 @@ class Interceptor {
     this.settings = settings;
     this.tempStore = tempStore;
     this.profileCache = profileCache;
+    this.olderThanNinety = olderThanNinety;
   }
 
   blockWebsocket(details: any): any {
@@ -285,7 +287,7 @@ class Interceptor {
       }
     }
 
-    if (isSecure && isChromeBased) {
+    if (isSecure && isChromeBased && this.olderThanNinety) {
       // https://www.w3.org/TR/fetch-metadata/#sec-fetch-dest-header
       // implementation below is missing some destinations (mostly worker related)
       let secDest = 'empty';

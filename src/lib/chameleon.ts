@@ -33,6 +33,7 @@ export class Chameleon {
   private REGEX_UUID: RegExp;
   public intervalTimeout: any;
   public platform: any;
+  private browserInfo: any;
   public tempStore: TemporarySettings;
   public timeout: any;
   public updateContextMenu: Function;
@@ -252,8 +253,11 @@ export class Chameleon {
       this.settings.options.webRTCPolicy = webRTCIPHandlingPolicy.value;
     }
 
-    this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache);
     this.platform = await browser.runtime.getPlatformInfo();
+    this.browserInfo = await browser.runtime.getBrowserInfo();
+
+    this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache, this.browserInfo.version < '90');
+
     await this.saveSettings(this.settings);
 
     this.tempStore.notifyId =
