@@ -1,3 +1,17 @@
+<a name="v0.22.3-rc"></a>
+
+## [v0.22.3-rc](https://github.com/sereneblue/chameleon/compare/v0.22.2...v0.22.3-rc) (2021-07-13)
+
+### Bug Fixes
+
+- only add sec-\* headers when using FF version < 90
+
+### Features
+
+- update profiles
+- show current browser in icon badge ([#513](https://github.com/sereneblue/chameleon/issues/513))
+- **localization:** update spanish localization
+
 <a name="v0.22.2-rc"></a>
 
 ## [v0.22.2-rc](https://github.com/sereneblue/chameleon/compare/v0.22.1...v0.22.2-rc) (2021-07-05)
