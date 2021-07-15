@@ -447,7 +447,7 @@
     "message": "重置为默认"
   },
   "options-settings-permissions": {
-    "message": "Chameleon可以控制一些Firefox首选项，如抵制指纹识别或启用跟踪保护。这可能会和其他扩展有冲突。您可以通过移除隐私权限退出Chameleon对这些首选项的控制。请注意，移除此权限将会重置这些首选项。如果不存在您可以请求此权限。"
+    "message": "Chameleon可以控制一些Firefox首选项，如抵制指纹识别或启用跟踪保护。这可能会与其他扩展冲突。您可以通过移除隐私权限退出Chameleon对这些首选项的控制。请注意，移除此权限将会重置这些首选项。如果不存在，您可以请求此权限。"
   },
   "options-settings-permissions-legacy": {
     "message": "您需要安装Chameleon的专用版本以启用隐私权限。这是因为支持跨平台/新版的扩展的权限有些复杂的问题。更多详细信息可在下方链接的wiki找到。"
@@ -478,6 +478,18 @@
   },
   "options-whitelist-headerIPLabel": {
     "message": "头部IP(Via & X-Forwarded-For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "启用欺骗音频上下文"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "启用欺骗客户端矩形"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "阻止CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "阻止媒体设备"
   },
   "options-whitelist-options-name": {
     "message": "启用保护窗口名称"
@@ -791,6 +803,15 @@
   "popup-whitelist-open": {
     "message": "在白名单中打开"
   },
+  "text-addToRule": {
+    "message": "添加到规则：$RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
   "text-allowAll": {
     "message": "全部允许"
   },
@@ -820,6 +841,15 @@
   },
   "text-realProfile": {
     "message": "真实配置文件"
+  },
+  "text-removeFromRule": {
+    "message": "从规则中移除：$RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "保存"
