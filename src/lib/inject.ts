@@ -170,7 +170,9 @@ class Injector {
           };
         }
 
-        this.updateInjectionData(screen);
+        if (p) {
+          this.updateInjectionData(screen);
+        }
       }
 
       if (settings.options.timeZone != 'default') {

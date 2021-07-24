@@ -19,8 +19,8 @@ enum SpoofIPOption {
 
 interface TemporarySettings {
   ipInfo: any;
-  notifyId: string;
   profile: string;
+  screenSize: string;
   spoofIP: string;
 }
 
@@ -49,8 +49,8 @@ export class Chameleon {
         tz: '',
         updated: 0,
       },
-      notifyId: '',
       profile: '',
+      screenSize: '',
       spoofIP: '',
     };
     this.injectionScript = null;
@@ -143,6 +143,7 @@ export class Chameleon {
     }
 
     this.updateProfileCache();
+
     this.injectionScript = await browser.contentScripts.register({
       allFrames: true,
       matchAboutBlank: true,
@@ -259,12 +260,6 @@ export class Chameleon {
     this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache, this.browserInfo.version < '90');
 
     await this.saveSettings(this.settings);
-
-    this.tempStore.notifyId =
-      String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
-      Math.random()
-        .toString(36)
-        .substring(Math.floor(Math.random() * 5) + 5);
   }
 
   private getProfileInUse(): { badge: string; text: string } {
@@ -659,6 +654,34 @@ export class Chameleon {
       }
     }
 
+    if (this.settings.options.screenSize === 'profile') {
+      let p: any;
+
+      if (this.tempStore.profile && this.tempStore.profile != 'none') {
+        p = this.profileCache[this.tempStore.profile];
+      } else {
+        if (this.settings.profile.selected != 'none') {
+          p = this.profileCache[this.settings.profile.selected];
+        }
+      }
+
+      if (p) {
+        this.tempStore.screenSize = `${p.screen.width}x${p.screen.height}`;
+      } else {
+        this.tempStore.screenSize = '';
+      }
+    }
+
+    browser.runtime.sendMessage(
+      {
+        action: 'tempStore',
+        data: this.tempStore,
+      },
+      response => {
+        if (browser.runtime.lastError) return;
+      }
+    );
+
     if (this.platform.os != 'android') {
       let used: { badge: string; text: string } = this.getProfileInUse();
 
@@ -761,12 +784,6 @@ export class Chameleon {
     this.updateProfile(this.settings.profile.selected);
     this.updateSpoofIP();
     this.buildInjectionScript();
-
-    this.tempStore.notifyId =
-      String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
-      Math.random()
-        .toString(36)
-        .substring(Math.floor(Math.random() * 5) + 5);
   }
 
   public async saveSettings(settings: any): Promise<void> {
@@ -919,16 +936,6 @@ export class Chameleon {
     } else {
       this.tempStore.profile = '';
     }
-
-    browser.runtime.sendMessage(
-      {
-        action: 'tempStore',
-        data: this.tempStore,
-      },
-      response => {
-        if (browser.runtime.lastError) return;
-      }
-    );
   }
 
   public updateSpoofIP(): void {

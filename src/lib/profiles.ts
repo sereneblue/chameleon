@@ -40,11 +40,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '91.0.864.59', mac: '91.0.864.59', desktopChrome: '91.0.4472.124', android: '46.3.4.5155', androidChrome: '91.0.4472.120' },
+  edg: { win: '91.0.864.71', mac: '91.0.864.71', desktopChrome: '91.0.4472.164', android: '46.06.4.5160', androidChrome: '77.0.3865.116' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
   ff: { desktop: '90', mobile: '90' },
-  gcr: { desktop: '91.0.4472.124', ios: '91.0.4472.80', android: '91.0.4472.120' },
+  gcr: { desktop: '92.0.4515.107', ios: '92.0.4515.90', android: '92.0.4515.105' },
   sf: { desktop: '14.1.1', ios1: '12.1.2', ios2: '13.1', ios3: '14.1.1' },
 };
 
@@ -1085,7 +1085,7 @@ export class Generator {
         id: 'ios3',
         name: 'iOS 14',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '14_3',
+        uaPlatform: '14_7',
       },
     ],
     android: [

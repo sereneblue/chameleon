@@ -807,6 +807,7 @@ export default class App extends Vue {
         tz: '',
       },
       profile: '',
+      screenSize: '',
     },
   };
 
@@ -826,7 +827,7 @@ export default class App extends Vue {
     if (this.settings.options.screenSize === 'default') {
       screen = this.$t('popup-home-currentProfile-defaultScreen.message') as string;
     } else if (this.settings.options.screenSize === 'profile') {
-      screen = this.$t('popup-home-currentProfile-screenProfile.message') as string;
+      screen = `${this.$t('popup-home-currentProfile-screenProfile.message')} ${this.tmp.store.screenSize}`;
     } else {
       screen = this.settings.options.screenSize;
     }
