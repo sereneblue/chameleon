@@ -1,3 +1,17 @@
+<a name="v0.22.4-rc"></a>
+
+## [v0.22.4-rc](https://github.com/sereneblue/chameleon/compare/v0.22.3...v0.22.4-rc) (2021-07-23)
+
+### Bug Fixes
+
+- **injection:** prevent screen overwrite if using real profile
+
+### Features
+
+- update profiles
+- add profile screen resolution to popup
+- **localization:** update chinese localization
+
 <a name="v0.22.3-rc"></a>
 
 ## [v0.22.3-rc](https://github.com/sereneblue/chameleon/compare/v0.22.2...v0.22.3-rc) (2021-07-13)
