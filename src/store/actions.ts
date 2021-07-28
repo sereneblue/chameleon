@@ -20,6 +20,11 @@ export const changeSetting = ({ commit }, payload: any) => {
       action: 'reloadProfile',
       data: payload[0].value,
     });
+  } else if (payload[0].name === 'profile.showProfileOnIcon') {
+    browser.runtime.sendMessage({
+      action: 'toggleBadgeText',
+      data: payload[0].value,
+    });
   } else if (
     [
       'headers.spoofAcceptLang.enabled',

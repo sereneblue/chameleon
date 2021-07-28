@@ -626,6 +626,9 @@
   "popup-profile-randomMobileProfile": {
     "message": "Random Profile (Mobile)"
   },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Show browser profile on icon"
+  },
   "popup-headers": {
     "message": "Headers"
   },
