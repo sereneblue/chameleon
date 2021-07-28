@@ -1,3 +1,11 @@
+<a name="v0.22.5-rc"></a>
+
+## [v0.22.5-rc](https://github.com/sereneblue/chameleon/compare/v0.22.4...v0.22.5-rc) (2021-07-27)
+
+### Features
+
+- allow badge text to be disabled
+
 <a name="v0.22.4-rc"></a>
 
 ## [v0.22.4-rc](https://github.com/sereneblue/chameleon/compare/v0.22.3...v0.22.4-rc) (2021-07-23)
