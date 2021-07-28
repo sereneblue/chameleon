@@ -18,6 +18,7 @@ enum SpoofIPOption {
 }
 
 interface TemporarySettings {
+  badge: any;
   ipInfo: any;
   profile: string;
   screenSize: string;
@@ -43,6 +44,10 @@ export class Chameleon {
     this.settings = initSettings;
     this.defaultSettings = initSettings;
     this.tempStore = {
+      badge: {
+        text: '',
+        title: '',
+      },
       ipInfo: {
         cache: null,
         lang: '',
@@ -141,8 +146,6 @@ export class Chameleon {
       await this.injectionScript.unregister();
       this.injectionScript = null;
     }
-
-    this.updateProfileCache();
 
     this.injectionScript = await browser.contentScripts.register({
       allFrames: true,
@@ -262,20 +265,21 @@ export class Chameleon {
     await this.saveSettings(this.settings);
   }
 
-  private getProfileInUse(): { badge: string; text: string } {
+  private getProfileInUse(): void {
     if (this.settings.profile.selected === 'none' || this.settings.excluded.includes(this.settings.profile.selected) || this.tempStore.profile === 'none') {
-      return {
-        badge: '',
-        text: browser.i18n.getMessage('text-realProfile'),
+      this.tempStore.badge = {
+        text: '',
+        title: browser.i18n.getMessage('text-realProfile'),
       };
     } else {
       let profiles: any = new prof.Generator().getAllProfiles();
       for (let k of Object.keys(profiles)) {
         let found = profiles[k].find(p => p.id == (/\d/.test(this.settings.profile.selected) ? this.settings.profile.selected : this.tempStore.profile));
+
         if (found != null) {
-          return {
-            badge: found.badge,
-            text: found.name,
+          this.tempStore.badge = {
+            text: found.badge,
+            title: found.name,
           };
         }
       }
@@ -672,6 +676,8 @@ export class Chameleon {
       }
     }
 
+    this.getProfileInUse();
+
     browser.runtime.sendMessage(
       {
         action: 'tempStore',
@@ -683,15 +689,11 @@ export class Chameleon {
     );
 
     if (this.platform.os != 'android') {
-      let used: { badge: string; text: string } = this.getProfileInUse();
-
-      if (used.text) {
-        browser.browserAction.setBadgeText({
-          text: used.badge,
-        });
+      if (this.tempStore.badge.text) {
+        this.updateBadgeText();
 
         browser.browserAction.setTitle({
-          title: used.text,
+          title: this.tempStore.badge.title,
         });
       }
     }
@@ -708,7 +710,7 @@ export class Chameleon {
       browser.notifications.create({
         type: 'basic',
         title: 'Chameleon',
-        message: `${browser.i18n.getMessage('notifications-profileChange')} ` + this.getProfileInUse().text,
+        message: `${browser.i18n.getMessage('notifications-profileChange')} ` + this.tempStore.badge.title,
       });
     }
   }
@@ -783,11 +785,22 @@ export class Chameleon {
   public start(): void {
     this.updateProfile(this.settings.profile.selected);
     this.updateSpoofIP();
+    this.updateProfileCache();
     this.buildInjectionScript();
   }
 
   public async saveSettings(settings: any): Promise<void> {
     await webext.setSettings({ ...settings, version: this.version });
+  }
+
+  public updateBadgeText(enabled: boolean = undefined): void {
+    if (enabled !== undefined) {
+      this.settings.profile.showProfileOnIcon = enabled;
+    }
+
+    browser.browserAction.setBadgeText({
+      text: this.settings.profile.showProfileOnIcon ? this.tempStore.badge.text : '',
+    });
   }
 
   public async updateIPInfo(forceCheck: boolean): Promise<void> {
@@ -1160,6 +1173,10 @@ export class Chameleon {
 
           nSetting[lastIndex] = oSetting[lastIndex];
         }
+      }
+
+      if (impSettings?.profile?.showProfileOnIcon != undefined) {
+        s.profile.showProfileOnIcon = impSettings.profile.showProfileOnIcon;
       }
     }
 

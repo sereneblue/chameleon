@@ -41,6 +41,7 @@ export default new Vuex.Store({
         min: 1,
         max: 1,
       },
+      showProfileOnIcon: true,
     },
     options: {
       cookieNotPersistent: false,

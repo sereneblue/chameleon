@@ -104,6 +104,19 @@
             </label>
           </div>
         </div>
+        <div class="flex items-center mt-2">
+          <label class="cursor-pointer">
+            <input
+              id="showProfileOnIcon"
+              @change="changeSetting($event)"
+              :checked="settings.profile.showProfileOnIcon"
+              name="profile.showProfileOnIcon"
+              type="checkbox"
+              class="text-primary form-checkbox cursor-pointer"
+            />
+            <span class="ml-1" v-t="'popup-profile-showProfileOnIcon.message'"></span>
+          </label>
+        </div>
         <div class="mb-2" v-show="!/\d|none/.test(settings.profile.selected)">
           <div class="flex items-center">
             <label class="w-full mt-2">

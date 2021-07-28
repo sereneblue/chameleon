@@ -27,6 +27,8 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
     }, 200);
   } else if (request.action === 'contextMenu') {
     chameleon.toggleContextMenu(request.data);
+  } else if (request.action === 'toggleBadgeText') {
+    chameleon.updateBadgeText(request.data);
   } else if (request.action === 'getSettings') {
     (async () => {
       if (!!browser.privacy) {
