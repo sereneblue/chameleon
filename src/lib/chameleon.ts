@@ -23,6 +23,7 @@ interface TemporarySettings {
   profile: string;
   screenSize: string;
   spoofIP: string;
+  version: string;
 }
 
 export class Chameleon {
@@ -57,6 +58,7 @@ export class Chameleon {
       profile: '',
       screenSize: '',
       spoofIP: '',
+      version: '',
     };
     this.injectionScript = null;
     this.intervalTimeout = null;
@@ -259,6 +261,8 @@ export class Chameleon {
 
     this.platform = await browser.runtime.getPlatformInfo();
     this.browserInfo = await browser.runtime.getBrowserInfo();
+
+    this.tempStore.version = this.browserInfo.version;
 
     this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache, this.browserInfo.version < '90');
 
@@ -1267,7 +1271,11 @@ export class Chameleon {
         ],
         ['options.timeZone', impSettings.options.timeZone, timezoneIds.concat(['default', 'ip'])],
         ['options.cookieNotPersistent', impSettings.options.cookieNotPersistent, 'boolean'],
-        ['options.cookiePolicy', impSettings.options.cookiePolicy, ['allow_all', 'allow_visited', 'reject_all', 'reject_third_party', 'reject_trackers']],
+        [
+          'options.cookiePolicy',
+          impSettings.options.cookiePolicy,
+          ['allow_all', 'allow_visited', 'reject_all', 'reject_third_party', 'reject_trackers', 'reject_trackers_and_partition_foreign'],
+        ],
         ['options.trackingProtectionMode', impSettings.options.trackingProtectionMode, ['always', 'never', 'private_browsing']],
         [
           'options.webRTCPolicy',

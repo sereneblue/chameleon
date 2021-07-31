@@ -713,7 +713,12 @@
                     <option value="allow_visited" v-t="'popup-options-cookiePolicy-allowVisited.message'"></option>
                     <option value="reject_all" v-t="'popup-options-cookiePolicy-rejectAll.message'"></option>
                     <option value="reject_third_party" v-t="'popup-options-cookiePolicy-rejectThirdParty.message'"></option>
-                    <option value="reject_trackers" v-t="'popup-options-cookiePolicy-rejectTrackers.message'"></option>
+                    <option value="reject_trackers" v-show="tmp.store.version >= 64" v-t="'popup-options-cookiePolicy-rejectTrackers.message'"></option>
+                    <option
+                      value="reject_trackers_and_partition_foreign"
+                      v-show="tmp.store.version >= 78"
+                      v-t="'popup-options-cookiePolicy-rejectTrackersPartitionForeign.message'"
+                    ></option>
                   </select>
                 </label>
               </div>
@@ -821,6 +826,7 @@ export default class App extends Vue {
       },
       profile: '',
       screenSize: '',
+      version: '',
     },
   };
 
