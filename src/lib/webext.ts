@@ -51,6 +51,8 @@ let setBrowserConfig = async (setting: string, value: string): Promise<void> => 
   if (setting === 'options.cookiePolicy' || setting === 'options.cookieNotPersistent') {
     let settings = await browser.privacy.websites.cookieConfig.get({});
 
+    settings = settings.value;
+
     if (setting === 'options.cookiePolicy') {
       settings.behavior = value;
     } else {

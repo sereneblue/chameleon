@@ -788,6 +788,9 @@
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "Reject trackers"
   },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Reject trackers and partition third-party cookies"
+  },
   "popup-whitelist-contextMenu": {
     "message": "Add context menu item to open current tab domain in whitelist"
   },
