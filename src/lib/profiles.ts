@@ -43,7 +43,7 @@ const BrowserVersions: any = {
   edg: { win: '92.0.902.67', mac: '92.0.902.67', desktopChrome: '92.0.4515.131', android: '46.06.4.5160', androidChrome: '77.0.3865.116' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
-  ff: { desktop: '90', mobile: '90' },
+  ff: { desktop: '91', mobile: '90' },
   gcr: { desktop: '92.0.4515.131', ios: '92.0.4515.90', android: '92.0.4515.131' },
   sf: { desktop: '14.1.1', ios1: '12.1.2', ios2: '13.1', ios3: '14.1.1' },
 };
