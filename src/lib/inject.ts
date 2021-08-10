@@ -170,7 +170,7 @@ class Injector {
           };
         }
 
-        if (p) {
+        if (this.spoof.metadata['screen']) {
           this.updateInjectionData(screen);
         }
       }
