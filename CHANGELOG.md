@@ -1,3 +1,15 @@
+<a name="v0.22.7-rc"></a>
+
+## [v0.22.7-rc](https://github.com/sereneblue/chameleon/compare/v0.22.6...v0.22.7-rc) (2021-08-09)
+
+### Bug Fixes
+
+- **injection:** use spoofed screen resolution
+
+### Features
+
+- update profiles
+
 <a name="v0.22.6-rc"></a>
 
 ## [v0.22.6-rc](https://github.com/sereneblue/chameleon/compare/v0.22.5...v0.22.6-rc) (2021-07-30)
