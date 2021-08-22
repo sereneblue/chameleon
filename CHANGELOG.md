@@ -1,3 +1,17 @@
+<a name="v0.22.9-rc"></a>
+
+## [v0.22.9-rc](https://github.com/sereneblue/chameleon/compare/v0.22.8...v0.22.9-rc) (2021-08-22)
+
+### Bug Fixes
+
+- remove icon badge for real profile
+
+### Features
+
+- **localization:** add portuguese (br) localization
+- **localization:** update french localization
+- **localization:** update spanish localization
+
 <a name="v0.22.8-rc"></a>
 
 ## [v0.22.8-rc](https://github.com/sereneblue/chameleon/compare/v0.22.7...v0.22.8-rc) (2021-08-10)
