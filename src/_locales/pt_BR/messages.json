@@ -1,0 +1,875 @@
+{
+  "extDescription": {
+    "message": "Simule seu perfil do navegador. Inclui algumas opções para melhorar sua privacidade."
+  },
+  "notifications-profileChange": {
+    "message": "Perfil alterado:"
+  },
+  "notifications-unableToGetIPInfo": {
+    "message": "Não foi possível obter detalhes sobre IP"
+  },
+  "notifications-usingIPInfo": {
+    "message": "Usando Informações do IP:"
+  },
+  "notifications-usingIPRule": {
+    "message": "Usando regra do IP:"
+  },
+  "options-about-issueTracker": {
+    "message": "Rastreador de Problemas"
+  },
+  "options-about-knownIssues": {
+    "message": "Problemas conhecidos"
+  },
+  "options-about-wiki": {
+    "message": "Wiki"
+  },
+  "options-about-support": {
+    "message": "Suporte"
+  },
+  "options-about-sourceCode": {
+    "message": "Código fonte"
+  },
+  "options-about-translate": {
+    "message": "Ajude a traduzir"
+  },
+  "options-checklist-close": {
+    "message": "Fechar"
+  },
+  "options-checklist-leaveEmpty": {
+    "message": "Deixar em branco"
+  },
+  "options-checklist-note1": {
+    "message": "Observe: Para ver uma lista de preferências alteradas, visite: about:support#prefs-tbody"
+  },
+  "options-checklist-note2": {
+    "message": "Criar opção se ela não existir."
+  },
+  "options-checklist-warning": {
+    "message": "Provavelmente vai quebrar sites."
+  },
+  "options-checklistItem-blockActiveMixedContent": {
+    "message": "Bloquear conteúdo ativo misto"
+  },
+  "options-checklistItem-blockActiveMixedContentDesc": {
+    "message": "Bloqueia conteúdos ativos mistos não-HTTPS (scripts, iframes, CSS, AJAX/solicitações de busca) de serem carregados em uma página HTTPS"
+  },
+  "options-checklistItem-blockDisplayMixedContent": {
+    "message": "Bloquear exibição de conteúdo misto"
+  },
+  "options-checklistItem-blockDisplayMixedContentDesc": {
+    "message": "Bloqueia conteúdo passivo misto não-HTTPS (imagens, áudio, vídeo) de ser carregado em uma página HTTPS"
+  },
+  "options-checklistItem-disableAddonCache": {
+    "message": "Desativar o cache de Extensão"
+  },
+  "options-checklistItem-disableAddonCacheDesc": {
+    "message": "Impedir atualização de metadados de extensão"
+  },
+  "options-checklistItem-disableAddonUpdates": {
+    "message": "Desativar Atualizações da Extensão"
+  },
+  "options-checklistItem-disableAddonUpdatesDesc": {
+    "message": "Impedir verificação por atualizações da extensão"
+  },
+  "options-checklistItem-disableBattery": {
+    "message": "Desativar a API da bateria"
+  },
+  "options-checklistItem-disableBatteryDesc": {
+    "message": "Desativar a API de bateria. Pode ser usado para rastrear usuários"
+  },
+  "options-checklistItem-disableHistory": {
+    "message": "Desativar histórico de Navegação e Download"
+  },
+  "options-checklistItem-disableHistoryDesc": {
+    "message": "Desativar histórico de Navegação e Download"
+  },
+  "options-checklistItem-disableCacheDisk": {
+    "message": "Desativar o Cache (armazenamento)"
+  },
+  "options-checklistItem-disableCacheDiskDesc": {
+    "message": "Impedir armazenamento do cache de dados"
+  },
+  "options-checklistItem-disableCacheMem": {
+    "message": "Desativar o Cache (memória)"
+  },
+  "options-checklistItem-disableCacheMemDesc": {
+    "message": "Impedir armazenamento de dados na memória"
+  },
+  "options-checklistItem-disableClipboardEvt": {
+    "message": "Desativar ações do Clipboard"
+  },
+  "options-checklistItem-disableClipboardEvtDesc": {
+    "message": "Impede que sites detectem quando um usuário copia, cola ou corta dados de um site e que conteúdo foi selecionado"
+  },
+  "options-checklistItem-disableContextMenuEvt": {
+    "message": "Desativar Ações do Menu de Contexto"
+  },
+  "options-checklistItem-disableContextMenuEvtDesc": {
+    "message": "Desativa o controle que site tem sobre o menu de contexto via botão direito. Shift + botão direito para substituir"
+  },
+  "options-checklistItem-disableMobileSensors": {
+    "message": "Desativar Sensores do Dispositivo"
+  },
+  "options-checklistItem-disableMobileSensorsDesc": {
+    "message": "Desativar sensoes do dispositivo (irá quebrar sites que necessitam de acesso aos sensores)"
+  },
+  "options-checklistItem-disableDNSPrefetch": {
+    "message": "Desativar DNS prefetch"
+  },
+  "options-checklistItem-disableDNSPrefetchDesc": {
+    "message": "Impeça que o Firefox proativamente execute a consulta de DNS em links que o usuário pode optar por seguir, bem como links para itens referenciados por elementos em um site."
+  },
+  "options-checklistItem-disableDOMStorage": {
+    "message": "Desativar armazenamento DOM"
+  },
+  "options-checklistItem-disableDOMStorageDesc": {
+    "message": "Impedir que sites armazenem dados (armazenamento local e de sessão)"
+  },
+  "options-checklistItem-disableDRM": {
+    "message": "Desativar DRM"
+  },
+  "options-checklistItem-disableDRMDesc": {
+    "message": "Desativar DRM. Irá causar problemas com sites como Spotify e Netflix"
+  },
+  "options-checklistItem-disableGeo": {
+    "message": "Desativar Geolocalização"
+  },
+  "options-checklistItem-disableGeoDesc": {
+    "message": "Desativar recurso de geolocalização. Isso quebrará sites que solicitam sua localização"
+  },
+  "options-checklistItem-disableGeo2": {
+    "message": "Desativar Geolocalização 2"
+  },
+  "options-checklistItem-disableGeo2Desc": {
+    "message": "Remover provedor de geolocalização do Firefox"
+  },
+  "options-checklistItem-disableIDN": {
+    "message": "Desativar suporte de IDN"
+  },
+  "options-checklistItem-disableIDNDesc": {
+    "message": "Sempre mostrar a versão bruta de Punycode em nomes de domínio internacional. Risco de phishing, p.ex. http://www.apple.com/ é mostrado como http://xn--80ak6aa92e.com"
+  },
+  "options-checklistItem-disableOfflineCache": {
+    "message": "Desativar o cache offline"
+  },
+  "options-checklistItem-disableOfflineCacheDesc": {
+    "message": "Impedir que dados do site sejam armazenados em cache para uso offline"
+  },
+  "options-checklistItem-disablePDF": {
+    "message": "Desativar PDF.js"
+  },
+  "options-checklistItem-disablePDFDesc": {
+    "message": "Impedir carregamento de PDF dentro do navegador"
+  },
+  "options-checklistItem-disablePocket": {
+    "message": "Desativar Pocket"
+  },
+  "options-checklistItem-disablePocketDesc": {
+    "message": "Recurso potencialmente indesejado"
+  },
+  "options-checklistItem-disableResTiming": {
+    "message": "Desativar Resource Timing API"
+  },
+  "options-checklistItem-disableResTimingDesc": {
+    "message": "O recurso de API relacionado ao tempo de carregamento pode coletar informações em um site. Pode vazar histórico, informações de rede local e possivelmente localização"
+  },
+  "options-checklistItem-disableSearchSuggest": {
+    "message": "Desativar sugestões de busca"
+  },
+  "options-checklistItem-disableSearchSuggestDesc": {
+    "message": "Impedir sugestões de busca"
+  },
+  "options-checklistItem-disableSearchUpdates": {
+    "message": "Desativar Atualizações de Busca"
+  },
+  "options-checklistItem-disableSearchUpdatesDesc": {
+    "message": "Impedir o Firefox de atualizar motores de busca"
+  },
+  "options-checklistItem-disableSpeculatePreConn": {
+    "message": "Desativar pré-conexões especulativas"
+  },
+  "options-checklistItem-disableSpeculatePreConnDesc": {
+    "message": "Impedir que o Firefox busque proativamente recursos quando o cursor estiver sobre um elemento ou interagindo com ele"
+  },
+  "options-checklistItem-disableSSLFalseStart": {
+    "message": "Desativar iniciação falsa de SSL"
+  },
+  "options-checklistItem-disableSSLFalseStartDesc": {
+    "message": "Impedir que o cliente envie dados antes de completar a autenticação para iniciar a sessão"
+  },
+  "options-checklistItem-disableSSLSessId": {
+    "message": "Desativar Identificadores de Sessão SSL"
+  },
+  "options-checklistItem-disableSSLSessIdDesc": {
+    "message": "Impedir rastreamento via restabelecimento de sessão TLS"
+  },
+  "options-checklistItem-disableTLSRTT": {
+    "message": "Desativar TLS 0-RTT"
+  },
+  "options-checklistItem-disableTLSRTTDesc": {
+    "message": "Zero Round Trip Time Resumption (0-RTT) é uma característica nova no TLS 1.3 que permite a um cliente e servidor negociar uma conexão com menos passos, permitindo que os sites de https carreguem mais rápido. Existem dois problemas com isso. Primeiro, para fazer isso você perde o sigilo encaminhado (gerando uma nova chave para cada sessão e descartando ela quando a sessão terminar). Em segundo lugar, o 0-RTT requer uma implementação especial a fim de evitar ataques de repetição, dos quais alguns desenvolvedores web certamente não conseguirão te proteger. - Créditos https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
+  },
+  "options-checklistItem-disableTRR": {
+    "message": "Disativar TTR (Resolução Recursiva Confiável)"
+  },
+  "options-checklistItem-disableTRRDesc": {
+    "message": "O DNS-sobre-HTTPS ignora Hosts e usa o Cloudflare/Google. As configurações de DNS devem ser gerenciadas pelo usuário"
+  },
+  "options-checklistItem-disableWebGL": {
+    "message": "Desativar WebGL"
+  },
+  "options-checklistItem-disableWebGLDesc": {
+    "message": "Desativar WebGL (causará problemas com jogos via site)"
+  },
+  "options-checklistItem-disableWebBeacons": {
+    "message": "Desativar Beacons no Site"
+  },
+  "options-checklistItem-disableWebBeaconsDesc": {
+    "message": "Desativar Beacons no Site"
+  },
+  "options-checklistItem-clearOfflineApps": {
+    "message": "Ativar limpeza de apps offline ao desligar"
+  },
+  "options-checklistItem-clearOfflineAppsDesc": {
+    "message": "Limpar dados de sites offline ao desligar"
+  },
+  "options-checklistItem-enableSocialTrackingProtect": {
+    "message": "Ativar proteção contra rastreamento social"
+  },
+  "options-checklistItem-enableSocialTrackingProtectDesc": {
+    "message": "Ativar proteção contra rastreamento social"
+  },
+  "options-checklistItem-limitFonts": {
+    "message": "Limitar detecção de fontes"
+  },
+  "options-checklistItem-limitFontsDesc": {
+    "message": "Reduz a particularidade de fonte instalada. Pode causar problemas com ícones de fonte"
+  },
+  "options-checklistItem-limitMaxTabsUndo": {
+    "message": "Limite o máximo de abas para desfazer"
+  },
+  "options-checklistItem-limitMaxTabsUndoDesc": {
+    "message": "As abas fechadas são temporariamente armazenadas no Menu -> Histórico -> Abas recentemente fechadas, independente se o Firefox estiver configurado para não salvar o histórico"
+  },
+  "options-checklistItem-useClickToPlay": {
+    "message": "Use clique para reproduzir para plugins"
+  },
+  "options-checklistItem-useClickToPlayDesc": {
+    "message": "Impedir que os plugins sejam automaticamente executadas ao carregar um site"
+  },
+  "options-checklistItem-disableDataSubmission": {
+    "message": "Desativar envio de dados"
+  },
+  "options-checklistItem-disableDataSubmissionDesc": {
+    "message": "Desativa o envio de dados à Mozilla"
+  },
+  "options-checklistItem-disableSafeBrowsingDownloadCheck": {
+    "message": "Desativar a verificação de Navegação Segura para downloads"
+  },
+  "options-checklistItem-disableSafeBrowsingDownloadCheckDesc": {
+    "message": "Desativar verificação de Segurança para arquivos baixados"
+  },
+  "options-checklistItem-disableSafeBrowsingDownloadCheck2": {
+    "message": "Desativar a verificação de Navegação Segura para downloads - 2"
+  },
+  "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc": {
+    "message": "Desativar verificação de Segurança para arquivos potencialmente indesejados"
+  },
+  "options-checklistItem-disableSafeBrowsingDownloadCheck3": {
+    "message": "Desativar a verificação de Navegação Segura para downloads - 3"
+  },
+  "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc": {
+    "message": "Desativar verificação de Segurança para arquivos baixados incomuns"
+  },
+  "options-checklistItem-disableSafeBrowsingDownloadCheck4": {
+    "message": "Desativar a verificação de Navegação Segura para downloads - 4"
+  },
+  "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc": {
+    "message": "Desativar a verificação de binários que não estão em listas locais do Google"
+  },
+  "options-checklistItem-disableSafeBrowsingMalwareCheck": {
+    "message": "Desativar a verificação de malware via Navegação Segura"
+  },
+  "options-checklistItem-disableSafeBrowsingMalwareCheckDesc": {
+    "message": "Impede a consultar o Google para uma lista de malware de Navegação Segura"
+  },
+  "options-checklistItem-disableSafeBrowsingPhishingCheck": {
+    "message": "Desativar a verificação de phishing via Navegação Segura"
+  },
+  "options-checklistItem-disableSafeBrowsingPhishingCheckDesc": {
+    "message": "Impede a consultar o Google para uma lista de phishing de Navegação Segura"
+  },
+  "options-checklistItem-disableHealthReport": {
+    "message": "Desativar envio de relatórios de saúde"
+  },
+  "options-checklistItem-disableHealthReportDesc": {
+    "message": "Desativar envio de relatório de saúde à Mozilla"
+  },
+  "options-checklistItem-disableCrashReport": {
+    "message": "Desativar relatório de falha"
+  },
+  "options-checklistItem-disableCrashReportDesc": {
+    "message": "Desativar envio de relatórios de falhas à Mozilla"
+  },
+  "options-checklistItem-disableTelemetryPing": {
+    "message": "Desativar Pings de telemetria"
+  },
+  "options-checklistItem-disableTelemetryPingDesc": {
+    "message": "O servidor de telemetria usado se a telemetria estiver ativada"
+  },
+  "options-checklistItem-disableTelemetryReport": {
+    "message": "Desativar relatório de telemetria"
+  },
+  "options-checklistItem-disableTelemetryReportDesc": {
+    "message": "Desativa telemetria"
+  },
+  "options-checklistItem-disableTelemetryReport2": {
+    "message": "Desativar relatório de telemetria - 2"
+  },
+  "options-checklistItem-disableTelemetryReport2Desc": {
+    "message": "Desativar telemetria de ser habilitada (substitui toolkit.telemetry.enabled)"
+  },
+  "options-checklistItem-sessionPrivacyLevel": {
+    "message": "Definir nível de privacidade da sessão"
+  },
+  "options-checklistItem-sessionPrivacyLevelDesc": {
+    "message": "Ao definir o nível de privacidade de sessão para 2 você impede que o Firefox armazene conteúdos de formulários, posições de barra de rolagem, cookies e dados PÓS para restaurar uma sessão"
+  },
+  "options-import-couldNotImport": {
+    "message": "Não foi possível importar o arquivo"
+  },
+  "options-import-invalid-config": {
+    "message": "Configurações inválidas: faltando config"
+  },
+  "options-import-invalid-excluded": {
+    "message": "Configurações inválidas: faltando excluído"
+  },
+  "options-import-invalid-excludedProfile": {
+    "message": "Configurações inválidas: excluídos tem um perfil inválido"
+  },
+  "options-import-invalid-headers": {
+    "message": "Configurações inválidas: faltando cabeçalhos"
+  },
+  "options-import-invalid-ipRuleId": {
+    "message": "Configurações inválidas: ID da regra do IP inválido"
+  },
+  "options-import-invalid-ipRuleName": {
+    "message": "Configurações inválidas: faltando nome da regra do IP"
+  },
+  "options-import-invalid-ipRuleRange": {
+    "message": "Configurações inválidas: regra do IP intervalo do IP inválido"
+  },
+  "options-import-invalid-ipRules": {
+    "message": "Configurações inválidas: faltando regras do IP"
+  },
+  "options-import-invalid-ipRulesDupe": {
+    "message": "Configurações inválidas: encontrada duplicada de ID da regra do IP"
+  },
+  "options-import-invalid-options": {
+    "message": "Configurações inválidas: faltando opções"
+  },
+  "options-import-invalid-profile": {
+    "message": "Configurações inválidas: faltando um perfil"
+  },
+  "options-import-invalid-setting": {
+    "message": "Valor de configuração inválido:"
+  },
+  "options-import-invalid-settings": {
+    "message": "Configurações inválidas: falta de configurações"
+  },
+  "options-import-invalid-spoofIP": {
+    "message": "Configurações inválidas: O intervalo de IP do cabeçalho falso é inválido"
+  },
+  "options-import-invalid-version": {
+    "message": "Configuração inválida: a versão não pode ser aceita"
+  },
+  "options-import-invalid-whitelist": {
+    "message": "Configurações inválidas: faltando lista branca"
+  },
+  "options-import-invalid-whitelistDupe": {
+    "message": "Configurações inválidas: encontrada duplicata de ID da regra na lista branca"
+  },
+  "options-import-invalid-whitelistId": {
+    "message": "Configurações inválidas: ID da regra na lista branca inválida"
+  },
+  "options-import-invalid-whitelistName": {
+    "message": "Configurações inválidas: falta o nome da regra na lista branca"
+  },
+  "options-import-invalid-whitelistOpt": {
+    "message": "Configurações inválidas: opções de regras da lista branca inválidas"
+  },
+  "options-import-invalid-whitelistSpoofIP": {
+    "message": "Configurações inválidas: regra da lista branca para falso IP inválida"
+  },
+  "options-import-success": {
+    "message": "Configurações importadas com sucesso. Recarregando a extensão..."
+  },
+  "options-ipRules-editorTitle": {
+    "message": "Editor de Regras de IP"
+  },
+  "options-ipRules-ipRule": {
+    "message": "Regra de IP"
+  },
+  "options-ipRules-reload": {
+    "message": "Recarregar as informações de IP"
+  },
+  "options-ipRules-textareaLabel": {
+    "message": "IP Intervalos / Endereços"
+  },
+  "options-ipRules-textareaPlaceholder": {
+    "message": "Um IP/Intervalo de IP por linha"
+  },
+  "options-modal-askDelete": {
+    "message": "Tem certeza que quer excluir esta regra?"
+  },
+  "options-modal-askReset": {
+    "message": "Tem certeza de que quer resetar suas configurações?"
+  },
+  "options-modal-confirmDelete": {
+    "message": "Sim, exclua-o!"
+  },
+  "options-modal-confirmReset": {
+    "message": "Sim, quero resetar minhas configurações!"
+  },
+  "options-settings": {
+    "message": "Confirgurações"
+  },
+  "options-settings-import": {
+    "message": "Importar"
+  },
+  "options-settings-importing": {
+    "message": "Importando configurações"
+  },
+  "options-settings-export": {
+    "message": "Exportar"
+  },
+  "options-settings-reset": {
+    "message": "Restaurar ao Padrão"
+  },
+  "options-settings-permissions": {
+    "message": "Chameleon pode controlar algumas de suas preferências do Firefox, tais como resistir à impressão digital ou permitir a proteção contra rastreamento. Isso pode causar um conflito com outra extensão. Você pode desativar a opção do controle de Chameleon removendo a permissão de privacidade. Por favor, observe que ao remover esta permissão você resetará estas preferências. Você pode solicitar esta permissão se não estiver ativa."
+  },
+  "options-settings-permissions-legacy": {
+    "message": "Você precisará instalar uma versão especial do Chameleon para ativar as permissões de privacidade. Isso é devido a algumas complicações com as permissões suportadas para uma versão multi-plataforma/nova desta extensão. Pode ver mais detalhes via link da wiki abaixo."
+  },
+  "options-settings-permissions-legacy-wiki": {
+    "message": "Mais informações na wiki"
+  },
+  "options-settings-permissions-request": {
+    "message": "Solicitar permissões de privacidade"
+  },
+  "options-settings-permissions-remove": {
+    "message": "Remover permissões de privacidade"
+  },
+  "options-tab-about": {
+    "message": "Sobre"
+  },
+  "options-tab-ipRules": {
+    "message": "Regras de IP"
+  },
+  "options-tab-checklist": {
+    "message": "Lista de verificação"
+  },
+  "options-whitelist-acceptLang": {
+    "message": "Idioma (Cabeçalho \"Aceitar-Idioma\")"
+  },
+  "options-whitelist-editorTitle": {
+    "message": "Editor de regras da lista branca"
+  },
+  "options-whitelist-headerIPLabel": {
+    "message": "IP do cabeçalho (Via & X-Forwarded-For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Ativar falso contexto de áudio"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Ativar simulação de Rects do cliente"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Bloquear CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Bloquear dispositivos de mídia"
+  },
+  "options-whitelist-options-name": {
+    "message": "Ativar proteção do nome da janela"
+  },
+  "options-whitelist-options-tz": {
+    "message": "Ativar simulação de fuso horário"
+  },
+  "options-whitelist-options-ws": {
+    "message": "Desativar WebSocket"
+  },
+  "options-whitelist-rule": {
+    "message": "Regra da lista branca"
+  },
+  "options-whitelist-sitesTip": {
+    "message": "Uma regra por linha: domínio@@[combinação Regex opcional]"
+  },
+  "options-whitelist-textareaLabel": {
+    "message": "IP Intervalos / Endereços"
+  },
+  "options-whitelist-textareaPlaceholder": {
+    "message": "Um IP/Intervalo de IP por linha"
+  },
+  "popup-home-change": {
+    "message": "alterar"
+  },
+  "popup-home-currentProfile": {
+    "message": "Perfil atual"
+  },
+  "popup-home-currentProfile-defaultLanguage": {
+    "message": "Idioma padrão"
+  },
+  "popup-home-currentProfile-defaultScreen": {
+    "message": "Tela padrão"
+  },
+  "popup-home-currentProfile-defaultTimezone": {
+    "message": "Fuso horário padrão"
+  },
+  "popup-home-currentProfile-gettingTimezone": {
+    "message": "Obtendo as informações do IP"
+  },
+  "popup-home-currentProfile-screenProfile": {
+    "message": "Tela (Perfil)"
+  },
+  "popup-home-disabled": {
+    "message": "Chameleon está desativado"
+  },
+  "popup-home-enabled": {
+    "message": "Chameleon está ativado"
+  },
+  "popup-home-notification-disabled": {
+    "message": "Notificações desligadas"
+  },
+  "popup-home-notification-enabled": {
+    "message": "Notificações ligadas"
+  },
+  "popup-home-onThisPage": {
+    "message": "nesta página"
+  },
+  "popup-home-theme-dark": {
+    "message": "Escuro"
+  },
+  "popup-home-theme-light": {
+    "message": "Claro"
+  },
+  "popup-profile-changePeriodically": {
+    "message": "Alterar periodicamente"
+  },
+  "popup-profile-devicePhone": {
+    "message": "Telefone"
+  },
+  "popup-profile-deviceTablet": {
+    "message": "Tablet"
+  },
+  "popup-profile-interval-no": {
+    "message": "Não"
+  },
+  "popup-profile-interval-custom": {
+    "message": "Intervalo personalizado"
+  },
+  "popup-profile-interval-customMax": {
+    "message": "Máx. (minutos)"
+  },
+  "popup-profile-interval-customMin": {
+    "message": "Mín. (minutos)"
+  },
+  "popup-profile-interval-minute": {
+    "message": "A cada minuto"
+  },
+  "popup-profile-interval-5minutes": {
+    "message": "A cada 5 minutos"
+  },
+  "popup-profile-interval-10minutes": {
+    "message": "A cada 10 minutos"
+  },
+  "popup-profile-interval-20minutes": {
+    "message": "A cada 20 minutos"
+  },
+  "popup-profile-interval-30minutes": {
+    "message": "A cada 30 minutos"
+  },
+  "popup-profile-interval-40minutes": {
+    "message": "A cada 40 minutos"
+  },
+  "popup-profile-interval-50minutes": {
+    "message": "A cada 50 minutos"
+  },
+  "popup-profile-interval-hour": {
+    "message": "De hora em hora"
+  },
+  "popup-profile-exclude": {
+    "message": "Excluir"
+  },
+  "popup-profile-randomAndroid": {
+    "message": "Navegadores do Android aleatórios"
+  },
+  "popup-profile-randomIOS": {
+    "message": "Navegadores do iOS aleatórios"
+  },
+  "popup-profile-randomMacOS": {
+    "message": "Navegadores do macOS aleatórios"
+  },
+  "popup-profile-randomLinux": {
+    "message": "Navegadores do Linux aleatórios"
+  },
+  "popup-profile-randomWindows": {
+    "message": "Navegadores do Windows aleatórios"
+  },
+  "popup-profile-random": {
+    "message": "Aleatório"
+  },
+  "popup-profile-randomDesktopProfile": {
+    "message": "Perfil aleatório (Computador)"
+  },
+  "popup-profile-randomMobileProfile": {
+    "message": "Perfil aleatório (Telefone)"
+  },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Mostrar o perfil do navegador no ícone"
+  },
+  "popup-headers": {
+    "message": "Cabeçalhos"
+  },
+  "popup-headers-enableDNT": {
+    "message": "Ativar DNT (Não Rastrear)"
+  },
+  "popup-headers-preventEtag": {
+    "message": "Impedir rastreamento Etag"
+  },
+  "popup-headers-refererWarning": {
+    "message": "Não modifique as configurações em about:config para as opções abaixo."
+  },
+  "popup-headers-referer-trimming": {
+    "message": "Política de Processamento de Referências"
+  },
+  "popup-headers-referer-trimming-sendFullURI": {
+    "message": "Enviar URI completo (padrão)"
+  },
+  "popup-headers-referer-trimming-schemeHostPortPath": {
+    "message": "Esquema, host, porta + local"
+  },
+  "popup-headers-referer-trimming-schemeHostPort": {
+    "message": "Esquema, host + porta"
+  },
+  "popup-headers-referer-xorigin": {
+    "message": "Referência X Política de Origem"
+  },
+  "popup-headers-referer-xorigin-alwaysSend": {
+    "message": "Sempre enviar (padrão)"
+  },
+  "popup-headers-referer-xorigin-matchBaseDomain": {
+    "message": "Combinar com domínio base"
+  },
+  "popup-headers-referer-xorigin-matchHost": {
+    "message": "Combinar com host"
+  },
+  "popup-headers-spoofAcceptLang": {
+    "message": "Simular aceitação do idioma"
+  },
+  "popup-headers-spoofIP": {
+    "message": "Simular X-Forwarded-For/Via IP"
+  },
+  "popup-headers-spoofIP-random": {
+    "message": "IP aleatório"
+  },
+  "popup-headers-spoofIP-custom": {
+    "message": "IP personalizado"
+  },
+  "popup-headers-spoofIP-rangeFrom": {
+    "message": "Intervalo De"
+  },
+  "popup-headers-spoofIP-rangeTo": {
+    "message": "Intervalo Até"
+  },
+  "popup-options": {
+    "message": "Opções"
+  },
+  "popup-options-grantPermissions": {
+    "message": "Conceder permissão para modificar as configurações"
+  },
+  "popup-options-injection": {
+    "message": "Injeção"
+  },
+  "popup-options-injection-limitTabHistory": {
+    "message": "Limitar histórico de abas"
+  },
+  "popup-options-injection-protectWinName": {
+    "message": "Proteger nome da janela"
+  },
+  "popup-options-injection-audioContext": {
+    "message": "Simular o contexto de áudio"
+  },
+  "popup-options-injection-clientRects": {
+    "message": "Simular Rects do cliente"
+  },
+  "popup-options-injection-protectKBFingerprint": {
+    "message": "Proteger a impressão digital do teclado"
+  },
+  "popup-options-injection-protectKBFingerprintDelay": {
+    "message": "Adiamento (ms)"
+  },
+  "popup-options-injection-screen": {
+    "message": "Tamanho da tela"
+  },
+  "popup-options-injection-spoofFontFingerprint": {
+    "message": "Simular a impressão digital da fonte"
+  },
+  "popup-options-standard": {
+    "message": "Padrão"
+  },
+  "popup-options-standard-blockMediaDevices": {
+    "message": "Bloquear dispositivos de mídia"
+  },
+  "popup-options-standard-blockCSSExfil": {
+    "message": "Bloquear CSS Exfil"
+  },
+  "popup-options-standard-disableWebRTC": {
+    "message": "Desativar WebRTC"
+  },
+  "popup-options-standard-firstPartyIsolation": {
+    "message": "Ativar isolamento de primeiros"
+  },
+  "popup-options-standard-resistFingerprinting": {
+    "message": "Ativar resistir à impressão digital"
+  },
+  "popup-options-standard-spoofMediaDevices": {
+    "message": "Simular dispositivos de mídia"
+  },
+  "popup-options-standard-trackingProtection": {
+    "message": "Modo de proteção de rastreamento"
+  },
+  "popup-options-standard-trackingProtection-on": {
+    "message": "Ligado"
+  },
+  "popup-options-standard-trackingProtection-off": {
+    "message": "Desligado"
+  },
+  "popup-options-standard-trackingProtection-privateBrowsing": {
+    "message": "Ativar em navegação privada"
+  },
+  "popup-options-standard-webRTCPolicy": {
+    "message": "Política WebRTC"
+  },
+  "popup-options-standard-webRTCPolicy-nonProxified": {
+    "message": "Desativar UDP não-proxy"
+  },
+  "popup-options-standard-webRTCPolicy-public": {
+    "message": "Apenas use interface pública (melhor)"
+  },
+  "popup-options-standard-webRTCPolicy-publicPrivate": {
+    "message": "Usar interface pública e privada"
+  },
+  "popup-options-standard-webSockets-blockAll": {
+    "message": "Bloquear tudo"
+  },
+  "popup-options-standard-webSockets-blockThirdParty": {
+    "message": "Bloquear de terceiros"
+  },
+  "popup-options-cookie": {
+    "message": "Cookie"
+  },
+  "popup-options-cookieNotPersistent": {
+    "message": "Eliminar cookies e dados do site quando a janela for fechada"
+  },
+  "popup-options-cookiePolicy": {
+    "message": "Política"
+  },
+  "popup-options-cookiePolicy-allowVisited": {
+    "message": "Permitir em visitados"
+  },
+  "popup-options-cookiePolicy-rejectAll": {
+    "message": "Rejeitar tudo"
+  },
+  "popup-options-cookiePolicy-rejectThirdParty": {
+    "message": "Rejeitar de terceiros"
+  },
+  "popup-options-cookiePolicy-rejectTrackers": {
+    "message": "Rejeitar rastreadores"
+  },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Rejeitar rastreadores e segmentação de cookies de terceiros"
+  },
+  "popup-whitelist-contextMenu": {
+    "message": "Adicionar item do menu de contexto para abrir o domínio atual da aba na lista branca"
+  },
+  "popup-whitelist-defaultProfileLabel": {
+    "message": "Perfil padrão"
+  },
+  "popup-whitelist-enable": {
+    "message": "Ativar lista branca"
+  },
+  "popup-whitelist-isNotWhitelisted": {
+    "message": "não está na lista branca"
+  },
+  "popup-whitelist-isWhitelisted": {
+    "message": "está na lista branca"
+  },
+  "popup-whitelist-open": {
+    "message": "Abrir na lista branca"
+  },
+  "text-addToRule": {
+    "message": "Adicionar à regra: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
+  "text-allowAll": {
+    "message": "Permitir tudo"
+  },
+  "text-cancel": {
+    "message": "Cancelar"
+  },
+  "text-createNewRule": {
+    "message": "Criar nova regra"
+  },
+  "text-default": {
+    "message": "Padrão"
+  },
+  "text-defaultWhitelistProfile": {
+    "message": "Perfil padrão da lista branca"
+  },
+  "text-disableReferer": {
+    "message": "Desativar Referência"
+  },
+  "text-language": {
+    "message": "Idioma"
+  },
+  "text-name": {
+    "message": "Nome"
+  },
+  "text-profile": {
+    "message": "Perfil"
+  },
+  "text-realProfile": {
+    "message": "Perfil Verdadeiro"
+  },
+  "text-removeFromRule": {
+    "message": "Remover da regra: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
+  "text-save": {
+    "message": "Salvar"
+  },
+  "text-screen": {
+    "message": "Tela"
+  },
+  "text-searchRules": {
+    "message": "Buscar regras"
+  },
+  "text-timezone": {
+    "message": "Fuso horário"
+  },
+  "text-whitelist": {
+    "message": "Lista Branca"
+  }
+}

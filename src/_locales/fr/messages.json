@@ -57,7 +57,7 @@
     "message": "Bloquer l'affichage de contenu mixte"
   },
   "options-checklistItem-blockDisplayMixedContentDesc": {
-    "message": "Empêche le chargement de contenus mixtes passifs non HTTPS (images, audio, vidéo) sur une page HTTPS."
+    "message": "Empêche le chargement de contenus mixtes passifs non HTTPS (images, contenus audio et vidéo) sur une page HTTPS."
   },
   "options-checklistItem-disableAddonCache": {
     "message": "Désactiver le cache des extensions"
@@ -81,7 +81,7 @@
     "message": "Désactiver l'historique de navigation et des téléchargements"
   },
   "options-checklistItem-disableHistoryDesc": {
-    "message": "Désactive l'historique de la navigation et des téléchargements."
+    "message": "Désactive l'historique de navigation et des téléchargements."
   },
   "options-checklistItem-disableCacheDisk": {
     "message": "Désactiver le cache (disque)"
@@ -135,7 +135,7 @@
     "message": "Désactiver la géolocalisation"
   },
   "options-checklistItem-disableGeoDesc": {
-    "message": "Désactive la fonction de géolocalisation. Cela empêchera les sites qui requièrent votre localisation de fonctionner."
+    "message": "Désactive la fonctionnalité de géolocalisation. Cela empêchera les sites qui requièrent votre localisation de fonctionner."
   },
   "options-checklistItem-disableGeo2": {
     "message": "Désactiver la géolocalisation (2)"
@@ -249,7 +249,7 @@
     "message": "Limiter le nombre maximal d'onglets à annuler"
   },
   "options-checklistItem-limitMaxTabsUndoDesc": {
-    "message": "Les onglets fermés sont temporairement sauvegardés dans Menu -> Historique -> Onglets récemment fermés, même si Firefox est configuré pour ne pas conserver l'historique."
+    "message": "Les onglets fermés sont temporairement sauvegardés dans le menu \"Onglets récemment fermés\", même si Firefox est configuré pour ne pas conserver l'historique."
   },
   "options-checklistItem-useClickToPlay": {
     "message": "Utiliser les plugins Click-to-Play"
@@ -414,7 +414,7 @@
     "message": "Actualiser les informations IP"
   },
   "options-ipRules-textareaLabel": {
-    "message": "Plages / Adresses IP"
+    "message": "Plages IP / Adresses IP"
   },
   "options-ipRules-textareaPlaceholder": {
     "message": "Une adresse IP/plage d'adresses IP par ligne"
@@ -447,10 +447,10 @@
     "message": "Réinitialiser les paramètres par défaut"
   },
   "options-settings-permissions": {
-    "message": "Chameleon peut contrôler certaines de vos préférences Firefox, comme résister au fingerprinting ou activer la protection contre le pistage. Cela peut causer des problèmes avec d'autres extensions.\nCependant, vous pouvez refuser que Chameleon contrôle ces préférences en supprimant l'autorisation \"Lire et modifier les paramètres de confidentialité\". Dans ce cas, les paramètres correspondants seront automatiquement réinitialisés. À l'inverse, vous pouvez activer cette autorisation si celle-ci est actuellement désactivée."
+    "message": "Chameleon peut contrôler certaines des préférences de Firefox, comme résister au fingerprinting ou activer la protection contre le pistage, ce qui peut causer des problèmes avec d'autres extensions.\nCependant, vous pouvez refuser que Chameleon contrôle ces préférences en désactivant l'autorisation \"Lire et modifier les paramètres de confidentialité\". Dans ce cas, les paramètres correspondants seront automatiquement réinitialisés.\nÀ l'inverse, vous pouvez activer cette autorisation si celle-ci est actuellement désactivée."
   },
   "options-settings-permissions-legacy": {
-    "message": "Vous devrez installer une version spécifique de Chameleon pour activer les autorisations de confidentialité. Cela est dû à certaines complications avec les autorisations prises en charge pour une plateforme croisée ou une nouvelle version de cette extension. Vous trouverez plus de détails sur le wiki ci-dessous."
+    "message": "Vous devrez installer une version spécifique de Chameleon pour activer les autorisations de confidentialité. Cela est dû à certaines complications avec les autorisations prises en charge pour une plateforme croisée ou une nouvelle version de cette extension. Vous trouverez plus de détails sur le wiki accessible en cliquant sur le bouton ci-dessous."
   },
   "options-settings-permissions-legacy-wiki": {
     "message": "Plus d'informations sur le wiki"
@@ -471,13 +471,25 @@
     "message": "Liste de contrôle"
   },
   "options-whitelist-acceptLang": {
-    "message": "Accept-Language"
+    "message": "Langue (en-tête \"Accept-Language\")"
   },
   "options-whitelist-editorTitle": {
     "message": "Éditeur de règles de la liste blanche"
   },
   "options-whitelist-headerIPLabel": {
     "message": "En-tête IP (Via & X-Forwarded For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Activer la falsification du contexte audio"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Activer la falsification des clients rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Bloquer les attaques d'exfiltration de données CSS"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Bloquer les périphériques multimédias"
   },
   "options-whitelist-options-name": {
     "message": "Activer la protection du nom de la fenêtre"
@@ -495,10 +507,10 @@
     "message": "Une règle par ligne : domaine@@[modèle facultatif d'expression régulière]"
   },
   "options-whitelist-textareaLabel": {
-    "message": "Plages / Adresses IP"
+    "message": "Plages IP / Adresses IP"
   },
   "options-whitelist-textareaPlaceholder": {
-    "message": "Une adresse ou plage IP par ligne"
+    "message": "Une adresse IP ou plage IP par ligne"
   },
   "popup-home-change": {
     "message": "Modifier"
@@ -614,6 +626,9 @@
   "popup-profile-randomMobileProfile": {
     "message": "Profil aléatoire (Mobile)"
   },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Afficher le profil du navigateur sur l'icône de l'extension"
+  },
   "popup-headers": {
     "message": "En-têtes"
   },
@@ -621,10 +636,10 @@
     "message": "Activer l'en-tête DNT (Ne pas suivre)"
   },
   "popup-headers-preventEtag": {
-    "message": "Empêcher le pistage par l'Etag"
+    "message": "Empêcher le pistage par l'ETag"
   },
   "popup-headers-refererWarning": {
-    "message": "Ne modifiez PAS les paramètres des options ci-dessous dans about:config."
+    "message": "Ne modifiez pas les paramètres des options ci-dessous dans l’éditeur de configuration (page about:config)."
   },
   "popup-headers-referer-trimming": {
     "message": "Politique de réduction du référent"
@@ -687,10 +702,10 @@
     "message": "Falsifier le contexte audio"
   },
   "popup-options-injection-clientRects": {
-    "message": "Falsifier \"Client Rects\""
+    "message": "Falsifier les client rects"
   },
   "popup-options-injection-protectKBFingerprint": {
-    "message": "Empêcher le suivi par frappe au clavier"
+    "message": "Protéger les empreintes digitales du clavier"
   },
   "popup-options-injection-protectKBFingerprintDelay": {
     "message": "Délai (millisecondes)"
@@ -756,7 +771,7 @@
     "message": "Cookies"
   },
   "popup-options-cookieNotPersistent": {
-    "message": "Supprimer les cookies et les données de site après la fermeture de la fenêtre"
+    "message": "Supprimer les cookies et les données de site à la fermeture de la fenêtre"
   },
   "popup-options-cookiePolicy": {
     "message": "Politique"
@@ -773,6 +788,9 @@
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "Rejeter les traqueurs"
   },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Rejeter les traqueurs et les cookies tiers"
+  },
   "popup-whitelist-contextMenu": {
     "message": "Ajouter un élément de menu contextuel pour ouvrir le domaine de l'onglet actuel dans la liste blanche"
   },
@@ -783,13 +801,22 @@
     "message": "Activer la liste blanche"
   },
   "popup-whitelist-isNotWhitelisted": {
-    "message": "n'est pas dans la liste blanche"
+    "message": "ne figure pas dans la liste blanche"
   },
   "popup-whitelist-isWhitelisted": {
-    "message": "est dans la liste blanche"
+    "message": "figure dans la liste blanche"
   },
   "popup-whitelist-open": {
     "message": "Ouvrir dans la liste blanche"
+  },
+  "text-addToRule": {
+    "message": "Ajouter à la règle : $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-allowAll": {
     "message": "Tout autoriser"
@@ -820,6 +847,15 @@
   },
   "text-realProfile": {
     "message": "Profil réel"
+  },
+  "text-removeFromRule": {
+    "message": "Retirer de la règle : $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "Sauvegarder"

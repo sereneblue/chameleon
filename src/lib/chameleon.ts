@@ -693,13 +693,11 @@ export class Chameleon {
     );
 
     if (this.platform.os != 'android') {
-      if (this.tempStore.badge.text) {
-        this.updateBadgeText();
+      this.updateBadgeText();
 
-        browser.browserAction.setTitle({
-          title: this.tempStore.badge.title,
-        });
-      }
+      browser.browserAction.setTitle({
+        title: this.tempStore.badge.title,
+      });
     }
   }
 

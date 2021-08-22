@@ -18,7 +18,7 @@
     "message": "Incidencias"
   },
   "options-about-knownIssues": {
-    "message": "Known Issues"
+    "message": "Problemas conocidos"
   },
   "options-about-wiki": {
     "message": "Wiki"
@@ -423,13 +423,13 @@
     "message": "¿Está seguro que desea eliminar esta regla?"
   },
   "options-modal-askReset": {
-    "message": "Are you sure you want to reset your settings?"
+    "message": "¿Estás seguro de que quieres restablecer tu configuración?"
   },
   "options-modal-confirmDelete": {
     "message": "Sí ¡bórrala!"
   },
   "options-modal-confirmReset": {
-    "message": "Yes, reset my settings!"
+    "message": "¡Sí, restablecer mi configuración!"
   },
   "options-settings": {
     "message": "Configuraciones"
@@ -447,19 +447,19 @@
     "message": "Restablecer valores predeterminados"
   },
   "options-settings-permissions": {
-    "message": "Chameleon can control some of your Firefox preferences such as resist fingerprinting or enabling tracking protection. This may conflict with another extension. You can opt-out of Chameleon controlling these preferences by removing the privacy permission. Please note that removing this permission will reset these preferences. You can request this permission if it's not present."
+    "message": "Chameleon puede controlar algunas de sus preferencias de Firefox como resistir la toma de huellas dactilares o habilitar la protección de rastreo. Esto puede estar en conflicto con otra extensión. Usted puede optar por no controlar estas preferencias eliminando el permiso de privacidad. Tenga en cuenta que la eliminación de este permiso restablecerá estas preferencias. Puede solicitar este permiso si no está presente."
   },
   "options-settings-permissions-legacy": {
-    "message": "You will need to install a special version of Chameleon to enable the privacy permissions. This is due to some complications with the supported permissions for a cross platform/new version of this extension. More details can be found on the wiki linked below."
+    "message": "Necesitará instalar una versión especial de Chameleon para habilitar los permisos de privacidad. Esto se debe a algunos problemas con los permisos soportados para una plataforma cruzada/nueva versión de esta extensión. Puede encontrar más detalles en la wiki enlazada a continuación."
   },
   "options-settings-permissions-legacy-wiki": {
-    "message": "More info on wiki"
+    "message": "Más información en wiki"
   },
   "options-settings-permissions-request": {
-    "message": "Request privacy permissions"
+    "message": "Solicitar permisos de privacidad"
   },
   "options-settings-permissions-remove": {
-    "message": "Remove privacy permissions"
+    "message": "Eliminar permisos de privacidad"
   },
   "options-tab-about": {
     "message": "Acerca de"
@@ -480,16 +480,16 @@
     "message": "IP de encabezado (Via & X-Forwarded-For)"
   },
   "options-whitelist-options-audioContext": {
-    "message": "Enable spoof audio context"
+    "message": "Habilitar falsificación de contexto de audio"
   },
   "options-whitelist-options-clientRects": {
-    "message": "Enable spoof client rects"
+    "message": "Habilitar falsificación de rects del cliente"
   },
   "options-whitelist-options-cssExfil": {
-    "message": "Block CSS Exfil"
+    "message": "Bloquear CSS Exfil"
   },
   "options-whitelist-options-mediaDevices": {
-    "message": "Block media devices"
+    "message": "Bloquear dispositivos multimedia"
   },
   "options-whitelist-options-name": {
     "message": "Activar protección de nombre de la ventana"
@@ -531,7 +531,7 @@
     "message": "Obteniendo información de IP"
   },
   "popup-home-currentProfile-screenProfile": {
-    "message": "Screen (Profile)"
+    "message": "Pantalla (Perfil)"
   },
   "popup-home-disabled": {
     "message": "Chameleon está desactivado"
@@ -626,6 +626,9 @@
   "popup-profile-randomMobileProfile": {
     "message": "Perfil aleatorio (móvil)"
   },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Mostrar perfil del navegador en el icono"
+  },
   "popup-headers": {
     "message": "Cabeceras"
   },
@@ -684,7 +687,7 @@
     "message": "Opciones"
   },
   "popup-options-grantPermissions": {
-    "message": "Grant permission to modify settings"
+    "message": "Otorgar permiso para modificar los ajustes"
   },
   "popup-options-injection": {
     "message": "Inyección"
@@ -720,7 +723,7 @@
     "message": "Bloquear dispositivos multimedia"
   },
   "popup-options-standard-blockCSSExfil": {
-    "message": "Block CSS Exfil"
+    "message": "Bloquear CSS Exfil"
   },
   "popup-options-standard-disableWebRTC": {
     "message": "Desactivar WebRTC"
@@ -732,7 +735,7 @@
     "message": "Habilitar resistencia a la huella digital"
   },
   "popup-options-standard-spoofMediaDevices": {
-    "message": "Spoof media devices"
+    "message": "Falsear dispositivos multimedia"
   },
   "popup-options-standard-trackingProtection": {
     "message": "Modo de protección de seguimiento"
@@ -765,10 +768,10 @@
     "message": "Bloquear a terceros"
   },
   "popup-options-cookie": {
-    "message": "Cookie"
+    "message": "Cookies"
   },
   "popup-options-cookieNotPersistent": {
-    "message": "Delete cookies and site data after window is closed"
+    "message": "Eliminar cookies y datos del sitio después de cerrar la ventana"
   },
   "popup-options-cookiePolicy": {
     "message": "Política"
@@ -784,6 +787,9 @@
   },
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "Rechazar rastreadores"
+  },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Rechazar rastreadores y particionar cookies de terceros"
   },
   "popup-whitelist-contextMenu": {
     "message": "Añadir elemento de menú contextual para abrir el dominio de la pestaña actual en la lista blanca"
@@ -804,7 +810,7 @@
     "message": "Abrir en la lista blanca"
   },
   "text-addToRule": {
-    "message": "Add to rule: $RULE_NAME$",
+    "message": "Añadir a la regla: $RULE_NAME$",
     "placeholders": {
       "rule_name": {
         "content": "$1",
@@ -843,7 +849,7 @@
     "message": "Perfil real"
   },
   "text-removeFromRule": {
-    "message": "Remove from rule: $RULE_NAME$",
+    "message": "Eliminar de la regla: $RULE_NAME$",
     "placeholders": {
       "rule_name": {
         "content": "$1",
