@@ -108,7 +108,7 @@
     "message": "Verhindert, dass Webseiten das Kontextmenü steuern können. Umschalt + Rechtsklick benutzen"
   },
   "options-checklistItem-disableMobileSensors": {
-    "message": "Gerätesensoren deaktivieren"
+    "message": "Gerätesnsoren deaktivieren"
   },
   "options-checklistItem-disableMobileSensorsDesc": {
     "message": "Deaktiviere Gerätesensoren (verursacht Probleme auf Webseiten, die darauf Zugriff benötigen)"
@@ -447,7 +447,7 @@
     "message": "Auf Standardwerte zurücksetzen"
   },
   "options-settings-permissions": {
-    "message": "Chameleon kann einige Ihrer Firefox-Einstellungen wie \"Schutz vor Aktivitätenverfolgung\" verändern oder den Tracking-Schutz aktivieren. Dies kann im Zusammenspiel mit anderen Erweiterungen zu Problemen führen. Sie können Chameleon verbieten, diese Einstellungen zu verändern, indem sie Chameleon die Berechtigung \"Datenschutzeinstellungen lesen und ändern\" nehmen. Wenn sie dies tun, werden die entsprechenden Einstellungen automatisch zurückgesetzt. Umgekehrt können sie die Berechtigung aktivieren, wenn sie momentan deaktiviert ist."
+    "message": "Chameleon kann einige Ihrer Firefox Einstellungen kontrollieren, wie z. B. den Fingerabdruck wiederstehen oder den Tracking-Schutz aktivieren. Dies kann mit einem anderen Add-On kollidieren. Sie können vermeiden dass Chameleon diese Einstellungen kontrolliert, indem Sie die Datenschutz-Berechtigung entfernen. Bitte beachten Sie, dass das Entfernen dieser Berechtigung diese Einstellungen zurücksetzen wird. Sie können diese Berechtigung anfordern, wenn sie nicht vorhanden ist."
   },
   "options-settings-permissions-legacy": {
     "message": "Um die Privatsphäre-Berechtigung zu aktivieren, müssen sie eine andere Version von Chameleon installieren. Dies liegt an Problemen mit der plattformübergreifenden Berechtigungsunterstützung für eine neue Version dieser Erweiterung. Mehr Infos finden sie unter dem Wiki-Link unten."
@@ -478,6 +478,18 @@
   },
   "options-whitelist-headerIPLabel": {
     "message": "Header IP (Via & X-Forwarded For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Audio Kontext spoofen aktivieren"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Aktiviere Client-Rects Spoof"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "CSS Exfil blockieren"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Media-Geräte blockieren"
   },
   "options-whitelist-options-name": {
     "message": "window.name schützen"
@@ -591,7 +603,7 @@
     "message": "Ausschließen"
   },
   "popup-profile-randomAndroid": {
-    "message": "Zufälliger Android-Browser"
+    "message": "Zufällige Android Browser"
   },
   "popup-profile-randomIOS": {
     "message": "Zufälliger iOS-Browser"
@@ -613,6 +625,9 @@
   },
   "popup-profile-randomMobileProfile": {
     "message": "Zufälliges Profil (Mobil)"
+  },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Browserprofil auf Icon anzeigen"
   },
   "popup-headers": {
     "message": "Kopfzeilen"
@@ -773,6 +788,9 @@
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "Tracker ablehnen"
   },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Tracker ablehnen und Drittpartei-Cookies partitionieren"
+  },
   "popup-whitelist-contextMenu": {
     "message": "Kontextmenüeintrag zum Öffnen des aktuellen Tabs in der Whitelist hinzufügen"
   },
@@ -790,6 +808,15 @@
   },
   "popup-whitelist-open": {
     "message": "In der Whitelist öffnen"
+  },
+  "text-addToRule": {
+    "message": "Zur Regel hinzufügen: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-allowAll": {
     "message": "Alle erlauben"
@@ -820,6 +847,15 @@
   },
   "text-realProfile": {
     "message": "Echtes Profil"
+  },
+  "text-removeFromRule": {
+    "message": "Aus der Regel entfernen: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "Speichern"
