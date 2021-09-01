@@ -626,6 +626,9 @@
   "popup-profile-randomMobileProfile": {
     "message": "随机配置文件(移动)"
   },
+  "popup-profile-showProfileOnIcon": {
+    "message": "在图标上显示浏览器配置文件"
+  },
   "popup-headers": {
     "message": "头信息"
   },
@@ -784,6 +787,9 @@
   },
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "拒绝跟踪器"
+  },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "阻隔跟踪器和第三方cookie"
   },
   "popup-whitelist-contextMenu": {
     "message": "添加右键菜单条目到当前打开标签页白名单中的域名"
