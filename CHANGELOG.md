@@ -1,3 +1,14 @@
+<a name="v0.22.10-rc"></a>
+
+## [v0.22.10-rc](https://github.com/sereneblue/chameleon/compare/v0.22.9...v0.22.10-rc) (2021-09-07)
+
+### Features
+
+- update profiles
+- **localization:** update chinese localization
+- **localization:** update turkish localization
+- **localization:** update german localization
+
 <a name="v0.22.9-rc"></a>
 
 ## [v0.22.9-rc](https://github.com/sereneblue/chameleon/compare/v0.22.8...v0.22.9-rc) (2021-08-22)
