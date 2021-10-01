@@ -40,12 +40,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '93.0.961.38', mac: '93.0.961.38', desktopChrome: '93.0.4577.63', android: '46.06.4.5161', androidChrome: '77.0.3865.116' },
+  edg: { win: '94.0.992.31', mac: '94.0.992.31', desktopChrome: '94.0.4606.61', android: '93.0.961.65', androidChrome: '93.0.4577.82' },
   esr: { desktop: '78' },
   esr2: { desktop: '68' },
-  ff: { desktop: '92', mobile: '91' },
-  gcr: { desktop: '93.0.4577.63', ios: '93.0.4577.39', android: '93.0.4577.62' },
-  sf: { desktop: '14.1.2', ios1: '12.1.2', ios2: '13.1', ios3: '14.1.2' },
+  ff: { desktop: '92', mobile: '92' },
+  gcr: { desktop: '94.0.4606.61', ios: '94.0.4606.52', android: '94.0.4606.61' },
+  sf: { desktop: '15.0', ios1: '13.1', ios2: '14.1.2', ios3: '15.0' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -101,13 +101,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
   } else if (browser === 'sfm') {
     switch (os) {
-      case 'iOS 12':
+      case 'iOS 13':
         osId = 'ios1';
         break;
-      case 'iOS 13':
+      case 'iOS 14':
         osId = 'ios2';
         break;
-      case 'iOS 14':
+      case 'iOS 15':
         osId = 'ios3';
         break;
       default:
@@ -116,13 +116,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]} (iPhone)`;
   } else if (browser === 'sft') {
     switch (os) {
-      case 'iOS 12':
+      case 'iOS 13':
         osId = 'ios1';
         break;
-      case 'iOS 13':
+      case 'iOS 14':
         osId = 'ios2';
         break;
-      case 'iOS 14':
+      case 'iOS 15':
         osId = 'ios3';
         break;
       default:
@@ -999,18 +999,6 @@ export class Generator {
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
-          oscpu: 'Intel Mac OS X 10.13',
-          platform: 'MacIntel',
-        },
-        screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 10_13_6',
-      },
-      {
-        id: 'mac2',
-        name: 'macOS 10.15',
-        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
-        nav: {
-          version: '',
           oscpu: 'Intel Mac OS X 10.14',
           platform: 'MacIntel',
         },
@@ -1018,16 +1006,28 @@ export class Generator {
         uaPlatform: 'Macintosh; Intel Mac OS X 10_14_6',
       },
       {
+        id: 'mac2',
+        name: 'macOS 10.15',
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
+        nav: {
+          version: '',
+          oscpu: 'Intel Mac OS X 10.15',
+          platform: 'MacIntel',
+        },
+        screenOffset: -23,
+        uaPlatform: 'Macintosh; Intel Mac OS X 10_15_7',
+      },
+      {
         id: 'mac3',
         name: 'macOS 11',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
-          oscpu: 'Intel Mac OS X 11.1',
+          oscpu: 'Intel Mac OS X 11',
           platform: 'MacIntel',
         },
         screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 11_1',
+        uaPlatform: 'Macintosh; Intel Mac OS X 11_6',
       },
     ],
     linux: [
@@ -1071,21 +1071,21 @@ export class Generator {
     iOS: [
       {
         id: 'ios1',
-        name: 'iOS 12',
-        browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '12_4_7',
-      },
-      {
-        id: 'ios2',
         name: 'iOS 13',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
         uaPlatform: '13_7',
       },
       {
-        id: 'ios3',
+        id: 'ios2',
         name: 'iOS 14',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '14_7',
+        uaPlatform: '14_8',
+      },
+      {
+        id: 'ios3',
+        name: 'iOS 15',
+        browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
+        uaPlatform: '15_0',
       },
     ],
     android: [
