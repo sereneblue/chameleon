@@ -4,6 +4,8 @@ import webext from './lib/webext';
 
 webext.firstTimeInstall();
 
+store.state.version = browser.runtime.getManifest().version;
+
 let chameleon = new Chameleon(JSON.parse(JSON.stringify(store.state)));
 let messageHandler = (request: any, sender: any, sendResponse: any) => {
   if (request.action === 'save') {
@@ -116,10 +118,8 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
       sendResponse('done');
     }, 200);
   } else if (request.action === 'validateSettings') {
-    (async () => {
-      let res = await chameleon.validateSettings(request.data);
-      sendResponse(res);
-    })();
+    let res = chameleon.validateSettings(request.data);
+    sendResponse(res);
   }
 
   return true;
