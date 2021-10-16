@@ -1,3 +1,11 @@
+<a name="v0.22.13-rc"></a>
+
+## [v0.22.13-rc](https://github.com/sereneblue/chameleon/compare/v0.22.12...v0.22.13-rc) (2021-10-16)
+
+### Bug Fixes
+
+- **settings:** fix issue caused by missing version during import ([#521](https://github.com/sereneblue/chameleon/issues/521))
+
 <a name="v0.22.12-rc"></a>
 
 ## [v0.22.12-rc](https://github.com/sereneblue/chameleon/compare/v0.22.11...v0.22.12-rc) (2021-10-10)
