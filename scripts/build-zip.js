@@ -25,24 +25,27 @@ const makeDestZipDirIfNotExists = () => {
 const buildZip = (src, dist, zipFilename) => {
   console.info(`Building ${zipFilename}...`);
 
-  const archive = archiver('zip', { zlib: { level: 9 } });
+  const archive_zip = archiver('zip', { zlib: { level: 9 } });
+  const archive_xpi = archiver('zip', { zlib: { level: 9 } });
+
   const stream = fs.createWriteStream(path.join(dist, zipFilename));
   const xpiStream = fs.createWriteStream(path.join(dist, zipFilename.replace('.zip', '.xpi')));
 
   return new Promise((resolve, reject) => {
-    archive
+    stream.on('close', () => resolve());
+    xpiStream.on('close', () => resolve());
+
+    archive_zip
       .directory(src, false)
       .on('error', err => reject(err))
       .pipe(stream);
+    archive_zip.finalize();
 
-    archive
+    archive_xpi
       .directory(src, false)
       .on('error', err => reject(err))
       .pipe(xpiStream);
-
-    stream.on('close', () => resolve());
-    xpiStream.on('close', () => resolve());
-    archive.finalize();
+    archive_xpi.finalize();
   });
 };
 
