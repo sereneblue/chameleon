@@ -4,7 +4,7 @@ export default {
       "enabled": true,
       "notificationsEnabled": false,
       "theme": "light",
-      "hasPrivacyPermission": true
+      "hasPrivacyPermission": false
     },
     "excluded": [],
     "headers": {
@@ -57,9 +57,10 @@ export default {
         "option": 10,
         "min": 1,
         "max": 1
-      }
+      },
+      "showProfileOnIcon": true
     },
-    "version": "0.21.2.2",
+    "version": "0.22.12.0",
     "whitelist": {
       "enabledContextMenu": true,
       "defaultProfile": "none",
@@ -71,7 +72,7 @@ export default {
       "enabled": true,
       "notificationsEnabled": false,
       "theme": "light",
-      "hasPrivacyPermission": true
+      "hasPrivacyPermission": false
     },
     "excluded": [],
     "headers": {
@@ -124,9 +125,10 @@ export default {
         "option": 10,
         "min": 1,
         "max": 1
-      }
+      },
+      "showProfileOnIcon": true
     },
-    "version": "0.21.2.2",
+    "version": "0.22.12.0",
     "whitelist": {
       "enabledContextMenu": true,
       "defaultProfile": "none",
