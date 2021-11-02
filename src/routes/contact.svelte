@@ -105,7 +105,7 @@
       <div class="w-full px-4 text-lg">
         {#if reqStatus == "success"}
           <div class="bg-green-200 p-2 rounded mb-4 text-center">
-            Your message has been  successfully sent!
+            Your message has been successfully sent!
           </div>
         {:else if reqStatus == "fail"}
           <div class="bg-red-200 p-2 rounded mb-4 text-center">
@@ -120,6 +120,7 @@
             <label class="block my-2">
               <span class="text-gray-700">Email</span>
               <div class="text-red-600 text-sm">If you would like to receive a reply, please use a valid email address.</div>
+              <div class="text-red-600 text-sm"><strong>Yandex users:</strong> I am unable to send an email to you, please use an alternative email address.</div>
               <input name="email" class="form-input mt-1 block w-full" type="email" autocomplete="off">
             </label>
             <label class="block">
