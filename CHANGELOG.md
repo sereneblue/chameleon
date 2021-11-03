@@ -1,3 +1,15 @@
+<a name="v0.22.14-rc"></a>
+
+## [v0.22.14-rc](https://github.com/sereneblue/chameleon/compare/v0.22.13...v0.22.14-rc) (2021-11-02)
+
+### Bug Fixes
+
+- **injection:** improve scree spoofing and fix issue when using real profile with screen size "profile" option selected
+
+### Features
+
+- update profiles ([#522](https://github.com/sereneblue/chameleon/issues/522))
+
 <a name="v0.22.13-rc"></a>
 
 ## [v0.22.13-rc](https://github.com/sereneblue/chameleon/compare/v0.22.12...v0.22.13-rc) (2021-10-16)
