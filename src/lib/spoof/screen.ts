@@ -5,7 +5,7 @@ export default {
 
   if (screenData.width != null) {
     if (screenData.usingProfileRes === false) {
-      screenData.availHeight = screenData.height - (screenData.height - screenData.availHeight);
+      screenData.availHeight = screenData.height - (spoofContext.screen.height - spoofContext.screen.availHeight);
     }
 
     ['top', 'left', 'availTop', 'availLeft'].forEach((k) => {
