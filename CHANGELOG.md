@@ -1,3 +1,11 @@
+<a name="v0.22.15-rc"></a>
+
+## [v0.22.15-rc](https://github.com/sereneblue/chameleon/compare/v0.22.14...v0.22.15-rc) (2021-11-10)
+
+### Bug Fixes
+
+- **injection:** use spoof context screen data to calculate available height
+
 <a name="v0.22.14-rc"></a>
 
 ## [v0.22.14-rc](https://github.com/sereneblue/chameleon/compare/v0.22.13...v0.22.14-rc) (2021-11-02)
