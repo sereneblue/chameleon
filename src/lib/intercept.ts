@@ -99,12 +99,14 @@ class Interceptor {
     /* Get document url of request */
     if (request.type === 'main_frame') {
       url = request.url;
-    } else if (request.parentFrameId == -1 || request.type == 'sub_frame') {
+    } else if (request.parentFrameId == -1) {
       url = request.documentUrl;
     } else {
       let root = request.frameAncestors ? request.frameAncestors.find(f => f.frameId === 0) : '';
       if (root) {
         url = root.url;
+      } else {
+        url = request.documentUrl;
       }
     }
 
