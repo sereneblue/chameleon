@@ -1,3 +1,11 @@
+<a name="v0.22.18-rc"></a>
+
+## [v0.22.18-rc](https://github.com/sereneblue/chameleon/compare/v0.22.17...v0.22.18-rc) (2021-12-26)
+
+### Bug Fixes
+
+- **whitelist:** fix issue with frame ancestry ([#524](https://github.com/sereneblue/chameleon/issues/524))
+
 <a name="v0.22.17-rc"></a>
 
 ## [v0.22.17-rc](https://github.com/sereneblue/chameleon/compare/v0.22.16...v0.22.17-rc) (2021-12-09)
