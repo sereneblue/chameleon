@@ -1,3 +1,12 @@
+<a name="v0.22.19-rc"></a>
+
+## [v0.22.19-rc](https://github.com/sereneblue/chameleon/compare/v0.22.18...v0.22.19-rc) (2022-01-09)
+
+### Features
+
+- update profiles
+- **localization:** update russian localization
+
 <a name="v0.22.18-rc"></a>
 
 ## [v0.22.18-rc](https://github.com/sereneblue/chameleon/compare/v0.22.17...v0.22.18-rc) (2021-12-26)
