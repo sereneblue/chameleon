@@ -1,6 +1,6 @@
 {
   "name": "chameleon-ext",
-  "version": "0.22.18",
+  "version": "0.22.19",
   "description": "Spoof your browser profile. Includes a few privacy enhancing options.",
   "author": "sereneblue",
   "license": "GPLv3",
@@ -78,7 +78,7 @@
     "express-ws": "^4.0.0",
     "file-loader": "^1.1.11",
     "geckodriver": "^1.22.1",
-    "husky": "^2.4.0",
+    "husky": "^2.7.0",
     "jest": "^26.6.3",
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.13.1",
