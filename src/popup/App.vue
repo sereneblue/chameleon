@@ -1032,6 +1032,7 @@ export default class App extends Vue {
     this.tmp.intervalMin = this.settings.profile.interval.min;
     this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;
     this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
+    this.tmp.store.version = parseInt(this.tmp.store.version) as any;
   }
 
   async getCurrentPage() {
