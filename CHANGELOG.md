@@ -1,3 +1,15 @@
+<a name="v0.22.21-rc"></a>
+
+## [v0.22.21-rc](https://github.com/sereneblue/chameleon/compare/v0.22.20...v0.22.21-rc) (2022-02-17)
+
+### Bug Fixes
+
+- update temp store version
+
+### Features
+
+- update profiles
+
 <a name="v0.22.20-rc"></a>
 
 ## [v0.22.20-rc](https://github.com/sereneblue/chameleon/compare/v0.22.19...v0.22.20-rc) (2022-01-12)
