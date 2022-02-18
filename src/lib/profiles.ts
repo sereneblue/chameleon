@@ -40,11 +40,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { win: '97.0.1072.55', mac: '97.0.1072.55', desktopChrome: '97.0.4692.71', android: '96.0.1054.62', androidChrome: '96.0.4664.92' },
+  edg: { desktop: '98.0.1108.56', desktopChrome: '98.0.4758.102', android: '97.0.1072.78', androidChrome: '97.0.4692.99' },
   esr: { desktop: '91' },
   esr2: { desktop: '78' },
-  ff: { desktop: '96', mobile: '95' },
-  gcr: { desktop: '97.0.4692.71', ios: '97.0.4692.87', android: '97.0.4692.84' },
+  ff: { desktop: '97', mobile: '97' },
+  gcr: { desktop: '98.0.4758.102', ios: '98.0.4758.97', android: '98.0.4758.101' },
   sf: { desktop: '15.2', ios1: '13.1', ios2: '14.1.2', ios3: '15.2' },
 };
 
@@ -74,9 +74,9 @@ let getName = (os: string, browser: string) => {
   let osId: string;
 
   if (browser === 'edg') {
-    return `${os} - Edge ${BrowserVersions.edg.win.split('.')[0]}`;
+    return `${os} - Edge ${BrowserVersions.edg.desktop.split('.')[0]}`;
   } else if (browser === 'edgm') {
-    return `${os} - Edge ${BrowserVersions.edg.win.split('.')[0]} (Phone)`;
+    return `${os} - Edge ${BrowserVersions.edg.android.split('.')[0]} (Phone)`;
   } else if (browser === 'esr') {
     return `${os} - Firefox ${BrowserVersions.esr.desktop} ESR`;
   } else if (browser === 'esr2') {
@@ -137,14 +137,33 @@ export class Generator {
     // edge
     edg: (os): BrowserProfile => {
       let versions: any = BrowserVersions.edg;
-      let platform: string = os.nav.platform;
+      let platform: string;
+
+      switch (os.id) {
+        case 'win1':
+        case 'win2':
+        case 'win3':
+        case 'win4':
+          platform = os.nav.oscpu;
+          break;
+        case 'mac1':
+        case 'mac2':
+        case 'mac3':
+        case 'lin1':
+        case 'lin2':
+          platform = os.uaPlatform;
+          break;
+        case 'lin3':
+          platform = 'X11; Linux x86_64';
+          break;
+        default:
+          break;
+      }
 
       let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
       let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
-      let ua: string = `Mozilla/5.0 (${os.id.includes('mac') ? os.uaPlatform : os.nav.oscpu}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${
-        versions.desktopChrome
-      } Safari/537.36 Edg/${os.id.includes('win') ? versions.win : versions.mac}`;
+      let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.desktopChrome} Safari/537.36 Edg/${versions.desktop}`;
 
       let hardwareConcurrency: number = randomHW.includes(os.id) ? (Math.random() > 0.5 ? 4 : 2) : 4;
 
@@ -550,7 +569,7 @@ export class Generator {
           platform = os.uaPlatform;
           break;
         case 'lin3':
-          platform = 'Linux x86_64';
+          platform = 'X11; Linux x86_64';
           break;
         default:
           break;
@@ -1034,7 +1053,7 @@ export class Generator {
       {
         id: 'lin1',
         name: 'Linux',
-        browsers: ['esr', 'esr2', 'ff', 'gcr'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
@@ -1046,7 +1065,7 @@ export class Generator {
       {
         id: 'lin2',
         name: 'Fedora Linux',
-        browsers: ['esr', 'esr2', 'ff', 'gcr'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
@@ -1058,7 +1077,7 @@ export class Generator {
       {
         id: 'lin3',
         name: 'Ubuntu Linux',
-        browsers: ['esr', 'esr2', 'ff', 'gcr'],
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr'],
         nav: {
           version: '5.0 (X11)',
           oscpu: 'Linux x86_64',
