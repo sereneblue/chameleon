@@ -68,7 +68,7 @@ export default {
 
     let getWhitelistFonts = (fontList) => {
       let tmpFonts = fontList
-                    .replace(/"/g, '')
+                    .replace(/"|'/g, '')
                     .split(',');
 
       let fonts = [];
