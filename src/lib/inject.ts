@@ -316,6 +316,10 @@ class Injector {
                 function FakePlugin () { return p }
                 const plugin = new FakePlugin();
                 Object.setPrototypeOf(plugin, Plugin.prototype);
+                Object.defineProperty(plugin, 'length', {
+                  configurable: false,
+                  value: p.__mimeTypes.length
+                });
                 pluginArray.push(plugin)
               })
               Object.defineProperty(pluginArray, 'item', {
