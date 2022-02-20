@@ -1,3 +1,14 @@
+<a name="v0.22.22-rc"></a>
+
+## [v0.22.22-rc](https://github.com/sereneblue/chameleon/compare/v0.22.21...v0.22.22-rc) (2022-02-19)
+
+### Bug Fixes
+
+- **font spoofing:** remove single and double quotes from font family
+- **font spoofing:** add default font to whitelisted font list ([#443](https://github.com/sereneblue/chameleon/issues/443))
+- **injection:** update plugin spoofing ([#511](https://github.com/sereneblue/chameleon/issues/511))
+- **injection:** add length for Plugin spoofing
+
 <a name="v0.22.21-rc"></a>
 
 ## [v0.22.21-rc](https://github.com/sereneblue/chameleon/compare/v0.22.20...v0.22.21-rc) (2022-02-17)
