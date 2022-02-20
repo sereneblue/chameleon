@@ -295,14 +295,42 @@ class Injector {
             delete spoofContext.navigator.__proto__[injProp.prop];
           } else if (injProp.obj === 'window.navigator' && injProp.prop == 'mimeTypes') {
             let mimes = (() => {
-              const mimeArray = []
-              injProp.value.forEach(p => {
-                function FakeMimeType () { return p }
+              const mimeArray = {}
+              injProp.value.forEach((m, i) => {
+                function FakeMimeType () { return m }
                 const mime = new FakeMimeType()
                 Object.setPrototypeOf(mime, MimeType.prototype);
-                mimeArray.push(mime)
+                Object.defineProperty(mimeArray, 'length', {
+                  configurable: false,
+                  enumerable: true,
+                  value: injProp.value.length
+                });
+                Object.defineProperty(mimeArray, i, {
+                  configurable: false,
+                  enumerable: true,
+                  value: mime
+                });
+                Object.defineProperty(mimeArray, m.type, {
+                  configurable: false,
+                  enumerable: false,
+                  value: mime
+                });
               })
               Object.setPrototypeOf(mimeArray, MimeTypeArray.prototype);
+              Object.defineProperty(mimeArray, 'item', {
+                configurable: false,
+                enumerable: true,
+                value: function item() {
+                  return this[arguments[0]] || null;
+                }
+              });
+              Object.defineProperty(mimeArray, 'namedItem', {
+                configurable: false,
+                enumerable: true,
+                value: function namedItem() {
+                  return this[arguments[0]] || null;
+                }
+              });
               return mimeArray
             })();
             Object.defineProperty(spoofContext.navigator, 'mimeTypes', {
@@ -311,27 +339,87 @@ class Injector {
             });
           } else if (injProp.obj === 'window.navigator' && injProp.prop == 'plugins') {
             let plugins = (() => {
-              const pluginArray = []
-              injProp.value.forEach(p => {
+              const pluginArray = {};
+              injProp.value.forEach((p, i) => {
                 function FakePlugin () { return p }
                 const plugin = new FakePlugin();
                 Object.setPrototypeOf(plugin, Plugin.prototype);
-                pluginArray.push(plugin)
+                Object.defineProperty(plugin, 'length', {
+                  configurable: false,
+                  enumerable: true,
+                  value: p.__mimeTypes.length
+                });
+                Object.defineProperty(plugin, 'version', {
+                  configurable: false,
+                  enumerable: false,
+                  value: undefined
+                });
+                Object.defineProperty(plugin, 'item', {
+                  configurable: false,
+                  enumerable: true,
+                  value: function item() {
+                    return this[arguments[0]] || null;
+                  }
+                });
+                Object.defineProperty(plugin, 'namedItem', {
+                  configurable: false,
+                  enumerable: true,
+                  value: function namedItem() {
+                    return this[arguments[0]] || null;
+                  }
+                });
+
+                // iterate mime types
+                for (let j = 0; j < p.__mimeTypes.length; j++) {
+                  Object.defineProperty(plugin, j, {
+                    configurable: false,
+                    enumerable: true,
+                    value: navigator.mimeTypes[p.__mimeTypes[j]]
+                  });
+
+                  Object.defineProperty(plugin, p.__mimeTypes[j], {
+                    configurable: false,
+                    enumerable: false,
+                    value: navigator.mimeTypes[p.__mimeTypes[j]]
+                  });
+                }
+
+                delete p.__mimeTypes;
+
+                Object.defineProperty(pluginArray, i, {
+                  configurable: false,
+                  enumerable: true,
+                  value: p
+                });
+
+                Object.defineProperty(pluginArray, p.name, {
+                  configurable: false,
+                  enumerable: false,
+                  value: p
+                });
               })
+              Object.defineProperty(pluginArray, 'length', {
+                configurable: false,
+                enumerable: true,
+                value: injProp.value.length
+              });
               Object.defineProperty(pluginArray, 'item', {
                 configurable: false,
+                enumerable: true,
                 value: function item() {
-                  return this[arguments[0]];
+                  return this[arguments[0]] || null;
                 }
               });
               Object.defineProperty(pluginArray, 'namedItem', {
                 configurable: false,
+                enumerable: true,
                 value: function namedItem() {
-                  return this.find(p => p.name === arguments[0]);
+                  return this[arguments[0]] || null;
                 }
               });
               Object.defineProperty(pluginArray, 'refresh', {
                 configurable: false,
+                enumerable: true,
                 value: function refresh() {
                   return;
                 }
@@ -342,6 +430,18 @@ class Injector {
               configurable: true,
               value: plugins
             });
+
+            let pluginsArray = Array.from(navigator.plugins);
+
+            // iterate mimetypes to add enabledPlugin property
+            for (let i = 0; i < navigator.mimeTypes.length; i++) {
+              let p = pluginsArray.find(p => p[navigator.mimeTypes[i].type] != undefined);
+              Object.defineProperty(navigator.mimeTypes[i], 'enabledPlugin', {
+                configurable: false,
+                enumerable: true,
+                value: p
+              });
+            }
           } else {
             let tmpObj = injProp.obj.split('.').reduce((p,c)=>p&&p[c]||null, spoofContext);
 
