@@ -300,11 +300,6 @@ class Injector {
                 function FakeMimeType () { return m }
                 const mime = new FakeMimeType()
                 Object.setPrototypeOf(mime, MimeType.prototype);
-                Object.defineProperty(mimeArray, 'length', {
-                  configurable: false,
-                  enumerable: true,
-                  value: injProp.value.length
-                });
                 Object.defineProperty(mimeArray, i, {
                   configurable: false,
                   enumerable: true,
@@ -317,6 +312,11 @@ class Injector {
                 });
               })
               Object.setPrototypeOf(mimeArray, MimeTypeArray.prototype);
+              Object.defineProperty(mimeArray, 'length', {
+                configurable: false,
+                enumerable: true,
+                value: injProp.value.length
+              });
               Object.defineProperty(mimeArray, 'item', {
                 configurable: false,
                 enumerable: true,
