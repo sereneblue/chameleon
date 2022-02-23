@@ -1,3 +1,11 @@
+<a name="v0.22.23-rc"></a>
+
+## [v0.22.23-rc](https://github.com/sereneblue/chameleon/compare/v0.22.22...v0.22.23-rc) (2022-02-23)
+
+### Bug Fixes
+
+- **injection:** fix mimetypearray length
+
 <a name="v0.22.22-rc"></a>
 
 ## [v0.22.22-rc](https://github.com/sereneblue/chameleon/compare/v0.22.21...v0.22.22-rc) (2022-02-19)
