@@ -1,3 +1,11 @@
+<a name="0.22.24-rc"></a>
+
+## [0.22.24-rc](https://github.com/sereneblue/chameleon/compare/v0.22.23...0.22.24-rc) (2022-02-27)
+
+### Features
+
+- **font spoofing:** add fonts to Windows and Linux profiles
+
 <a name="v0.22.23-rc"></a>
 
 ## [v0.22.23-rc](https://github.com/sereneblue/chameleon/compare/v0.22.22...v0.22.23-rc) (2022-02-23)
