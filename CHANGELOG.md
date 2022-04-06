@@ -1,3 +1,12 @@
+<a name="v0.22.26-rc"></a>
+
+## [v0.22.26-rc](https://github.com/sereneblue/chameleon/compare/v0.22.25...v0.22.26-rc) (2022-04-06)
+
+### Features
+
+- update profiles
+- improve keyboard fingerprinting
+
 <a name="v0.22.25-rc"></a>
 
 ## [v0.22.25-rc](https://github.com/sereneblue/chameleon/compare/v0.22.24...v0.22.25-rc) (2022-03-09)
