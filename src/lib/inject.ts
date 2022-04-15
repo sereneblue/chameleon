@@ -273,6 +273,7 @@ class Injector {
         let ORIGINAL_INTL_PROTO = spoofContext.Intl.DateTimeFormat.prototype;
         let _supportedLocalesOfDTF = spoofContext.Intl.DateTimeFormat.supportedLocalesOf;
         let _supportedLocalesOfRTF = spoofContext.Intl.RelativeTimeFormat.supportedLocalesOf;
+        let _supportedLocalesOfLF = spoofContext.Intl.ListFormat.supportedLocalesOf;
         let _supportedLocalesOfNF = spoofContext.Intl.NumberFormat.supportedLocalesOf;
         let _supportedLocalesOfPR = spoofContext.Intl.PluralRules.supportedLocalesOf;
         let _supportedLocalesOfC = spoofContext.Intl.Collator.supportedLocalesOf;
@@ -497,6 +498,7 @@ class Injector {
           spoofContext.Intl.RelativeTimeFormat.supportedLocalesOf = _supportedLocalesOfRTF;
           spoofContext.Intl.NumberFormat.supportedLocalesOf = _supportedLocalesOfNF;
           spoofContext.Intl.PluralRules.supportedLocalesOf = _supportedLocalesOfPR;
+          spoofContext.Intl.ListFormat.supportedLocalesOf = _supportedLocalesOfLF;
           spoofContext.Intl.Collator.supportedLocalesOf = _supportedLocalesOfC;
 
           spoofContext.open = function(){
