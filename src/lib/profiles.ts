@@ -44,7 +44,7 @@ const BrowserVersions: any = {
   esr: { desktop: '91' },
   esr2: { desktop: '78' },
   ff: { desktop: '99', mobile: '99' },
-  gcr: { desktop: '100.0.4896.75', ios: '100.0.4896.77  ', android: '100.0.4896.79' },
+  gcr: { desktop: '100.0.4896.127', ios: '100.0.4896.85', android: '100.0.4896.127' },
   sf: { desktop: '15.3', ios1: '13.1', ios2: '14.1.2', ios3: '15.3' },
 };
 
