@@ -596,6 +596,9 @@
                   />
                   <span class="ml-1" v-t="'popup-options-standard-firstPartyIsolation.message'"></span>
                 </label>
+                <a class="inline-flex ml-1" href="https://sereneblue.github.io/chameleon/wiki/options#fpi" title="View more info on wiki">
+                  <feather type="info" class="text-primary" size="1.25em"></feather>
+                </a>
               </div>
               <div class="flex items-center mb-1" :class="{ 'opacity-50': !hasPrivacyPermission }">
                 <label class="cursor-pointer">
