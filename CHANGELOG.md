@@ -1,3 +1,16 @@
+<a name="0.22.27-rc"></a>
+
+## [0.22.27-rc](https://github.com/sereneblue/chameleon/compare/v0.22.26...0.22.27-rc) (2022-04-16)
+
+### Bug Fixes
+
+- use original function for Intl.ListFormat.supportedLocalesOf ([#530](https://github.com/sereneblue/chameleon/issues/530))
+
+### Features
+
+- update profiles
+- add link to read more about FPI ([#526](https://github.com/sereneblue/chameleon/issues/526))
+
 <a name="v0.22.26-rc"></a>
 
 ## [v0.22.26-rc](https://github.com/sereneblue/chameleon/compare/v0.22.25...v0.22.26-rc) (2022-04-06)
