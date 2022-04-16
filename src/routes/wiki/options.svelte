@@ -126,7 +126,7 @@
     </div>
     <div class="mt-2">
       <h2 class="font-semibold text-3xl border-primary border-b-2 my-4">Standard Options</h2>
-      <div class="mt-4">
+      <div class="mt-4" id="fpi">
         <h3 class="font-bold">Enable first party isolation</h3>
         <div class="font-semibold my-2 text-sm text-red-600">This option will break some sites!</div>
         <p>
@@ -134,6 +134,9 @@
           third party cookies from tracking you across domains. This is one of Tor Browser's features that was introduced
           in Firefox 52. More info can be found <a href="https://www.torproject.org/projects/torbrowser/design/#identifier-linkability" target="_blank" rel="noopener noreferrer">here</a>.
         </p>
+        <div class="text-left w-full my-4 bg-orange-200 p-2 text-base rounded">
+          First Party Isolation is no longer maintained. Enabling FPI will disable network parititoning and total cookies parititoning. This feature will eventually be removed from the Firefox webextension API. Some more information can be found on the Mozilla blog <a class="text-primary underline" href="https://blog.mozilla.org/security/2021/02/23/total-cookie-protection/" rel="noopener noreferrer" target="_blank">here</a>
+        </div>
       </div>
       <div class="mt-4">
         <h3 class="font-bold">Enable resist fingerprinting</h3>
