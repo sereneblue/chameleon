@@ -1,3 +1,11 @@
+<a name="v0.22.29-rc"></a>
+
+## [v0.22.29-rc](https://github.com/sereneblue/chameleon/compare/v0.22.28...v0.22.29-rc) (2022-05-20)
+
+### Features
+
+- update mimetypes and plugins for Firefox profiles
+
 <a name="v0.22.28-rc"></a>
 
 ## [v0.22.28-rc](https://github.com/sereneblue/chameleon/compare/v0.22.27...v0.22.28-rc) (2022-05-04)
