@@ -584,7 +584,7 @@ export default class App extends Vue {
     this.iconPath = browser.runtime.getURL('icons/icon.svg');
     this.version = browser.runtime.getManifest().version_name;
     this.platform = (await browser.runtime.getPlatformInfo()).os;
-    this.isLegacyVersion = (await browser.runtime.getBrowserInfo()).version < '75.';
+    this.isLegacyVersion = parseInt(await browser.runtime.getBrowserInfo().version) < 75;
 
     await this['$store'].dispatch('initialize');
 
