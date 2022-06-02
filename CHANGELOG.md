@@ -1,5 +1,3 @@
-
-
 <a name="v0.22.30-rc"></a>
 
 ## [v0.22.30-rc](https://github.com/sereneblue/chameleon/compare/v0.22.29...v0.22.30-rc) (2022-06-01)
