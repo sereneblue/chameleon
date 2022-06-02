@@ -40,11 +40,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '100.0.1185.39', desktopChrome: '101.0.4951.54', android: '100.0.1185.50', androidChrome: '101.0.4951.41' },
+  edg: { desktop: '101.0.1210.53', desktopChrome: '101.0.4951.64', android: '101.0.1210.53', androidChrome: '101.0.4951.64' },
   esr: { desktop: '91' },
   esr2: { desktop: '78' },
-  ff: { desktop: '100', mobile: '100' },
-  gcr: { desktop: '101.0.4951.54', ios: '101.0.4951.41', android: '101.0.4951.41' },
+  ff: { desktop: '101', mobile: '101' },
+  gcr: { desktop: '102.0.5005.63', ios: '102.0.5005.87', android: '102.0.5005.78' },
   sf: { desktop: '15.4', ios1: '13.1', ios2: '14.1.2', ios3: '15.4' },
 };
 
@@ -961,11 +961,11 @@ export class Generator {
           cpuClass: 'x64',
           deviceMemory: null,
           hardwareConcurrency: null,
-          mimeTypes: null,
+          mimeTypes: [],
           maxTouchPoints: 0,
           oscpu: null,
           platform: 'Win32',
-          plugins: null,
+          plugins: [],
           productSub: null,
           userAgent: `Mozilla/5.0 (${os.nav.oscpu.split(';')[0]}; WOW64; Trident/7.0; rv:11.0) like Gecko`,
           vendor: '',
