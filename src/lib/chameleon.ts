@@ -264,7 +264,7 @@ export class Chameleon {
 
     this.tempStore.version = this.browserInfo.version;
 
-    this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache, this.browserInfo.version < '90');
+    this.intercept = new Interceptor(this.settings, this.tempStore, this.profileCache, parseInt(this.browserInfo.version) < 90);
 
     await this.saveSettings(this.settings);
   }
