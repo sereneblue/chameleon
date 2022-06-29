@@ -8,7 +8,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}",
-      "strict_min_version": "59.0a1",
+      "strict_min_version": "68.0a1",
       "update_url": "https://raw.githubusercontent.com/sereneblue/chameleon/develop/.github/workflows/dev/updates.json"
     }
   },
