@@ -1,3 +1,15 @@
+<a name="v0.22.32-rc"></a>
+
+## [v0.22.32-rc](https://github.com/sereneblue/chameleon/compare/v0.22.31...v0.22.32-rc) (2022-06-28)
+
+### Bug Fixes
+
+- remove version check for cookie config option ([#536](https://github.com/sereneblue/chameleon/issues/536))
+
+### Features
+
+- update profiles
+
 <a name="v0.22.31-rc"></a>
 
 ## [v0.22.31-rc](https://github.com/sereneblue/chameleon/compare/v0.22.30...v0.22.31-rc) (2022-06-02)
