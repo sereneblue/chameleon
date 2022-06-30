@@ -12,9 +12,9 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v2
       - name: Install NodeJS
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: '12.x'
+          node-version: '14'
       - name: Build extension
         run: |
           npm install
