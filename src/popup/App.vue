@@ -716,7 +716,7 @@
                     <option value="allow_visited" v-t="'popup-options-cookiePolicy-allowVisited.message'"></option>
                     <option value="reject_all" v-t="'popup-options-cookiePolicy-rejectAll.message'"></option>
                     <option value="reject_third_party" v-t="'popup-options-cookiePolicy-rejectThirdParty.message'"></option>
-                    <option value="reject_trackers" v-show="tmp.store.version >= 64" v-t="'popup-options-cookiePolicy-rejectTrackers.message'"></option>
+                    <option value="reject_trackers" v-t="'popup-options-cookiePolicy-rejectTrackers.message'"></option>
                     <option
                       value="reject_trackers_and_partition_foreign"
                       v-show="tmp.store.version >= 78"
@@ -829,7 +829,6 @@ export default class App extends Vue {
       },
       profile: '',
       screenSize: '',
-      version: '',
     },
   };
 
@@ -1035,7 +1034,6 @@ export default class App extends Vue {
     this.tmp.intervalMin = this.settings.profile.interval.min;
     this.tmp.rangeFrom = this.settings.headers.spoofIP.rangeFrom;
     this.tmp.rangeTo = this.settings.headers.spoofIP.rangeTo;
-    this.tmp.store.version = parseInt(this.tmp.store.version) as any;
   }
 
   async getCurrentPage() {
