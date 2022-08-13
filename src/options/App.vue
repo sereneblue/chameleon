@@ -6,7 +6,6 @@
         <div @click="changeTab('about')" class="options-tab" :class="activeTab('about')" v-t="'options-tab-about.message'"></div>
         <div @click="changeTab('whitelist')" class="options-tab" :class="activeTab('whitelist')" v-t="'text-whitelist.message'"></div>
         <div @click="changeTab('iprules')" class="options-tab" :class="activeTab('iprules')" v-t="'options-tab-ipRules.message'"></div>
-        <div @click="changeTab('checklist')" class="options-tab" :class="activeTab('checklist')" v-t="'options-tab-checklist.message'"></div>
       </div>
     </div>
     <div class="flex-grow px-4 pt-12 z-0">
@@ -200,33 +199,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-      <div v-show="currentTab === 'checklist'" class="text-2xl flex flex-col">
-        <div class="text-xl mb-4">
-          <div class="mb-0" v-t="'options-checklist-note1.message'"></div>
-          <div class="mb-2" v-t="'options-checklist-note2.message'"></div>
-        </div>
-        <div>
-          <div v-for="c in checklist" :key="c.preference" class="border-primary border-1 p-4 shadow-sm mb-4 rounded fg">
-            <div class="text-base md:text-md pb-2 mb-4 border-b-2 border-primary flex items-center">
-              <feather @click="showInfo(c)" class="mr-2 hover:cursor-pointer" type="help-circle"></feather>
-              <div>{{ $t(`options-checklistItem-${c.id}.message`) }}</div>
-            </div>
-            <div class="flex flex-col sm:flex-row text-base md:text-xl items-center">
-              <span class="break-all">{{ c.preference }}</span>
-              <span class="hidden pt-2 sm:block">
-                <feather class="mx-2 self-center" type="chevrons-right"></feather>
-              </span>
-              <span class="block pt-2 sm:hidden">
-                <feather class="mx-2 self-center" type="chevrons-down"></feather>
-              </span>
-              <span>
-                <strong>{{ c.value != 'Leave empty' ? c.value : $t('options-checklist-leaveEmpty.message') }}</strong>
-              </span>
-            </div>
-            <p v-if="c.causeBreak" class="flex items-center text-md mt-4" v-t="'options-checklist-warning.message'"><feather class="mr-2" type="alert-triangle"></feather></p>
-          </div>
         </div>
       </div>
     </div>
@@ -446,13 +418,6 @@
               </div>
             </div>
           </div>
-          <div v-else-if="modalType === Modal.CHECKLIST_INFO" class="w-4/5 md:w-1/3 modal overflow-y-auto" style="max-height: 60vh;">
-            <div class="flex flex-col px-6 pt-6 pb-8">
-              <span class="my-1 text-xl font-semibold text-center" v-t="`options-checklistItem-${tmp.checklistItem.id}.message`"></span>
-              <div class="my-4 text-center text-lg" v-t="`options-checklistItem-${tmp.checklistItem.id}Desc.message`"></div>
-              <button @click="closeModal" class="bg-transparent font-semibold py-2 px-4 rounded" v-t="'options-checklist-close.message'"></button>
-            </div>
-          </div>
         </div>
       </div>
     </transition>
@@ -461,7 +426,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Checklist, ChecklistItem } from '../lib/checklist';
 import * as lang from '../lib/language';
 import * as prof from '../lib/profiles';
 import * as tz from '../lib/tz';
@@ -477,7 +441,6 @@ enum Modal {
   CONFIRM_IP_DELETE,
   CONFIRM_RESET,
   CONFIRM_WL_DELETE,
-  CHECKLIST_INFO,
 }
 
 @Component
@@ -485,7 +448,6 @@ export default class App extends Vue {
   public REGEX_DOMAIN: any = /^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/;
   public Modal = Modal;
   public modalType: Modal = Modal.DEFAULT;
-  public checklist: ChecklistItem[] = Checklist;
   public currentTab: string = 'about';
   public defaultLanguage: string = browser.i18n.getUILanguage();
   public iconPath: string = '';
@@ -512,9 +474,6 @@ export default class App extends Vue {
   public hasPrivacyPermission: boolean = !!browser.privacy;
   public version: string = '';
   public tmp: any = {
-    checklistItem: {
-      description: '',
-    },
     ipRule: {
       id: '',
       name: '',
@@ -591,9 +550,7 @@ export default class App extends Vue {
     let hash = window.location.hash.split('?');
     let queryParams = hash.length > 1 ? hash[1] : '';
 
-    if (hash[0] === '#checklist') {
-      this.currentTab = 'checklist';
-    } else if (hash[0] === '#iprules') {
+    if (hash[0] === '#iprules') {
       this.currentTab = 'iprules';
     } else if (hash[0] === '#whitelist') {
       this.currentTab = 'whitelist';
@@ -799,9 +756,7 @@ export default class App extends Vue {
     );
 
     window.onhashchange = function() {
-      if (window.location.hash === '#checklist') {
-        this.currentTab = 'checklist';
-      } else if (window.location.hash === '#iprules') {
+      if (window.location.hash === '#iprules') {
         this.currentTab = 'iprules';
       } else if (window.location.hash === '#whitelist') {
         this.currentTab = 'whitelist';
@@ -1007,12 +962,6 @@ export default class App extends Vue {
     });
 
     this.showModal = false;
-  }
-
-  showInfo(checklistItem: any): void {
-    this.tmp.checklistItem = checklistItem;
-    this.modalType = Modal.CHECKLIST_INFO;
-    this.showModal = true;
   }
 
   async togglePrivacyPermission(): Promise<void> {
