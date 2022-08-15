@@ -5,6 +5,16 @@
 <div class="mb-8 px-4 text-xl leading-snug">
   <div class="mb-4 border-b-2 border-priamry">
     <h4 class="mb-4 text-2xl font-semibold">
+      Cloudflare protected sites
+    </h4>
+    <div class="text-base">
+      <div class="mb-4">
+        Cloudflare performs a number of checks on the request and the browser that Chameleon can not protect against. Simply changing your user agent to Chrome can cause a captcha loop. Sites that use Cloudflare should be whitelisted with a Firefox profile/real profile.
+      </div> 
+    </div>
+  </div>
+  <div class="mb-4 border-b-2 border-priamry">
+    <h4 class="mb-4 text-2xl font-semibold">
       URLs exempt from Chameleon spoofing
     </h4>
     <div class="text-base">
