@@ -1,6 +1,7 @@
 const en = require('./en/messages.json');
 const es = require('./es/messages.json');
 const de = require('./de/messages.json');
+const fi = require('./fi/messages.json');
 const fr = require('./fr/messages.json');
 const ja = require('./ja/messages.json');
 const pl = require('./pl/messages.json');
@@ -13,6 +14,7 @@ export default {
   en,
   es,
   de,
+  fi,
   fr,
   ja,
   pl,

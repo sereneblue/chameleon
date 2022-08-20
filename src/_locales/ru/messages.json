@@ -173,6 +173,18 @@
   "options-whitelist-headerIPLabel": {
     "message": "IP для заголовков (\"Via\" и \"X-Forwarded-For\")"
   },
+  "options-whitelist-options-audioContext": {
+    "message": "Enable spoof audio context"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Enable spoof client rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Block CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Блокировать медиа-устройства"
+  },
   "options-whitelist-options-name": {
     "message": "Включить защиту имени окна"
   },
@@ -307,6 +319,9 @@
   },
   "popup-profile-randomMobileProfile": {
     "message": "Случайный профиль (Мобильный)"
+  },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Показать профиль браузера на значке"
   },
   "popup-headers": {
     "message": "Заголовки"
@@ -467,6 +482,9 @@
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "Блокировать трекеры"
   },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Reject trackers and partition third-party cookies"
+  },
   "popup-whitelist-contextMenu": {
     "message": "Добавить пункт в контекстное меню для открытия текущего домена во вкладке белого списка"
   },
@@ -484,6 +502,15 @@
   },
   "popup-whitelist-open": {
     "message": "Открыть белый список"
+  },
+  "text-addToRule": {
+    "message": "Добавить к правилу: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-allowAll": {
     "message": "Разрешить все"
@@ -514,6 +541,15 @@
   },
   "text-realProfile": {
     "message": "Реальный профиль"
+  },
+  "text-removeFromRule": {
+    "message": "Удалить из правила: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "Сохранить"
