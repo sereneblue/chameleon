@@ -2,8 +2,8 @@
   "name": "Chameleon",
   "description": "__MSG_extDescription__",
   "author": "sereneblue",
-  "version": "0.22.33.1",
-  "version_name": "0.22.33",
+  "version": "0.22.34.1",
+  "version_name": "0.22.34",
   "manifest_version": 2,
   "browser_specific_settings": {
     "gecko": {

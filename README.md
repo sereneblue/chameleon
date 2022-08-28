@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.22.33-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.22.34-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/chameleon/localized.svg)](https://crowdin.com/project/chameleon)
 
@@ -48,7 +48,6 @@ The UI is near identical and contains most of the features found in the original
 - Enable tracking protection
 - Block WebSockets
 - Modify cookie policy
-- about:config checklist to enhance your privacy
 
 Please note that WebExtensions are unable to modify about:config entries.
 
@@ -89,3 +88,4 @@ Don't know where to start? Check out the [wiki](https://sereneblue.github.io/cha
 - David P. (Megver83) and reii for the Spanish translation
 - xlabx for the Turkish translation
 - mezysinc for the Portuguese (Brazilian) translation
+- Ricky Tigg for the Finnish translation
