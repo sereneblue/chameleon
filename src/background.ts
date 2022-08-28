@@ -75,7 +75,7 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
     sendResponse('done');
   } else if (request.action === 'reloadIPInfo') {
     if (chameleon.settings.options.timeZone === 'ip' || (chameleon.settings.headers.spoofAcceptLang.value === 'ip' && chameleon.settings.headers.spoofAcceptLang.enabled)) {
-      chameleon.updateIPInfo(request.data);
+      chameleon.updateIPInfo();
       sendResponse('done');
     }
   } else if (request.action === 'reloadProfile') {
@@ -135,7 +135,9 @@ browser.runtime.onMessage.addListener(messageHandler);
   await chameleon.init(await webext.getSettings(null));
 
   if (chameleon.settings.options.timeZone === 'ip' || (chameleon.settings.headers.spoofAcceptLang.value === 'ip' && chameleon.settings.headers.spoofAcceptLang.enabled)) {
-    await chameleon.updateIPInfo(false);
+    setTimeout(() => {
+      chameleon.updateIPInfo();
+    }, chameleon.settings.config.reloadIPStartupDelay * 1000);
   }
 
   if (!!browser.privacy) {

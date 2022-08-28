@@ -171,6 +171,20 @@
               <span v-t="'options-ipRules-reload.message'"></span>
             </div>
           </button>
+          <div class="flex gap-x-2 items-center">
+            <label for="config.reloadIPStartupDelay">
+              <span class="text-dark" v-t="'text-startupDelay.message'"></span>
+            </label>
+            <input
+              id="reloadIPStartupDelay"
+              @input="changeSetting($event)"
+              name="config.reloadIPStartupDelay"
+              v-model.number="settings.config.reloadIPStartupDelay"
+              type="number"
+              min="0"
+              class="block form-input"
+            />
+          </div>
         </div>
         <div class="flex flex-wrap pb-12">
           <table id="iprules" class="w-full">
@@ -533,6 +547,12 @@ export default class App extends Vue {
       domain: '',
       pattern: '',
     });
+  }
+
+  async changeSetting(evt: any): Promise<void> {
+    console.log(this.settings);
+
+    webext.sendToBackground(this.settings);
   }
 
   changeTab(tab: string): void {
