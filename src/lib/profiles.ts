@@ -40,12 +40,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '103.0.1264.77', desktopChrome: '103.0.5060.134', android: '103.0.1264.71', androidChrome: '103.0.5060.134' },
-  esr: { desktop: '91' },
-  esr2: { desktop: '78' },
-  ff: { desktop: '103', mobile: '103' },
-  gcr: { desktop: '103.0.5060.134', ios: '103.0.5060.63', android: '103.0.5060.129' },
-  sf: { desktop: '15.4', ios1: '13.1', ios2: '14.1.2', ios3: '15.4' },
+  edg: { desktop: '104.0.1293.70', desktopChrome: '104.0.0.0', android: '104.0.1293.60', androidChrome: '104.0.5112.97' },
+  esr: { desktop: '102' },
+  esr2: { desktop: '91' },
+  ff: { desktop: '104', mobile: '104' },
+  gcr: { desktop: '104.0.0.0', ios: '104.0.5112.99', android: '104.0.5112.97' },
+  sf: { desktop: '15.6', ios1: '13.1.2', ios2: '14.1.2', ios3: '15.6' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -1160,18 +1160,6 @@ export class Generator {
       //  Use last 3 versions of macOS
       {
         id: 'mac1',
-        name: 'macOS 10.14',
-        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
-        nav: {
-          version: '',
-          oscpu: 'Intel Mac OS X 10.14',
-          platform: 'MacIntel',
-        },
-        screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 10_14_6',
-      },
-      {
-        id: 'mac2',
         name: 'macOS 10.15',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
@@ -1183,7 +1171,7 @@ export class Generator {
         uaPlatform: 'Macintosh; Intel Mac OS X 10_15_7',
       },
       {
-        id: 'mac3',
+        id: 'mac2',
         name: 'macOS 11',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
@@ -1193,6 +1181,18 @@ export class Generator {
         },
         screenOffset: -23,
         uaPlatform: 'Macintosh; Intel Mac OS X 11_6',
+      },
+      {
+        id: 'mac3',
+        name: 'macOS 12',
+        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
+        nav: {
+          version: '',
+          oscpu: 'Intel Mac OS X 12',
+          platform: 'MacIntel',
+        },
+        screenOffset: -23,
+        uaPlatform: 'Macintosh; Intel Mac OS X 12_5_1',
       },
     ],
     linux: [
@@ -1244,13 +1244,13 @@ export class Generator {
         id: 'ios2',
         name: 'iOS 14',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '14_8',
+        uaPlatform: '14_8_1',
       },
       {
         id: 'ios3',
         name: 'iOS 15',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '15_0',
+        uaPlatform: '15_6',
       },
     ],
     android: [

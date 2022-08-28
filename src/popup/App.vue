@@ -58,11 +58,21 @@
             <div>{{ currentProfile.timezone }}</div>
             <div>{{ currentProfile.lang }}</div>
           </div>
-          <div v-show="isRandomProfile" class="flex justify-center text-sm">
-            <div id="changeProfile" @click="changeProfile" class="rounded-lg cursor-pointer fg">
-              <div class="flex items-center px-2 py-1">
-                <feather type="refresh-cw" size="1em"></feather>
-                <span class="ml-2" v-t="'popup-home-change.message'"></span>
+          <div class="flex flex-col gap-y-2">
+            <div v-show="isRandomProfile" class="flex justify-center text-sm">
+              <div id="changeProfile" @click="changeProfile" class="rounded-lg cursor-pointer fg">
+                <div class="flex items-center px-2 py-1">
+                  <feather type="refresh-cw" size="1em"></feather>
+                  <span class="ml-2" v-t="'popup-home-change.message'"></span>
+                </div>
+              </div>
+            </div>
+            <div v-show="canReloadIP" class="flex justify-center text-sm">
+              <div id="reloadIPInfo" @click="reloadIPInfo" class="rounded-lg cursor-pointer fg">
+                <div class="flex items-center px-2 py-1">
+                  <feather class="mr-2" type="refresh-cw" size="1em"></feather>
+                  <span v-t="'options-ipRules-reload.message'"></span>
+                </div>
               </div>
             </div>
           </div>
@@ -905,6 +915,14 @@ export default class App extends Vue {
     }
   }
 
+  get canReloadIP(): boolean {
+    if (this.settings.options.timeZone === 'ip' || (this.settings.headers.spoofAcceptLang.value === 'ip' && this.settings.headers.spoofAcceptLang.enabled)) {
+      return true;
+    }
+
+    return false;
+  }
+
   get isRandomProfile(): boolean {
     if (this.settings.profile.selected.includes('random') || ['windows', 'macOS', 'linux', 'iOS', 'android'].includes(this.settings.profile.selected)) {
       return true;
@@ -1109,6 +1127,12 @@ export default class App extends Vue {
       url: browser.runtime.getURL(`/options/options.html#${tab}`),
     });
     window.close();
+  }
+
+  reloadIPInfo(): void {
+    browser.runtime.sendMessage({
+      action: 'reloadIPInfo',
+    });
   }
 
   resizeProfileList(): void {

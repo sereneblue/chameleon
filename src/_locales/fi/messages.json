@@ -1,0 +1,569 @@
+{
+  "extDescription": {
+    "message": "Huijaa selainprofiiliasi. Sisältää muutamia yksityisyyttä parantavia vaihtoehtoja."
+  },
+  "notifications-profileChange": {
+    "message": "Profiili muutettu:"
+  },
+  "notifications-unableToGetIPInfo": {
+    "message": "IP-tietoja ei voi saada"
+  },
+  "notifications-usingIPInfo": {
+    "message": "IP-tietojen käyttäminen:"
+  },
+  "notifications-usingIPRule": {
+    "message": "IP-säännön käyttäminen:"
+  },
+  "options-about-issueTracker": {
+    "message": "Vikaseuranta"
+  },
+  "options-about-knownIssues": {
+    "message": "Tunnetut viat"
+  },
+  "options-about-wiki": {
+    "message": "Wiki"
+  },
+  "options-about-support": {
+    "message": "Tuki"
+  },
+  "options-about-sourceCode": {
+    "message": "Lähdekoodi"
+  },
+  "options-about-translate": {
+    "message": "Auta kääntämisessä"
+  },
+  "options-import-couldNotImport": {
+    "message": "Tiedostoa ei voitu tuoda"
+  },
+  "options-import-invalid-config": {
+    "message": "Virheelliset asetukset: puuttuva kokoonpano"
+  },
+  "options-import-invalid-excluded": {
+    "message": "Virheelliset asetukset: puuttuva poissuljettu"
+  },
+  "options-import-invalid-excludedProfile": {
+    "message": "Virheelliset asetukset: poissuljettujen profiili on virheellinen"
+  },
+  "options-import-invalid-headers": {
+    "message": "Virheelliset asetukset: puuttuvat otsikot"
+  },
+  "options-import-invalid-ipRuleId": {
+    "message": "Virheelliset asetukset: virheellinen IP-säänötunnus"
+  },
+  "options-import-invalid-ipRuleName": {
+    "message": "Virheelliset asetukset: puuttuva IP-säännön nimi"
+  },
+  "options-import-invalid-ipRuleRange": {
+    "message": "Virheelliset asetukset: virheellinen IP-säännön IP-alue"
+  },
+  "options-import-invalid-ipRules": {
+    "message": "Virheelliset asetukset: puuttuvat IP-säännöt"
+  },
+  "options-import-invalid-ipRulesDupe": {
+    "message": "Virheelliset asetukset: kaksoiskappale IP-sääntötunnusta löydetty"
+  },
+  "options-import-invalid-options": {
+    "message": "Virheelliset asetukset: puuttuvat asetukset"
+  },
+  "options-import-invalid-profile": {
+    "message": "Virheelliset asetukset: puuttuva profiili"
+  },
+  "options-import-invalid-setting": {
+    "message": "Virheellinen asetusarvo:"
+  },
+  "options-import-invalid-settings": {
+    "message": "Virheelliset asetukset: puuttuvat asetukset"
+  },
+  "options-import-invalid-spoofIP": {
+    "message": "Virheelliset asetukset: Huijausotsikon IP-alue on virheellinen"
+  },
+  "options-import-invalid-version": {
+    "message": "Virheelliset asetukset: versiota ei hyväksytä"
+  },
+  "options-import-invalid-whitelist": {
+    "message": "Virheelliset asetukset: puuttuva valkoluettelo"
+  },
+  "options-import-invalid-whitelistDupe": {
+    "message": "Virheelliset asetukset: kaksoiskappale valkoluettelon sääntötunnuksesta löydetty"
+  },
+  "options-import-invalid-whitelistId": {
+    "message": "Virheelliset asetukset: virheellinen valkoluettelon sääntötunnus"
+  },
+  "options-import-invalid-whitelistName": {
+    "message": "Virheelliset asetukset: puuttuva valkoluettelon säännön nimi"
+  },
+  "options-import-invalid-whitelistOpt": {
+    "message": "Virheelliset asetukset: virheelliset valkoluettelon sääntövaihtoehdot"
+  },
+  "options-import-invalid-whitelistSpoofIP": {
+    "message": "Virheelliset asetukset: virheellinen valkoluettelon huijaus-IP-sääntö"
+  },
+  "options-import-success": {
+    "message": "Asetukset tuotiin onnistuneesti Uudelleen ladataan laajennus..."
+  },
+  "options-ipRules-editorTitle": {
+    "message": "IP-sääntöjen muokkain"
+  },
+  "options-ipRules-ipRule": {
+    "message": "IP-sääntö"
+  },
+  "options-ipRules-reload": {
+    "message": "Lataa IP-tiedot uudelleen"
+  },
+  "options-ipRules-textareaLabel": {
+    "message": "IP-alueet/-osoitteet"
+  },
+  "options-ipRules-textareaPlaceholder": {
+    "message": "Yksi IP/IP alue riviä kohden"
+  },
+  "options-modal-askDelete": {
+    "message": "Oletko varma, että haluat poistaa tämän säännön?"
+  },
+  "options-modal-askReset": {
+    "message": "Oletko varma, että haluat nollaata asetuksesi?"
+  },
+  "options-modal-confirmDelete": {
+    "message": "Kyllä, poista se!"
+  },
+  "options-modal-confirmReset": {
+    "message": "Kyllä, nollaa asetukseni!"
+  },
+  "options-settings": {
+    "message": "Asetukset"
+  },
+  "options-settings-import": {
+    "message": "Tuo"
+  },
+  "options-settings-importing": {
+    "message": "Tuodaan asetuksia"
+  },
+  "options-settings-export": {
+    "message": "Vie"
+  },
+  "options-settings-reset": {
+    "message": "Palauta oletukset"
+  },
+  "options-settings-permissions": {
+    "message": "Chameleon voi hallita joitakin Firefox-asetuksiasi, kuten sormenjälkien ottamisen vastustaminen tai seurantasuojauksen mahdollistamisen. Tämä voi olla ristiriidassa toisen laajennuksen kanssa. Voit estää Chameleonin hallitsemasta näitä asetuksia poistamalla yksityisyyden suojaa koskevan luvan. Huomaa, että tämän luvan poistaminen nollaa nämä asetukset. Voit pyytää tätä oikeutta, jos se ei ole läsnä."
+  },
+  "options-settings-permissions-legacy": {
+    "message": "Sinun tulee asentaa Chameleonin erityinen versio, jotta voit ottaa käyttöön yksityisyyden suojan. Tämä johtuu joistakin monimutkaisuuksista, jotka liittyvät tämän laajennuksen alustojen-yli/uuden version tuettujen lupien kanssa. Lisätietoja löytyy alla linkitetystä Wikistä."
+  },
+  "options-settings-permissions-legacy-wiki": {
+    "message": "Lisätietoja Wikissä"
+  },
+  "options-settings-permissions-request": {
+    "message": "Pyydä yksityisyyden käyttöoikeuksia"
+  },
+  "options-settings-permissions-remove": {
+    "message": "Poista yksityisyyden käyttöoikeudet"
+  },
+  "options-tab-about": {
+    "message": "Tästä"
+  },
+  "options-tab-ipRules": {
+    "message": "IP-säännöt"
+  },
+  "options-whitelist-acceptLang": {
+    "message": "Hyväksy kieli"
+  },
+  "options-whitelist-editorTitle": {
+    "message": "Valkoluettelon sääntöjen muokkain"
+  },
+  "options-whitelist-headerIPLabel": {
+    "message": "Otsikon IP (Via & X-Forwarded-For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Ota huijausäänikonteksti käyttöön"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Ota käyttöön huijausasiakasviitteet"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Estä CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Estä medialaitteet"
+  },
+  "options-whitelist-options-name": {
+    "message": "Ota ikkunan nimen suojaminen käyttöön"
+  },
+  "options-whitelist-options-tz": {
+    "message": "Ota aikavyöhykkeen huijaaminen käyttöön"
+  },
+  "options-whitelist-options-ws": {
+    "message": "Poista WebSocket Käytöstä"
+  },
+  "options-whitelist-rule": {
+    "message": "Valkoluettelon sääntö"
+  },
+  "options-whitelist-sitesTip": {
+    "message": "Yksi sääntö riviä kohden: toimialue@@[valinnainen regex-malli]"
+  },
+  "options-whitelist-textareaLabel": {
+    "message": "IP-alueet/-osoitteet"
+  },
+  "options-whitelist-textareaPlaceholder": {
+    "message": "Yksi IP/IP alue riviä kohden"
+  },
+  "popup-home-change": {
+    "message": "muutos"
+  },
+  "popup-home-currentProfile": {
+    "message": "Nykyinen profiili"
+  },
+  "popup-home-currentProfile-defaultLanguage": {
+    "message": "Oletuskieli"
+  },
+  "popup-home-currentProfile-defaultScreen": {
+    "message": "Oletusnäyttö"
+  },
+  "popup-home-currentProfile-defaultTimezone": {
+    "message": "Oletusaikavyöhyke"
+  },
+  "popup-home-currentProfile-gettingTimezone": {
+    "message": "Haetaan IP-tietoja"
+  },
+  "popup-home-currentProfile-screenProfile": {
+    "message": "Näyttö (profiili)"
+  },
+  "popup-home-disabled": {
+    "message": "Chameleon on poistettu käytöstä"
+  },
+  "popup-home-enabled": {
+    "message": "Chameleon on käytössä"
+  },
+  "popup-home-notification-disabled": {
+    "message": "Ilmoitukset pois päältä"
+  },
+  "popup-home-notification-enabled": {
+    "message": "Ilmoitukset päällä"
+  },
+  "popup-home-onThisPage": {
+    "message": "tällä sivulla"
+  },
+  "popup-home-theme-dark": {
+    "message": "Tumma"
+  },
+  "popup-home-theme-light": {
+    "message": "Vaalea"
+  },
+  "popup-profile-changePeriodically": {
+    "message": "Muuta määräajoin"
+  },
+  "popup-profile-devicePhone": {
+    "message": "Puhelin"
+  },
+  "popup-profile-deviceTablet": {
+    "message": "Tabletti"
+  },
+  "popup-profile-interval-no": {
+    "message": "Ei"
+  },
+  "popup-profile-interval-custom": {
+    "message": "Mukautettu väli"
+  },
+  "popup-profile-interval-customMax": {
+    "message": "Maksimi (minuuttia)"
+  },
+  "popup-profile-interval-customMin": {
+    "message": "Minimi (minuuttia)"
+  },
+  "popup-profile-interval-minute": {
+    "message": "Joka minuutin välein"
+  },
+  "popup-profile-interval-5minutes": {
+    "message": "5 minuutin välein"
+  },
+  "popup-profile-interval-10minutes": {
+    "message": "10 minuutin välein"
+  },
+  "popup-profile-interval-20minutes": {
+    "message": "20 minuutin välein"
+  },
+  "popup-profile-interval-30minutes": {
+    "message": "30 minuutin välein"
+  },
+  "popup-profile-interval-40minutes": {
+    "message": "40 minuutin välein"
+  },
+  "popup-profile-interval-50minutes": {
+    "message": "50 minuutin välein"
+  },
+  "popup-profile-interval-hour": {
+    "message": "1 tunnin välein"
+  },
+  "popup-profile-exclude": {
+    "message": "Sulje pois"
+  },
+  "popup-profile-randomAndroid": {
+    "message": "Satunnaiset Android-selaimet"
+  },
+  "popup-profile-randomIOS": {
+    "message": "Satunnaiset iOS-selaimet"
+  },
+  "popup-profile-randomMacOS": {
+    "message": "Satunnaiset macOS-selaimet"
+  },
+  "popup-profile-randomLinux": {
+    "message": "Satunnaiset Linux-selaimet"
+  },
+  "popup-profile-randomWindows": {
+    "message": "Satunnaiset Windows-selaimet"
+  },
+  "popup-profile-random": {
+    "message": "Satunnainen"
+  },
+  "popup-profile-randomDesktopProfile": {
+    "message": "Satunnainen profiili (työpöytä)"
+  },
+  "popup-profile-randomMobileProfile": {
+    "message": "Satunnainen profiili (mobiili)"
+  },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Näytä selaimen profiili kuvakkeessa"
+  },
+  "popup-headers": {
+    "message": "Otsikot"
+  },
+  "popup-headers-enableDNT": {
+    "message": "Ota käyttöön Älä seuraa (DNT)"
+  },
+  "popup-headers-preventEtag": {
+    "message": "Estä Etag-seuranta"
+  },
+  "popup-headers-refererWarning": {
+    "message": "Älä muokkaa about:config:n asetuksia alla olevista vaihtoehdoista."
+  },
+  "popup-headers-referer-trimming": {
+    "message": "Viittauksen leikkauskäytäntö"
+  },
+  "popup-headers-referer-trimming-sendFullURI": {
+    "message": "Lähetä koko URI (oletus)"
+  },
+  "popup-headers-referer-trimming-schemeHostPortPath": {
+    "message": "Kaava, isäntä, portti + polku"
+  },
+  "popup-headers-referer-trimming-schemeHostPort": {
+    "message": "Kaava, isäntä + portti"
+  },
+  "popup-headers-referer-xorigin": {
+    "message": "Viittauksen lX Origin -käytäntö"
+  },
+  "popup-headers-referer-xorigin-alwaysSend": {
+    "message": "Lähetä aina (oletus)"
+  },
+  "popup-headers-referer-xorigin-matchBaseDomain": {
+    "message": "Vastaa perustoimialuetta"
+  },
+  "popup-headers-referer-xorigin-matchHost": {
+    "message": "Vastaa isäntä"
+  },
+  "popup-headers-spoofAcceptLang": {
+    "message": "Huijaa Hyväksy kieli"
+  },
+  "popup-headers-spoofIP": {
+    "message": "Huijaa X-Forwarded-For/IP: n kautta"
+  },
+  "popup-headers-spoofIP-random": {
+    "message": "Satunnainen IP"
+  },
+  "popup-headers-spoofIP-custom": {
+    "message": "Mukautettu IP"
+  },
+  "popup-headers-spoofIP-rangeFrom": {
+    "message": "Alue alkaen"
+  },
+  "popup-headers-spoofIP-rangeTo": {
+    "message": "Alue asti"
+  },
+  "popup-options": {
+    "message": "Vaihtoehdot"
+  },
+  "popup-options-grantPermissions": {
+    "message": "Myönnä oikeudet asetusten muokkaamiseen"
+  },
+  "popup-options-injection": {
+    "message": "Injektio"
+  },
+  "popup-options-injection-limitTabHistory": {
+    "message": "Rajoita välilehtihistoriaa"
+  },
+  "popup-options-injection-protectWinName": {
+    "message": "Suojaa ikkunan nimi"
+  },
+  "popup-options-injection-audioContext": {
+    "message": "Huijaa äänikonteksti"
+  },
+  "popup-options-injection-clientRects": {
+    "message": "Huijaa asiakasviitteet"
+  },
+  "popup-options-injection-protectKBFingerprint": {
+    "message": "Suojaa näppäimistön sormenjälki"
+  },
+  "popup-options-injection-protectKBFingerprintDelay": {
+    "message": "Viive (ms)"
+  },
+  "popup-options-injection-screen": {
+    "message": "Näytön koko"
+  },
+  "popup-options-injection-spoofFontFingerprint": {
+    "message": "Huijaa fontin sormenjälki"
+  },
+  "popup-options-standard": {
+    "message": "Vakio"
+  },
+  "popup-options-standard-blockMediaDevices": {
+    "message": "Estä medialaitteet"
+  },
+  "popup-options-standard-blockCSSExfil": {
+    "message": "Estä CSS Exfil"
+  },
+  "popup-options-standard-disableWebRTC": {
+    "message": "Poista WebRTC käytöstä"
+  },
+  "popup-options-standard-firstPartyIsolation": {
+    "message": "Ota käyttöön ensimmäisen osapuolen eristys"
+  },
+  "popup-options-standard-resistFingerprinting": {
+    "message": "Ota käyttöön sormenjälkien vastustaminen"
+  },
+  "popup-options-standard-spoofMediaDevices": {
+    "message": "Huijaa medialaitteet"
+  },
+  "popup-options-standard-trackingProtection": {
+    "message": "Seurantasuojaustila"
+  },
+  "popup-options-standard-trackingProtection-on": {
+    "message": "Päällä"
+  },
+  "popup-options-standard-trackingProtection-off": {
+    "message": "Pois päältä"
+  },
+  "popup-options-standard-trackingProtection-privateBrowsing": {
+    "message": "Käytössä yksityisessä selailussa"
+  },
+  "popup-options-standard-webRTCPolicy": {
+    "message": "WebRTC-käytäntö"
+  },
+  "popup-options-standard-webRTCPolicy-nonProxified": {
+    "message": "Poista välitysvälittämätön UDP käytöstä"
+  },
+  "popup-options-standard-webRTCPolicy-public": {
+    "message": "Käytä vain julkista rajapintaa (paras)"
+  },
+  "popup-options-standard-webRTCPolicy-publicPrivate": {
+    "message": "Käytä julkista ja yksityistä rajapintaa"
+  },
+  "popup-options-standard-webSockets-blockAll": {
+    "message": "Estä kaikki"
+  },
+  "popup-options-standard-webSockets-blockThirdParty": {
+    "message": "Estä kolmas osapuoli"
+  },
+  "popup-options-cookie": {
+    "message": "Eväste"
+  },
+  "popup-options-cookieNotPersistent": {
+    "message": "Poista evästeet ja sivuston tiedot ikkunan sulkemisen jälkeen"
+  },
+  "popup-options-cookiePolicy": {
+    "message": "Käytäntö"
+  },
+  "popup-options-cookiePolicy-allowVisited": {
+    "message": "Salli vierailut"
+  },
+  "popup-options-cookiePolicy-rejectAll": {
+    "message": "Hylkää kaikki"
+  },
+  "popup-options-cookiePolicy-rejectThirdParty": {
+    "message": "Hylkää kolmas osapuoli"
+  },
+  "popup-options-cookiePolicy-rejectTrackers": {
+    "message": "Hylätä jäljittäjät"
+  },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Hylkää jäljittäjät ja osion kolmannen osapuolen evästeet"
+  },
+  "popup-whitelist-contextMenu": {
+    "message": "Lisää kontekstivalikon kohde avataksesi nykyisen välilehden toimialueen valkoluetteloon"
+  },
+  "popup-whitelist-defaultProfileLabel": {
+    "message": "Oletusprofiili"
+  },
+  "popup-whitelist-enable": {
+    "message": "Ota valkoluettelo käyttöön"
+  },
+  "popup-whitelist-isNotWhitelisted": {
+    "message": "ei ole valkoluettelossa"
+  },
+  "popup-whitelist-isWhitelisted": {
+    "message": "on valkoluettelossa"
+  },
+  "popup-whitelist-open": {
+    "message": "Avaa valkoluettelossa"
+  },
+  "text-addToRule": {
+    "message": "Lisää sääntöön: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
+  "text-allowAll": {
+    "message": "Salli kaikki"
+  },
+  "text-cancel": {
+    "message": "Peruuta"
+  },
+  "text-createNewRule": {
+    "message": "Luo uusi sääntö"
+  },
+  "text-default": {
+    "message": "Oletus"
+  },
+  "text-defaultWhitelistProfile": {
+    "message": "Oletusvalkoluettelon profiili"
+  },
+  "text-disableReferer": {
+    "message": "Poista viittaaja käytöstä"
+  },
+  "text-language": {
+    "message": "Kieli"
+  },
+  "text-name": {
+    "message": "Nimi"
+  },
+  "text-profile": {
+    "message": "Profiili"
+  },
+  "text-realProfile": {
+    "message": "Oikea profiili"
+  },
+  "text-removeFromRule": {
+    "message": "Poista säännöstä: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
+  "text-save": {
+    "message": "Tallenna"
+  },
+  "text-screen": {
+    "message": "Näyttö"
+  },
+  "text-searchRules": {
+    "message": "Etsi sääntöjä"
+  },
+  "text-timezone": {
+    "message": "Aikavyöhyke"
+  },
+  "text-whitelist": {
+    "message": "Valkolista"
+  }
+}

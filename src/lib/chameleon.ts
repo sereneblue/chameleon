@@ -53,7 +53,6 @@ export class Chameleon {
         cache: null,
         lang: '',
         tz: '',
-        updated: 0,
       },
       profile: '',
       screenSize: '',
@@ -222,6 +221,8 @@ export class Chameleon {
         }
       }
     }
+
+    this.settings.config.reloadIPStartupDelay = this.settings.config.reloadIPStartupDelay || 0;
   }
 
   public async init(storedSettings: any): Promise<void> {
@@ -805,16 +806,12 @@ export class Chameleon {
     });
   }
 
-  public async updateIPInfo(forceCheck: boolean): Promise<void> {
+  public async updateIPInfo(): Promise<void> {
     try {
       let notificationMsg: string;
 
-      // cache results for 1m
-      if (forceCheck || this.tempStore.ipInfo.updated + 60000 < new Date().getTime()) {
-        let res = await fetch('https://geoip-lookup.vercel.app/api/geoip');
-        this.tempStore.ipInfo.cache = await res.json();
-        this.tempStore.ipInfo.updated = new Date().getTime();
-      }
+      let res = await fetch('https://geoip-lookup.vercel.app/api/geoip');
+      this.tempStore.ipInfo.cache = await res.json();
 
       let data = this.tempStore.ipInfo.cache;
 
@@ -1041,6 +1038,7 @@ export class Chameleon {
         ['config.notificationsEnabled', impSettings.config.notificationsEnabled, 'boolean'],
         ['config.theme', impSettings.config.theme, ['light', 'dark']],
         ['config.hasPrivacyPermission', impSettings.config.hasPrivacyPermission == undefined ? !!browser.privacy : impSettings.config.hasPrivacyPermission, 'boolean'],
+        ['config.reloadIPStartupDelay', impSettings.config.reloadIPStartupDelay || 0, 'number'],
       ];
 
       for (let i = 0; i < options.length; i++) {

@@ -32,309 +32,6 @@
   "options-about-translate": {
     "message": "Помощь с переводом"
   },
-  "options-checklist-close": {
-    "message": "Закрыть"
-  },
-  "options-checklist-leaveEmpty": {
-    "message": "Оставить пустым"
-  },
-  "options-checklist-note1": {
-    "message": "Примечание: Для просмотра списка измененных настроек, посетите сайт: about:support#prefs-tbody"
-  },
-  "options-checklist-note2": {
-    "message": "Создать опцию, если она не существует."
-  },
-  "options-checklist-warning": {
-    "message": "Скорее всего сломает сайты."
-  },
-  "options-checklistItem-blockActiveMixedContent": {
-    "message": "Блокировать активное смешанное содержимое"
-  },
-  "options-checklistItem-blockActiveMixedContentDesc": {
-    "message": "Блокирует не-HTTPS активный смешанный контент (скрипты, ифреймы, CSS, AJAX/запросы на получение) при загрузке на странице HTTPS"
-  },
-  "options-checklistItem-blockDisplayMixedContent": {
-    "message": "Блокировать отображение смешанного содержимого"
-  },
-  "options-checklistItem-blockDisplayMixedContentDesc": {
-    "message": "Блокирует не-HTTPS пассивный смешанный контент (изображения, аудио, видео) при загрузке на страницу HTTPS"
-  },
-  "options-checklistItem-disableAddonCache": {
-    "message": "Отключить кэш дополнений"
-  },
-  "options-checklistItem-disableAddonCacheDesc": {
-    "message": "Предотвратить обновление метаданных дополнений"
-  },
-  "options-checklistItem-disableAddonUpdates": {
-    "message": "Отключить обновление дополнений"
-  },
-  "options-checklistItem-disableAddonUpdatesDesc": {
-    "message": "Запретить проверку обновлений дополнений"
-  },
-  "options-checklistItem-disableBattery": {
-    "message": "Отключить API батареи"
-  },
-  "options-checklistItem-disableBatteryDesc": {
-    "message": "Отключить API батареи. Может использоваться для отслеживания пользователей"
-  },
-  "options-checklistItem-disableHistory": {
-    "message": "Отключить историю просмотра и загрузок"
-  },
-  "options-checklistItem-disableHistoryDesc": {
-    "message": "Отключить историю просмотра и загрузок"
-  },
-  "options-checklistItem-disableCacheDisk": {
-    "message": "Отключить кэш (диск)"
-  },
-  "options-checklistItem-disableCacheDiskDesc": {
-    "message": "Предотвращение кэширования данных на диске"
-  },
-  "options-checklistItem-disableCacheMem": {
-    "message": "Отключить кэш (память)"
-  },
-  "options-checklistItem-disableCacheMemDesc": {
-    "message": "Предотвращение кэширования данных в памяти"
-  },
-  "options-checklistItem-disableClipboardEvt": {
-    "message": "Отключить события буфера обмена"
-  },
-  "options-checklistItem-disableClipboardEvtDesc": {
-    "message": "Предотвращает обнаружение веб-сайтами, когда пользователь копирует, вставляет или обрезает данные с веб-страницы и что было выбрано"
-  },
-  "options-checklistItem-disableContextMenuEvt": {
-    "message": "Отключить события контекстного меню"
-  },
-  "options-checklistItem-disableContextMenuEvtDesc": {
-    "message": "Отключает управление сайтом при нажатии правой кнопки мыши в контекстном меню. Shift + правый клик для переопределения"
-  },
-  "options-checklistItem-disableMobileSensors": {
-    "message": "Отключить датчики устройства"
-  },
-  "options-checklistItem-disableMobileSensorsDesc": {
-    "message": "Отключить датчики устройств (нарушит сайты, которым необходим доступ к датчикам)"
-  },
-  "options-checklistItem-disableDNSPrefetch": {
-    "message": "Отключить предзагрузку DNS"
-  },
-  "options-checklistItem-disableDNSPrefetchDesc": {
-    "message": "Запретить Firefox проактивно  разрешать DNS по ссылкам, которые пользователь может выбрать, а также по URL-адресам для элементов, ссылающихся на элементы веб-страницы."
-  },
-  "options-checklistItem-disableDOMStorage": {
-    "message": "Отключить хранилище DOM"
-  },
-  "options-checklistItem-disableDOMStorageDesc": {
-    "message": "Запретить сайтам хранить данные (хранилище сессий и локальное хранилище)"
-  },
-  "options-checklistItem-disableDRM": {
-    "message": "Отключить DRM"
-  },
-  "options-checklistItem-disableDRMDesc": {
-    "message": "Отключить DRM. Будет вызывать проблемы с такими сайтами,  как Spotify и Netflix"
-  },
-  "options-checklistItem-disableGeo": {
-    "message": "Отключить геолокацию"
-  },
-  "options-checklistItem-disableGeoDesc": {
-    "message": "Отключить функцию геолокации. Это нарушит работу сайтов, которые запрашивают ваше местоположение"
-  },
-  "options-checklistItem-disableGeo2": {
-    "message": "Отключить геолокацию 2"
-  },
-  "options-checklistItem-disableGeo2Desc": {
-    "message": "Удалить поставщика геолокации Firefox"
-  },
-  "options-checklistItem-disableIDN": {
-    "message": "Отключить поддержку IDN"
-  },
-  "options-checklistItem-disableIDNDesc": {
-    "message": "Всегда показывать сырую версию punycode интернационализированных доменных имен. Риск фишинга; например, http://www.аррӏе.com/  показан как http://xn--80ak6aa92e.com"
-  },
-  "options-checklistItem-disableOfflineCache": {
-    "message": "Отключить оффлайн кэш"
-  },
-  "options-checklistItem-disableOfflineCacheDesc": {
-    "message": "Запретить кэширование данных сайта для использования в автономном режиме"
-  },
-  "options-checklistItem-disablePDF": {
-    "message": "Отключить PDF.js"
-  },
-  "options-checklistItem-disablePDFDesc": {
-    "message": "Предотвратить загрузку PDF в браузере"
-  },
-  "options-checklistItem-disablePocket": {
-    "message": "Отключить Pocket"
-  },
-  "options-checklistItem-disablePocketDesc": {
-    "message": "Потенциально нежелательное приложение"
-  },
-  "options-checklistItem-disableResTiming": {
-    "message": "Отключить API Resource Timing"
-  },
-  "options-checklistItem-disableResTimingDesc": {
-    "message": "Resource Timing - это API браузера для сбора информации о времени просмотра ресурсов на странице. Может привести к утечке истории, информации о локальной сети и, возможно, местоположении"
-  },
-  "options-checklistItem-disableSearchSuggest": {
-    "message": "Отключить поисковые предложения"
-  },
-  "options-checklistItem-disableSearchSuggestDesc": {
-    "message": "Предотвратить поисковые подсказки"
-  },
-  "options-checklistItem-disableSearchUpdates": {
-    "message": "Отключить обновление поисковых систем"
-  },
-  "options-checklistItem-disableSearchUpdatesDesc": {
-    "message": "Запретить Firefox обновлять поисковые системы"
-  },
-  "options-checklistItem-disableSpeculatePreConn": {
-    "message": "Отключить cпекулятивные предварительные соединения"
-  },
-  "options-checklistItem-disableSpeculatePreConnDesc": {
-    "message": "Препятствовать Firefox проактивно извлекать ресурсы, когда элемент завис или взаимодействует"
-  },
-  "options-checklistItem-disableSSLFalseStart": {
-    "message": "Отключить SSL False Start"
-  },
-  "options-checklistItem-disableSSLFalseStartDesc": {
-    "message": "Предотвращение отправки данных клиентом до завершения операции рукопожатия для начала сеанса"
-  },
-  "options-checklistItem-disableSSLSessId": {
-    "message": "Отключить идентификаторы сессии SSL"
-  },
-  "options-checklistItem-disableSSLSessIdDesc": {
-    "message": "Запретить отслеживание с возобновлением сеанса TLS"
-  },
-  "options-checklistItem-disableTLSRTT": {
-    "message": "Отключить TLS 0-RTT"
-  },
-  "options-checklistItem-disableTLSRTTDesc": {
-    "message": "Zero Round Trip Time Resumption (0-RTT) - это новая функция в TLS 1.3, которая позволяет клиенту и серверу договариваться о соединении с меньшим количеством шагов, позволяя https-сайтам загружаться быстрее. Есть две проблемы. Во-первых, при этом вы теряете прямую секретность (генерация нового ключа для каждой сессии, и сброс после ее завершения). Во-вторых, 0-RTT требует специальной реализации, чтобы предотвратить повторные атаки, от которых некоторые веб-разработчики наверняка не смогут защититься. - Credits https://github.com/privacytoolsIO/privacytools.io/issues/815#issue-428249054"
-  },
-  "options-checklistItem-disableTRR": {
-    "message": "Отключить TTR (Доверенный Рекурсивный Резолвер)"
-  },
-  "options-checklistItem-disableTRRDesc": {
-    "message": "DNS-over-HTTPS обходит хосты и использует Cloudflare/Google. Настройки DNS должны управляться пользователем"
-  },
-  "options-checklistItem-disableWebGL": {
-    "message": "Отключить WebGL"
-  },
-  "options-checklistItem-disableWebGLDesc": {
-    "message": "Отключить WebGL (вызовет проблемы с веб-играми)"
-  },
-  "options-checklistItem-disableWebBeacons": {
-    "message": "Отключить веб-маяки"
-  },
-  "options-checklistItem-disableWebBeaconsDesc": {
-    "message": "Отключить веб-маяки"
-  },
-  "options-checklistItem-clearOfflineApps": {
-    "message": "Очистка оффлайн приложений при выключении"
-  },
-  "options-checklistItem-clearOfflineAppsDesc": {
-    "message": "Очистка данных оффлайн сайтов при выключении"
-  },
-  "options-checklistItem-enableSocialTrackingProtect": {
-    "message": "Включить защиту от отслеживания социальными сетями"
-  },
-  "options-checklistItem-enableSocialTrackingProtectDesc": {
-    "message": "Включить защиту от отслеживания социальными сетями"
-  },
-  "options-checklistItem-limitFonts": {
-    "message": "Лимит обнаруживаемых шрифтов"
-  },
-  "options-checklistItem-limitFontsDesc": {
-    "message": "Уменьшает уникальность установленных шрифтов. Может вызвать проблемы с шрифтами"
-  },
-  "options-checklistItem-limitMaxTabsUndo": {
-    "message": "Ограничить для вкладок макс. число возвратов"
-  },
-  "options-checklistItem-limitMaxTabsUndoDesc": {
-    "message": "Закрытые вкладки временно хранятся в Меню -> История -> Недавно закрытые вкладки, независимо от того, установлен ли в Firefox запрет на запоминание истории"
-  },
-  "options-checklistItem-useClickToPlay": {
-    "message": "Нажмите для запуска плагинов"
-  },
-  "options-checklistItem-useClickToPlayDesc": {
-    "message": "Запретить автоматически запускать плагины при загрузке страницы"
-  },
-  "options-checklistItem-disableDataSubmission": {
-    "message": "Отключить передачу данных"
-  },
-  "options-checklistItem-disableDataSubmissionDesc": {
-    "message": "Отключает передачу данных в Mozilla"
-  },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck": {
-    "message": "Отключить проверку загрузок сервисом безопасного просмотра"
-  },
-  "options-checklistItem-disableSafeBrowsingDownloadCheckDesc": {
-    "message": "Отключить проверку безопасности для загруженных файлов"
-  },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck2": {
-    "message": "Отключить проверку загрузок сервисом безопасного просмотра 2"
-  },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck2Desc": {
-    "message": "Отключить проверку безопасности для потенциально нежелательных загружаемых файлов"
-  },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck3": {
-    "message": "Отключить проверку загрузок сервисом безопасного просмотра 3"
-  },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck3Desc": {
-    "message": "Отключить проверку на безопасность для малораспространенных загружаемых файлов"
-  },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck4": {
-    "message": "Отключить проверку загрузок сервисом безопасного просмотра 4"
-  },
-  "options-checklistItem-disableSafeBrowsingDownloadCheck4Desc": {
-    "message": "Отключить проверку исполняемых файлов не в локальных списках Google"
-  },
-  "options-checklistItem-disableSafeBrowsingMalwareCheck": {
-    "message": "Отключить проверку на вредоносное ПО при просмотре веб-страниц"
-  },
-  "options-checklistItem-disableSafeBrowsingMalwareCheckDesc": {
-    "message": "Предотвращает запрос Google к списку вредоносных программ, обеспечивающий безопасный просмотр веб-страниц"
-  },
-  "options-checklistItem-disableSafeBrowsingPhishingCheck": {
-    "message": "Отключить проверку фишинга при просмотре веб-страниц"
-  },
-  "options-checklistItem-disableSafeBrowsingPhishingCheckDesc": {
-    "message": "Предотвращает запрос Google к списку фишинговых сайтов для безопасного просмотра веб-страниц"
-  },
-  "options-checklistItem-disableHealthReport": {
-    "message": "Отключить отправку отчетов о работоспособности"
-  },
-  "options-checklistItem-disableHealthReportDesc": {
-    "message": "Отключить отправку отчетов об ошибках в Mozilla"
-  },
-  "options-checklistItem-disableCrashReport": {
-    "message": "Отключить отправку отчетов об ошибках"
-  },
-  "options-checklistItem-disableCrashReportDesc": {
-    "message": "Отключить отправку отчетов об ошибках в Mozilla"
-  },
-  "options-checklistItem-disableTelemetryPing": {
-    "message": "Отключить пинг телеметрии"
-  },
-  "options-checklistItem-disableTelemetryPingDesc": {
-    "message": "Сервер телеметрии, используемый, если телеметрия включена"
-  },
-  "options-checklistItem-disableTelemetryReport": {
-    "message": "Отключить отправку телеметрии"
-  },
-  "options-checklistItem-disableTelemetryReportDesc": {
-    "message": "Отключить телеметрию"
-  },
-  "options-checklistItem-disableTelemetryReport2": {
-    "message": "Отключить отправку телеметрии 2"
-  },
-  "options-checklistItem-disableTelemetryReport2Desc": {
-    "message": "Отключить телеметрию (переопределить toolkit.telemetry.enabled)"
-  },
-  "options-checklistItem-sessionPrivacyLevel": {
-    "message": "Установить уровень конфиденциальности сессии"
-  },
-  "options-checklistItem-sessionPrivacyLevelDesc": {
-    "message": "Установка уровня конфиденциальности сеанса на 2 не позволяет Firefox хранить содержимое форм, позиции полосы прокрутки, куки и POST-данные для восстановления сеанса"
-  },
   "options-import-couldNotImport": {
     "message": "Не удалось импортировать файл"
   },
@@ -467,9 +164,6 @@
   "options-tab-ipRules": {
     "message": "IP правила"
   },
-  "options-tab-checklist": {
-    "message": "Контрольный список"
-  },
   "options-whitelist-acceptLang": {
     "message": "Подменять \"Accept-Language\""
   },
@@ -478,6 +172,18 @@
   },
   "options-whitelist-headerIPLabel": {
     "message": "IP для заголовков (\"Via\" и \"X-Forwarded-For\")"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Enable spoof audio context"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Enable spoof client rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Block CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Блокировать медиа-устройства"
   },
   "options-whitelist-options-name": {
     "message": "Включить защиту имени окна"
@@ -613,6 +319,9 @@
   },
   "popup-profile-randomMobileProfile": {
     "message": "Случайный профиль (Мобильный)"
+  },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Показать профиль браузера на значке"
   },
   "popup-headers": {
     "message": "Заголовки"
@@ -773,6 +482,9 @@
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "Блокировать трекеры"
   },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Reject trackers and partition third-party cookies"
+  },
   "popup-whitelist-contextMenu": {
     "message": "Добавить пункт в контекстное меню для открытия текущего домена во вкладке белого списка"
   },
@@ -790,6 +502,15 @@
   },
   "popup-whitelist-open": {
     "message": "Открыть белый список"
+  },
+  "text-addToRule": {
+    "message": "Добавить к правилу: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-allowAll": {
     "message": "Разрешить все"
@@ -820,6 +541,15 @@
   },
   "text-realProfile": {
     "message": "Реальный профиль"
+  },
+  "text-removeFromRule": {
+    "message": "Удалить из правила: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-save": {
     "message": "Сохранить"
