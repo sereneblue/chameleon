@@ -7,15 +7,6 @@
     <img src="ui4.png" alt="Chameleon Headers tab">
   </div>
   <div>
-    <div>
-      <h2 class="font-semibold text-3xl border-primary border-b-2 mb-4">about:config checklist</h2>
-      <div class="mt-4">
-        Random Agent Spoofer has a feature that allows you to toggle about:config options. Unforunately,
-        that is no longer possible with WebExtensions. For your convenience, Chameleon contains a 
-        checklist of some preferences that you may want to change. <strong>Please read the options carefully
-        before changing anything.</strong> A short summary of each preference can be also found in the checklist. 
-      </div>
-    </div>
     <div class="mt-2">
       <h2 class="font-semibold text-3xl border-primary border-b-2 my-4">Injection</h2>
       <div class="mt-4">

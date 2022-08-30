@@ -10,6 +10,14 @@
     <div class="mb-4">
       <div>
         <p>
+          <a href="https://github.com/arkenfox/user.js" class="font-semibold text-2xl">Arkenfox User.js</a>
+        </p>
+        A user.js template and wiki for preferences you may want to change
+      </div>
+    </div>
+    <div class="mb-4">
+      <div>
+        <p>
           <a href="https://blog.lopp.net/modest-privacy-protection-proposal/" class="font-semibold text-2xl">A Modest Privacy Protection Proposal</a>
         </p>
         How to reclaim your privacy in the surveillance age.
