@@ -8,7 +8,7 @@
   </div>
   <div>
     <div class="flex items-center mb-4">
-      <img class="h-10 mr-3 text-center" src="https://addons.cdn.mozilla.net/user-media/addon_icons/607/607454-64.png?modified=mcrushed" alt="uBlock Origin Icon">
+      <img class="h-10 mr-3 text-center" src="https://addons.mozilla.org/user-media/addon_icons/607/607454-64.png?modified=mcrushed" alt="uBlock Origin Icon">
       <div>
         <p>
           <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/" class="font-semibold text-2xl">uBlock Origin</a>
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="flex items-center mb-4">
-      <img class="h-10 mr-3 text-center" src="https://addons.cdn.mozilla.net/user-media/addon_icons/613/613250-64.png?modified=1529241623" alt="uMatrix Icon">
+      <img class="h-10 mr-3 text-center" src="https://addons.mozilla.org/user-media/addon_icons/613/613250-64.png?modified=1586876248" alt="uMatrix Icon">
       <div>
         <p>
           <a href="https://addons.mozilla.org/en-US/firefox/addon/umatrix/" class="font-semibold text-2xl">uMatrix</a>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="flex items-center mb-4">
-      <img class="h-10 mr-3 text-center" src="https://addons.cdn.mozilla.net/user-media/addon_icons/0/722-64.png?modified=mcrushed" alt="NoScript Icon">
+      <img class="h-10 mr-3 text-center" src="https://addons.mozilla.org/user-media/addon_icons/0/722-64.png?modified=2d7f0f7b" alt="NoScript Icon">
       <div>
         <p>
           <a href="https://addons.mozilla.org/en-US/firefox/addon/noscript/" class="font-semibold text-2xl">NoScript</a> 
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="flex items-center mb-4">
-      <img class="h-10 mr-3 text-center" src="https://addons.cdn.mozilla.net/user-media/addon_icons/534/534930-64.png?modified=1581849561" alt="Canvas Blocker">
+      <img class="h-10 mr-3 text-center" src="https://addons.mozilla.org/user-media/addon_icons/534/534930-64.png?modified=1581849561" alt="Canvas Blocker">
       <div>
         <p>
           <a href="https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/" class="font-semibold text-2xl">Canvas Blocker</a>
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="flex items-center mb-4">
-      <img class="h-10 mr-3 text-center" src="https://addons.cdn.mozilla.net/user-media/addon_icons/229/229918-64.png?modified=mcrushed" alt="HTTPS Everywhere Icon">
+      <img class="h-10 mr-3 text-center" src="https://addons.mozilla.org/user-media/addon_icons/229/229918-64.png?modified=mcrushed" alt="HTTPS Everywhere Icon">
       <div>
         <p>
           <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/" class="font-semibold text-2xl">HTTPS Everywhere</a>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class="flex items-center mb-4">
-      <img class="h-10 mr-3 text-center" src="https://addons.cdn.mozilla.net/user-media/addon_icons/782/782160-64.png?modified=mcrushed" alt="Firefox Multi-Account Containers Icon">
+      <img class="h-10 mr-3 text-center" src="https://addons.mozilla.org/user-media/addon_icons/782/782160-64.png?modified=mcrushed" alt="Firefox Multi-Account Containers Icon">
       <div>
         <p>
           <a href="https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/" class="font-semibold text-2xl">Firefox Multi-Account Containers</a>
@@ -62,7 +62,7 @@
       </div>
     </div>
     <div class="flex items-center mb-4">
-      <img class="h-10 mr-3 text-center" src="https://addons.cdn.mozilla.net/user-media/addon_icons/888/888648-64.png?modified=mcrushed" alt="Temporary Containers Icon">
+      <img class="h-10 mr-3 text-center" src="https://addons.mozilla.org/user-media/addon_icons/888/888648-64.png?modified=mcrushed" alt="Temporary Containers Icon">
       <div>
         <p>
           <a href="https://addons.mozilla.org/en-US/firefox/addon/temporary-containers/?src=search" class="font-semibold text-2xl">Temporary Containers</a>
