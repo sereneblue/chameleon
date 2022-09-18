@@ -560,6 +560,9 @@
   "text-searchRules": {
     "message": "Etsi sääntöjä"
   },
+  "text-startupDelay": {
+    "message": "Käynnistysviive (s)"
+  },
   "text-timezone": {
     "message": "Aikavyöhyke"
   },
