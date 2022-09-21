@@ -1,3 +1,12 @@
+<a name="v0.22.35-rc"></a>
+
+## [v0.22.35-rc](https://github.com/sereneblue/chameleon/compare/v0.22.34...v0.22.35-rc) (2022-09-20)
+
+### Features
+
+- update profiles
+- update translations
+
 <a name="v0.22.34-rc"></a>
 
 ## [v0.22.34-rc](https://github.com/sereneblue/chameleon/compare/v0.22.33...v0.22.34-rc) (2022-08-28)
