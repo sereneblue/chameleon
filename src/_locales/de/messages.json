@@ -560,6 +560,9 @@
   "text-searchRules": {
     "message": "Regeln durchsuchen"
   },
+  "text-startupDelay": {
+    "message": "Startverzögerung (Sek.)"
+  },
   "text-timezone": {
     "message": "Zeitzone"
   },

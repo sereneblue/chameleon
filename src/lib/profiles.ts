@@ -40,12 +40,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '104.0.1293.70', desktopChrome: '104.0.0.0', android: '104.0.1293.60', androidChrome: '104.0.5112.97' },
+  edg: { desktop: '105.0.1343.42', desktopChrome: '105.0.0.0', android: '105.0.1343.34', androidChrome: '105.0.0.0' },
   esr: { desktop: '102' },
   esr2: { desktop: '91' },
-  ff: { desktop: '104', mobile: '104' },
-  gcr: { desktop: '104.0.0.0', ios: '104.0.5112.99', android: '104.0.5112.97' },
-  sf: { desktop: '15.6', ios1: '13.1.2', ios2: '14.1.2', ios3: '15.6' },
+  ff: { desktop: '105', mobile: '105' },
+  gcr: { desktop: '105.0.0.0', ios: '105.0.5195.147', android: '105.0.5195.136' },
+  sf: { desktop: '16.0', ios1: '14.1.2', ios2: '15.6', ios3: '16.0' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -101,13 +101,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
   } else if (browser === 'sfm') {
     switch (os) {
-      case 'iOS 13':
+      case 'iOS 14':
         osId = 'ios1';
         break;
-      case 'iOS 14':
+      case 'iOS 15':
         osId = 'ios2';
         break;
-      case 'iOS 15':
+      case 'iOS 16':
         osId = 'ios3';
         break;
       default:
@@ -116,13 +116,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]} (iPhone)`;
   } else if (browser === 'sft') {
     switch (os) {
-      case 'iOS 13':
+      case 'iOS 14':
         osId = 'ios1';
         break;
-      case 'iOS 14':
+      case 'iOS 15':
         osId = 'ios2';
         break;
-      case 'iOS 15':
+      case 'iOS 16':
         osId = 'ios3';
         break;
       default:
@@ -1192,7 +1192,7 @@ export class Generator {
           platform: 'MacIntel',
         },
         screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 12_5_1',
+        uaPlatform: 'Macintosh; Intel Mac OS X 12_6',
       },
     ],
     linux: [
@@ -1236,21 +1236,21 @@ export class Generator {
     iOS: [
       {
         id: 'ios1',
-        name: 'iOS 13',
-        browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '13_7',
-      },
-      {
-        id: 'ios2',
         name: 'iOS 14',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
         uaPlatform: '14_8_1',
       },
       {
-        id: 'ios3',
+        id: 'ios2',
         name: 'iOS 15',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
         uaPlatform: '15_6',
+      },
+      {
+        id: 'ios3',
+        name: 'iOS 16',
+        browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
+        uaPlatform: '16_0',
       },
     ],
     android: [
