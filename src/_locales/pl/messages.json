@@ -320,6 +320,9 @@
   "popup-profile-randomMobileProfile": {
     "message": "Profil losowy (Mobile)"
   },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Pokaż profil przeglądarki na ikonie"
+  },
   "popup-headers": {
     "message": "Nagłówki"
   },
@@ -479,6 +482,9 @@
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "Odrzuć trackery"
   },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Odrzuć skrypty śledzące i partycjonuj pliki cookie stron trzecich"
+  },
   "popup-whitelist-contextMenu": {
     "message": "Dodaj element menu kontekstowego, aby otworzyć domenę bieżącej karty na białej liście"
   },
@@ -553,6 +559,9 @@
   },
   "text-searchRules": {
     "message": "Reguły wyszukiwania"
+  },
+  "text-startupDelay": {
+    "message": "Opóźnienie uruchomienia (sek)"
   },
   "text-timezone": {
     "message": "Strefa czasowa"

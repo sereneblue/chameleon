@@ -560,6 +560,9 @@
   "text-searchRules": {
     "message": "搜索规则"
   },
+  "text-startupDelay": {
+    "message": "启动延迟（秒）"
+  },
   "text-timezone": {
     "message": "时区"
   },

@@ -67,16 +67,14 @@ export default {
     let selectedFonts = FONTS[CHAMELEON_SPOOF.get(spoofContext).profileOS].map(f => f.toLowerCase()).concat(DEFAULT_FONT);
 
     const REGEX_FONT_FAMILY = /font\-family:[^;']*;?/g;
+    const REGEX_FONTS = /(".+?")|(.+)|('.+?'),?/g;
 
     let getWhitelistFonts = (fontList) => {
-      let tmpFonts = fontList
-                    .replace(/"|'/g, '')
-                    .split(',');
-
+      let tmpFonts = fontList.match(REGEX_FONTS).map(f => f.replace(/,+$/, ""));
       let fonts = [];
 
       for (let i = 0; i < tmpFonts.length; i++) {
-        if (selectedFonts.includes(tmpFonts[i].trim().toLowerCase())) {
+        if (selectedFonts.includes(tmpFonts[i].trim().replace(/^("|')|("|')$/, "").toLowerCase())) {
           fonts.push(tmpFonts[i]);
         }
       }
