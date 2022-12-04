@@ -1,0 +1,572 @@
+{
+  "extDescription": {
+    "message": "Falsifica il tuo profilo browser. Include alcune opzioni di miglioramento della privacy."
+  },
+  "notifications-profileChange": {
+    "message": "Profilo modificato:"
+  },
+  "notifications-unableToGetIPInfo": {
+    "message": "Impossibile ottenere info IP"
+  },
+  "notifications-usingIPInfo": {
+    "message": "Utilizzando info IP:"
+  },
+  "notifications-usingIPRule": {
+    "message": "Utilizzando regola IP:"
+  },
+  "options-about-issueTracker": {
+    "message": "Tracker Problemi"
+  },
+  "options-about-knownIssues": {
+    "message": "Problemi Conosciuti"
+  },
+  "options-about-wiki": {
+    "message": "Wiki"
+  },
+  "options-about-support": {
+    "message": "Supporto"
+  },
+  "options-about-sourceCode": {
+    "message": "Codice Sorgente"
+  },
+  "options-about-translate": {
+    "message": "Aiuta A Tradurre"
+  },
+  "options-import-couldNotImport": {
+    "message": "Impossibile importare il file"
+  },
+  "options-import-invalid-config": {
+    "message": "Impostazioni non valide: configurazione mancante"
+  },
+  "options-import-invalid-excluded": {
+    "message": "Impostazioni non valide: escluse mancanti"
+  },
+  "options-import-invalid-excludedProfile": {
+    "message": "Impostazioni non valide: escluse ha un profilo non valido"
+  },
+  "options-import-invalid-headers": {
+    "message": "Impostazioni non valide: headers mancanti"
+  },
+  "options-import-invalid-ipRuleId": {
+    "message": "Impostazioni non valide: ID regola IP non valido"
+  },
+  "options-import-invalid-ipRuleName": {
+    "message": "Impostazioni non valide: nome della regola IP mancante"
+  },
+  "options-import-invalid-ipRuleRange": {
+    "message": "Impostazioni non valide: Intervallo regola IP non valido"
+  },
+  "options-import-invalid-ipRules": {
+    "message": "Impostazioni non valide: regole IP mancanti"
+  },
+  "options-import-invalid-ipRulesDupe": {
+    "message": "Impostazioni non valide: ID regola IP duplicato trovato"
+  },
+  "options-import-invalid-options": {
+    "message": "Impostazioni non valide: opzioni mancanti"
+  },
+  "options-import-invalid-profile": {
+    "message": "Impostazioni non valide: profilo mancante"
+  },
+  "options-import-invalid-setting": {
+    "message": "Valore impostazione non valido:"
+  },
+  "options-import-invalid-settings": {
+    "message": "Impostazioni non valide: impostazioni mancanti"
+  },
+  "options-import-invalid-spoofIP": {
+    "message": "Impostazioni non valide: l'intervallo IP dell'header Spoof non è valido"
+  },
+  "options-import-invalid-version": {
+    "message": "Impostazioni non valide: versione non accettata"
+  },
+  "options-import-invalid-whitelist": {
+    "message": "Impostazioni non valide: whitelist mancante"
+  },
+  "options-import-invalid-whitelistDupe": {
+    "message": "Impostazioni non valide: trovato id della whitelist duplicato"
+  },
+  "options-import-invalid-whitelistId": {
+    "message": "Impostazioni non valide: ID regola whitelist non valido"
+  },
+  "options-import-invalid-whitelistName": {
+    "message": "Impostazioni non valide: nome della whitelist mancante"
+  },
+  "options-import-invalid-whitelistOpt": {
+    "message": "Impostazioni non valide: opzioni della whitelist non valide"
+  },
+  "options-import-invalid-whitelistSpoofIP": {
+    "message": "Impostazioni non valide: IP spoof regola whitelist non valido"
+  },
+  "options-import-success": {
+    "message": "Impostazioni importate con successo. Ricaricamento estensione..."
+  },
+  "options-ipRules-editorTitle": {
+    "message": "Editor Regole Ip"
+  },
+  "options-ipRules-ipRule": {
+    "message": "Regola IP"
+  },
+  "options-ipRules-reload": {
+    "message": "Ricarica informazioni IP"
+  },
+  "options-ipRules-textareaLabel": {
+    "message": "Intervalli IP / Indirizzi"
+  },
+  "options-ipRules-textareaPlaceholder": {
+    "message": "Un intervallo IP/IP per linea"
+  },
+  "options-modal-askDelete": {
+    "message": "Sei sicuro di voler eliminare questa regola?"
+  },
+  "options-modal-askReset": {
+    "message": "Sei sicuro di voler resettare le impostazioni?"
+  },
+  "options-modal-confirmDelete": {
+    "message": "Sì, eliminalo!"
+  },
+  "options-modal-confirmReset": {
+    "message": "Sì, resetta le mie impostazioni!"
+  },
+  "options-settings": {
+    "message": "Impostazioni"
+  },
+  "options-settings-import": {
+    "message": "Importa"
+  },
+  "options-settings-importing": {
+    "message": "Importazione impostazioni"
+  },
+  "options-settings-export": {
+    "message": "Esporta"
+  },
+  "options-settings-reset": {
+    "message": "Ripristina predefinito"
+  },
+  "options-settings-permissions": {
+    "message": "Chameleon può controllare alcune delle tue preferenze di Firefox come resistere al rilevamento delle impronte digitali o consentire la protezione dal tracciamento. Questo potrebbe essere in conflitto con un'altra estensione. È possibile rinunciare a Chameleon controllando queste preferenze rimuovendo il permesso sulla privacy. Si prega di notare che la rimozione di questo permesso reimposterà queste preferenze. Puoi richiedere questo permesso se non è presente."
+  },
+  "options-settings-permissions-legacy": {
+    "message": "Dovrai installare una versione speciale di Chameleon per abilitare i permessi per la privacy. Ciò è dovuto ad alcune complicazioni con i permessi supportati per una piattaforma cross / nuova versione di questa estensione. Maggiori dettagli possono essere trovati sulla wiki link qui sotto."
+  },
+  "options-settings-permissions-legacy-wiki": {
+    "message": "Maggiori informazioni su wiki"
+  },
+  "options-settings-permissions-request": {
+    "message": "Richiedi autorizzazioni per la privacy"
+  },
+  "options-settings-permissions-remove": {
+    "message": "Rimuovi i permessi per la privacy"
+  },
+  "options-tab-about": {
+    "message": "Informazioni"
+  },
+  "options-tab-ipRules": {
+    "message": "Regole IP"
+  },
+  "options-whitelist-acceptLang": {
+    "message": "Accept-Language"
+  },
+  "options-whitelist-editorTitle": {
+    "message": "Editor Regole Whitelist"
+  },
+  "options-whitelist-headerIPLabel": {
+    "message": "Ip Dell'Header (Via & X-Forwarded-For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Abilita spoofing contesto audio"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Abilita spoofing client rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "Blocca CSS Exfil"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "Blocca dispositivi multimediali"
+  },
+  "options-whitelist-options-name": {
+    "message": "Abilita nome protezione finestra"
+  },
+  "options-whitelist-options-tz": {
+    "message": "Abilita spoofing fuso orario"
+  },
+  "options-whitelist-options-ws": {
+    "message": "Disabilita WebSocket"
+  },
+  "options-whitelist-rule": {
+    "message": "Regola Whitelist"
+  },
+  "options-whitelist-sitesTip": {
+    "message": "Una regola per riga: dominio@@[modello regex opzionale]"
+  },
+  "options-whitelist-textareaLabel": {
+    "message": "Intervalli IP / Indirizzi"
+  },
+  "options-whitelist-textareaPlaceholder": {
+    "message": "Un intervallo IP/IP per linea"
+  },
+  "popup-home-change": {
+    "message": "modifica"
+  },
+  "popup-home-currentProfile": {
+    "message": "Profilo Corrente"
+  },
+  "popup-home-currentProfile-defaultLanguage": {
+    "message": "Lingua Predefinita"
+  },
+  "popup-home-currentProfile-defaultScreen": {
+    "message": "Schermata predefinita"
+  },
+  "popup-home-currentProfile-defaultTimezone": {
+    "message": "Fuso Orario Predefinito"
+  },
+  "popup-home-currentProfile-gettingTimezone": {
+    "message": "Recupero informazioni IP"
+  },
+  "popup-home-currentProfile-screenProfile": {
+    "message": "Schermo (Profilo)"
+  },
+  "popup-home-disabled": {
+    "message": "Camaleonte è disabilitato"
+  },
+  "popup-home-enabled": {
+    "message": "Camaleonte è abilitato"
+  },
+  "popup-home-notification-disabled": {
+    "message": "Notifiche Off"
+  },
+  "popup-home-notification-enabled": {
+    "message": "Notifiche On"
+  },
+  "popup-home-onThisPage": {
+    "message": "su questa pagina"
+  },
+  "popup-home-theme-dark": {
+    "message": "Scuro"
+  },
+  "popup-home-theme-light": {
+    "message": "Chiaro"
+  },
+  "popup-profile-changePeriodically": {
+    "message": "Cambia periodicamente"
+  },
+  "popup-profile-devicePhone": {
+    "message": "Telefono"
+  },
+  "popup-profile-deviceTablet": {
+    "message": "Tablet"
+  },
+  "popup-profile-interval-no": {
+    "message": "No"
+  },
+  "popup-profile-interval-custom": {
+    "message": "Intervallo personalizzato"
+  },
+  "popup-profile-interval-customMax": {
+    "message": "Max (minuti)"
+  },
+  "popup-profile-interval-customMin": {
+    "message": "Minimo (minuti)"
+  },
+  "popup-profile-interval-minute": {
+    "message": "Ogni minuto"
+  },
+  "popup-profile-interval-5minutes": {
+    "message": "Ogni 5 minuti"
+  },
+  "popup-profile-interval-10minutes": {
+    "message": "Ogni 10 minuti"
+  },
+  "popup-profile-interval-20minutes": {
+    "message": "Ogni 20 minuti"
+  },
+  "popup-profile-interval-30minutes": {
+    "message": "Ogni 30 minuti"
+  },
+  "popup-profile-interval-40minutes": {
+    "message": "Ogni 40 minuti"
+  },
+  "popup-profile-interval-50minutes": {
+    "message": "Ogni 50 minuti"
+  },
+  "popup-profile-interval-hour": {
+    "message": "Ogni ora"
+  },
+  "popup-profile-exclude": {
+    "message": "Escludi"
+  },
+  "popup-profile-randomAndroid": {
+    "message": "Browser Android Casuali"
+  },
+  "popup-profile-randomIOS": {
+    "message": "Browser iOS casuali"
+  },
+  "popup-profile-randomMacOS": {
+    "message": "Browser macOS Casuali"
+  },
+  "popup-profile-randomLinux": {
+    "message": "Browser Linux Casuali"
+  },
+  "popup-profile-randomWindows": {
+    "message": "Browser Windows Casuali"
+  },
+  "popup-profile-random": {
+    "message": "Casuale"
+  },
+  "popup-profile-randomDesktopProfile": {
+    "message": "Profilo Casuale (Desktop)"
+  },
+  "popup-profile-randomMobileProfile": {
+    "message": "Profilo Casuale (Mobile)"
+  },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Mostra il profilo del browser sull'icona"
+  },
+  "popup-headers": {
+    "message": "Headers"
+  },
+  "popup-headers-enableDNT": {
+    "message": "Abilita DNT (Non Tracciare)"
+  },
+  "popup-headers-preventEtag": {
+    "message": "Impedisci il tracciamento di Etag"
+  },
+  "popup-headers-refererWarning": {
+    "message": "Non modificare le impostazioni about:config per le opzioni qui sotto."
+  },
+  "popup-headers-referer-trimming": {
+    "message": "Policy Di Referer Trimming"
+  },
+  "popup-headers-referer-trimming-sendFullURI": {
+    "message": "Invia URI completo (predefinito)"
+  },
+  "popup-headers-referer-trimming-schemeHostPortPath": {
+    "message": "Schema, host, porta + percorso"
+  },
+  "popup-headers-referer-trimming-schemeHostPort": {
+    "message": "Schema, host + porta"
+  },
+  "popup-headers-referer-xorigin": {
+    "message": "Politica Di Origine X Referer"
+  },
+  "popup-headers-referer-xorigin-alwaysSend": {
+    "message": "Invia sempre (predefinito)"
+  },
+  "popup-headers-referer-xorigin-matchBaseDomain": {
+    "message": "Abbina dominio di base"
+  },
+  "popup-headers-referer-xorigin-matchHost": {
+    "message": "Abbina host"
+  },
+  "popup-headers-spoofAcceptLang": {
+    "message": "Accetta Lingua Dello Spoof"
+  },
+  "popup-headers-spoofIP": {
+    "message": "Spoof X-Forwarded-Per/Via IP"
+  },
+  "popup-headers-spoofIP-random": {
+    "message": "Ip Casuale"
+  },
+  "popup-headers-spoofIP-custom": {
+    "message": "Ip Personalizzato"
+  },
+  "popup-headers-spoofIP-rangeFrom": {
+    "message": "Intervallo da"
+  },
+  "popup-headers-spoofIP-rangeTo": {
+    "message": "Intervallo a"
+  },
+  "popup-options": {
+    "message": "Opzioni"
+  },
+  "popup-options-grantPermissions": {
+    "message": "Concedi l'autorizzazione per modificare le impostazioni"
+  },
+  "popup-options-injection": {
+    "message": "Iniezione"
+  },
+  "popup-options-injection-limitTabHistory": {
+    "message": "Limita cronologia schede"
+  },
+  "popup-options-injection-protectWinName": {
+    "message": "Proteggi il nome della finestra"
+  },
+  "popup-options-injection-audioContext": {
+    "message": "Spoof contesto audio"
+  },
+  "popup-options-injection-clientRects": {
+    "message": "Spoof client rects"
+  },
+  "popup-options-injection-protectKBFingerprint": {
+    "message": "Proteggi l'impronta della tastiera"
+  },
+  "popup-options-injection-protectKBFingerprintDelay": {
+    "message": "Ritardo (ms)"
+  },
+  "popup-options-injection-screen": {
+    "message": "Dimensione Schermo"
+  },
+  "popup-options-injection-spoofFontFingerprint": {
+    "message": "Spoof font fingerprint"
+  },
+  "popup-options-standard": {
+    "message": "Standard"
+  },
+  "popup-options-standard-blockMediaDevices": {
+    "message": "Blocca dispositivi multimediali"
+  },
+  "popup-options-standard-blockCSSExfil": {
+    "message": "Blocca CSS Exfil"
+  },
+  "popup-options-standard-disableWebRTC": {
+    "message": "Disabilita WebRTC"
+  },
+  "popup-options-standard-firstPartyIsolation": {
+    "message": "Abilita isolamento della prima parte"
+  },
+  "popup-options-standard-resistFingerprinting": {
+    "message": "Abilita resistenza alle impronte digitali"
+  },
+  "popup-options-standard-spoofMediaDevices": {
+    "message": "Spoof dispositivi multimediali"
+  },
+  "popup-options-standard-trackingProtection": {
+    "message": "Modalità protezione tracciamento"
+  },
+  "popup-options-standard-trackingProtection-on": {
+    "message": "On"
+  },
+  "popup-options-standard-trackingProtection-off": {
+    "message": "Off"
+  },
+  "popup-options-standard-trackingProtection-privateBrowsing": {
+    "message": "Abilitato nella navigazione privata"
+  },
+  "popup-options-standard-webRTCPolicy": {
+    "message": "Politica WebRTC"
+  },
+  "popup-options-standard-webRTCPolicy-nonProxified": {
+    "message": "Disabilita UDP non proxy"
+  },
+  "popup-options-standard-webRTCPolicy-public": {
+    "message": "Utilizza solo l'interfaccia pubblica (migliore)"
+  },
+  "popup-options-standard-webRTCPolicy-publicPrivate": {
+    "message": "Usa interfaccia pubblica e privata"
+  },
+  "popup-options-standard-webSockets-blockAll": {
+    "message": "Blocca tutto"
+  },
+  "popup-options-standard-webSockets-blockThirdParty": {
+    "message": "Blocca terza parte"
+  },
+  "popup-options-cookie": {
+    "message": "Cookie"
+  },
+  "popup-options-cookieNotPersistent": {
+    "message": "Elimina i cookie e i dati del sito dopo la chiusura della finestra"
+  },
+  "popup-options-cookiePolicy": {
+    "message": "Politica"
+  },
+  "popup-options-cookiePolicy-allowVisited": {
+    "message": "Permetti visitato"
+  },
+  "popup-options-cookiePolicy-rejectAll": {
+    "message": "Rifiuta tutto"
+  },
+  "popup-options-cookiePolicy-rejectThirdParty": {
+    "message": "Rifiuta terzi"
+  },
+  "popup-options-cookiePolicy-rejectTrackers": {
+    "message": "Rifiuta tracker"
+  },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Rifiuta tracker e partizione cookie di terze parti"
+  },
+  "popup-whitelist-contextMenu": {
+    "message": "Aggiungi voce di menu contestuale per aprire il dominio della scheda corrente nella whitelist"
+  },
+  "popup-whitelist-defaultProfileLabel": {
+    "message": "Profilo Predefinito"
+  },
+  "popup-whitelist-enable": {
+    "message": "Abilita whitelist"
+  },
+  "popup-whitelist-isNotWhitelisted": {
+    "message": "non è whitelisted"
+  },
+  "popup-whitelist-isWhitelisted": {
+    "message": "è whitelisted"
+  },
+  "popup-whitelist-open": {
+    "message": "Apri nella whitelist"
+  },
+  "text-addToRule": {
+    "message": "Aggiungi alla regola: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
+  "text-allowAll": {
+    "message": "Consenti tutto"
+  },
+  "text-cancel": {
+    "message": "Annulla"
+  },
+  "text-createNewRule": {
+    "message": "Crea nuova regola"
+  },
+  "text-default": {
+    "message": "Predefinito"
+  },
+  "text-defaultWhitelistProfile": {
+    "message": "Whitelist predefinita caricata"
+  },
+  "text-disableReferer": {
+    "message": "Disabilita Referer"
+  },
+  "text-language": {
+    "message": "Lingua"
+  },
+  "text-name": {
+    "message": "Nome"
+  },
+  "text-profile": {
+    "message": "Profilo"
+  },
+  "text-realProfile": {
+    "message": "Profilo Reale"
+  },
+  "text-removeFromRule": {
+    "message": "Rimuovi dalla regola: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
+  "text-save": {
+    "message": "Salva"
+  },
+  "text-screen": {
+    "message": "Schermo"
+  },
+  "text-searchRules": {
+    "message": "Regole ricerca"
+  },
+  "text-startupDelay": {
+    "message": "Ritardo di avvio (sec)"
+  },
+  "text-timezone": {
+    "message": "Fuso orario"
+  },
+  "text-whitelist": {
+    "message": "Whitelist"
+  }
+}
