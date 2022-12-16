@@ -1,1 +1,522 @@
-<!doctype html> <html lang=en> <head> <meta charset=utf-8> <meta content="width=device-width,initial-scale=1" name=viewport> <base href=/chameleon/ > <link href=./inter.css rel=stylesheet> <link href=./main.css rel=stylesheet> <link href=./favicon.ico rel=icon type=image/x-icon> <link href=client/main.2276256330.css rel=stylesheet> <noscript id=sapper-head-start></noscript><title>500</title><noscript id=sapper-head-end></noscript> </head> <body> <div id=sapper> <main> <div class="flex flex-col h-screen overflow-y-auto"> <nav class="flex w-full bg-dark-green justify-center lg: px-0 px-4 py-2 text-lg text-white z-10"> <ul class="flex w-full items-center max-w-6xl"> <div class=flex-0> <li class=svelte-1iyh25l> <a href=./ > <img alt="Chameleon Icon" class=h-6 src=icon.svg> </a> </li> </div> <div class="flex-1 inline-flex justify-end"> <li class=svelte-1iyh25l><a href=about>About</a></li> <li class="svelte-1iyh25l active"><a href=wiki aria-current=page>Wiki</a></li> <li class=svelte-1iyh25l><a href=contact>Contact</a></li> <li class=svelte-1iyh25l><a href=donate>Donate</a></li> <li class=svelte-1iyh25l><a href=privacy>Privacy Policy</a></li> </div> </ul> </nav> <h1 class=svelte-iy9kc2>500</h1> <p class=svelte-iy9kc2>&lt;Highlight> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules</p> </div> </main></div> <script>__SAPPER__={error:{name:"Error",message:"\u003CHighlight\u003E is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules",stack:"Error: \u003CHighlight\u003E is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules\n    at validate_component (\u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:335:15)\n    at \u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:1672:7\n    at each (\u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:324:16)\n    at \u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:1671:5\n    at Object.$$render (\u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:353:22)\n    at \u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:1691:46\n    at Object.$$render (\u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:353:22)\n    at Object.default (\u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:542:88)\n    at \u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:1016:41\n    at Object.$$render (\u002Fhome\u002Frunner\u002Fwork\u002Fchameleon\u002Fchameleon\u002F__sapper__\u002Fbuild\u002Fserver\u002Fserver.js:353:22)"},status:500,baseUrl:"/chameleon",preloaded:[void 0,{}]};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src="/chameleon/client/client.e01e2ef7.js";s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/chameleon/client/shimport@1.0.1.js";s.setAttribute("data-main","/chameleon/client/client.e01e2ef7.js")}document.head.appendChild(s)</script> 
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel='stylesheet' href='/chameleon/inter.css'>
+		<link rel='icon' type='image/x-icon' href='/chameleon/favicon.ico'>
+
+		<meta http-equiv="content-security-policy" content="">
+		<link href="/chameleon/_app/immutable/assets/_layout-e27c0d35.css" rel="stylesheet">
+		<link href="/chameleon/_app/immutable/assets/Nav-8e22fbdb.css" rel="stylesheet">
+		<link href="/chameleon/_app/immutable/assets/_layout-006875d5.css" rel="stylesheet">
+		<link href="/chameleon/_app/immutable/assets/_page-5873106d.css" rel="stylesheet">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/start-ec473813.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/chunks/index-18f63aa7.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/chunks/singletons-e4c1baf5.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/chunks/paths-b4419565.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/components/pages/_layout.svelte-a75102d8.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/chunks/Nav.svelte_svelte_type_style_lang-278d70b4.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/modules/pages/_layout.js-5612100c.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/chunks/_layout-79cb23d1.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/components/pages/wiki/_layout.svelte-55865a6e.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/components/pages/wiki/developer-guide/_page.svelte-b90fda51.js">
+		<link rel="modulepreload" href="/chameleon/_app/immutable/chunks/index-219312c4.js"><title>Developer Guide | Chameleon</title><!-- HEAD_svelte-1nvnudk_START --><!-- HEAD_svelte-1nvnudk_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+
+
+<main><div class="flex flex-col h-screen overflow-y-auto"><nav class="flex px-4 bg-dark-green lg:px-0 py-2 w-full text-lg text-white justify-center z-10"><ul class="flex max-w-6xl w-full items-center"><div class="grow-0"><li class="svelte-hu34kn"><a href="/chameleon"><img class="h-6" src="/chameleon/icon.svg" alt="Chameleon Icon"></a></li></div>
+		<div class="grow inline-flex justify-end"><li class="svelte-hu34kn"><a href="/chameleon/about">About</a></li>
+			<li class="svelte-hu34kn"><a href="/chameleon/wiki">Wiki</a></li>
+			<li class="svelte-hu34kn"><a href="/chameleon/contact">Contact</a></li>
+			<li class="svelte-hu34kn"><a href="/chameleon/donate">Donate</a></li>
+			<li class="svelte-hu34kn"><a href="/chameleon/privacy">Privacy Policy</a></li></div></ul></nav>
+		<main><div class="flex bg-ligh h-full w-full px-2 lg:px-0 justify-center"><div class="flex lg:max-w-5xl mt-8 w-full"><div class="flex flex-col w-full"><div class="w-full"><div class="mb-5 text-center"><h2 class="font-bold text-5xl">Wiki</h2>
+						<div class="font-semibold text-lg"><a class="text-primary" href="/chameleon/wiki">Home</a>
+    <span class="font-normal mx-1">/</span>
+    <span>Developer Guide</span></div>
+<div><p><a href="https://github.com/sereneblue/chameleon/blob/wiki/src/routes/wiki/developer-guide/+page.svelte">Edit this page</a></p></div></div>
+					
+
+<div class="mb-8 px-4 leading-tight"><div class="text-lg mb-4">You can use the scripts below to manage Chameleon with a browser automation library.
+  </div>
+  <div class="mb-4">
+
+<div class="w-full"><div class="flex justify-between border-primary items-center border-b-2 mb-4"><h2 class="font-semibold text-xl">Launch a browser with Chameleon</h2>
+    <ul class="flex justify-center py-1"><li class="svelte-1hmxea6 active">Python</li></ul></div>
+  <pre class="svelte-highlight python">  <code>
+    from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from time import sleep
+
+firefox_binary = '/usr/bin/firefox'
+driver = webdriver.Firefox(firefox_binary=firefox_binary, executable_path='./geckodriver')
+extension_path = '/path/to/chameleon/ext.xpi'
+driver.install_addon(extension_path, temporary=True)
+
+driver.get('about:debugging#/runtime/this-firefox')
+
+# wait for extensions to appear
+wait = WebDriverWait(driver, 5)
+element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'card')))
+
+# internal uuid for extension pages
+internal_uuid = driver.execute_script("""
+  let extensions = Array.from(document.querySelectorAll('.card'));
+  let chameleon = extensions.filter(el => el.querySelector('span').title == 'Chameleon')[0];
+  let metadata = Array.from(chameleon.querySelectorAll('.fieldpair__description')).map(e => e.innerText);
+  return metadata[2];
+""")
+
+POPUP_PAGE = f'moz-extension://{internal_uuid}/popup/popup.html'
+OPTIONS_PAGE = f'moz-extension://{internal_uuid}/options/options.html'
+
+# navigate to chameleon popup page
+driver.get(POPUP_PAGE)
+
+# select profile tab
+driver.find_element_by_id('profileTab').click()
+
+# select Random Desktop profile option
+driver.find_element_by_id('randomDesktop').click()
+
+# verify user agent changed
+driver.get('https://httpbin.org/headers')
+
+sleep(10)
+
+driver.quit()
+  </code>
+</pre></div></div>
+  <div class="mb-4">
+
+<div class="w-full"><div class="flex justify-between border-primary items-center border-b-2 mb-4"><h2 class="font-semibold text-xl">Import Settings</h2>
+    <ul class="flex justify-center py-1"><li class="svelte-1hmxea6 active">Python</li></ul></div>
+  <pre class="svelte-highlight python">  <code>
+    # navigate to chameleon options page
+driver.get(OPTIONS_PAGE)
+
+# import settings
+driver.find_element_by_id('chameleonImport').send_keys('/path/to/settings.json')
+
+# wait for chameleon to reload
+sleep(3)
+  </code>
+</pre></div></div>
+  <div class="mb-4"><h2 class="font-semibold text-xl border-primary border-b-2 mb-1">Browser Profiles</h2>
+    <p>When selecting a specfic browser profile to use, you can use the browser profile ID as a selector. Profile IDs are
+      made from a combination of an OS and a browser such as &quot;win1-edg&quot;. Listed below are OS IDs and the browser abbreviations
+      that Chameleon uses.
+    </p>
+    <table><thead><tr><th>OS</th>
+          <th>ID</th></tr></thead>
+      <tbody><tr><td>Windows 7</td>
+          <td>win1</td></tr>
+        <tr><td>Windows 8</td>
+          <td>win2</td></tr>
+        <tr><td>Windows 8.1</td>
+          <td>win3</td></tr>
+        <tr><td>Windows 10</td>
+          <td>win4</td></tr>
+        <tr><td>macOS 10.13 (or 2 behind latest)</td>
+          <td>mac1</td></tr>
+        <tr><td>macOS 10.14 (or 1 behind latest)</td>
+          <td>mac2</td></tr>
+        <tr><td>macOS 10.15 (or latest)</td>
+          <td>mac3</td></tr>
+        <tr><td>Linux</td>
+          <td>lin1</td></tr>
+        <tr><td>Ubuntu Linux</td>
+          <td>lin2</td></tr>
+        <tr><td>Fedora Linux</td>
+          <td>lin3</td></tr>
+        <tr><td>iOS 11 (or 2 behind latest)</td>
+          <td>ios1</td></tr>
+        <tr><td>iOS 12 (or 1 behind latest)</td>
+          <td>ios2</td></tr>
+        <tr><td>iOS 13 (or latest)</td>
+          <td>ios3</td></tr>
+        <tr><td>Android 6 (or 4 behind latest)</td>
+          <td>and1</td></tr>
+        <tr><td>Android 7 (or 3 behind latest)</td>
+          <td>and2</td></tr>
+        <tr><td>Android 8 (or 2 behind latest)</td>
+          <td>and3</td></tr>
+        <tr><td>Android 9 (or 1 behind latest)</td>
+          <td>and4</td></tr></tbody></table>
+    <table><thead><tr><th>Browser</th>
+          <th>ID</th></tr></thead>
+      <tbody><tr><td>Chrome</td>
+          <td>gcr (desktop) / gcrm (mobile) / gcrt (tablet)</td></tr>
+        <tr><td>Edge</td>
+          <td>edg (desktop) / edgm (mobile)</td></tr>
+        <tr><td>Firefox</td>
+          <td>ff (desktop) / ffm (mobile) / fft (tablet)</td></tr>
+        <tr><td>Internet Explorer</td>
+          <td>ie</td></tr>
+        <tr><td>Safari</td>
+          <td>sf (desktop) / sfm (iPhone) / sft (iPad)</td></tr></tbody></table></div>
+  <div class="mb-4">
+
+<div class="w-full"><div class="flex justify-between border-primary items-center border-b-2 mb-4"><h2 class="font-semibold text-xl">Controlling Chameleon with an Addon</h2>
+    <ul class="flex justify-center py-1"><li class="svelte-1hmxea6 active">JavaScript</li></ul></div>
+  <pre class="svelte-highlight javascript">  <code>
+    // You'll need to use the developer build of Chameleon if you want to
+// control Chameleon with another extension
+// https://github.com/sereneblue/chameleon/releases
+
+// change browser profile to Windows 10 - Firefox
+await browser.runtime.sendMessage(
+  '{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}',
+  {
+    action: 'updateProfile',
+    data: 'win4-ff',
+  },
+  null
+);
+
+// import settings by using the settings exported by Chameleon
+// let settings = exported settings loaded as an object  
+// saving settings is also how changes are persisted after reloading the extension
+await browser.runtime.sendMessage(
+  '{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}',
+  {
+    action: 'implicitSave'
+  },
+  null
+);
+
+// get current Chameleon settings
+let settings = await browser.runtime.sendMessage(
+  '{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}',
+  {
+    action: 'getSettings'
+  },
+  null
+);
+
+// The logic for how messages are routed is mostly handled in this file
+// https://github.com/sereneblue/chameleon/blob/develop/src/store/actions.ts
+  </code>
+</pre></div></div></div></div></div></div></div></main></div></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1pk3dd0">
+			import { start } from "/chameleon/_app/immutable/start-ec473813.js";
+
+			start({
+				env: {},
+				paths: {"base":"/chameleon","assets":"/chameleon"},
+				target: document.querySelector('[data-sveltekit-hydrate="1pk3dd0"]').parentNode,
+				version: "1671155508704",
+				hydrate: {
+					node_ids: [0, 2, 10],
+					data: [null,null,null],
+					form: null
+				}
+			});
+		</script>
+	</div>
+	</body>
+</html>
