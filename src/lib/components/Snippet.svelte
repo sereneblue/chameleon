@@ -49,9 +49,7 @@
   </div>
   {#each data as l, i}
     {#if activeIndex == i}
-      <Highlight class="hljs" {language}>
-        {l.code.trim()}
-      </Highlight>
+      <Highlight class="hljs" {language}>{l.code.trim()}</Highlight>
     {/if}
   {/each}
 </div>

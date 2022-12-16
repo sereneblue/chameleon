@@ -1,4 +1,6 @@
 <script>
+  import { base } from '$app/paths';
+
   let carouselIndex = 0;
   let screenshots = [
     "ui1.png",
@@ -8,7 +10,7 @@
     "ui5.png"
   ];
   
-  $: src = screenshots[carouselIndex];
+  $: src = base + "/" + screenshots[carouselIndex];
   
   let interval = setInterval(() => {
     if (carouselIndex < screenshots.length - 1) {
