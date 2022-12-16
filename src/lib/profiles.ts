@@ -40,18 +40,18 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '107.0.1418.52', desktopChrome: '107.0.0.0', android: '107.0.1418.35', androidChrome: '107.0.0.0' },
+  edg: { desktop: '108.0.1462.46', desktopChrome: '108.0.0.0', android: '107.0.1418.62', androidChrome: '107.0.0.0' },
   esr: { desktop: '102' },
   esr2: { desktop: '91' },
-  ff: { desktop: '107', mobile: '107' },
-  gcr: { desktop: '107.0.0.0', ios: '107.0.5304.101', android: '107.0.5304.105' },
+  ff: { desktop: '108', mobile: '108' },
+  gcr: { desktop: '108.0.0.0', ios: '108.0.5359.112', android: '108.0.5359.128' },
   sf: { desktop: '16.1', ios1: '14.1.2', ios2: '15.6', ios3: '16.1' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
 const MacResolutions: string[] = ['1920x1080', '2560x1600', '4096x2304', '5120x2880'];
 
-// operating systems to randomize harware for
+// operating systems to randomize hardware for
 const randomHW: string[] = ['win1', 'win2', 'win3', 'win4', 'lin1', 'lin2', 'lin3'];
 
 let getBadge = (browser: string): string => {
