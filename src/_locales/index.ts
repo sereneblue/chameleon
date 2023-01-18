@@ -6,6 +6,7 @@ const fr = require('./fr/messages.json');
 const it = require('./it/messages.json');
 const ja = require('./ja/messages.json');
 const pl = require('./pl/messages.json');
+const pt_PT = require('./pt_PT/messages.json');
 const pt_BR = require('./pt_BR/messages.json');
 const ru = require('./ru/messages.json');
 const tr = require('./tr/messages.json');
@@ -20,6 +21,7 @@ export default {
   it,
   ja,
   pl,
+  pt_PT,
   pt_BR,
   ru,
   tr,
