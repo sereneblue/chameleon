@@ -425,6 +425,29 @@ class Injector {
                   return;
                 }
               });
+
+              pluginArray[Symbol.iterator] = function() {
+                const numPlugins = Object.keys(this).length - 4;
+                let index = 0;
+
+                return {
+                  next: () => {
+                    if (index < numPlugins) {
+                      const value = this[index];
+                      index++;
+                      return {
+                        value,
+                        done: false
+                      };
+                    }
+                    return {
+                      value: undefined,
+                      done: true
+                    };
+                  }
+                };
+              };
+
               return pluginArray;
             })();
             Object.defineProperty(spoofContext.navigator, 'plugins', {
