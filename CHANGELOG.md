@@ -1,3 +1,11 @@
+<a name="v0.22.40-rc"></a>
+
+## [v0.22.40-rc](https://github.com/sereneblue/chameleon/compare/v0.22.39...v0.22.40-rc) (2023-01-21)
+
+### Bug Fixes
+
+- add iterator support for navigator.plugins
+
 <a name="v0.22.39-rc"></a>
 
 ## [v0.22.39-rc](https://github.com/sereneblue/chameleon/compare/v0.22.38...v0.22.39-rc) (2023-01-17)
