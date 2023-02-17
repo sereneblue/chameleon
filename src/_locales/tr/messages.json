@@ -560,6 +560,9 @@
   "text-searchRules": {
     "message": "Arama kuralları"
   },
+  "text-startupDelay": {
+    "message": "Başlangıç gecikmesi (saniye)"
+  },
   "text-timezone": {
     "message": "Saat dilimi"
   },
