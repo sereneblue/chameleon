@@ -40,11 +40,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '110.0.1587.46', desktopChrome: '110.0.0.0', android: '109.0.1518.80', androidChrome: '109.0.0.0' },
+  edg: { desktop: '111.0.1661.51', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', desktopChrome: '111.0.0.0', android: '110.0.1587.66', androidChrome: '110.0.0.0' },
   esr: { desktop: '102' },
   esr2: { desktop: '91' },
-  ff: { desktop: '110', mobile: '110' },
-  gcr: { desktop: '110.0.0.0', ios: '110.0.5481.83', android: '110.0.5481.65' },
+  ff: { desktop: '111', mobile: '111' },
+  gcr: { desktop: '111.0.0.0', deprecated: '109.0.0.0', ios: '111.0.5563.101', android: '111.0.5563.115' },
   sf: { desktop: '16.3', ios1: '14.1.2', ios2: '15.6', ios3: '16.3' },
 };
 
@@ -74,7 +74,14 @@ let getName = (os: string, browser: string) => {
   let osId: string;
 
   if (browser === 'edg') {
-    return `${os} - Edge ${BrowserVersions.edg.desktop.split('.')[0]}`;
+    switch (os) {
+      case 'Win 7':
+      case 'Win 8':
+      case 'Win 8.1':
+        return `${os} - Edge ${BrowserVersions.edg.deprecated.split('.')[0]}`;
+      default:
+        return `${os} - Edge ${BrowserVersions.edg.desktop.split('.')[0]}`;
+    }
   } else if (browser === 'edgm') {
     return `${os} - Edge ${BrowserVersions.edg.android.split('.')[0]} (Phone)`;
   } else if (browser === 'esr') {
@@ -88,7 +95,14 @@ let getName = (os: string, browser: string) => {
   } else if (browser === 'fft') {
     return `${os} - Firefox ${BrowserVersions.ff.mobile} (Tablet)`;
   } else if (browser === 'gcr') {
-    return `${os} - Chrome ${BrowserVersions.gcr.desktop.split('.')[0]}`;
+    switch (os) {
+      case 'Win 7':
+      case 'Win 8':
+      case 'Win 8.1':
+        return `${os} - Chrome ${BrowserVersions.gcr.deprecated.split('.')[0]}`;
+      default:
+        return `${os} - Chrome ${BrowserVersions.gcr.desktop.split('.')[0]}`;
+    }
   } else if (browser === 'gcrm') {
     let key = os.charAt(0) === 'i' ? 'ios' : 'android';
     return `${os} - Chrome ${BrowserVersions.gcr[key].split('.')[0]} (Phone)`;
@@ -136,8 +150,22 @@ export class Generator {
   private browsers = {
     // edge
     edg: (os): BrowserProfile => {
-      let versions: any = BrowserVersions.edg;
+      let version: string;
+      let chromeVersion: string;
       let platform: string;
+
+      switch (os.id) {
+        case 'win1':
+        case 'win2':
+        case 'win3':
+          version = BrowserVersions.edg.deprecated;
+          chromeVersion = BrowserVersions.edg.deprecatedChrome;
+          break;
+        default:
+          version = BrowserVersions.edg.desktop;
+          chromeVersion = BrowserVersions.edg.desktopChrome;
+          break;
+      }
 
       switch (os.id) {
         case 'win1':
@@ -163,7 +191,7 @@ export class Generator {
       let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
       let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
 
-      let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.desktopChrome} Safari/537.36 Edg/${versions.desktop}`;
+      let ua: string = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeVersion} Safari/537.36 Edg/${version}`;
 
       let hardwareConcurrency: number = randomHW.includes(os.id) ? (Math.random() > 0.5 ? 4 : 2) : 4;
 
@@ -672,11 +700,22 @@ export class Generator {
     },
     // google chrome
     gcr: (os): BrowserProfile => {
-      let version: string = BrowserVersions.gcr.desktop;
+      let version: string;
       let platform: string;
 
       let resolutions: string[] = os.id.includes('mac') ? MacResolutions : DesktopResolutions;
       let screenRes: number[] = resolutions[Math.floor(Math.random() * resolutions.length)].split('x').map(Number);
+
+      switch (os.id) {
+        case 'win1':
+        case 'win2':
+        case 'win3':
+          version = BrowserVersions.gcr.deprecated;
+          break;
+        default:
+          version = BrowserVersions.gcr.desktop;
+          break;
+      }
 
       switch (os.id) {
         case 'win1':
