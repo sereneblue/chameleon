@@ -40,12 +40,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '111.0.1661.51', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', desktopChrome: '111.0.0.0', android: '110.0.1587.66', androidChrome: '110.0.0.0' },
+  edg: { desktop: '112.0.1722.48', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', desktopChrome: '112.0.0.0', android: '111.0.1661.59', androidChrome: '111.0.0.0' },
   esr: { desktop: '102' },
   esr2: { desktop: '91' },
-  ff: { desktop: '111', mobile: '111' },
-  gcr: { desktop: '111.0.0.0', deprecated: '109.0.0.0', ios: '111.0.5563.101', android: '111.0.5563.115' },
-  sf: { desktop: '16.3', ios1: '14.1.2', ios2: '15.6', ios3: '16.3' },
+  ff: { desktop: '112', mobile: '112' },
+  gcr: { desktop: '112.0.0.0', deprecated: '109.0.0.0', ios: '112.0.5615.46', android: '112.0.5615.48' },
+  sf: { desktop: '16.4', ios1: '14.1.2', ios2: '15.6', ios3: '16.4' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
