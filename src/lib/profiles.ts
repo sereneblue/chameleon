@@ -40,11 +40,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '114.0.1823.43', desktopChrome: '114.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '113.0.1774.63', androidChrome: '113.0.0.0' },
-  esr: { desktop: '102' },
-  esr2: { desktop: '91' },
-  ff: { desktop: '114', mobile: '114' },
-  gcr: { desktop: '114.0.0.0', deprecated: '109.0.0.0', ios: '114.0.5735.99', android: '114.0.5735.60' },
+  edg: { desktop: '114.0.1823.67', desktopChrome: '114.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '114.0.1823.61', androidChrome: '114.0.0.0' },
+  esr: { desktop: '115' },
+  esr2: { desktop: '102' },
+  ff: { desktop: '115', mobile: '115' },
+  gcr: { desktop: '114.0.0.0', deprecated: '109.0.0.0', ios: '114.0.5735.124', android: '114.0.5735.196' },
   sf: { desktop: '16.5', ios1: '14.1.2', ios2: '15.6', ios3: '16.5' },
 };
 
