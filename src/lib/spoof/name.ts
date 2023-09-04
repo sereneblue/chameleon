@@ -1,4 +1,6 @@
 export default {
-  type: 'overwrite',
-  data: [{ obj: 'window', prop: 'name', value: '' }],
+  type: 'custom',
+  data: `
+    window.name = '';
+  `,
 };
