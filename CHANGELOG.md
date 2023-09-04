@@ -1,3 +1,15 @@
+<a name="v0.22.48-rc"></a>
+
+## [v0.22.48-rc](https://github.com/sereneblue/chameleon/compare/v0.22.47...v0.22.48-rc) (2023-09-04)
+
+### Bug Fixes
+
+- window.name protection ([#569](https://github.com/sereneblue/chameleon/issues/569))
+
+### Features
+
+- update profiles
+
 <a name="v0.22.47-rc"></a>
 
 ## [v0.22.47-rc](https://github.com/sereneblue/chameleon/compare/v0.22.46...v0.22.47-rc) (2023-08-05)
