@@ -1,3 +1,11 @@
+<a name="v0.22.49-rc"></a>
+
+## [v0.22.49-rc](https://github.com/sereneblue/chameleon/compare/v0.22.48...v0.22.49-rc) (2023-09-26)
+
+### Features
+
+- update profiles
+
 <a name="v0.22.48-rc"></a>
 
 ## [v0.22.48-rc](https://github.com/sereneblue/chameleon/compare/v0.22.47...v0.22.48-rc) (2023-09-04)
