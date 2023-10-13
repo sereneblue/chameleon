@@ -1,22 +1,22 @@
 <template>
   <div class="app h-screen w-screen flex" :class="darkMode ? ['bg-dark'] : ['bg-light']">
     <div class="text-sm bg-primary flex-none flex-col text-center">
-      <div @click="setSelected('tab', 'main')" id="homeTab" class="tab" :class="activeTab('main')">
+      <div title="Overview" @click="setSelected('tab', 'main')" id="homeTab" class="tab" :class="activeTab('main')">
         <feather type="home" size="1.25em"></feather>
       </div>
-      <div @click="setSelected('tab', 'profile')" id="profileTab" class="tab" :class="activeTab('profile')">
+      <div title="Profiles" @click="setSelected('tab', 'profile')" id="profileTab" class="tab" :class="activeTab('profile')">
         <feather type="globe" size="1.25em"></feather>
       </div>
-      <div @click="setSelected('tab', 'headers')" id="headersTab" class="tab" :class="activeTab('headers')">
+      <div title="Headers" @click="setSelected('tab', 'headers')" id="headersTab" class="tab" :class="activeTab('headers')">
         <feather type="code" size="1.25em"></feather>
       </div>
-      <div @click="setSelected('tab', 'options')" id="optionsTab" class="tab" :class="activeTab('options')">
+      <div title="Options" @click="setSelected('tab', 'options')" id="optionsTab" class="tab" :class="activeTab('options')">
         <feather type="sliders" size="1.25em"></feather>
       </div>
-      <div @click="setSelected('tab', 'whitelist')" id="whitelistTab" class="tab" :class="activeTab('whitelist')">
+      <div title="Whitelist" @click="setSelected('tab', 'whitelist')" id="whitelistTab" class="tab" :class="activeTab('whitelist')">
         <feather type="edit" size="1.25em"></feather>
       </div>
-      <div @click="openOptionsPage('')" id="optionsPage" class="tab hover:bg-primary-soft">
+      <div title="Settings" @click="openOptionsPage('')" id="optionsPage" class="tab hover:bg-primary-soft">
         <feather type="settings" size="1.25em"></feather>
       </div>
     </div>
