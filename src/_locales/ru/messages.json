@@ -165,7 +165,7 @@
     "message": "IP правила"
   },
   "options-whitelist-acceptLang": {
-    "message": "Подменять \"Accept-Language\""
+    "message": "Подменять Accept-Language"
   },
   "options-whitelist-editorTitle": {
     "message": "Редактор правил белого списка"
@@ -174,13 +174,13 @@
     "message": "IP для заголовков (\"Via\" и \"X-Forwarded-For\")"
   },
   "options-whitelist-options-audioContext": {
-    "message": "Enable spoof audio context"
+    "message": "Включить подмену аудио контекста"
   },
   "options-whitelist-options-clientRects": {
-    "message": "Enable spoof client rects"
+    "message": "Включить подмену клиентских rects"
   },
   "options-whitelist-options-cssExfil": {
-    "message": "Block CSS Exfil"
+    "message": "Блокировать CSS Exfil"
   },
   "options-whitelist-options-mediaDevices": {
     "message": "Блокировать медиа-устройства"
@@ -192,7 +192,7 @@
     "message": "Включить подмену часового пояса"
   },
   "options-whitelist-options-ws": {
-    "message": "Отключить \"WebSocket\""
+    "message": "Отключить WebSocket"
   },
   "options-whitelist-rule": {
     "message": "Правило белого списка"
@@ -417,7 +417,7 @@
     "message": "Блокировать медиа устройства"
   },
   "popup-options-standard-blockCSSExfil": {
-    "message": "Защищать от атаки \"CSS Exfil\""
+    "message": "Защищать от атаки CSS Exfil"
   },
   "popup-options-standard-disableWebRTC": {
     "message": "Отключить WebRTC"
@@ -483,7 +483,7 @@
     "message": "Блокировать трекеры"
   },
   "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
-    "message": "Reject trackers and partition third-party cookies"
+    "message": "Отклонить трекеры и third-party куки"
   },
   "popup-whitelist-contextMenu": {
     "message": "Добавить пункт в контекстное меню для открытия текущего домена во вкладке белого списка"
@@ -559,6 +559,9 @@
   },
   "text-searchRules": {
     "message": "Поиск правил"
+  },
+  "text-startupDelay": {
+    "message": "Задержка запуска (сек)"
   },
   "text-timezone": {
     "message": "Часовой пояс"

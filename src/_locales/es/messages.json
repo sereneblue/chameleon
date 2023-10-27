@@ -1,21 +1,21 @@
 {
   "extDescription": {
-    "message": "Falsifica tu perfil de navegador. Incluye algunas opciones para mejorar la privacidad."
+    "message": "Falsea el perfil de tu navegador. Incluye algunas opciones para mejorar la privacidad."
   },
   "notifications-profileChange": {
-    "message": "Perfil cambiado:"
+    "message": "Perfil modificado:"
   },
   "notifications-unableToGetIPInfo": {
-    "message": "No se puede obtener información de la IP"
+    "message": "No se puede obtener información sobre la IP"
   },
   "notifications-usingIPInfo": {
-    "message": "Usando información de la IP:"
+    "message": "Usando la información de la IP:"
   },
   "notifications-usingIPRule": {
-    "message": "Usando regla de IP:"
+    "message": "Utilizar la regla para la IP:"
   },
   "options-about-issueTracker": {
-    "message": "Incidencias"
+    "message": "Seguimiento de las incidencias"
   },
   "options-about-knownIssues": {
     "message": "Problemas conocidos"
@@ -30,7 +30,7 @@
     "message": "Código fuente"
   },
   "options-about-translate": {
-    "message": "Ayudar a traducir"
+    "message": "Ayuda a la traducción"
   },
   "options-import-couldNotImport": {
     "message": "No se pudo importar el archivo"
@@ -39,40 +39,40 @@
     "message": "Configuración inválida: falta la configuración"
   },
   "options-import-invalid-excluded": {
-    "message": "Configuración inválida: falta excluido"
+    "message": "Ajustes no válidos: faltan excluidos"
   },
   "options-import-invalid-excludedProfile": {
-    "message": "Configuración inválida: excluido tiene un perfil inválido"
+    "message": "Ajustes no válidos: excluidos tienes un perfil no válido"
   },
   "options-import-invalid-headers": {
-    "message": "Configuración inválida: faltan cabeceras"
+    "message": "Ajustes no válidos: faltan las cabeceras"
   },
   "options-import-invalid-ipRuleId": {
-    "message": "Configuración inválida: id de regla IP inválida"
+    "message": "Ajuste no válido: identificador de la regla IP no válido"
   },
   "options-import-invalid-ipRuleName": {
-    "message": "Configuración inválida: falta el nombre de la regla IP"
+    "message": "Ajustes no válidos: falta el nombre para la regla de la IP"
   },
   "options-import-invalid-ipRuleRange": {
-    "message": "Configuración inválida: rango IP de regla IP inválido"
+    "message": "Ajustes no válidos: rango de la regla para la IP no válida"
   },
   "options-import-invalid-ipRules": {
-    "message": "Configuración inválida: faltan reglas IP"
+    "message": "Ajustes no válidos: faltan las reglas para la IP"
   },
   "options-import-invalid-ipRulesDupe": {
-    "message": "Configuración inválida: se encontró id de regla IP duplicada"
+    "message": "Ajustes no válidos: se ha encontrado un identificador para las reglas de la IP duplicado"
   },
   "options-import-invalid-options": {
-    "message": "Configuración inválida: opciones faltantes"
+    "message": "Ajustes no válidos: faltan opciones"
   },
   "options-import-invalid-profile": {
-    "message": "Ajustes inválidos: falta el perfil"
+    "message": "Ajustes no válidos: falta el perfil"
   },
   "options-import-invalid-setting": {
-    "message": "Valor de configuración inválido:"
+    "message": "Valor del ajuste no válido:"
   },
   "options-import-invalid-settings": {
-    "message": "Configuración inválida: faltan ajustes"
+    "message": "Ajustes no válidos: faltan ajustes"
   },
   "options-import-invalid-spoofIP": {
     "message": "Configuración inválida: el rango IP de Spoof header es inválido"
@@ -81,10 +81,10 @@
     "message": "Configuración inválida: la versión no es aceptada"
   },
   "options-import-invalid-whitelist": {
-    "message": "Configuración inválida: lista blanca faltante"
+    "message": "Ajustes no válidos: falta la lista blanca"
   },
   "options-import-invalid-whitelistDupe": {
-    "message": "Configuración inválida: se encontró id de regla de lista blanca duplicada"
+    "message": "Ajustes no válidos: se ha encontrado un identificador para la regla de la lista blanca duplicada"
   },
   "options-import-invalid-whitelistId": {
     "message": "Configuración inválida: id de regla de lista blanca inválida"
@@ -99,52 +99,52 @@
     "message": "Configuración inválida: regla de lista blanca inválida falsea IP"
   },
   "options-import-success": {
-    "message": "Configuración importada con éxito. Recargando extensión..."
+    "message": "Ajustes importados correctamente. Recargando la extensión..."
   },
   "options-ipRules-editorTitle": {
-    "message": "Editor de reglas IP"
+    "message": "Editor para las reglas IP"
   },
   "options-ipRules-ipRule": {
     "message": "Regla IP"
   },
   "options-ipRules-reload": {
-    "message": "Recargar información de IP"
+    "message": "Recargar la información de la IP"
   },
   "options-ipRules-textareaLabel": {
-    "message": "Rangos de IP / Direcciones"
+    "message": "Rangos / Direcciones IP"
   },
   "options-ipRules-textareaPlaceholder": {
-    "message": "Un rango IP/IP por línea"
+    "message": "Un rango para la IP/una IP por línea"
   },
   "options-modal-askDelete": {
-    "message": "¿Está seguro que desea eliminar esta regla?"
+    "message": "¿Estás seguro de que deseas eliminar esta regla?"
   },
   "options-modal-askReset": {
-    "message": "¿Estás seguro de que quieres restablecer tu configuración?"
+    "message": "¿Seguro que quieres restablecer la configuración?"
   },
   "options-modal-confirmDelete": {
-    "message": "Sí ¡bórrala!"
+    "message": "¡Sí, bórrala!"
   },
   "options-modal-confirmReset": {
-    "message": "¡Sí, restablecer mi configuración!"
+    "message": "¡Sí, restablece mis ajustes!"
   },
   "options-settings": {
-    "message": "Configuraciones"
+    "message": "Ajustes"
   },
   "options-settings-import": {
     "message": "Importar"
   },
   "options-settings-importing": {
-    "message": "Importando ajustes"
+    "message": "Importar los ajustes"
   },
   "options-settings-export": {
     "message": "Exportar"
   },
   "options-settings-reset": {
-    "message": "Restablecer valores predeterminados"
+    "message": "Restablecer los valores por defecto"
   },
   "options-settings-permissions": {
-    "message": "Chameleon puede controlar algunas de sus preferencias de Firefox como resistir la toma de huellas dactilares o habilitar la protección de rastreo. Esto puede estar en conflicto con otra extensión. Usted puede optar por no controlar estas preferencias eliminando el permiso de privacidad. Tenga en cuenta que la eliminación de este permiso restablecerá estas preferencias. Puede solicitar este permiso si no está presente."
+    "message": "Chameleon puede controlar algunas de tus ajustes en Firefox, como proteger la huella digital o activar la protección contra el rastreo. Esto puede entrar en conflicto con otras extensiones. Puedes evitar que Chameleon controle estas preferencias eliminando el permiso de privacidad. Ten en cuenta que al eliminar este permiso se restablecerán estos ajustes. Puedes solicitar este permiso si no está presente."
   },
   "options-settings-permissions-legacy": {
     "message": "Necesitará instalar una versión especial de Chameleon para habilitar los permisos de privacidad. Esto se debe a algunos problemas con los permisos soportados para una plataforma cruzada/nueva versión de esta extensión. Puede encontrar más detalles en la wiki enlazada a continuación."
