@@ -40,12 +40,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '117.0.2045.43', desktopChrome: '117.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '117.0.2045.38', androidChrome: '117.0.0.0' },
+  edg: { desktop: '118.0.2088.76', desktopChrome: '118.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '118.0.2088.66', androidChrome: '118.0.0.0' },
   esr: { desktop: '115' },
   esr2: { desktop: '102' },
-  ff: { desktop: '118', mobile: '118' },
-  gcr: { desktop: '117.0.0.0', deprecated: '109.0.0.0', ios: '117.0.5938.108', android: '117.0.5938.60' },
-  sf: { desktop: '16.5', ios1: '14.1.2', ios2: '15.6', ios3: '16.5' },
+  ff: { desktop: '119', mobile: '119' },
+  gcr: { desktop: '119.0.0.0', deprecated: '109.0.0.0', ios: '119.0.6045.109', android: '119.0.6045.66' },
+  sf: { desktop: '17.1', ios1: '15.6', ios2: '16.5', ios3: '17.1' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -115,13 +115,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
   } else if (browser === 'sfm') {
     switch (os) {
-      case 'iOS 14':
+      case 'iOS 15':
         osId = 'ios1';
         break;
-      case 'iOS 15':
+      case 'iOS 16':
         osId = 'ios2';
         break;
-      case 'iOS 16':
+      case 'iOS 17':
         osId = 'ios3';
         break;
       default:
@@ -130,13 +130,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]} (iPhone)`;
   } else if (browser === 'sft') {
     switch (os) {
-      case 'iOS 14':
+      case 'iOS 15':
         osId = 'ios1';
         break;
-      case 'iOS 15':
+      case 'iOS 16':
         osId = 'ios2';
         break;
-      case 'iOS 16':
+      case 'iOS 17':
         osId = 'ios3';
         break;
       default:
@@ -338,7 +338,7 @@ export class Generator {
           break;
       }
 
-      let ua = `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/20100101 Firefox/${version}.0`;
+      let ua = `Mozilla/5.0 (${platform}; rv:109.0) Gecko/20100101 Firefox/${version}.0`;
 
       return {
         accept: {
@@ -477,7 +477,7 @@ export class Generator {
           break;
       }
 
-      let ua = `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/20100101 Firefox/${version}.0`;
+      let ua = `Mozilla/5.0 (${platform}; rv:109.0) Gecko/20100101 Firefox/${version}.0`;
 
       return {
         accept: {
@@ -553,7 +553,7 @@ export class Generator {
       const device = devices.getDevice('mobile', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      ua = `Mozilla/5.0 (${os.uaPlatform}; Mobile; rv:${version}.0) Gecko/${version}.0 Firefox/${version}.0`;
+      ua = `Mozilla/5.0 (${os.uaPlatform}; Mobile; rv:109.0) Gecko/${version}.0 Firefox/${version}.0`;
 
       return {
         accept: {
@@ -629,7 +629,7 @@ export class Generator {
       const device = devices.getDevice('tablet', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      ua = `Mozilla/5.0 (${os.uaPlatform}; Tablet; rv:${version}.0) Gecko/${version}.0 Firefox/${version}.0`;
+      ua = `Mozilla/5.0 (${os.uaPlatform}; Tablet; rv:${version}.0) Gecko/109.0 Firefox/${version}.0`;
 
       return {
         accept: {
@@ -1199,7 +1199,7 @@ export class Generator {
       //  Use last 3 versions of macOS
       {
         id: 'mac1',
-        name: 'macOS 10.15',
+        name: 'macOS 12',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
@@ -1211,27 +1211,27 @@ export class Generator {
       },
       {
         id: 'mac2',
-        name: 'macOS 11',
+        name: 'macOS 13',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
-          oscpu: 'Intel Mac OS X 11',
+          oscpu: 'Intel Mac OS X 10.15',
           platform: 'MacIntel',
         },
         screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 11_6',
+        uaPlatform: 'Macintosh; Intel Mac OS X 10_15_7',
       },
       {
         id: 'mac3',
-        name: 'macOS 12',
+        name: 'macOS 14',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
-          oscpu: 'Intel Mac OS X 12',
+          oscpu: 'Intel Mac OS X 10.15',
           platform: 'MacIntel',
         },
         screenOffset: -23,
-        uaPlatform: 'Macintosh; Intel Mac OS X 12_6',
+        uaPlatform: 'Macintosh; Intel Mac OS X 10_15_7',
       },
     ],
     linux: [
@@ -1275,47 +1275,47 @@ export class Generator {
     iOS: [
       {
         id: 'ios1',
-        name: 'iOS 14',
+        name: 'iOS 15',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '14_8_1',
+        uaPlatform: '15_8',
       },
       {
         id: 'ios2',
-        name: 'iOS 15',
+        name: 'iOS 16',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '15_6',
+        uaPlatform: '16_7_2',
       },
       {
         id: 'ios3',
-        name: 'iOS 16',
+        name: 'iOS 17',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '16_0',
+        uaPlatform: '17_1',
       },
     ],
     android: [
       {
         id: 'and1',
-        name: 'Android 8',
-        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
-        uaPlatform: 'Android 8.1.0',
-      },
-      {
-        id: 'and2',
-        name: 'Android 9',
-        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
-        uaPlatform: 'Android 9',
-      },
-      {
-        id: 'and3',
-        name: 'Android 10',
-        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
-        uaPlatform: 'Android 10',
-      },
-      {
-        id: 'and4',
         name: 'Android 11',
         browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
         uaPlatform: 'Android 11',
+      },
+      {
+        id: 'and2',
+        name: 'Android 12',
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 12',
+      },
+      {
+        id: 'and3',
+        name: 'Android 13',
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 13',
+      },
+      {
+        id: 'and4',
+        name: 'Android 14',
+        browsers: ['edgm', 'ffm', 'fft', 'gcrm', 'gcrt'],
+        uaPlatform: 'Android 14',
       },
     ],
   };
