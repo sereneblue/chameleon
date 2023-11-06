@@ -1,6 +1,6 @@
 # Chameleon
 
-![Chameleon version](https://img.shields.io/badge/version-0.22.49-brightgreen.svg)
+![Chameleon version](https://img.shields.io/badge/version-0.22.50-brightgreen.svg)
 ![GPL v3 License](https://img.shields.io/badge/license-GPL%20v3-blue.svg)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/chameleon/localized.svg)](https://crowdin.com/project/chameleon)
 
@@ -84,10 +84,10 @@ Don't know where to start? Check out the [wiki](https://sereneblue.github.io/cha
 - Anonymous, Wursttorte, AName, and robinmusch for the German translation
 - Shitennouji for the Japanese translation
 - gnu-ewm for the Polish translation
-- 3ibsand, Alexey, fks7cgsk, Hit Legends, and EugeneKh for the Russian translation
-- David P. (Megver83) and reii for the Spanish translation
+- 3ibsand, Alexey, fks7cgsk, Hit Legends, EugeneKh and Дмитрий Кондрашов for the Russian translation
+- David P. (Megver83), reii and gallegonovato for the Spanish translation
 - xlabx for the Turkish translation
-- mezysinc for the Portuguese (Brazilian) translation
+- mezysinc and Lucas Guima for the Portuguese (Brazilian) translation
 - Ricky Tigg for the Finnish translation
 - LolloGamer_5123 YT for the Italian translation
 - azilara for the Portuguese translation

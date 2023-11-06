@@ -1,3 +1,13 @@
+<a name="v0.22.50-rc"></a>
+
+## [v0.22.50-rc](https://github.com/sereneblue/chameleon/compare/v0.22.49...v0.22.50-rc) (2023-11-05)
+
+### Features
+
+- update profiles
+- update localizations
+- add title to popup icons ([#570](https://github.com/sereneblue/chameleon/issues/570))
+
 <a name="v0.22.49-rc"></a>
 
 ## [v0.22.49-rc](https://github.com/sereneblue/chameleon/compare/v0.22.48...v0.22.49-rc) (2023-09-26)
