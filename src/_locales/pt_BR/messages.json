@@ -81,10 +81,10 @@
     "message": "Configuração inválida: a versão não pode ser aceita"
   },
   "options-import-invalid-whitelist": {
-    "message": "Configurações inválidas: faltando lista branca"
+    "message": "Configurações inválidas: faltando lista de permissões"
   },
   "options-import-invalid-whitelistDupe": {
-    "message": "Configurações inválidas: encontrada duplicata de ID da regra na lista branca"
+    "message": "Configurações inválidas: encontrada duplicata de ID da regra na lista de permissões"
   },
   "options-import-invalid-whitelistId": {
     "message": "Configurações inválidas: ID da regra na lista branca inválida"
@@ -560,10 +560,13 @@
   "text-searchRules": {
     "message": "Buscar regras"
   },
+  "text-startupDelay": {
+    "message": "Startup delay (sec)"
+  },
   "text-timezone": {
     "message": "Fuso horário"
   },
   "text-whitelist": {
-    "message": "Lista Branca"
+    "message": "Lista de permissões"
   }
 }
