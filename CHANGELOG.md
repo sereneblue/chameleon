@@ -1,3 +1,11 @@
+<a name="v0.22.54-rc"></a>
+
+## [v0.22.54-rc](https://github.com/sereneblue/chameleon/compare/v0.22.53-rc...v0.22.54-rc) (2024-01-30)
+
+### Bug Fixes
+
+- user agent version in profile
+
 <a name="v0.22.53-rc"></a>
 
 ## [v0.22.53-rc](https://github.com/sereneblue/chameleon/compare/v0.22.52...v0.22.53-rc) (2024-01-30)
