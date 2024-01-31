@@ -338,7 +338,7 @@ export class Generator {
           break;
       }
 
-      let ua = `Mozilla/5.0 (${platform}; rv:109.0) Gecko/20100101 Firefox/${version}.0`;
+      let ua = `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/20100101 Firefox/${version}.0`;
 
       return {
         accept: {
