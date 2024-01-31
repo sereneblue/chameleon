@@ -550,8 +550,6 @@ export default class App extends Vue {
   }
 
   async changeSetting(evt: any): Promise<void> {
-    console.log(this.settings);
-
     webext.sendToBackground(this.settings);
   }
 

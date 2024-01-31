@@ -40,12 +40,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '120.0.2210.77', desktopChrome: '120.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '119.0.2151.107', androidChrome: '119.0.0.0' },
+  edg: { desktop: '121.0.0.0', desktopChrome: '121.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '121.0.0.0', androidChrome: '120.0.0.0' },
   esr: { desktop: '115' },
   esr2: { desktop: '102' },
-  ff: { desktop: '121', mobile: '121' },
-  gcr: { desktop: '120.0.0.0', deprecated: '109.0.0.0', ios: '120.0.6099.119', android: '120.0.6099.43' },
-  sf: { desktop: '17.1', ios1: '15.6', ios2: '16.5', ios3: '17.1' },
+  ff: { desktop: '122', mobile: '122' },
+  gcr: { desktop: '121.0.0.0', deprecated: '109.0.0.0', ios: '121.0.6167.66', android: '121.0.6167.101' },
+  sf: { desktop: '17.2', ios1: '15.6', ios2: '16.5', ios3: '17.2' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -272,7 +272,7 @@ export class Generator {
 
       return {
         accept: {
-          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
@@ -477,11 +477,11 @@ export class Generator {
           break;
       }
 
-      let ua = `Mozilla/5.0 (${platform}; rv:109.0) Gecko/20100101 Firefox/${version}.0`;
+      let ua = `Mozilla/5.0 (${platform}; rv:${version}.0) Gecko/20100101 Firefox/${version}.0`;
 
       return {
         accept: {
-          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
@@ -553,7 +553,7 @@ export class Generator {
       const device = devices.getDevice('mobile', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      ua = `Mozilla/5.0 (${os.uaPlatform}; Mobile; rv:109.0) Gecko/${version}.0 Firefox/${version}.0`;
+      ua = `Mozilla/5.0 (${os.uaPlatform}; Mobile; rv:${version}.0) Gecko/${version}.0 Firefox/${version}.0`;
 
       return {
         accept: {
@@ -744,7 +744,7 @@ export class Generator {
 
       return {
         accept: {
-          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         },
@@ -842,7 +842,7 @@ export class Generator {
           (accept = {
             header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             encodingHTTP: 'gzip, deflate',
-            encodingHTTPS: 'br, gzip, deflate',
+            encodingHTTPS: 'gzip, deflate, br',
           });
       } else {
         ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Mobile Safari/537.36`;
@@ -857,7 +857,7 @@ export class Generator {
           mimeTypes: [],
           maxTouchPoints: 5,
           oscpu: null,
-          platform: 'Linux armv8l',
+          platform: 'Linux armv81',
           plugins: [],
           productSub: '20030107',
           userAgent: ua,
@@ -866,7 +866,7 @@ export class Generator {
         };
 
         accept = {
-          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         };
@@ -920,7 +920,7 @@ export class Generator {
         accept = {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: 'br, gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
         };
       } else {
         ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Safari/537.36`;
@@ -944,7 +944,7 @@ export class Generator {
         };
 
         accept = {
-          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+          header: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
           encodingHTTP: 'gzip, deflate',
           encodingHTTPS: 'gzip, deflate, br',
         };
@@ -1030,7 +1030,7 @@ export class Generator {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: 'br, gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
         browser: 'safari',
@@ -1075,7 +1075,7 @@ export class Generator {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: 'br, gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
         browser: 'safari',
@@ -1111,13 +1111,13 @@ export class Generator {
       const device = devices.getDevice('tablet', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      let ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/15E148 Safari/604.1`;
+      let ua = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Safari/605.1.15`;
 
       return {
         accept: {
           header: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
           encodingHTTP: 'gzip, deflate',
-          encodingHTTPS: 'br, gzip, deflate',
+          encodingHTTPS: 'gzip, deflate, br',
         },
         osId: os.id,
         browser: 'safari',
@@ -1131,7 +1131,7 @@ export class Generator {
           mimeTypes: [],
           maxTouchPoints: 5,
           oscpu: null,
-          platform: 'iPad',
+          platform: 'MacIntel',
           plugins: [],
           productSub: '20030107',
           userAgent: ua,
