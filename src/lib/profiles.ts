@@ -43,9 +43,9 @@ const BrowserVersions: any = {
   edg: { desktop: '121.0.0.0', desktopChrome: '121.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '121.0.0.0', androidChrome: '120.0.0.0' },
   esr: { desktop: '115' },
   esr2: { desktop: '102' },
-  ff: { desktop: '122', mobile: '122' },
-  gcr: { desktop: '121.0.0.0', deprecated: '109.0.0.0', ios: '121.0.6167.66', android: '121.0.6167.101' },
-  sf: { desktop: '17.2', ios1: '15.6', ios2: '16.5', ios3: '17.2' },
+  ff: { desktop: '123', mobile: '123' },
+  gcr: { desktop: '122.0.0.0', deprecated: '109.0.0.0', ios: '122.0.6261.62', android: '122.0.6261.64' },
+  sf: { desktop: '17.3.1', ios1: '15.6', ios2: '16.5', ios3: '17.3.1' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
