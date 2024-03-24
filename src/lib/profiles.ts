@@ -40,11 +40,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '121.0.0.0', desktopChrome: '121.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '121.0.0.0', androidChrome: '120.0.0.0' },
+  edg: { desktop: '122.0.0.0', desktopChrome: '122.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '122.0.0.0', androidChrome: '122.0.0.0' },
   esr: { desktop: '115' },
   esr2: { desktop: '102' },
-  ff: { desktop: '123', mobile: '123' },
-  gcr: { desktop: '122.0.0.0', deprecated: '109.0.0.0', ios: '122.0.6261.62', android: '122.0.6261.64' },
+  ff: { desktop: '124', mobile: '124' },
+  gcr: { desktop: '123.0.0.0', deprecated: '109.0.0.0', ios: '123.0.6312.52', android: '123.0.6312.40' },
   sf: { desktop: '17.3.1', ios1: '15.6', ios2: '16.5', ios3: '17.3.1' },
 };
 
@@ -722,15 +722,15 @@ export class Generator {
         case 'win2':
         case 'win3':
         case 'win4':
-          platform = os.nav.oscpu;
+          platform = 'Windows NT 10.0; Win64; x64';
           break;
         case 'mac1':
         case 'mac2':
         case 'mac3':
+          platform = 'Macintosh; Intel Mac OS X 10_15_7';
+          break;
         case 'lin1':
         case 'lin2':
-          platform = os.uaPlatform;
-          break;
         case 'lin3':
           platform = 'X11; Linux x86_64';
           break;
@@ -845,7 +845,7 @@ export class Generator {
             encodingHTTPS: 'gzip, deflate, br',
           });
       } else {
-        ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Mobile Safari/537.36`;
+        ua = `Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Mobile Safari/537.36`;
 
         navigator = {
           appMinorVersion: null,
@@ -923,7 +923,7 @@ export class Generator {
           encodingHTTPS: 'gzip, deflate, br',
         };
       } else {
-        ua = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Safari/537.36`;
+        ua = `Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.android} Safari/537.36`;
 
         navigator = {
           appMinorVersion: null,
