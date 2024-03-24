@@ -8,7 +8,7 @@
       "useBuiltIns": "usage",
       "corejs": 3,
       "targets": {
-        "firefox": "59"
+        "firefox": "68"
       }
     }]
   ]
