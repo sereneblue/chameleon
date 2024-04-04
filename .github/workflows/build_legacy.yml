@@ -31,8 +31,8 @@ jobs:
       - name: Generate variables
         id: chameleon
         run: |
-          echo "{VERSION}={$(git describe --tags)}" >> $GITHUB_OUTPUT
-          echo "{FILENAME}={chameleon_$(git describe --tags).signed.xpi}" >> $GITHUB_OUTPUT
+          echo "VERSION=$(git describe --tags)" >> $GITHUB_OUTPUT
+          echo "FILENAME=chameleon_$(git describe --tags).signed.xpi" >> $GITHUB_OUTPUT
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v2
