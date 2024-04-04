@@ -35,9 +35,6 @@ jobs:
           echo "VERSION=$(git describe --tags)" >> $GITHUB_OUTPUT
           echo "FILENAME=chameleon_$(git describe --tags).signed.xpi" >> $GITHUB_OUTPUT
           CHANGELOG=$(python3 ./.github/workflows/dev/chglog.py)
-          CHANGELOG="${CHANGELOG//$'%'/%25}"
-          CHANGELOG="${CHANGELOG//$'\n'/%0A}"
-          CHANGELOG="${CHANGELOG//$'\r'/%0D}"
           echo "CHANGELOG=$CHANGELOG" >> $GITHUB_OUTPUT
       - name: Create release
         id: create_release
