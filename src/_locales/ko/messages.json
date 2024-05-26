@@ -1,0 +1,572 @@
+{
+  "extDescription": {
+    "message": "브라우저 프로필을 위장합니다. 몇 가지 개인정보 강화 옵션이 포함되어 있습니다."
+  },
+  "notifications-profileChange": {
+    "message": "프로필이 변경되었습니다:"
+  },
+  "notifications-unableToGetIPInfo": {
+    "message": "IP 정보를 가져올 수 없습니다"
+  },
+  "notifications-usingIPInfo": {
+    "message": "IP 정보를 사용 중입니다:"
+  },
+  "notifications-usingIPRule": {
+    "message": "IP 규칙을 사용중입니다:"
+  },
+  "options-about-issueTracker": {
+    "message": "이슈 트래커"
+  },
+  "options-about-knownIssues": {
+    "message": "알려진 문제들"
+  },
+  "options-about-wiki": {
+    "message": "위키"
+  },
+  "options-about-support": {
+    "message": "지원"
+  },
+  "options-about-sourceCode": {
+    "message": "소스코드"
+  },
+  "options-about-translate": {
+    "message": "번역을 도와주세요"
+  },
+  "options-import-couldNotImport": {
+    "message": "파일을 가져올 수 없습니다"
+  },
+  "options-import-invalid-config": {
+    "message": "설정이 잘못됨: 구성을 찾을 수 없습니다"
+  },
+  "options-import-invalid-excluded": {
+    "message": "설정이 잘못됨: 제외 항목을 찾을 수 없습니다"
+  },
+  "options-import-invalid-excludedProfile": {
+    "message": "설정이 잘못됨: 제외한 프로필이 유효하지 않습니다"
+  },
+  "options-import-invalid-headers": {
+    "message": "설정이 잘못됨: 헤더를 찾을 수 없습니다"
+  },
+  "options-import-invalid-ipRuleId": {
+    "message": "설정이 잘못됨: 잘못된 IP 규칙 - id가 유효하지 않습니다"
+  },
+  "options-import-invalid-ipRuleName": {
+    "message": "잘못된 설정: IP 규칙 이름을 찾을 수 없습니다"
+  },
+  "options-import-invalid-ipRuleRange": {
+    "message": "설정이 잘못됨: 잘못된 IP 규칙 - IP범위가 유효하지 않습니다"
+  },
+  "options-import-invalid-ipRules": {
+    "message": "설정이 잘못됨: IP 규칙을 찾을 수 없습니다"
+  },
+  "options-import-invalid-ipRulesDupe": {
+    "message": "설정이 잘못됨: IP규칙 - 중복된 id가 발견되었습니다"
+  },
+  "options-import-invalid-options": {
+    "message": "설정이 잘못됨: 옵션을 찾을 수 없습니다"
+  },
+  "options-import-invalid-profile": {
+    "message": "설정이 잘못됨: 프로필을 찾을 수 없습니다"
+  },
+  "options-import-invalid-setting": {
+    "message": "설정 값이 잘못됨:"
+  },
+  "options-import-invalid-settings": {
+    "message": "설정이 잘못됨: 설정을 찾을 수 없습니다"
+  },
+  "options-import-invalid-spoofIP": {
+    "message": "설정이 잘못됨: 위장용 헤더의 IP 범위가 유효하지 않습니다"
+  },
+  "options-import-invalid-version": {
+    "message": "설정이 잘못됨: 해당 버전은 지원되지 않습니다"
+  },
+  "options-import-invalid-whitelist": {
+    "message": "설정이 잘못됨: 화이트리스트를 찾을 수 없습니다"
+  },
+  "options-import-invalid-whitelistDupe": {
+    "message": "설정이 잘못됨: 화이트리스트 규칙 - 중복된 id가 발견되었습니다"
+  },
+  "options-import-invalid-whitelistId": {
+    "message": "설정이 잘못됨: 화이트리스트 규칙 - id가 유효하지 않습니다"
+  },
+  "options-import-invalid-whitelistName": {
+    "message": "설정이 잘못됨: 화이트리스트 규칙 - 이름을 찾을 수 없습니다"
+  },
+  "options-import-invalid-whitelistOpt": {
+    "message": "설정이 잘못됨: 화이트리스트 규칙 - 옵션이 유효하지 않습니다"
+  },
+  "options-import-invalid-whitelistSpoofIP": {
+    "message": "설정이 잘못됨: 화이트리스트 규칙 - 위장용 IP가 유효하지 않습니다"
+  },
+  "options-import-success": {
+    "message": "설정을 성공적으로 가져왔습니다. 확장을 새로 고치는 중..."
+  },
+  "options-ipRules-editorTitle": {
+    "message": "IP 규칙 편집기"
+  },
+  "options-ipRules-ipRule": {
+    "message": "IP 규칙"
+  },
+  "options-ipRules-reload": {
+    "message": "IP 정보 다시 불러오기"
+  },
+  "options-ipRules-textareaLabel": {
+    "message": "IP 범위 / 주소"
+  },
+  "options-ipRules-textareaPlaceholder": {
+    "message": "한 줄에 하나의 IP/IP 범위 입력"
+  },
+  "options-modal-askDelete": {
+    "message": "이 규칙을 삭제합니까?"
+  },
+  "options-modal-askReset": {
+    "message": "설정을 초기화할까요?"
+  },
+  "options-modal-confirmDelete": {
+    "message": "네, 삭제합니다!"
+  },
+  "options-modal-confirmReset": {
+    "message": "네, 설정을 초기화합니다!"
+  },
+  "options-settings": {
+    "message": "설정"
+  },
+  "options-settings-import": {
+    "message": "가져오기"
+  },
+  "options-settings-importing": {
+    "message": "설정을 가져오는 중"
+  },
+  "options-settings-export": {
+    "message": "내보내기"
+  },
+  "options-settings-reset": {
+    "message": "기본값으로 초기화"
+  },
+  "options-settings-permissions": {
+    "message": "Chameleon은 resist fingerprint이나 enabling tracking protection과 같은 일부의 Firefox 설정을 제어할 수 있습니다. 이는 다른 확장들과 충돌을 일으킬 수 있습니다. 당신은 개인정보 설정 권한을 제거하여 Chameleon이 그러한 설정들을 제어하는 것을 거부할 수 있습니다. 권한을 제거하면 그러한 기본 설정들이 초기화됩니다. 권한이 부여되지 않은 경우 권한을 요청할 수 있습니다"
+  },
+  "options-settings-permissions-legacy": {
+    "message": "개인 정보 권한을 허용하려면 Chameleon의 특별 버전을 설치해야 합니다. 이는 크로스 플랫폼이나 버전의 차이에 따라 확장프로그램에 권한 부여가 복잡하기 때문입니다. 자세한 설명은 아래 링크된 위키에서 확인할 수 있습니다."
+  },
+  "options-settings-permissions-legacy-wiki": {
+    "message": "위키에서 더 많은 정보 보기"
+  },
+  "options-settings-permissions-request": {
+    "message": "개인정보 설정 권한 요청"
+  },
+  "options-settings-permissions-remove": {
+    "message": "개인정보 설정 권한 제거"
+  },
+  "options-tab-about": {
+    "message": "개요"
+  },
+  "options-tab-ipRules": {
+    "message": "IP 규칙"
+  },
+  "options-whitelist-acceptLang": {
+    "message": "대체할 Accept-Language"
+  },
+  "options-whitelist-editorTitle": {
+    "message": "화이트리스트 규칙 편집기"
+  },
+  "options-whitelist-headerIPLabel": {
+    "message": "헤더 IP (Via & X-Forwarded-For)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "audio context를 위장합니다"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "client rects를 위장합니다"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "CSS Exfil 차단"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "media devices 차단"
+  },
+  "options-whitelist-options-name": {
+    "message": "Enable protect window name"
+  },
+  "options-whitelist-options-tz": {
+    "message": "시간대 위장 활성화"
+  },
+  "options-whitelist-options-ws": {
+    "message": "WebSocket 비활성화"
+  },
+  "options-whitelist-rule": {
+    "message": "화이트리스트 규칙"
+  },
+  "options-whitelist-sitesTip": {
+    "message": "한 줄에 하나의 규칙: domain@@[optional regex pattern]"
+  },
+  "options-whitelist-textareaLabel": {
+    "message": "IP 범위 / 주소"
+  },
+  "options-whitelist-textareaPlaceholder": {
+    "message": "한 줄에 하나의 IP/IP 범위"
+  },
+  "popup-home-change": {
+    "message": "변경하기"
+  },
+  "popup-home-currentProfile": {
+    "message": "현재 프로필"
+  },
+  "popup-home-currentProfile-defaultLanguage": {
+    "message": "기본 언어"
+  },
+  "popup-home-currentProfile-defaultScreen": {
+    "message": "기본 화면"
+  },
+  "popup-home-currentProfile-defaultTimezone": {
+    "message": "기본 시간대"
+  },
+  "popup-home-currentProfile-gettingTimezone": {
+    "message": "IP 정보를 얻는 중"
+  },
+  "popup-home-currentProfile-screenProfile": {
+    "message": "화면 (프로필)"
+  },
+  "popup-home-disabled": {
+    "message": "Chameleon이 비활성화 상태입니다"
+  },
+  "popup-home-enabled": {
+    "message": "Chameleon이 활성화 상태입니다"
+  },
+  "popup-home-notification-disabled": {
+    "message": "알림이 꺼져있습니다"
+  },
+  "popup-home-notification-enabled": {
+    "message": "알림이 켜져있습니다"
+  },
+  "popup-home-onThisPage": {
+    "message": "이 페이지에서"
+  },
+  "popup-home-theme-dark": {
+    "message": "어둡게"
+  },
+  "popup-home-theme-light": {
+    "message": "밝게"
+  },
+  "popup-profile-changePeriodically": {
+    "message": "변경 주기"
+  },
+  "popup-profile-devicePhone": {
+    "message": "폰"
+  },
+  "popup-profile-deviceTablet": {
+    "message": "태블릿"
+  },
+  "popup-profile-interval-no": {
+    "message": "비활성화"
+  },
+  "popup-profile-interval-custom": {
+    "message": "Custom interval"
+  },
+  "popup-profile-interval-customMax": {
+    "message": "최대 (분)"
+  },
+  "popup-profile-interval-customMin": {
+    "message": "최소 (분)"
+  },
+  "popup-profile-interval-minute": {
+    "message": "매 분마다"
+  },
+  "popup-profile-interval-5minutes": {
+    "message": "5분마다"
+  },
+  "popup-profile-interval-10minutes": {
+    "message": "10분마다"
+  },
+  "popup-profile-interval-20minutes": {
+    "message": "20분마다"
+  },
+  "popup-profile-interval-30minutes": {
+    "message": "30분마다"
+  },
+  "popup-profile-interval-40minutes": {
+    "message": "40분마다"
+  },
+  "popup-profile-interval-50minutes": {
+    "message": "50분마다"
+  },
+  "popup-profile-interval-hour": {
+    "message": "1시간마다"
+  },
+  "popup-profile-exclude": {
+    "message": "제외"
+  },
+  "popup-profile-randomAndroid": {
+    "message": "무작위한 안드로이드 브라우저"
+  },
+  "popup-profile-randomIOS": {
+    "message": "무작위한 iOS 브라우저"
+  },
+  "popup-profile-randomMacOS": {
+    "message": "무작위한 macOS 브라우저"
+  },
+  "popup-profile-randomLinux": {
+    "message": "무작위한 리눅스 브라우저"
+  },
+  "popup-profile-randomWindows": {
+    "message": "무작위한 윈도우 브라우저"
+  },
+  "popup-profile-random": {
+    "message": "무작위로"
+  },
+  "popup-profile-randomDesktopProfile": {
+    "message": "무작위한 프로필 (데스크탑)"
+  },
+  "popup-profile-randomMobileProfile": {
+    "message": "무작위한 프로필 (모바일)"
+  },
+  "popup-profile-showProfileOnIcon": {
+    "message": "아이콘에 브라우저 프로필을 표시합니다"
+  },
+  "popup-headers": {
+    "message": "헤더"
+  },
+  "popup-headers-enableDNT": {
+    "message": "DNT (Do Not Track) 요청 활성화"
+  },
+  "popup-headers-preventEtag": {
+    "message": "Etag 추적을 방지합니다"
+  },
+  "popup-headers-refererWarning": {
+    "message": "아래 옵션을 변경한다면 about:config에서는 해당 옵션을 변경하지 마십시오"
+  },
+  "popup-headers-referer-trimming": {
+    "message": "Referer Trimming Policy"
+  },
+  "popup-headers-referer-trimming-sendFullURI": {
+    "message": "전체 URL을 보냅니다 (기본)"
+  },
+  "popup-headers-referer-trimming-schemeHostPortPath": {
+    "message": "Scheme, host, port + path"
+  },
+  "popup-headers-referer-trimming-schemeHostPort": {
+    "message": "Scheme, host + port"
+  },
+  "popup-headers-referer-xorigin": {
+    "message": "Referer X Origin Policy"
+  },
+  "popup-headers-referer-xorigin-alwaysSend": {
+    "message": "항상 보냅니다 (기본)"
+  },
+  "popup-headers-referer-xorigin-matchBaseDomain": {
+    "message": "기본 도메인과 일치할 경우"
+  },
+  "popup-headers-referer-xorigin-matchHost": {
+    "message": "호스트와 일치할 경우"
+  },
+  "popup-headers-spoofAcceptLang": {
+    "message": "Accept Language를 위장합니다"
+  },
+  "popup-headers-spoofIP": {
+    "message": "X-Forwarded-For/Via IP를 위장합니다"
+  },
+  "popup-headers-spoofIP-random": {
+    "message": "무작위 IP"
+  },
+  "popup-headers-spoofIP-custom": {
+    "message": "사용자 지정 IP"
+  },
+  "popup-headers-spoofIP-rangeFrom": {
+    "message": "IP 범위 - 시작"
+  },
+  "popup-headers-spoofIP-rangeTo": {
+    "message": "IP 범위 - 종료"
+  },
+  "popup-options": {
+    "message": "추가설정"
+  },
+  "popup-options-grantPermissions": {
+    "message": "설정을 변경할 권한을 부여합니다"
+  },
+  "popup-options-injection": {
+    "message": "Injection"
+  },
+  "popup-options-injection-limitTabHistory": {
+    "message": "Limit tab history"
+  },
+  "popup-options-injection-protectWinName": {
+    "message": "Protect window name"
+  },
+  "popup-options-injection-audioContext": {
+    "message": "audio context 위장하기"
+  },
+  "popup-options-injection-clientRects": {
+    "message": "client rects 위장하기"
+  },
+  "popup-options-injection-protectKBFingerprint": {
+    "message": "keyboard fingerprint 보호"
+  },
+  "popup-options-injection-protectKBFingerprintDelay": {
+    "message": "지연시간 (ms)"
+  },
+  "popup-options-injection-screen": {
+    "message": "화면 크기"
+  },
+  "popup-options-injection-spoofFontFingerprint": {
+    "message": "font fingerprint 위장하기"
+  },
+  "popup-options-standard": {
+    "message": "Standard"
+  },
+  "popup-options-standard-blockMediaDevices": {
+    "message": "media devices 차단"
+  },
+  "popup-options-standard-blockCSSExfil": {
+    "message": "CSS Exfil 차단"
+  },
+  "popup-options-standard-disableWebRTC": {
+    "message": "WebRTC 비활성화"
+  },
+  "popup-options-standard-firstPartyIsolation": {
+    "message": "1st party isolation 활성화"
+  },
+  "popup-options-standard-resistFingerprinting": {
+    "message": "resist fingerprinting 활성화"
+  },
+  "popup-options-standard-spoofMediaDevices": {
+    "message": "media devices 위장하기"
+  },
+  "popup-options-standard-trackingProtection": {
+    "message": "추적 보호 모드"
+  },
+  "popup-options-standard-trackingProtection-on": {
+    "message": "켜짐"
+  },
+  "popup-options-standard-trackingProtection-off": {
+    "message": "꺼짐"
+  },
+  "popup-options-standard-trackingProtection-privateBrowsing": {
+    "message": "private browsing 활성화"
+  },
+  "popup-options-standard-webRTCPolicy": {
+    "message": "WebRTC 정책"
+  },
+  "popup-options-standard-webRTCPolicy-nonProxified": {
+    "message": "non-proxified UDP 비활성화"
+  },
+  "popup-options-standard-webRTCPolicy-public": {
+    "message": "Public interface만 사용 (추천함)"
+  },
+  "popup-options-standard-webRTCPolicy-publicPrivate": {
+    "message": "Public 그리고 Private interface 사용"
+  },
+  "popup-options-standard-webSockets-blockAll": {
+    "message": "모두 차단"
+  },
+  "popup-options-standard-webSockets-blockThirdParty": {
+    "message": "3rd party 차단"
+  },
+  "popup-options-cookie": {
+    "message": "쿠키"
+  },
+  "popup-options-cookieNotPersistent": {
+    "message": "창을 닫으면 쿠기와 사이트 데이터를 삭제합니다"
+  },
+  "popup-options-cookiePolicy": {
+    "message": "정책"
+  },
+  "popup-options-cookiePolicy-allowVisited": {
+    "message": "방문한 사이트 허용"
+  },
+  "popup-options-cookiePolicy-rejectAll": {
+    "message": "모두 거부"
+  },
+  "popup-options-cookiePolicy-rejectThirdParty": {
+    "message": "third party 거부"
+  },
+  "popup-options-cookiePolicy-rejectTrackers": {
+    "message": "추적 거부"
+  },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Reject trackers and partition third-party cookies"
+  },
+  "popup-whitelist-contextMenu": {
+    "message": "Add context menu item to open current tab domain in whitelist"
+  },
+  "popup-whitelist-defaultProfileLabel": {
+    "message": "기본 프로필"
+  },
+  "popup-whitelist-enable": {
+    "message": "화이트리스트 활성화"
+  },
+  "popup-whitelist-isNotWhitelisted": {
+    "message": "은(는) 화이트리스트 된 사이트가 아닙니다"
+  },
+  "popup-whitelist-isWhitelisted": {
+    "message": "은(는) 화이트리스트 된 사이트입니다"
+  },
+  "popup-whitelist-open": {
+    "message": "화이트리스트 규칙 열기"
+  },
+  "text-addToRule": {
+    "message": "규칙을 추가합니다: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
+  "text-allowAll": {
+    "message": "모두 허용"
+  },
+  "text-cancel": {
+    "message": "취소"
+  },
+  "text-createNewRule": {
+    "message": "새 규칙 생성"
+  },
+  "text-default": {
+    "message": "기본으로"
+  },
+  "text-defaultWhitelistProfile": {
+    "message": "기본 화이트리스트 프로필"
+  },
+  "text-disableReferer": {
+    "message": "referer 비활성화"
+  },
+  "text-language": {
+    "message": "언어"
+  },
+  "text-name": {
+    "message": "이름"
+  },
+  "text-profile": {
+    "message": "프로필"
+  },
+  "text-realProfile": {
+    "message": "실제 프로필"
+  },
+  "text-removeFromRule": {
+    "message": "규칙에서 제거합니다: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
+  "text-save": {
+    "message": "저장하기"
+  },
+  "text-screen": {
+    "message": "Screen"
+  },
+  "text-searchRules": {
+    "message": "검색 규칙"
+  },
+  "text-startupDelay": {
+    "message": "시작시 지연시간 (초)"
+  },
+  "text-timezone": {
+    "message": "시간대 설정"
+  },
+  "text-whitelist": {
+    "message": "화이트리스트"
+  }
+}
