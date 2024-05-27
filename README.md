@@ -91,3 +91,4 @@ Don't know where to start? Check out the [wiki](https://sereneblue.github.io/cha
 - Ricky Tigg for the Finnish translation
 - LolloGamer_5123 YT for the Italian translation
 - azilara for the Portuguese translation
+- maiska for the Korean translation
