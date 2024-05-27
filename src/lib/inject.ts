@@ -525,42 +525,50 @@ class Injector {
           spoofContext.Intl.Collator.supportedLocalesOf = _supportedLocalesOfC;
 
           spoofContext.open = function(){
-            let w = _open.apply(this, Array.from(arguments));
-    
-            Object.defineProperty(w, 'Date', {
-              value: spoofContext.Date
-            });
-    
-            Object.defineProperty(w.Intl, 'DateTimeFormat', {
-              value: spoofContext.Intl.DateTimeFormat
-            });
-    
-            Object.defineProperty(w, 'screen', {
-              value: spoofContext.screen
-            });
-    
-            Object.defineProperty(w, 'navigator', {
-              value: spoofContext.navigator
-            });
-    
-            Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
-              value: spoofContext.Element.prototype.getBoundingClientRect
-            });
-    
-            Object.defineProperty(w.Element.prototype, 'getClientRects', {
-              value: spoofContext.Element.prototype.getClientRects
-            });
-    
-            Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
-              value: spoofContext.Range.prototype.getClientRects
-            });
-    
-            Object.defineProperty(w.Range.prototype, 'getClientRects', {
-              value: spoofContext.Range.prototype.getClientRects
-            });
-    
+            let w;
+            if (arguments.length) {
+              w = _open.call(this, ...arguments);
+            } else {
+              w = _open.call(this);
+            }
+
+            if (w) {
+              Object.defineProperty(w, 'Date', {
+                value: spoofContext.Date
+              });
+      
+              Object.defineProperty(w.Intl, 'DateTimeFormat', {
+                value: spoofContext.Intl.DateTimeFormat
+              });
+      
+              Object.defineProperty(w, 'screen', {
+                value: spoofContext.screen
+              });
+      
+              Object.defineProperty(w, 'navigator', {
+                value: spoofContext.navigator
+              });
+      
+              Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
+                value: spoofContext.Element.prototype.getBoundingClientRect
+              });
+      
+              Object.defineProperty(w.Element.prototype, 'getClientRects', {
+                value: spoofContext.Element.prototype.getClientRects
+              });
+      
+              Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
+                value: spoofContext.Range.prototype.getClientRects
+              });
+      
+              Object.defineProperty(w.Range.prototype, 'getClientRects', {
+                value: spoofContext.Range.prototype.getClientRects
+              });
+            }
+
             return w;
           }
+          
           modifiedAPIs.push([
             spoofContext.open, "open"
           ]);
