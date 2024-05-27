@@ -1,3 +1,16 @@
+<a name="v0.22.58-rc"></a>
+
+## [v0.22.58-rc](https://github.com/sereneblue/chameleon/compare/v0.22.57...v0.22.58-rc) (2024-05-26)
+
+### Bug Fixes
+
+- uncaught exception (1/3) ([#580](https://github.com/sereneblue/chameleon/issues/580))
+
+### Features
+
+- add korean localization
+- update profiles
+
 <a name="v0.22.57-rc"></a>
 
 ## [v0.22.57-rc](https://github.com/sereneblue/chameleon/compare/v0.22.56...v0.22.57-rc) (2024-04-28)
