@@ -115,7 +115,7 @@ export default {
     // In Firefox, the fontFamily property is located here instead of CSSStyleDeclaration
     Object.defineProperty(spoofContext.CSS2Properties.prototype, "fontFamily", {
       set: function fontFamily(f) {
-        this["font-family"] = getWhitelistFonts(f);
+        this["font-family"] = f ? getWhitelistFonts(f) : f;
       }
     });
 
