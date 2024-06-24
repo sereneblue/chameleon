@@ -1,3 +1,16 @@
+<a name="v0.22.59-rc"></a>
+
+## [v0.22.59-rc](https://github.com/sereneblue/chameleon/compare/v0.22.58...v0.22.59-rc) (2024-06-23)
+
+### Bug Fixes
+
+- font spoofing error if font family does not exist ([#582](https://github.com/sereneblue/chameleon/issues/582))
+
+### Features
+
+- update Portuguese Brazilian translation
+- update profiles
+
 <a name="v0.22.58-rc"></a>
 
 ## [v0.22.58-rc](https://github.com/sereneblue/chameleon/compare/v0.22.57...v0.22.58-rc) (2024-05-26)
