@@ -561,7 +561,7 @@
     "message": "Buscar regras"
   },
   "text-startupDelay": {
-    "message": "Startup delay (sec)"
+    "message": "Adiamento de inicialização (seg.)"
   },
   "text-timezone": {
     "message": "Fuso horário"
