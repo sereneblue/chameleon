@@ -35,7 +35,9 @@ jobs:
           echo "VERSION=$(git describe --tags)" >> $GITHUB_OUTPUT
           echo "FILENAME=chameleon_$(git describe --tags).signed.xpi" >> $GITHUB_OUTPUT
           CHANGELOG=$(python3 ./.github/workflows/dev/chglog.py)
-          echo "CHANGELOG=$CHANGELOG" >> $GITHUB_OUTPUT
+          echo 'CHANGELOG<<EOF' >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v2
