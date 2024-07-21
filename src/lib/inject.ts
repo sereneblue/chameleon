@@ -231,6 +231,9 @@ class Injector {
         navigator.data[i].value = p.navigator[navigator.data[i].prop];
       }
 
+      this.spoof.metadata['profileOS'] = p.osId;
+      this.spoof.metadata['browser'] = p.browser;
+
       this.updateInjectionData(navigator);
       this.updateInjectionData(quirks);
     }
