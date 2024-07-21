@@ -450,6 +450,9 @@ class Injector {
 
               return pluginArray;
             })();
+
+            Object.setPrototypeOf(plugins, PluginArray.prototype);
+            
             Object.defineProperty(spoofContext.navigator, 'plugins', {
               configurable: true,
               value: plugins
