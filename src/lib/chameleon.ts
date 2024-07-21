@@ -632,7 +632,7 @@ export class Chameleon {
     }
   }
 
-  private updateProfileCache(): void {
+  public updateProfileCache(): void {
     let profGen = new prof.Generator();
 
     // update cache for default whitelist profile
