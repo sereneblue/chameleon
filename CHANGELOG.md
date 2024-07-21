@@ -1,3 +1,14 @@
+<a name="v0.22.61-rc"></a>
+
+## [v0.22.61-rc](https://github.com/sereneblue/chameleon/compare/v0.22.60...v0.22.61-rc) (2024-07-21)
+
+### Bug Fixes
+
+- whitelist and ip rule editor fixes
+- whitelist profile caching
+- whitelist profile spoofing ([#494](https://github.com/sereneblue/chameleon/issues/494))
+- plugins prototype ([#586](https://github.com/sereneblue/chameleon/issues/586))
+
 <a name="v0.22.60-rc"></a>
 
 ## [v0.22.60-rc](https://github.com/sereneblue/chameleon/compare/v0.22.59...v0.22.60-rc) (2024-07-15)
