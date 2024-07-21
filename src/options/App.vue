@@ -256,7 +256,7 @@
                 <div class="flex items-center">
                   <div class="flex mt-6 w-full">
                     <button
-                      @click.once="saveIPRule"
+                      @click="saveIPRule"
                       class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded"
                       v-t="'text-save.message'"
                     ></button>
@@ -375,7 +375,7 @@
               <div class="flex items-center">
                 <div class="flex mt-6 w-full">
                   <button
-                    @click.once="saveWLRule"
+                    @click="saveWLRule"
                     class="bg-green-500 hover:bg-green-600 font-semibold text-white py-2 px-4 border border-green-500 rounded"
                     v-t="'text-save.message'"
                   ></button>
@@ -481,6 +481,8 @@ export default class App extends Vue {
   };
   public isImporting: boolean = false;
   private isLegacyVersion: boolean = false;
+  private savingIPRule: boolean = false;
+  private savingWLRule: boolean = false;
   public importError: any = {
     error: false,
     msg: '',
@@ -851,10 +853,16 @@ export default class App extends Vue {
   }
 
   async saveIPRule(): Promise<void> {
+    if (this.savingIPRule) return;
+
+    this.savingIPRule = true;
+
     this.tmp.ipRule.name = this.tmp.ipRule.name.trim();
     this.tmp.ipRule.ips = this.tmp.ipRule.ips.trim();
     if (this.tmp.ipRule.name === '') {
       this.errors.ipRuleName = true;
+      this.savingIPRule = false;
+
       return;
     } else {
       this.errors.ipRuleName = false;
@@ -862,6 +870,8 @@ export default class App extends Vue {
 
     if (this.tmp.ipRule.ips === '') {
       this.errors.ipRuleIPs = true;
+      this.savingIPRule = false;
+
       return;
     } else {
       this.errors.ipRuleIPs = false;
@@ -882,6 +892,8 @@ export default class App extends Vue {
 
       if (!isValid) {
         this.errors.ipRuleIPs = true;
+        this.savingIPRule = false;
+
         return;
       }
     }
@@ -890,7 +902,8 @@ export default class App extends Vue {
 
     if (this.tmp.ipRule.id) {
       let idx: number = this.settings.ipRules.findIndex(r => r.id === this.tmp.ipRule.id);
-      this.settings.ipRules[idx] = Object.assign({}, this.tmp.ipRule, { ips: rules });
+
+      this.$set(this.settings.ipRules, idx, Object.assign({}, this.tmp.ipRule, { ips: rules }));
     } else {
       this.settings.ipRules.push(Object.assign({}, this.tmp.ipRule, { id: uuidv4(), ips: rules }));
     }
@@ -901,12 +914,18 @@ export default class App extends Vue {
     });
 
     this.showModal = false;
+    this.savingIPRule = false;
   }
 
   async saveWLRule(): Promise<void> {
+    if (this.savingWLRule) return;
+
+    this.savingWLRule = true;
+
     this.tmp.wlRule.name = this.tmp.wlRule.name.trim();
     if (this.tmp.wlRule.name === '') {
       this.errors.wlRuleName = true;
+      this.savingWLRule = false;
       return;
     } else {
       this.errors.wlRuleName = false;
@@ -916,6 +935,7 @@ export default class App extends Vue {
     if (this.tmp.wlRule.spoofIP != '') {
       if (!util.isValidIP(this.tmp.wlRule.spoofIP)) {
         this.errors.wlRuleIP = true;
+        this.savingWLRule = false;
         return;
       } else {
         this.errors.wlRuleIP = false;
@@ -932,18 +952,22 @@ export default class App extends Vue {
     for (let i = 0; i < sites.length; i++) {
       if (sites[i].length > 2) {
         this.errors.wlRuleSites = true;
+        this.savingWLRule = false;
         return;
       }
 
       // check if already a rule
       if (foundDomains[sites[i][0]]) {
         this.errors.wlRuleSites = true;
+        this.savingWLRule = false;
         return;
       }
 
       // test if valid domain
       if (sites[i][0] === '' || !this.REGEX_DOMAIN.test(sites[i][0])) {
         this.errors.wlRuleSites = true;
+        this.savingWLRule = false;
+
         return;
       }
 
@@ -965,7 +989,8 @@ export default class App extends Vue {
 
     if (this.tmp.wlRule.id) {
       let idx: number = this.settings.whitelist.rules.findIndex(r => r.id === this.tmp.wlRule.id);
-      this.settings.whitelist.rules[idx] = Object.assign({}, this.tmp.wlRule, { sites });
+
+      this.$set(this.settings.whitelist.rules, idx, Object.assign({}, this.tmp.wlRule, { sites }));
     } else {
       this.settings.whitelist.rules.push(Object.assign({}, this.tmp.wlRule, { id: uuidv4(), sites }));
     }
@@ -979,6 +1004,7 @@ export default class App extends Vue {
       action: 'reloadInjectionScript',
     });
 
+    this.savingWLRule = false;
     this.showModal = false;
   }
 

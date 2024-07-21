@@ -231,6 +231,9 @@ class Injector {
         navigator.data[i].value = p.navigator[navigator.data[i].prop];
       }
 
+      this.spoof.metadata['profileOS'] = p.osId;
+      this.spoof.metadata['browser'] = p.browser;
+
       this.updateInjectionData(navigator);
       this.updateInjectionData(quirks);
     }
@@ -450,6 +453,9 @@ class Injector {
 
               return pluginArray;
             })();
+
+            Object.setPrototypeOf(plugins, PluginArray.prototype);
+            
             Object.defineProperty(spoofContext.navigator, 'plugins', {
               configurable: true,
               value: plugins

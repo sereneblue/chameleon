@@ -112,6 +112,7 @@ let messageHandler = (request: any, sender: any, sendResponse: any) => {
     sendResponse('done');
   } else if (request.action === 'updateWhitelist') {
     chameleon.settings.whitelist = request.data;
+    chameleon.updateProfileCache();
 
     chameleon.timeout = setTimeout(() => {
       chameleon.saveSettings(chameleon.settings);
