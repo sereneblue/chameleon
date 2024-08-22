@@ -1,3 +1,15 @@
+<a name="v0.22.62-rc"></a>
+
+## [v0.22.62-rc](https://github.com/sereneblue/chameleon/compare/v0.22.61...v0.22.62-rc) (2024-08-21)
+
+### Bug Fixes
+
+- migrate older Firefox profiles to ESR2
+
+### Features
+
+- update profiles
+
 <a name="v0.22.61-rc"></a>
 
 ## [v0.22.61-rc](https://github.com/sereneblue/chameleon/compare/v0.22.60...v0.22.61-rc) (2024-07-21)
