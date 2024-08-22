@@ -32,7 +32,9 @@ export class Chameleon {
   private injectionScript: any;
   private intercept: Interceptor;
   private profileCache: any;
+  private FF_PROFILES: object;
   private REGEX_UUID: RegExp;
+
   public intervalTimeout: any;
   public platform: any;
   private browserInfo: any;
@@ -64,6 +66,17 @@ export class Chameleon {
     this.profileCache = {};
     this.version = browser.runtime.getManifest().version;
     this.REGEX_UUID = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+
+    // Firefox 115 is the last version of Firefox for Windows 7, 8, 8.1
+    // Replaces Firefox profiles with esr2 which is currently FF115. Once esr2 changes, will be removed.
+    this.FF_PROFILES = {
+      'win1-ff': 'win1-esr2',
+      'win1-esr': 'win1-esr2',
+      'win2-ff': 'win2-esr2',
+      'win2-esr': 'win2-esr2',
+      'win3-ff': 'win3-esr2',
+      'win3-esr': 'win3-esr2',
+    };
 
     this.updateContextMenu = (info, tab) => {
       browser.contextMenus.removeAll();
@@ -223,6 +236,21 @@ export class Chameleon {
     }
 
     this.settings.config.reloadIPStartupDelay = this.settings.config.reloadIPStartupDelay || 0;
+
+    // migrate Windows FF profiles
+    if (this.FF_PROFILES[this.settings.profile.selected]) {
+      this.settings.profile.selected = this.FF_PROFILES[this.settings.profile.selected];
+    }
+
+    if (this.FF_PROFILES[this.settings.whitelist.defaultProfile]) {
+      this.settings.whitelist.defaultProfile = this.FF_PROFILES[this.settings.whitelist.defaultProfile];
+    }
+
+    for (let i = 0; i < this.settings.whitelist.rules.length; i++) {
+      if (this.FF_PROFILES[this.settings.whitelist.rules[i].profile]) {
+        this.settings.whitelist.rules[i].profile = this.FF_PROFILES[this.settings.whitelist.rules[i].profile];
+      }
+    }
   }
 
   public async init(storedSettings: any): Promise<void> {
@@ -314,15 +342,15 @@ export class Chameleon {
       win2: 'win2-gcr',
       win3: 'win3-gcr',
       win4: 'win4-gcr',
-      win6: 'win1-ff',
-      win7: 'win2-ff',
-      win8: 'win3-ff',
+      win6: 'win1-esr2',
+      win7: 'win2-esr2',
+      win8: 'win3-esr2',
       win9: 'win4-ff',
       win10: 'win2-ie',
       win11: 'win1-ie',
       win12: 'win3-ie',
-      win13: 'win1-esr',
-      win14: 'win3-esr',
+      win13: 'win1-esr2',
+      win14: 'win3-esr2',
       win15: 'win4-esr',
       win16: 'win4-ie',
       mac1: 'mac1-gcr',
@@ -1154,6 +1182,10 @@ export class Chameleon {
         msg,
       };
     } else {
+      if (this.FF_PROFILES[impSettings.profile.selected]) {
+        impSettings.profile.selected = this.FF_PROFILES[impSettings.profile.selected];
+      }
+
       let options = [
         ['profile.selected', impSettings.profile.selected, profileIds.concat(['none', 'random', 'randomDesktop', 'randomMobile', 'windows', 'macOS', 'linux', 'iOS', 'android'])],
         ['profile.interval.option', impSettings.profile.interval.option, [0, -1, 1, 5, 10, 20, 30, 40, 50, 60]],
@@ -1318,6 +1350,10 @@ export class Chameleon {
         };
       }
 
+      if (this.FF_PROFILES[impSettings.whitelist.defaultProfile]) {
+        impSettings.whitelist.defaultProfile = this.FF_PROFILES[impSettings.whitelist.defaultProfile];
+      }
+
       let options = [
         ['whitelist.enabledContextMenu', impSettings.whitelist.enabledContextMenu, 'boolean'],
         ['whitelist.defaultProfile', impSettings.whitelist.defaultProfile, profileIds.concat(['none'])],
@@ -1338,6 +1374,10 @@ export class Chameleon {
       }
 
       for (let i = 0; i < impSettings.whitelist.rules.length; i++) {
+        if (this.FF_PROFILES[impSettings.whitelist.rules[i].profile]) {
+          impSettings.whitelist.rules[i].profile = this.FF_PROFILES[impSettings.whitelist.rules[i].profile];
+        }
+
         let options = [
           ['whitelist.rules.lang', impSettings.whitelist.rules[i].lang, languageIds],
           ['whitelist.rules.profile', impSettings.whitelist.rules[i].profile, profileIds.concat(['default', 'none'])],

@@ -40,11 +40,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '126.0.0.0', desktopChrome: '126.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '126.0.0.0', androidChrome: '126.0.0.0' },
+  edg: { desktop: '127.0.0.0', desktopChrome: '127.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '127.0.0.0', androidChrome: '127.0.0.0' },
   esr: { desktop: '128' },
   esr2: { desktop: '115' },
-  ff: { desktop: '128', mobile: '128' },
-  gcr: { desktop: '126.0.0.0', deprecated: '109.0.0.0', ios: '126.0.6478.108', android: '126.0.6478.122' },
+  ff: { desktop: '129', mobile: '129' },
+  gcr: { desktop: '127.0.0.0', deprecated: '109.0.0.0', ios: '128.0.6613.34', android: '127.0.6533.103' },
   sf: { desktop: '17.5', ios1: '15.6', ios2: '16.5', ios3: '17.5' },
 };
 
@@ -268,7 +268,7 @@ export class Generator {
       const device = devices.getDevice('mobile', os.id);
 
       let screenRes: number[] = device.viewport.split('x').map(Number);
-      let ua: string = `Mozilla/5.0 (Linux; ${os.uaPlatform}; ${device.build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.androidChrome} Safari/537.36 EdgA/${versions.android}`;
+      let ua: string = `Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${versions.androidChrome} Mobile Safari/537.36 EdgA/${versions.android}`;
 
       return {
         accept: {
@@ -1159,7 +1159,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr2', 'gcr', 'ie'],
       },
       {
         id: 'win2',
@@ -1170,7 +1170,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr2', 'gcr', 'ie'],
       },
       {
         id: 'win3',
@@ -1181,7 +1181,7 @@ export class Generator {
           platform: 'Win32',
         },
         screenOffset: -40,
-        browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'ie'],
+        browsers: ['edg', 'esr2', 'gcr', 'ie'],
       },
       {
         id: 'win4',
