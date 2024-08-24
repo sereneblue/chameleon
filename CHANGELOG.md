@@ -1,3 +1,11 @@
+<a name="0.22.63-rc"></a>
+
+## [0.22.63-rc](https://github.com/sereneblue/chameleon/compare/v0.22.62...0.22.63-rc) (2024-08-23)
+
+### Bug Fixes
+
+- esr2 useragent
+
 <a name="v0.22.62-rc"></a>
 
 ## [v0.22.62-rc](https://github.com/sereneblue/chameleon/compare/v0.22.61...v0.22.62-rc) (2024-08-21)
