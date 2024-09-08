@@ -1,6 +1,18 @@
-<a name="0.22.63-rc"></a>
+<a name="v0.22.64-rc"></a>
 
-## [0.22.63-rc](https://github.com/sereneblue/chameleon/compare/v0.22.62...0.22.63-rc) (2024-08-23)
+## [v0.22.64-rc](https://github.com/sereneblue/chameleon/compare/v0.22.63...v0.22.64-rc) (2024-09-07)
+
+### Bug Fixes
+
+- use flexible URL validation ([#592](https://github.com/sereneblue/chameleon/issues/592))
+
+### Features
+
+- update profiles
+
+<a name="v0.22.63-rc"></a>
+
+## [0.22.63-rc](https://github.com/sereneblue/chameleon/compare/v0.22.62...v0.22.63-rc) (2024-08-23)
 
 ### Bug Fixes
 
