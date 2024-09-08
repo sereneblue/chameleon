@@ -459,7 +459,6 @@ enum Modal {
 
 @Component
 export default class App extends Vue {
-  public REGEX_DOMAIN: any = /^(?:^|\s)((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/;
   public Modal = Modal;
   public modalType: Modal = Modal.DEFAULT;
   public currentTab: string = 'about';
@@ -964,7 +963,7 @@ export default class App extends Vue {
       }
 
       // test if valid domain
-      if (sites[i][0] === '' || !this.REGEX_DOMAIN.test(sites[i][0])) {
+      if (sites[i][0] === '' || !util.isValidURL(sites[i][0])) {
         this.errors.wlRuleSites = true;
         this.savingWLRule = false;
 
