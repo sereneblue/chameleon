@@ -113,6 +113,15 @@ let isInternalIP = (host: string): boolean => {
   );
 };
 
+let isValidURL = (url: string): boolean => {
+  try {
+    new URL(url);
+    return true; // The URL is valid
+  } catch (e) {
+    return false; // The URL is not valid
+  }
+};
+
 let isValidIP = (ip: string): boolean => {
   return /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
     ip
@@ -150,6 +159,7 @@ export default {
   ipToString,
   isInternalIP,
   isValidIP,
+  isValidURL,
   parseURL,
   validateIPRange,
 };
