@@ -115,10 +115,13 @@ let isInternalIP = (host: string): boolean => {
 
 let isValidURL = (url: string): boolean => {
   try {
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'http://' + url;
+    }
     new URL(url);
-    return true; // The URL is valid
+    return true;
   } catch (e) {
-    return false; // The URL is not valid
+    return false;
   }
 };
 
