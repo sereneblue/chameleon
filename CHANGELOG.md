@@ -1,3 +1,11 @@
+<a name="v0.22.65-rc"></a>
+
+## [v0.22.65-rc](https://github.com/sereneblue/chameleon/compare/v0.22.64-rc...v0.22.65-rc) (2024-09-07)
+
+### Bug Fixes
+
+- whitelist rule url validation
+
 <a name="v0.22.64-rc"></a>
 
 ## [v0.22.64-rc](https://github.com/sereneblue/chameleon/compare/v0.22.63...v0.22.64-rc) (2024-09-07)
