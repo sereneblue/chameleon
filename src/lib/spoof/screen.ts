@@ -16,7 +16,7 @@ export default {
 
     ['colorDepth', 'pixelDepth'].forEach((k) => {
       Object.defineProperty(spoofContext.Screen.prototype, k, {
-        get: (() => 24).bind(null)
+        get: (() => screenData.pixelDepth ).bind(null)
       });
     });
 
