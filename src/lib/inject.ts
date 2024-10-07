@@ -159,6 +159,7 @@ class Injector {
             availHeight: p.screen.availHeight,
             deviceScaleFactor: p.screen.deviceScaleFactor,
             usingProfileRes: true,
+            pixelDepth: this.spoof.metadata['profileOS'].includes('ios') ? 32 : 24,
           };
         } else {
           let scr: number[] = settings.options.screenSize.split('x').map(Number);
@@ -167,6 +168,7 @@ class Injector {
             width: scr[0],
             height: scr[1],
             usingProfileRes: false,
+            pixelDepth: 24,
           };
         }
 

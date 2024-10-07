@@ -191,9 +191,9 @@ let devices: any = {
         deviceScaleFactor: 3,
       },
       {
-        name: 'iPhone SE',
+        name: 'iPhone SE (2022)',
         build: '19H370',
-        viewport: '320x568',
+        viewport: '375x548',
         deviceScaleFactor: 2,
       },
       {
