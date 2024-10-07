@@ -40,12 +40,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '128.0.0.0', desktopChrome: '128.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '127.0.0.0', androidChrome: '127.0.0.0' },
+  edg: { desktop: '129.0.0.0', desktopChrome: '129.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '129.0.0.0', androidChrome: '129.0.0.0' },
   esr: { desktop: '128' },
   esr2: { desktop: '115' },
-  ff: { desktop: '130', mobile: '130' },
-  gcr: { desktop: '128.0.0.0', deprecated: '109.0.0.0', ios: '128.0.6613.98', android: '128.0.6613.127' },
-  sf: { desktop: '17.5', ios1: '15.6', ios2: '16.5', ios3: '17.5' },
+  ff: { desktop: '131', mobile: '131' },
+  gcr: { desktop: '129.0.0.0', deprecated: '109.0.0.0', ios: '129.0.6668.69', android: '129.0.0.0' },
+  sf: { desktop: '18', ios1: '15.6', ios2: '16.5', ios3: '18' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -115,13 +115,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
   } else if (browser === 'sfm') {
     switch (os) {
-      case 'iOS 15':
+      case 'iOS 16':
         osId = 'ios1';
         break;
-      case 'iOS 16':
+      case 'iOS 17':
         osId = 'ios2';
         break;
-      case 'iOS 17':
+      case 'iOS 18':
         osId = 'ios3';
         break;
       default:
@@ -130,13 +130,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]} (iPhone)`;
   } else if (browser === 'sft') {
     switch (os) {
-      case 'iOS 15':
+      case 'iOS 16':
         osId = 'ios1';
         break;
-      case 'iOS 16':
+      case 'iOS 17':
         osId = 'ios2';
         break;
-      case 'iOS 17':
+      case 'iOS 18':
         osId = 'ios3';
         break;
       default:
@@ -1275,21 +1275,21 @@ export class Generator {
     iOS: [
       {
         id: 'ios1',
-        name: 'iOS 15',
-        browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '15_8',
-      },
-      {
-        id: 'ios2',
         name: 'iOS 16',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
         uaPlatform: '16_7_2',
       },
       {
-        id: 'ios3',
+        id: 'ios2',
         name: 'iOS 17',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '17_1',
+        uaPlatform: '17_7',
+      },
+      {
+        id: 'ios3',
+        name: 'iOS 18',
+        browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
+        uaPlatform: '18_1',
       },
     ],
     android: [
