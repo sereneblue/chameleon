@@ -1,3 +1,15 @@
+<a name="v0.22.66-rc"></a>
+
+## [v0.22.66-rc](https://github.com/sereneblue/chameleon/compare/v0.22.65...v0.22.66-rc) (2024-10-06)
+
+### Bug Fixes
+
+- pixel depth values for ios profiles
+
+### Features
+
+- update profiles
+
 <a name="v0.22.65-rc"></a>
 
 ## [v0.22.65-rc](https://github.com/sereneblue/chameleon/compare/v0.22.64-rc...v0.22.65-rc) (2024-09-07)
