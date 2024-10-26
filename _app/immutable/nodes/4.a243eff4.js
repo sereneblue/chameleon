@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel='stylesheet' href='/chameleon/inter.css'>
-		<link rel='icon' type='image/x-icon' href='/chameleon/favicon.ico'>
-
-		
-		<link href="../_app/immutable/assets/0.e27c0d35.css" rel="stylesheet">
-		<link href="../_app/immutable/assets/Nav.8e22fbdb.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/entry/start.98cb0f4c.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/scheduler.63274e7e.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.fcb44672.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/paths.838fd77a.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.bd2e5f36.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/index.14018a49.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/0.3cc50b44.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Nav.svelte_svelte_type_style_lang.fe7432be.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/4.a243eff4.js"><title>About | Chameleon</title><!-- HEAD_svelte-ygd72t_START --><!-- HEAD_svelte-ygd72t_END -->
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">  <main><div class="flex flex-col h-screen overflow-y-auto"><nav class="flex px-4 bg-dark-green lg:px-0 py-2 w-full text-lg text-white justify-center z-10"><ul class="flex max-w-6xl w-full items-center"><div class="grow-0" data-svelte-h="svelte-kilvcj"><li class="svelte-hu34kn"><a href="/chameleon"><img class="h-6" src="/chameleon/icon.svg" alt="Chameleon Icon"></a></li></div> <div class="grow inline-flex justify-end"><li class="svelte-hu34kn"><a href="/chameleon/about">About</a></li> <li class="svelte-hu34kn"><a href="/chameleon/wiki">Wiki</a></li> <li class="svelte-hu34kn"><a href="/chameleon/contact">Contact</a></li> <li class="svelte-hu34kn"><a href="/chameleon/donate">Donate</a></li> <li class="svelte-hu34kn"><a href="/chameleon/privacy">Privacy Policy</a></li></div></ul></nav>  <div class="flex bg-light w-full px-2 lg:px-0 justify-center" data-svelte-h="svelte-11cse1t"><div class="flex lg:max-w-5xl mt-8 md:mt-8 w-full"><div class="flex flex-col w-full"><h2 class="font-bold text-5xl mb-5 text-center">About</h2> <div class="w-full px-4"><div id="q1" class="mb-8 leading-tight"><h2 class="font-bold text-2xl mb-4">What is Chameleon?</h2> <p class="text-xl mb-4 leading-relaxed md:w-4/5">Chameleon is a Mozilla Firefox addon that spoofs your browser profile and includes a few privacy enhancing options.
+import{s as m,n as s}from"../chunks/scheduler.63274e7e.js";import{S as h,i as c,s as u,g as b,A as p,f as n,c as f,h as g,x,k as v,a as i}from"../chunks/index.14018a49.js";import{b as l}from"../chunks/paths.838fd77a.js";function y(d){let o,e,r=`<div class="flex lg:max-w-5xl mt-8 md:mt-8 w-full"><div class="flex flex-col w-full"><h2 class="font-bold text-5xl mb-5 text-center">About</h2> <div class="w-full px-4"><div id="q1" class="mb-8 leading-tight"><h2 class="font-bold text-2xl mb-4">What is Chameleon?</h2> <p class="text-xl mb-4 leading-relaxed md:w-4/5">Chameleon is a Mozilla Firefox addon that spoofs your browser profile and includes a few privacy enhancing options.
 						It is the spiritual successor to the popular addon
 						<a href="https://github.com/dillbyrne/random-agent-spoofer" target="_blank" rel="noopener noreferrer">Random Agent Spoofer</a>.</p></div> <div id="q2" class="mb-8 leading-tight"><h2 class="font-bold text-2xl mb-4">What is a browser fingerprint?</h2> <div class="text-xl mb-4 leading-relaxed md:w-4/5"><p>Every time you visit a page on the Internet, your web browser reveals several pieces of information to the website you&#39;re visiting.
 							Ads and trackers can follow you across the web by creating a unique ID from your browser fingerprint. A browser fingerprint is a collection of data 
@@ -35,45 +13,16 @@
 						<strong>should not</strong> use Google Chrome. If you can, please use Firefox or Safari as your primary
 						browser. Yes, there are some websites that only work in Chrome. Fortunately, there are Chrome-based alternatives
 						that you can use: <a href="https://brave.com/" target="_blank" rel="noopener noreferrer">Brave</a> and <a href="https://github.com/Eloston/ungoogled-chromium" target="_blank" rel="noopener noreferrer">Ungoogled Chromium</a>.</p></div> <div id="q4" class="mb-8 leading-tight"><h2 class="font-bold text-2xl mb-4">Is Chameleon enough to protect my privacy online?</h2> <p class="text-xl mb-4 leading-relaxed md:w-4/5">No.
-						<br><br>
+						<br/><br/>
 						There are several other Firefox extensions that you should use in addition to
 						Chameleon and privacy practices you should follow.
-						For a list of recommened extensions, check the <a href="/chameleon/wiki/recommended-extensions">Recommended Extensions</a> page.</p></div> <div id="q5" class="mb-8 leading-tight"><h2 class="font-bold text-2xl mb-4">Does Chameleon make me anonymous online?</h2> <p class="text-xl mb-4 leading-relaxed md:w-4/5">No.
-						<br><br>
+						For a list of recommened extensions, check the <a href="${l}/wiki/recommended-extensions">Recommended Extensions</a> page.</p></div> <div id="q5" class="mb-8 leading-tight"><h2 class="font-bold text-2xl mb-4">Does Chameleon make me anonymous online?</h2> <p class="text-xl mb-4 leading-relaxed md:w-4/5">No.
+						<br/><br/>
 						Spoofing your browser profile does not make you anonymous online. 
 						In case you&#39;re wondering, &quot;private&quot; windows do not make you anonymous either.
 						Chameleon&#39;s purpose is to minimize the effectiveness of tracking on the web. If you&#39;re worried about
 						alphabet agencies, you should be using <a href="https://www.torproject.org/" target="_blank" rel="noopener noreferrer">Tor Browser</a>.</p></div> <div id="q6" class="mb-24 leading-tight"><h2 class="font-bold text-2xl mb-4">I&#39;d like to contribute to Chameleon! How can I help?</h2> <p class="text-xl mb-4 leading-relaxed">Want to help translate? Visit <a href="https://crowdin.com/project/chameleon" target="_blank" rel="noopener noreferrer">Crowdin</a>.
-						<br>
+						<br/>
 						Suggestion or bug? Visit <a href="https://github.com/sereneblue/chameleon/issues" target="_blank" rel="noopener noreferrer">Github</a>.
-						<br>
-						Anything else? Contact me <a href="/chameleon/contact">here</a>.</p></div></div></div></div></div></div></main> 
-			
-			<script>
-				{
-					__sveltekit_34jyfw = {
-						assets: "/chameleon",
-						base: new URL("..", location).pathname.slice(0, -1),
-						env: {}
-					};
-
-					const element = document.currentScript.parentElement;
-
-					const data = [null,null];
-
-					Promise.all([
-						import("../_app/immutable/entry/start.98cb0f4c.js"),
-						import("../_app/immutable/entry/app.bd2e5f36.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 4],
-							data,
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
-		</div>
-	</body>
-</html>
+						<br/>
+						Anything else? Contact me <a href="${l}/contact">here</a>.</p></div></div></div></div>`;return{c(){o=u(),e=b("div"),e.innerHTML=r,this.h()},l(t){p("svelte-ygd72t",document.head).forEach(n),o=f(t),e=g(t,"DIV",{class:!0,"data-svelte-h":!0}),x(e)!=="svelte-11cse1t"&&(e.innerHTML=r),this.h()},h(){document.title="About | Chameleon",v(e,"class","flex bg-light w-full px-2 lg:px-0 justify-center")},m(t,a){i(t,o,a),i(t,e,a)},p:s,i:s,o:s,d(t){t&&(n(o),n(e))}}}class A extends h{constructor(o){super(),c(this,o,null,y,m,{})}}export{A as component};

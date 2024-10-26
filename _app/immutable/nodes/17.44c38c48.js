@@ -1,0 +1,9 @@
+import{s as c,n as a}from"../chunks/scheduler.63274e7e.js";import{S as r,i as h,s as m,g as f,A as v,f as o,c as p,h as x,x as b,k as u,a as n}from"../chunks/index.14018a49.js";function g(d){let t,e,l=`<div class="mb-4">Chameleon requires several permissions listed below:</div> <div><div class="mb-4"><h3 class="font-semibold text-xl">Alarms</h3>
+      Used for scheduling profile change when using an interval (ex 30m)</div> <div class="mb-4"><h3 class="font-semibold text-xl">Context Menu</h3>
+      Used for quick access to whitelist editor (right click)</div> <div class="mb-4"><h3 class="font-semibold text-xl">Notifications</h3>
+      Used to display notification when profile has been updated</div> <div class="mb-4"><h3 class="font-semibold text-xl">Privacy (optional in v0.21.0+)</h3>
+      Used to control privacy settings like first party isolation and resist fingerprinting</div> <div class="mb-4"><h3 class="font-semibold text-xl">Storage</h3>
+      Used to store Chameleon settings</div> <div class="mb-4"><h3 class="font-semibold text-xl">Tabs</h3>
+      Used to open Chameleon wiki on first install and to get information for fingerprint panel on popup</div> <div class="mb-4"><h3 class="font-semibold text-xl">Web Request</h3>
+      Used to modify headers</div> <div class="mb-4"><h3 class="font-semibold text-xl">Web Request Blocking</h3>
+      Used to block Socket.io HTTP fallback</div></div>`;return{c(){t=m(),e=f("div"),e.innerHTML=l,this.h()},l(s){v("svelte-fc9z1e",document.head).forEach(o),t=p(s),e=x(s,"DIV",{class:!0,"data-svelte-h":!0}),b(e)!=="svelte-2d0gus"&&(e.innerHTML=l),this.h()},h(){document.title="Permissions | Chameleon",u(e,"class","mb-8 px-4 text-xl leading-snug")},m(s,i){n(s,t,i),n(s,e,i)},p:a,i:a,o:a,d(s){s&&(o(t),o(e))}}}class U extends r{constructor(t){super(),h(this,t,null,g,c,{})}}export{U as component};
