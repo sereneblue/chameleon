@@ -45,7 +45,7 @@ const BrowserVersions: any = {
   esr2: { desktop: '115' },
   ff: { desktop: '135', mobile: '135' },
   gcr: { desktop: '133.0.0.0', deprecated: '109.0.0.0', ios: '133.0.6943.33', android: '133.0.0.0' },
-  sf: { desktop: '18.3', ios1: '15.6', ios2: '16.5', ios3: '18.3' },
+  sf: { desktop: '18.3', ios1: '16.7.10', ios2: '17.7.2', ios3: '18.3' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -1111,7 +1111,7 @@ export class Generator {
       const device = devices.getDevice('tablet', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      let ua = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Safari/605.1.15`;
+      let ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/15E148 Safari/604.1`;
 
       return {
         accept: {
@@ -1277,19 +1277,19 @@ export class Generator {
         id: 'ios1',
         name: 'iOS 16',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '16_7_2',
+        uaPlatform: '16_7_10',
       },
       {
         id: 'ios2',
         name: 'iOS 17',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '17_7',
+        uaPlatform: '17_7_2',
       },
       {
         id: 'ios3',
         name: 'iOS 18',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '18_1',
+        uaPlatform: '18_3',
       },
     ],
     android: [
