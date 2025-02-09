@@ -1,6 +1,6 @@
 <a name="v0.22.70-rc"></a>
 
-## [v0.22.69-rc](https://github.com/sereneblue/chameleon/compare/v0.22.69...v0.22.70-rc) (2025-02-09)
+## [v0.22.70-rc](https://github.com/sereneblue/chameleon/compare/v0.22.69...v0.22.70-rc) (2025-02-09)
 
 ### Bug Fixes
 
