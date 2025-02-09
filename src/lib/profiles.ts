@@ -43,9 +43,9 @@ const BrowserVersions: any = {
   edg: { desktop: '131.0.0.0', desktopChrome: '131.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '131.0.0.0', androidChrome: '131.0.0.0' },
   esr: { desktop: '128' },
   esr2: { desktop: '115' },
-  ff: { desktop: '134', mobile: '134' },
-  gcr: { desktop: '132.0.0.0', deprecated: '109.0.0.0', ios: '132.0.6834.78', android: '131.0.0.0' },
-  sf: { desktop: '18.1', ios1: '15.6', ios2: '16.5', ios3: '18.1' },
+  ff: { desktop: '135', mobile: '135' },
+  gcr: { desktop: '133.0.0.0', deprecated: '109.0.0.0', ios: '133.0.6943.33', android: '133.0.0.0' },
+  sf: { desktop: '18.3', ios1: '16.7.10', ios2: '17.7.2', ios3: '18.3' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -1111,7 +1111,7 @@ export class Generator {
       const device = devices.getDevice('tablet', os.id);
       let screenRes: number[] = device.viewport.split('x').map(Number);
 
-      let ua = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Safari/605.1.15`;
+      let ua = `Mozilla/5.0 (iPad; CPU OS ${os.uaPlatform} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Mobile/15E148 Safari/604.1`;
 
       return {
         accept: {
@@ -1277,19 +1277,19 @@ export class Generator {
         id: 'ios1',
         name: 'iOS 16',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '16_7_2',
+        uaPlatform: '16_7_10',
       },
       {
         id: 'ios2',
         name: 'iOS 17',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '17_7',
+        uaPlatform: '17_7_2',
       },
       {
         id: 'ios3',
         name: 'iOS 18',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '18_1',
+        uaPlatform: '18_3',
       },
     ],
     android: [
@@ -1361,14 +1361,14 @@ export class Generator {
     }
 
     this.profileIds.desktop = this.profileIds.desktop.concat(
-      this.allProfiles.windows.map((p) => p.id),
-      this.allProfiles.macOS.map((p) => p.id),
-      this.allProfiles.linux.map((p) => p.id)
+      this.allProfiles.windows.map(p => p.id),
+      this.allProfiles.macOS.map(p => p.id),
+      this.allProfiles.linux.map(p => p.id)
     );
 
     this.profileIds.mobile = this.profileIds.mobile.concat(
-      this.allProfiles.iOS.map((p) => p.id),
-      this.allProfiles.android.map((p) => p.id)
+      this.allProfiles.iOS.map(p => p.id),
+      this.allProfiles.android.map(p => p.id)
     );
   }
 
@@ -1393,18 +1393,18 @@ export class Generator {
       platform = 'android';
     }
 
-    return this.browsers[profileData[1]](this.profiles[platform].find((p) => p.id === profileData[0]));
+    return this.browsers[profileData[1]](this.profiles[platform].find(p => p.id === profileData[0]));
   }
 
   getRandomByDevice(device: string): string {
     let profilesCanUse: string[];
 
     if (device === 'random') {
-      profilesCanUse = this.profileIds.desktop.concat(this.profileIds.mobile).filter((p) => !this.excludedProfiles.includes(p));
+      profilesCanUse = this.profileIds.desktop.concat(this.profileIds.mobile).filter(p => !this.excludedProfiles.includes(p));
     } else if (device === 'randomDesktop') {
-      profilesCanUse = this.profileIds.desktop.filter((p) => !this.excludedProfiles.includes(p));
+      profilesCanUse = this.profileIds.desktop.filter(p => !this.excludedProfiles.includes(p));
     } else {
-      profilesCanUse = this.profileIds.mobile.filter((p) => !this.excludedProfiles.includes(p));
+      profilesCanUse = this.profileIds.mobile.filter(p => !this.excludedProfiles.includes(p));
     }
 
     if (profilesCanUse.length > 0) {
@@ -1418,15 +1418,15 @@ export class Generator {
     let profilesCanUse: string[];
 
     if (os === 'windows') {
-      profilesCanUse = this.profileIds.desktop.filter((p) => p.includes('win') && !this.excludedProfiles.includes(p));
+      profilesCanUse = this.profileIds.desktop.filter(p => p.includes('win') && !this.excludedProfiles.includes(p));
     } else if (os === 'macOS') {
-      profilesCanUse = this.profileIds.desktop.filter((p) => p.includes('mac') && !this.excludedProfiles.includes(p));
+      profilesCanUse = this.profileIds.desktop.filter(p => p.includes('mac') && !this.excludedProfiles.includes(p));
     } else if (os === 'linux') {
-      profilesCanUse = this.profileIds.desktop.filter((p) => p.includes('lin') && !this.excludedProfiles.includes(p));
+      profilesCanUse = this.profileIds.desktop.filter(p => p.includes('lin') && !this.excludedProfiles.includes(p));
     } else if (os === 'iOS') {
-      profilesCanUse = this.profileIds.mobile.filter((p) => p.includes('ios') && !this.excludedProfiles.includes(p));
+      profilesCanUse = this.profileIds.mobile.filter(p => p.includes('ios') && !this.excludedProfiles.includes(p));
     } else if (os === 'android') {
-      profilesCanUse = this.profileIds.mobile.filter((p) => p.includes('and') && !this.excludedProfiles.includes(p));
+      profilesCanUse = this.profileIds.mobile.filter(p => p.includes('and') && !this.excludedProfiles.includes(p));
     }
 
     if (profilesCanUse.length > 0) {

@@ -144,7 +144,7 @@
     "message": "Default（既定値）にリセット"
   },
   "options-settings-permissions": {
-    "message": "Chameleon は、指紋の耐性や追跡保護の有効化など、Firefox の設定の一部を制御できます。これは別の拡張機能と競合する可能性があります。プライバシー許可を削除することで、これらの設定を制御するカメレオンをオプトアウトできます。この権限を削除すると、これらの設定がリセットされることに注意してください。この許可が存在しない場合は、この許可をリクエストできます。"
+    "message": "Chameleonは、フィンガープリントへの抵抗やトラッキング保護の有効化など、Firefoxのいくつかの設定を制御できます。これは他の拡張機能と競合する可能性があります。プライバシーの権限を削除することで、Chameleonがこれらの設定を制御することをオプトアウトできます。この権限を削除すると、これらの設定がリセットされることに注意してください。この権限が存在しない場合は、要求することができます。"
   },
   "options-settings-permissions-legacy": {
     "message": "プライバシー許可を有効にするには、Chameleon の特別なバージョンをインストールする必要があります。これは、クロスプラットフォーム/この拡張機能の新しいバージョンでサポートされている権限の複雑さによるものです。詳細については、以下にリンクされている wiki を参照してください。"
@@ -172,6 +172,18 @@
   },
   "options-whitelist-headerIPLabel": {
     "message": "IP ヘッダ (Via や X-Forwarded のための)"
+  },
+  "options-whitelist-options-audioContext": {
+    "message": "Enable spoof audio context"
+  },
+  "options-whitelist-options-clientRects": {
+    "message": "Enable spoof client rects"
+  },
+  "options-whitelist-options-cssExfil": {
+    "message": "CSS Exfil をブロックする"
+  },
+  "options-whitelist-options-mediaDevices": {
+    "message": "メディアデバイスをブロックする"
   },
   "options-whitelist-options-name": {
     "message": "window.name 保護を有効にする"
@@ -307,6 +319,9 @@
   },
   "popup-profile-randomMobileProfile": {
     "message": "ランダムなプロファイル (Mobile)"
+  },
+  "popup-profile-showProfileOnIcon": {
+    "message": "Show browser profile on icon"
   },
   "popup-headers": {
     "message": "ヘッダー"
@@ -467,6 +482,9 @@
   "popup-options-cookiePolicy-rejectTrackers": {
     "message": "トラッカーを拒絶する"
   },
+  "popup-options-cookiePolicy-rejectTrackersPartitionForeign": {
+    "message": "Reject trackers and partition third-party cookies"
+  },
   "popup-whitelist-contextMenu": {
     "message": "ホワイトリストで現在のタブドメインを開くためのコンテキストメニュー項目を追加する"
   },
@@ -484,6 +502,15 @@
   },
   "popup-whitelist-open": {
     "message": "ホワイトリストで開く"
+  },
+  "text-addToRule": {
+    "message": "Add to rule: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
   },
   "text-allowAll": {
     "message": "すべて許可する"
@@ -515,6 +542,15 @@
   "text-realProfile": {
     "message": "真正プロファイル"
   },
+  "text-removeFromRule": {
+    "message": "Remove from rule: $RULE_NAME$",
+    "placeholders": {
+      "rule_name": {
+        "content": "$1",
+        "example": "Firefox whitelist rule profile"
+      }
+    }
+  },
   "text-save": {
     "message": "保存する"
   },
@@ -523,6 +559,9 @@
   },
   "text-searchRules": {
     "message": "検索ルール"
+  },
+  "text-startupDelay": {
+    "message": "Startup delay (sec)"
   },
   "text-timezone": {
     "message": "タイムゾーン"

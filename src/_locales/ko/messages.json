@@ -411,7 +411,7 @@
     "message": "font fingerprint 위장하기"
   },
   "popup-options-standard": {
-    "message": "Standard"
+    "message": "일반 설정"
   },
   "popup-options-standard-blockMediaDevices": {
     "message": "media devices 차단"

@@ -75,7 +75,7 @@
             </button>
           </div>
           <a id="export"></a>
-          <div v-if="platform != 'android' && !isLegacyVersion">
+          <div v-if="!isLegacyVersion">
             <div class="text-xl mb-4" v-t="'options-settings-permissions.message'"></div>
             <div class="flex flex-col xl:flex-row">
               <button @click="togglePrivacyPermission" class="transparent-btn">
