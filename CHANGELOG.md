@@ -1,3 +1,17 @@
+<a name="v0.22.70-rc"></a>
+
+## [v0.22.69-rc](https://github.com/sereneblue/chameleon/compare/v0.22.69...v0.22.70-rc) (2025-02-09)
+
+### Bug Fixes
+
+- Enable request/remove privacy permissions on Android ([#603](https://github.com/sereneblue/chameleon/issues/603))
+- iOS profile fixes
+
+### Features
+
+- update profiles
+- update translations
+
 <a name="v0.22.69-rc"></a>
 
 ## [v0.22.69-rc](https://github.com/sereneblue/chameleon/compare/v0.22.68...v0.22.69-rc) (2025-01-14)
