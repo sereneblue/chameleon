@@ -40,11 +40,11 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '135.0.0.0', desktopChrome: '135.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '135.0.0.0', androidChrome: '135.0.0.0' },
+  edg: { desktop: '137.0.0.0', desktopChrome: '137.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '136.0.0.0', androidChrome: '136.0.0.0' },
   esr: { desktop: '128' },
   esr2: { desktop: '115' },
-  ff: { desktop: '137', mobile: '137' },
-  gcr: { desktop: '135.0.0.0', deprecated: '109.0.0.0', ios: '136.0.7103.42', android: '135.0.0.0' },
+  ff: { desktop: '139', mobile: '139' },
+  gcr: { desktop: '136.0.0.0', deprecated: '109.0.0.0', ios: '137.0.7151.51', android: '136.0.0.0' },
   sf: { desktop: '18.4', ios1: '16.7.10', ios2: '17.7.2', ios3: '18.4' },
 };
 
@@ -575,8 +575,8 @@ export class Generator {
             { type: 'text/pdf', suffixes: 'pdf', description: 'Portable Document Format' },
           ],
           maxTouchPoints: 5,
-          oscpu: 'Linux aarch64',
-          platform: 'Linux aarch64',
+          oscpu: 'Linux armv81',
+          platform: 'Linux armv81',
           plugins: [
             {
               name: 'PDF Viewer',
