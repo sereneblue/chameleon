@@ -110,6 +110,10 @@ export const initialize = async ({ commit }) => {
   commit(mtypes.INITIALIZE, settings);
 };
 
+export const syncSettings = ({ commit }, payload) => {
+  commit(mtypes.SYNC, payload);
+};
+
 export const toggleChameleon = ({ commit }, payload) => {
   commit(mtypes.TOGGLE_CHAMELEON, payload);
   webext.enableChameleon(payload);

@@ -182,6 +182,7 @@
               v-model.number="settings.config.reloadIPStartupDelay"
               type="number"
               min="0"
+              autocomplete="off"
               class="block form-input"
             />
           </div>

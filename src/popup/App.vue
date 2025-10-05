@@ -162,6 +162,7 @@
                 name="profile.interval.min"
                 type="number"
                 min="1"
+                autocomplete="off"
                 class="block w-full form-input text-mini"
               />
             </div>
@@ -175,6 +176,7 @@
                 name="profile.interval.max"
                 type="number"
                 min="1"
+                autocomplete="off"
                 class="block w-full form-input text-mini"
               />
             </div>
@@ -327,6 +329,7 @@
                 v-model="tmp.rangeFrom"
                 name="headers.spoofIP.rangeFrom"
                 class="block w-full form-input text-mini"
+                autocomplete="off"
                 :class="{ error: errors.rangeFrom }"
               />
             </div>
@@ -338,6 +341,7 @@
                 v-model="tmp.rangeTo"
                 name="headers.spoofIP.rangeTo"
                 class="block w-full form-input text-mini"
+                autocomplete="off"
                 :class="{ error: errors.rangeTo }"
               />
             </div>
@@ -491,6 +495,7 @@
                   @input="changeSetting($event)"
                   name="options.protectKBFingerprint.delay"
                   :value="settings.options.protectKBFingerprint.delay"
+                  autocomplete="off"
                   type="number"
                   min="1"
                   max="1000"
@@ -1005,6 +1010,12 @@ export default class App extends Vue {
       function(request: any): void {
         if (request.action === 'tempStore') {
           Vue.set(this.tmp, 'store', request.data);
+        } else if (request.action === 'updateIPRules') {
+          this['$store'].dispatch('syncSettings', { ipRules: request.data });
+        } else if (request.action === 'updateWhitelist') {
+          this['$store'].dispatch('syncSettings', { whitelist: request.data });
+        } else if (request.action === 'save') {
+          this['$store'].dispatch('syncSettings', request.data);
         }
       }.bind(this)
     );

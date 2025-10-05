@@ -31,6 +31,9 @@ export default {
   [mtypes.TOGGLE_THEME](state, payload) {
     state.config.theme = state.config.theme == 'light' ? 'dark' : 'light';
   },
+  [mtypes.SYNC](state, payload) {
+    stateMerge(state, payload);
+  },
   [mtypes.UPDATE_EXCLUSIONS](state, payload) {
     state.excluded = payload;
   },
