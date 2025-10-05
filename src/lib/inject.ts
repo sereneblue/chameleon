@@ -184,12 +184,14 @@ class Injector {
           tz = tempStore.ipInfo.tz;
         }
 
-        this.spoof.metadata['timezone'] = {
-          locale: 'en-US',
-          zone: moment.tz.zone(tz),
-        };
+        if (tz) {
+          this.spoof.metadata['timezone'] = {
+            locale: 'en-US',
+            zone: moment.tz.zone(tz),
+          };
 
-        this.updateInjectionData(timezone);
+          this.updateInjectionData(timezone);
+        }
       }
 
       if (settings.headers.referer.disabled) {
