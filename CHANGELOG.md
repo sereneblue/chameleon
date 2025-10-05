@@ -1,3 +1,16 @@
+<a name="v0.22.77-rc"></a>
+
+## [v0.22.77-rc](https://github.com/sereneblue/chameleon/compare/v0.22.76...v0.22.77-rc) (2025-10-04)
+
+### Features
+
+- update profiles
+
+### Bug Fixes
+
+- update state handling for settings to prevent default settings from overwriting user settings (#619)
+- Don't enable Timezone spoofing injection if unable to fetch timezone information from IP (#620)
+
 <a name="v0.22.76-rc"></a>
 
 ## [v0.22.76-rc](https://github.com/sereneblue/chameleon/compare/v0.22.75...v0.22.76-rc) (2025-08-20)
