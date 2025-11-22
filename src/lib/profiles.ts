@@ -40,12 +40,12 @@ export interface ProfileListItem {
 }
 
 const BrowserVersions: any = {
-  edg: { desktop: '140.0.0.0', desktopChrome: '140.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '140.0.0.0', androidChrome: '140.0.0.0' },
+  edg: { desktop: '142.0.0.0', desktopChrome: '142.0.0.0', deprecated: '109.0.1518.55', deprecatedChrome: '109.0.0.0', android: '142.0.0.0', androidChrome: '142.0.0.0' },
   esr: { desktop: '140' },
   esr2: { desktop: '128' },
-  ff: { desktop: '143', mobile: '143' },
-  gcr: { desktop: '140.0.0.0', deprecated: '109.0.0.0', ios: '141.0.7390.41', android: '140.0.0.0' },
-  sf: { desktop: '18.6', ios1: '16.7.10', ios2: '17.7.2', ios3: '18.6.2' },
+  ff: { desktop: '145', mobile: '145' },
+  gcr: { desktop: '142.0.0.0', deprecated: '109.0.0.0', ios: '143.0.7499.38', android: '142.0.0.0' },
+  sf: { mac1: '17.6.2', mac2: '18.6', mac3: '26.1', ios1: '17.7.2', ios2: '18.6.2', ios3: '26.0' },
 };
 
 const DesktopResolutions: string[] = ['1366x768', '1440x900', '1600x900', '1920x1080', '1920x1200', '2560x1440', '2560x1600', '3840x2160'];
@@ -112,16 +112,29 @@ let getName = (os: string, browser: string) => {
   } else if (browser === 'ie') {
     return `${os} - Internet Explorer 11`;
   } else if (browser === 'sf') {
-    return `${os} - Safari ${BrowserVersions.sf.desktop.split('.')[0]}`;
+    switch (os) {
+      case 'macOS 14':
+        osId = 'mac1';
+        break;
+      case 'macOS 15':
+        osId = 'mac2';
+        break;
+      case 'macOS 26':
+        osId = 'mac3';
+        break;
+      default:
+        break;
+    }
+    return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]}`;
   } else if (browser === 'sfm') {
     switch (os) {
-      case 'iOS 16':
+      case 'iOS 17':
         osId = 'ios1';
         break;
-      case 'iOS 17':
+      case 'iOS 18':
         osId = 'ios2';
         break;
-      case 'iOS 18':
+      case 'iOS 26':
         osId = 'ios3';
         break;
       default:
@@ -130,13 +143,13 @@ let getName = (os: string, browser: string) => {
     return `${os} - Safari ${BrowserVersions.sf[osId].split('.')[0]} (iPhone)`;
   } else if (browser === 'sft') {
     switch (os) {
-      case 'iOS 16':
+      case 'iOS 17':
         osId = 'ios1';
         break;
-      case 'iOS 17':
+      case 'iOS 18':
         osId = 'ios2';
         break;
-      case 'iOS 18':
+      case 'iOS 26':
         osId = 'ios3';
         break;
       default:
@@ -1019,7 +1032,7 @@ export class Generator {
     },
     // safari
     sf: (os): BrowserProfile => {
-      let version: string = BrowserVersions.sf.desktop;
+      let version: string = BrowserVersions.sf[os.id];
 
       let ua = `Mozilla/5.0 (${os.uaPlatform}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${version} Safari/605.1.15`;
       let screenRes = MacResolutions[Math.floor(Math.random() * MacResolutions.length)].split('x').map(Number);
@@ -1199,7 +1212,7 @@ export class Generator {
       //  Use last 3 versions of macOS
       {
         id: 'mac1',
-        name: 'macOS 12',
+        name: 'macOS 14',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
@@ -1211,7 +1224,7 @@ export class Generator {
       },
       {
         id: 'mac2',
-        name: 'macOS 13',
+        name: 'macOS 15',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
@@ -1223,7 +1236,7 @@ export class Generator {
       },
       {
         id: 'mac3',
-        name: 'macOS 14',
+        name: 'macOS 26',
         browsers: ['edg', 'esr', 'esr2', 'ff', 'gcr', 'sf'],
         nav: {
           version: '',
@@ -1275,21 +1288,21 @@ export class Generator {
     iOS: [
       {
         id: 'ios1',
-        name: 'iOS 16',
+        name: 'iOS 17',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
         uaPlatform: '16_7_10',
       },
       {
         id: 'ios2',
-        name: 'iOS 17',
+        name: 'iOS 18',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
         uaPlatform: '17_7_2',
       },
       {
         id: 'ios3',
-        name: 'iOS 18',
+        name: 'iOS 26',
         browsers: ['gcrm', 'gcrt', 'sfm', 'sft'],
-        uaPlatform: '18_3',
+        uaPlatform: '18_7_2',
       },
     ],
     android: [
