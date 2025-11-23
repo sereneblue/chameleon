@@ -282,6 +282,7 @@
                     <label>
                       <span v-t="'options-whitelist-acceptLang.message'"></span>
                       <select v-model="tmp.wlRule.lang" class="form-select mt-1 block w-full">
+                        <option value="default" v-t="'text-default.message'"></option>
                         <option v-for="l in languages" :key="l.code" :value="l.code">{{ l.name }}</option>
                       </select>
                     </label>
@@ -625,18 +626,10 @@ export default class App extends Vue {
   }
 
   createNewWhitelistRule(): void {
-    let lang: string;
-
-    if (this.languages.findIndex(l => l.code === this.defaultLanguage) > -1) {
-      lang = this.defaultLanguage;
-    } else {
-      lang = 'en-US';
-    }
-
     this.tmp.wlRule.id = '';
     this.tmp.wlRule.name = '';
     this.tmp.wlRule.sites = '';
-    this.tmp.wlRule.lang = lang;
+    this.tmp.wlRule.lang = 'default';
     this.tmp.wlRule.profile = 'default';
     this.tmp.wlRule.spoofIP = '';
     this.tmp.wlRule.options.audioContext = false;
