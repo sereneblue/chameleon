@@ -1,3 +1,11 @@
+<a name="v0.22.79-rc"></a>
+
+## [v0.22.79-rc](https://github.com/sereneblue/chameleon/compare/v0.22.78...v0.22.79-rc) (2025-11-22)
+
+### Features
+
+- add 'Default' as option for whitelist accept language (#626)
+
 <a name="v0.22.78-rc"></a>
 
 ## [v0.22.78-rc](https://github.com/sereneblue/chameleon/compare/v0.22.77...v0.22.78-rc) (2025-11-21)
