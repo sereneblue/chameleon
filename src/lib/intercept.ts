@@ -223,7 +223,7 @@ class Interceptor {
           }
         }
       } else if (header === 'accept-language') {
-        if (wl.active && wl.lang != '') {
+        if (wl.active && wl.lang != 'default') {
           details.requestHeaders[i].value = wl.lang;
         } else {
           if (this.settings.headers.spoofAcceptLang.enabled) {

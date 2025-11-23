@@ -795,9 +795,9 @@ export class Chameleon {
         let interval: number =
           Math.random() * (this.settings.profile.interval.max * 60 * 1000 - this.settings.profile.interval.min * 60 * 1000) + this.settings.profile.interval.min * 60 * 1000;
 
-        /* 
+        /*
           Use regular timeout for custom interval
-          Allows irregular periods between alarm  
+          Allows irregular periods between alarm
         */
 
         if (this.intervalTimeout) clearTimeout(this.intervalTimeout);
@@ -1379,7 +1379,7 @@ export class Chameleon {
         }
 
         let options = [
-          ['whitelist.rules.lang', impSettings.whitelist.rules[i].lang, languageIds],
+          ['whitelist.rules.lang', impSettings.whitelist.rules[i].lang, languageIds.concat(['default'])],
           ['whitelist.rules.profile', impSettings.whitelist.rules[i].profile, profileIds.concat(['default', 'none'])],
         ];
 
