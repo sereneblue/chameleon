@@ -1,3 +1,15 @@
+<a name="v0.22.80-rc"></a>
+
+## [v0.22.80-rc](https://github.com/sereneblue/chameleon/compare/v0.22.79...v0.22.80-rc) (2026-01-18)
+
+### Bug Fixes
+
+- fix(spoof): check for window props for font spoofing injection (#630)
+
+### Features
+
+- update profiles
+
 <a name="v0.22.79-rc"></a>
 
 ## [v0.22.79-rc](https://github.com/sereneblue/chameleon/compare/v0.22.78...v0.22.79-rc) (2025-11-22)
