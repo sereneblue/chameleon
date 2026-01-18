@@ -275,7 +275,7 @@ class Injector {
 
         let CHAMELEON_SPOOF = new WeakMap();
         CHAMELEON_SPOOF.set(spoofContext, JSON.parse(\`${JSON.stringify(this.spoof.metadata)}\`));
-        
+
         let ORIGINAL_INTL = spoofContext.Intl.DateTimeFormat;
         let ORIGINAL_INTL_PROTO = spoofContext.Intl.DateTimeFormat.prototype;
         let _supportedLocalesOfDTF = spoofContext.Intl.DateTimeFormat.supportedLocalesOf;
@@ -293,7 +293,7 @@ class Injector {
 
         let modifiedAPIs = [];
         let injectionProperties = JSON.parse(\`${JSON.stringify(this.spoof.overwrite)}\`);
-        
+
         injectionProperties.forEach(injProp => {
           if (injProp.obj === 'window') {
             Object.defineProperty(spoofContext, injProp.prop, {
@@ -459,7 +459,7 @@ class Injector {
             })();
 
             Object.setPrototypeOf(plugins, PluginArray.prototype);
-            
+
             Object.defineProperty(spoofContext.navigator, 'plugins', {
               configurable: true,
               value: plugins
@@ -493,11 +493,11 @@ class Injector {
         if (injectionProperties.length > 0 || ${this.spoof.custom != ''}) {
           spoofContext.Intl.DateTimeFormat = function(...args) {
             let locale = spoofContext.navigator.language || "en-US";
-            
+
             if (CHAMELEON_SPOOF.has(spoofContext)) {
               if (CHAMELEON_SPOOF.get(spoofContext).timezone) {
                 let spoofData = Object.assign({}, CHAMELEON_SPOOF.get(spoofContext).timezone);
-    
+
                 if (args.length == 2) {
                   if (!args[1].timeZone) {
                     args[1].timeZone = spoofData.zone.name;
@@ -518,7 +518,7 @@ class Injector {
                 }
               }
             }
-  
+
             return new (Function.prototype.bind.apply(ORIGINAL_INTL, [null].concat(args)));
           }
 
@@ -546,31 +546,31 @@ class Injector {
               Object.defineProperty(w, 'Date', {
                 value: spoofContext.Date
               });
-      
+
               Object.defineProperty(w.Intl, 'DateTimeFormat', {
                 value: spoofContext.Intl.DateTimeFormat
               });
-      
+
               Object.defineProperty(w, 'screen', {
                 value: spoofContext.screen
               });
-      
+
               Object.defineProperty(w, 'navigator', {
                 value: spoofContext.navigator
               });
-      
+
               Object.defineProperty(w.Element.prototype, 'getBoundingClientRect', {
                 value: spoofContext.Element.prototype.getBoundingClientRect
               });
-      
+
               Object.defineProperty(w.Element.prototype, 'getClientRects', {
                 value: spoofContext.Element.prototype.getClientRects
               });
-      
+
               Object.defineProperty(w.Range.prototype, 'getBoundingClientRect', {
                 value: spoofContext.Range.prototype.getClientRects
               });
-      
+
               Object.defineProperty(w.Range.prototype, 'getClientRects', {
                 value: spoofContext.Range.prototype.getClientRects
               });
@@ -578,7 +578,7 @@ class Injector {
 
             return w;
           }
-          
+
           modifiedAPIs.push([
             spoofContext.open, "open"
           ]);
@@ -594,12 +594,12 @@ class Injector {
 
                 if (e && e.tagName === "IFRAME") {
                   try {
-                    inject(e.contentWindow);                    
+                    inject(e.contentWindow);
                   } catch (err) {};
                 } else {
                   for (let i = 0; i < spoofContext.length; i++) {
                     try {
-                      inject(spoofContext[i]);                    
+                      inject(spoofContext[i]);
                     } catch (err) {};
                   }
                 }
@@ -610,7 +610,7 @@ class Injector {
               }
             });
 
-            ["append", "insertAdjacentElement", "insertAdjacentHTML", 
+            ["append", "insertAdjacentElement", "insertAdjacentHTML",
               "insertAdjacentText", "prepend", "replaceWith"].forEach(method => {
               const _original = spoofContext.Element.prototype[method];
 
@@ -619,15 +619,15 @@ class Injector {
 
                 if (e && e.tagName === "IFRAME") {
                   try {
-                    inject(e.contentWindow);                    
+                    inject(e.contentWindow);
                   } catch (err) {};
                 } else {
                   for (let i = 0; i < spoofContext.length; i++) {
                     try {
-                      inject(spoofContext[i]);                    
+                      inject(spoofContext[i]);
                     } catch (err) {};
                   }
-                } 
+                }
 
                 return e;
               }
@@ -642,7 +642,7 @@ class Injector {
 
                   for (let i = 0; i < spoofContext.length; i++) {
                     try {
-                      inject(spoofContext[i]);                    
+                      inject(spoofContext[i]);
                     } catch (err) {};
                   }
 
@@ -679,7 +679,7 @@ class Injector {
               return \`function \$\{m[1]\}() {\n    [native code]\n}\`;
             }
           })
-  
+
           Object.defineProperty(m[0], 'name', {
             configurable: false,
             value: m[1]

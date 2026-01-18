@@ -33,7 +33,7 @@ export default {
         'Farisi', 'Galvji', 'Kohinoor Gujarati', 'MuktaMahee', 'Noto Sans Kannada', 'Noto Sans Myanmar', 'Noto Sans Oriya'
       ]),
       'lin1': COMMON_FONTS_LINUX.concat([
-        'Akaash', 'AkrutiMal1', 'AkrutiMal2', 'AkrutiTml1', 'AkrutiTml2', 'Bitstream Vera Sans', 'Bitstream Vera Serif', 'C059', 'Cantarell', 'D050000L', 'Droid Sans Mono', 'Gargi-1.2b', 'GurbaniBoliLite', 'Hack', 'Inconsolata', 'Liberation Serif', 'LIkhan', 'malayalam', 'MalOtf', 'Mukti Narrow', 'Nimbus Mono PS', 'Nimbus Roman', 'Nimbus Sans', 'Noto Mono', 'Noto Serif', 'orya', 'P052', 'padmaa', 'Pothana2000', 'Sagar', 'Sampige', 'Source Code Pro', 'Source Code Variable', 'Standard Symbols PS', 'TAMu_Kadambri', 'TAMu_Kalyani', 'TAMu_Maduram', 'TSCu_Comic', 'TSCu_Paranar', 'TSCu_Times', 'URW Bookman', 'URW Gothic', 'xos4 Terminus', 'Z003' 
+        'Akaash', 'AkrutiMal1', 'AkrutiMal2', 'AkrutiTml1', 'AkrutiTml2', 'Bitstream Vera Sans', 'Bitstream Vera Serif', 'C059', 'Cantarell', 'D050000L', 'Droid Sans Mono', 'Gargi-1.2b', 'GurbaniBoliLite', 'Hack', 'Inconsolata', 'Liberation Serif', 'LIkhan', 'malayalam', 'MalOtf', 'Mukti Narrow', 'Nimbus Mono PS', 'Nimbus Roman', 'Nimbus Sans', 'Noto Mono', 'Noto Serif', 'orya', 'P052', 'padmaa', 'Pothana2000', 'Sagar', 'Sampige', 'Source Code Pro', 'Source Code Variable', 'Standard Symbols PS', 'TAMu_Kadambri', 'TAMu_Kalyani', 'TAMu_Maduram', 'TSCu_Comic', 'TSCu_Paranar', 'TSCu_Times', 'URW Bookman', 'URW Gothic', 'xos4 Terminus', 'Z003'
       ]),
       'lin2': COMMON_FONTS_LINUX.concat([
         'aakar', 'Abyssinica SIL', 'Ani', 'AnjaliOldLipi', 'AR PL Ukai', 'Chandas', 'Chilanka', 'DejaVu Sans', 'DejaVu Sans Mono', 'DejaVu Serif', 'Dyuthi', 'FreeMono', 'FreeSans', 'FreeSerif', 'Gargi', 'Garuda', 'Gubbi', 'Jamrul', 'KacstBook', 'KacstDecorative', 'KacstDigital', 'KacstFarsi', 'KacstNaskh', 'KacstOffice', 'KacstOne', 'KacstPen', 'KacstPoster', 'KacstQurn', 'KacstScreen', 'Kacstitle', 'Kalapi', 'Kalimati', 'Karumbi', 'Keraleeyam', 'Khmer OS', 'Khmer OS System', 'Kinnari', 'Laksaman', 'Liberations Serif', 'Likhan', 'LKLUG', 'Lohit Assamese', 'Lohit Bengali', 'Lohit Devanagari', 'Lohit Gujarati', 'Logit Gurmukhi', 'Lohit Kannada', 'Lohit Malayalam', 'Lohit Odia', 'Lohit Tamil', 'Lohit Tamil Classical', 'Lohit Telugu', 'Loma', 'Manjari', 'Meera', 'Mitra Mono', 'mry_KacstQurn', 'Mukti Narrow', 'Nakula', 'Navilu', 'Norasi', 'Noto Mono', 'Noto Serif', 'OpenSymbol', 'Padauk', 'padmaa', 'Pagul', 'Phetsarath OT', 'Pothana2000', 'Purisa', 'Rachana' ,'RaghuMalayalamSans', 'Rasa', 'Rekha', 'Saab', 'Sahadeva', 'Samanata', 'Samyak Devanagai', 'Samyak Gujarati', 'Samyak Malayalam', 'Samyak Tamil', 'Sarai', 'Sawasdee', 'Suruma', 'Tibetan Machine Uni', 'TlwgMono', 'TlwgTypewriter', 'Ubuntu', 'Ubuntu Mono', 'Umpush', 'Uroob', 'utkal', 'Vemana2000', 'Waree', 'Yrsa'
@@ -104,7 +104,7 @@ export default {
         if (node.style && node.style.fontFamily != '') {
           modifyFontFamily(node);
         }
-      
+
         node.childNodes.forEach(modifyNodeFont);
       }
 
@@ -113,11 +113,21 @@ export default {
 
     // modify CSS2Properties fontFamily
     // In Firefox, the fontFamily property is located here instead of CSSStyleDeclaration
-    Object.defineProperty(spoofContext.CSS2Properties.prototype, "fontFamily", {
-      set: function fontFamily(f) {
-        this["font-family"] = f ? getWhitelistFonts(f) : f;
-      }
-    });
+    if (spoofContext.CSS2Properties) {
+      Object.defineProperty(spoofContext.CSS2Properties.prototype, "fontFamily", {
+        set: function fontFamily(f) {
+          this["font-family"] = f ? getWhitelistFonts(f) : f;
+        }
+      });
+    }
+
+    if (spoofContext.CSSStyleProperties) {
+      Object.defineProperty(spoofContext.CSSStyleProperties.prototype, "fontFamily", {
+        set: function fontFamily(f) {
+          this["font-family"] = f ? getWhitelistFonts(f) : f;
+        }
+      });
+    }
 
     // modify CSSStyleDeclaration cssText
     {
@@ -150,7 +160,7 @@ export default {
         }
       } catch (e) {
         // Firefox throws a SecurityError if a stylesheet is being loaded from another domain with CORS
-        
+
         // Attempt again if CSS has not finished loading
         if (e.name === "InvalidAccessError") {
           setTimeout(CHAMELEON_SPOOF_f, 10);
