@@ -213,13 +213,15 @@ class Injector {
       if (wl.options.cssExfil) this.updateInjectionData(cssExfil);
       if (wl.options.mediaDevices) this.updateInjectionData(media);
 
-      let l = lang.getLanguage(wl.lang);
+      if (wl.lang != 'default') {
+        let l = lang.getLanguage(wl.lang);
 
-      this.spoof.metadata['language'] = {
-        code: wl.lang,
-        nav: l.nav,
-      };
-      this.updateInjectionData(language);
+        this.spoof.metadata['language'] = {
+          code: wl.lang,
+          nav: l.nav,
+        };
+        this.updateInjectionData(language);
+      }
 
       if (wl.profile != 'none') {
         if (wl.profile === 'default' && settings.whitelist.defaultProfile != 'none') {
