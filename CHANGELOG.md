@@ -1,3 +1,15 @@
+<a name="v0.22.83-rc"></a>
+
+## [v0.22.82-rc](https://github.com/sereneblue/chameleon/compare/v0.22.82...v0.22.83-rc) (2026-04-25)
+
+### Features
+
+- update profiles
+
+### Bug Fixes
+
+- Whitelist language spoofing fix (#635)
+
 <a name="v0.22.82-rc"></a>
 
 ## [v0.22.82-rc](https://github.com/sereneblue/chameleon/compare/v0.22.81...v0.22.82-rc) (2026-03-28)
