@@ -565,7 +565,7 @@
                     type="checkbox"
                     class="text-primary form-checkbox cursor-pointer"
                   />
-                  <span class="ml-1" v-t="'popup-options-standard-turnstileFallback.message'"></span>
+                  <span class="ml-1" v-t="'popup-options-injection-turnstileFallback.message'"></span>
                 </label>
               </div>
               <div class="flex items-center mb-2">
