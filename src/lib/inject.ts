@@ -16,6 +16,7 @@ import timezone from './spoof/timezone';
 import winName from './spoof/name';
 import util from './util';
 import whitelisted from './whitelisted';
+import isChallengeURL from './turnstile';
 
 const moment = require('moment-timezone');
 
@@ -29,7 +30,7 @@ class Injector {
   };
 
   constructor(settings: any, tempStore: any, profileCache: any, seed: number, randObjName: string) {
-    if (!settings.config.enabled) {
+    if (!settings.config.enabled || (settings.options.turnstileFallback && isChallengeURL(window.location.href))) {
       this.enabled = false;
       return;
     }
