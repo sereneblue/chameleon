@@ -410,6 +410,9 @@
   "popup-options-injection-spoofFontFingerprint": {
     "message": "Falsear la huella de la fuente"
   },
+  "popup-options-injection-turnstileFallback": {
+    "message": "Manda el perfil verdadero para las pruebas de cloudflare turnstile"
+  },
   "popup-options-standard": {
     "message": "Estándar"
   },

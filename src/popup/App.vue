@@ -555,6 +555,19 @@
                   <span class="ml-1" v-t="'popup-options-injection-spoofFontFingerprint.message'"></span>
                 </label>
               </div>
+			  <div class="flex items-center mt-2 mb-1">
+                <label class="cursor-pointer">
+                  <input
+                    id="turnstileFallback"
+                    @change="changeSetting($event)"
+                    :checked="settings.options.turnstileFallback"
+                    name="options.turnstileFallback"
+                    type="checkbox"
+                    class="text-primary form-checkbox cursor-pointer"
+                  />
+                  <span class="ml-1" v-t="'popup-options-standard-turnstileFallback.message'"></span>
+                </label>
+              </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span v-t="'popup-options-injection-screen.message'"></span>

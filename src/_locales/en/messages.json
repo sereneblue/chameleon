@@ -410,6 +410,9 @@
   "popup-options-injection-spoofFontFingerprint": {
     "message": "Spoof font fingerprint"
   },
+  "popup-options-injection-turnstileFallback": {
+    "message": "Send real profile to cloudflare turnstile challenges"
+  },
   "popup-options-standard": {
     "message": "Standard"
   },

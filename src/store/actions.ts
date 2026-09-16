@@ -32,6 +32,7 @@ export const changeSetting = ({ commit }, payload: any) => {
       'options.blockMediaDevices',
       'options.spoofMediaDevices',
       'options.blockCSSExfil',
+	  'options.turnstileFallback',
       'options.limitHistory',
       'options.protectKBFingerprint.enabled',
       'options.protectKBFingerprint.delay',
