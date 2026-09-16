@@ -8,14 +8,14 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}",
-      "strict_min_version": "68.0a1",
+      "strict_min_version": "128.0",
       "data_collection_permissions": {
         "required": ["none"]
       }
     },
     "gecko_android": {
       "id": "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}",
-      "strict_min_version": "68.0a1"
+      "strict_min_version": "128.0"
     }
   },
   "default_locale": "en",
@@ -31,5 +31,6 @@
     "scripts": ["background.js"]
   },
   "permissions": ["<all_urls>", "alarms", "contextMenus", "notifications", "storage", "tabs", "webRequest", "webRequestBlocking"],
+  "web_accessible_resources": ["icons/icon.svg"],
   "optional_permissions": ["privacy"]
 }
