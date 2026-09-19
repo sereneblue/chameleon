@@ -98,6 +98,9 @@
   "options-import-invalid-whitelistSpoofIP": {
     "message": "Invalid settings: invalid whitelist rule spoof IP"
   },
+  "options-import-invalid-whitelistFontExclude": {
+    "message": "Invalid settings: missing font exclusions"
+  },
   "options-import-success": {
     "message": "Successfully imported settings. Reloading extension..."
   },
