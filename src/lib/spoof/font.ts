@@ -67,14 +67,14 @@ export default {
     let selectedFonts = FONTS[CHAMELEON_SPOOF.get(spoofContext).profileOS].map(f => f.toLowerCase()).concat(DEFAULT_FONT);
 
     const REGEX_FONT_FAMILY = /font\-family:[^;']*;?/g;
-    const REGEX_FONTS = /(".+?")|(.+)|('.+?'),?/g;
+    const REGEX_FONTS = /("[^"]+")|('[^']+')|([^,]+)/g;
 
     let getWhitelistFonts = (fontList) => {
       let tmpFonts = fontList.match(REGEX_FONTS).map(f => f.replace(/,+$/, ""));
       let fonts = [];
 
       for (let i = 0; i < tmpFonts.length; i++) {
-        if (selectedFonts.includes(tmpFonts[i].trim().replace(/^("|')|("|')$/, "").toLowerCase())) {
+        if (selectedFonts.includes(tmpFonts[i].trim().replace(/^["']|["']$/g, "").toLowerCase())) {
           fonts.push(tmpFonts[i]);
         }
       }
@@ -98,6 +98,13 @@ export default {
     let modifyFontFamily = (node) => {
       node.style.fontFamily = getWhitelistFonts(node.style.fontFamily);
     }
+    
+    let modifyFont = (font) => {
+      let style = spoofContext.document.createElement('span').style;
+      style.setProperty('font', font);
+      style.setProperty('font-family',getWhitelistFonts(style.getPropertyValue('font-family')));
+      return style.getPropertyValue('font');
+    }
 
     let modifyNodeFont = (node) => {
       if (node) {
@@ -110,6 +117,19 @@ export default {
 
       return node;
     }
+    
+    let modifyFontProperty = (proto) => {
+      let obj = Object.getOwnPropertyDescriptor(proto, 'font')
+
+      Object.defineProperty(proto, 'font', {
+        get() {
+          return obj.get.call(this)
+        },
+        set(font) {
+          obj.set.call(this, modifyFont(font))
+        }
+      })
+    }
 
     // modify CSS2Properties fontFamily
     // In Firefox, the fontFamily property is located here instead of CSSStyleDeclaration
@@ -119,6 +139,7 @@ export default {
           this["font-family"] = f ? getWhitelistFonts(f) : f;
         }
       });
+      modifyFontProperty(spoofContext.CSS2Properties.prototype);
     }
 
     if (spoofContext.CSSStyleProperties) {
@@ -127,8 +148,12 @@ export default {
           this["font-family"] = f ? getWhitelistFonts(f) : f;
         }
       });
+      modifyFontProperty(spoofContext.CSSStyleProperties.prototype);
     }
-
+    
+    if (spoofContext.CanvasRenderingContext2D)
+      modifyFontProperty(spoofContext.CanvasRenderingContext2D.prototype);
+    
     // modify CSSStyleDeclaration cssText
     {
       let obj = Object.getOwnPropertyDescriptor(spoofContext.CSSStyleDeclaration.prototype, 'cssText');
