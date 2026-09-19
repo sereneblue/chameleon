@@ -1103,6 +1103,17 @@ export class Chameleon {
       s.excluded = excludedProfiles;
     }
 
+    if (!impSettings.options.whitelistFontExclude) {
+      msg = browser.i18n.getMessage('options-import-invalid-whitelistFontExclude');
+
+      return {
+        error: true,
+        msg,
+      };
+    } else {
+      s.options.whitelistFontExclude = impSettings.options.whitelistFontExclude
+    }
+
     if (!impSettings.ipRules) {
       msg = browser.i18n.getMessage('options-import-invalid-ipRules');
 
