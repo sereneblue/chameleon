@@ -164,6 +164,7 @@ export class Chameleon {
     this.injectionScript = await browser.contentScripts.register({
       allFrames: true,
       matchAboutBlank: true,
+      matchOriginAsFallback: true,
       matches: ['http://*/*', 'https://*/*'],
       js: [
         {
@@ -769,6 +770,10 @@ export class Chameleon {
       ['blocking', 'requestHeaders']
     );
 
+    const requestFinished = (details: any) => this.intercept.requestFinished(details.requestId);
+    browser.webRequest.onCompleted.addListener(requestFinished, { urls: ['<all_urls>'] });
+    browser.webRequest.onErrorOccurred.addListener(requestFinished, { urls: ['<all_urls>'] });
+
     /* Block etags */
     browser.webRequest.onHeadersReceived.addListener(
       details => {
@@ -1278,6 +1283,10 @@ export class Chameleon {
         impSettings.options.blockCSSExfil = false;
       }
 
+      if (!('turnstileFallback' in impSettings.options)) {
+        impSettings.options.turnstileFallback = false;
+      }
+
       let options = [
         ['options.blockMediaDevices', impSettings.options.blockMediaDevices, 'boolean'],
         ['options.disableWebRTC', impSettings.options.disableWebRTC, 'boolean'],
@@ -1292,6 +1301,7 @@ export class Chameleon {
         ['options.spoofFontFingerprint', impSettings.options.spoofFontFingerprint, 'boolean'],
         ['options.spoofMediaDevices', impSettings.options.spoofMediaDevices, 'boolean'],
         ['options.blockCSSExfil', impSettings.options.blockCSSExfil, 'boolean'],
+        ['options.turnstileFallback', impSettings.options.turnstileFallback, 'boolean'],
         [
           'options.screenSize',
           impSettings.options.screenSize,
