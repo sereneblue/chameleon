@@ -10,7 +10,7 @@ export default {
       let keys = payload[i].name.split('.');
       let beforeLast = keys.slice(0, -1).reduce((o, i) => o[i], state);
 
-      if (typeof payload[i].value != 'boolean') {
+      if (typeof payload[i].value === 'string') {
         if (!isNaN(Number(payload[i].value))) {
           payload[i].value = parseInt(payload[i].value, 10);
         }

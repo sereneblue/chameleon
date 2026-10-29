@@ -20,7 +20,7 @@
         <feather type="settings" size="1.25em"></feather>
       </div>
     </div>
-    <div class="flex-grow flex-col w-full justify-around">
+    <div class="flex-grow flex-col w-full justify-around overflow-y-auto">
       <div v-show="isSelected('tab', 'main')">
         <div class="text-center mt-8">
           <div class="my-4 h-20">
@@ -555,6 +555,25 @@
                   <span class="ml-1" v-t="'popup-options-injection-spoofFontFingerprint.message'"></span>
                 </label>
               </div>
+              <div v-show="settings.options.spoofFontFingerprint" class="flex flex-col mb-1">
+                <div class="mt-1 w-full border rounded overflow-y-auto text-mini" style="max-height: 200px;">
+                  <label
+                    v-for="font in fontOptions"
+                    :key="font"
+                    class="flex items-center px-3 py-1 cursor-pointer select-none"
+                  >
+                    <input
+                      type="checkbox"
+                      :checked="settings.options.whitelistFontExclude.includes(font)"
+                      @change="changeFontExclude(font)"
+                      class="text-primary form-checkbox cursor-pointer"
+                    />
+                    <span class="ml-2">
+                      {{ font }}
+                    </span>
+                  </label>
+                </div>
+              </div>
               <div class="flex items-center mb-2">
                 <label class="w-full mt-2">
                   <span v-t="'popup-options-injection-screen.message'"></span>
@@ -806,6 +825,7 @@ import * as prof from '../lib/profiles';
 import * as tz from '../lib/tz';
 import util from '../lib/util';
 import webext from '../lib/webext';
+import { WHITELIST_FONTS } from '../lib/spoof/font';
 
 @Component
 export default class App extends Vue {
@@ -952,6 +972,30 @@ export default class App extends Vue {
     }
 
     return [];
+  }
+
+  get fontOptions(): string[] {
+    return WHITELIST_FONTS;
+  }
+
+  async changeFontExclude(font: string): Promise<void> {
+    const fonts = this.settings.options.whitelistFontExclude.slice();
+    const index = fonts.indexOf(font);
+
+    if (index === -1) {
+      fonts.push(font);
+    } else {
+      fonts.splice(index, 1);
+    }
+
+    await this['$store'].dispatch('changeSetting', [
+      {
+        name: 'options.whitelistFontExclude',
+        value: fonts,
+      },
+    ]);
+
+    webext.sendToBackground(this.settings);
   }
 
   get settings(): any {

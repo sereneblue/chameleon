@@ -148,6 +148,7 @@ class Injector {
       }
 
       if (settings.options.spoofFontFingerprint) {
+        this.spoof.metadata['whitelistFontExclude'] = settings.options.whitelistFontExclude;
         this.updateInjectionData(font);
       }
 

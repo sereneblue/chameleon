@@ -39,6 +39,7 @@ export const changeSetting = ({ commit }, payload: any) => {
       'options.spoofAudioContext',
       'options.spoofClientRects',
       'options.spoofFontFingerprint',
+      'options.whitelistFontExclude',
       'options.screenSize',
       'options.timeZone',
     ].includes(payload[0].name)

@@ -98,6 +98,9 @@
   "options-import-invalid-whitelistSpoofIP": {
     "message": "设置无效：白名单规则的欺骗IP无效"
   },
+  "options-import-invalid-whitelistFontExclude": {
+    "message": "设置无效：缺少字体排除项"
+  },
   "options-import-success": {
     "message": "导入设置成功。正在重新加载扩展..."
   },
