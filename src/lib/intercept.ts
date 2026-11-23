@@ -3,6 +3,9 @@ import * as prof from './profiles';
 import * as lang from './language';
 import util from './util';
 import whitelisted from './whitelisted';
+import isChallengeURL from './turnstile';
+
+const PROFILE_HEADERS = ['user-agent', 'accept', 'accept-encoding', 'accept-language', 'dnt', 'via', 'x-forwarded-for'];
 
 enum RefererXOriginOption {
   AlwaysSend = 0,
@@ -40,6 +43,7 @@ class Interceptor {
   private tempStore: any;
   private regex: any;
   private olderThanNinety: boolean;
+  private turnstileHeaders = new Map<string, any[]>();
 
   constructor(settings: any, tempStore: any, profileCache: any, olderThanNinety: boolean) {
     this.regex = {
@@ -129,8 +133,31 @@ class Interceptor {
     return { active: false };
   }
 
+  requestFinished(requestId: string): void {
+    this.turnstileHeaders.delete(requestId);
+  }
+
   modifyRequest(details: any): any {
     if (!this.settings.config.enabled) return;
+
+    if (this.settings.options.turnstileFallback) {
+      const profileHeader = (header: any) => PROFILE_HEADERS.includes(header.name.toLowerCase());
+
+      if (!this.turnstileHeaders.has(details.requestId)) {
+        this.turnstileHeaders.set(
+          details.requestId,
+          details.requestHeaders.filter(profileHeader).map((header: any) => ({ ...header }))
+        );
+      }
+
+      if (isChallengeURL(details.url)) {
+        return {
+          requestHeaders: details.requestHeaders
+            .filter((header: any) => !profileHeader(header))
+            .concat(this.turnstileHeaders.get(details.requestId)?.map((header: any) => ({ ...header }))),
+        };
+      }
+    }
 
     // don't modify request for sites below
     for (let i = 0; i < whitelisted.length; i++) {
